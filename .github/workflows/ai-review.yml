@@ -79,7 +79,7 @@ Body: ${body}
 Post a review comment.`;
 
             const claudeBody = JSON.stringify({
-              model: 'claude-sonnet-4-6',
+              model: 'claude-3-5-sonnet-20241022',
               max_tokens: 400,
               system: systemPrompt,
               messages: [{ role: 'user', content: userPrompt }]
