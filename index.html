@@ -2,102 +2,91 @@
 <html lang="en">
 <head>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The OpenClaw Field Playbook — For Entrepreneurs and Builders</title>
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The OpenClaw Field Playbook</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <nav id="topnav">
   <div class="nav-brand"><a href="/">The OpenClaw Field Playbook</a></div>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   <div class="nav-actions">
     <button class="btn-pdf" onclick="generateLivePDF()">Download PDF</button>
     <a href="https://github.com/alexwill87/openclawfieldplaybook" class="btn-github" target="_blank">View on GitHub</a>
   </div>
 </nav>
 
-<header id="hero">
-  <h1>The OpenClaw Field Playbook</h1>
-  <p class="tagline">🦞 For Entrepreneurs and Builders</p>
-</header>
-
 <div class="layout-wrapper">
   <aside class="sidebar">
-    <nav>
-      <a href="#chapter-0">Guide</a>
-      <a href="#chapter-1">Definition</a>
-      <a href="#chapter-2">Installation</a>
-      <a href="#chapter-3">Configuration</a>
-      <a href="#chapter-4">Personalisation</a>
-      <a href="#chapter-5">Maintenance</a>
-      <a href="#chapter-6">Use Cases</a>
-      <a href="#chapter-7">Localisation</a>
+    <nav id="side-nav">
+      <a href="#chapter-0">0. Guide</a>
+      <a href="#chapter-1">1. Definition</a>
+      <a href="#chapter-2">2. Installation</a>
+      <a href="#chapter-3">3. Configuration</a>
+      <a href="#chapter-4">4. Personalisation</a>
+      <a href="#chapter-5">5. Maintenance</a>
+      <a href="#chapter-6">6. Use Cases</a>
     </nav>
   </aside>
 
   <main id="content">
-    <section id="search-bar">
-      <input type="text" id="search-input" placeholder="Search the playbook..." autocomplete="off">
+    <div id="pdf-cover" style="display:none;">
+      <h1>The OpenClaw Field Playbook</h1>
+      <p>For Entrepreneurs and Builders</p>
+      <p>Generated on: <span id="date-now"></span></p>
+      <p>github.com/alexwill87/openclawfieldplaybook</p>
+    </div>
+
+    <header id="hero">
+      <h1>The OpenClaw Field Playbook</h1>
+      <p class="tagline">🦞 For Entrepreneurs and Builders</p>
+      <p><em>This playbook covers the full journey from installing OpenClaw to making it work for your business. Each chapter is independent.</em></p>
+    </header>
+
+    <section id="search-bar" class="no-print">
+      <input type="text" id="search-input" placeholder="Search...">
       <div id="search-results"></div>
     </section>
 
     <section id="chapter-0" class="chapter">
       <h2>Chapter 0 — Reading Guide</h2>
-      <div class="chapter-status"><span class="badge complete">Complete</span></div>
-      <p>How to navigate this playbook — for humans and AI agents. Includes the language contract and metadata guide.</p>
+      <p>How to navigate this playbook.</p>
     </section>
-
     <section id="chapter-1" class="chapter">
       <h2>Chapter 1 — Definition</h2>
-      <div class="chapter-status"><span class="badge in-progress">In progress</span></div>
-      <p>What OpenClaw is, what it is not, and why it matters.</p>
+      <p>What OpenClaw is and why it matters.</p>
     </section>
-
     <section id="chapter-2" class="chapter">
       <h2>Chapter 2 — Installation</h2>
-      <div class="chapter-status"><span class="badge open">Open for contributions</span></div>
       <p>From zero to a running OpenClaw instance.</p>
     </section>
-
     <section id="chapter-3" class="chapter">
       <h2>Chapter 3 — Configuration</h2>
-      <div class="chapter-status"><span class="badge open">Open for contributions</span></div>
       <p>Adapting OpenClaw to your context.</p>
     </section>
-
     <section id="chapter-4" class="chapter">
       <h2>Chapter 4 — Personalisation</h2>
-      <div class="chapter-status"><span class="badge open">Open for contributions</span></div>
       <p>Making OpenClaw yours.</p>
     </section>
-
     <section id="chapter-5" class="chapter">
       <h2>Chapter 5 — Maintenance</h2>
-      <div class="chapter-status"><span class="badge open">Open for contributions</span></div>
-      <p>Keeping OpenClaw performing well over time.</p>
+      <p>Keeping OpenClaw performing well.</p>
     </section>
-
     <section id="chapter-6" class="chapter">
       <h2>Chapter 6 — Use Cases</h2>
-      <div class="chapter-status"><span class="badge open">Open for contributions</span></div>
       <p>Field reports from real practitioners.</p>
     </section>
 
-    <section id="chapter-7" class="chapter">
-      <h2>Chapter 7 — Localisation</h2>
-      <div class="chapter-status"><span class="badge in-progress">fr-FR available</span></div>
-      <p>Local context by geography.</p>
+    <section id="about" class="chapter">
+      <h2>Built by Alex Willemetz</h2>
+      <p>This playbook started from 3 failed OpenClaw configurations.</p>
     </section>
-
   </main>
 </div>
 
-<footer>
-  <p><a href="https://github.com/alexwill87/openclawfieldplaybook">GitHub</a> · <a href="https://github.com/alexwill87/openclawfieldplaybook/blob/main/LICENSE">CC-BY 4.0</a></p>
-</footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="assets/script.js?v=2"></script>
+<script src="assets/script.js"></script>
 </body>
 </html>
