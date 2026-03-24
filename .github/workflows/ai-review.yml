@@ -1,9 +1,11 @@
 name: AI Contribution Review
+
 on:
   issues:
     types: [opened]
   pull_request:
     types: [opened, synchronize]
+
 jobs:
   review:
     runs-on: ubuntu-latest
@@ -11,11 +13,14 @@ jobs:
       issues: write
       pull-requests: write
       contents: read
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - name: Review with Claude
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -25,49 +30,4 @@ jobs:
           ITEM_TITLE: ${{ github.event.issue.title || github.event.pull_request.title }}
           ITEM_BODY: ${{ github.event.issue.body || github.event.pull_request.body }}
           REPO: ${{ github.repository }}
-        run: |
-          cat << 'EOF' > review.js
-          const https = require('https');
-          function request(options, body) {
-            return new Promise((resolve, reject) => {
-              const req = https.request(options, res => {
-                let data = '';
-                res.on('data', c => data += c);
-                res.on('end', () => { try { resolve(JSON.parse(data)); } catch(e) { resolve({ raw: data }); } });
-              });
-              req.on('error', reject);
-              if (body) req.write(body);
-              req.end();
-            });
-          }
-          async function main() {
-            const isPR = process.env.IS_PR === 'true';
-            const title = process.env.ITEM_TITLE || '';
-            const body = process.env.ITEM_BODY || '';
-            const number = process.env.ITEM_NUMBER;
-            const [owner, repo] = process.env.REPO.split('/');
-            const claudeBody = JSON.stringify({
-              model: 'claude-3-5-sonnet-20241022',
-              max_tokens: 400,
-              system: 'You are the AI moderator for the OpenClaw Field Playbook.',
-              messages: [{ role: 'user', content: `Review this ${isPR ? 'Pull Request' : 'Issue'}:\n\nTitle: ${title}\nBody: ${body}` }]
-            });
-            const claudeRes = await request({
-              hostname: 'api.anthropic.com',
-              path: '/v1/messages',
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'Content-Length': Buffer.byteLength(claudeBody) }
-            }, claudeBody);
-            const review = claudeRes.content?.[0]?.text || 'Review unavailable.';
-            const comment = `${review}\n\n---\n*AI moderator — [OpenClaw Field Playbook](https://github.com/${owner}/${repo})*`;
-            const ghBody = JSON.stringify({ body: comment });
-            await request({
-              hostname: 'api.github.com',
-              path: `/repos/${owner}/${repo}/issues/${number}/comments`,
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`, 'User-Agent': 'openclaw-field-playbook-bot', 'Content-Length': Buffer.byteLength(ghBody) }
-            }, ghBody);
-          }
-          main().catch(console.error);
-          EOF
-          node review.js
+        run: node .github/scripts/ai-review.js
