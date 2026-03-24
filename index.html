@@ -5,25 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The OpenClaw Field Playbook — For Entrepreneurs and Builders</title>
-<meta name="description" content="A practitioner-built, community-maintained guide to configuring OpenClaw from installation to daily operation.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <nav id="topnav">
-  <div class="nav-brand">
-    <a href="/">The OpenClaw Field Playbook</a>
-  </div>
-  <div class="nav-links">
-    <a href="#chapter-0">Guide</a>
-    <a href="#chapter-1">Definition</a>
-    <a href="#chapter-2">Installation</a>
-    <a href="#chapter-3">Configuration</a>
-    <a href="#chapter-4">Personalisation</a>
-    <a href="#chapter-5">Maintenance</a>
-    <a href="#chapter-6">Use Cases</a>
-    <a href="#chapter-7">Localisation</a>
-  </div>
+  <div class="nav-brand"><a href="/">The OpenClaw Field Playbook</a></div>
   <div class="nav-actions">
     <button class="btn-pdf" onclick="generateLivePDF()">Download PDF</button>
     <a href="https://github.com/alexwill87/openclawfieldplaybook" class="btn-github" target="_blank">View on GitHub</a>
@@ -33,42 +20,39 @@
 <header id="hero">
   <h1>The OpenClaw Field Playbook</h1>
   <p class="tagline">🦞 For Entrepreneurs and Builders</p>
-  <p class="subtitle">A practitioner-built guide to configuring OpenClaw — from installation to daily operation. Built from 3 failed attempts and 5 months of hands-on work.</p>
-  <div class="hero-actions">
-    <a href="#chapter-0" class="btn-primary">Read the Playbook</a>
-    <a href="https://github.com/alexwill87/openclawfieldplaybook" class="btn-secondary" target="_blank">Clone the Repository</a>
-    <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml" class="btn-secondary" target="_blank">Open an Issue</a>
-  </div>
 </header>
 
-<main id="content">
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav>
+      <a href="#chapter-0">Guide</a>
+      <a href="#chapter-1">Definition</a>
+      <a href="#chapter-2">Installation</a>
+      <a href="#chapter-3">Configuration</a>
+      <a href="#chapter-4">Personalisation</a>
+      <a href="#chapter-5">Maintenance</a>
+      <a href="#chapter-6">Use Cases</a>
+      <a href="#chapter-7">Localisation</a>
+    </nav>
+  </aside>
 
-  <section id="search-bar">
-    <input type="text" id="search-input" placeholder="Search the playbook..." autocomplete="off">
-    <div id="search-results"></div>
-  </section>
+  <main id="content">
+    <section id="search-bar">
+      <input type="text" id="search-input" placeholder="Search the playbook..." autocomplete="off">
+      <div id="search-results"></div>
+    </section>
 
-  <!-- [Les sections chapters 0 à 7 restent inchangées] -->
-
-</main>
-
-<section id="about">
-  <h2>Built by</h2>
-  <p><strong>Alex Willemetz</strong> — Paris</p>
-  <p>Entrepreneur. Projects: LADB · Adhectif · Panthéos · Omar&Paris</p>
-  <p>This playbook started from 3 failed OpenClaw configurations and 5 months of hands-on work. Everything that didn't work is documented so you can skip it.</p>
-  <a href="https://linkedin.com/in/alexwillemetz" target="_blank">LinkedIn</a> ·
-  <a href="https://github.com/alexwill87" target="_blank">GitHub</a>
-</section>
+    <!-- [Sections chapters 0-7 ici] -->
+    <section id="chapter-0" class="chapter">
+        <h2>Chapter 0 — Reading Guide</h2>
+        <p>How to navigate this playbook — for humans and AI agents.</p>
+    </section>
+    <!-- ... autres sections ... -->
+  </main>
+</div>
 
 <footer>
-  <p>
-    <a href="https://github.com/alexwill87/openclawfieldplaybook">GitHub</a> ·
-    <a href="https://github.com/alexwill87/openclawfieldplaybook/blob/main/LICENSE">CC-BY 4.0</a> ·
-    <a href="https://github.com/alexwill87/openclawfieldplaybook/blob/main/CONTRIBUTING.md">Contribute</a> ·
-    <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Open an Issue</a>
-  </p>
-  <p class="footer-note">Read it, clone it, build on it. Cite the source.</p>
+  <p><a href="https://github.com/alexwill87/openclawfieldplaybook">GitHub</a> · <a href="https://github.com/alexwill87/openclawfieldplaybook/blob/main/LICENSE">CC-BY 4.0</a></p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
