@@ -116,4 +116,4 @@ Be direct, concrete, useful. No filler. Max 120 words.`
           }
 
           main().catch(console.error);
-EOF
+          EOF
