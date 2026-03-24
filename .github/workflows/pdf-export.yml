@@ -1,0 +1,54 @@
+name: PDF Export
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  export-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc texlive-xetex
+
+      - name: Assemble playbook
+        run: |
+          cat sections/00-reading-guide.md \
+              sections/01-definition/README.md \
+              sections/02-installation/README.md \
+              sections/03-configuration/README.md \
+              sections/04-personalisation/README.md \
+              sections/05-maintenance/README.md \
+              sections/06-use-cases/README.md \
+              sections/07-localisation/README.md \
+              > /tmp/playbook-full.md
+
+      - name: Generate PDF
+        run: |
+          pandoc /tmp/playbook-full.md \
+            -o PLAYBOOK.pdf \
+            --pdf-engine=xelatex \
+            -V geometry:margin=2cm \
+            -V fontsize=11pt \
+            --toc \
+            --toc-depth=2 \
+            -V title="The OpenClaw Field Playbook" \
+            -V author="github.com/alexwill87/openclawfieldplaybook"
+
+      - name: Upload PDF to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: PLAYBOOK.pdf
+
+      - name: Save PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PLAYBOOK-pdf
+          path: PLAYBOOK.pdf

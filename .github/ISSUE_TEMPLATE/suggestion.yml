@@ -1,0 +1,61 @@
+name: Suggestion
+description: Propose a new section, use case, or idea
+title: "[SUGGESTION] "
+labels: ["suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing. The AI moderator will post a first analysis within minutes.
+
+  - type: dropdown
+    id: chapter
+    attributes:
+      label: Relevant chapter
+      options:
+        - "0 — Reading Guide"
+        - "1 — Definition"
+        - "2 — Installation"
+        - "3 — Configuration"
+        - "4 — Personalisation"
+        - "5 — Maintenance"
+        - "6 — Use Cases"
+        - "Other / New section"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What are you proposing?
+      description: 2-3 sentences. What should this section cover?
+    validations:
+      required: true
+
+  - type: textarea
+    id: experience
+    attributes:
+      label: Real experience behind this?
+      description: "Optional but valued: what did you test, observe, or learn?"
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Can you write this yourself?
+      options:
+        - "Yes — I will open a PR"
+        - "I can write a draft if someone reviews"
+        - "I am proposing the idea only"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language of your contribution
+      options:
+        - English
+        - French
+        - Both
+    validations:
+      required: true

@@ -1,0 +1,48 @@
+name: Correction
+description: Report an error, inaccuracy or broken link
+title: "[CORRECTION] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections are the most valuable contributions. Thank you.
+
+  - type: input
+    id: location
+    attributes:
+      label: File and section
+      description: "e.g. sections/01-definition/README.md — section 1.1"
+      placeholder: "sections/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text (the problem)
+      description: Copy the text as it appears now
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed correction
+      description: How should it read?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of correction
+      options:
+        - Typo or grammar
+        - Factual error
+        - Broken link
+        - Outdated information
+        - Technical inaccuracy
+        - Unclear writing
+    validations:
+      required: true

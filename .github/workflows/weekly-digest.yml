@@ -1,0 +1,119 @@
+name: Weekly Digest
+
+on:
+  schedule:
+    - cron: '30 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+      pull-requests: read
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          node << 'EOF'
+          const https = require('https');
+
+          function request(options, body) {
+            return new Promise((resolve, reject) => {
+              const req = https.request(options, res => {
+                let data = '';
+                res.on('data', c => data += c);
+                res.on('end', () => { try { resolve(JSON.parse(data)); } catch(e) { resolve({}); } });
+              });
+              req.on('error', reject);
+              if (body) req.write(body);
+              req.end();
+            });
+          }
+
+          async function gh(path) {
+            const [owner, repo] = process.env.REPO.split('/');
+            return request({
+              hostname: 'api.github.com',
+              path: `/repos/${owner}/${repo}${path}`,
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
+                'User-Agent': 'openclaw-digest-bot',
+                'Accept': 'application/vnd.github.v3+json'
+              }
+            }, null);
+          }
+
+          async function main() {
+            const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+            const [newIssues, openPRs, closedIssues, stars] = await Promise.all([
+              gh(`/issues?state=open&since=${since}&per_page=20`),
+              gh(`/pulls?state=open&per_page=10`),
+              gh(`/issues?state=closed&since=${since}&per_page=10`),
+              gh('')
+            ]);
+
+            const summary = `
+New issues this week: ${Array.isArray(newIssues) ? newIssues.length : 0}
+Closed issues: ${Array.isArray(closedIssues) ? closedIssues.length : 0}
+Open PRs: ${Array.isArray(openPRs) ? openPRs.length : 0}
+Total stars: ${stars.stargazers_count || 'unknown'}
+
+New issue titles:
+${Array.isArray(newIssues) ? newIssues.slice(0,5).map(i => `- ${i.title}`).join('\n') : 'none'}
+
+Open PRs:
+${Array.isArray(openPRs) ? openPRs.slice(0,5).map(p => `- ${p.title}`).join('\n') : 'none'}
+            `.trim();
+
+            const claudeBody = JSON.stringify({
+              model: 'claude-sonnet-4-6',
+              max_tokens: 400,
+              messages: [{
+                role: 'user',
+                content: `You are the AI assistant for the OpenClaw Field Playbook GitHub project.
+Generate a concise weekly digest for the project founder (Alex).
+
+Data:
+${summary}
+
+Format:
+1. One opening line — honest tone about the week
+2. Activity summary (3 bullets max)
+3. Priority actions for this week (2 max)
+4. One closing line
+
+Be direct, concrete, useful. No filler. Max 120 words.`
+              }]
+            });
+
+            const res = await request({
+              hostname: 'api.anthropic.com',
+              path: '/v1/messages',
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.ANTHROPIC_API_KEY,
+                'anthropic-version': '2023-06-01',
+                'Content-Length': Buffer.byteLength(claudeBody)
+              }
+            }, claudeBody);
+
+            console.log('\n=== OPENCLAW FIELD PLAYBOOK — WEEKLY DIGEST ===\n');
+            console.log(res.content?.[0]?.text || 'Digest unavailable.');
+            console.log('\n===============================================\n');
+          }
+
+          main().catch(console.error);
+          EOF
