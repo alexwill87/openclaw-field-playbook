@@ -44,10 +44,17 @@ function scrollTo(id) {
 }
 
 // PDF download
-document.getElementById('download-pdf').addEventListener('click', function(e) {
-  e.preventDefault();
-  window.open('https://github.com/alexwill87/openclawfieldplaybook/releases/latest/download/PLAYBOOK.pdf', '_blank');
-});
+function generateLivePDF() {
+  const element = document.getElementById('content');
+  const opt = {
+    margin:       [10, 15],
+    filename:     'OpenClaw-Field-Playbook.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+}
 
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
