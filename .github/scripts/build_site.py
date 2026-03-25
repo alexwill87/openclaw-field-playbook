@@ -4,7 +4,9 @@ import glob
 import markdown
 from bs4 import BeautifulSoup
 
-REPO_ROOT = os.path.join(os.path.dirname(__file__), '..')
+# Adjust REPO_ROOT to be the directory one level above .github/scripts
+# Assuming script is in .github/scripts/, REPO_ROOT should be the main repo directory
+REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
 SECTIONS_DIR = os.path.join(REPO_ROOT, 'sections')
 TEMPLATES_DIR = REPO_ROOT
 
@@ -16,7 +18,10 @@ def build_navigation(section_files):
     for filepath, title in section_files:
         # Generate a clean ID for the anchor link
         # Example: sections/01-definition/README.md -> chapter-01-definition
-        section_id = "chapter-" + os.path.basename(os.path.dirname(filepath)).replace('-', '_')
+        base_name = os.path.basename(os.path.dirname(filepath))
+        section_id = "chapter-" + base_name.replace('-', '_')
+        
+        # For navigation, we want a link to the section on the same page
         nav_html.append(f'<a href="#{section_id}">{title}</a>')
     return '\n'.join(nav_html)
 
@@ -29,7 +34,8 @@ def build_content(section_files):
         html_content = markdown.markdown(md_content) # Convert Markdown to HTML
 
         # Generate a clean ID for the anchor link
-        section_id = "chapter-" + os.path.basename(os.path.dirname(filepath)).replace('-', '_')
+        base_name = os.path.basename(os.path.dirname(filepath))
+        section_id = "chapter-" + base_name.replace('-', '_')
 
         # Wrap content in a section with the appropriate ID and title
         full_content_html.append(f'<section id="{section_id}" class="chapter">\n')
@@ -40,30 +46,34 @@ def build_content(section_files):
     return '\n'.join(full_content_html)
 
 def get_section_info(directory):
-    # Assumes each chapter is in its own directory (e.g., sections/01-definition)
-    # And the main content is README.md inside it, or 01-something.md
-    
     section_data = []
+    # List directories directly under SECTIONS_DIR
     chapter_dirs = sorted([d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))])
 
     for chapter_dir_name in chapter_dirs:
         chapter_path = os.path.join(directory, chapter_dir_name)
-        main_md_file = os.path.join(chapter_path, 'README.md')
-        
-        if not os.path.exists(main_md_file): # If no README.md, try to find a .md file named after the chapter (e.g. 01-definition.md)
-            md_files = glob.glob(os.path.join(chapter_path, '*.md'))
-            if md_files:
-                main_md_file = sorted(md_files)[0] # Take the first one if multiple
-            else:
-                continue # Skip if no markdown file found
-                
+        main_md_file = None
+
+        # Try to find README.md first
+        if os.path.exists(os.path.join(chapter_path, 'README.md')):
+            main_md_file = os.path.join(chapter_path, 'README.md')
+        else: # Or find the first .md file in the directory that starts with the chapter name
+            md_files = glob.glob(os.path.join(chapter_path, f'{chapter_dir_name}*.md'))
+            if md_files: # Take the first one if multiple
+                main_md_file = sorted(md_files)[0]
+
+        if not main_md_file or not os.path.exists(main_md_file):
+            # If no suitable markdown file, skip this directory
+            continue
+
         # Read title from the first H1 in the Markdown file
         with open(main_md_file, 'r', encoding='utf-8') as f:
             first_line = f.readline().strip()
             if first_line.startswith('# '):
                 title = first_line[2:].strip()
             else:
-                title = chapter_dir_name.replace('_', ' ').title() # Fallback to directory name
+                # Fallback to directory name, cleaned up
+                title = chapter_dir_name.replace('-', ' ').replace('_', ' ').title() 
         
         section_data.append((main_md_file, title))
     return section_data
@@ -86,7 +96,7 @@ if __name__ == "__main__":
 
     # Inject content and navigation
     final_html = template_content.replace('<!-- NAVIGATION_PLACEHOLDER -->', navigation_html)
-    final_html = final_html.replace('<!-- CONTENT_PLACEOLDER -->', main_content_html)
+    final_html = final_html.replace('<!-- CONTENT_PLACEHOLDER -->', main_content_html)
 
     # Write final index.html
     with open(OUTPUT_INDEX_PATH, 'w', encoding='utf-8') as f:
