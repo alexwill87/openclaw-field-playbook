@@ -116,6 +116,16 @@ def build_sidebar(active_slug):
             ' class="active"' if active_slug == 'checklist' else ''
         )
     )
+    items.append(
+        '<a href="decouverte.html"{}>C\'est quoi OpenClaw ?</a>'.format(
+            ' class="active"' if active_slug == 'decouverte' else ''
+        )
+    )
+    items.append(
+        '<a href="contribuer.html"{}>Contribuer</a>'.format(
+            ' class="active"' if active_slug == 'contribuer' else ''
+        )
+    )
     return '\n'.join(items)
 
 
@@ -170,7 +180,14 @@ def build_chapter_pages():
             nav_links.append('<span></span>')
         nav_links.append('</div>')
 
-        full_content = wrapped + '\n' + '\n'.join(nav_links)
+        # Lien "Editer sur GitHub" pour les chapitres avec dossier
+        edit_link = ''
+        chapter_dir = entry
+        if os.path.isdir(os.path.join(SECTIONS_DIR, entry)):
+            edit_url = '{}/tree/main/sections/{}/'.format(GITHUB_URL, chapter_dir)
+            edit_link = '\n<p class="edit-link"><a href="{}">Proposer une modification sur GitHub</a></p>'.format(edit_url)
+
+        full_content = wrapped + edit_link + '\n' + '\n'.join(nav_links)
         page_html = render_page(title, full_content, slug)
         write_page(f'{slug}.html', page_html)
 
@@ -233,6 +250,14 @@ def build_index_page():
 <section class="chapter">
 <h2>Checklist</h2>
 <p><a href="checklist.html">Telechargez la checklist complete</a> pour suivre votre progression etape par etape a travers le playbook.</p>
+</section>
+
+<section class="chapter">
+<h2>Autres ressources</h2>
+<ul>
+  <li><a href="decouverte.html">C'est quoi OpenClaw ?</a> -- Pour ceux qui decouvrent, une introduction accessible</li>
+  <li><a href="contribuer.html">Contribuer au playbook</a> -- Comment participer a ce projet</li>
+</ul>
 </section>
 """
     page_html = render_page('Accueil', content, 'index')
@@ -436,6 +461,137 @@ document.addEventListener('DOMContentLoaded', loadChecklist);
     write_page('checklist.html', page_html)
 
 
+def build_contribuer_page():
+    """Build the contribuer.html page."""
+    content = """
+<section class="chapter">
+<h1>Contribuer au playbook</h1>
+<p>Ce playbook est un projet open-source. Toute contribution est bienvenue, a condition de respecter les niveaux de gouvernance decrits ci-dessous.</p>
+
+<h2>Trois niveaux de contribution</h2>
+
+<h3>T3 -- Corrections</h3>
+<p>Typos, liens casses, exemples a clarifier, reformulations mineures. Vous pouvez soumettre une Pull Request directement ou ouvrir une Issue. Ces contributions sont mergees rapidement.</p>
+
+<h3>T2 -- Sections</h3>
+<p>Nouveau contenu, reecritures de sections existantes, ajout de cas d'usage. Ouvrez d'abord une Issue pour decrire votre proposition. Une fois validee par le maintainer, soumettez une Pull Request.</p>
+
+<h3>T1 -- Structure</h3>
+<p>Modifier l'organisation des chapitres, ajouter ou supprimer un chapitre, changer l'architecture du playbook. Ces modifications requierent une Issue etiquetee <code>governance</code> et une decision du fondateur. Ne soumettez pas de PR sans validation prealable.</p>
+
+<h2>Comment soumettre une correction</h2>
+<ol>
+  <li><strong>Fork</strong> le repository sur GitHub</li>
+  <li><strong>Editez</strong> le fichier concerne dans le dossier <code>sections/</code> (jamais <code>PLAYBOOK.md</code> directement)</li>
+  <li><strong>Creez une Pull Request</strong> avec une description claire de votre modification</li>
+  <li><strong>Attendez la review</strong> du maintainer</li>
+</ol>
+
+<h2>Format d'une section</h2>
+<p>Chaque section du playbook suit un format standard :</p>
+<pre><code>---
+status: draft | review | complete
+audience: human | agent | both
+chapter: XX
+last_updated: YYYY-MM-DD
+contributors: [nom]
+---
+
+## Contexte
+Pourquoi cette section existe, quel probleme elle resout.
+
+## Etapes
+Les actions concretes, dans l'ordre.
+
+## Erreurs courantes
+Ce qui peut mal tourner et comment l'eviter.
+
+## Template
+Fichiers ou configurations a copier-coller.
+
+## Verification
+Comment savoir que tout fonctionne.
+</code></pre>
+
+<h2>Qui maintient ce projet</h2>
+<p>Ce playbook est maintenu par <strong>Alex Willemetz</strong>, Paris. Fondateur du projet OpenClaw Field Playbook.</p>
+<p>Profil GitHub : <a href="https://github.com/alexwill87">github.com/alexwill87</a></p>
+
+<h2>Documentation complete</h2>
+<p>Pour plus de details, consultez le fichier <a href="{github}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> sur GitHub.</p>
+
+</section>
+""".format(github=GITHUB_URL)
+
+    page_html = render_page('Contribuer', content, 'contribuer')
+    write_page('contribuer.html', page_html)
+
+
+def build_decouverte_page():
+    """Build the decouverte.html page."""
+    content = """
+<section class="chapter">
+<h1>C'est quoi OpenClaw ?</h1>
+<p>Cette page est pour ceux qui ne connaissent rien a OpenClaw. Pas de jargon, pas de prerequis techniques. Juste l'essentiel pour comprendre de quoi on parle.</p>
+
+<h2>En une phrase</h2>
+<p>OpenClaw est un outil qui permet de creer des assistants IA qui travaillent pour vous -- pas juste repondre a des questions, mais agir, surveiller, organiser.</p>
+
+<h2>A quoi ca sert concretement</h2>
+<p>Voici cinq exemples simples de ce qu'un agent OpenClaw peut faire pour vous :</p>
+<ul>
+  <li><strong>Briefing du matin</strong> -- Chaque matin, votre agent vous envoie un resume de ce qui s'est passe pendant la nuit : emails importants, alertes, taches du jour.</li>
+  <li><strong>Triage email</strong> -- L'agent lit vos emails, les classe par priorite, et vous signale ceux qui demandent une reponse urgente.</li>
+  <li><strong>Suivi clients</strong> -- Il surveille les messages de vos clients et vous alerte quand quelqu'un attend une reponse depuis trop longtemps.</li>
+  <li><strong>Surveillance serveur</strong> -- Il verifie que vos services tournent correctement et vous previent avant qu'un probleme ne devienne critique.</li>
+  <li><strong>Documentation automatique</strong> -- Il prend en note ce qui se passe dans votre projet et tient votre documentation a jour sans effort.</li>
+</ul>
+
+<h2>De quoi a-t-on besoin</h2>
+<ul>
+  <li>Un serveur (VPS) -- un ordinateur distant que vous louez</li>
+  <li>Une connexion internet</li>
+  <li>Une cle API pour un modele IA (OpenRouter, Anthropic, ou autre)</li>
+  <li>2 a 3 heures de configuration initiale</li>
+</ul>
+<p><strong>Budget :</strong> entre 20 et 40 EUR par mois pour le serveur et les appels API.</p>
+
+<h2>C'est quoi un VPS ?</h2>
+<p>Un VPS, c'est un ordinateur dans un datacenter que vous louez. Vous y accedez a distance, depuis votre ordinateur ou votre telephone. C'est comme un bureau virtuel toujours allume, toujours connecte. Votre agent OpenClaw vit dessus et travaille 24h/24.</p>
+
+<h2>Pourquoi pas juste ChatGPT ?</h2>
+<table>
+  <thead>
+    <tr><th>ChatGPT</th><th>OpenClaw</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Attend vos questions</td><td>Agit de lui-meme selon vos regles</td></tr>
+    <tr><td>Oublie tout entre les conversations</td><td>A une memoire persistante</td></tr>
+    <tr><td>Vit chez OpenAI</td><td>Vit chez vous, sur votre serveur</td></tr>
+  </tbody>
+</table>
+
+<h2>Pret a commencer ?</h2>
+<p>Si tout cela vous parle, voici les prochaines etapes :</p>
+<ul>
+  <li><a href="chapitre-01.html">Chapitre 1 -- Definition</a> : comprendre en detail ce qu'est OpenClaw et ce que ce n'est pas</li>
+  <li><a href="chapitre-02.html">Chapitre 2 -- Installation</a> : installer OpenClaw de zero sur un serveur</li>
+</ul>
+
+<h2>Liens utiles</h2>
+<ul>
+  <li><a href="https://github.com/open-claw" target="_blank">Documentation officielle OpenClaw</a></li>
+  <li><a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">Ce playbook sur GitHub</a></li>
+  <li>Livre de Dennis Steinberg sur OpenClaw (reference communautaire)</li>
+</ul>
+
+</section>
+"""
+
+    page_html = render_page('C\'est quoi OpenClaw ?', content, 'decouverte')
+    write_page('decouverte.html', page_html)
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -447,6 +603,8 @@ if __name__ == '__main__':
     build_index_page()
     build_chapter_pages()
     build_checklist_page()
+    build_contribuer_page()
+    build_decouverte_page()
 
     print('=' * 50)
     print('Build complete. All files written to repo root.')

@@ -11,6 +11,30 @@
   font-size: 16px;
 }
 
+/* Dark mode via OS preference */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --text: #e5e5e5;
+    --text-muted: #a1a1aa;
+    --bg: #0a0a0a;
+    --bg-section: #141414;
+    --border: #262626;
+    --accent: #60a5fa;
+    --accent-light: #1e293b;
+  }
+}
+
+/* Dark mode via manual toggle */
+:root.dark {
+  --text: #e5e5e5;
+  --text-muted: #a1a1aa;
+  --bg: #0a0a0a;
+  --bg-section: #141414;
+  --border: #262626;
+  --accent: #60a5fa;
+  --accent-light: #1e293b;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -603,9 +627,94 @@ footer a:hover { color: var(--text); }
   text-decoration: underline;
 }
 
+/* ========== THEME TOGGLE ========== */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.3rem 0.55rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: border-color 0.15s;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle:hover {
+  border-color: var(--text);
+}
+
+/* ========== GITHUB BADGES ========== */
+.github-badges {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.github-badges .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========== EDIT LINK ========== */
+.edit-link {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.edit-link:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+/* ========== GISCUS COMMENTS ========== */
+.giscus-wrapper {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ========== CODE BLOCKS DARK MODE FIX ========== */
+:root.dark .chapter code,
+:root.dark .chapter pre {
+  background: #1a1a2e;
+}
+
+:root.dark .chapter pre code {
+  background: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .chapter code,
+  :root:not(.light) .chapter pre {
+    background: #1a1a2e;
+  }
+
+  :root:not(.light) .chapter pre code {
+    background: none;
+  }
+}
+
 /* ========== PRINT ========== */
 @media print {
-  .sidebar, #topnav, .menu-toggle, .nav-actions, .chapter-nav { display: none !important; }
+  .sidebar, #topnav, .menu-toggle, .nav-actions, .chapter-nav, .theme-toggle, .github-badges, .edit-link, .giscus-wrapper { display: none !important; }
   main#content, .landing { max-width: 100%; padding: 0; }
   .chapter { page-break-inside: avoid; }
   .chapter pre { white-space: pre-wrap; }
