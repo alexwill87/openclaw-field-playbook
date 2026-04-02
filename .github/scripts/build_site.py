@@ -1,11 +1,8 @@
 
 import os
-import glob
+import re
 import markdown
-from bs4 import BeautifulSoup
 
-# Adjust REPO_ROOT to be the directory one level above .github/scripts
-# Assuming script is in .github/scripts/, REPO_ROOT should be the main repo directory
 REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
 SECTIONS_DIR = os.path.join(REPO_ROOT, 'sections')
 TEMPLATES_DIR = REPO_ROOT
@@ -13,93 +10,124 @@ TEMPLATES_DIR = REPO_ROOT
 INDEX_TEMPLATE_PATH = os.path.join(TEMPLATES_DIR, 'index_template.html')
 OUTPUT_INDEX_PATH = os.path.join(REPO_ROOT, 'index.html')
 
-def build_navigation(section_files):
-    nav_html = []
-    for filepath, title in section_files:
-        # Generate a clean ID for the anchor link
-        # Example: sections/01-definition/README.md -> chapter-01-definition
-        base_name = os.path.basename(os.path.dirname(filepath))
-        section_id = "chapter-" + base_name.replace('-', '_')
-        
-        # For navigation, we want a link to the section on the same page
-        nav_html.append(f'<a href="#{section_id}">{title}</a>')
-    return '\n'.join(nav_html)
 
-def build_content(section_files):
+def strip_frontmatter(text):
+    """Remove YAML front matter from markdown content."""
+    if text.startswith('---'):
+        end = text.find('---', 3)
+        if end != -1:
+            return text[end + 3:].strip()
+    return text
 
-    full_content_html = []
-    for filepath, title in section_files:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            md_content = f.read()
-        html_content = markdown.markdown(md_content) # Convert Markdown to HTML
 
-        # Generate a clean ID for the anchor link
-        base_name = os.path.basename(os.path.dirname(filepath))
-        section_id = "chapter-" + base_name.replace('-', '_')
+def get_title_from_md(filepath):
+    """Extract first H1 title from a markdown file."""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    content = strip_frontmatter(content)
+    for line in content.split('\n'):
+        line = line.strip()
+        if line.startswith('# '):
+            return line[2:].strip()
+    return os.path.basename(filepath).replace('.md', '').replace('-', ' ').title()
 
-        # Wrap content in a section with the appropriate ID and title
-        full_content_html.append(f'<section id="{section_id}" class="chapter">\n')
-        full_content_html.append(f'<h2 id="{section_id}-title">{title}</h2>\n')
-        full_content_html.append(html_content)
-        full_content_html.append(f'\n</section>\n')
 
-    return '\n'.join(full_content_html)
+def get_all_sections():
+    """Get all section files organized by chapter."""
+    chapters = []
 
-def get_section_info(directory):
-    section_data = []
-    # List directories directly under SECTIONS_DIR
-    chapter_dirs = sorted([d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))])
+    # Handle 00-reading-guide.md (single file, not a directory)
+    reading_guide = os.path.join(SECTIONS_DIR, '00-reading-guide.md')
+    if os.path.exists(reading_guide):
+        title = get_title_from_md(reading_guide)
+        chapters.append({
+            'id': 'chapter-00',
+            'title': title,
+            'files': [reading_guide]
+        })
 
-    for chapter_dir_name in chapter_dirs:
-        chapter_path = os.path.join(directory, chapter_dir_name)
-        main_md_file = None
-
-        # Try to find README.md first
-        if os.path.exists(os.path.join(chapter_path, 'README.md')):
-            main_md_file = os.path.join(chapter_path, 'README.md')
-        else: # Or find the first .md file in the directory that starts with the chapter name
-            md_files = glob.glob(os.path.join(chapter_path, f'{chapter_dir_name}*.md'))
-            if md_files: # Take the first one if multiple
-                main_md_file = sorted(md_files)[0]
-
-        if not main_md_file or not os.path.exists(main_md_file):
-            # If no suitable markdown file, skip this directory
+    # Handle chapter directories (01-definition, 02-installation, etc.)
+    entries = sorted(os.listdir(SECTIONS_DIR))
+    for entry in entries:
+        full_path = os.path.join(SECTIONS_DIR, entry)
+        if not os.path.isdir(full_path):
             continue
 
-        # Read title from the first H1 in the Markdown file
-        with open(main_md_file, 'r', encoding='utf-8') as f:
-            first_line = f.readline().strip()
-            if first_line.startswith('# '):
-                title = first_line[2:].strip()
-            else:
-                # Fallback to directory name, cleaned up
-                title = chapter_dir_name.replace('-', ' ').replace('_', ' ').title() 
-        
-        section_data.append((main_md_file, title))
-    return section_data
+        # Get README.md as the chapter intro
+        readme = os.path.join(full_path, 'README.md')
+        if not os.path.exists(readme):
+            continue
+
+        chapter_title = get_title_from_md(readme)
+        chapter_id = 'chapter-' + entry.split('-')[0]
+
+        # Collect all .md files in the directory
+        md_files = sorted([
+            os.path.join(full_path, f)
+            for f in os.listdir(full_path)
+            if f.endswith('.md')
+        ])
+
+        # Put README.md first, then the rest
+        ordered_files = [readme] + [f for f in md_files if f != readme]
+
+        chapters.append({
+            'id': chapter_id,
+            'title': chapter_title,
+            'files': ordered_files
+        })
+
+    return chapters
+
+
+def build_navigation(chapters):
+    """Build sidebar navigation HTML."""
+    nav_items = []
+    for ch in chapters:
+        nav_items.append(f'<a href="#{ch["id"]}">{ch["title"]}</a>')
+    return '\n'.join(nav_items)
+
+
+def build_content(chapters):
+    """Build main content HTML from all sections."""
+    md_extensions = ['tables', 'fenced_code', 'codehilite', 'toc']
+    sections_html = []
+
+    for ch in chapters:
+        # Chapter wrapper
+        sections_html.append(f'<section id="{ch["id"]}" class="chapter">')
+
+        for filepath in ch['files']:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                raw = f.read()
+
+            clean = strip_frontmatter(raw)
+            html = markdown.markdown(clean, extensions=md_extensions)
+            sections_html.append(html)
+
+        sections_html.append('</section>')
+
+    return '\n'.join(sections_html)
+
 
 if __name__ == "__main__":
     print("Starting site build...")
-    
-    # Get section files details
-    section_files_info = get_section_info(SECTIONS_DIR)
 
-    # Build navigation
-    navigation_html = build_navigation(section_files_info)
-    
-    # Build main content
-    main_content_html = build_content(section_files_info)
+    chapters = get_all_sections()
+    print(f"Found {len(chapters)} chapters, {sum(len(c['files']) for c in chapters)} total files")
 
-    # Read template
+    navigation_html = build_navigation(chapters)
+    main_content_html = build_content(chapters)
+
     with open(INDEX_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
         template_content = f.read()
 
-    # Inject content and navigation
     final_html = template_content.replace('<!-- NAVIGATION_PLACEHOLDER -->', navigation_html)
     final_html = final_html.replace('<!-- CONTENT_PLACEHOLDER -->', main_content_html)
 
-    # Write final index.html
     with open(OUTPUT_INDEX_PATH, 'w', encoding='utf-8') as f:
         f.write(final_html)
 
     print(f"Successfully built {OUTPUT_INDEX_PATH}")
+    for ch in chapters:
+        print(f"  {ch['id']}: {ch['title']} ({len(ch['files'])} files)")
