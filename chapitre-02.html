@@ -415,7 +415,6 @@ docker compose up -d
 <pre class="codehilite"><code>PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
-UsePAM no
 </code></pre>
 
 <p>Redemarrez SSH :</p>
@@ -678,7 +677,7 @@ $ id | grep docker
 <p>OpenClaw est ecrit en Node.js. PM2 est un gestionnaire de processus qui maintient OpenClaw en vie, gere les logs et redemarre automatiquement en cas de crash.</p>
 <p>On installe Node.js via <strong>nvm</strong> (Node Version Manager), pas via apt. Pourquoi : apt fournit souvent une version obsolete, et nvm permet de changer de version facilement.</p>
 <h2 id="etape-1-installer-nvm">Etape 1 : Installer nvm</h2>
-<pre class="codehilite"><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+<pre class="codehilite"><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 </code></pre>
 
 <p>Rechargez le shell :</p>
@@ -1123,10 +1122,9 @@ services:
     restart: unless-stopped
     ports:
       - &quot;127.0.0.1:5432:5432&quot;
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: oa_admin
-      POSTGRES_PASSWORD: &quot;VOTRE_MOT_DE_PASSE_FORT&quot;
-      POSTGRES_DB: oa_system
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./data:/var/lib/postgresql/data
@@ -1139,7 +1137,18 @@ networks:
     driver: bridge
 </code></pre>
 
-<p><strong>IMPORTANT</strong> : Remplacez <code>VOTRE_MOT_DE_PASSE_FORT</code> par le mot de passe stocke dans Vault. Le port est lie a <code>127.0.0.1</code> uniquement.</p>
+<p>Creez le fichier <code>.env</code> avec les identifiants (ne jamais le committer dans git) :</p>
+<pre class="codehilite"><code class="language-bash">$ cat &gt; ~/docker/postgres/.env &lt;&lt; 'EOF'
+POSTGRES_USER=oa_admin
+POSTGRES_PASSWORD=VOTRE_MOT_DE_PASSE_FORT
+POSTGRES_DB=oa_system
+EOF
+$ chmod 600 ~/docker/postgres/.env
+</code></pre>
+
+<blockquote>
+<p><strong>SECURITE :</strong> Le fichier <code>.env</code> contient le mot de passe en clair. Protegez-le (<code>chmod 600</code>) et ajoutez <code>.env</code> a votre <code>.gitignore</code>. Idealement, recuperez le mot de passe depuis Vault : <code>vault kv get -field=password secret/database &gt; ~/docker/postgres/.env</code></p>
+</blockquote>
 <h2 id="etape-3-demarrer-postgresql">Etape 3 : Demarrer PostgreSQL</h2>
 <pre class="codehilite"><code class="language-bash">$ cd ~/docker/postgres
 $ docker compose up -d
@@ -1219,8 +1228,10 @@ $ ls ~/backups/postgres/
 <h2 id="contexte_8">Contexte</h2>
 <p>Avant d'aller plus loin, on verifie que toute l'infrastructure de base fonctionne. Ce script sera reutilise dans les sections suivantes, dans les crons de surveillance et dans le script de deploiement.</p>
 <h2 id="le-script-complet">Le script complet</h2>
-<p>Creez <code>~/scripts/health-check.sh</code> :</p>
-<pre class="codehilite"><code class="language-bash">#!/bin/bash
+<p>Creez le fichier :</p>
+<pre class="codehilite"><code class="language-bash">$ mkdir -p ~/scripts
+$ cat &gt; ~/scripts/health-check.sh &lt;&lt; 'HEALTHSCRIPT'
+#!/bin/bash
 # Health check infrastructure OA
 # Usage : ./health-check.sh
 # Codes de sortie : 0 = tout OK, 1 = au moins un echec
@@ -1275,11 +1286,13 @@ else
   echo &quot;Infrastructure operationnelle.&quot;
   exit 0
 fi
+HEALTHSCRIPT
+$ chmod +x ~/scripts/health-check.sh
 </code></pre>
 
-<h2 id="installation">Installation</h2>
-<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/health-check.sh
-$ ~/scripts/health-check.sh
+<h2 id="verification_8">Verification</h2>
+<p>Lancez le script :</p>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/health-check.sh
 </code></pre>
 
 <h2 id="sortie-attendue">Sortie attendue</h2>
@@ -1369,7 +1382,7 @@ Infrastructure operationnelle.
 <li><strong>"free: command not found"</strong> : Installez <code>procps</code> : <code>sudo apt install -y procps</code>.</li>
 <li><strong>Faux positif sur l'espace disque</strong> : Le seuil est fixe a 90% utilise. Ajustez si necessaire.</li>
 </ul>
-<h2 id="verification_8">Verification</h2>
+<h2 id="verification_9">Verification</h2>
 <p>Le script EST la verification. S'il sort avec le code 0, tout est bon :</p>
 <pre class="codehilite"><code class="language-bash">$ ~/scripts/health-check.sh &amp;&amp; echo &quot;Pret pour la suite&quot;
 </code></pre>
@@ -1392,7 +1405,7 @@ $ docker --version # Docker 28.x+ requis
 </code></pre>
 
 <blockquote>
-<p><strong>Attention :</strong> Le package s'appelle <code>openclaw</code>, pas <code>@anthropic-ai/claude-code</code> (qui est Claude Code, un autre outil). Verifiez que la commande <code>openclaw</code> est disponible apres installation.</p>
+<p><strong>Attention :</strong> Le package s'appelle <code>openclaw</code>, pas <code>openclaw@latest</code> (qui est Claude Code, un autre outil). Verifiez que la commande <code>openclaw</code> est disponible apres installation.</p>
 </blockquote>
 <p>Verifiez :</p>
 <pre class="codehilite"><code class="language-bash">$ openclaw --version
@@ -1419,7 +1432,7 @@ $ docker --version # Docker 28.x+ requis
 
 <p>Solution : Vous utilisez probablement Node.js installe via apt au lieu de nvm. Avec nvm, les installations globales vont dans <code>~/.nvm/</code> et ne necessitent pas sudo.</p>
 <pre class="codehilite"><code class="language-bash">$ nvm use --lts
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 </code></pre>
 
 <p>Ne faites PAS <code>sudo npm install -g</code>. Ca cree des problemes de permissions en cascade.</p>
@@ -1430,7 +1443,7 @@ $ npm install -g @anthropic-ai/claude-code
 <p>Solution :</p>
 <pre class="codehilite"><code class="language-bash">$ nvm install --lts
 $ nvm alias default lts/*
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 </code></pre>
 
 <h3 id="openclaw-command-not-found-apres-installation">"openclaw: command not found" apres installation</h3>
@@ -1447,10 +1460,10 @@ $ echo $PATH | tr ':' '\n' | grep nvm
 <p>Si l'installation npm echoue avec des erreurs reseau :</p>
 <pre class="codehilite"><code class="language-bash">$ npm config set registry https://registry.npmjs.org/
 $ npm cache clean --force
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 </code></pre>
 
-<h2 id="verification_9">Verification</h2>
+<h2 id="verification_10">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ openclaw --version
 $ which openclaw
 $ openclaw doctor
@@ -1528,7 +1541,7 @@ $ openclaw doctor
 <li><strong>Workspace cree par root</strong> : Si vous avez lance <code>sudo openclaw</code> par erreur, les fichiers appartiendront a root. Corrigez avec <code>chown</code>.</li>
 <li><strong>Sessions qui prennent trop de place</strong> : Apres quelques mois, le dossier <code>sessions/</code> peut peser lourd. Archivez les vieilles sessions.</li>
 </ul>
-<h2 id="verification_10">Verification</h2>
+<h2 id="verification_11">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
 $ ls -la ~/.openclaw/workspace/
 $ cat ~/.openclaw/workspace/memory/MEMORY.md
@@ -1553,8 +1566,8 @@ $ cat ~/.openclaw/workspace/memory/MEMORY.md
   // --- Modele IA ---
   &quot;model&quot;: {
     &quot;provider&quot;: &quot;openrouter&quot;,
-    &quot;default_model&quot;: &quot;anthropic/claude-sonnet-4-20250514&quot;,
-    &quot;fallback_model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,
+    &quot;default_model&quot;: &quot;anthropic/claude-sonnet-4&quot;,
+    &quot;fallback_model&quot;: &quot;anthropic/claude-haiku-4-5&quot;,
     &quot;temperature&quot;: 0.3,
     &quot;max_tokens&quot;: 8192
   },
@@ -1614,6 +1627,9 @@ $ cat ~/.openclaw/workspace/memory/MEMORY.md
 }
 </code></pre>
 
+<blockquote>
+<p><strong>Les noms de modeles OpenRouter changent regulierement.</strong> Avant de configurer, verifiez les noms actuels sur <a href="https://openrouter.ai/models">openrouter.ai/models</a>. Les noms ci-dessus etaient valides en avril 2026.</p>
+</blockquote>
 <p><strong>Note</strong> : JSON ne supporte pas les commentaires. Retirez les lignes <code>//</code> dans le fichier final, ou utilisez un pre-processeur JSON5. Les commentaires ci-dessus sont pour la documentation uniquement.</p>
 <h2 id="explication-champ-par-champ">Explication champ par champ</h2>
 <h3 id="instance_name">instance_name</h3>
@@ -1777,7 +1793,7 @@ $ cat ~/.openclaw/workspace/memory/MEMORY.md
 <li><strong>Modele introuvable</strong> : Verifiez le nom exact du modele sur openrouter.ai/models.</li>
 <li><strong>Pool size trop grand</strong> : PostgreSQL a un nombre limite de connexions (100 par defaut). 10 est raisonnable.</li>
 </ul>
-<h2 id="verification_11">Verification</h2>
+<h2 id="verification_12">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ cat ~/.openclaw/config.json | python3 -m json.tool
 $ openclaw doctor
 </code></pre>
@@ -1895,7 +1911,7 @@ $ curl -s https://openrouter.ai/api/v1/chat/completions \
 <li><strong>"Model not found"</strong> : Le nom du modele a change. Verifiez sur openrouter.ai/models le nom exact.</li>
 <li><strong>Timeout sur les appels</strong> : Certains modeles sont lents en charge. Le fallback (Haiku) prend le relais automatiquement si configure.</li>
 </ul>
-<h2 id="verification_12">Verification</h2>
+<h2 id="verification_13">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
 $ curl -s https://openrouter.ai/api/v1/auth/key \
   -H &quot;Authorization: Bearer $(docker exec vault vault kv get -field=api_key secret/openrouter)&quot; \
@@ -1996,7 +2012,7 @@ $ ~/scripts/notify-telegram.sh &quot;Hello depuis le VPS&quot;
 <li><strong>chat_id negatif</strong> : C'est normal pour les groupes. Pour un chat prive, le chat_id est un nombre positif.</li>
 <li><strong>getUpdates retourne un tableau vide</strong> : Envoyez un message au bot et reessayez immediatement. Les updates expirent apres 24h.</li>
 </ul>
-<h2 id="verification_13">Verification</h2>
+<h2 id="verification_14">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ ~/scripts/notify-telegram.sh &quot;[OA] Verification Telegram OK&quot;
 </code></pre>
 
@@ -2045,7 +2061,7 @@ WorkingDirectory=/home/VOTRE_USER
 Environment=NODE_ENV=production
 EnvironmentFile=/etc/openclaw/gateway.env
 
-ExecStart=/home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/node /home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/openclaw gateway start
+ExecStart=/home/VOTRE_USER/scripts/openclaw-gateway.sh
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
 
@@ -2067,9 +2083,18 @@ ReadWritePaths=/home/VOTRE_USER
 WantedBy=multi-user.target
 </code></pre>
 
-<p><strong>IMPORTANT</strong> : Remplacez les placeholders :
+<p>Creez le wrapper script qui charge nvm correctement (systemd ne charge pas <code>.bashrc</code>) :</p>
+<pre class="codehilite"><code class="language-bash">$ cat &gt; ~/scripts/openclaw-gateway.sh &lt;&lt; 'SCRIPT'
+#!/bin/bash
+export NVM_DIR=&quot;$HOME/.nvm&quot;
+source &quot;$NVM_DIR/nvm.sh&quot;
+exec openclaw gateway start
+SCRIPT
+$ chmod +x ~/scripts/openclaw-gateway.sh
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : Remplacez les placeholders dans le fichier service :
 - <code>VOTRE_USER</code> : votre nom d'utilisateur (resultat de <code>whoami</code>)
-- <code>VOTRE_VERSION</code> : votre version Node.js (resultat de <code>node --version</code>, ex: <code>v22.22.1</code>)
 - Le token Vault dans <code>/etc/openclaw/gateway.env</code> : celui cree a la section 07</p>
 <blockquote>
 <p><strong>PM2 ou systemd ?</strong> Si vous utilisez deja PM2 pour d'autres services Node.js, utilisez PM2. Sinon, systemd est recommande car il est natif a Ubuntu et ne necessite pas de dependance supplementaire. Ne melangez pas les deux pour le meme service.</p>
@@ -2159,7 +2184,7 @@ $ sudo systemctl start openclaw-gateway
 <li><strong>Service qui boucle (restart loop)</strong> : Verifiez les logs (<code>journalctl</code>). Souvent un probleme de token Vault ou de connexion base de donnees.</li>
 <li><strong>"Start request repeated too quickly"</strong> : Le service a crashe 5 fois en 5 minutes. Corrigez le probleme sous-jacent, puis <code>systemctl reset-failed</code>.</li>
 </ul>
-<h2 id="verification_14">Verification</h2>
+<h2 id="verification_15">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway
 $ curl -s http://127.0.0.1:3000/health
 $ journalctl -u openclaw-gateway -n 10 --no-pager
@@ -2428,7 +2453,7 @@ $ git push -u origin main
 <li><strong>Depot prive vs public</strong> : Pour un systeme de production, utilisez un depot PRIVE. Les fichiers docker-compose.yml peuvent reveler votre architecture.</li>
 <li><strong>Oublier le .gitignore avant le premier commit</strong> : Si <code>node_modules/</code> ou <code>data/</code> a ete committe, faites <code>git rm -r --cached node_modules/</code> puis re-committez.</li>
 </ul>
-<h2 id="verification_15">Verification</h2>
+<h2 id="verification_16">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ git status
 $ git log --oneline
 $ git remote -v
@@ -2691,36 +2716,34 @@ for service_dir in docker/vault docker/postgres; do
   fi
 done
 
-# === Etape 5 : Redemarrage PM2 ===
-log &quot;Redemarrage PM2...&quot;
-if pm2 list 2&gt;/dev/null | grep -q &quot;online\|stopped&quot;; then
-  pm2 reload all --update-env 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
+# === Etape 5 : Redemarrage gateway ===
+# Le playbook recommande systemd (section 2.15).
+# Si vous utilisez PM2, remplacez cette section par : pm2 reload all --update-env
+log &quot;Redemarrage gateway (systemd)...&quot;
+if sudo systemctl restart openclaw-gateway 2&gt;&amp;1; then
+  log &quot;Gateway redemarree&quot;
 else
-  log &quot;Aucun processus PM2, etape ignoree&quot;
+  log &quot;ATTENTION : restart gateway echoue&quot;
+  notify &quot;[OA Deploy] ECHEC restart gateway sur $NEW_COMMIT&quot;
+  exit 1
 fi
 
-# === Etape 6 : Redemarrage gateway ===
-log &quot;Redemarrage gateway...&quot;
-sudo systemctl restart openclaw-gateway 2&gt;&amp;1 || log &quot;ATTENTION : restart gateway echoue&quot;
-
-# === Etape 7 : Health check ===
+# === Etape 6 : Health check ===
 log &quot;Health check post-deploiement...&quot;
 sleep 5  # Laisser le temps aux services de demarrer
 
 if &quot;$HOME/scripts/health-check.sh&quot; &gt;&gt; &quot;$LOG_FILE&quot; 2&gt;&amp;1; then
   log &quot;Health check : OK&quot;
+  log &quot;=== Deploiement termine avec succes ($NEW_COMMIT) ===&quot;
+  notify &quot;[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH&quot;
 else
   log &quot;ATTENTION : health check a des echecs&quot;
-  notify &quot;[OA Deploy] Deploiement $NEW_COMMIT termine avec des warnings (health check partiel)&quot;
-  exit 0
+  notify &quot;[OA Deploy] WARNING : $NEW_COMMIT deploye mais health check en echec&quot;
+  exit 1
 fi
-
-# === Fin ===
-log &quot;=== Deploiement termine avec succes ($NEW_COMMIT) ===&quot;
-notify &quot;[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH&quot;
 </code></pre>
 
-<h2 id="installation_1">Installation</h2>
+<h2 id="installation">Installation</h2>
 <pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/deploy.sh
 </code></pre>
 
@@ -2785,7 +2808,7 @@ notify &quot;[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH&quot;
 <li><strong>Script qui echoue au premier lancement</strong> : Le depot Git n'existe peut-etre pas encore dans <code>~/oa-system</code>. Creez-le d'abord (section 17).</li>
 <li><strong>Permissions</strong> : Le script doit etre execute par l'utilisateur <code>deploy</code>, pas par root. Les commandes sudo internes (restart gateway) fonctionnent grace aux droits sudo du user.</li>
 </ul>
-<h2 id="verification_16">Verification</h2>
+<h2 id="verification_17">Verification</h2>
 <pre class="codehilite"><code class="language-bash">$ ~/scripts/deploy.sh
 $ cat ~/logs/deploy.log | tail -20
 </code></pre>
