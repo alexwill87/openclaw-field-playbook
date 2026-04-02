@@ -1,11 +1,32 @@
 # The OpenClaw Field Playbook
-### For Entrepreneurs and Builders
+### Guide de terrain pour entrepreneurs et constructeurs
 
-> A practitioner-built, community-maintained guide to configuring OpenClaw — from installation to daily operation.
+> Un guide de praticien, construit sur le terrain et maintenu par la communaute -- de l'installation a l'operation quotidienne.
 
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![License CC-BY 4.0](https://img.shields.io/badge/license-CC--BY%204.0-blue.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-v0.1%20building-orange.svg)]()
+[![Status](https://img.shields.io/badge/statut-v0.9%20en%20validation-orange.svg)]()
+
+---
+
+> **Statut du playbook -- avril 2026**
+>
+> Ce playbook est **en cours de validation**. La structure est fixee, le contenu est ecrit (81 sections, 7 chapitres), mais il n'a pas encore ete teste de bout en bout sur une installation reelle.
+>
+> **Ce que ca signifie :**
+> - Le plan et la structure sont stables
+> - Le contenu technique est complet mais pas encore verifie par un deploiement de A a Z
+> - Des corrections sont en cours (precision des commandes, coherence des exemples)
+> - Des sections supplementaires sont prevues (Nodes, Cockpit)
+>
+> **Cycle de maturite :**
+> 1. ~~Planification~~ (fait)
+> 2. ~~Redaction~~ (fait)
+> 3. **Correction et relecture** (en cours)
+> 4. Test sur installation reelle (a venir)
+> 5. Publication stable v1.0
+>
+> Si vous utilisez ce playbook aujourd'hui, faites-le avec un esprit critique. Si vous trouvez une erreur, ouvrez une Issue. Chaque correction rend le guide meilleur pour tout le monde.
 
 ---
 

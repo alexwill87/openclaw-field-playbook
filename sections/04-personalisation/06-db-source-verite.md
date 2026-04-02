@@ -146,12 +146,22 @@ cmd_add() {
     local project="${3:-}"
     local deadline="${4:-}"
     
-    psql -d "$DB_NAME" -U "$DB_USER" -c \
-        "INSERT INTO tasks (title, priority, project, deadline) VALUES ('$title', '$priority', NULLIF('$project',''), NULLIF('$deadline','')::date) RETURNING id, title;"
+    # Utiliser des variables psql pour eviter l'injection SQL
+    psql -d "$DB_NAME" -U "$DB_USER" \
+        -v title="$title" \
+        -v priority="$priority" \
+        -v project="$project" \
+        -v deadline="$deadline" \
+        -c "INSERT INTO tasks (title, priority, project, deadline) VALUES (:'title', :'priority', NULLIF(:'project',''), NULLIF(:'deadline','')::date) RETURNING id, title;"
 }
 
 cmd_done() {
     local id="$1"
+    # Valider que id est un entier
+    if ! [[ "$id" =~ ^[0-9]+$ ]]; then
+        echo "Erreur : id doit etre un entier" >&2
+        return 1
+    fi
     psql -d "$DB_NAME" -U "$DB_USER" -c \
         "UPDATE tasks SET status = 'done' WHERE id = $id RETURNING id, title, status;"
 }
@@ -159,8 +169,13 @@ cmd_done() {
 cmd_status() {
     local id="$1"
     local new_status="$2"
-    psql -d "$DB_NAME" -U "$DB_USER" -c \
-        "UPDATE tasks SET status = '$new_status' WHERE id = $id RETURNING id, title, status;"
+    if ! [[ "$id" =~ ^[0-9]+$ ]]; then
+        echo "Erreur : id doit etre un entier" >&2
+        return 1
+    fi
+    psql -d "$DB_NAME" -U "$DB_USER" \
+        -v new_status="$new_status" \
+        -c "UPDATE tasks SET status = :'new_status' WHERE id = $id RETURNING id, title, status;"
 }
 
 cmd_summary() {

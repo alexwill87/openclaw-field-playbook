@@ -104,16 +104,17 @@ Attendu : tous les checks verts.
 Pour tout verifier en une commande :
 
 ```bash
-$ echo "=== VERIFICATION COMPLETE ===" && \
-  echo -n "1. Docker: " && docker ps --format '{{.Names}}' | tr '\n' ' ' && echo "" && \
-  echo -n "2. Vault sealed: " && docker exec vault vault status 2>/dev/null | grep Sealed && \
-  echo -n "3. Vault secret: " && docker exec vault vault kv get -field=api_key secret/openrouter > /dev/null 2>&1 && echo "OK" || echo "ECHEC" && \
-  echo -n "4. PostgreSQL: " && docker exec postgres psql -U oa_admin -d oa_system -c "SELECT 1;" > /dev/null 2>&1 && echo "OK" || echo "ECHEC" && \
-  echo -n "5. Tailscale: " && tailscale status > /dev/null 2>&1 && echo "OK" || echo "ECHEC" && \
-  echo -n "6. Node: " && node --version && \
-  echo -n "7. OpenClaw: " && openclaw --version 2>/dev/null || echo "NON INSTALLE" && \
-  echo -n "8. Gateway: " && sudo systemctl is-active openclaw-gateway 2>/dev/null || echo "INACTIF" && \
-  echo "=== FIN ==="
+$ check() { echo -n "$1: "; if eval "$2" > /dev/null 2>&1; then echo "OK"; else echo "ECHEC"; fi; }
+$ echo "=== VERIFICATION COMPLETE ==="
+$ check "1. Docker"      "docker ps"
+$ check "2. Vault unseal" "docker exec vault vault status 2>/dev/null | grep 'Sealed.*false'"
+$ check "3. Vault secret" "docker exec vault vault kv get -field=api_key secret/openrouter"
+$ check "4. PostgreSQL"   "docker exec postgres psql -U oa_admin -d oa_system -c 'SELECT 1;'"
+$ check "5. Tailscale"    "tailscale status"
+$ echo -n "6. Node: "    && node --version
+$ check "7. OpenClaw"     "openclaw --version"
+$ check "8. Gateway"      "sudo systemctl is-active openclaw-gateway"
+$ echo "=== FIN ==="
 ```
 
 ## Diagnostic par symptome

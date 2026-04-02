@@ -15,6 +15,22 @@ lang: fr
 
 ---
 
+### Ou en est ce playbook ?
+
+Ce playbook suit un cycle de maturite en 5 etapes :
+
+| Etape | Statut |
+|-------|--------|
+| 1. Planification (structure, table des matieres) | Fait |
+| 2. Redaction (contenu des 81 sections) | Fait |
+| 3. Correction et relecture | **En cours** |
+| 4. Test sur installation reelle (deploiement de A a Z) | A venir |
+| 5. Publication stable v1.0 | A venir |
+
+Aujourd'hui, le contenu est ecrit mais pas encore valide par un deploiement complet. Si une commande ne fonctionne pas ou si une etape manque de precision, c'est normal a ce stade. Ouvrez une Issue pour signaler le probleme.
+
+---
+
 ## 0.1 -- Si vous etes un humain
 
 Ce playbook est un manuel de praticien. Pas un dictionnaire, pas une doc API, pas un cours magistral. Il est organise pour que vous puissiez avancer a votre rythme, selon votre profil.
