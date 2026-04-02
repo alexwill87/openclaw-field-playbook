@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 7 -- Localisation | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand"><a href="index.html">OpenClaw Field Playbook</a></div>
+  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  <div class="nav-actions">
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html">Accueil</a>
+<a href="chapitre-00.html">Chapitre 0 -- Guide de lecture</a>
+<a href="chapitre-01.html">Chapitre 1 -- Definition</a>
+<a href="chapitre-02.html">Chapitre 2 -- Installation</a>
+<a href="chapitre-03.html">Chapitre 3 -- Configuration</a>
+<a href="chapitre-04.html">Chapitre 4 -- Personnalisation</a>
+<a href="chapitre-05.html">Chapitre 5 -- Maintenance</a>
+<a href="chapitre-06.html">Chapitre 6 -- Cas d'usage</a>
+<a href="chapitre-07.html" class="active">Chapitre 7 -- Localisation</a>
+<a href="checklist.html">Checklist</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="chapter-7-localisation">Chapter 7 — Localisation</h1>
+<blockquote>
+<p>The playbook content is universal (EN-US). This chapter documents what changes per local context — legislation, ecosystem, tools, cultural practices.</p>
+</blockquote>
+<h2 id="available-locales">Available locales</h2>
+<table>
+<thead>
+<tr>
+<th>Locale</th>
+<th>File</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🇫🇷 France</td>
+<td><a href="fr-FR.md">fr-FR.md</a></td>
+<td>draft</td>
+</tr>
+<tr>
+<td>🇺🇸 United States</td>
+<td><a href="en-US.md">en-US.md</a></td>
+<td>draft</td>
+</tr>
+<tr>
+<td>🇨🇦 Canada (FR)</td>
+<td>fr-CA.md</td>
+<td><em>not yet created — <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">contribute</a></em></td>
+</tr>
+<tr>
+<td>🇬🇧 United Kingdom</td>
+<td>en-GB.md</td>
+<td><em>not yet created — <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">contribute</a></em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-add-a-locale">How to add a locale</h2>
+<p>Open an Issue with label <code>new-locale</code> and include:
+- The locale code (e.g. <code>de-DE</code>)
+- A brief summary of what is locally specific
+- Whether you can write the first draft</p>
+<h2 id="language-contract">Language contract</h2>
+<p>Everything in chapters 0–6 is universal. This chapter is the only place where content differs per geography. See <code>sections/00-reading-guide.md</code> for the full language contract.</p>
+<hr />
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribute to this chapter</a></em></p>
+<h1 id="locale-en-us-united-states-baseline">Locale: en-US — United States (baseline)</h1>
+<blockquote>
+<p>This is the reference locale. All other locales document differences from this baseline.
+The playbook is written in EN-US — this file documents the implicit assumptions behind that default.</p>
+</blockquote>
+<hr />
+<h2 id="regulatory-context">Regulatory context</h2>
+<h3 id="data-privacy">Data privacy</h3>
+<ul>
+<li>No federal data protection law equivalent to GDPR (as of 2026)</li>
+<li>State-level laws apply: CCPA (California), VCDPA (Virginia), others</li>
+<li>For most individual entrepreneurs: local OpenClaw deployment = minimal regulatory exposure</li>
+<li>Enterprise deployment: consult legal counsel on applicable state laws</li>
+</ul>
+<h3 id="business-context">Business context</h3>
+<ul>
+<li>At-will employment standard — different implications for HR automations vs EU</li>
+<li>No mandatory "right to disconnect" — but best practice to respect boundaries</li>
+</ul>
+<hr />
+<h2 id="local-ecosystem">Local ecosystem</h2>
+<h3 id="common-infrastructure">Common infrastructure</h3>
+<ul>
+<li>AWS, Google Cloud, Azure — widely used</li>
+<li>GitHub — primary for repos and collaboration</li>
+<li>Cloudflare — DNS, CDN</li>
+</ul>
+<h3 id="common-business-tools-strong-openclaw-skill-support">Common business tools (strong OpenClaw skill support)</h3>
+<ul>
+<li><strong>Email:</strong> Gmail, Outlook</li>
+<li><strong>Calendar:</strong> Google Calendar, Outlook Calendar</li>
+<li><strong>CRM:</strong> Salesforce, HubSpot</li>
+<li><strong>Accounting:</strong> QuickBooks, FreshBooks, Wave</li>
+<li><strong>Communication:</strong> Slack, Teams, Discord</li>
+<li><strong>Project management:</strong> Notion, Linear, Asana</li>
+</ul>
+<hr />
+<h2 id="language-specifics">Language specifics</h2>
+<h3 id="tone-conventions">Tone conventions</h3>
+<ul>
+<li>Business communication is generally informal</li>
+<li>First-name basis from first contact is common</li>
+<li>Direct, action-oriented language preferred</li>
+</ul>
+<h3 id="recommended-models">Recommended models</h3>
+<ul>
+<li>GPT-4o — strong EN-US, culturally attuned</li>
+<li>Claude Sonnet — consistent, professional tone</li>
+<li>Gemini Flash — fast, good for routine tasks</li>
+</ul>
+<hr />
+<h2 id="known-differences-from-other-locales">Known differences from other locales</h2>
+<p>This is the baseline. See individual locale files for differences:
+- <a href="fr-FR.md">fr-FR.md</a> — France
+- fr-CA.md — Canada (French) — <em>not yet created</em>
+- en-GB.md — United Kingdom — <em>not yet created</em></p>
+<hr />
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Improve this locale</a></em></p>
+<h1 id="locale-fr-fr-france">Locale: fr-FR — France</h1>
+<blockquote>
+<p>This file documents what is specific to France when using OpenClaw in a business context.
+Universal content is in chapters 1–6. Only the differences are here.</p>
+</blockquote>
+<hr />
+<h2 id="regulatory-context_1">Regulatory context</h2>
+<h3 id="rgpd-gdpr">RGPD (GDPR)</h3>
+<p>OpenClaw processes personal data — emails, calendar, contacts. In France, this falls under RGPD (Règlement Général sur la Protection des Données).</p>
+<p>Key implications for your configuration:
+- Data stored locally on your machine or VPS = RGPD-compliant by default
+- Cloud integrations (Gmail, Google Calendar) = check your data processing agreements
+- If you deploy OpenClaw for clients or employees: you are the data controller — a privacy policy is required
+- Recommended: self-host on French infrastructure (OVHcloud, Scaleway) for maximum compliance</p>
+<h3 id="ai-act-eu">AI Act (EU)</h3>
+<p>As of 2026, the EU AI Act applies to AI systems deployed in professional contexts. OpenClaw as a personal assistant in low-risk use cases is likely in the minimal-risk category. Monitor for updates as regulatory guidance evolves.</p>
+<h3 id="labour-law-considerations">Labour law considerations</h3>
+<p>If OpenClaw is used to monitor employee activity (emails, schedules), French labour law applies. Consult a legal advisor before deploying in HR contexts.</p>
+<hr />
+<h2 id="local-ecosystem_1">Local ecosystem</h2>
+<h3 id="recommended-french-infrastructure">Recommended French infrastructure</h3>
+<ul>
+<li><strong>Hosting:</strong> OVHcloud, Scaleway, Infomaniak (Swiss-French)</li>
+<li><strong>VPS:</strong> Hetzner (German — GDPR-compliant), OVHcloud</li>
+<li><strong>Domain registrar:</strong> Gandi.net, OVHcloud</li>
+<li><strong>Email:</strong> ProtonMail (Swiss), Infomaniak Mail</li>
+</ul>
+<h3 id="french-business-tools-openclaw-integrates-well-with">French business tools OpenClaw integrates well with</h3>
+<ul>
+<li><strong>Accounting:</strong> Pennylane, Indy, QuickBooks FR</li>
+<li><strong>CRM:</strong> Sellsy, Pipedrive FR</li>
+<li><strong>Invoicing:</strong> Facture.net, Tiime</li>
+<li><strong>HR:</strong> Payfit, Lucca</li>
+<li><strong>Communication:</strong> Slack, Teams (widely used in French enterprise)</li>
+</ul>
+<h3 id="tools-that-may-require-custom-integration">Tools that may require custom integration</h3>
+<p>Standard OpenClaw skills are built for anglophone tools. French-specific tools (Pennylane, Sellsy, etc.) may require custom skill development via ClawHub or manual configuration.</p>
+<hr />
+<h2 id="language-specifics_1">Language specifics</h2>
+<h3 id="prompt-language">Prompt language</h3>
+<p>Write your system prompt in French if your business operates in French. OpenClaw passes your prompts to the underlying LLM — French prompts work well with Claude, GPT-4, and Mistral (which has strong French-language performance).</p>
+<h3 id="recommended-models-for-french-content">Recommended models for French content</h3>
+<ul>
+<li><strong>Mistral</strong> (French company) — excellent French, strong cultural understanding</li>
+<li><strong>Claude Sonnet</strong> — high quality in French, consistent tone</li>
+<li><strong>GPT-4o</strong> — good French but occasionally anglophone cultural assumptions</li>
+</ul>
+<h3 id="tone-conventions_1">Tone conventions</h3>
+<ul>
+<li>French business communication defaults to <strong>vouvoiement</strong> (formal "vous")</li>
+<li>Configure your agent accordingly in the system prompt: <em>"Tu utilises le vouvoiement dans toutes les communications externes."</em></li>
+<li>Internal notes and personal briefings can use <strong>tutoiement</strong></li>
+</ul>
+<hr />
+<h2 id="cultural-business-context">Cultural business context</h2>
+<h3 id="french-business-rhythm">French business rhythm</h3>
+<ul>
+<li>August is largely dead — configure reduced agent activity in August</li>
+<li>Lunch (12h–14h) is protected time in most French companies — avoid scheduling automations that send external communications during this window</li>
+<li>"Rentrée" (September) is the real new year for French business — plan your major automations resets then</li>
+</ul>
+<h3 id="invoice-and-accounting-specifics">Invoice and accounting specifics</h3>
+<ul>
+<li>French invoices require: SIRET number, TVA number, mentions légales</li>
+<li>Configure your invoice templates accordingly before letting OpenClaw generate them</li>
+<li>Auto-entrepreneur regime has specific invoice requirements — different from SARL/SAS</li>
+</ul>
+<h3 id="working-hours-and-legal-compliance">Working hours and legal compliance</h3>
+<ul>
+<li>French law limits certain types of communication outside working hours</li>
+<li>"Droit à la déconnexion" (right to disconnect) — OpenClaw should not send work communications after 18h30 by default in employee-facing contexts</li>
+</ul>
+<hr />
+<h2 id="known-differences-from-en-us-baseline">Known differences from en-US baseline</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>en-US baseline</th>
+<th>fr-FR specifics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data hosting</td>
+<td>AWS/GCP common</td>
+<td>OVHcloud/Scaleway preferred for RGPD</td>
+</tr>
+<tr>
+<td>Invoice tools</td>
+<td>QuickBooks, FreshBooks</td>
+<td>Pennylane, Indy, Tiime</td>
+</tr>
+<tr>
+<td>Business hours</td>
+<td>9am–5pm</td>
+<td>9h–18h30, lunch 12h–14h protected</td>
+</tr>
+<tr>
+<td>Recommended LLM for local language</td>
+<td>GPT-4o</td>
+<td>Mistral or Claude</td>
+</tr>
+<tr>
+<td>Formal/informal tone</td>
+<td>Generally informal</td>
+<td>Vouvoiement for external comms</td>
+</tr>
+<tr>
+<td>Peak business calendar</td>
+<td>Jan restart</td>
+<td>Rentrée (September) = real new year</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Improve this locale</a> · <a href="../../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+</section>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="chapitre-06.html">&larr; Chapitre 6 -- Cas d'usage</a>
+<span></span>
+</div>
+
+    <footer>
+      <p>Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> par <a href="https://github.com/alexwill87">Alex Willemetz</a> | <a href="https://github.com/alexwill87/openclaw-field-playbook">GitHub</a></p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

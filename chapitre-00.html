@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 0 -- Guide de lecture | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand"><a href="index.html">OpenClaw Field Playbook</a></div>
+  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  <div class="nav-actions">
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html">Accueil</a>
+<a href="chapitre-00.html" class="active">Chapitre 0 -- Guide de lecture</a>
+<a href="chapitre-01.html">Chapitre 1 -- Definition</a>
+<a href="chapitre-02.html">Chapitre 2 -- Installation</a>
+<a href="chapitre-03.html">Chapitre 3 -- Configuration</a>
+<a href="chapitre-04.html">Chapitre 4 -- Personnalisation</a>
+<a href="chapitre-05.html">Chapitre 5 -- Maintenance</a>
+<a href="chapitre-06.html">Chapitre 6 -- Cas d'usage</a>
+<a href="chapitre-07.html">Chapitre 7 -- Localisation</a>
+<a href="checklist.html">Checklist</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="chapitre-0-guide-de-lecture">Chapitre 0 -- Guide de lecture</h1>
+<p><strong>A qui s'adresse ce guide :</strong> Toute personne (ou agent) qui ouvre ce document pour la premiere fois.
+<strong>Temps de lecture :</strong> 5 minutes.
+<strong>Difficulte :</strong> Aucune.</p>
+<hr />
+<h2 id="01-si-vous-etes-un-humain">0.1 -- Si vous etes un humain</h2>
+<p>Ce playbook est un manuel de praticien. Pas un dictionnaire, pas une doc API, pas un cours magistral. Il est organise pour que vous puissiez avancer a votre rythme, selon votre profil.</p>
+<h3 id="quel-lecteur-etes-vous">Quel lecteur etes-vous ?</h3>
+<p><strong>Profil "je decouvre" :</strong>
+Lisez le Chapitre 1 en entier. C'est votre fondation. Sans lui, le reste sera du bruit. Ensuite, passez au Chapitre 2 (Installation) et suivez les etapes dans l'ordre. Ne sautez rien.</p>
+<p><strong>Profil "j'ai deja installe, je veux configurer" :</strong>
+Allez directement au Chapitre 3 (Configuration) ou au Chapitre 4 (Personnalisation). Chaque section est autonome et renvoie vers les autres quand c'est necessaire.</p>
+<p><strong>Profil "j'ai un probleme precis" :</strong>
+Utilisez la table des matieres du chapitre concerne. Chaque section commence par un bloc "Contexte" qui vous dit si vous etes au bon endroit.</p>
+<p><strong>Profil "je veux des exemples concrets" :</strong>
+Le Chapitre 6 (Cas d'usage) contient des recits reels. Commencez par la, puis remontez vers les chapitres techniques quand vous voulez reproduire ce que vous avez lu.</p>
+<h3 id="comment-lire-une-section">Comment lire une section</h3>
+<p>Chaque section suit la meme structure :</p>
+<ul>
+<li><strong>Contexte</strong> -- pourquoi cette section existe, quel probleme elle resout.</li>
+<li><strong>Contenu actionnable</strong> -- les etapes, les explications, les schemas.</li>
+<li><strong>Erreur courante</strong> -- les pieges dans lesquels d'autres sont tombes avant vous. Lisez-les, meme si vous pensez que ca ne vous concerne pas.</li>
+<li><strong>Note de terrain</strong> -- retour d'experience issu de deploiements reels.</li>
+<li><strong>Template</strong> -- un bloc a copier-coller et adapter immediatement.</li>
+</ul>
+<p>Si une section affiche <code>[A ecrire]</code>, c'est qu'elle n'existe pas encore. Elle viendra.</p>
+<hr />
+<h2 id="02-si-vous-etes-un-agent-ia">0.2 -- Si vous etes un agent IA</h2>
+<p>Cette section vous est destinee. Lisez-la en entier avant de traiter le reste du document.</p>
+<h3 id="hierarchie-des-fichiers">Hierarchie des fichiers</h3>
+<p>Par ordre de priorite :</p>
+<ol>
+<li><code>MANIFESTE.md</code> -- constitution du projet. Fait autorite sur l'intention, la gouvernance et les principes. En cas de conflit avec tout autre fichier, le Manifeste prime.</li>
+<li><code>sections/</code> -- contenu canonique. Chaque fichier est une section autonome. C'est la source de verite pour le contenu du playbook.</li>
+<li><code>PLAYBOOK.md</code> -- document assemble. Genere a partir des sections. Ne jamais editer directement.</li>
+</ol>
+<h3 id="metadata-yaml">Metadata YAML</h3>
+<p>Chaque fichier de section commence par un bloc YAML front matter. Les champs pertinents pour vous :</p>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td><code>complete</code> = stable, utilisable. <code>draft</code> = peut changer.</td>
+</tr>
+<tr>
+<td><code>audience</code></td>
+<td><code>human</code>, <code>agent</code>, ou <code>both</code>. Filtrez selon votre contexte.</td>
+</tr>
+<tr>
+<td><code>chapter</code></td>
+<td>Numero de chapitre. Utilisez-le pour l'ordonnancement.</td>
+</tr>
+<tr>
+<td><code>lang</code></td>
+<td>Langue du contenu (<code>fr</code> ou <code>en</code>).</td>
+</tr>
+<tr>
+<td><code>last_updated</code></td>
+<td>Date de derniere mise a jour (YYYY-MM).</td>
+</tr>
+<tr>
+<td><code>contributors</code></td>
+<td>Liste des contributeurs.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regles-pour-les-agents">Regles pour les agents</h3>
+<ol>
+<li><strong>Ne pas resoudre les issues etiquetees <code>governance</code></strong> -- elles requierent une decision humaine.</li>
+<li><strong>Privilegier les fichiers <code>sections/</code></strong> plutot que <code>PLAYBOOK.md</code> pour toute extraction de contenu.</li>
+<li><strong>Respecter la langue du fichier.</strong> Si <code>lang: fr</code>, repondre en francais. Si <code>lang: en</code>, repondre en anglais.</li>
+<li><strong>Les blocs Template sont concus pour etre parses et appliques directement.</strong> Utilisez-les.</li>
+<li><strong>Pour le bootstrapping d'une nouvelle installation</strong>, lire les chapitres 1 a 5 dans l'ordre. Les Chapitres 3 et 4 contiennent le contenu le plus directement actionnable.</li>
+<li><strong>Pour contribuer</strong>, suivre les regles de <code>CONTRIBUTING.md</code>. Etiqueter clairement les contributions.</li>
+</ol>
+<hr />
+<h2 id="03-les-7-chapitres-en-un-coup-doeil">0.3 -- Les 7 chapitres en un coup d'oeil</h2>
+<table>
+<thead>
+<tr>
+<th>Chapitre</th>
+<th>Titre</th>
+<th>Question centrale</th>
+<th>Pour qui en priorite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Guide de lecture</td>
+<td>Comment utiliser ce document ?</td>
+<td>Tout le monde</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Definition</td>
+<td>Qu'est-ce qu'OpenClaw, concretement ?</td>
+<td>Debutants, decideurs</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Installation</td>
+<td>Comment passer de zero a une instance qui tourne ?</td>
+<td>Techniciens, entrepreneurs autonomes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Configuration</td>
+<td>Comment adapter l'installation a mon contexte ?</td>
+<td>Techniciens</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Personnalisation</td>
+<td>Comment lui donner ma voix, mes regles, ma memoire ?</td>
+<td>Entrepreneurs, operationnels</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Maintenance</td>
+<td>Comment garder le systeme performant dans le temps ?</td>
+<td>Operationnels, techniciens</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Cas d'usage</td>
+<td>A quoi ca ressemble en pratique ?</td>
+<td>Tout le monde</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Localisation</td>
+<td>Comment adapter a un contexte linguistique ou reglementaire ?</td>
+<td>Equipes francophones, contexte UE</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chemin recommande pour un primo-lecteur :</strong> 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5. Les chapitres 6 et 7 se lisent a tout moment.</p>
+<hr />
+<h2 id="04-conventions-utilisees">0.4 -- Conventions utilisees</h2>
+<p>Ce playbook utilise quatre types d'encadres. Apprenez a les reconnaitre, ils structurent toute la lecture.</p>
+<h3 id="principe">Principe</h3>
+<blockquote>
+<p><strong>Principe :</strong> Un fondement conceptuel ou une regle de design. Ce n'est pas une opinion -- c'est un invariant sur lequel repose le reste de l'architecture.</p>
+</blockquote>
+<p>Les principes sont rares. Quand vous en croisez un, arretez-vous et assurez-vous de le comprendre avant de continuer.</p>
+<h3 id="prompt">Prompt</h3>
+<blockquote>
+<p><strong>Prompt :</strong> Un bloc de texte a copier, adapter et utiliser dans votre configuration. Il peut s'agir d'un system prompt, d'une regle de memoire, ou d'une instruction pour un agent.</p>
+</blockquote>
+<p>Les prompts sont toujours dans des blocs de code. Ils sont concus pour etre fonctionnels tels quels, mais vous devrez adapter les parties entre crochets <code>[...]</code> a votre contexte.</p>
+<h3 id="erreur-courante">Erreur courante</h3>
+<blockquote>
+<p><strong>Erreur courante :</strong> Un piege identifie sur le terrain. Quelqu'un y est tombe, probablement plusieurs personnes. La description inclut pourquoi c'est tentant de faire l'erreur et ce qui se passe quand on la fait.</p>
+</blockquote>
+<p>Ne sautez pas les erreurs courantes. Elles vous feront gagner des heures.</p>
+<h3 id="note-de-terrain">Note de terrain</h3>
+<blockquote>
+<p><strong>Note de terrain :</strong> Un retour d'experience issu d'un deploiement reel. Pas de la theorie -- un constat. Peut confirmer, nuancer ou contredire ce que vous venez de lire.</p>
+</blockquote>
+<p>Les notes de terrain sont la ou se trouve la valeur ajoutee de ce playbook par rapport a une documentation technique standard.</p>
+<hr />
+<p><em>Pour contribuer a ce chapitre, voir <a href="../CONTRIBUTING.md">CONTRIBUTING.md</a>.</em></p>
+</section>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<span></span>
+<a href="chapitre-01.html">Chapitre 1 -- Definition &rarr;</a>
+</div>
+
+    <footer>
+      <p>Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> par <a href="https://github.com/alexwill87">Alex Willemetz</a> | <a href="https://github.com/alexwill87/openclaw-field-playbook">GitHub</a></p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 4 -- Personnalisation | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand"><a href="index.html">OpenClaw Field Playbook</a></div>
+  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  <div class="nav-actions">
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html">Accueil</a>
+<a href="chapitre-00.html">Chapitre 0 -- Guide de lecture</a>
+<a href="chapitre-01.html">Chapitre 1 -- Definition</a>
+<a href="chapitre-02.html">Chapitre 2 -- Installation</a>
+<a href="chapitre-03.html">Chapitre 3 -- Configuration</a>
+<a href="chapitre-04.html" class="active">Chapitre 4 -- Personnalisation</a>
+<a href="chapitre-05.html">Chapitre 5 -- Maintenance</a>
+<a href="chapitre-06.html">Chapitre 6 -- Cas d'usage</a>
+<a href="chapitre-07.html">Chapitre 7 -- Localisation</a>
+<a href="checklist.html">Checklist</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="chapitre-4-personnalisation">Chapitre 4 -- Personnalisation</h1>
+<blockquote>
+<p>Faire de votre agent LE votre -- votre voix, vos regles, vos workflows, votre identite.</p>
+</blockquote>
+<h2 id="partie-a-identite-et-voix">Partie A -- Identite et voix</h2>
+<ul>
+<li>
+<p><strong>4.1</strong> -- <a href="01-system-prompt.md">Ecrire votre system prompt</a>
+  Le texte le plus important que vous ecrirez pour votre agent.</p>
+</li>
+<li>
+<p><strong>4.2</strong> -- <a href="02-personnalite-ton.md">Personnalite et ton</a>
+  Comment le faire parler comme vous -- et quand ne pas le faire.</p>
+</li>
+<li>
+<p><strong>4.3</strong> -- <a href="03-iteration.md">Iteration : la premiere version ne sera pas la bonne</a>
+  Normal. Comment converger en 2-3 rounds vers un prompt qui sonne juste.</p>
+</li>
+</ul>
+<h2 id="partie-b-systeme-de-taches">Partie B -- Systeme de taches</h2>
+<ul>
+<li>
+<p><strong>4.4</strong> -- <a href="04-pourquoi-taches.md">Pourquoi un systeme de taches</a>
+  Agent sans taches = conseiller. Agent avec taches = partenaire.</p>
+</li>
+<li>
+<p><strong>4.5</strong> -- <a href="05-comment-taches.md">Comment les taches se font</a>
+  Workflow : l'agent propose, vous decidez.</p>
+</li>
+<li>
+<p><strong>4.6</strong> -- <a href="06-db-source-verite.md">Base de donnees comme source de verite</a>
+  Schema PostgreSQL, scripts CLI, pourquoi DB &gt; fichiers .md.</p>
+</li>
+</ul>
+<h2 id="partie-c-workflows-et-routines">Partie C -- Workflows et routines</h2>
+<ul>
+<li>
+<p><strong>4.7</strong> -- <a href="07-reconnaitre-routine.md">Reconnaitre une routine</a>
+  Se repete 3+ fois, schema previsible = candidat a l'automatisation.</p>
+</li>
+<li>
+<p><strong>4.8</strong> -- <a href="08-dry-run.md">Dry run avant confiance</a>
+  Tester en mode "montre-moi" avant de laisser l'agent agir seul.</p>
+</li>
+<li>
+<p><strong>4.9</strong> -- <a href="09-workflows-md.md">WORKFLOWS.md</a>
+  Documenter chaque procedure. Format standardise.</p>
+</li>
+<li>
+<p><strong>4.10</strong> -- <a href="10-rythme-hebdo.md">Le rythme hebdomadaire</a>
+  Preview lundi, review vendredi. L'agent prepare les deux.</p>
+</li>
+</ul>
+<h2 id="partie-d-securite-et-confiance">Partie D -- Securite et confiance</h2>
+<ul>
+<li>
+<p><strong>4.11</strong> -- <a href="11-confiance-configuration.md">La confiance est une configuration</a>
+  Pyramide des droits. Chaque niveau a ses regles.</p>
+</li>
+<li>
+<p><strong>4.12</strong> -- <a href="12-boundary-prompt.md">Le boundary prompt</a>
+  Ce que l'agent ne doit JAMAIS faire. Ecrit une fois, applique toujours.</p>
+</li>
+<li>
+<p><strong>4.13</strong> -- <a href="13-audit-acces.md">Audit : que peut acceder votre agent ?</a>
+  Prompt auto-audit. Verifier realite vs intention.</p>
+</li>
+<li>
+<p><strong>4.14</strong> -- <a href="14-config-bilingue.md">Configuration bilingue</a>
+  Francais, anglais, ou les deux. Quand basculer.</p>
+</li>
+</ul>
+<hr />
+<p>Specifications locales : voir <code>sections/07-localisation/</code></p>
+<hr />
+<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+<h1 id="41-ecrire-votre-system-prompt">4.1 -- Ecrire votre system prompt</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Le system prompt est le texte le plus important de votre setup. C'est la premiere chose que l'agent lit a chaque conversation. Il definit qui il est, ce qu'il sait faire, et comment il doit se comporter.</p>
+<p>Un bon system prompt = un agent utile des la premiere reponse.
+Un mauvais system prompt = des corrections permanentes.</p>
+<h2 id="structure-recommandee">Structure recommandee</h2>
+<p>Un system prompt efficace suit cet ordre :</p>
+<h3 id="1-mission-2-3-phrases">1. Mission (2-3 phrases)</h3>
+<p>Qui est l'agent, pour qui il travaille, quel est son role principal.</p>
+<pre class="codehilite"><code>Tu es l'assistant technique de [votre nom], freelance devops.
+Tu geres l'infrastructure VPS, les deployments, et le suivi des taches.
+Tu communiques en francais, termes techniques en anglais.
+</code></pre>
+
+<h3 id="2-contexte-ce-quil-doit-savoir">2. Contexte (ce qu'il doit savoir)</h3>
+<p>Les faits permanents. Pas les details qui changent chaque semaine -- ceux-la vont dans la memoire.</p>
+<pre class="codehilite"><code>Stack : Ubuntu 24.04, Docker, PostgreSQL, Node.js, Vault.
+VPS : Hetzner Paris, IP fixe.
+Projets actifs : cockpit, openclaw-playbook.
+</code></pre>
+
+<h3 id="3-outils-et-acces">3. Outils et acces</h3>
+<p>Ce que l'agent peut utiliser. Pas la doc complete -- juste la liste et les limites.</p>
+<pre class="codehilite"><code>Tu as acces a : bash, fichiers locaux, git, Docker, PostgreSQL, Vault.
+Tu n'as PAS acces a : email, Stripe, DNS.
+</code></pre>
+
+<h3 id="4-regles-de-comportement">4. Regles de comportement</h3>
+<p>Les contraintes non negociables.</p>
+<pre class="codehilite"><code>- Ne jamais push --force sur main.
+- Ne jamais modifier .env sans validation explicite.
+- Toujours creer un commit separe, jamais amend sauf demande explicite.
+- Pas de fichiers markdown sauf demande explicite.
+</code></pre>
+
+<h3 id="5-ton-et-format">5. Ton et format</h3>
+<p>Comment il parle. Court et precis. Voir section 4.2 pour les details.</p>
+<pre class="codehilite"><code>- Francais. Termes techniques en anglais.
+- Reponses courtes sauf si je demande un detail.
+- Pas d'emojis.
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Trop long.</strong> Chaque token du system prompt est envoye a chaque requete. 500 mots = ~700 tokens. A 1000 requetes/mois, ca chiffre. Visez 150-300 mots.</p>
+<p><strong>Trop vague.</strong> "Sois utile et professionnel" ne dit rien. "Reponds en 3 phrases max sauf si je demande plus" dit tout.</p>
+<p><strong>Trop de contexte volatil.</strong> Le system prompt est pour les regles permanentes. Les projets en cours, les deadlines, les etats -- ca va dans la memoire ou les fichiers de contexte.</p>
+<p><strong>Pas de regles negatives.</strong> Dire ce que l'agent NE doit PAS faire est aussi important que dire ce qu'il doit faire. Sinon il improvise, et l'improvisation coute cher.</p>
+<h2 id="template-complet">Template complet</h2>
+<pre class="codehilite"><code class="language-markdown"># System Prompt — [Votre nom / projet]
+
+## Mission
+Tu es [role] de [qui]. Tu [responsabilite principale].
+
+## Contexte
+- Stack : [technologies]
+- Infra : [provider, localisation]
+- Projets : [liste]
+
+## Outils
+Tu as acces a : [liste].
+Tu n'as PAS acces a : [liste].
+
+## Regles
+- [Regle 1 — la plus critique]
+- [Regle 2]
+- [Regle 3]
+- Ne JAMAIS [interdit critique].
+
+## Ton
+- [Langue]. Termes techniques en anglais.
+- [Style : court/long, formel/direct]
+- [Format prefere : bullet points, prose, code]
+</code></pre>
+
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Ecrivez une premiere version en suivant la structure ci-dessus.</li>
+<li>Testez avec 5 requetes typiques de votre usage quotidien.</li>
+<li>Notez ou l'agent repond mal -- c'est un trou dans le prompt.</li>
+<li>Ajustez. Voir section 4.3 pour le processus d'iteration.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Le prompt fait moins de 300 mots.</li>
+<li>[ ] La mission est claire en 2 phrases.</li>
+<li>[ ] Les regles incluent au moins 2 interdictions explicites.</li>
+<li>[ ] Le ton est defini de facon actionnable (pas "sois professionnel").</li>
+<li>[ ] Teste avec 5 requetes reelles -- les reponses sont correctes sans correction.</li>
+</ul>
+<h1 id="42-personnalite-et-ton">4.2 -- Personnalite et ton</h1>
+<h2 id="contexte_1">Contexte</h2>
+<p>Le ton de votre agent n'est pas un detail cosmetique. C'est ce qui fait la difference entre un outil que vous utilisez avec plaisir et un outil que vous subissez. Un agent trop verbeux, vous arretez de lire. Trop sec, vous n'avez pas le contexte. Trop formel, ca sonne faux.</p>
+<p>Le but : que la reponse de l'agent ressemble a ce qu'un collegue competent vous dirait.</p>
+<h2 id="les-axes-de-personnalite">Les axes de personnalite</h2>
+<h3 id="direct-vs-diplomatique">Direct vs diplomatique</h3>
+<p><strong>Direct</strong> : "Ce script a un bug ligne 12. Le fix : [code]."
+<strong>Diplomatique</strong> : "J'ai remarque un point d'attention a la ligne 12 qui pourrait potentiellement causer un souci..."</p>
+<p>Pour un usage technique quotidien, direct gagne. Toujours.</p>
+<h3 id="humoristique-vs-professionnel">Humoristique vs professionnel</h3>
+<p>L'humour dans un agent technique est un piege. Ca marche la premiere fois, ca fatigue a la centieme. Si vous en voulez, dosez : une remarque legere quand ca va bien, zero humour quand ca casse.</p>
+<h3 id="court-vs-detaille">Court vs detaille</h3>
+<p>La regle d'or : court par defaut, detaille sur demande.</p>
+<p>Mauvais : <code>"communication detaillee"</code>
+Bon : <code>"3 phrases max sauf si je demande plus"</code>
+Encore mieux : <code>"1 ligne pour la reponse, bloc code si necessaire, explication uniquement si je dis 'explique'"</code></p>
+<h3 id="tutoiement-vs-vouvoiement">Tutoiement vs vouvoiement</h3>
+<p>Votre agent, votre choix. Mais soyez explicite :</p>
+<pre class="codehilite"><code>Tutoie-moi. Pas de &quot;vous&quot;, pas de formules de politesse.
+</code></pre>
+
+<p>ou</p>
+<pre class="codehilite"><code>Vouvoiement. Ton professionnel mais pas distant.
+</code></pre>
+
+<p>Si vous ne precisez pas, l'agent va alterner et ca sonne inconsistant.</p>
+<h2 id="formuler-de-facon-actionnable">Formuler de facon actionnable</h2>
+<p>Le probleme avec les instructions vagues, c'est que le modele les interprete a sa facon. Et chaque modele les interprete differemment.</p>
+<table>
+<thead>
+<tr>
+<th>Vague (inutile)</th>
+<th>Actionnable (efficace)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Sois concis"</td>
+<td>"3 phrases max sauf demande explicite"</td>
+</tr>
+<tr>
+<td>"Communication directe"</td>
+<td>"Pas de formules de politesse. Commence par la reponse."</td>
+</tr>
+<tr>
+<td>"Ton professionnel"</td>
+<td>"Pas d'emojis. Pas d'exclamations. Francais standard."</td>
+</tr>
+<tr>
+<td>"Sois utile"</td>
+<td>(ne rien ecrire -- c'est le comportement par defaut)</td>
+</tr>
+<tr>
+<td>"Adapte-toi a mon style"</td>
+<td>"Phrase courte. Bullet points pour les listes. Code inline pour les commandes."</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exemples-concrets-de-configuration">Exemples concrets de configuration</h2>
+<h3 id="profil-tech-devops">Profil tech / devops</h3>
+<pre class="codehilite"><code>Ton : direct, technique. Pas de formules de politesse.
+Reponse courte par defaut (1-3 phrases + code si applicable).
+Si je pose une question oui/non, reponds oui ou non d'abord, puis justifie.
+Tutoie-moi.
+Pas d'emojis.
+</code></pre>
+
+<h3 id="profil-consultant-client-facing">Profil consultant / client-facing</h3>
+<pre class="codehilite"><code>Vouvoiement. Ton professionnel mais accessible.
+Quand je prepare un email client, propose une version diplomate.
+Pour le travail interne, reponse directe et courte.
+</code></pre>
+
+<h3 id="profil-creatif">Profil creatif</h3>
+<pre class="codehilite"><code>Tutoie-moi. Ton decontracte.
+Propose des alternatives quand je demande un avis.
+Si une idee est mauvaise, dis-le franchement avec une meilleure suggestion.
+</code></pre>
+
+<h2 id="erreurs-courantes_1">Erreurs courantes</h2>
+<p><strong>Empiler les adjectifs.</strong> "Sois professionnel, chaleureux, concis, detaille quand il faut, humoristique mais pas trop." Le modele ne sait pas prioriser. Choisissez 2-3 traits, pas 7.</p>
+<p><strong>Copier le ton d'un autre.</strong> Le prompt de quelqu'un d'autre ne sonnera pas juste pour vous. Partez de vos propres conversations : comment parlez-vous a un collegue de confiance ? C'est votre ton.</p>
+<p><strong>Oublier le format.</strong> Le ton, ce n'est pas que les mots. C'est aussi : bullet points vs prose, blocs de code vs inline, headers vs texte continu. Precisez le format autant que le vocabulaire.</p>
+<h2 id="etapes_1">Etapes</h2>
+<ol>
+<li>Relisez vos 10 dernieres conversations avec votre agent.</li>
+<li>Notez chaque fois ou le ton vous a gene (trop long, trop formel, trop vague).</li>
+<li>Formulez 3-5 instructions actionnables qui corrigent ces problemes.</li>
+<li>Ajoutez-les au system prompt, section Ton.</li>
+<li>Testez sur 5 requetes. Ajustez.</li>
+</ol>
+<h2 id="verification_1">Verification</h2>
+<ul>
+<li>[ ] Le ton est defini en instructions actionnables, pas en adjectifs.</li>
+<li>[ ] Le choix tutoiement/vouvoiement est explicite.</li>
+<li>[ ] La longueur par defaut des reponses est specifiee.</li>
+<li>[ ] Le format (bullets, prose, code) est precise.</li>
+<li>[ ] Teste sur 5 requetes -- le ton est consistant.</li>
+</ul>
+<h1 id="43-iteration-la-premiere-version-ne-sera-pas-la-bonne">4.3 -- Iteration : la premiere version ne sera pas la bonne</h1>
+<h2 id="contexte_2">Contexte</h2>
+<p>Votre premier system prompt sera mauvais. Pas parce que vous etes mauvais -- parce que personne ne sait ce qu'il veut d'un agent avant de l'avoir utilise. C'est normal. Le prompt se decouvre en l'utilisant, pas en y reflechissant.</p>
+<p>Prevoyez 2-3 rounds d'iteration avant d'avoir un prompt qui sonne juste. Apres ca, des ajustements ponctuels quand le besoin change.</p>
+<h2 id="le-processus-diteration">Le processus d'iteration</h2>
+<h3 id="round-1-la-version-brute">Round 1 : la version brute</h3>
+<p>Ecrivez votre premier prompt (voir section 4.1). Utilisez-le pendant 2-3 jours. Notez chaque friction :</p>
+<ul>
+<li>"Il repond trop long"</li>
+<li>"Il oublie que je veux du tutoiement"</li>
+<li>"Il propose des solutions Windows alors que je suis sur Linux"</li>
+<li>"Il me redemande le contexte a chaque fois"</li>
+</ul>
+<h3 id="round-2-le-prompt-de-correction">Round 2 : le prompt de correction</h3>
+<p>Utilisez ce pattern pour corriger :</p>
+<pre class="codehilite"><code>Voici mon system prompt actuel :
+[coller le prompt]
+
+Problemes constates :
+1. [friction 1]
+2. [friction 2]
+3. [friction 3]
+
+Reecris le prompt en corrigeant ces problemes.
+Garde la structure. Ne depasse pas 250 mots.
+</code></pre>
+
+<p>Relisez la proposition. Modifiez a la main ce qui ne colle pas. Testez 2-3 jours de plus.</p>
+<h3 id="round-3-condenser">Round 3 : condenser</h3>
+<p>Apres le round 2, votre prompt fait probablement 400-500 mots. C'est trop. Chaque token compte.</p>
+<p>Prompt de condensation :</p>
+<pre class="codehilite"><code>Voici mon system prompt (480 mots).
+Condense-le a 150 mots maximum.
+Garde TOUTES les regles et interdictions.
+Supprime les explications -- l'agent n'a pas besoin de comprendre pourquoi.
+</code></pre>
+
+<p>La regle : 150 mots &gt; 500 mots. Un prompt court et precis bat un prompt long et detaille. Le modele n'a pas besoin de vos justifications -- il a besoin de vos instructions.</p>
+<h2 id="pourquoi-condenser-marche">Pourquoi condenser marche</h2>
+<p>Un prompt long cree du bruit. Le modele doit trier ce qui est important de ce qui est du remplissage. Plus c'est court, plus chaque mot pese.</p>
+<p>Comparaison :</p>
+<p><strong>Avant (68 mots) :</strong></p>
+<pre class="codehilite"><code>Quand tu me proposes des solutions techniques, j'aimerais que tu prennes
+en compte le fait que je travaille principalement sur des environnements
+Linux Ubuntu, et que je n'ai generalement pas besoin de solutions qui
+seraient specifiques a Windows ou macOS, sauf si je te le demande
+explicitement dans ma question.
+</code></pre>
+
+<p><strong>Apres (12 mots) :</strong></p>
+<pre class="codehilite"><code>Environnement : Linux Ubuntu. Pas de solutions Windows/macOS sauf demande.
+</code></pre>
+
+<p>Meme information. 5x moins de tokens.</p>
+<h2 id="quand-arreter-diterer">Quand arreter d'iterer</h2>
+<p>Arretez quand :</p>
+<ul>
+<li>Vous ne corrigez plus l'agent sur le ton ou le format.</li>
+<li>Les reponses sont utiles des la premiere fois dans 80%+ des cas.</li>
+<li>Vos corrections portent sur le fond (connaissance) pas la forme (comportement).</li>
+</ul>
+<p>Si vous etes encore en train d'iterer apres 5 rounds, le probleme n'est probablement pas le prompt. C'est peut-etre le modele, l'outil, ou vos attentes.</p>
+<h2 id="erreurs-courantes_2">Erreurs courantes</h2>
+<p><strong>Ne jamais iterer.</strong> Le premier jet reste en place pendant des mois. Le prompt accumule des instructions obsoletes et l'agent degrade progressivement.</p>
+<p><strong>Iterer sans noter.</strong> Vous changez le prompt "de memoire" sans avoir note les frictions. Vous corrigez un probleme et en creez un autre.</p>
+<p><strong>Ajouter sans supprimer.</strong> Chaque iteration ajoute des regles mais n'en retire jamais. Apres 5 rounds, le prompt fait 800 mots et se contredit.</p>
+<h2 id="etapes_2">Etapes</h2>
+<ol>
+<li>Utilisez votre prompt actuel pendant 2-3 jours.</li>
+<li>Notez chaque friction dans un fichier <code>prompt-feedback.md</code>.</li>
+<li>Appliquez le prompt de correction (round 2).</li>
+<li>Testez 2-3 jours.</li>
+<li>Condensez a 150 mots (round 3).</li>
+<li>Testez. Si ca tient, c'est bon.</li>
+</ol>
+<h2 id="verification_2">Verification</h2>
+<ul>
+<li>[ ] Le prompt actuel a ete teste en conditions reelles (pas juste relu).</li>
+<li>[ ] Les frictions sont notees par ecrit, pas de memoire.</li>
+<li>[ ] Le prompt final fait moins de 200 mots.</li>
+<li>[ ] Aucune instruction ne contredit une autre.</li>
+<li>[ ] 80%+ des reponses sont utiles sans correction.</li>
+</ul>
+<h1 id="44-pourquoi-un-systeme-de-taches">4.4 -- Pourquoi un systeme de taches</h1>
+<h2 id="contexte_3">Contexte</h2>
+<p>Un agent sans systeme de taches est un conseiller. Vous lui posez des questions, il repond. Vous oubliez de demander, il oublie de faire. Rien ne persiste entre les sessions.</p>
+<p>Un agent avec un systeme de taches est un partenaire. Il sait ce qui est en cours, ce qui est bloque, ce qui est termine. Il peut proposer la prochaine action sans que vous la formuliez.</p>
+<p>La difference n'est pas technique. C'est une difference de relation.</p>
+<h2 id="agent-conseiller-vs-agent-partenaire">Agent conseiller vs agent partenaire</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Conseiller</th>
+<th>Partenaire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memoire</td>
+<td>Session uniquement</td>
+<td>Persistante</td>
+</tr>
+<tr>
+<td>Initiative</td>
+<td>Repond aux questions</td>
+<td>Propose des actions</td>
+</tr>
+<tr>
+<td>Suivi</td>
+<td>Aucun</td>
+<td>Sait ou on en est</td>
+</tr>
+<tr>
+<td>Valeur</td>
+<td>Ponctuelle</td>
+<td>Cumulative</td>
+</tr>
+<tr>
+<td>Dependance</td>
+<td>A votre memoire</td>
+<td>A un systeme partage</td>
+</tr>
+</tbody>
+</table>
+<p>Le conseiller est utile. Le partenaire est indispensable.</p>
+<h2 id="commencer-simple">Commencer simple</h2>
+<p>N'installez pas PostgreSQL, un ORM, et un dashboard le premier jour. Commencez par une checklist.</p>
+<h3 id="niveau-1-un-fichier-texte">Niveau 1 : un fichier texte</h3>
+<pre class="codehilite"><code class="language-markdown"># TASKS.md
+
+## En cours
+- [ ] Migrer le backup vers S3 — deadline: 2026-04-05
+- [ ] Ecrire la doc API endpoint /users
+
+## En attente
+- [ ] Renouveler le certificat SSL (expire 2026-05-15)
+
+## Fait
+- [x] Configurer le monitoring Telegram — 2026-03-28
+</code></pre>
+
+<p>Votre agent peut lire ce fichier, proposer des mises a jour, et vous rappeler les deadlines. Zero infrastructure.</p>
+<h3 id="niveau-2-un-fichier-jsonyaml-structure">Niveau 2 : un fichier JSON/YAML structure</h3>
+<pre class="codehilite"><code class="language-yaml">tasks:
+  - id: 1
+    title: &quot;Migrer backup S3&quot;
+    status: in_progress
+    priority: high
+    deadline: &quot;2026-04-05&quot;
+    notes: &quot;Tester restauration apres migration&quot;
+  - id: 2
+    title: &quot;Doc API /users&quot;
+    status: todo
+    priority: medium
+</code></pre>
+
+<p>Plus facile a parser pour l'agent. Permet des requetes ("quelles taches high priority ?").</p>
+<h3 id="niveau-3-base-de-donnees">Niveau 3 : base de donnees</h3>
+<p>Voir section 4.6. C'est le bon choix quand vous depassez 20 taches actives ou que vous avez besoin d'historique.</p>
+<h2 id="ce-que-le-systeme-de-taches-change-concretement">Ce que le systeme de taches change concretement</h2>
+<p><strong>Sans taches :</strong> "Ou en est-on avec le backup S3 ?"
+Agent : "Je ne sais pas, je n'ai pas le contexte."</p>
+<p><strong>Avec taches :</strong> "Quoi de prevu aujourd'hui ?"
+Agent : "3 taches prioritaires. La migration S3 est en retard de 2 jours. Le certificat SSL expire dans 6 semaines. Suggestion : finir S3 aujourd'hui."</p>
+<p>C'est la difference entre piloter a vue et piloter avec un tableau de bord.</p>
+<h2 id="quand-passer-au-niveau-suivant">Quand passer au niveau suivant</h2>
+<ul>
+<li><strong>Fichier texte -&gt; JSON</strong> : quand vous avez plus de 10 taches et que vous voulez filtrer par priorite ou statut.</li>
+<li><strong>JSON -&gt; Base de donnees</strong> : quand vous voulez un historique, des requetes complexes, ou que plusieurs agents partagent les memes taches.</li>
+</ul>
+<p>Ne sautez pas les etapes. Chaque niveau vous apprend ce dont vous avez vraiment besoin au niveau suivant.</p>
+<h2 id="erreurs-courantes_3">Erreurs courantes</h2>
+<p><strong>Trop de structure trop tot.</strong> Installer Jira pour 5 taches. Un fichier TASKS.md suffit pour commencer.</p>
+<p><strong>Pas de structure du tout.</strong> "Je retiens tout dans ma tete." Non. Vous oubliez, l'agent aussi. Ecrivez.</p>
+<p><strong>Deleguer le suivi sans le verifier.</strong> L'agent met a jour les taches mais vous ne relisez jamais. Les statuts divergent de la realite. Voir section 4.5.</p>
+<h2 id="etapes_3">Etapes</h2>
+<ol>
+<li>Creez un fichier <code>TASKS.md</code> dans votre projet.</li>
+<li>Ajoutez vos 5 taches en cours les plus importantes.</li>
+<li>Dites a votre agent : "Lis TASKS.md. Qu'est-ce qui est prioritaire ?"</li>
+<li>Utilisez pendant une semaine.</li>
+<li>Evaluez : est-ce que le format suffit ou faut-il passer au niveau 2 ?</li>
+</ol>
+<h2 id="verification_3">Verification</h2>
+<ul>
+<li>[ ] Un fichier de taches existe et est accessible a l'agent.</li>
+<li>[ ] Les taches ont au minimum : titre, statut, priorite.</li>
+<li>[ ] L'agent sait ou trouver et lire ce fichier.</li>
+<li>[ ] Vous relisez les taches au moins une fois par semaine.</li>
+</ul>
+<h1 id="45-comment-les-taches-se-font">4.5 -- Comment les taches se font</h1>
+<h2 id="contexte_4">Contexte</h2>
+<p>Avoir un systeme de taches ne suffit pas. Ce qui compte, c'est le workflow : qui propose quoi, qui decide, qui execute. Si vous ne definissez pas ce workflow, l'agent va soit tout faire sans demander (dangereux), soit ne rien faire sans qu'on lui dise (inutile).</p>
+<p>Le bon equilibre, selon le modele Steinberg : l'agent propose, vous decidez.</p>
+<h2 id="le-workflow-proposedecide">Le workflow propose/decide</h2>
+<h3 id="1-lagent-propose">1. L'agent propose</h3>
+<p>L'agent analyse les taches en cours, les deadlines, le contexte. Il propose :</p>
+<pre class="codehilite"><code>Bonjour. 3 taches prioritaires aujourd'hui :
+
+1. [URGENT] Migration S3 — en retard de 2 jours. 
+   Proposition : finir le script de transfert, tester, deployer.
+
+2. [NORMAL] Doc API /users — pas de deadline, mais bloque l'onboarding dev.
+   Proposition : generer le squelette depuis le code, vous completez.
+
+3. [INFO] Certificat SSL expire dans 43 jours.
+   Proposition : planifier le renouvellement pour semaine prochaine.
+
+Quoi en premier ?
+</code></pre>
+
+<h3 id="2-vous-decidez">2. Vous decidez</h3>
+<p>Vous ne validez pas tout en bloc. Vous triez :</p>
+<ul>
+<li>"1 : oui, commence par le script."</li>
+<li>"2 : pas aujourd'hui."</li>
+<li>"3 : ajoute au planning semaine prochaine."</li>
+</ul>
+<p>C'est du triage. L'agent fait le travail de preparation (analyser, prioriser, formuler). Vous gardez le jugement (decider, prioriser selon vos contraintes reelles).</p>
+<h3 id="3-lagent-execute-et-rend-compte">3. L'agent execute et rend compte</h3>
+<p>Apres validation, l'agent execute et met a jour le statut :</p>
+<pre class="codehilite"><code>Migration S3 : script de transfert termine. 
+Test de restauration : OK (3 fichiers, 12s).
+Statut mis a jour : in_progress -&gt; done.
+
+Prochaine tache ?
+</code></pre>
+
+<h2 id="triage-sans-deleguer-le-jugement">Triage sans deleguer le jugement</h2>
+<p>Le piege : laisser l'agent decider de la priorite. Il n'a pas votre contexte complet. Il ne sait pas que le client X appelle demain, que vous etes fatigue, que le budget est serre.</p>
+<p>Ce que l'agent peut faire :
+- Ordonner par deadline.
+- Signaler les retards.
+- Identifier les dependances.
+- Proposer un plan.</p>
+<p>Ce que vous devez faire :
+- Valider ou reordonner.
+- Decider de reporter ou annuler.
+- Juger de l'urgence reelle (pas la deadline theorique).</p>
+<h2 id="les-taches-nourrissent-le-briefing">Les taches nourrissent le briefing</h2>
+<p>Chaque tache terminee enrichit le contexte. Apres une semaine, votre agent peut dire :</p>
+<pre class="codehilite"><code>Cette semaine : 8 taches terminees, 2 reportees, 1 bloquee.
+Le pattern : les taches infra se terminent vite, les taches doc trainent.
+Suggestion : bloquer 2h doc le jeudi.
+</code></pre>
+
+<p>Ce feedback n'est possible que si les taches sont tracees avec leur statut et leurs dates. Un fichier texte sans dates ne permet pas ca.</p>
+<h2 id="format-minimal-dune-tache">Format minimal d'une tache</h2>
+<p>Pour que le workflow fonctionne, chaque tache a besoin de :</p>
+<pre class="codehilite"><code>- Titre (quoi)
+- Statut (todo / in_progress / done / blocked)
+- Priorite (high / medium / low)
+- Date de creation
+- Date de deadline (optionnel)
+- Notes (optionnel — contexte, blocages, decisions)
+</code></pre>
+
+<p>Pas besoin de plus au debut. Ajoutez des champs quand le besoin se manifeste, pas avant.</p>
+<h2 id="erreurs-courantes_4">Erreurs courantes</h2>
+<p><strong>L'agent decide seul.</strong> Il ferme une tache, en ouvre une autre, change les priorites. Vous decouvrez les changements apres coup. Solution : regle dans le system prompt -- "Ne change jamais le statut d'une tache sans validation."</p>
+<p><strong>Vous micro-managez.</strong> Chaque sous-etape doit etre validee. L'agent passe plus de temps a attendre qu'a executer. Solution : definir des niveaux de confiance (voir section 4.11).</p>
+<p><strong>Pas de rendu de compte.</strong> L'agent execute mais ne dit pas ce qu'il a fait. Vous ne savez pas ou on en est. Solution : exiger un resume apres chaque tache completee.</p>
+<h2 id="etapes_4">Etapes</h2>
+<ol>
+<li>Ajoutez cette regle au system prompt : "Propose les taches, ne les execute pas sans validation."</li>
+<li>Demandez un briefing quotidien : "Quelles taches prioritaires aujourd'hui ?"</li>
+<li>Pratiquez le triage : validez, reportez ou annulez chaque proposition.</li>
+<li>Apres chaque execution, verifiez que le statut est mis a jour.</li>
+<li>En fin de semaine, demandez un resume.</li>
+</ol>
+<h2 id="verification_4">Verification</h2>
+<ul>
+<li>[ ] L'agent propose sans executer automatiquement.</li>
+<li>[ ] Vous validez chaque tache avant execution.</li>
+<li>[ ] Les statuts sont mis a jour apres chaque action.</li>
+<li>[ ] Un resume hebdomadaire est possible a partir des donnees.</li>
+<li>[ ] L'agent ne change jamais une priorite sans votre accord.</li>
+</ul>
+<h1 id="46-base-de-donnees-comme-source-de-verite">4.6 -- Base de donnees comme source de verite</h1>
+<h2 id="contexte_5">Contexte</h2>
+<p>Un fichier TASKS.md marche pour 10-20 taches. Au-dela, ca devient penible : pas de filtre, pas d'historique, pas de requetes, conflits de merge si plusieurs agents ecrivent. La solution : une base de donnees PostgreSQL comme source de verite.</p>
+<p>Pourquoi PostgreSQL et pas SQLite ? Parce que votre agent tourne sur un VPS ou PostgreSQL est deja installe. Autant utiliser ce qui est la.</p>
+<h2 id="pourquoi-db-fichiers-md">Pourquoi DB &gt; fichiers .md</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Fichier .md</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filtre par statut/priorite</td>
+<td>Manuel (grep)</td>
+<td><code>WHERE status = 'todo'</code></td>
+</tr>
+<tr>
+<td>Historique des changements</td>
+<td>Git log (penible)</td>
+<td>Colonne <code>updated_at</code></td>
+</tr>
+<tr>
+<td>Requetes complexes</td>
+<td>Impossible</td>
+<td>SQL standard</td>
+</tr>
+<tr>
+<td>Acces concurrent</td>
+<td>Conflits de merge</td>
+<td>Transactions</td>
+</tr>
+<tr>
+<td>Taches &gt; 50</td>
+<td>Illisible</td>
+<td>Pas de probleme</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Avec le repo</td>
+<td>pg_dump</td>
+</tr>
+</tbody>
+</table>
+<p>Le fichier .md reste utile comme vue (genere depuis la DB). Mais la source de verite est la base.</p>
+<h2 id="schema-postgresql">Schema PostgreSQL</h2>
+<pre class="codehilite"><code class="language-sql">CREATE TABLE tasks (
+    id          SERIAL PRIMARY KEY,
+    title       VARCHAR(255) NOT NULL,
+    description TEXT,
+    status      VARCHAR(20) DEFAULT 'todo' 
+                CHECK (status IN ('todo', 'in_progress', 'done', 'blocked', 'cancelled')),
+    priority    VARCHAR(10) DEFAULT 'medium'
+                CHECK (priority IN ('high', 'medium', 'low')),
+    project     VARCHAR(100),
+    assigned_to VARCHAR(100),
+    created_at  TIMESTAMPTZ DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ DEFAULT NOW(),
+    deadline    DATE,
+    notes       TEXT
+);
+
+-- Index pour les requetes frequentes
+CREATE INDEX idx_tasks_status ON tasks(status);
+CREATE INDEX idx_tasks_priority ON tasks(priority);
+CREATE INDEX idx_tasks_project ON tasks(project);
+
+-- Mise a jour automatique du updated_at
+CREATE OR REPLACE FUNCTION update_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tasks_updated_at
+    BEFORE UPDATE ON tasks
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at();
+</code></pre>
+
+<h2 id="requetes-utiles">Requetes utiles</h2>
+<h3 id="taches-prioritaires-du-jour">Taches prioritaires du jour</h3>
+<pre class="codehilite"><code class="language-sql">SELECT id, title, priority, deadline
+FROM tasks
+WHERE status IN ('todo', 'in_progress')
+ORDER BY 
+    CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 ELSE 3 END,
+    deadline NULLS LAST;
+</code></pre>
+
+<h3 id="taches-en-retard">Taches en retard</h3>
+<pre class="codehilite"><code class="language-sql">SELECT id, title, deadline, 
+       NOW()::date - deadline AS jours_retard
+FROM tasks
+WHERE status NOT IN ('done', 'cancelled')
+  AND deadline &lt; CURRENT_DATE
+ORDER BY deadline;
+</code></pre>
+
+<h3 id="resume-de-la-semaine">Resume de la semaine</h3>
+<pre class="codehilite"><code class="language-sql">SELECT status, COUNT(*) AS total
+FROM tasks
+WHERE updated_at &gt;= NOW() - INTERVAL '7 days'
+GROUP BY status
+ORDER BY total DESC;
+</code></pre>
+
+<h3 id="taches-par-projet">Taches par projet</h3>
+<pre class="codehilite"><code class="language-sql">SELECT project, status, COUNT(*) AS total
+FROM tasks
+GROUP BY project, status
+ORDER BY project, status;
+</code></pre>
+
+<h2 id="script-cli-taskssh">Script CLI : tasks.sh</h2>
+<p>Un script bash pour gerer les taches sans ouvrir psql a chaque fois.</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# tasks.sh — CLI pour la gestion des taches
+# Usage : ./tasks.sh [commande] [arguments]
+
+DB_NAME=&quot;${TASKS_DB:-cockpit}&quot;
+DB_USER=&quot;${TASKS_USER:-oa_admin}&quot;
+
+cmd_list() {
+    local filter=&quot;${1:-all}&quot;
+    case &quot;$filter&quot; in
+        todo|in_progress|done|blocked)
+            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+                &quot;SELECT id, title, priority, deadline FROM tasks WHERE status = '$filter' ORDER BY priority, deadline NULLS LAST;&quot;
+            ;;
+        urgent)
+            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+                &quot;SELECT id, title, deadline FROM tasks WHERE status IN ('todo','in_progress') AND (priority = 'high' OR deadline &lt;= CURRENT_DATE + 3) ORDER BY deadline NULLS LAST;&quot;
+            ;;
+        *)
+            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+                &quot;SELECT id, title, status, priority, deadline FROM tasks WHERE status NOT IN ('done','cancelled') ORDER BY priority, deadline NULLS LAST;&quot;
+            ;;
+    esac
+}
+
+cmd_add() {
+    local title=&quot;$1&quot;
+    local priority=&quot;${2:-medium}&quot;
+    local project=&quot;${3:-}&quot;
+    local deadline=&quot;${4:-}&quot;
+
+    # Utiliser des variables psql pour eviter l'injection SQL
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; \
+        -v title=&quot;$title&quot; \
+        -v priority=&quot;$priority&quot; \
+        -v project=&quot;$project&quot; \
+        -v deadline=&quot;$deadline&quot; \
+        -c &quot;INSERT INTO tasks (title, priority, project, deadline) VALUES (:'title', :'priority', NULLIF(:'project',''), NULLIF(:'deadline','')::date) RETURNING id, title;&quot;
+}
+
+cmd_done() {
+    local id=&quot;$1&quot;
+    # Valider que id est un entier
+    if ! [[ &quot;$id&quot; =~ ^[0-9]+$ ]]; then
+        echo &quot;Erreur : id doit etre un entier&quot; &gt;&amp;2
+        return 1
+    fi
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+        &quot;UPDATE tasks SET status = 'done' WHERE id = $id RETURNING id, title, status;&quot;
+}
+
+cmd_status() {
+    local id=&quot;$1&quot;
+    local new_status=&quot;$2&quot;
+    if ! [[ &quot;$id&quot; =~ ^[0-9]+$ ]]; then
+        echo &quot;Erreur : id doit etre un entier&quot; &gt;&amp;2
+        return 1
+    fi
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; \
+        -v new_status=&quot;$new_status&quot; \
+        -c &quot;UPDATE tasks SET status = :'new_status' WHERE id = $id RETURNING id, title, status;&quot;
+}
+
+cmd_summary() {
+    echo &quot;=== Resume des taches ===&quot;
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+        &quot;SELECT status, COUNT(*) FROM tasks GROUP BY status ORDER BY COUNT(*) DESC;&quot;
+    echo &quot;&quot;
+    echo &quot;=== En retard ===&quot;
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+        &quot;SELECT id, title, deadline FROM tasks WHERE deadline &lt; CURRENT_DATE AND status NOT IN ('done','cancelled') ORDER BY deadline;&quot;
+}
+
+case &quot;${1:-help}&quot; in
+    list)    cmd_list &quot;$2&quot; ;;
+    add)     cmd_add &quot;$2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; ;;
+    done)    cmd_done &quot;$2&quot; ;;
+    status)  cmd_status &quot;$2&quot; &quot;$3&quot; ;;
+    summary) cmd_summary ;;
+    help)
+        echo &quot;Usage : tasks.sh &lt;commande&gt;&quot;
+        echo &quot;  list [filtre]     — Lister (all/todo/in_progress/done/blocked/urgent)&quot;
+        echo &quot;  add &lt;titre&gt; [priorite] [projet] [deadline]&quot;
+        echo &quot;  done &lt;id&gt;         — Marquer comme terminee&quot;
+        echo &quot;  status &lt;id&gt; &lt;statut&gt;&quot;
+        echo &quot;  summary           — Resume global&quot;
+        ;;
+    *)       echo &quot;Commande inconnue : $1. Utilisez 'help'.&quot; ;;
+esac
+</code></pre>
+
+<p>Rendez le executable : <code>chmod +x tasks.sh</code></p>
+<h2 id="erreurs-courantes_5">Erreurs courantes</h2>
+<p><strong>Creer la DB trop tot.</strong> Si vous avez 5 taches, un fichier TASKS.md suffit. Ne complexifiez pas sans raison.</p>
+<p><strong>Pas de backup.</strong> La DB est la source de verite mais elle n'est pas sauvegardee. Voir section 5.3 pour pg_dump automatise.</p>
+<p><strong>Schema trop complexe.</strong> Tags, sous-taches, dependances, commentaires, historique complet... Commencez avec le schema minimal. Ajoutez quand le besoin est reel.</p>
+<p><strong>Pas de script CLI.</strong> Vous ouvrez psql pour chaque operation. Friction = abandon. Le script reduit la friction a zero.</p>
+<h2 id="etapes_5">Etapes</h2>
+<ol>
+<li>Creez la table avec le schema ci-dessus.</li>
+<li>Migrez vos taches existantes (TASKS.md -&gt; INSERT INTO).</li>
+<li>Installez le script <code>tasks.sh</code>.</li>
+<li>Testez : <code>./tasks.sh list</code>, <code>./tasks.sh add "Test" high</code>.</li>
+<li>Ajoutez au system prompt : "Les taches sont dans PostgreSQL, table tasks."</li>
+<li>Configurez pg_dump quotidien (section 5.3).</li>
+</ol>
+<h2 id="verification_5">Verification</h2>
+<ul>
+<li>[ ] La table <code>tasks</code> existe avec le schema minimal.</li>
+<li>[ ] Le trigger <code>updated_at</code> fonctionne.</li>
+<li>[ ] Le script <code>tasks.sh</code> est executable et fonctionnel.</li>
+<li>[ ] L'agent sait interroger la table (instruction dans le system prompt).</li>
+<li>[ ] Un backup pg_dump est configure.</li>
+</ul>
+<h1 id="47-reconnaitre-une-routine">4.7 -- Reconnaitre une routine</h1>
+<h2 id="contexte_6">Contexte</h2>
+<p>Une routine, c'est une action que vous repetez avec le meme schema. Deployer un service, creer un backup, verifier les logs du matin. Quand vous faites la meme chose pour la 3eme fois, c'est un signal : ca pourrait etre automatise ou delegue a l'agent.</p>
+<p>Mais pas tout. Certaines routines ont besoin de votre jugement humain. L'art, c'est de distinguer les deux.</p>
+<h2 id="les-criteres-dune-routine-automatisable">Les criteres d'une routine automatisable</h2>
+<p>Une tache est candidate a l'automatisation si elle remplit ces 3 conditions :</p>
+<ol>
+<li><strong>Repetition.</strong> Elle se produit 3+ fois avec le meme schema.</li>
+<li><strong>Previsibilite.</strong> Les etapes sont les memes a chaque fois, ou les variations sont connues a l'avance.</li>
+<li><strong>Risque faible.</strong> Si l'agent se trompe, les consequences sont reversibles ou mineures.</li>
+</ol>
+<h3 id="exemples-de-bonnes-candidates">Exemples de bonnes candidates</h3>
+<ul>
+<li>Health check quotidien : memes commandes, meme interpretation, alerter si KO.</li>
+<li>Generer un resume hebdomadaire des taches : lecture seule, pas d'action.</li>
+<li>Rotation des logs : supprimer les fichiers &gt; 30 jours, meme regle a chaque fois.</li>
+<li>Creer un commit avec un format standardise : meme structure, meme convention.</li>
+</ul>
+<h3 id="exemples-de-mauvaises-candidates">Exemples de mauvaises candidates</h3>
+<ul>
+<li>Repondre a un email client : chaque situation est differente, le ton importe.</li>
+<li>Decider de reporter une deadline : contexte humain necessaire (fatigue, priorites business, relations).</li>
+<li>Choisir entre deux architectures : trade-offs subtils, pas de bonne reponse universelle.</li>
+<li>Supprimer des donnees en production : irreversible, risque eleve.</li>
+</ul>
+<h2 id="comment-detecter-vos-routines">Comment detecter vos routines</h2>
+<h3 id="methode-1-le-journal-de-bord">Methode 1 : le journal de bord</h3>
+<p>Pendant une semaine, notez chaque action que vous faites avec votre agent. Format :</p>
+<pre class="codehilite"><code>Lundi :
+- Health check VPS (5 min)
+- Deploiement cockpit (10 min)
+- Reponse email client X (15 min)
+- Mise a jour TASKS.md (3 min)
+
+Mardi :
+- Health check VPS (5 min)
+- Debug erreur API (30 min)
+- Mise a jour TASKS.md (3 min)
+</code></pre>
+
+<p>Apres une semaine, les repetitions sautent aux yeux. Health check et TASKS.md reviennent chaque jour = routines.</p>
+<h3 id="methode-2-demander-a-lagent">Methode 2 : demander a l'agent</h3>
+<pre class="codehilite"><code>Analyse mes 20 dernieres conversations avec toi.
+Quelles actions reviennent 3+ fois ?
+Pour chacune, dis-moi si elle suit un schema previsible.
+</code></pre>
+
+<p>L'agent voit des patterns que vous ne voyez pas parce que vous etes dedans.</p>
+<h2 id="la-zone-grise-routines-avec-jugement">La zone grise : routines avec jugement</h2>
+<p>Certaines taches sont repetitives mais demandent du jugement a une etape :</p>
+<ul>
+<li><strong>Triage des taches</strong> : repetitif, mais la priorisation demande du contexte humain.</li>
+<li><strong>Review de code</strong> : le format est previsible, mais l'evaluation de la qualite est subjective.</li>
+<li><strong>Reporting</strong> : la collecte de donnees est automatisable, l'interpretation non.</li>
+</ul>
+<p>Pour celles-la, la bonne approche est de decouper : automatiser la partie mecanique, garder le jugement humain.</p>
+<pre class="codehilite"><code>Routine &quot;triage du matin&quot; :
+- [AGENT] Lister les taches actives, les trier par deadline.
+- [AGENT] Signaler les retards et les blocages.
+- [HUMAIN] Decider des priorites du jour.
+- [AGENT] Mettre a jour les statuts selon la decision.
+</code></pre>
+
+<h2 id="erreurs-courantes_6">Erreurs courantes</h2>
+<p><strong>Tout automatiser.</strong> Parce que c'est possible ne veut pas dire que c'est souhaitable. Certaines routines vous gardent connecte a la realite de votre projet.</p>
+<p><strong>Ne rien automatiser.</strong> Par peur de perdre le controle. Commencez par les taches a risque zero (lecture seule, reporting) pour batir la confiance.</p>
+<p><strong>Automatiser sans documenter.</strong> L'agent fait la routine mais personne ne sait exactement ce qu'il fait. Si l'agent change ou si vous changez d'outil, la routine est perdue. Voir section 4.9.</p>
+<h2 id="etapes_6">Etapes</h2>
+<ol>
+<li>Tenez un journal de bord pendant 5 jours.</li>
+<li>Identifiez les actions qui reviennent 3+ fois.</li>
+<li>Pour chacune, evaluez : previsible ? risque faible ?</li>
+<li>Classez : automatisable / semi-automatisable / humain uniquement.</li>
+<li>Commencez par la routine la plus simple et la moins risquee.</li>
+</ol>
+<h2 id="verification_6">Verification</h2>
+<ul>
+<li>[ ] Au moins 3 routines identifiees.</li>
+<li>[ ] Chaque routine evaluee sur les 3 criteres (repetition, previsibilite, risque).</li>
+<li>[ ] Les routines avec jugement sont decoupees (partie agent / partie humain).</li>
+<li>[ ] La premiere routine automatisee est a risque zero.</li>
+</ul>
+<h1 id="48-dry-run-avant-confiance">4.8 -- Dry run avant confiance</h1>
+<h2 id="contexte_7">Contexte</h2>
+<p>Vous avez identifie une routine automatisable (section 4.7). Avant de la laisser tourner en autonome, vous la testez. Pas parce que vous ne faites pas confiance a l'agent -- parce que vous ne faites pas confiance a vos propres instructions.</p>
+<p>Le dry run revele les trous dans vos procedures. Mieux vaut les decouvrir en mode test qu'en production.</p>
+<h2 id="les-3-niveaux-de-confiance">Les 3 niveaux de confiance</h2>
+<h3 id="niveau-1-lecture-seule-montre-moi">Niveau 1 : lecture seule ("montre-moi")</h3>
+<p>L'agent execute la routine mais ne fait rien. Il affiche ce qu'il ferait.</p>
+<pre class="codehilite"><code>Prompt : &quot;Fais le health check en mode dry run. 
+Montre-moi chaque commande que tu lancerais et ce que tu verifierais,
+mais n'execute rien.&quot;
+</code></pre>
+
+<p>Resultat attendu :</p>
+<pre class="codehilite"><code>Health check dry run :
+1. Je lancerais : docker ps --format &quot;{{.Names}} {{.Status}}&quot;
+   Je verifierais : tous les containers sont &quot;Up&quot;
+2. Je lancerais : curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000
+   Je verifierais : code 200
+3. Je lancerais : df -h /
+   Je verifierais : usage &lt; 80%
+4. En cas de probleme, j'enverrais une alerte Telegram.
+
+Aucune action executee. Mode dry run.
+</code></pre>
+
+<p>Vous validez : les commandes sont correctes ? Les seuils sont bons ? Il manque quelque chose ?</p>
+<h3 id="niveau-2-action-validation-fais-et-montre">Niveau 2 : action + validation ("fais et montre")</h3>
+<p>L'agent execute mais demande validation avant chaque action consequente.</p>
+<pre class="codehilite"><code>Prompt : &quot;Fais le health check. Execute les diagnostics.
+Si tout est OK, dis-le. Si quelque chose est KO, montre-moi 
+ce que tu ferais mais attends ma validation avant d'agir.&quot;
+</code></pre>
+
+<p>C'est le mode entrainement. L'agent fait le travail de diagnostic (sans risque), mais ne prend aucune action corrective sans votre feu vert.</p>
+<h3 id="niveau-3-autonome-fais-tout">Niveau 3 : autonome ("fais tout")</h3>
+<p>L'agent execute la routine complete, prend les actions correctives si necessaire, et rend compte apres.</p>
+<pre class="codehilite"><code>Prompt : &quot;Health check quotidien. Si un service est down, 
+redemarre-le. Si le disque depasse 80%, nettoie les logs &gt; 30j. 
+Envoie-moi le resume par Telegram.&quot;
+</code></pre>
+
+<p>Vous ne passez au niveau 3 que quand les niveaux 1 et 2 ont fonctionne sans probleme pendant au moins une semaine.</p>
+<h2 id="le-calendrier-de-montee-en-confiance">Le calendrier de montee en confiance</h2>
+<table>
+<thead>
+<tr>
+<th>Semaine</th>
+<th>Niveau</th>
+<th>Ce que vous faites</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Lecture seule</td>
+<td>Verifiez chaque commande. Corrigez les procedures.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Action + validation</td>
+<td>Laissez l'agent diagnostiquer. Validez les corrections.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Autonome avec rapport</td>
+<td>L'agent agit seul mais vous lisez le rapport chaque jour.</td>
+</tr>
+<tr>
+<td>4+</td>
+<td>Autonome silencieux</td>
+<td>L'agent agit seul et ne signale que les anomalies.</td>
+</tr>
+</tbody>
+</table>
+<p>Ce calendrier est un minimum. Pour les routines a risque (deploiement, suppression de donnees), doublez chaque phase.</p>
+<h2 id="prompt-de-test">Prompt de test</h2>
+<p>Pour tester une routine avant de l'automatiser :</p>
+<pre class="codehilite"><code>Je veux automatiser cette routine : [description].
+Etapes prevues :
+1. [etape 1]
+2. [etape 2]
+3. [etape 3]
+
+Execute en mode dry run. Pour chaque etape :
+- Montre la commande exacte.
+- Dis ce que tu verifies.
+- Dis ce que tu ferais si le resultat est anormal.
+N'execute rien.
+</code></pre>
+
+<h2 id="erreurs-courantes_7">Erreurs courantes</h2>
+<p><strong>Sauter directement au niveau 3.</strong> "Ca a l'air simple, pas besoin de tester." Puis l'agent redemarre le mauvais container ou supprime les mauvais logs. Toujours tester.</p>
+<p><strong>Rester bloque au niveau 1.</strong> Vous faites des dry runs depuis 3 mois sans jamais passer a l'action. Le dry run est un outil de transition, pas un mode permanent.</p>
+<p><strong>Ne pas documenter les decouvertes.</strong> Le dry run revele que votre procedure oublie une etape. Vous corrigez a l'oral mais pas dans le workflow. La prochaine fois, meme erreur. Ecrivez les corrections dans WORKFLOWS.md (section 4.9).</p>
+<h2 id="etapes_7">Etapes</h2>
+<ol>
+<li>Choisissez une routine identifiee en section 4.7.</li>
+<li>Demandez un dry run (niveau 1).</li>
+<li>Verifiez : commandes correctes ? Seuils bons ? Etapes manquantes ?</li>
+<li>Corrigez la procedure si necessaire.</li>
+<li>Passez au niveau 2 pendant une semaine.</li>
+<li>Si tout est OK, passez au niveau 3.</li>
+</ol>
+<h2 id="verification_7">Verification</h2>
+<ul>
+<li>[ ] Chaque nouvelle routine passe par le niveau 1 avant execution.</li>
+<li>[ ] Les decouvertes du dry run sont documentees dans WORKFLOWS.md.</li>
+<li>[ ] Le passage au niveau suivant est base sur au moins une semaine sans probleme.</li>
+<li>[ ] Les routines a risque ont un calendrier de montee en confiance double.</li>
+</ul>
+<h1 id="49-workflowsmd">4.9 -- WORKFLOWS.md</h1>
+<h2 id="contexte_8">Contexte</h2>
+<p>Un workflow documente, c'est une routine que n'importe qui (vous, un autre dev, un autre agent) peut executer sans deviner les etapes. Si la procedure est dans votre tete, elle meurt quand vous changez d'outil ou quand vous oubliez.</p>
+<p>WORKFLOWS.md est le fichier qui contient toutes vos procedures standardisees. L'agent le lit, l'execute, et le met a jour quand une etape change.</p>
+<h2 id="format-standardise">Format standardise</h2>
+<p>Chaque workflow suit la meme structure :</p>
+<pre class="codehilite"><code class="language-markdown">## [Nom du workflow]
+
+**Declencheur :** Quand ce workflow se lance (manuellement, cron, evenement).
+**Niveau de confiance :** 1 (dry run) / 2 (avec validation) / 3 (autonome)
+**Derniere verification :** YYYY-MM-DD
+
+### Prerequis
+- [Ce qui doit etre vrai avant de commencer]
+- [Acces necessaires]
+
+### Etapes
+1. [Action concrete avec la commande exacte]
+2. [Action suivante]
+3. [Action suivante]
+
+### Verification
+- [ ] [Comment savoir que ca a marche]
+- [ ] [Test de validation]
+
+### En cas d'erreur
+- Si [erreur A] : [action corrective]
+- Si [erreur B] : [action corrective]
+- Si inconnu : arreter et signaler.
+</code></pre>
+
+<h2 id="exemples-concrets">Exemples concrets</h2>
+<h3 id="deploiement-cockpit">Deploiement cockpit</h3>
+<pre class="codehilite"><code class="language-markdown">## Deployer cockpit
+
+**Declencheur :** Manuel, apres merge sur main.
+**Niveau de confiance :** 2 (avec validation)
+**Derniere verification :** 2026-03-28
+
+### Prerequis
+- Branch main a jour (git pull)
+- Tests locaux passes
+- Aucun deployment en cours
+
+### Etapes
+1. `cd /opt/cockpit &amp;&amp; git pull origin main`
+2. `docker compose build --no-cache`
+3. `docker compose down &amp;&amp; docker compose up -d`
+4. Attendre 10 secondes.
+5. `curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000`
+   Attendu : 200
+
+### Verification
+- [ ] curl retourne 200
+- [ ] `docker ps` montre le container &quot;Up&quot;
+- [ ] Les logs ne contiennent pas d'erreur : `docker logs cockpit --tail 20`
+
+### En cas d'erreur
+- Si build echoue : verifier les dependances dans package.json.
+- Si le container ne demarre pas : `docker logs cockpit` pour diagnostic.
+- Si curl retourne 502 : le service met du temps a demarrer, attendre 30s et retester.
+- Si inconnu : rollback avec `git checkout HEAD~1 &amp;&amp; docker compose up -d`
+</code></pre>
+
+<h3 id="creer-une-tache">Creer une tache</h3>
+<pre class="codehilite"><code class="language-markdown">## Creer une tache
+
+**Declencheur :** Manuel.
+**Niveau de confiance :** 3 (autonome)
+**Derniere verification :** 2026-03-25
+
+### Prerequis
+- Acces PostgreSQL
+
+### Etapes
+1. `./tasks.sh add &quot;Titre de la tache&quot; [priority] [project] [deadline]`
+2. Confirmer la creation : `./tasks.sh list todo`
+
+### Verification
+- [ ] La tache apparait dans la liste avec le bon statut et la bonne priorite.
+
+### En cas d'erreur
+- Si connexion PostgreSQL echoue : verifier que le service tourne (`systemctl status postgresql`).
+</code></pre>
+
+<h3 id="rotation-des-secrets">Rotation des secrets</h3>
+<pre class="codehilite"><code class="language-markdown">## Rotation des secrets
+
+**Declencheur :** Mensuel (1er du mois) ou apres incident de securite.
+**Niveau de confiance :** 2 (avec validation)
+**Derniere verification :** 2026-03-01
+
+### Prerequis
+- Acces Vault
+- Acces root/sudo
+- Fenetre de maintenance (pas de deploiement en cours)
+
+### Etapes
+1. Generer le nouveau secret : `openssl rand -hex 32`
+2. Stocker dans Vault : `vault kv put secret/[service] key=[nouveau_secret]`
+3. Mettre a jour la config du service.
+4. Redemarrer le service : `docker compose restart [service]`
+5. Tester le service : `curl -s http://localhost:[port]/health`
+6. Logger la rotation : `echo &quot;$(date) [service] secret rotated&quot; &gt;&gt; /var/log/secret-rotation.log`
+
+### Verification
+- [ ] Le service repond correctement avec le nouveau secret.
+- [ ] L'ancien secret ne fonctionne plus.
+- [ ] La rotation est loggee.
+
+### En cas d'erreur
+- Si le service ne demarre pas : restaurer l'ancien secret depuis Vault (version precedente).
+- Si inconnu : ne pas continuer les autres rotations, diagnostiquer d'abord.
+</code></pre>
+
+<h2 id="organiser-le-fichier">Organiser le fichier</h2>
+<p>Un seul fichier WORKFLOWS.md avec une table des matieres :</p>
+<pre class="codehilite"><code class="language-markdown"># WORKFLOWS.md
+
+## Table des matieres
+1. [Deployer cockpit](#deployer-cockpit)
+2. [Creer une tache](#creer-une-tache)
+3. [Rotation des secrets](#rotation-des-secrets)
+4. [Health check quotidien](#health-check-quotidien)
+5. [Backup base de donnees](#backup-base-de-donnees)
+</code></pre>
+
+<p>Quand le fichier depasse 500 lignes, decoupez en fichiers separes dans un dossier <code>workflows/</code>.</p>
+<h2 id="erreurs-courantes_8">Erreurs courantes</h2>
+<p><strong>Pas de section "En cas d'erreur".</strong> Tout va bien jusqu'au jour ou ca casse. Sans procedure de rollback, vous improvisez sous stress.</p>
+<p><strong>Commandes approximatives.</strong> "Deployer le service" au lieu de la commande exacte. Si la commande n'est pas copiable-collable, elle n'est pas assez precise.</p>
+<p><strong>Ne jamais mettre a jour.</strong> Le workflow date de 6 mois, les chemins ont change, une etape a ete ajoutee a l'oral. Verifiez chaque workflow au moins une fois par mois.</p>
+<h2 id="etapes_8">Etapes</h2>
+<ol>
+<li>Creez <code>WORKFLOWS.md</code> a la racine du projet.</li>
+<li>Documentez votre workflow le plus frequent (celui que vous faites chaque jour).</li>
+<li>Testez : donnez le workflow a l'agent et demandez-lui de l'executer en dry run.</li>
+<li>Corrigez les etapes manquantes ou imprecises.</li>
+<li>Ajoutez un workflow par semaine jusqu'a ce que vos routines principales soient couvertes.</li>
+</ol>
+<h2 id="verification_8">Verification</h2>
+<ul>
+<li>[ ] WORKFLOWS.md existe et contient au moins 3 workflows.</li>
+<li>[ ] Chaque workflow suit le format standardise (prerequis, etapes, verification, erreur).</li>
+<li>[ ] Les commandes sont exactes et copiables-collables.</li>
+<li>[ ] Chaque workflow a ete teste en dry run par l'agent.</li>
+<li>[ ] La date de derniere verification est renseignee et recente (&lt; 1 mois).</li>
+</ul>
+<h1 id="410-le-rythme-hebdomadaire">4.10 -- Le rythme hebdomadaire</h1>
+<h2 id="contexte_9">Contexte</h2>
+<p>Un agent sans rythme est reactif : il repond quand vous demandez. Un agent avec un rythme est proactif : il prepare ce dont vous avez besoin avant que vous le demandiez.</p>
+<p>Le rythme de base selon Steinberg : preview le lundi, review le vendredi. L'agent prepare les deux. Vous decidez et validez.</p>
+<h2 id="preview-du-lundi">Preview du lundi</h2>
+<p>Le lundi matin, l'agent vous presente la semaine qui vient.</p>
+<h3 id="ce-que-lagent-prepare">Ce que l'agent prepare</h3>
+<pre class="codehilite"><code>=== Preview semaine du 31 mars 2026 ===
+
+Taches en cours : 4
+Taches en retard : 1 (migration S3, retard 3 jours)
+Deadlines cette semaine : 2
+  - Mercredi : livraison doc API
+  - Vendredi : renouvellement certificat SSL
+
+Suggestion de plan :
+- Lundi : finir migration S3 (rattraper le retard)
+- Mardi-mercredi : doc API
+- Jeudi : rotation secrets mensuelle
+- Vendredi : certificat SSL + review
+
+Blocages detectes : aucun.
+Questions pour vous : le client X a-t-il confirme la spec ?
+</code></pre>
+
+<h3 id="ce-que-vous-faites">Ce que vous faites</h3>
+<p>Vous lisez, vous ajustez. "Inverse mardi et lundi." "Ajoute la review PR de l'equipe." "Le client n'a pas confirme, reporte la doc."</p>
+<p>5 minutes. Votre semaine est cadree.</p>
+<h3 id="prompt-pour-configurer">Prompt pour configurer</h3>
+<p>Ajoutez dans le system prompt :</p>
+<pre class="codehilite"><code>Chaque lundi matin, quand je te dis &quot;preview&quot;, genere :
+- Taches en cours et en retard
+- Deadlines de la semaine
+- Plan suggere jour par jour
+- Blocages detectes
+- Questions pour moi
+Format : bullet points, court.
+</code></pre>
+
+<h2 id="review-du-vendredi">Review du vendredi</h2>
+<p>Le vendredi, l'agent fait le bilan de la semaine ecoulee.</p>
+<h3 id="ce-que-lagent-prepare_1">Ce que l'agent prepare</h3>
+<pre class="codehilite"><code>=== Review semaine du 31 mars 2026 ===
+
+Terminees : 5/7 taches planifiees
+  - Migration S3 [DONE]
+  - Doc API /users [DONE]
+  - Rotation secrets [DONE]
+  - Health check auto [DONE]
+  - PR review equipe [DONE]
+
+Non terminees : 2
+  - Certificat SSL : reporte (expire dans 42 jours, pas urgent)
+  - Refactoring auth : bloque (attente spec client)
+
+Temps estime economise par l'agent : ~3h
+  - Health checks auto : 5x10min = 50min
+  - Generation doc API : ~1h30
+  - Rotation secrets automatisee : ~40min
+
+Points d'attention pour la semaine prochaine :
+  - Le certificat SSL doit etre fait la semaine prochaine.
+  - 2 taches dependant de la spec client : relancer ?
+</code></pre>
+
+<h3 id="ce-que-vous-faites_1">Ce que vous faites</h3>
+<p>Vous validez le bilan. Vous notez ce qui a bien marche et ce qui a coince. C'est aussi le bon moment pour ajuster les workflows ou le system prompt si quelque chose a grince dans la semaine.</p>
+<h2 id="garder-leger-et-reviewable">Garder leger et reviewable</h2>
+<p>Le piege du rythme hebdomadaire : ca devient un reporting lourd que personne ne lit.</p>
+<p>Regles :</p>
+<ul>
+<li><strong>Preview lundi</strong> : maximum 15 lignes. Si c'est plus long, c'est qu'il y a trop de taches actives.</li>
+<li><strong>Review vendredi</strong> : maximum 20 lignes. Chiffres et faits, pas de prose.</li>
+<li><strong>Temps de lecture</strong> : moins de 2 minutes pour chacun.</li>
+<li><strong>Temps de decision</strong> : moins de 5 minutes pour ajuster le plan.</li>
+</ul>
+<p>Si vous passez plus de 10 minutes sur la review du vendredi, c'est un signal que le systeme est trop complexe.</p>
+<h2 id="adapter-le-rythme">Adapter le rythme</h2>
+<p>Le lundi/vendredi est un point de depart. Adaptez selon votre realite :</p>
+<ul>
+<li><strong>Freelance solo</strong> : lundi/vendredi suffit.</li>
+<li><strong>Equipe petite</strong> : ajoutez un point mercredi (mid-week check).</li>
+<li><strong>Projet intense</strong> : briefing quotidien de 5 lignes le matin.</li>
+<li><strong>Maintenance pure</strong> : une review par quinzaine peut suffire.</li>
+</ul>
+<p>L'important n'est pas la frequence, c'est la regularite. Un rythme tenu a 80% vaut mieux qu'un rythme ideal tenu a 20%.</p>
+<h2 id="erreurs-courantes_9">Erreurs courantes</h2>
+<p><strong>Trop de detail.</strong> La preview fait 50 lignes avec des sous-taches et des estimations horaires. Personne ne lit. Restez macro.</p>
+<p><strong>Pas de decision.</strong> Vous lisez la preview mais ne decidez rien. L'agent ne sait pas quoi prioriser. La preview sans decision est du bruit.</p>
+<p><strong>Abandonner apres 2 semaines.</strong> "C'est redondant, je sais ce que j'ai a faire." Vous le savez parce que la preview vous l'a rappele. Arretez la preview et vous oublierez dans la semaine.</p>
+<h2 id="etapes_9">Etapes</h2>
+<ol>
+<li>Ajoutez les prompts preview/review au system prompt.</li>
+<li>Lundi prochain : dites "preview" a votre agent.</li>
+<li>Passez 5 minutes a ajuster le plan.</li>
+<li>Vendredi : dites "review".</li>
+<li>Notez si le format est utile ou s'il faut ajuster.</li>
+<li>Tenez le rythme pendant 4 semaines avant d'evaluer.</li>
+</ol>
+<h2 id="verification_9">Verification</h2>
+<ul>
+<li>[ ] Les prompts preview et review sont dans le system prompt.</li>
+<li>[ ] La preview tient en 15 lignes max.</li>
+<li>[ ] La review tient en 20 lignes max.</li>
+<li>[ ] Vous decidez effectivement apres chaque preview (pas juste lire).</li>
+<li>[ ] Le rythme est tenu depuis au moins 2 semaines consecutives.</li>
+</ul>
+<h1 id="411-la-confiance-est-une-configuration">4.11 -- La confiance est une configuration</h1>
+<h2 id="contexte_10">Contexte</h2>
+<p>La confiance envers votre agent n'est pas un sentiment. C'est une configuration. Chaque action a un niveau de risque, et chaque niveau de risque a des regles. Si vous ne les ecrivez pas, vous allez osciller entre trop de confiance ("fais tout") et pas assez ("montre-moi tout").</p>
+<p>Steinberg propose une pyramide : plus l'action est risquee, plus le controle est strict.</p>
+<h2 id="la-pyramide-des-droits">La pyramide des droits</h2>
+<h3 id="niveau-0-lecture-seule">Niveau 0 : lecture seule</h3>
+<p>L'agent peut lire mais ne peut rien modifier.</p>
+<p>Actions : consulter des fichiers, lire des logs, afficher des statuts, faire des calculs.</p>
+<p>Controle : aucun necessaire. Risque zero.</p>
+<pre class="codehilite"><code>Exemples :
+- cat, ls, docker ps, git log
+- SELECT sur la base de donnees
+- Lire la documentation
+</code></pre>
+
+<h3 id="niveau-1-actions-reversibles">Niveau 1 : actions reversibles</h3>
+<p>L'agent peut agir, mais l'action est facilement annulable.</p>
+<p>Actions : creer des fichiers, ecrire dans un fichier temporaire, creer une branche git, ajouter une tache.</p>
+<p>Controle : l'agent agit et rend compte. Vous verifiez apres.</p>
+<pre class="codehilite"><code>Exemples :
+- git checkout -b feature/xxx
+- Creer un fichier dans /tmp
+- INSERT dans la table tasks
+- Ecrire un brouillon
+</code></pre>
+
+<h3 id="niveau-2-actions-consequentes">Niveau 2 : actions consequentes</h3>
+<p>L'agent peut agir mais demande validation avant.</p>
+<p>Actions : modifier des fichiers de config, deployer un service, modifier la base de donnees, envoyer un message.</p>
+<p>Controle : l'agent propose l'action exacte et attend un "go" explicite.</p>
+<pre class="codehilite"><code>Exemples :
+- docker compose restart
+- UPDATE/DELETE sur la base de donnees
+- Modifier .env ou docker-compose.yml
+- git push
+- Envoyer un message Telegram a un tiers
+</code></pre>
+
+<h3 id="niveau-3-actions-interdites">Niveau 3 : actions interdites</h3>
+<p>L'agent ne peut JAMAIS faire ca, meme avec validation.</p>
+<p>Actions : supprimer des donnees de production irrecuperable, push --force sur main, modifier les secrets sans procedure, exposer des credentials.</p>
+<p>Controle : interdit dans le boundary prompt (section 4.12). L'agent doit refuser meme si vous le demandez.</p>
+<pre class="codehilite"><code>Exemples :
+- DROP TABLE en production
+- git push --force origin main
+- Afficher un mot de passe en clair dans les logs
+- Modifier les regles de firewall
+- Supprimer un backup
+</code></pre>
+
+<h2 id="ecrire-les-niveaux-dans-constitutionmd">Ecrire les niveaux dans CONSTITUTION.md</h2>
+<p>Creez un fichier <code>CONSTITUTION.md</code> qui definit les niveaux de facon explicite :</p>
+<pre class="codehilite"><code class="language-markdown"># CONSTITUTION.md — Niveaux de confiance
+
+## Niveau 0 : lecture seule (libre)
+- Lire tout fichier du projet
+- Consulter les logs
+- Requetes SELECT sur la base
+- Afficher les statuts
+
+## Niveau 1 : reversible (agir + rendre compte)
+- Creer des fichiers non-critiques
+- Creer des branches git
+- Ajouter des taches
+- Generer des brouillons
+
+## Niveau 2 : consequent (demander avant)
+- Modifier des fichiers de configuration
+- Deployer un service
+- Modifier la base de donnees (UPDATE, DELETE)
+- Push sur une branche
+- Envoyer des communications
+
+## Niveau 3 : interdit (refuser toujours)
+- DROP TABLE / DELETE sans WHERE
+- Push --force sur main
+- Modifier les secrets hors procedure
+- Exposer des credentials
+- Supprimer des backups
+- Modifier le firewall
+</code></pre>
+
+<p>Ajoutez dans le system prompt :</p>
+<pre class="codehilite"><code>Lis et respecte CONSTITUTION.md pour les niveaux de confiance.
+</code></pre>
+
+<h2 id="faire-evoluer-les-niveaux">Faire evoluer les niveaux</h2>
+<p>Les niveaux ne sont pas figes. Quand un workflow a ete teste et fonctionne bien pendant un mois, vous pouvez baisser son niveau de controle :</p>
+<ul>
+<li>Deploiement cockpit : niveau 2 -&gt; niveau 1 (apres 10 deploiements reussis).</li>
+<li>Rotation secrets : reste niveau 2 (risque inherent, pas de raccourci).</li>
+<li>Health check : niveau 1 -&gt; niveau 0 equivalent (cron automatique).</li>
+</ul>
+<p>Documentez chaque changement de niveau avec la date et la raison dans CONSTITUTION.md.</p>
+<h2 id="erreurs-courantes_10">Erreurs courantes</h2>
+<p><strong>Pas de niveaux definis.</strong> L'agent improvise. Parfois il demande, parfois il agit. Inconsistant et stressant.</p>
+<p><strong>Tout au niveau 2.</strong> Chaque action demande validation. Vous passez votre temps a valider des trucs sans risque. Fatigue decisionnelle.</p>
+<p><strong>Niveaux mais pas appliques.</strong> CONSTITUTION.md existe mais le system prompt n'y fait pas reference. L'agent ne le lit pas.</p>
+<p><strong>Baisser le niveau trop vite.</strong> Un workflow fonctionne 3 fois et vous le passez en autonome. 3 reussites ne prouvent pas la fiabilite. Minimum 10 executions sans probleme.</p>
+<h2 id="etapes_10">Etapes</h2>
+<ol>
+<li>Listez les 10 actions les plus frequentes de votre agent.</li>
+<li>Classez chacune dans un niveau (0, 1, 2, 3).</li>
+<li>Creez <code>CONSTITUTION.md</code> avec cette classification.</li>
+<li>Ajoutez la reference dans le system prompt.</li>
+<li>Testez pendant 2 semaines : l'agent respecte-t-il les niveaux ?</li>
+<li>Ajustez si necessaire.</li>
+</ol>
+<h2 id="verification_10">Verification</h2>
+<ul>
+<li>[ ] CONSTITUTION.md existe avec les 4 niveaux definis.</li>
+<li>[ ] Chaque action frequente est classee dans un niveau.</li>
+<li>[ ] Le system prompt reference CONSTITUTION.md.</li>
+<li>[ ] Le niveau 3 contient au moins 5 interdictions explicites.</li>
+<li>[ ] Les changements de niveau sont dates et justifies.</li>
+</ul>
+<h1 id="412-le-boundary-prompt">4.12 -- Le boundary prompt</h1>
+<h2 id="contexte_11">Contexte</h2>
+<p>Le boundary prompt est la liste des choses que votre agent ne doit JAMAIS faire. Pas "eviter", pas "sauf si necessaire" -- JAMAIS. C'est le filet de securite. Vous l'ecrivez une fois, vous le mettez dans le system prompt ou dans un fichier dedie, et vous n'y touchez plus sauf pour ajouter une regle apres un incident.</p>
+<p>Steinberg compare ca a une constitution : on ne la reecrit pas chaque semaine, mais on peut l'amender.</p>
+<h2 id="pourquoi-cest-necessaire">Pourquoi c'est necessaire</h2>
+<p>Les agents LLM sont cooperatifs par defaut. Si vous demandez quelque chose de risque, l'agent va essayer de vous aider. C'est sa force et son danger.</p>
+<p>Sans boundary prompt :
+- "Montre-moi le contenu de .env" -&gt; l'agent affiche les secrets.
+- "Push --force sur main" -&gt; l'agent execute.
+- "Supprime les vieux backups pour faire de la place" -&gt; l'agent supprime.</p>
+<p>Avec boundary prompt :
+- "Montre-moi le contenu de .env" -&gt; "Je ne peux pas afficher les fichiers contenant des secrets. Utilisez <code>vault kv get</code> pour acceder aux secrets de facon securisee."</p>
+<h2 id="structure-du-boundary-prompt">Structure du boundary prompt</h2>
+<pre class="codehilite"><code class="language-markdown"># BOUNDARIES — Actions interdites
+
+Tu ne dois JAMAIS, meme si je te le demande explicitement :
+
+## Securite
+- Afficher des mots de passe, tokens, ou cles API en clair.
+- Modifier .env, .env.production, ou tout fichier contenant des secrets.
+- Desactiver le firewall ou ouvrir des ports.
+- Stocker des secrets dans des fichiers non-chiffres.
+- Commiter des fichiers contenant des credentials.
+
+## Git
+- Executer git push --force sur main ou master.
+- Executer git reset --hard sans backup prealable.
+- Modifier l'historique git d'une branche partagee.
+- Amend un commit deja pousse.
+
+## Infrastructure
+- Supprimer des backups.
+- DROP TABLE ou DELETE sans WHERE en production.
+- Arreter un service en production sans procedure de rollback.
+- Modifier les regles DNS sans validation.
+
+## Communication
+- Envoyer un message a un client sans validation.
+- Partager des informations internes a l'exterieur.
+- Repondre a la place de l'utilisateur sur un canal public.
+
+## Si on te demande de violer ces regles
+Refuse poliment. Explique pourquoi c'est interdit.
+Propose une alternative securisee si elle existe.
+</code></pre>
+
+<h2 id="ou-le-placer">Ou le placer</h2>
+<p>Deux options :</p>
+<h3 id="option-1-dans-le-system-prompt">Option 1 : dans le system prompt</h3>
+<p>Avantage : toujours lu en premier. Pas de risque d'oubli.
+Inconvenient : consomme des tokens a chaque requete.</p>
+<h3 id="option-2-dans-un-fichier-boundariesmd">Option 2 : dans un fichier BOUNDARIES.md</h3>
+<p>Avantage : le system prompt reste court. Le fichier est versionne.
+Inconvenient : l'agent doit savoir qu'il doit le lire. Ajoutez dans le system prompt : "Lis et respecte BOUNDARIES.md avant toute action."</p>
+<p>Recommandation : les 3-5 regles les plus critiques dans le system prompt. Le reste dans BOUNDARIES.md.</p>
+<h2 id="exemples-concrets-par-domaine">Exemples concrets par domaine</h2>
+<h3 id="pour-un-devops">Pour un devops</h3>
+<pre class="codehilite"><code>JAMAIS :
+- rm -rf sur / ou /home ou /opt sans confirmation du chemin exact
+- Modifier iptables/ufw sans procedure documentee
+- Redemarrer PostgreSQL en production sans verifier les connexions actives
+- Deployer un vendredi apres 16h
+</code></pre>
+
+<h3 id="pour-un-consultant">Pour un consultant</h3>
+<pre class="codehilite"><code>JAMAIS :
+- Envoyer un email client sans relecture
+- Partager des tarifs ou conditions sans validation
+- Ecrire au nom du cabinet sur les reseaux sociaux
+- Promettre une deadline sans verification
+</code></pre>
+
+<h3 id="pour-un-developpeur">Pour un developpeur</h3>
+<pre class="codehilite"><code>JAMAIS :
+- Merge sur main sans CI verte
+- Modifier une migration deja appliquee en production
+- Hardcoder des credentials
+- Desactiver des tests pour que la CI passe
+</code></pre>
+
+<h2 id="apres-un-incident">Apres un incident</h2>
+<p>Quand l'agent fait quelque chose qu'il n'aurait pas du :</p>
+<ol>
+<li>Corrigez les degats.</li>
+<li>Identifiez la regle manquante.</li>
+<li>Ajoutez-la au boundary prompt.</li>
+<li>Testez que l'agent refuse desormais cette action.</li>
+</ol>
+<p>Le boundary prompt grossit avec l'experience. C'est normal. Chaque regle ajoutee est une erreur qui ne se reproduira pas.</p>
+<h2 id="erreurs-courantes_11">Erreurs courantes</h2>
+<p><strong>Pas de boundary prompt.</strong> "Il est assez intelligent pour savoir." Non. L'agent fait ce que vous demandez. Si vous ne dites pas non, il dit oui.</p>
+<p><strong>Trop vague.</strong> "Ne fais rien de dangereux." L'agent ne sait pas ce que vous considerez comme dangereux. Soyez specifique : quelle commande, quel fichier, quelle action.</p>
+<p><strong>Trop permissif.</strong> "Sauf si c'est vraiment necessaire." Ca annule la regle. JAMAIS signifie JAMAIS. Si vous avez besoin d'une exception, gerez-la vous-meme manuellement.</p>
+<h2 id="etapes_11">Etapes</h2>
+<ol>
+<li>Listez les 5 actions les plus dangereuses que votre agent pourrait faire.</li>
+<li>Ecrivez-les dans BOUNDARIES.md.</li>
+<li>Ajoutez les 3 plus critiques dans le system prompt.</li>
+<li>Testez : demandez a l'agent de faire quelque chose d'interdit. Il doit refuser.</li>
+<li>Apres chaque incident, ajoutez une regle.</li>
+</ol>
+<h2 id="verification_11">Verification</h2>
+<ul>
+<li>[ ] BOUNDARIES.md existe avec au moins 10 regles.</li>
+<li>[ ] Les 3 regles les plus critiques sont dans le system prompt.</li>
+<li>[ ] L'agent refuse quand on lui demande de violer une regle (teste).</li>
+<li>[ ] L'agent propose une alternative quand il refuse.</li>
+<li>[ ] Le boundary prompt est mis a jour apres chaque incident.</li>
+</ul>
+<h1 id="413-audit-que-peut-acceder-votre-agent">4.13 -- Audit : que peut acceder votre agent ?</h1>
+<h2 id="contexte_12">Contexte</h2>
+<p>Vous avez configure votre agent, defini les boundaries, ecrit le system prompt. Mais savez-vous vraiment ce qu'il peut faire ? La realite de ses acces correspond-elle a votre intention ?</p>
+<p>L'audit repond a cette question. C'est un inventaire : ce que l'agent peut lire, ecrire, executer, et ce que ca coute.</p>
+<h2 id="le-prompt-auto-audit">Le prompt auto-audit</h2>
+<p>Demandez a votre agent de s'auditer :</p>
+<pre class="codehilite"><code>Fais un audit complet de tes acces. Pour chaque categorie,
+liste ce que tu PEUX faire et ce que tu NE PEUX PAS faire.
+
+Categories :
+1. Systeme de fichiers : quels dossiers/fichiers peux-tu lire ? ecrire ? supprimer ?
+2. Base de donnees : quelles tables ? SELECT/INSERT/UPDATE/DELETE ?
+3. Services : quels containers peux-tu demarrer/arreter/redemarrer ?
+4. Reseau : quels ports peux-tu atteindre ? quelles API externes ?
+5. Git : quelles operations ? sur quelles branches ?
+6. Secrets : quels secrets peux-tu lire ? via Vault ? en clair ?
+
+Pour chaque acces, dis-moi si c'est intentionnel ou si ca devrait etre restreint.
+</code></pre>
+
+<h2 id="verifier-realite-vs-intention">Verifier realite vs intention</h2>
+<p>L'audit revele souvent des surprises :</p>
+<table>
+<thead>
+<tr>
+<th>Intention</th>
+<th>Realite</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lecture seule sur /opt</td>
+<td>Lecture + ecriture</td>
+<td>Restreindre les permissions</td>
+</tr>
+<tr>
+<td>Pas d'acces aux backups</td>
+<td>Peut lire /var/backups</td>
+<td>Changer les permissions du dossier</td>
+</tr>
+<tr>
+<td>SELECT uniquement sur DB</td>
+<td>L'utilisateur a tous les droits</td>
+<td>Creer un role PostgreSQL read-only</td>
+</tr>
+<tr>
+<td>Pas d'acces aux secrets</td>
+<td>Peut lire .env</td>
+<td>Deplacer les secrets dans Vault</td>
+</tr>
+</tbody>
+</table>
+<h3 id="verifications-manuelles">Verifications manuelles</h3>
+<p>Ne vous fiez pas uniquement a l'auto-audit. L'agent peut ne pas connaitre toutes ses permissions. Verifiez :</p>
+<pre class="codehilite"><code class="language-bash"># Quels fichiers l'agent peut lire (testez avec l'utilisateur qui execute l'agent)
+find /opt /home /var -readable -type f 2&gt;/dev/null | head -50
+
+# Droits PostgreSQL
+psql -c &quot;\du&quot; 
+psql -c &quot;\dp&quot; # permissions sur les tables
+
+# Ports ouverts accessibles
+ss -tlnp
+
+# Variables d'environnement (secrets potentiels)
+env | grep -i &quot;key\|secret\|token\|pass\|api&quot;
+</code></pre>
+
+<h2 id="budget-tokens-et-couts">Budget tokens et couts</h2>
+<p>L'audit, c'est aussi le cout. Chaque requete a un cout en tokens. Tracez-le.</p>
+<h3 id="calculer-le-cout">Calculer le cout</h3>
+<pre class="codehilite"><code>Cout par requete = tokens input + tokens output
+
+Tokens input = system prompt + contexte + memoire + votre message
+Tokens output = reponse de l'agent
+
+Prix (Claude Sonnet, avril 2026) :
+- Input : ~3$ / million de tokens
+- Output : ~15$ / million de tokens
+</code></pre>
+
+<h3 id="ce-qui-coute-cher">Ce qui coute cher</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Tokens typiques</th>
+<th>Cout/requete (estime)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System prompt court (150 mots)</td>
+<td>~200</td>
+<td>$0.0006</td>
+</tr>
+<tr>
+<td>System prompt long (500 mots)</td>
+<td>~700</td>
+<td>$0.0021</td>
+</tr>
+<tr>
+<td>Memoire (10 fichiers contexte)</td>
+<td>~3000</td>
+<td>$0.009</td>
+</tr>
+<tr>
+<td>Fichier lu dans le contexte</td>
+<td>~500-5000</td>
+<td>$0.0015-0.015</td>
+</tr>
+<tr>
+<td>Reponse courte</td>
+<td>~200</td>
+<td>$0.003</td>
+</tr>
+<tr>
+<td>Reponse longue (code)</td>
+<td>~2000</td>
+<td>$0.03</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optimiser-les-couts">Optimiser les couts</h3>
+<ul>
+<li>Gardez le system prompt sous 200 mots (section 4.3).</li>
+<li>Ne chargez pas toute la memoire a chaque requete.</li>
+<li>Pour les fichiers volumineux, demandez a l'agent de lire la partie pertinente, pas le fichier entier.</li>
+<li>Utilisez des scripts bash pour les operations repetitives au lieu de demander a l'agent.</li>
+</ul>
+<h3 id="suivi-mensuel">Suivi mensuel</h3>
+<p>Tracez vos couts chaque mois :</p>
+<pre class="codehilite"><code>Mars 2026 :
+- Requetes : ~850
+- Cout total : ~$12
+- Cout moyen/requete : ~$0.014
+- Plus gros poste : lectures de fichiers longs
+
+Actions : condenser le system prompt, utiliser tasks.sh au lieu 
+de demander a l'agent de requeter la DB.
+</code></pre>
+
+<h2 id="erreurs-courantes_12">Erreurs courantes</h2>
+<p><strong>Ne jamais auditer.</strong> L'agent a des acces que vous avez oublie avoir donne. Un jour ca pose probleme.</p>
+<p><strong>Auditer une fois et oublier.</strong> Les acces changent quand vous ajoutez des services, des fichiers, des integrations. Auditez au moins une fois par trimestre.</p>
+<p><strong>Ignorer les couts.</strong> "C'est pas cher." Jusqu'au mois ou vous faites 3000 requetes avec des fichiers de 5000 tokens chacun. Tracez pour eviter les surprises.</p>
+<p><strong>Faire confiance a l'auto-audit.</strong> L'agent vous dit ce qu'il pense pouvoir faire. Verifiez manuellement ce qu'il peut reellement faire.</p>
+<h2 id="etapes_12">Etapes</h2>
+<ol>
+<li>Lancez le prompt auto-audit ci-dessus.</li>
+<li>Comparez avec les verifications manuelles (find, psql, ss, env).</li>
+<li>Identifiez les ecarts entre intention et realite.</li>
+<li>Corrigez les permissions excessives.</li>
+<li>Calculez votre cout mensuel moyen.</li>
+<li>Planifiez un audit trimestriel.</li>
+</ol>
+<h2 id="verification_12">Verification</h2>
+<ul>
+<li>[ ] Un audit complet a ete fait (auto-audit + verification manuelle).</li>
+<li>[ ] Les ecarts intention/realite sont identifies et corriges.</li>
+<li>[ ] Les permissions excessives sont restreintes.</li>
+<li>[ ] Le cout mensuel est connu et trace.</li>
+<li>[ ] Un audit trimestriel est planifie.</li>
+</ul>
+<h1 id="414-configuration-bilingue">4.14 -- Configuration bilingue</h1>
+<h2 id="contexte_13">Contexte</h2>
+<p>Si vous travaillez en francais et en anglais -- clients francophones, documentation en anglais, code en anglais, communications en francais -- votre agent doit savoir quand utiliser quelle langue. Sans instruction claire, il va basculer de facon impredictible.</p>
+<h2 id="les-trois-modes">Les trois modes</h2>
+<h3 id="mode-1-francais-uniquement">Mode 1 : francais uniquement</h3>
+<pre class="codehilite"><code>Langue : francais. Toujours.
+Termes techniques en anglais quand il n'existe pas d'equivalent 
+courant (deploy, commit, merge, container, endpoint).
+Noms de commandes et de code en anglais (c'est du code, pas de la traduction).
+</code></pre>
+
+<p>Quand l'utiliser : usage personnel, equipe francophone, pas de clients anglophones.</p>
+<h3 id="mode-2-anglais-uniquement">Mode 2 : anglais uniquement</h3>
+<pre class="codehilite"><code>Language: English. Always.
+</code></pre>
+
+<p>Quand l'utiliser : equipe internationale, documentation open source, clients anglophones.</p>
+<h3 id="mode-3-bilingue-contextuel">Mode 3 : bilingue contextuel</h3>
+<pre class="codehilite"><code>Langue par defaut : francais.
+Bascule en anglais quand :
+- Je redige de la documentation technique (README, API docs)
+- Je prepare un message pour un client anglophone
+- Je te dis &quot;in English&quot;
+Retour au francais automatique a la conversation suivante.
+</code></pre>
+
+<p>Quand l'utiliser : contexte mixte, freelance international, projet open source avec equipe locale.</p>
+<h2 id="regles-de-basculement">Regles de basculement</h2>
+<p>Le basculement doit etre previsible. Definissez les declencheurs :</p>
+<table>
+<thead>
+<tr>
+<th>Declencheur</th>
+<th>Langue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conversation directe</td>
+<td>Francais</td>
+</tr>
+<tr>
+<td>Ecrire un commit message</td>
+<td>Anglais</td>
+</tr>
+<tr>
+<td>Ecrire de la documentation code</td>
+<td>Anglais</td>
+</tr>
+<tr>
+<td>Ecrire un email client FR</td>
+<td>Francais</td>
+</tr>
+<tr>
+<td>Ecrire un email client EN</td>
+<td>Anglais</td>
+</tr>
+<tr>
+<td>Commenter du code</td>
+<td>Anglais</td>
+</tr>
+<tr>
+<td>Expliquer un concept</td>
+<td>Francais</td>
+</tr>
+<tr>
+<td>Nommer des variables/fonctions</td>
+<td>Anglais</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prompt-de-basculement">Prompt de basculement</h3>
+<pre class="codehilite"><code>Pour basculer la langue :
+- &quot;En anglais&quot; ou &quot;in English&quot; -&gt; bascule en anglais pour cette tache
+- &quot;En francais&quot; -&gt; retour au francais
+- Quand j'ecris en anglais, reponds en anglais
+- Quand j'ecris en francais, reponds en francais
+- Par defaut : francais
+</code></pre>
+
+<h2 id="modeles-recommandes-par-langue">Modeles recommandes par langue</h2>
+<p>Tous les grands modeles (Claude, GPT-4, Gemini) gèrent bien le francais et l'anglais. Quelques nuances :</p>
+<h3 id="francais">Francais</h3>
+<ul>
+<li><strong>Claude</strong> : excellent en francais. Comprend les nuances, le tutoiement/vouvoiement, le registre.</li>
+<li><strong>GPT-4</strong> : bon en francais, parfois des tournures un peu anglicisees.</li>
+<li><strong>Modeles open source (Mistral, LLaMA)</strong> : Mistral, etant francais, est fort en francais. LLaMA est variable.</li>
+</ul>
+<h3 id="anglais">Anglais</h3>
+<p>Tous les modeles sont excellents en anglais. Pas de difference significative pour un usage professionnel.</p>
+<h3 id="bilingue">Bilingue</h3>
+<p>Le facteur cle : la coherence du basculement. Claude et GPT-4 gerent bien le contexte bilingue si les regles sont claires dans le system prompt. Les modeles plus petits ont tendance a melanger.</p>
+<h2 id="les-pieges-du-bilingue">Les pieges du bilingue</h2>
+<h3 id="le-melange-involontaire">Le melange involontaire</h3>
+<p>L'agent commence en francais, met un terme anglais, puis continue en anglais. Ou l'inverse. Solution : regle explicite dans le system prompt.</p>
+<pre class="codehilite"><code>Si tu bascules de langue en cours de reponse, signale-le.
+Une reponse = une langue (sauf termes techniques).
+</code></pre>
+
+<h3 id="la-traduction-non-demandee">La traduction non demandee</h3>
+<p>Vous ecrivez en francais, l'agent traduit en anglais "pour etre plus precis". Solution :</p>
+<pre class="codehilite"><code>Ne traduis jamais ma requete. Reponds dans la langue que j'utilise.
+</code></pre>
+
+<h3 id="les-termes-techniques-forces">Les termes techniques forces</h3>
+<p>L'agent traduit "container" en "conteneur", "deploy" en "deployer" (au lieu de "deployer", qui est acceptable en franglais technique). Solution :</p>
+<pre class="codehilite"><code>Termes techniques gardes en anglais : deploy, commit, merge, push, pull, 
+container, endpoint, token, API, CLI, pipeline, build, runtime.
+</code></pre>
+
+<h2 id="erreurs-courantes_13">Erreurs courantes</h2>
+<p><strong>Pas de regle de langue.</strong> L'agent choisit selon l'humeur du modele. Inconsistant.</p>
+<p><strong>Forcer le 100% francais technique.</strong> "Utilisez 'conteneur' au lieu de 'container'." Personne ne parle comme ca. Gardez les termes que votre equipe utilise au quotidien.</p>
+<p><strong>Basculer sans contexte.</strong> Vous dites "in English" mais oubliez de revenir en francais. L'agent continue en anglais pour les 10 prochaines requetes.</p>
+<h2 id="etapes_13">Etapes</h2>
+<ol>
+<li>Decidez votre mode (1, 2, ou 3).</li>
+<li>Listez les termes techniques a garder en anglais.</li>
+<li>Definissez les declencheurs de basculement.</li>
+<li>Ajoutez les regles au system prompt.</li>
+<li>Testez avec 5 requetes dans chaque langue.</li>
+</ol>
+<h2 id="verification_13">Verification</h2>
+<ul>
+<li>[ ] Le mode de langue est defini dans le system prompt.</li>
+<li>[ ] Les termes techniques a garder en anglais sont listes.</li>
+<li>[ ] Les declencheurs de basculement sont explicites.</li>
+<li>[ ] L'agent respecte la langue attendue (teste dans les deux langues).</li>
+<li>[ ] Pas de melange involontaire dans les reponses.</li>
+</ul>
+</section>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="chapitre-03.html">&larr; Chapitre 3 -- Configuration</a>
+<a href="chapitre-05.html">Chapitre 5 -- Maintenance &rarr;</a>
+</div>
+
+    <footer>
+      <p>Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> par <a href="https://github.com/alexwill87">Alex Willemetz</a> | <a href="https://github.com/alexwill87/openclaw-field-playbook">GitHub</a></p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

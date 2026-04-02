@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 6 -- Cas d'usage | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand"><a href="index.html">OpenClaw Field Playbook</a></div>
+  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  <div class="nav-actions">
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html">Accueil</a>
+<a href="chapitre-00.html">Chapitre 0 -- Guide de lecture</a>
+<a href="chapitre-01.html">Chapitre 1 -- Definition</a>
+<a href="chapitre-02.html">Chapitre 2 -- Installation</a>
+<a href="chapitre-03.html">Chapitre 3 -- Configuration</a>
+<a href="chapitre-04.html">Chapitre 4 -- Personnalisation</a>
+<a href="chapitre-05.html">Chapitre 5 -- Maintenance</a>
+<a href="chapitre-06.html" class="active">Chapitre 6 -- Cas d'usage</a>
+<a href="chapitre-07.html">Chapitre 7 -- Localisation</a>
+<a href="checklist.html">Checklist</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="chapitre-6-cas-dusage">Chapitre 6 -- Cas d'usage</h1>
+<blockquote>
+<p>Des cas concrets, documentes par des praticiens. Comment ils utilisent OpenClaw, ce qu'ils ont configure, ce qui a change.</p>
+</blockquote>
+<hr />
+<h2 id="sommaire">Sommaire</h2>
+<h3 id="partie-a-entrepreneurs-et-freelances">Partie A -- Entrepreneurs et freelances</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Cas d'usage</th>
+<th>Profil</th>
+<th>Fichier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>Agence digitale (2 associes + agents IA)</td>
+<td>PME / duo technique</td>
+<td><a href="01-agence-digitale.md">01-agence-digitale.md</a></td>
+</tr>
+<tr>
+<td>02</td>
+<td>Consultant freelance</td>
+<td>Solo / independant</td>
+<td><a href="02-consultant-freelance.md">02-consultant-freelance.md</a></td>
+</tr>
+<tr>
+<td>03</td>
+<td>E-commerce</td>
+<td>Vendeur en ligne</td>
+<td><a href="03-ecommerce.md">03-ecommerce.md</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="partie-b-equipes-et-entreprises">Partie B -- Equipes et entreprises</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Cas d'usage</th>
+<th>Profil</th>
+<th>Fichier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>04</td>
+<td>Equipe technique (5-15 personnes)</td>
+<td>Dev / ops</td>
+<td><a href="04-equipe-technique.md">04-equipe-technique.md</a></td>
+</tr>
+<tr>
+<td>05</td>
+<td>Cabinet comptable</td>
+<td>Profession reglementee</td>
+<td><a href="05-cabinet-comptable.md">05-cabinet-comptable.md</a></td>
+</tr>
+<tr>
+<td>06</td>
+<td>Startup early-stage</td>
+<td>Fondateurs + premiers employes</td>
+<td><a href="06-startup.md">06-startup.md</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="partie-c-contribuer">Partie C -- Contribuer</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Sujet</th>
+<th>Fichier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07</td>
+<td>Comment soumettre votre cas d'usage</td>
+<td><a href="07-contribuer.md">07-contribuer.md</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="comment-lire-ces-cas-dusage">Comment lire ces cas d'usage</h2>
+<p>Chaque cas suit un format standard :</p>
+<pre class="codehilite"><code>Contexte :       Qui, quel metier, quelle taille
+Probleme :       Ce qui devait etre resolu ou automatise
+Configuration :  Ce qui a ete mis en place (infra, agents, outils)
+Resultat :       Ce qui a change concretement
+Lecons :         Ce qu'on referait differemment
+Template :       Configuration ou prompt reutilisable
+</code></pre>
+
+<hr />
+<h2 id="comment-soumettre-un-cas">Comment soumettre un cas</h2>
+<p>Deux options :</p>
+<ol>
+<li><strong>Via Issue GitHub</strong> -- Utilisez le template <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">suggestion</a> avec le label <code>use-case</code></li>
+<li><strong>Via Pull Request</strong> -- Forkez le repo, ajoutez votre fichier dans <code>sections/06-use-cases/</code>, suivez le format standard decrit dans <a href="07-contribuer.md">07-contribuer.md</a></li>
+</ol>
+<p>Les cas soumis sont relus par un agent IA puis valides par un maintainer humain avant publication.</p>
+<hr />
+<h2 id="specifications-locales">Specifications locales</h2>
+<p>Les adaptations reglementaires et culturelles par pays sont documentees dans <a href="../07-localisation/">sections/07-localisation/</a>.</p>
+<hr />
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Soumettre votre cas d'usage</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+<h1 id="01-agence-digitale-2-associes-agents-ia">01 -- Agence digitale (2 associes + agents IA)</h1>
+<p><strong>Pour qui :</strong> duo d'entrepreneurs gerant une agence digitale avec des agents IA comme force de travail principale
+<strong>Temps de mise en place :</strong> 2 a 4 semaines
+<strong>Difficulte :</strong> Intermediaire a Avance</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Deux associes lancent une agence digitale. Leur particularite : l'equipe permanente se limite a eux deux. Le reste de la force de travail repose sur des agents IA configures pour executer des taches operationnelles -- redaction, recherche, communication, gestion de projet.</p>
+<p>Le defi : creer un systeme nerveux central qui coordonne les humains et les agents, sans dependre d'un SaaS ferme, et en gardant le controle total sur les donnees.</p>
+<hr />
+<h2 id="probleme">Probleme</h2>
+<ul>
+<li>Pas de visibilite centralisee sur les projets en cours</li>
+<li>Les agents IA fonctionnent en silos (un par tache, sans memoire partagee)</li>
+<li>La communication entre les fondateurs passe par trop de canaux differents</li>
+<li>Aucun systeme de suivi des couts d'utilisation des API IA</li>
+<li>Les fichiers clients sont disperses entre machines locales et services cloud</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS Hetzner (CPX21, Nuremberg ou Helsinki)</td>
+<td>10.00 EUR</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04 LTS</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Reseau prive</td>
+<td>Tailscale</td>
+<td>gratuit (plan personnel)</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Vault (HashiCorp, mode dev puis production)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Base de donnees</td>
+<td>PostgreSQL 16</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Mattermost (self-hosted)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Cockpit web</td>
+<td>Next.js + API Routes</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cout infrastructure total : environ 10 EUR/mois</strong></p>
+<h3 id="repartition-budgetaire-par-pilier-schema-jd6">Repartition budgetaire par pilier (schema JD6)</h3>
+<p>Le schema JD6 organise les domaines operationnels en categories numerotees. Pour cette agence, la repartition budgetaire mensuelle est la suivante :</p>
+<table>
+<thead>
+<tr>
+<th>Pilier</th>
+<th>Domaine</th>
+<th>Budget mensuel</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Infra</td>
+<td>10.00 EUR</td>
+<td>VPS, domaine, DNS</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Agents</td>
+<td>30.00 EUR</td>
+<td>API Claude, Mistral, credits LLM</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Knowledge</td>
+<td>40.00 EUR</td>
+<td>Embeddings, stockage vectoriel, RAG</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Communication</td>
+<td>50.00 EUR</td>
+<td>Mattermost, email transactionnel</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Business</td>
+<td>60.00 EUR</td>
+<td>Outils clients, CRM leger, facturation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Budget operationnel total : environ 190 EUR/mois</strong></p>
+<h3 id="architecture-des-agents">Architecture des agents</h3>
+<p>L'agence deploie un agent principal et des agents specialises :</p>
+<p><strong>Agent principal (orchestrateur) :</strong>
+- Tourne sur le VPS, accessible via le cockpit web
+- Recoit les instructions des fondateurs via Mattermost ou le cockpit
+- Delegue aux agents specialises selon le type de tache
+- Maintient un journal d'activite dans PostgreSQL</p>
+<p><strong>Agents specialises :</strong>
+- Agent Redaction : propositions commerciales, contenus marketing, emails clients
+- Agent Recherche : veille concurrentielle, analyse de marche, documentation technique
+- Agent Ops : monitoring serveur, alertes, rapports de cout</p>
+<h3 id="schema-jd6-organisation-des-domaines">Schema JD6 -- Organisation des domaines</h3>
+<pre class="codehilite"><code>10-19  Infrastructure    (serveurs, reseau, DNS, backups)
+20-29  Securite          (Vault, acces, audit, RGPD)
+30-39  Agents IA         (configuration, prompts, memoire, couts)
+40-49  Knowledge         (base de connaissances, embeddings, RAG)
+50-59  Communication     (Mattermost, email, notifications)
+60-69  Business          (clients, projets, facturation, CRM)
+70-79  Reporting         (dashboards, metriques, KPIs)
+</code></pre>
+
+<p>Chaque domaine a un dossier correspondant dans la knowledge base et un canal dedie dans Mattermost.</p>
+<hr />
+<h2 id="mise-en-place-etapes-cles">Mise en place -- Etapes cles</h2>
+<h3 id="semaine-1-infrastructure">Semaine 1 : Infrastructure</h3>
+<ol>
+<li>Provisionner le VPS Hetzner</li>
+<li>Installer Ubuntu 24.04, durcir SSH (cles uniquement, port non standard)</li>
+<li>Installer Tailscale sur le VPS et les machines des fondateurs</li>
+<li>Deployer PostgreSQL, creer les bases <code>openclaw_main</code> et <code>openclaw_knowledge</code></li>
+<li>Installer Vault, configurer les secrets pour les cles API</li>
+</ol>
+<h3 id="semaine-2-agents-et-knowledge">Semaine 2 : Agents et Knowledge</h3>
+<ol>
+<li>Installer OpenClaw sur le VPS</li>
+<li>Configurer l'agent principal avec le system prompt de l'agence</li>
+<li>Connecter la knowledge base (documents fondateurs, templates, procedures)</li>
+<li>Deployer les agents specialises avec leurs prompts respectifs</li>
+<li>Tester le pipeline : instruction -&gt; agent -&gt; resultat -&gt; stockage</li>
+</ol>
+<h3 id="semaine-3-communication-et-cockpit">Semaine 3 : Communication et cockpit</h3>
+<ol>
+<li>Deployer Mattermost, creer les canaux par domaine JD6</li>
+<li>Configurer les webhooks entre OpenClaw et Mattermost</li>
+<li>Deployer le cockpit Next.js avec authentification</li>
+<li>Connecter le cockpit a PostgreSQL pour le tableau de bord</li>
+<li>Tester le flux complet : cockpit -&gt; agent -&gt; Mattermost -&gt; fondateur</li>
+</ol>
+<h3 id="semaine-4-stabilisation">Semaine 4 : Stabilisation</h3>
+<ol>
+<li>Configurer les backups automatiques (PostgreSQL + fichiers)</li>
+<li>Mettre en place le monitoring des couts API</li>
+<li>Documenter les procedures internes</li>
+<li>Former les deux fondateurs sur le cockpit</li>
+<li>Passer Vault en mode production</li>
+</ol>
+<hr />
+<h2 id="resultat">Resultat</h2>
+<p>Apres un mois de mise en place :</p>
+<ul>
+<li><strong>Cockpit operationnel</strong> : les fondateurs voient l'etat de tous les projets, les couts API en temps reel, et l'activite des agents depuis une interface unique</li>
+<li><strong>Agent principal fonctionnel</strong> : il recoit les instructions en langage naturel, les route vers l'agent specialise, et renvoie le resultat avec un lien vers le document produit</li>
+<li><strong>Communication structuree</strong> : chaque domaine JD6 a son canal Mattermost. Les agents postent leurs resultats dans le canal correspondant. Les fondateurs ne cherchent plus l'information</li>
+<li><strong>Couts maitrises</strong> : le budget mensuel total reste sous 200 EUR, avec une visibilite complete sur la repartition</li>
+<li><strong>Souverainete des donnees</strong> : tout tourne sur un VPS europeen. Aucune donnee client ne transite par un service tiers non maitrise</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>Commencer par l'agent principal, pas par les agents specialises.</strong> L'orchestrateur est le point d'entree de tout le systeme. Sans lui, les agents specialises sont des outils isoles.</p>
+</li>
+<li>
+<p><strong>Vault des le debut, pas "plus tard".</strong> Les cles API en variables d'environnement dans des fichiers <code>.env</code> ne passent pas a l'echelle. Vault ajoute de la complexite initiale mais evite les fuites de secrets.</p>
+</li>
+<li>
+<p><strong>Un canal Mattermost par domaine, pas par projet.</strong> Les projets vont et viennent. Les domaines sont stables. Organiser la communication par domaine JD6 evite la proliferation de canaux morts.</p>
+</li>
+<li>
+<p><strong>Le cockpit est un investissement, pas un luxe.</strong> Sans interface visuelle, les fondateurs retombent dans les terminaux et les fichiers de log. Le cockpit Next.js prend du temps a construire mais change la qualite de vie operationnelle.</p>
+</li>
+<li>
+<p><strong>Documenter les prompts comme du code.</strong> Chaque prompt d'agent est versionne dans Git, avec un changelog. Les modifications sont tracees et reversibles.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployer tous les agents en meme temps</td>
+<td>Debuggage impossible, couts qui explosent</td>
+<td>Deployer un agent a la fois, valider, puis passer au suivant</td>
+</tr>
+<tr>
+<td>Ignorer les limites de tokens</td>
+<td>Reponses tronquees, contexte perdu</td>
+<td>Configurer des limites explicites et un systeme de chunking</td>
+</tr>
+<tr>
+<td>Pas de backup PostgreSQL</td>
+<td>Perte de la knowledge base</td>
+<td>Cron job pg_dump quotidien, copie hors VPS</td>
+</tr>
+<tr>
+<td>Mattermost sans authentification forte</td>
+<td>Acces non autorise aux canaux agents</td>
+<td>SSO ou tokens d'acces avec expiration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-principal">Template -- System prompt de l'agent principal</h2>
+<pre class="codehilite"><code>Tu es l'agent principal de [NOM DE L'AGENCE].
+
+Ton role est de coordonner les operations entre les fondateurs et les agents specialises.
+
+Regles :
+- Tu reponds toujours en francais sauf si on te demande explicitement l'anglais
+- Tu postes tes resultats dans le canal Mattermost correspondant au domaine JD6
+- Tu ne prends jamais de decision financiere sans validation humaine
+- Tu documentes chaque action dans la base PostgreSQL
+- Tu signales immediatement toute anomalie de cout API
+
+Domaines JD6 :
+10-19 Infrastructure | 20-29 Securite | 30-39 Agents | 40-49 Knowledge
+50-59 Communication | 60-69 Business | 70-79 Reporting
+
+Quand tu recois une instruction :
+1. Identifie le domaine JD6 concerne
+2. Verifie si un agent specialise existe pour ce domaine
+3. Si oui, delegue avec le contexte necessaire
+4. Si non, traite directement et signale qu'un agent specialise serait utile
+5. Poste le resultat dans le canal Mattermost du domaine
+</code></pre>
+
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Le VPS repond sur Tailscale depuis les machines des fondateurs</li>
+<li>[ ] Vault stocke au moins les cles API LLM</li>
+<li>[ ] L'agent principal repond a une instruction simple via le cockpit</li>
+<li>[ ] Les resultats apparaissent dans le bon canal Mattermost</li>
+<li>[ ] Le backup PostgreSQL fonctionne et a ete teste en restauration</li>
+<li>[ ] Les couts API du mois sont visibles dans le cockpit</li>
+</ul>
+<hr />
+<p><em>Ce cas d'usage est inspire d'une experience reelle de mise en place. Les montants et configurations sont representatifs d'un deploiement en Europe en 2026.</em></p>
+<h1 id="02-consultant-freelance">02 -- Consultant freelance</h1>
+<p><strong>Pour qui :</strong> consultant independant travaillant seul, sans equipe technique
+<strong>Temps de mise en place :</strong> 1 a 2 jours
+<strong>Difficulte :</strong> Debutant</p>
+<hr />
+<h2 id="contexte_1">Contexte</h2>
+<p>Un consultant freelance gere une dizaine de clients en parallele. Son quotidien : reunions, propositions commerciales, suivi de projets, facturation, et beaucoup d'emails. Il n'a pas de VPS, pas d'equipe technique, et pas envie de maintenir une infrastructure serveur.</p>
+<p>Il veut un assistant IA qui l'aide a structurer sa journee, rediger plus vite, et ne rien oublier.</p>
+<hr />
+<h2 id="probleme_1">Probleme</h2>
+<ul>
+<li>Les emails clients s'accumulent sans priorisation</li>
+<li>Les propositions commerciales prennent trop de temps a rediger</li>
+<li>Le suivi client repose sur la memoire et des notes dispersees</li>
+<li>Pas de vision consolidee du temps passe par client</li>
+<li>Les relances de factures sont oubliees ou faites trop tard</li>
+</ul>
+<hr />
+<h2 id="configuration_1">Configuration</h2>
+<h3 id="infrastructure_1">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Machine</td>
+<td>Laptop personnel (macOS ou Linux)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation locale</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Calendrier</td>
+<td>Google Calendar ou Nextcloud</td>
+<td>gratuit ou existant</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Client email existant (Gmail, ProtonMail)</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Stockage</td>
+<td>Dossier local + sync cloud existant</td>
+<td>existant</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pas de VPS. Pas de base de donnees. Pas de Mattermost.</strong> Tout tourne en local sur le laptop du consultant.</p>
+<h3 id="agent-unique">Agent unique</h3>
+<p>Un seul agent OpenClaw, configure avec :
+- Le system prompt du consultant (ton, domaine d'expertise, liste de clients)
+- Acces en lecture aux fichiers locaux (propositions, notes, templates)
+- Connexion au calendrier pour les briefings du matin</p>
+<hr />
+<h2 id="mise-en-place">Mise en place</h2>
+<h3 id="jour-1-installation-et-configuration-de-base">Jour 1 : Installation et configuration de base</h3>
+<ol>
+<li>Installer OpenClaw sur le laptop</li>
+<li>Creer le system prompt avec le contexte du consultant :</li>
+<li>Domaine d'expertise</li>
+<li>Liste des clients actifs avec contexte court</li>
+<li>Ton de communication prefere</li>
+<li>Templates de propositions et emails types</li>
+<li>Configurer l'acces aux fichiers locaux (dossier <code>~/clients/</code>)</li>
+<li>Tester avec une premiere tache : "Resume mes notes du dernier rendez-vous avec [client X]"</li>
+</ol>
+<h3 id="jour-2-workflows-quotidiens">Jour 2 : Workflows quotidiens</h3>
+<ol>
+<li>Configurer le morning briefing :</li>
+<li>L'agent lit le calendrier du jour</li>
+<li>Il liste les taches en attente par client</li>
+<li>Il signale les factures en retard</li>
+<li>Il propose un ordre de priorite pour la journee</li>
+<li>Configurer le triage email :</li>
+<li>L'agent lit les emails recus (via export ou integration)</li>
+<li>Il classe par urgence : action requise / information / peut attendre</li>
+<li>Il propose des brouillons de reponse pour les emails urgents</li>
+<li>Configurer le suivi client :</li>
+<li>Apres chaque interaction, l'agent met a jour le fichier client</li>
+<li>Il genere un resume hebdomadaire par client</li>
+</ol>
+<hr />
+<h2 id="resultat_1">Resultat</h2>
+<p>Apres une semaine d'utilisation :</p>
+<ul>
+<li><strong>Morning briefing en 2 minutes</strong> : le consultant commence chaque journee avec une vue claire de ses priorites, sans ouvrir 5 applications</li>
+<li><strong>Triage email</strong> : les emails sont classes automatiquement. Les brouillons de reponse font gagner 30 a 45 minutes par jour</li>
+<li><strong>Suivi client automatise</strong> : chaque client a un fichier a jour avec l'historique des interactions, les decisions prises, et les prochaines etapes</li>
+<li><strong>Propositions commerciales en 15 minutes au lieu de 2 heures</strong> : l'agent genere un premier jet a partir du template et du contexte client. Le consultant ajuste et envoie</li>
+<li><strong>Zero relance oubliee</strong> : l'agent signale les factures en retard dans le briefing du matin</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises_1">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>Le system prompt est le coeur du systeme.</strong> Un prompt vague donne des resultats generiques. Le consultant doit investir du temps pour decrire son contexte, son ton, et ses regles metier.</p>
+</li>
+<li>
+<p><strong>Un fichier par client, pas une base de donnees.</strong> Pour un freelance, des fichiers Markdown dans un dossier <code>~/clients/</code> sont plus simples et plus portables qu'une base de donnees.</p>
+</li>
+<li>
+<p><strong>Le morning briefing change tout.</strong> C'est le workflow le plus simple a mettre en place et celui qui a le plus d'impact. Commencer par la.</p>
+</li>
+<li>
+<p><strong>Ne pas automatiser la relation client.</strong> L'agent redige des brouillons. Le consultant relit, ajuste, et envoie. Le client ne doit jamais recevoir un email non relu.</p>
+</li>
+<li>
+<p><strong>Sauvegarder le contexte agent.</strong> Le system prompt et les fichiers clients doivent etre dans un dossier synchronise (cloud ou Git). Perdre le laptop ne doit pas signifier perdre la memoire de l'agent.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes_1">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt trop generique</td>
+<td>Reponses passe-partout, inutilisables</td>
+<td>Ajouter le contexte specifique : clients, domaine, ton</td>
+</tr>
+<tr>
+<td>Pas de structure de fichiers</td>
+<td>L'agent ne retrouve pas les informations</td>
+<td>Un dossier par client, des noms de fichiers coherents</td>
+</tr>
+<tr>
+<td>Faire confiance au premier jet</td>
+<td>Erreurs factuelles envoyees au client</td>
+<td>Toujours relire avant envoi</td>
+</tr>
+<tr>
+<td>Pas de backup</td>
+<td>Perte du contexte en cas de panne</td>
+<td>Sync cloud ou Git pour le dossier de travail</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-du-consultant">Template -- System prompt du consultant</h2>
+<pre class="codehilite"><code>Tu es l'assistant professionnel de [NOM], consultant en [DOMAINE].
+
+Contexte :
+- [NOM] travaille en independant depuis [ANNEE]
+- Ses clients sont principalement des [TYPE DE CLIENTS]
+- Son ton est professionnel mais direct, pas de jargon inutile
+
+Clients actifs :
+- [Client A] : [contexte court, projet en cours]
+- [Client B] : [contexte court, projet en cours]
+- [Client C] : [contexte court, projet en cours]
+
+Regles :
+- Tu rediges toujours des brouillons, jamais des messages finaux
+- Tu signales si une information te manque plutot que d'inventer
+- Tu utilises le vouvoiement dans les emails clients
+- Tu notes les decisions et les prochaines etapes apres chaque interaction
+- Tu rappelles les factures impayees de plus de 30 jours dans le briefing du matin
+
+Workflows :
+1. Morning briefing : calendrier + taches + factures + priorites
+2. Triage email : urgent / info / peut attendre + brouillons
+3. Proposition commerciale : template + contexte client + premier jet
+4. Suivi client : mise a jour du fichier client apres chaque interaction
+</code></pre>
+
+<hr />
+<h2 id="verification_1">Verification</h2>
+<ul>
+<li>[ ] OpenClaw est installe et repond sur le laptop</li>
+<li>[ ] Le system prompt contient la liste des clients actifs</li>
+<li>[ ] Le morning briefing affiche les rendez-vous du jour</li>
+<li>[ ] Le triage email classe correctement un echantillon de 10 emails</li>
+<li>[ ] Une proposition commerciale test est generee en moins de 5 minutes</li>
+<li>[ ] Les fichiers clients sont dans un dossier synchronise</li>
+</ul>
+<hr />
+<p><em>Configuration minimaliste, zero infrastructure a maintenir. Ideal pour un premier contact avec OpenClaw.</em></p>
+<h1 id="03-e-commerce">03 -- E-commerce</h1>
+<p><strong>Pour qui :</strong> vendeur en ligne gerant une boutique (Shopify, WooCommerce, PrestaShop ou equivalent)
+<strong>Temps de mise en place :</strong> 3 a 5 jours
+<strong>Difficulte :</strong> Intermediaire</p>
+<hr />
+<h2 id="contexte_2">Contexte</h2>
+<p>Un vendeur en ligne gere une boutique avec quelques centaines de references. Il vend sur sa propre boutique et potentiellement sur des marketplaces. Il est seul ou avec un assistant a temps partiel. Son quotidien : commandes a traiter, questions clients a repondre, stock a surveiller, et des decisions d'approvisionnement a prendre.</p>
+<p>Il cherche un systeme qui automatise les taches repetitives sans dependre d'un SaaS supplementaire a 200 EUR/mois.</p>
+<hr />
+<h2 id="probleme_2">Probleme</h2>
+<ul>
+<li>Les questions clients arrivent par email, formulaire de contact, et marketplaces -- reponses lentes ou oubliees</li>
+<li>Le suivi de stock est manuel : ruptures decouvertes trop tard, surstock sur d'autres references</li>
+<li>Les rapports de vente sont generes a la main dans des tableurs</li>
+<li>Aucune alerte proactive sur les tendances (produit qui decolle, produit qui stagne)</li>
+<li>Le temps passe sur l'operationnel empeche de travailler sur la strategie</li>
+</ul>
+<hr />
+<h2 id="configuration_2">Configuration</h2>
+<h3 id="infrastructure_2">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS leger (Hetzner CX22 ou equivalent)</td>
+<td>5.00 EUR</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation sur le VPS</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Boutique</td>
+<td>Plateforme e-commerce existante (API)</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td>Email + webhook vers Mattermost ou Slack</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h3 id="agents">Agents</h3>
+<p><strong>Agent Support Client :</strong>
+- Lit les messages clients entrants (via API ou export)
+- Classe par categorie : suivi commande / question produit / reclamation / autre
+- Genere un brouillon de reponse adapte
+- Escalade les reclamations vers le vendeur avec un resume</p>
+<p><strong>Agent Stock :</strong>
+- Interroge l'API de la boutique quotidiennement
+- Alerte quand un produit passe sous le seuil de reapprovisionnement
+- Detecte les produits a rotation lente (pas de vente depuis X jours)
+- Genere une suggestion de commande fournisseur</p>
+<p><strong>Agent Reporting :</strong>
+- Genere un rapport quotidien : ventes, panier moyen, produits les plus vendus
+- Genere un rapport hebdomadaire avec tendances et comparaison semaine precedente
+- Signale les anomalies (chute de ventes soudaine, pic inhabituel)</p>
+<hr />
+<h2 id="mise-en-place_1">Mise en place</h2>
+<h3 id="jour-1-2-infrastructure-et-connexion-boutique">Jour 1-2 : Infrastructure et connexion boutique</h3>
+<ol>
+<li>Provisionner le VPS et installer OpenClaw</li>
+<li>Configurer l'acces API a la plateforme e-commerce</li>
+<li>Tester la lecture des commandes et du stock via l'API</li>
+<li>Creer la structure de fichiers pour les templates de reponse</li>
+</ol>
+<h3 id="jour-3-agent-support-client">Jour 3 : Agent Support Client</h3>
+<ol>
+<li>Rediger le system prompt avec le ton de la boutique et les FAQ courantes</li>
+<li>Configurer la lecture des messages entrants</li>
+<li>Definir les regles de classification (suivi / question / reclamation)</li>
+<li>Tester sur 20 messages reels</li>
+<li>Ajuster le prompt selon les resultats</li>
+</ol>
+<h3 id="jour-4-agent-stock-et-reporting">Jour 4 : Agent Stock et Reporting</h3>
+<ol>
+<li>Configurer les seuils de reapprovisionnement par categorie de produit</li>
+<li>Mettre en place l'alerte quotidienne de stock</li>
+<li>Configurer le rapport de ventes quotidien</li>
+<li>Tester le rapport hebdomadaire sur les donnees de la semaine precedente</li>
+</ol>
+<h3 id="jour-5-stabilisation">Jour 5 : Stabilisation</h3>
+<ol>
+<li>Configurer les notifications (email ou webhook)</li>
+<li>Tester le flux complet sur une journee reelle</li>
+<li>Ajuster les seuils et les templates selon les retours</li>
+<li>Documenter les procedures pour l'assistant eventuel</li>
+</ol>
+<hr />
+<h2 id="resultat_2">Resultat</h2>
+<p>Apres deux semaines d'utilisation :</p>
+<ul>
+<li><strong>Temps de reponse client divise par 3</strong> : les brouillons de reponse sont prets en quelques secondes. Le vendeur relit, ajuste si necessaire, et envoie</li>
+<li><strong>Zero rupture de stock surprise</strong> : les alertes arrivent 5 a 7 jours avant la rupture, laissant le temps de commander</li>
+<li><strong>Reporting automatique</strong> : le rapport quotidien arrive chaque matin. Plus besoin de manipuler des tableurs</li>
+<li><strong>Detection de tendances</strong> : l'agent a signale un produit dont les ventes avaient triple en une semaine, permettant un reapprovisionnement anticipe</li>
+<li><strong>2 heures liberees par jour</strong> : le temps recupere sur le support et le reporting est reinvesti dans la strategie produit</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises_2">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>Les FAQ couvrent 80% des questions.</strong> Investir du temps pour rediger 20 a 30 reponses types dans le system prompt elimine la majorite du travail de support.</p>
+</li>
+<li>
+<p><strong>Les seuils de stock doivent etre par categorie, pas universels.</strong> Un produit a forte rotation a besoin d'un seuil plus haut qu'un produit de niche.</p>
+</li>
+<li>
+<p><strong>Le rapport quotidien doit etre court.</strong> 5 lignes maximum. Si le rapport est trop long, il n'est pas lu. Les details doivent etre accessibles a la demande.</p>
+</li>
+<li>
+<p><strong>Ne pas automatiser les reclamations.</strong> Une reclamation mal geree coute un client. L'agent resume et escalade, le vendeur repond personnellement.</p>
+</li>
+<li>
+<p><strong>Tester sur des donnees reelles, pas des donnees fictives.</strong> Les cas limites (produits en rupture, commandes annulees, retours) ne se revelent qu'avec des donnees de production.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes_2">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reponses automatiques sans relecture</td>
+<td>Client qui recoit une reponse incorrecte ou froide</td>
+<td>Toujours relire les brouillons avant envoi</td>
+</tr>
+<tr>
+<td>Seuil de stock unique pour tout</td>
+<td>Ruptures sur les best-sellers, surstock sur les niches</td>
+<td>Seuils differencies par categorie</td>
+</tr>
+<tr>
+<td>Ignorer les erreurs API</td>
+<td>Donnees de stock obsoletes</td>
+<td>Monitoring des appels API, alerte en cas d'echec</td>
+</tr>
+<tr>
+<td>Rapport trop detaille</td>
+<td>Le rapport n'est pas lu</td>
+<td>Rapport court avec lien vers le detail</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-support-client">Template -- System prompt de l'agent support client</h2>
+<pre class="codehilite"><code>Tu es l'assistant support de [NOM DE LA BOUTIQUE].
+
+Contexte :
+- Boutique en ligne vendant [TYPE DE PRODUITS]
+- Clientele principalement [PAYS/REGION]
+- Ton : professionnel, chaleureux, concis
+
+Regles :
+- Tu generes des brouillons de reponse, jamais des reponses finales
+- Tu vouvoies toujours le client
+- Tu ne promets jamais de remboursement ou de geste commercial sans validation du vendeur
+- Tu escalades toute reclamation avec un resume factuel
+- Tu inclus le numero de commande dans chaque reponse
+
+Classification des messages :
+1. Suivi de commande -&gt; verifier le statut, repondre avec le tracking
+2. Question produit -&gt; repondre a partir de la fiche produit et des FAQ
+3. Reclamation -&gt; resumer le probleme, escalader au vendeur
+4. Autre -&gt; classer et signaler
+
+FAQ :
+- Delai de livraison : [X jours ouvrables]
+- Politique de retour : [conditions]
+- Modes de paiement : [liste]
+</code></pre>
+
+<hr />
+<h2 id="verification_2">Verification</h2>
+<ul>
+<li>[ ] L'API de la boutique est accessible depuis le VPS</li>
+<li>[ ] L'agent support classe correctement un echantillon de 20 messages</li>
+<li>[ ] Les alertes stock se declenchent au bon seuil sur un produit test</li>
+<li>[ ] Le rapport quotidien est genere et envoye chaque matin</li>
+<li>[ ] Les reclamations sont escaladees et non repondues automatiquement</li>
+<li>[ ] Les notifications arrivent par le canal choisi (email ou webhook)</li>
+</ul>
+<hr />
+<p><em>Un vendeur en ligne n'a pas besoin d'une equipe support. Il a besoin d'un agent bien configure et d'une relecture humaine.</em></p>
+<h1 id="04-equipe-technique-5-15-personnes">04 -- Equipe technique (5-15 personnes)</h1>
+<p><strong>Pour qui :</strong> equipe de developpement ou d'operations de taille moyenne
+<strong>Temps de mise en place :</strong> 1 a 2 semaines
+<strong>Difficulte :</strong> Intermediaire</p>
+<hr />
+<h2 id="contexte_3">Contexte</h2>
+<p>Une equipe technique de 5 a 15 personnes travaille sur un ou plusieurs produits logiciels. Le code est sur GitHub ou GitLab. La documentation existe mais est rarement a jour. Les code reviews prennent du temps. Les nouveaux arrivants mettent des semaines a etre autonomes.</p>
+<p>L'equipe veut utiliser OpenClaw pour accelerer les taches repetitives sans remplacer le jugement humain sur les decisions d'architecture.</p>
+<hr />
+<h2 id="probleme_3">Probleme</h2>
+<ul>
+<li>La documentation technique est obsolete ou incomplete</li>
+<li>Les code reviews sont un goulot d'etranglement</li>
+<li>L'onboarding des nouveaux developpeurs est lent et informel</li>
+<li>Les decisions d'architecture sont prises en reunion mais mal documentees</li>
+<li>Les incidents en production sont resolus mais les post-mortems ne sont pas rediges</li>
+</ul>
+<hr />
+<h2 id="configuration_3">Configuration</h2>
+<h3 id="infrastructure_3">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS dedie ou instance cloud existante</td>
+<td>variable</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation sur le serveur de l'equipe</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>GitHub ou GitLab (existant)</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Slack, Mattermost ou Teams (existant)</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Knowledge base</td>
+<td>Wiki existant ou Markdown dans le repo</td>
+<td>existant</td>
+</tr>
+</tbody>
+</table>
+<h3 id="agents_1">Agents</h3>
+<p><strong>Agent Documentation :</strong>
+- Surveille les Pull Requests mergees
+- Detecte les changements qui impactent la documentation existante
+- Genere un brouillon de mise a jour de la documentation
+- Poste le brouillon en commentaire sur la PR ou dans le canal documentation</p>
+<p><strong>Agent Code Review :</strong>
+- Effectue une premiere passe sur les Pull Requests ouvertes
+- Verifie : style, conventions de nommage, couverture de tests, patterns connus
+- Poste un commentaire structure avec les points d'attention
+- Ne bloque jamais une PR : ses commentaires sont informatifs, pas bloquants</p>
+<p><strong>Agent Onboarding :</strong>
+- Maintient un guide d'onboarding a jour a partir de la knowledge base
+- Repond aux questions des nouveaux arrivants sur le canal dedie
+- Pointe vers la documentation existante plutot que de repondre directement
+- Signale les questions recurrentes non couvertes par la documentation</p>
+<p><strong>Agent Post-mortem :</strong>
+- Apres un incident, collecte les messages du canal incident
+- Genere un brouillon de post-mortem structure (timeline, cause racine, actions)
+- Le soumet a l'equipe pour validation et enrichissement</p>
+<hr />
+<h2 id="mise-en-place_2">Mise en place</h2>
+<h3 id="semaine-1-fondations">Semaine 1 : Fondations</h3>
+<ol>
+<li>Installer OpenClaw sur le serveur de l'equipe</li>
+<li>Connecter l'API GitHub/GitLab</li>
+<li>Deployer l'agent Code Review sur un repo pilote</li>
+<li>Configurer les conventions de l'equipe dans le system prompt (style guide, patterns interdits, regles de nommage)</li>
+<li>Tester sur 5 Pull Requests existantes</li>
+<li>Ajuster le prompt selon les retours de l'equipe</li>
+</ol>
+<h3 id="semaine-2-agents-complementaires">Semaine 2 : Agents complementaires</h3>
+<ol>
+<li>Deployer l'agent Documentation</li>
+<li>Deployer l'agent Onboarding avec la knowledge base existante</li>
+<li>Configurer l'agent Post-mortem avec le template de l'equipe</li>
+<li>Former l'equipe sur l'utilisation et les limites de chaque agent</li>
+<li>Definir les regles : l'agent informe, l'humain decide</li>
+</ol>
+<hr />
+<h2 id="resultat_3">Resultat</h2>
+<p>Apres un mois d'utilisation :</p>
+<ul>
+<li><strong>Documentation a jour</strong> : les brouillons de mise a jour sont generes automatiquement. Le taux de documentation obsolete baisse de 60% a 15%</li>
+<li><strong>Code reviews plus rapides</strong> : la premiere passe de l'agent detecte les problemes mecaniques (style, nommage, tests manquants). Les reviewers humains se concentrent sur la logique et l'architecture. Temps moyen de review reduit de 40%</li>
+<li><strong>Onboarding structure</strong> : les nouveaux arrivants ont un interlocuteur disponible 24h/24 pour les questions de base. Temps d'autonomie reduit de 3 semaines a 10 jours</li>
+<li><strong>Post-mortems systematiques</strong> : chaque incident a son post-mortem redige dans les 24h, au lieu de "on le fera plus tard" (c'est-a-dire jamais)</li>
+<li><strong>Multi-agents coordonnes</strong> : les agents partagent la knowledge base. Une mise a jour de documentation par l'agent Documentation est immediatement disponible pour l'agent Onboarding</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises_3">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>Commencer par le Code Review, pas par la documentation.</strong> L'agent Code Review a un impact visible immediatement et cree de l'adhesion dans l'equipe.</p>
+</li>
+<li>
+<p><strong>Les conventions doivent etre explicites dans le prompt.</strong> L'agent ne peut pas deviner le style guide de l'equipe. Si les regles ne sont pas ecrites, il applique des conventions generiques qui frustrent les developpeurs.</p>
+</li>
+<li>
+<p><strong>L'agent ne doit jamais bloquer un workflow.</strong> Ses commentaires sont informatifs. Le jour ou l'agent bloque une PR par erreur, l'equipe perd confiance et desactive tout.</p>
+</li>
+<li>
+<p><strong>Les post-mortems automatiques sont le meilleur rapport effort/valeur.</strong> Personne n'aime rediger un post-mortem. L'agent genere un premier jet a partir des messages du canal incident. L'equipe corrige et complete en 15 minutes.</p>
+</li>
+<li>
+<p><strong>Prevoir un canal "feedback-agent" pour l'equipe.</strong> Les developpeurs doivent pouvoir signaler quand l'agent se trompe. Ce feedback ameliore les prompts et maintient la confiance.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes_3">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent Code Review trop strict</td>
+<td>Developpeurs qui ignorent tous ses commentaires</td>
+<td>Ton informatif, jamais imperatif. Pas de faux positifs</td>
+</tr>
+<tr>
+<td>Documentation generee sans relecture</td>
+<td>Erreurs factuelles dans la knowledge base</td>
+<td>Brouillon + validation humaine obligatoire</td>
+</tr>
+<tr>
+<td>Pas de limite de scope pour l'agent Onboarding</td>
+<td>Reponses hors sujet ou inventees</td>
+<td>Limiter au contenu de la knowledge base existante</td>
+</tr>
+<tr>
+<td>Deployer sur tous les repos en meme temps</td>
+<td>Bruit excessif, rejet par l'equipe</td>
+<td>Un repo pilote, puis extension progressive</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-code-review">Template -- System prompt de l'agent Code Review</h2>
+<pre class="codehilite"><code>Tu es l'assistant de code review de l'equipe [NOM].
+
+Ton role est de faire une premiere passe sur les Pull Requests pour detecter
+les problemes mecaniques. Tu ne remplaces pas le reviewer humain.
+
+Regles :
+- Tes commentaires sont informatifs, jamais bloquants
+- Tu utilises le ton &quot;suggestion&quot; : &quot;Considerez...&quot; plutot que &quot;Vous devez...&quot;
+- Tu ne commentes pas l'architecture ou les choix de design
+- Tu pointes vers la documentation existante quand c'est pertinent
+
+Ce que tu verifies :
+1. Respect du style guide : [LIEN VERS LE STYLE GUIDE]
+2. Conventions de nommage : [REGLES]
+3. Couverture de tests : chaque nouvelle fonction doit avoir un test
+4. Patterns interdits : [LISTE]
+5. Fichiers de configuration modifies : signaler pour attention particuliere
+
+Ce que tu ne fais pas :
+- Evaluer la pertinence fonctionnelle du changement
+- Suggerer des refactorings majeurs
+- Commenter les choix d'architecture
+- Bloquer ou approuver la PR
+
+Format de ton commentaire :
+## Premiere passe automatique
+
+**Style :** [OK / X points a verifier]
+**Tests :** [OK / tests manquants pour les fonctions X, Y]
+**Attention :** [fichiers sensibles modifies, le cas echeant]
+
+_Ce commentaire est genere par l'agent Code Review. Il ne remplace pas
+la review humaine._
+</code></pre>
+
+<hr />
+<h2 id="verification_3">Verification</h2>
+<ul>
+<li>[ ] L'agent Code Review commente les PR du repo pilote</li>
+<li>[ ] Les commentaires respectent le ton informatif (pas de faux positifs bloquants)</li>
+<li>[ ] L'agent Documentation detecte les PR impactant la documentation</li>
+<li>[ ] L'agent Onboarding repond correctement a 10 questions types</li>
+<li>[ ] L'agent Post-mortem genere un brouillon coherent a partir d'un canal incident test</li>
+<li>[ ] Le canal feedback-agent est cree et l'equipe sait comment l'utiliser</li>
+</ul>
+<hr />
+<p><em>Les agents IA dans une equipe technique fonctionnent quand ils reduisent le bruit, pas quand ils en ajoutent.</em></p>
+<h1 id="05-cabinet-comptable">05 -- Cabinet comptable</h1>
+<p><strong>Pour qui :</strong> cabinet d'expertise comptable ou de gestion, de 3 a 20 collaborateurs
+<strong>Temps de mise en place :</strong> 2 a 3 semaines
+<strong>Difficulte :</strong> Avance (contraintes reglementaires)</p>
+<hr />
+<h2 id="contexte_4">Contexte</h2>
+<p>Un cabinet comptable gere des dizaines de dossiers clients simultanement. Chaque dossier a ses echeances fiscales, ses documents a collecter, ses declarations a produire. Les collaborateurs passent un temps considerable sur le triage de documents, les rappels clients, et la verification de conformite.</p>
+<p>Le cabinet veut utiliser OpenClaw pour automatiser les taches administratives repetitives tout en respectant strictement le RGPD et le secret professionnel.</p>
+<hr />
+<h2 id="probleme_4">Probleme</h2>
+<ul>
+<li>Le triage des documents recus (factures, releves, pieces justificatives) est manuel et chronophage</li>
+<li>Les echeances fiscales sont suivies dans des tableurs, avec des risques d'oubli</li>
+<li>Les rappels aux clients pour les pieces manquantes sont envoyes trop tard</li>
+<li>La verification de conformite (TVA, charges sociales) repose sur l'experience individuelle</li>
+<li>Les nouveaux collaborateurs n'ont pas acces a la jurisprudence et aux procedures internes de facon structuree</li>
+</ul>
+<hr />
+<h2 id="configuration_4">Configuration</h2>
+<h3 id="infrastructure_4">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS dedie en France (OVH, Scaleway)</td>
+<td>15-30 EUR</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04 LTS</td>
+<td>--</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation on-premise</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Base de donnees</td>
+<td>PostgreSQL (chiffrement au repos)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Stockage documents</td>
+<td>Systeme de fichiers chiffre (LUKS)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication interne</td>
+<td>Mattermost self-hosted</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Obligation : hebergement en France ou dans l'UE.</strong> Le secret professionnel et le RGPD imposent que les donnees clients ne sortent pas de l'UE. Aucun appel API vers un LLM cloud ne doit contenir de donnees nominatives clients.</p>
+<h3 id="strategie-danonymisation">Strategie d'anonymisation</h3>
+<p>Avant tout traitement par un LLM :
+1. Les donnees nominatives (noms, SIRET, adresses, montants specifiques) sont remplacees par des placeholders
+2. L'agent travaille sur les donnees anonymisees
+3. Les placeholders sont restitues dans le resultat final
+4. Les logs de l'agent ne contiennent jamais de donnees nominatives</p>
+<h3 id="agents_2">Agents</h3>
+<p><strong>Agent Triage :</strong>
+- Recoit les documents entrants (scan, email, upload)
+- Classe par type : facture / releve bancaire / piece justificative / courrier fiscal / autre
+- Associe au dossier client correspondant
+- Signale les documents incomplets ou illisibles</p>
+<p><strong>Agent Echeances :</strong>
+- Maintient le calendrier fiscal de chaque dossier
+- Envoie des alertes aux collaborateurs : J-30, J-15, J-7, J-3
+- Genere la liste des pieces manquantes pour chaque echeance
+- Propose un brouillon de rappel client pour les pieces en retard</p>
+<p><strong>Agent Conformite :</strong>
+- Verifie les declarations avant soumission
+- Controle les taux de TVA appliques
+- Detecte les incoherences entre les documents et les declarations
+- Signale les points d'attention sans prendre de decision</p>
+<hr />
+<h2 id="mise-en-place_3">Mise en place</h2>
+<h3 id="semaine-1-infrastructure-securisee">Semaine 1 : Infrastructure securisee</h3>
+<ol>
+<li>Provisionner le VPS en France</li>
+<li>Configurer le chiffrement du disque (LUKS)</li>
+<li>Installer PostgreSQL avec chiffrement au repos</li>
+<li>Installer OpenClaw</li>
+<li>Configurer l'anonymisation des donnees (pipeline de pre-traitement)</li>
+<li>Tester que les logs ne contiennent aucune donnee nominative</li>
+</ol>
+<h3 id="semaine-2-agents-de-triage-et-echeances">Semaine 2 : Agents de triage et echeances</h3>
+<ol>
+<li>Deployer l'agent Triage avec les categories de documents du cabinet</li>
+<li>Tester sur un echantillon de 50 documents reels (anonymises)</li>
+<li>Configurer l'agent Echeances avec le calendrier fiscal en cours</li>
+<li>Tester les alertes sur des echeances proches</li>
+<li>Former 2 collaborateurs pilotes</li>
+</ol>
+<h3 id="semaine-3-conformite-et-deploiement">Semaine 3 : Conformite et deploiement</h3>
+<ol>
+<li>Deployer l'agent Conformite avec les regles fiscales de base</li>
+<li>Tester sur 10 dossiers de declarations passees</li>
+<li>Ajuster les regles selon les retours des experts-comptables</li>
+<li>Deployer pour l'ensemble du cabinet</li>
+<li>Documenter les procedures et les limites</li>
+</ol>
+<hr />
+<h2 id="resultat_4">Resultat</h2>
+<p>Apres deux mois d'utilisation :</p>
+<ul>
+<li><strong>Triage automatise a 85%</strong> : 85% des documents sont correctement classes et associes au bon dossier. Les 15% restants sont signales pour classification manuelle</li>
+<li><strong>Zero echeance oubliee</strong> : les alertes progressives (J-30 a J-3) ont elimine les retards de declaration</li>
+<li><strong>Rappels clients en temps voulu</strong> : les clients sont relances pour les pieces manquantes des que le seuil J-15 est atteint, au lieu du rappel de derniere minute habituel</li>
+<li><strong>Verification de conformite systematique</strong> : chaque declaration passe par l'agent avant soumission. Il ne remplace pas l'expert-comptable mais detecte les erreurs mecaniques (mauvais taux, montant incoherent)</li>
+<li><strong>Confidentialite preservee</strong> : l'audit des logs confirme l'absence de donnees nominatives dans les appels LLM</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises_4">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>L'anonymisation est non negociable.</strong> Ce n'est pas une option, c'est un prerequis. Le pipeline d'anonymisation doit etre teste et audite avant tout deploiement.</p>
+</li>
+<li>
+<p><strong>L'agent Conformite assiste, il ne certifie pas.</strong> L'expert-comptable reste responsable. L'agent detecte les anomalies, l'humain decide.</p>
+</li>
+<li>
+<p><strong>Les categories de triage doivent correspondre aux categories du cabinet, pas a des categories generiques.</strong> Chaque cabinet a sa propre nomenclature. Le prompt doit la refleter exactement.</p>
+</li>
+<li>
+<p><strong>Hebergement en France, pas juste en UE.</strong> Pour un cabinet comptable francais, l'hebergement en France simplifie la conformite et la communication avec les clients sur la securite de leurs donnees.</p>
+</li>
+<li>
+<p><strong>Former les collaborateurs sur ce que l'agent ne fait pas.</strong> La formation doit insister sur les limites : l'agent ne prend pas de decision fiscale, ne signe pas de declaration, ne communique pas directement avec les clients.</p>
+</li>
+</ol>
+<hr />
+<h2 id="contraintes-reglementaires">Contraintes reglementaires</h2>
+<h3 id="rgpd">RGPD</h3>
+<ul>
+<li>Registre des traitements : documenter l'utilisation d'OpenClaw dans le registre RGPD du cabinet</li>
+<li>Base legale : interet legitime (amelioration de l'efficacite interne) ou consentement client selon les cas</li>
+<li>Droit d'acces : les clients doivent pouvoir demander quelles donnees sont traitees par l'agent</li>
+<li>Duree de conservation : aligner sur les obligations comptables (10 ans pour les pieces comptables)</li>
+<li>Sous-traitance : si un LLM cloud est utilise, le fournisseur est un sous-traitant au sens du RGPD</li>
+</ul>
+<h3 id="secret-professionnel">Secret professionnel</h3>
+<ul>
+<li>Aucune donnee nominative ne doit etre transmise a un service tiers sans anonymisation prealable</li>
+<li>Les acces a OpenClaw doivent etre traces et auditables</li>
+<li>Un collaborateur qui quitte le cabinet doit perdre immediatement ses acces</li>
+</ul>
+<h3 id="recommandations-de-lordre-des-experts-comptables">Recommandations de l'Ordre des Experts-Comptables</h3>
+<ul>
+<li>Documenter l'utilisation de l'IA dans les procedures internes</li>
+<li>Informer les clients de l'utilisation d'outils IA dans le traitement de leurs dossiers</li>
+<li>Maintenir la responsabilite humaine sur toute production fiscale ou comptable</li>
+</ul>
+<hr />
+<h2 id="erreurs-courantes_4">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Envoyer des donnees nominatives au LLM</td>
+<td>Violation du RGPD et du secret professionnel</td>
+<td>Pipeline d'anonymisation obligatoire</td>
+</tr>
+<tr>
+<td>Agent qui "decide" du taux de TVA</td>
+<td>Erreur fiscale engageant la responsabilite du cabinet</td>
+<td>L'agent propose, l'expert-comptable valide</td>
+</tr>
+<tr>
+<td>Hebergement hors UE</td>
+<td>Non-conformite RGPD</td>
+<td>VPS en France, fournisseur UE uniquement</td>
+</tr>
+<tr>
+<td>Pas de trace d'audit</td>
+<td>Impossible de prouver la conformite</td>
+<td>Logs complets et non modifiables</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-triage">Template -- System prompt de l'agent Triage</h2>
+<pre class="codehilite"><code>Tu es l'assistant de triage documentaire du cabinet [NOM].
+
+Ton role est de classer les documents recus et de les associer aux dossiers clients.
+
+REGLE ABSOLUE : tu ne traites que des donnees anonymisees. Si tu detectes des
+donnees nominatives non anonymisees dans un document, tu le signales immediatement
+et tu ne le traites pas.
+
+Categories de documents :
+1. Facture d'achat
+2. Facture de vente
+3. Releve bancaire
+4. Bulletin de salaire
+5. Avis d'imposition
+6. Piece justificative diverse
+7. Courrier de l'administration fiscale
+8. Document non classifiable -&gt; signaler pour traitement manuel
+
+Pour chaque document :
+- Identifie la categorie
+- Identifie le dossier client (via le placeholder client)
+- Verifie la lisibilite et la completude
+- Signale les anomalies (montant manquant, date illisible, document tronque)
+
+Format de sortie :
+Categorie : [categorie]
+Dossier : [placeholder client]
+Statut : complet / incomplet / illisible
+Anomalies : [liste ou &quot;aucune&quot;]
+</code></pre>
+
+<hr />
+<h2 id="verification_4">Verification</h2>
+<ul>
+<li>[ ] Le VPS est heberge en France avec chiffrement du disque</li>
+<li>[ ] Le pipeline d'anonymisation fonctionne sur un echantillon de 20 documents</li>
+<li>[ ] Les logs ne contiennent aucune donnee nominative (audit)</li>
+<li>[ ] L'agent Triage classe correctement 80%+ d'un echantillon de 50 documents</li>
+<li>[ ] Les alertes d'echeances se declenchent aux bons seuils (J-30, J-15, J-7, J-3)</li>
+<li>[ ] L'agent Conformite detecte une erreur de taux de TVA inseree intentionnellement</li>
+<li>[ ] Le registre RGPD du cabinet mentionne le traitement OpenClaw</li>
+</ul>
+<hr />
+<p><em>Un cabinet comptable qui deploie de l'IA sans anonymisation prend un risque juridique disproportionne par rapport au gain operationnel. L'anonymisation est la premiere etape, pas la derniere.</em></p>
+<h1 id="06-startup-early-stage">06 -- Startup early-stage</h1>
+<p><strong>Pour qui :</strong> fondateurs de startup en phase de demarrage (pre-seed a seed), equipe de 2 a 8 personnes
+<strong>Temps de mise en place :</strong> 3 a 5 jours
+<strong>Difficulte :</strong> Intermediaire</p>
+<hr />
+<h2 id="contexte_5">Contexte</h2>
+<p>Une startup early-stage a des ressources limitees et des besoins disproportionnes. Les fondateurs portent tous les roles : produit, commercial, technique, finance, RH. Ils doivent communiquer regulierement avec leurs investisseurs, surveiller le marche, recruter les premiers employes, et construire le produit -- le tout avec un budget serre.</p>
+<p>OpenClaw peut devenir un multiplicateur de force en automatisant les taches a faible valeur ajoutee, liberant du temps pour les decisions strategiques.</p>
+<hr />
+<h2 id="probleme_5">Probleme</h2>
+<ul>
+<li>Les investor updates sont rediges a la derniere minute, souvent incomplets</li>
+<li>La veille concurrentielle est faite de facon sporadique et non structuree</li>
+<li>Le recrutement est lent : tri de CV manuel, suivi des candidatures dans des emails</li>
+<li>Les metriques cles (MRR, churn, runway) sont calculees manuellement dans des tableurs</li>
+<li>Les fondateurs passent plus de temps sur l'operationnel que sur la strategie</li>
+</ul>
+<hr />
+<h2 id="configuration_5">Configuration</h2>
+<h3 id="infrastructure_5">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS economique (Hetzner CX22) ou laptop local</td>
+<td>0-5 EUR</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation VPS ou locale</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Slack ou Mattermost (plan gratuit)</td>
+<td>gratuit</td>
+</tr>
+<tr>
+<td>Suivi</td>
+<td>Notion, Linear ou fichiers Markdown</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Service email existant</td>
+<td>existant</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Budget total : moins de 50 EUR/mois tout compris</strong> (VPS + API LLM).</p>
+<h3 id="agents_3">Agents</h3>
+<p><strong>Agent Investor Relations :</strong>
+- Collecte les metriques cles depuis les outils de la startup (tableur, base de donnees, API)
+- Genere un brouillon d'investor update mensuel au format standard
+- Inclut : metriques cles, faits marquants, defis, besoins, prochaines etapes
+- Le fondateur relit, ajuste le ton, et envoie</p>
+<p><strong>Agent Veille :</strong>
+- Surveille les sources definies (blogs, newsletters, Product Hunt, reseaux sociaux)
+- Genere un resume hebdomadaire des mouvements concurrentiels
+- Signale les evenements critiques en temps reel (levee de fonds d'un concurrent, lancement produit)
+- Classe par pertinence : impact direct / a surveiller / bruit de fond</p>
+<p><strong>Agent Recrutement :</strong>
+- Trie les candidatures recues par adequation avec la fiche de poste
+- Genere un resume de chaque CV avec points forts et points d'attention
+- Propose un brouillon de reponse (acceptation pour entretien / refus courtois)
+- Suit les candidatures en cours et relance les candidats en attente</p>
+<hr />
+<h2 id="mise-en-place_4">Mise en place</h2>
+<h3 id="jour-1-2-infrastructure-et-agent-investor-relations">Jour 1-2 : Infrastructure et agent Investor Relations</h3>
+<ol>
+<li>Installer OpenClaw (VPS ou local)</li>
+<li>Configurer l'agent Investor Relations avec :</li>
+<li>Le format d'investor update utilise par la startup</li>
+<li>Les sources de metriques (tableur, API, base de donnees)</li>
+<li>Le ton de communication avec les investisseurs</li>
+<li>Tester en generant l'update du mois precedent</li>
+<li>Comparer avec l'update reel et ajuster</li>
+</ol>
+<h3 id="jour-3-agent-veille">Jour 3 : Agent Veille</h3>
+<ol>
+<li>Definir les sources de veille (5 a 10 sources maximum au debut)</li>
+<li>Definir les concurrents a surveiller</li>
+<li>Configurer la frequence : resume hebdomadaire + alertes en temps reel</li>
+<li>Tester sur la semaine ecoulee</li>
+<li>Ajuster les filtres de pertinence</li>
+</ol>
+<h3 id="jour-4-5-agent-recrutement-et-stabilisation">Jour 4-5 : Agent Recrutement et stabilisation</h3>
+<ol>
+<li>Configurer l'agent Recrutement avec les fiches de poste actives</li>
+<li>Definir les criteres de tri (competences requises, nice-to-have, red flags)</li>
+<li>Tester sur un lot de 20 CV (reels ou anonymises)</li>
+<li>Configurer les notifications pour l'ensemble des agents</li>
+<li>Documenter les workflows pour l'equipe</li>
+</ol>
+<hr />
+<h2 id="resultat_5">Resultat</h2>
+<p>Apres un mois d'utilisation :</p>
+<ul>
+<li><strong>Investor updates en 30 minutes au lieu de 3 heures</strong> : l'agent collecte les metriques et genere le premier jet. Le fondateur ajuste le narratif et envoie. Les updates sortent a l'heure, chaque mois</li>
+<li><strong>Veille structuree</strong> : le resume hebdomadaire remplace la surveillance sporadique. Deux alertes critiques ont ete detectees (lancement concurrent, changement reglementaire) qui auraient ete manquees autrement</li>
+<li><strong>Tri de CV accelere</strong> : 80% du tri est fait par l'agent. Le fondateur ne passe du temps que sur les candidatures pre-selectionnees. Temps de recrutement reduit de 30%</li>
+<li><strong>Budget maitrise</strong> : l'ensemble de la configuration coute moins de 50 EUR/mois, soit le prix d'un outil SaaS unique</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises_5">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>L'investor update est le workflow a deployer en premier.</strong> C'est regulier, structure, et chaque fondateur deteste le faire. L'impact sur la relation investisseur est immediat : les updates arrivent a l'heure et sont plus complets.</p>
+</li>
+<li>
+<p><strong>La veille doit etre filtree agressivement.</strong> 10 sources bien choisies valent mieux que 50 sources qui generent du bruit. L'agent doit etre configure pour ignorer le bruit, pas pour tout rapporter.</p>
+</li>
+<li>
+<p><strong>Le tri de CV par IA a des biais.</strong> L'agent peut eliminer des profils atypiques qui seraient de bons candidats. Le fondateur doit verifier un echantillon des candidatures refusees par l'agent pour calibrer.</p>
+</li>
+<li>
+<p><strong>Pas de stack complexe en early-stage.</strong> Si l'equipe a 3 personnes, un VPS a 5 EUR et des fichiers Markdown suffisent. PostgreSQL et Mattermost viendront quand l'equipe depassera 8 personnes.</p>
+</li>
+<li>
+<p><strong>Documenter les prompts dans Git des le debut.</strong> Meme en early-stage, les prompts sont du code. Les versionner permet de revenir en arriere quand un changement degrade les resultats.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes_5">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Investor update envoye sans relecture</td>
+<td>Metriques incorrectes envoyees aux investisseurs</td>
+<td>Toujours relire et valider les chiffres manuellement</td>
+</tr>
+<tr>
+<td>Trop de sources de veille</td>
+<td>Resume hebdomadaire trop long, non lu</td>
+<td>Maximum 10 sources au debut, ajouter progressivement</td>
+</tr>
+<tr>
+<td>Confiance aveugle dans le tri de CV</td>
+<td>Bons candidats elimines par l'agent</td>
+<td>Verifier un echantillon de candidatures refusees</td>
+</tr>
+<tr>
+<td>Stack sur-dimensionnee</td>
+<td>Temps passe a maintenir l'infra au lieu de construire le produit</td>
+<td>Commencer minimal, evoluer avec l'equipe</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-investor-relations">Template -- System prompt de l'agent Investor Relations</h2>
+<pre class="codehilite"><code>Tu es l'assistant Investor Relations de [NOM DE LA STARTUP].
+
+Contexte :
+- [NOM] est une startup [SECTEUR] en phase [PHASE]
+- Derniere levee : [MONTANT] en [DATE]
+- Investisseurs : [LISTE]
+- Metriques cles suivies : MRR, nombre d'utilisateurs, churn, runway
+
+Format de l'investor update mensuel :
+
+## [NOM] - Update [MOIS ANNEE]
+
+### Metriques cles
+| Metrique | Ce mois | Mois precedent | Variation |
+|----------|---------|----------------|-----------|
+| MRR | | | |
+| Utilisateurs actifs | | | |
+| Churn | | | |
+| Runway (mois) | | | |
+
+### Faits marquants
+- [3 a 5 points positifs du mois]
+
+### Defis
+- [2 a 3 points de friction ou de risque]
+
+### Comment vous pouvez aider
+- [1 a 2 demandes concretes aux investisseurs]
+
+### Prochaines etapes
+- [3 a 5 objectifs pour le mois suivant]
+
+Regles :
+- Tu collectes les metriques depuis [SOURCE]
+- Tu generes un brouillon, jamais un document final
+- Tu ne specules pas sur les chiffres : si une donnee manque, tu le signales
+- Tu gardes un ton professionnel et factuel, ni trop optimiste ni alarmiste
+</code></pre>
+
+<hr />
+<h2 id="verification_5">Verification</h2>
+<ul>
+<li>[ ] L'agent Investor Relations genere un update coherent avec les metriques disponibles</li>
+<li>[ ] Le format de l'update correspond a celui utilise habituellement par la startup</li>
+<li>[ ] L'agent Veille produit un resume hebdomadaire pertinent</li>
+<li>[ ] Les alertes critiques sont detectees et notifiees rapidement</li>
+<li>[ ] L'agent Recrutement classe correctement un lot de 20 CV test</li>
+<li>[ ] Le cout mensuel total reste sous 50 EUR</li>
+</ul>
+<hr />
+<p><em>Une startup early-stage n'a pas besoin d'une plateforme IA enterprise. Elle a besoin de 3 agents bien configures et d'un budget maitrise.</em></p>
+<h1 id="07-comment-soumettre-votre-cas-dusage">07 -- Comment soumettre votre cas d'usage</h1>
+<p><strong>Pour qui :</strong> toute personne ou equipe utilisant OpenClaw en situation reelle
+<strong>Temps requis :</strong> 30 minutes a 1 heure
+<strong>Difficulte :</strong> Debutant</p>
+<hr />
+<h2 id="pourquoi-contribuer">Pourquoi contribuer</h2>
+<p>Les cas d'usage sont la partie la plus utile de ce playbook. Chaque nouveau cas aide d'autres praticiens a :
+- Evaluer si OpenClaw correspond a leur situation
+- Gagner du temps en reutilisant une configuration testee
+- Eviter les erreurs que d'autres ont deja faites</p>
+<p>Votre experience, meme partielle, a de la valeur. Un cas d'usage n'a pas besoin d'etre parfait pour etre utile.</p>
+<hr />
+<h2 id="format-standard">Format standard</h2>
+<p>Chaque cas d'usage suit cette structure. Vous pouvez copier ce template directement.</p>
+<pre class="codehilite"><code class="language-markdown">---
+status: draft
+audience: both
+chapter: 06
+last_updated: YYYY-MM
+contributors: [votre-github-handle]
+lang: fr
+---
+
+# XX -- [Titre du cas d'usage]
+
+**Pour qui :** [profil en une ligne]
+**Temps de mise en place :** [estimation]
+**Difficulte :** Debutant / Intermediaire / Avance
+
+---
+
+## Contexte
+
+Qui vous etes, ce que fait votre organisation, la taille de l'equipe.
+
+## Probleme
+
+Ce que vous deviez resoudre ou automatiser. Soyez specifique.
+
+## Configuration
+
+Votre infrastructure (serveur, OS, outils).
+Vos agents (combien, quels roles).
+Votre budget approximatif.
+
+## Mise en place
+
+Les etapes que vous avez suivies, dans l'ordre chronologique.
+
+## Resultat
+
+Ce qui a change concretement. Chiffres si possible (temps gagne, taux de reussite, couts).
+
+## Lecons apprises
+
+Ce que vous referiez differemment. Ce qui a mieux marche que prevu.
+
+## Erreurs courantes
+
+Les pieges que vous avez rencontres et comment les eviter.
+
+## Template
+
+Un prompt, une configuration, ou un snippet reutilisable par d'autres.
+
+## Verification
+
+Une checklist pour valider que la configuration fonctionne.
+</code></pre>
+
+<hr />
+<h2 id="option-1-soumettre-via-issue-github">Option 1 : Soumettre via Issue GitHub</h2>
+<p>C'est la methode la plus simple. Aucune connaissance de Git n'est requise.</p>
+<ol>
+<li>Allez sur <a href="https://github.com/alexwill87/openclawfieldplaybook/issues">github.com/alexwill87/openclawfieldplaybook/issues</a></li>
+<li>Cliquez sur <strong>New Issue</strong></li>
+<li>Choisissez le template <strong>suggestion</strong></li>
+<li>Dans le titre, ecrivez : <code>use-case: [votre titre]</code></li>
+<li>Dans le corps, collez le format standard ci-dessus et remplissez-le</li>
+<li>Ajoutez le label <code>use-case</code></li>
+<li>Soumettez</li>
+</ol>
+<p>Un agent IA analysera votre Issue et postera un commentaire. Un maintainer humain validera et integrera le cas dans le chapitre.</p>
+<hr />
+<h2 id="option-2-soumettre-via-pull-request">Option 2 : Soumettre via Pull Request</h2>
+<p>Si vous etes a l'aise avec GitHub :</p>
+<ol>
+<li>Forkez le repo <a href="https://github.com/alexwill87/openclawfieldplaybook">alexwill87/openclawfieldplaybook</a></li>
+<li>Creez votre fichier dans <code>sections/06-use-cases/</code></li>
+<li>Nommez-le avec le prochain numero disponible : <code>XX-titre-court.md</code></li>
+<li>Utilisez le format standard ci-dessus</li>
+<li>Ajoutez le frontmatter YAML avec <code>status: draft</code></li>
+<li>Committez avec un message clair : <code>feat: add use case for [votre titre]</code></li>
+<li>Ouvrez une Pull Request vers le repo principal</li>
+</ol>
+<h3 id="regles-pour-la-pr">Regles pour la PR :</h3>
+<ul>
+<li>Un fichier par cas d'usage</li>
+<li>Le frontmatter YAML est obligatoire</li>
+<li>Le status initial est toujours <code>draft</code></li>
+<li>Pas de donnees nominatives (clients, employeurs) sans leur accord</li>
+<li>Les montants et metriques peuvent etre approximatifs, indiquez-le si c'est le cas</li>
+</ul>
+<hr />
+<h2 id="ce-qui-rend-un-cas-dusage-utile">Ce qui rend un cas d'usage utile</h2>
+<table>
+<thead>
+<tr>
+<th>Critere</th>
+<th>Bon exemple</th>
+<th>Mauvais exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Specificite</td>
+<td>"Nous avons reduit le temps de triage de 3h a 45min"</td>
+<td>"Ca a bien marche"</td>
+</tr>
+<tr>
+<td>Reproductibilite</td>
+<td>Configuration complete avec system prompt</td>
+<td>"On a configure un agent"</td>
+</tr>
+<tr>
+<td>Honnetete</td>
+<td>"L'agent se trompe sur 15% des cas, voici comment on gere"</td>
+<td>"Ca marche parfaitement"</td>
+</tr>
+<tr>
+<td>Template</td>
+<td>Prompt copier-coller pret a l'emploi</td>
+<td>Description vague du prompt</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ce-que-nous-recherchons-particulierement">Ce que nous recherchons particulierement</h2>
+<p>Les cas d'usage suivants sont les plus demandes par la communaute. Si vous avez de l'experience dans l'un de ces domaines, votre contribution sera particulierement valorisee :</p>
+<ul>
+<li>Artisan / metiers manuels (devis, suivi chantier, relance client)</li>
+<li>Profession medicale (prise de rendez-vous, suivi patient, conformite)</li>
+<li>Association / ONG (gestion benevoles, communication, reporting)</li>
+<li>Enseignement (preparation de cours, suivi eleves, administration)</li>
+<li>Profession juridique (triage dossiers, recherche jurisprudentielle, conformite)</li>
+<li>Immobilier (gestion locative, relation proprietaires, suivi travaux)</li>
+</ul>
+<hr />
+<h2 id="apres-la-soumission">Apres la soumission</h2>
+<ol>
+<li>Un agent IA analyse votre contribution et poste un commentaire</li>
+<li>Un maintainer humain relit le cas d'usage</li>
+<li>Si des ajustements sont necessaires, ils sont demandes via commentaire</li>
+<li>Le cas est merge avec le status <code>draft</code> puis passe en <code>review</code> puis <code>complete</code></li>
+<li>Le cas apparait dans le sommaire du chapitre 6</li>
+</ol>
+<p>Temps de traitement habituel : 1 a 2 semaines.</p>
+<hr />
+<h2 id="questions-frequentes">Questions frequentes</h2>
+<p><strong>Mon cas est trop simple, est-ce utile ?</strong>
+Oui. Les cas simples sont souvent les plus utiles car ils sont accessibles a davantage de personnes.</p>
+<p><strong>Je ne peux pas partager les details de mon entreprise.</strong>
+Anonymisez. Remplacez les noms, les montants exacts, et les details sensibles par des valeurs generiques. Le format et l'experience sont ce qui compte.</p>
+<p><strong>Mon cas d'usage n'a pas fonctionne.</strong>
+Partagez-le quand meme. Un echec documente est aussi utile qu'une reussite. Expliquez ce qui n'a pas marche et pourquoi.</p>
+<p><strong>Je ne parle pas francais.</strong>
+Les contributions en anglais sont bienvenues. Un contributeur ou un agent se chargera de la traduction.</p>
+<hr />
+<p><em>Chaque cas d'usage soumis rend ce playbook plus utile pour le prochain praticien. Votre experience compte.</em></p>
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Soumettre via Issue</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+</section>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="chapitre-05.html">&larr; Chapitre 5 -- Maintenance</a>
+<a href="chapitre-07.html">Chapitre 7 -- Localisation &rarr;</a>
+</div>
+
+    <footer>
+      <p>Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> par <a href="https://github.com/alexwill87">Alex Willemetz</a> | <a href="https://github.com/alexwill87/openclaw-field-playbook">GitHub</a></p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

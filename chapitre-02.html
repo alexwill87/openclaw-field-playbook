@@ -1,0 +1,2780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 2 -- Installation | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand"><a href="index.html">OpenClaw Field Playbook</a></div>
+  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  <div class="nav-actions">
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html">Accueil</a>
+<a href="chapitre-00.html">Chapitre 0 -- Guide de lecture</a>
+<a href="chapitre-01.html">Chapitre 1 -- Definition</a>
+<a href="chapitre-02.html" class="active">Chapitre 2 -- Installation</a>
+<a href="chapitre-03.html">Chapitre 3 -- Configuration</a>
+<a href="chapitre-04.html">Chapitre 4 -- Personnalisation</a>
+<a href="chapitre-05.html">Chapitre 5 -- Maintenance</a>
+<a href="chapitre-06.html">Chapitre 6 -- Cas d'usage</a>
+<a href="chapitre-07.html">Chapitre 7 -- Localisation</a>
+<a href="checklist.html">Checklist</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="chapitre-2-installation">Chapitre 2 -- Installation</h1>
+<blockquote>
+<p>Du VPS vierge a une instance OpenClaw fonctionnelle. Etape par etape, sans rien supposer.</p>
+</blockquote>
+<p>Ce chapitre est le plus dense du playbook. Il couvre 19 sections, de la preparation du serveur jusqu'au premier deploiement automatise. Chaque section est autonome : vous pouvez reprendre a n'importe quel point si une etape a deja ete faite.</p>
+<p>Temps total estime : 3 a 5 heures pour une premiere installation complete.</p>
+<hr />
+<h2 id="sommaire">Sommaire</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Section</th>
+<th>Description</th>
+<th>Temps estime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td><a href="01-prerequis.md">Prerequis</a></td>
+<td>Materiel, logiciel, comptes, budget</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>02</td>
+<td><a href="02-securiser-vps.md">Securiser le VPS</a></td>
+<td>Utilisateur, SSH, pare-feu, mises a jour</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>03</td>
+<td><a href="03-tailscale.md">Tailscale</a></td>
+<td>Reseau prive mesh VPN</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>04</td>
+<td><a href="04-docker.md">Docker</a></td>
+<td>Docker Engine et Docker Compose</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>05</td>
+<td><a href="05-nodejs-pm2.md">Node.js et PM2</a></td>
+<td>Runtime Node via nvm, gestionnaire PM2</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>06</td>
+<td><a href="06-structure-dossiers.md">Structure de dossiers</a></td>
+<td>Arborescence conventionnelle du projet</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>07</td>
+<td><a href="07-vault.md">HashiCorp Vault</a></td>
+<td>Gestion centralisee des secrets</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>08</td>
+<td><a href="08-postgresql.md">PostgreSQL</a></td>
+<td>Base de donnees via Docker</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>09</td>
+<td><a href="09-health-check.md">Health check</a></td>
+<td>Script de verification de l'infrastructure</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="10-openclaw-install.md">Installation OpenClaw</a></td>
+<td>Installation de l'outil principal</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="11-workspace.md">Workspace</a></td>
+<td>Structure du workspace OpenClaw</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="12-config-openclaw.md">Configuration OpenClaw</a></td>
+<td>Fichier de configuration commente</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="13-openrouter.md">OpenRouter</a></td>
+<td>Connexion multi-modeles IA</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="14-telegram.md">Telegram</a></td>
+<td>Bot de notification et commande</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="15-gateway-systemd.md">Gateway systemd</a></td>
+<td>Service systemd pour la gateway</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="16-verification-complete.md">Verification complete</a></td>
+<td>Checklist post-installation</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="17-git-init.md">Git init</a></td>
+<td>Depot Git et premier commit</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="18-claude-md.md">CLAUDE.md</a></td>
+<td>Fichier de reference pour agents IA</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="19-script-deploy.md">Script de deploiement</a></td>
+<td>Script deploy.sh idempotent</td>
+<td>15 min</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ordre-recommande">Ordre recommande</h2>
+<p>Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances :</p>
+<ul>
+<li>La section 07 (Vault) doit etre faite avant 08 (PostgreSQL), 13 (OpenRouter) et 14 (Telegram)</li>
+<li>La section 04 (Docker) doit etre faite avant 07 (Vault) et 08 (PostgreSQL)</li>
+<li>La section 05 (Node.js) doit etre faite avant 10 (OpenClaw)</li>
+<li>La section 16 (Verification) suppose que toutes les sections precedentes sont terminees</li>
+</ul>
+<h2 id="conventions-dans-ce-chapitre">Conventions dans ce chapitre</h2>
+<ul>
+<li>Les commandes sont prefixees par <code>$</code> pour un utilisateur normal, <code>#</code> pour root</li>
+<li>Les blocs <code>IMPORTANT</code> signalent un risque de blocage</li>
+<li>Les blocs <code>VERIFICATION</code> indiquent comment confirmer que l'etape a fonctionne</li>
+<li>Les chemins sont relatifs au home de l'utilisateur (<code>~</code>) sauf indication contraire</li>
+</ul>
+<hr />
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+<h1 id="21-prerequis-materiel-et-logiciel">2.1 -- Prerequis materiel et logiciel</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Avant de toucher au serveur, il faut savoir ce qu'on achete, ce qu'on cree comme comptes et combien ca coute. Cette section liste tout ce qui est necessaire AVANT de commencer l'installation.</p>
+<h2 id="prerequis-materiel-le-vps">Prerequis materiel : le VPS</h2>
+<p>Configuration minimale testee et validee :</p>
+<table>
+<thead>
+<tr>
+<th>Ressource</th>
+<th>Minimum</th>
+<th>Recommande</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>4 vCPU</td>
+<td>6 vCPU</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>8 Go</td>
+<td>16 Go</td>
+</tr>
+<tr>
+<td>Stockage</td>
+<td>80 Go SSD</td>
+<td>160 Go NVMe</td>
+</tr>
+<tr>
+<td>Bande passante</td>
+<td>20 To/mois</td>
+<td>Illimite</td>
+</tr>
+<tr>
+<td>Localisation</td>
+<td>Europe (RGPD)</td>
+<td>Europe (RGPD)</td>
+</tr>
+</tbody>
+</table>
+<p>Fournisseurs testes :</p>
+<ul>
+<li><strong>Hetzner</strong> (recommande) : CPX31 a environ 15 EUR/mois. Excellent rapport qualite/prix. Datacenters en Allemagne et Finlande.</li>
+<li><strong>OVH</strong> : VPS Essential a environ 12 EUR/mois. Datacenters en France. Latence plus faible depuis la France.</li>
+</ul>
+<h2 id="systeme-dexploitation">Systeme d'exploitation</h2>
+<p><strong>Ubuntu 24.04 LTS</strong> -- c'est la seule version testee dans ce playbook. Les commandes sont ecrites pour Ubuntu/Debian. Si vous utilisez autre chose, adaptez.</p>
+<h2 id="comptes-a-creer">Comptes a creer</h2>
+<p>Creez ces comptes AVANT de commencer l'installation :</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+<th>Pourquoi</th>
+<th>Gratuit ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hetzner ou OVH</td>
+<td>hetzner.com / ovh.com</td>
+<td>Heberger le VPS</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>Tailscale</td>
+<td>tailscale.com</td>
+<td>VPN mesh prive</td>
+<td>Oui (jusqu'a 100 machines)</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>github.com</td>
+<td>Depot de code, CI/CD</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td>openrouter.ai</td>
+<td>Acces multi-modeles IA</td>
+<td>Credits a l'usage</td>
+</tr>
+<tr>
+<td>Telegram</td>
+<td>telegram.org</td>
+<td>Notifications et commandes</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>HashiCorp Cloud (optionnel)</td>
+<td>cloud.hashicorp.com</td>
+<td>Backup Vault cloud</td>
+<td>Tier gratuit</td>
+</tr>
+</tbody>
+</table>
+<h2 id="budget-mensuel-estime">Budget mensuel estime</h2>
+<table>
+<thead>
+<tr>
+<th>Poste</th>
+<th>Cout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPS (Hetzner CPX31)</td>
+<td>15 EUR</td>
+</tr>
+<tr>
+<td>OpenRouter (usage modere)</td>
+<td>5-20 EUR</td>
+</tr>
+<tr>
+<td>Nom de domaine (optionnel)</td>
+<td>1 EUR</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>21-36 EUR/mois</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Le cout OpenRouter depend fortement du modele utilise et du volume de requetes. Claude Sonnet coute environ 3$/M tokens en entree. Haiku est 10x moins cher.</p>
+<h2 id="logiciels-sur-votre-machine-locale">Logiciels sur votre machine locale</h2>
+<p>Sur votre poste de travail (pas le VPS), vous aurez besoin de :</p>
+<ul>
+<li>Un terminal SSH (Terminal natif sur Mac/Linux, Windows Terminal + OpenSSH sur Windows)</li>
+<li>Git</li>
+<li>Un editeur de texte (VS Code recommande, avec l'extension Remote-SSH)</li>
+<li>Tailscale installe localement</li>
+</ul>
+<h2 id="competences-attendues">Competences attendues</h2>
+<p>Ce playbook suppose que vous savez :</p>
+<ul>
+<li>Ouvrir un terminal et taper des commandes</li>
+<li>Vous connecter en SSH a un serveur</li>
+<li>Lire un message d'erreur en anglais</li>
+</ul>
+<p>Si vous ne savez pas faire ca, commencez par un tutoriel SSH basique avant de continuer.</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<ul>
+<li><strong>Prendre un VPS avec 2 Go de RAM</strong> : Vault + PostgreSQL + Node.js + Docker saturent rapidement. 8 Go est le strict minimum.</li>
+<li><strong>Oublier de creer le compte OpenRouter avant</strong> : L'installation d'OpenClaw demande une cle API des le debut.</li>
+<li><strong>Choisir un datacenter hors Europe</strong> : Si vos donnees sont europeennes, la localisation du serveur importe (RGPD).</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<p>Avant de passer a la section suivante, confirmez :</p>
+<ul>
+<li>[ ] VPS commande et accessible (vous avez l'IP et le mot de passe root)</li>
+<li>[ ] Comptes Tailscale, GitHub, OpenRouter crees</li>
+<li>[ ] SSH fonctionne depuis votre poste local vers le VPS</li>
+<li>[ ] Ubuntu 24.04 LTS installe sur le VPS</li>
+</ul>
+<h2 id="temps-estime">Temps estime</h2>
+<p>15 minutes (hors creation de comptes et commande VPS).</p>
+<h1 id="22-securiser-le-vps">2.2 -- Securiser le VPS</h1>
+<h2 id="contexte_1">Contexte</h2>
+<p>Un VPS neuf est expose a Internet avec un acces root par mot de passe. C'est une cible facile. Cette section blinde le serveur AVANT d'installer quoi que ce soit. Chaque commande est a executer dans l'ordre.</p>
+<h2 id="etape-1-premiere-connexion-en-root">Etape 1 : Premiere connexion en root</h2>
+<p>Depuis votre poste local :</p>
+<pre class="codehilite"><code class="language-bash">$ ssh root@VOTRE_IP_VPS
+</code></pre>
+
+<p>Acceptez l'empreinte SSH si c'est la premiere connexion.</p>
+<h2 id="etape-2-mettre-a-jour-le-systeme">Etape 2 : Mettre a jour le systeme</h2>
+<pre class="codehilite"><code class="language-bash"># apt update &amp;&amp; apt upgrade -y
+# apt install -y curl wget git ufw fail2ban unattended-upgrades
+</code></pre>
+
+<h2 id="etape-3-creer-un-utilisateur-non-root">Etape 3 : Creer un utilisateur non-root</h2>
+<p>Ne travaillez JAMAIS en root au quotidien. Creez un utilisateur dedie :</p>
+<pre class="codehilite"><code class="language-bash"># adduser deploy
+</code></pre>
+
+<p>Repondez aux questions (mot de passe fort, le reste peut etre vide).</p>
+<p>Donnez-lui les droits sudo :</p>
+<pre class="codehilite"><code class="language-bash"># usermod -aG sudo deploy
+</code></pre>
+
+<h2 id="etape-4-configurer-lauthentification-par-cle-ssh">Etape 4 : Configurer l'authentification par cle SSH</h2>
+<p>Sur votre machine LOCALE (pas le VPS), generez une cle si vous n'en avez pas :</p>
+<pre class="codehilite"><code class="language-bash">$ ssh-keygen -t ed25519 -C &quot;votre-email@example.com&quot;
+</code></pre>
+
+<p>Copiez la cle publique sur le VPS :</p>
+<pre class="codehilite"><code class="language-bash">$ ssh-copy-id deploy@VOTRE_IP_VPS
+</code></pre>
+
+<p>Testez la connexion sans mot de passe :</p>
+<pre class="codehilite"><code class="language-bash">$ ssh deploy@VOTRE_IP_VPS
+</code></pre>
+
+<p>Si ca marche, passez a l'etape suivante. Si non, ne desactivez PAS le mot de passe.</p>
+<h2 id="etape-5-desactiver-lauthentification-par-mot-de-passe">Etape 5 : Desactiver l'authentification par mot de passe</h2>
+<p><strong>IMPORTANT</strong> : Ne faites cette etape QUE si la connexion par cle SSH fonctionne. Sinon vous serez bloque hors du serveur.</p>
+<p>Editez la configuration SSH :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo nano /etc/ssh/sshd_config
+</code></pre>
+
+<p>Modifiez (ou ajoutez) ces lignes :</p>
+<pre class="codehilite"><code>PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+UsePAM no
+</code></pre>
+
+<p>Redemarrez SSH :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl restart sshd
+</code></pre>
+
+<p><strong>Gardez votre session actuelle ouverte</strong> et testez dans un NOUVEAU terminal :</p>
+<pre class="codehilite"><code class="language-bash">$ ssh deploy@VOTRE_IP_VPS
+</code></pre>
+
+<h2 id="etape-6-configurer-le-pare-feu-ufw">Etape 6 : Configurer le pare-feu UFW</h2>
+<p>Politique par defaut : tout bloquer en entree, tout autoriser en sortie.</p>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw default deny incoming
+$ sudo ufw default allow outgoing
+</code></pre>
+
+<p>Autoriser SSH (sinon vous perdez l'acces) :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw allow ssh
+</code></pre>
+
+<p>Activer le pare-feu :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw enable
+</code></pre>
+
+<p>Verifier l'etat :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw status verbose
+</code></pre>
+
+<p>Resultat attendu :</p>
+<pre class="codehilite"><code>Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : N'ouvrez PAS d'autres ports. Tous les services (Vault, PostgreSQL, OpenClaw) seront accessibles uniquement via Tailscale, pas via l'IP publique.</p>
+<h2 id="etape-7-configurer-fail2ban">Etape 7 : Configurer fail2ban</h2>
+<p>fail2ban bloque les IP qui tentent trop de connexions SSH :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+$ sudo nano /etc/fail2ban/jail.local
+</code></pre>
+
+<p>Trouvez la section <code>[sshd]</code> et assurez-vous qu'elle contient :</p>
+<pre class="codehilite"><code class="language-ini">[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 3600
+findtime = 600
+</code></pre>
+
+<p>Redemarrez fail2ban :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl restart fail2ban
+$ sudo systemctl enable fail2ban
+</code></pre>
+
+<h2 id="etape-8-mises-a-jour-automatiques-de-securite">Etape 8 : Mises a jour automatiques de securite</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo dpkg-reconfigure -plow unattended-upgrades
+</code></pre>
+
+<p>Selectionnez "Yes" pour activer les mises a jour automatiques.</p>
+<p>Verifiez la configuration :</p>
+<pre class="codehilite"><code class="language-bash">$ cat /etc/apt/apt.conf.d/20auto-upgrades
+</code></pre>
+
+<p>Resultat attendu :</p>
+<pre class="codehilite"><code>APT::Periodic::Update-Package-Lists &quot;1&quot;;
+APT::Periodic::Unattended-Upgrade &quot;1&quot;;
+</code></pre>
+
+<h2 id="etape-9-configurer-le-fuseau-horaire">Etape 9 : Configurer le fuseau horaire</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo timedatectl set-timezone Europe/Paris
+$ timedatectl
+</code></pre>
+
+<h2 id="erreurs-courantes_1">Erreurs courantes</h2>
+<ul>
+<li><strong>Se bloquer hors du serveur</strong> : Toujours tester la connexion SSH par cle AVANT de desactiver le mot de passe. Gardez une session ouverte pendant les changements SSH.</li>
+<li><strong>Oublier d'autoriser SSH dans UFW avant de l'activer</strong> : Vous perdez l'acces. La plupart des fournisseurs offrent une console VNC de secours.</li>
+<li><strong>Ne pas installer fail2ban</strong> : Les bots scannent en permanence. Sans fail2ban, vous verrez des milliers de tentatives de connexion par jour.</li>
+</ul>
+<h2 id="verification_1">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw status
+$ sudo systemctl status fail2ban
+$ sudo systemctl status sshd
+$ cat /etc/ssh/sshd_config | grep -E &quot;PermitRoot|PasswordAuth&quot;
+</code></pre>
+
+<p>Resultats attendus :
+- UFW actif, seul le port 22 ouvert
+- fail2ban actif
+- sshd actif
+- PermitRootLogin no, PasswordAuthentication no</p>
+<h2 id="temps-estime_1">Temps estime</h2>
+<p>20 minutes.</p>
+<h1 id="23-reseau-prive-tailscale">2.3 -- Reseau prive Tailscale</h1>
+<h2 id="contexte_2">Contexte</h2>
+<p>Tailscale cree un reseau prive (VPN mesh) entre vos machines. Chaque machine recoit une IP privee (en 100.x.x.x). Le principe fondamental : <strong>aucun service n'est expose sur l'IP publique du VPS</strong>. Vault, PostgreSQL, OpenClaw -- tout passe par Tailscale.</p>
+<p>Avantages :
+- Zero configuration reseau complexe
+- Chiffrement de bout en bout (WireGuard)
+- Fonctionne meme derriere un NAT
+- Gratuit jusqu'a 100 machines</p>
+<h2 id="etape-1-installer-tailscale-sur-le-vps">Etape 1 : Installer Tailscale sur le VPS</h2>
+<pre class="codehilite"><code class="language-bash">$ curl -fsSL https://tailscale.com/install.sh | sh
+</code></pre>
+
+<h2 id="etape-2-demarrer-et-authentifier">Etape 2 : Demarrer et authentifier</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo tailscale up
+</code></pre>
+
+<p>Cette commande affiche un lien d'authentification. Ouvrez ce lien dans votre navigateur et connectez-vous avec votre compte Tailscale.</p>
+<h2 id="etape-3-obtenir-lip-tailscale">Etape 3 : Obtenir l'IP Tailscale</h2>
+<pre class="codehilite"><code class="language-bash">$ tailscale ip -4
+</code></pre>
+
+<p>Notez cette IP (format 100.x.x.x). C'est l'adresse que vous utiliserez pour tous les services.</p>
+<h2 id="etape-4-verifier-la-connexion">Etape 4 : Verifier la connexion</h2>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+</code></pre>
+
+<p>Vous devez voir votre VPS dans la liste des machines connectees.</p>
+<h2 id="etape-5-installer-tailscale-sur-votre-machine-locale">Etape 5 : Installer Tailscale sur votre machine locale</h2>
+<p>Installez Tailscale sur votre poste de travail egalement :
+- <strong>Mac</strong> : <code>brew install tailscale</code> ou depuis le Mac App Store
+- <strong>Linux</strong> : <code>curl -fsSL https://tailscale.com/install.sh | sh</code>
+- <strong>Windows</strong> : Telechargez depuis tailscale.com</p>
+<p>Puis <code>tailscale up</code> et authentifiez.</p>
+<h2 id="etape-6-tester-la-connectivite">Etape 6 : Tester la connectivite</h2>
+<p>Depuis votre machine locale :</p>
+<pre class="codehilite"><code class="language-bash">$ ping VOTRE_IP_TAILSCALE_VPS
+$ ssh deploy@VOTRE_IP_TAILSCALE_VPS
+</code></pre>
+
+<p>A partir de maintenant, utilisez toujours l'IP Tailscale pour vous connecter au VPS, pas l'IP publique.</p>
+<h2 id="etape-7-optionnel-desactiver-ssh-sur-lip-publique">Etape 7 (optionnel) : Desactiver SSH sur l'IP publique</h2>
+<p>Si vous etes confiant que Tailscale fonctionne, vous pouvez restreindre SSH a Tailscale uniquement :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw delete allow ssh
+$ sudo ufw allow in on tailscale0 to any port 22
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : Ne faites ceci QUE si vous avez confirme que SSH via Tailscale fonctionne. Gardez la console VNC du fournisseur comme plan de secours.</p>
+<h2 id="principe-darchitecture">Principe d'architecture</h2>
+<p>A partir de cette etape, la regle est :</p>
+<pre class="codehilite"><code>IP publique : RIEN d'expose (sauf SSH si necessaire)
+IP Tailscale : TOUT passe par la
+</code></pre>
+
+<p>PostgreSQL ecoute sur 100.x.x.x:5432, pas sur 0.0.0.0.
+Vault ecoute sur 100.x.x.x:8200, pas sur 0.0.0.0.
+La gateway OpenClaw ecoute sur 100.x.x.x:3000, pas sur 0.0.0.0.</p>
+<h2 id="erreurs-courantes_2">Erreurs courantes</h2>
+<ul>
+<li><strong>Oublier d'installer Tailscale sur la machine locale</strong> : Sans Tailscale des deux cotes, pas de reseau prive.</li>
+<li><strong>Utiliser l'IP publique pour les services</strong> : Tout le point de Tailscale est d'eviter ca. Si un service ecoute sur 0.0.0.0, corrigez pour ecouter sur l'IP Tailscale uniquement.</li>
+<li><strong>Tailscale qui se deconnecte</strong> : Ajoutez <code>--ssh</code> a <code>tailscale up</code> pour maintenir la connexion, et activez le demarrage automatique : <code>sudo systemctl enable tailscaled</code>.</li>
+</ul>
+<h2 id="verification_2">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+$ tailscale ip -4
+$ ping -c 3 $(tailscale ip -4)
+</code></pre>
+
+<p>Resultats attendus :
+- Status montre la machine comme "active"
+- IP en 100.x.x.x
+- Ping repond sans perte</p>
+<h2 id="temps-estime_2">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="24-docker-et-docker-compose">2.4 -- Docker et Docker Compose</h1>
+<h2 id="contexte_3">Contexte</h2>
+<p>Docker fait tourner Vault, PostgreSQL et potentiellement d'autres services dans des conteneurs isoles. Docker Compose orchestre ces conteneurs avec un simple fichier YAML.</p>
+<h2 id="etape-1-installer-les-dependances">Etape 1 : Installer les dependances</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo apt update
+$ sudo apt install -y ca-certificates curl gnupg
+</code></pre>
+
+<h2 id="etape-2-ajouter-le-depot-officiel-docker">Etape 2 : Ajouter le depot officiel Docker</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo install -m 0755 -d /etc/apt/keyrings
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+$ sudo chmod a+r /etc/apt/keyrings/docker.gpg
+</code></pre>
+
+<pre class="codehilite"><code class="language-bash">$ echo \
+  &quot;deb [arch=&quot;$(dpkg --print-architecture)&quot; signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  &quot;$(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;)&quot; stable&quot; | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+
+<h2 id="etape-3-installer-docker-engine">Etape 3 : Installer Docker Engine</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo apt update
+$ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre>
+
+<h2 id="etape-4-ajouter-lutilisateur-au-groupe-docker">Etape 4 : Ajouter l'utilisateur au groupe docker</h2>
+<p>Pour eviter de taper <code>sudo</code> devant chaque commande docker :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo usermod -aG docker $USER
+$ newgrp docker
+</code></pre>
+
+<h2 id="etape-5-verifier-linstallation">Etape 5 : Verifier l'installation</h2>
+<pre class="codehilite"><code class="language-bash">$ docker --version
+$ docker compose version
+$ docker run hello-world
+</code></pre>
+
+<p>Resultat attendu : "Hello from Docker!" dans la sortie.</p>
+<h2 id="note-sur-docker-compose-vs-docker-compose">Note sur docker-compose vs docker compose</h2>
+<p>Il existe deux syntaxes :</p>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Version</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker-compose</code> (avec tiret)</td>
+<td>v1, binaire Python separe</td>
+<td><strong>Obsolete</strong></td>
+</tr>
+<tr>
+<td><code>docker compose</code> (avec espace)</td>
+<td>v2, plugin Docker natif</td>
+<td><strong>A utiliser</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Ce playbook utilise exclusivement <code>docker compose</code> (avec espace). Si vous trouvez des tutoriels avec <code>docker-compose</code>, remplacez par <code>docker compose</code>.</p>
+<h2 id="etape-6-configurer-le-demarrage-automatique">Etape 6 : Configurer le demarrage automatique</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl enable docker
+$ sudo systemctl enable containerd
+</code></pre>
+
+<h2 id="erreurs-courantes_3">Erreurs courantes</h2>
+<ul>
+<li><strong>"permission denied" sur le socket Docker</strong> : Vous n'avez pas ajoute l'utilisateur au groupe docker, ou vous n'avez pas fait <code>newgrp docker</code>. Deconnectez-vous et reconnectez-vous.</li>
+<li><strong>"docker-compose: command not found"</strong> : Vous avez installe Docker via le depot officiel (bien), mais vous utilisez la vieille syntaxe. Utilisez <code>docker compose</code> (avec espace).</li>
+<li><strong>Docker installe via snap</strong> : Desinstallez-le (<code>sudo snap remove docker</code>) et reinstallez depuis le depot officiel. La version snap pose des problemes de permissions.</li>
+</ul>
+<h2 id="verification_3">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ docker ps
+$ docker compose version
+$ id | grep docker
+</code></pre>
+
+<p>Resultats attendus :
+- <code>docker ps</code> s'execute sans erreur (liste vide, c'est normal)
+- <code>docker compose version</code> affiche v2.x.x
+- Le groupe <code>docker</code> apparait dans la sortie de <code>id</code></p>
+<h2 id="temps-estime_3">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="25-nodejs-et-pm2">2.5 -- Node.js et PM2</h1>
+<h2 id="contexte_4">Contexte</h2>
+<p>OpenClaw est ecrit en Node.js. PM2 est un gestionnaire de processus qui maintient OpenClaw en vie, gere les logs et redemarre automatiquement en cas de crash.</p>
+<p>On installe Node.js via <strong>nvm</strong> (Node Version Manager), pas via apt. Pourquoi : apt fournit souvent une version obsolete, et nvm permet de changer de version facilement.</p>
+<h2 id="etape-1-installer-nvm">Etape 1 : Installer nvm</h2>
+<pre class="codehilite"><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+</code></pre>
+
+<p>Rechargez le shell :</p>
+<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ nvm --version
+</code></pre>
+
+<h2 id="etape-2-installer-nodejs">Etape 2 : Installer Node.js</h2>
+<p>Installez la version LTS (Long Term Support) :</p>
+<pre class="codehilite"><code class="language-bash">$ nvm install --lts
+$ nvm alias default lts/*
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ node --version
+$ npm --version
+</code></pre>
+
+<p>Version attendue : Node.js 22.x ou superieur (LTS au moment de l'ecriture).</p>
+<h2 id="etape-3-installer-pm2">Etape 3 : Installer PM2</h2>
+<pre class="codehilite"><code class="language-bash">$ npm install -g pm2
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ pm2 --version
+</code></pre>
+
+<h2 id="etape-4-configurer-pm2-pour-le-demarrage-automatique">Etape 4 : Configurer PM2 pour le demarrage automatique</h2>
+<p>PM2 peut se relancer automatiquement au redemarrage du serveur :</p>
+<pre class="codehilite"><code class="language-bash">$ pm2 startup
+</code></pre>
+
+<p>Cette commande affiche une ligne a copier-coller (elle commence par <code>sudo env PATH=...</code>). Executez-la.</p>
+<p>Puis sauvegardez la liste actuelle des processus (vide pour l'instant) :</p>
+<pre class="codehilite"><code class="language-bash">$ pm2 save
+</code></pre>
+
+<h2 id="pourquoi-pm2-et-pas-systemd-directement">Pourquoi PM2 et pas systemd directement ?</h2>
+<p>PM2 offre des fonctionnalites specifiques a Node.js :</p>
+<ul>
+<li>Redemarrage automatique en cas de crash avec backoff exponentiel</li>
+<li>Gestion des logs integree (<code>pm2 logs</code>)</li>
+<li>Monitoring memoire/CPU (<code>pm2 monit</code>)</li>
+<li>Mode cluster pour utiliser tous les CPU</li>
+<li>Rechargement sans interruption (<code>pm2 reload</code>)</li>
+<li>Ecosysteme de configuration via <code>ecosystem.config.js</code></li>
+</ul>
+<p>systemd sera utilise pour la gateway (section 15), mais PM2 gere les processus applicatifs Node.js.</p>
+<h2 id="erreurs-courantes_4">Erreurs courantes</h2>
+<ul>
+<li><strong>Installer Node.js via apt</strong> : La version sera trop vieille. Desinstallez (<code>sudo apt remove nodejs</code>) et utilisez nvm.</li>
+<li><strong>"nvm: command not found" apres installation</strong> : Vous n'avez pas recharge le shell. Faites <code>source ~/.bashrc</code> ou ouvrez un nouveau terminal.</li>
+<li><strong>PM2 installe localement au lieu de globalement</strong> : Assurez-vous d'utiliser <code>npm install -g pm2</code> (avec le <code>-g</code>).</li>
+<li><strong>PM2 startup ne fonctionne pas</strong> : Executez bien la commande sudo affichee par <code>pm2 startup</code>, ne tapez pas juste <code>pm2 startup</code> avec sudo.</li>
+</ul>
+<h2 id="verification_4">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ node --version
+$ npm --version
+$ pm2 --version
+$ pm2 list
+</code></pre>
+
+<p>Resultats attendus :
+- Node.js v22.x+
+- npm v10.x+
+- PM2 v5.x+
+- Liste PM2 vide (aucun processus encore)</p>
+<h2 id="temps-estime_4">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="26-structure-de-dossiers">2.6 -- Structure de dossiers</h1>
+<h2 id="contexte_5">Contexte</h2>
+<p>Avant d'installer les services, on cree une arborescence coherente. Ca evite l'effet "fichiers partout" qui rend la maintenance impossible. Cette convention est utilisee dans tout le playbook.</p>
+<h2 id="etape-1-creer-larborescence">Etape 1 : Creer l'arborescence</h2>
+<pre class="codehilite"><code class="language-bash">$ mkdir -p ~/docker/vault
+$ mkdir -p ~/docker/postgres
+$ mkdir -p ~/scripts
+$ mkdir -p ~/backups/postgres
+$ mkdir -p ~/backups/vault
+$ mkdir -p ~/logs
+</code></pre>
+
+<h2 id="arborescence-resultante">Arborescence resultante</h2>
+<pre class="codehilite"><code>~/
+├── docker/
+│   ├── vault/              # docker-compose.yml + config Vault
+│   │   ├── docker-compose.yml
+│   │   ├── config/
+│   │   └── data/
+│   └── postgres/           # docker-compose.yml + donnees PostgreSQL
+│       ├── docker-compose.yml
+│       └── data/
+├── scripts/                # Scripts maison (health check, deploy, backup)
+│   ├── health-check.sh
+│   ├── deploy.sh
+│   └── backup-postgres.sh
+├── backups/                # Sauvegardes locales
+│   ├── postgres/           # Dumps SQL
+│   └── vault/              # Snapshots Vault
+├── logs/                   # Logs applicatifs (hors journalctl)
+└── .openclaw/              # Cree automatiquement par OpenClaw (section 11)
+</code></pre>
+
+<h2 id="conventions">Conventions</h2>
+<table>
+<thead>
+<tr>
+<th>Regle</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/docker/&lt;service&gt;/</code></td>
+<td>Chaque service Docker a son propre sous-dossier</td>
+</tr>
+<tr>
+<td><code>docker-compose.yml</code> a la racine du sous-dossier</td>
+<td>On lance <code>docker compose up -d</code> depuis ce dossier</td>
+</tr>
+<tr>
+<td><code>~/scripts/</code> pour les scripts maison</td>
+<td>Tout script utilitaire va ici, avec <code>chmod +x</code></td>
+</tr>
+<tr>
+<td><code>~/backups/</code> pour les sauvegardes locales</td>
+<td>Les crons de backup ecrivent ici</td>
+</tr>
+<tr>
+<td>Pas de fichiers a la racine de <code>~</code></td>
+<td>Gardez le home propre</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-2-rendre-les-scripts-executables">Etape 2 : Rendre les scripts executables</h2>
+<p>Pour l'instant le dossier est vide, mais prenez l'habitude :</p>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/*.sh 2&gt;/dev/null || true
+</code></pre>
+
+<h2 id="erreurs-courantes_5">Erreurs courantes</h2>
+<ul>
+<li><strong>Mettre tous les docker-compose.yml au meme endroit</strong> : Chaque service a son dossier. Sinon les volumes se melangent.</li>
+<li><strong>Creer les dossiers en root</strong> : Creez tout en tant que <code>deploy</code> (votre utilisateur). Sinon les permissions bloqueront Docker.</li>
+<li><strong>Oublier le dossier backups</strong> : Les sauvegardes sont configurees dans les sections suivantes. Le dossier doit exister.</li>
+</ul>
+<h2 id="verification_5">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ ls -la ~/docker/
+$ ls -la ~/scripts/
+$ ls -la ~/backups/
+</code></pre>
+
+<p>Resultats attendus : les dossiers existent et appartiennent a votre utilisateur (pas a root).</p>
+<h2 id="temps-estime_5">Temps estime</h2>
+<p>5 minutes.</p>
+<h1 id="27-hashicorp-vault">2.7 -- HashiCorp Vault</h1>
+<h2 id="contexte_6">Contexte</h2>
+<p>C'est la section la plus importante de tout le chapitre. Vault centralise TOUS les secrets : cles API, mots de passe base de donnees, tokens Telegram, etc.</p>
+<p><strong>Pourquoi Vault et pas des fichiers .env ?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Critere</th>
+<th>Fichiers .env</th>
+<th>Vault</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Versionnement</td>
+<td>Risque de commit accidentel</td>
+<td>Secrets jamais dans git</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>Manuelle, oubliee</td>
+<td>Programmable, automatisee</td>
+</tr>
+<tr>
+<td>Audit</td>
+<td>Aucun</td>
+<td>Log de chaque acces</td>
+</tr>
+<tr>
+<td>Acces granulaire</td>
+<td>Tout ou rien</td>
+<td>Politiques fines par chemin</td>
+</tr>
+<tr>
+<td>Chiffrement au repos</td>
+<td>Non</td>
+<td>Oui (AES-256-GCM)</td>
+</tr>
+<tr>
+<td>Multi-service</td>
+<td>Copier le .env partout</td>
+<td>API centralisee</td>
+</tr>
+</tbody>
+</table>
+<p>En resume : les fichiers .env sont une dette technique. Vault est un investissement.</p>
+<h2 id="etape-1-creer-le-fichier-docker-compose">Etape 1 : Creer le fichier Docker Compose</h2>
+<pre class="codehilite"><code class="language-bash">$ mkdir -p ~/docker/vault/config
+$ mkdir -p ~/docker/vault/data
+</code></pre>
+
+<p>Creez le fichier <code>~/docker/vault/docker-compose.yml</code> :</p>
+<pre class="codehilite"><code class="language-yaml">version: &quot;3.8&quot;
+
+services:
+  vault:
+    image: hashicorp/vault:1.17
+    container_name: vault
+    restart: unless-stopped
+    ports:
+      - &quot;127.0.0.1:8200:8200&quot;
+    environment:
+      VAULT_ADDR: &quot;http://127.0.0.1:8200&quot;
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./config:/vault/config:ro
+      - ./data:/vault/data
+    command: server -config=/vault/config/vault.hcl
+    networks:
+      - vault-net
+
+networks:
+  vault-net:
+    driver: bridge
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : Le port est lie a <code>127.0.0.1</code>, pas a <code>0.0.0.0</code>. Vault n'est accessible que localement (et via Tailscale si configure).</p>
+<h2 id="etape-2-creer-la-configuration-vault">Etape 2 : Creer la configuration Vault</h2>
+<p>Creez le fichier <code>~/docker/vault/config/vault.hcl</code> :</p>
+<pre class="codehilite"><code class="language-hcl">storage &quot;file&quot; {
+  path = &quot;/vault/data&quot;
+}
+
+listener &quot;tcp&quot; {
+  address     = &quot;0.0.0.0:8200&quot;
+  tls_disable = 1
+}
+
+api_addr = &quot;http://127.0.0.1:8200&quot;
+
+ui = true
+
+disable_mlock = true
+</code></pre>
+
+<p>Notes :
+- <code>tls_disable = 1</code> : Acceptable car Vault est derriere Tailscale (chiffrement WireGuard). En production publique, activez TLS.
+- <code>disable_mlock = true</code> : Necessaire dans Docker sans privileges supplementaires.
+- <code>ui = true</code> : Interface web accessible sur http://127.0.0.1:8200/ui.</p>
+<h2 id="etape-3-mode-dev-vs-production">Etape 3 : Mode dev vs production</h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Utilisation</th>
+<th>Persistance</th>
+<th>Securite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dev (<code>vault server -dev</code>)</td>
+<td>Tests locaux</td>
+<td>Non (memoire)</td>
+<td>Token root connu</td>
+</tr>
+<tr>
+<td>Production (ce qu'on fait ici)</td>
+<td>VPS</td>
+<td>Oui (fichier/consul)</td>
+<td>Initialisation securisee</td>
+</tr>
+</tbody>
+</table>
+<p>Ce playbook utilise le <strong>mode production</strong>. Ne pas utiliser le mode dev sur un VPS.</p>
+<h2 id="etape-4-demarrer-vault">Etape 4 : Demarrer Vault</h2>
+<pre class="codehilite"><code class="language-bash">$ cd ~/docker/vault
+$ docker compose up -d
+</code></pre>
+
+<p>Verifiez que le conteneur tourne :</p>
+<pre class="codehilite"><code class="language-bash">$ docker ps | grep vault
+</code></pre>
+
+<h2 id="etape-5-initialiser-vault">Etape 5 : Initialiser Vault</h2>
+<p>L'initialisation ne se fait qu'UNE SEULE FOIS. Elle genere les cles de dechiffrement (unseal keys) et le token root.</p>
+<pre class="codehilite"><code class="language-bash">$ export VAULT_ADDR='http://127.0.0.1:8200'
+$ docker exec vault vault operator init -key-shares=5 -key-threshold=3
+</code></pre>
+
+<p>Resultat : 5 unseal keys et 1 root token. Exemple de sortie :</p>
+<pre class="codehilite"><code>Unseal Key 1: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Unseal Key 2: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Unseal Key 3: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Unseal Key 4: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Unseal Key 5: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+Initial Root Token: hvs.XXXXXXXXXXXXXXXXXXXXXXXX
+</code></pre>
+
+<p><strong>SAUVEGARDEZ CES INFORMATIONS IMMEDIATEMENT.</strong></p>
+<h2 id="etape-6-sauvegarder-les-unseal-keys-hors-du-vps">Etape 6 : Sauvegarder les unseal keys HORS du VPS</h2>
+<p>Les unseal keys doivent etre stockees <strong>en dehors du VPS</strong>. Si quelqu'un compromet le VPS et possede les unseal keys, il peut dechiffrer tous les secrets.</p>
+<p>Methode recommandee :
+1. Copiez chaque cle dans un gestionnaire de mots de passe (1Password, Bitwarden, KeePass)
+2. Distribuez les cles : 2 pour vous, 2 pour un co-admin, 1 dans un coffre physique
+3. Le threshold est 3 : il faut 3 cles sur 5 pour dechiffrer. Aucune personne seule ne peut tout ouvrir.</p>
+<p><strong>NE STOCKEZ PAS les unseal keys dans un fichier sur le VPS.</strong></p>
+<h2 id="etape-7-unseal-dechiffrer-vault">Etape 7 : Unseal (dechiffrer) Vault</h2>
+<p>Apres chaque redemarrage, Vault demarre en etat "sealed" (chiffre). Il faut 3 cles pour l'ouvrir :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault operator unseal CLE_1_ICI
+$ docker exec vault vault operator unseal CLE_2_ICI
+$ docker exec vault vault operator unseal CLE_3_ICI
+</code></pre>
+
+<p>Verifiez l'etat :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault status
+</code></pre>
+
+<p>Resultat attendu : <code>Sealed: false</code></p>
+<h2 id="etape-8-se-connecter-avec-le-token-root">Etape 8 : Se connecter avec le token root</h2>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault login TOKEN_ROOT_ICI
+</code></pre>
+
+<p>Ou via variable d'environnement (plus pratique pour les scripts) :</p>
+<pre class="codehilite"><code class="language-bash">$ export VAULT_TOKEN='TOKEN_ROOT_ICI'
+</code></pre>
+
+<h2 id="etape-9-activer-le-moteur-de-secrets-kv-v2">Etape 9 : Activer le moteur de secrets KV v2</h2>
+<p>KV (Key-Value) v2 permet le versionnement des secrets :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault secrets enable -path=secret kv-v2
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault secrets list
+</code></pre>
+
+<p>Vous devez voir <code>secret/</code> dans la liste.</p>
+<h2 id="etape-10-stocker-les-premiers-secrets">Etape 10 : Stocker les premiers secrets</h2>
+<p>Stockez vos secrets par categorie. Chaque commande cree ou met a jour un secret :</p>
+<p><strong>Cle API OpenRouter :</strong></p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/openrouter api_key=&quot;sk-or-VOTRE_CLE_ICI&quot;
+</code></pre>
+
+<p><strong>Token Telegram :</strong></p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/telegram bot_token=&quot;123456:ABC-DEF...&quot; chat_id=&quot;VOTRE_CHAT_ID&quot;
+</code></pre>
+
+<p><strong>Token GitHub :</strong></p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/github token=&quot;ghp_VOTRE_TOKEN_ICI&quot;
+</code></pre>
+
+<p><strong>Credentials base de donnees :</strong></p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/database \
+  host=&quot;127.0.0.1&quot; \
+  port=&quot;5432&quot; \
+  name=&quot;oa_system&quot; \
+  user=&quot;oa_admin&quot; \
+  password=&quot;MOT_DE_PASSE_FORT_ICI&quot;
+</code></pre>
+
+<p><strong>Secret cockpit :</strong></p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/cockpit \
+  jwt_secret=&quot;GENERER_AVEC_openssl_rand_hex_32&quot; \
+  admin_password=&quot;MOT_DE_PASSE_ADMIN&quot;
+</code></pre>
+
+<h2 id="etape-11-lire-un-secret-verification">Etape 11 : Lire un secret (verification)</h2>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get secret/openrouter
+</code></pre>
+
+<p>Resultat attendu : les champs <code>api_key</code> avec la valeur stockee.</p>
+<h2 id="etape-12-creer-un-token-applicatif-pas-le-root-token">Etape 12 : Creer un token applicatif (pas le root token)</h2>
+<p>N'utilisez PAS le root token dans vos applications. Creez un token dedie :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault token create \
+  -display-name=&quot;openclaw-app&quot; \
+  -ttl=720h \
+  -renewable=true \
+  -policy=default
+</code></pre>
+
+<p>Notez le token genere. C'est celui que vous utiliserez dans la configuration OpenClaw.</p>
+<h2 id="etape-13-script-dunseal-automatique-optionnel">Etape 13 : Script d'unseal automatique (optionnel)</h2>
+<p>Pour eviter l'unseal manuel a chaque redemarrage, vous pouvez creer un script (a utiliser avec precaution) :</p>
+<pre class="codehilite"><code class="language-bash">$ cat &gt; ~/scripts/vault-unseal.sh &lt;&lt; 'SCRIPT'
+#!/bin/bash
+export VAULT_ADDR='http://127.0.0.1:8200'
+
+# Attendre que Vault soit pret
+until docker exec vault vault status 2&gt;&amp;1 | grep -q &quot;Sealed&quot;; do
+  sleep 2
+done
+
+docker exec vault vault operator unseal &quot;CLE_1&quot;
+docker exec vault vault operator unseal &quot;CLE_2&quot;
+docker exec vault vault operator unseal &quot;CLE_3&quot;
+
+echo &quot;Vault unsealed.&quot;
+SCRIPT
+$ chmod +x ~/scripts/vault-unseal.sh
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : Ce script contient des unseal keys en clair. C'est un compromis entre securite et praticite. En environnement critique, preferez l'unseal manuel ou Vault auto-unseal avec un KMS cloud.</p>
+<h2 id="erreurs-courantes_6">Erreurs courantes</h2>
+<ul>
+<li><strong>"server is not yet initialized"</strong> : Vous n'avez pas fait l'etape 5 (init). L'initialisation ne se fait qu'une fois.</li>
+<li><strong>"Vault is sealed"</strong> : Apres un redemarrage du conteneur ou du VPS, Vault est toujours sealed. Il faut unseal avec 3 cles.</li>
+<li><strong>Perdre les unseal keys</strong> : Si vous perdez 3+ cles, vos secrets sont irrecuperables. Sauvegardez-les.</li>
+<li><strong>Utiliser le root token en production</strong> : Le root token est tout-puissant. Creez des tokens dedies avec des politiques restreintes.</li>
+<li><strong>Vault qui crash au demarrage</strong> : Verifiez les permissions sur <code>~/docker/vault/data/</code>. Le dossier doit appartenir a votre utilisateur.</li>
+</ul>
+<h2 id="verification_6">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault status
+$ docker exec vault vault kv list secret/
+$ docker exec vault vault kv get secret/openrouter
+</code></pre>
+
+<p>Resultats attendus :
+- Status : Sealed = false, Initialized = true
+- Liste des secrets : openrouter, telegram, github, database, cockpit
+- Lecture d'un secret : valeur affichee correctement</p>
+<h2 id="temps-estime_6">Temps estime</h2>
+<p>30 minutes (plus le temps de generer et sauvegarder les secrets).</p>
+<h1 id="28-postgresql">2.8 -- PostgreSQL</h1>
+<h2 id="contexte_7">Contexte</h2>
+<p>PostgreSQL stocke les donnees persistantes du systeme : sessions, historique des agents, metriques, etats. On le fait tourner dans Docker pour l'isolation et la portabilite. Le mot de passe sera stocke dans Vault (section precedente).</p>
+<h2 id="etape-1-recuperer-le-mot-de-passe-depuis-vault">Etape 1 : Recuperer le mot de passe depuis Vault</h2>
+<p>Si vous avez suivi la section 07, le mot de passe est deja dans Vault :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=password secret/database
+</code></pre>
+
+<p>Notez ce mot de passe pour l'utiliser dans le docker-compose.</p>
+<h2 id="etape-2-creer-le-fichier-docker-compose">Etape 2 : Creer le fichier Docker Compose</h2>
+<p>Creez <code>~/docker/postgres/docker-compose.yml</code> :</p>
+<pre class="codehilite"><code class="language-yaml">version: &quot;3.8&quot;
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - &quot;127.0.0.1:5432:5432&quot;
+    environment:
+      POSTGRES_USER: oa_admin
+      POSTGRES_PASSWORD: &quot;VOTRE_MOT_DE_PASSE_FORT&quot;
+      POSTGRES_DB: oa_system
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    shm_size: 256mb
+    networks:
+      - postgres-net
+
+networks:
+  postgres-net:
+    driver: bridge
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : Remplacez <code>VOTRE_MOT_DE_PASSE_FORT</code> par le mot de passe stocke dans Vault. Le port est lie a <code>127.0.0.1</code> uniquement.</p>
+<h2 id="etape-3-demarrer-postgresql">Etape 3 : Demarrer PostgreSQL</h2>
+<pre class="codehilite"><code class="language-bash">$ cd ~/docker/postgres
+$ docker compose up -d
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ docker ps | grep postgres
+</code></pre>
+
+<h2 id="etape-4-tester-la-connexion">Etape 4 : Tester la connexion</h2>
+<pre class="codehilite"><code class="language-bash">$ docker exec -it postgres psql -U oa_admin -d oa_system -c &quot;SELECT version();&quot;
+</code></pre>
+
+<p>Resultat attendu : version PostgreSQL 16.x.</p>
+<h2 id="etape-5-creer-les-tables-initiales-si-necessaire">Etape 5 : Creer les tables initiales (si necessaire)</h2>
+<p>OpenClaw creera ses propres tables au premier lancement. Mais vous pouvez verifier que la base est vide et prete :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec -it postgres psql -U oa_admin -d oa_system -c &quot;\dt&quot;
+</code></pre>
+
+<p>Resultat attendu : "Did not find any relations." (normal, la base est vide).</p>
+<h2 id="etape-6-configurer-la-sauvegarde-automatique">Etape 6 : Configurer la sauvegarde automatique</h2>
+<p>Creez le script de backup <code>~/scripts/backup-postgres.sh</code> :</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# Sauvegarde quotidienne PostgreSQL
+# A mettre dans cron : 0 3 * * * /home/deploy/scripts/backup-postgres.sh
+
+BACKUP_DIR=&quot;$HOME/backups/postgres&quot;
+DATE=$(date +%Y%m%d_%H%M%S)
+FILENAME=&quot;oa_system_${DATE}.sql.gz&quot;
+
+# Dump compresse
+docker exec postgres pg_dump -U oa_admin oa_system | gzip &gt; &quot;${BACKUP_DIR}/${FILENAME}&quot;
+
+# Garder les 7 derniers jours
+find &quot;${BACKUP_DIR}&quot; -name &quot;*.sql.gz&quot; -mtime +7 -delete
+
+echo &quot;[$(date)] Backup termine : ${FILENAME}&quot;
+</code></pre>
+
+<p>Rendez-le executable :</p>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/backup-postgres.sh
+</code></pre>
+
+<p>Testez :</p>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/backup-postgres.sh
+$ ls -la ~/backups/postgres/
+</code></pre>
+
+<h2 id="etape-7-ajouter-au-cron">Etape 7 : Ajouter au cron</h2>
+<pre class="codehilite"><code class="language-bash">$ crontab -e
+</code></pre>
+
+<p>Ajoutez cette ligne (backup tous les jours a 3h du matin) :</p>
+<pre class="codehilite"><code>0 3 * * * /home/deploy/scripts/backup-postgres.sh &gt;&gt; /home/deploy/logs/backup-postgres.log 2&gt;&amp;1
+</code></pre>
+
+<h2 id="erreurs-courantes_7">Erreurs courantes</h2>
+<ul>
+<li><strong>"password authentication failed"</strong> : Le mot de passe dans docker-compose.yml ne correspond pas a celui stocke dans Vault. Alignez les deux.</li>
+<li><strong>"port 5432 already in use"</strong> : Un PostgreSQL tourne deja (installe via apt ?). Arretez-le : <code>sudo systemctl stop postgresql &amp;&amp; sudo systemctl disable postgresql</code>.</li>
+<li><strong>Donnees perdues apres recreation du conteneur</strong> : Le volume <code>./data</code> persiste les donnees. Ne supprimez pas ce dossier. Si vous faites <code>docker compose down -v</code>, les volumes sont supprimes.</li>
+<li><strong>Permissions sur le dossier data</strong> : Si PostgreSQL ne demarre pas, verifiez : <code>ls -la ~/docker/postgres/data/</code>. Le dossier doit etre accessible.</li>
+</ul>
+<h2 id="verification_7">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ docker ps | grep postgres
+$ docker exec -it postgres psql -U oa_admin -d oa_system -c &quot;SELECT 1;&quot;
+$ ls ~/backups/postgres/
+</code></pre>
+
+<p>Resultats attendus :
+- Conteneur postgres en etat "Up"
+- La requete retourne 1
+- Au moins un fichier de backup present (si le test a ete lance)</p>
+<h2 id="temps-estime_7">Temps estime</h2>
+<p>15 minutes.</p>
+<h1 id="29-premier-health-check">2.9 -- Premier health check</h1>
+<h2 id="contexte_8">Contexte</h2>
+<p>Avant d'aller plus loin, on verifie que toute l'infrastructure de base fonctionne. Ce script sera reutilise dans les sections suivantes, dans les crons de surveillance et dans le script de deploiement.</p>
+<h2 id="le-script-complet">Le script complet</h2>
+<p>Creez <code>~/scripts/health-check.sh</code> :</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# Health check infrastructure OA
+# Usage : ./health-check.sh
+# Codes de sortie : 0 = tout OK, 1 = au moins un echec
+
+PASS=0
+FAIL=0
+
+check() {
+  local name=&quot;$1&quot;
+  local cmd=&quot;$2&quot;
+
+  if eval &quot;$cmd&quot; &gt; /dev/null 2&gt;&amp;1; then
+    echo &quot;[OK]    $name&quot;
+    ((PASS++))
+  else
+    echo &quot;[ECHEC] $name&quot;
+    ((FAIL++))
+  fi
+}
+
+echo &quot;=== Health Check Infrastructure ===&quot;
+echo &quot;Date : $(date)&quot;
+echo &quot;---&quot;
+
+# Docker
+check &quot;Docker daemon&quot; &quot;docker info&quot;
+check &quot;Docker Compose&quot; &quot;docker compose version&quot;
+
+# Vault
+check &quot;Vault conteneur&quot; &quot;docker ps | grep vault | grep -q Up&quot;
+check &quot;Vault unsealed&quot; &quot;docker exec vault vault status 2&gt;&amp;1 | grep -q 'Sealed.*false'&quot;
+check &quot;Vault secret lisible&quot; &quot;docker exec vault vault kv get secret/openrouter&quot;
+
+# PostgreSQL
+check &quot;PostgreSQL conteneur&quot; &quot;docker ps | grep postgres | grep -q Up&quot;
+check &quot;PostgreSQL connexion&quot; &quot;docker exec postgres psql -U oa_admin -d oa_system -c 'SELECT 1;'&quot;
+
+# Tailscale
+check &quot;Tailscale actif&quot; &quot;tailscale status&quot;
+check &quot;Tailscale IP&quot; &quot;tailscale ip -4&quot;
+
+# Systeme
+check &quot;Espace disque &gt; 10%&quot; &quot;test $(df / --output=pcent | tail -1 | tr -d '% ') -lt 90&quot;
+check &quot;RAM disponible &gt; 1Go&quot; &quot;test $(free -m | awk '/Mem:/ {print \$7}') -gt 1024&quot;
+
+echo &quot;---&quot;
+echo &quot;Resultats : $PASS OK, $FAIL echec(s)&quot;
+
+if [ $FAIL -gt 0 ]; then
+  exit 1
+else
+  echo &quot;Infrastructure operationnelle.&quot;
+  exit 0
+fi
+</code></pre>
+
+<h2 id="installation">Installation</h2>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/health-check.sh
+$ ~/scripts/health-check.sh
+</code></pre>
+
+<h2 id="sortie-attendue">Sortie attendue</h2>
+<pre class="codehilite"><code>=== Health Check Infrastructure ===
+Date : jeu. 02 avril 2026 14:30:00 CEST
+---
+[OK]    Docker daemon
+[OK]    Docker Compose
+[OK]    Vault conteneur
+[OK]    Vault unsealed
+[OK]    Vault secret lisible
+[OK]    PostgreSQL conteneur
+[OK]    PostgreSQL connexion
+[OK]    Tailscale actif
+[OK]    Tailscale IP
+[OK]    Espace disque &gt; 10%
+[OK]    RAM disponible &gt; 1Go
+---
+Resultats : 11 OK, 0 echec(s)
+Infrastructure operationnelle.
+</code></pre>
+
+<h2 id="ajouter-au-cron-optionnel">Ajouter au cron (optionnel)</h2>
+<p>Pour une verification toutes les 15 minutes avec log :</p>
+<pre class="codehilite"><code class="language-bash">$ crontab -e
+</code></pre>
+
+<p>Ajoutez :</p>
+<pre class="codehilite"><code>*/15 * * * * /home/deploy/scripts/health-check.sh &gt;&gt; /home/deploy/logs/health-check.log 2&gt;&amp;1
+</code></pre>
+
+<h2 id="diagnostic-par-symptome">Diagnostic par symptome</h2>
+<table>
+<thead>
+<tr>
+<th>Symptome</th>
+<th>Cause probable</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker daemon ECHEC</td>
+<td>Docker pas demarre</td>
+<td><code>sudo systemctl start docker</code></td>
+</tr>
+<tr>
+<td>Vault conteneur ECHEC</td>
+<td>Conteneur arrete</td>
+<td><code>cd ~/docker/vault &amp;&amp; docker compose up -d</code></td>
+</tr>
+<tr>
+<td>Vault unsealed ECHEC</td>
+<td>Vault sealed apres redemarrage</td>
+<td>Executer l'unseal (3 cles)</td>
+</tr>
+<tr>
+<td>Vault secret ECHEC</td>
+<td>Moteur KV pas active ou token expire</td>
+<td><code>vault secrets enable -path=secret kv-v2</code></td>
+</tr>
+<tr>
+<td>PostgreSQL ECHEC</td>
+<td>Conteneur arrete ou crash</td>
+<td><code>cd ~/docker/postgres &amp;&amp; docker compose up -d</code> puis verifier les logs : <code>docker logs postgres</code></td>
+</tr>
+<tr>
+<td>Tailscale ECHEC</td>
+<td>Service arrete</td>
+<td><code>sudo systemctl start tailscaled &amp;&amp; sudo tailscale up</code></td>
+</tr>
+<tr>
+<td>Espace disque ECHEC</td>
+<td>Disque plein</td>
+<td><code>docker system prune -a</code> et verifier les logs/backups</td>
+</tr>
+<tr>
+<td>RAM ECHEC</td>
+<td>Memoire saturee</td>
+<td><code>docker stats</code> pour identifier le conteneur gourmand</td>
+</tr>
+</tbody>
+</table>
+<h2 id="erreurs-courantes_8">Erreurs courantes</h2>
+<ul>
+<li><strong>Le script echoue sur Vault secret</strong> : Vault est peut-etre sealed. C'est normal apres un redemarrage. Unsealez d'abord.</li>
+<li><strong>"free: command not found"</strong> : Installez <code>procps</code> : <code>sudo apt install -y procps</code>.</li>
+<li><strong>Faux positif sur l'espace disque</strong> : Le seuil est fixe a 90% utilise. Ajustez si necessaire.</li>
+</ul>
+<h2 id="verification_8">Verification</h2>
+<p>Le script EST la verification. S'il sort avec le code 0, tout est bon :</p>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/health-check.sh &amp;&amp; echo &quot;Pret pour la suite&quot;
+</code></pre>
+
+<h2 id="temps-estime_8">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="210-installation-openclaw">2.10 -- Installation OpenClaw</h1>
+<h2 id="contexte_9">Contexte</h2>
+<p>OpenClaw est l'outil central du systeme. Cette section couvre l'installation de la CLI et du runtime. L'infrastructure (Docker, Vault, PostgreSQL) doit etre en place avant cette etape.</p>
+<h2 id="etape-1-verifier-les-prerequis">Etape 1 : Verifier les prerequis</h2>
+<pre class="codehilite"><code class="language-bash">$ node --version   # v22.x+ requis
+$ npm --version    # v10.x+ requis
+$ docker --version # Docker 28.x+ requis
+</code></pre>
+
+<p>Si une version est insuffisante, retournez a la section correspondante.</p>
+<h2 id="etape-2-installer-openclaw-via-npm">Etape 2 : Installer OpenClaw via npm</h2>
+<p>Methode recommandee (installation globale) :</p>
+<pre class="codehilite"><code class="language-bash">$ npm install -g @anthropic-ai/claude-code
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw --version
+</code></pre>
+
+<h2 id="etape-3-premiere-execution">Etape 3 : Premiere execution</h2>
+<p>Lancez OpenClaw une premiere fois pour generer la structure du workspace :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw
+</code></pre>
+
+<p>Suivez l'assistant de configuration initiale. Il vous demandera :
+- La cle API ou la methode d'authentification
+- Le modele par defaut
+- Le repertoire workspace</p>
+<h2 id="etape-4-verifier-linstallation">Etape 4 : Verifier l'installation</h2>
+<pre class="codehilite"><code class="language-bash">$ openclaw doctor
+</code></pre>
+
+<p>Cette commande verifie toutes les dependances et la configuration. Tout doit etre vert.</p>
+<h2 id="erreurs-classiques">Erreurs classiques</h2>
+<h3 id="permission-denied-lors-de-linstallation-globale-npm">Permission denied lors de l'installation globale npm</h3>
+<pre class="codehilite"><code>Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules'
+</code></pre>
+
+<p>Solution : Vous utilisez probablement Node.js installe via apt au lieu de nvm. Avec nvm, les installations globales vont dans <code>~/.nvm/</code> et ne necessitent pas sudo.</p>
+<pre class="codehilite"><code class="language-bash">$ nvm use --lts
+$ npm install -g @anthropic-ai/claude-code
+</code></pre>
+
+<p>Ne faites PAS <code>sudo npm install -g</code>. Ca cree des problemes de permissions en cascade.</p>
+<h3 id="mauvaise-version-de-nodejs">Mauvaise version de Node.js</h3>
+<pre class="codehilite"><code>Error: openclaw requires Node.js &gt;= 22.0.0
+</code></pre>
+
+<p>Solution :</p>
+<pre class="codehilite"><code class="language-bash">$ nvm install --lts
+$ nvm alias default lts/*
+$ npm install -g @anthropic-ai/claude-code
+</code></pre>
+
+<h3 id="openclaw-command-not-found-apres-installation">"openclaw: command not found" apres installation</h3>
+<p>Le binaire n'est pas dans le PATH. Avec nvm, ca devrait fonctionner automatiquement. Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ which openclaw
+$ echo $PATH | tr ':' '\n' | grep nvm
+</code></pre>
+
+<p>Si le chemin nvm n'est pas dans le PATH, rechargez le shell :</p>
+<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
+</code></pre>
+
+<h3 id="problemes-de-connectivite">Problemes de connectivite</h3>
+<p>Si l'installation npm echoue avec des erreurs reseau :</p>
+<pre class="codehilite"><code class="language-bash">$ npm config set registry https://registry.npmjs.org/
+$ npm cache clean --force
+$ npm install -g @anthropic-ai/claude-code
+</code></pre>
+
+<h2 id="verification_9">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ openclaw --version
+$ which openclaw
+$ openclaw doctor
+</code></pre>
+
+<p>Resultats attendus :
+- Version affichee
+- Chemin dans <code>~/.nvm/versions/node/...</code>
+- Doctor : tous les checks verts</p>
+<h2 id="temps-estime_9">Temps estime</h2>
+<p>15 minutes.</p>
+<h1 id="211-structure-du-workspace">2.11 -- Structure du workspace</h1>
+<h2 id="contexte_10">Contexte</h2>
+<p>OpenClaw organise ses donnees dans un workspace (<code>~/.openclaw/</code>). Ce dossier est cree automatiquement au premier lancement. Comprendre sa structure est essentiel pour le debug, la sauvegarde et l'extension du systeme.</p>
+<h2 id="arborescence-commentee">Arborescence commentee</h2>
+<pre class="codehilite"><code>~/.openclaw/
+├── workspace/                  # Repertoire de travail principal
+│   ├── knowledge/              # Base de connaissances injectee dans le contexte
+│   │   ├── domain/             # Connaissances specifiques au domaine
+│   │   └── system/             # Connaissances systeme (mises a jour auto)
+│   ├── memory/                 # Memoire persistante entre sessions
+│   │   ├── MEMORY.md           # Fichier principal de memoire
+│   │   └── *.md                # Fichiers de memoire thematiques
+│   ├── sessions/               # Historique des sessions
+│   │   └── YYYY-MM-DD/         # Organise par date
+│   │       └── session-ID.json # Chaque session avec contexte et echanges
+│   ├── skills/                 # Competences chargees dynamiquement
+│   │   ├── builtin/            # Skills integrées (non modifiables)
+│   │   └── custom/             # Vos skills personnalisees
+│   └── agents/                 # Definitions d'agents
+│       ├── default.json        # Agent par defaut
+│       └── custom/             # Vos agents personnalises
+├── config.json                 # Configuration principale (section 12)
+├── credentials.json            # Tokens et acces (chiffre)
+└── logs/                       # Logs internes OpenClaw
+    └── openclaw.log
+</code></pre>
+
+<h2 id="role-de-chaque-dossier">Role de chaque dossier</h2>
+<h3 id="knowledge">knowledge/</h3>
+<p>Contient les documents que l'agent peut consulter pour repondre. Le sous-dossier <code>domain/</code> est le votre : mettez-y vos documents metier, specifications, guides internes.</p>
+<pre class="codehilite"><code class="language-bash">$ ls ~/.openclaw/workspace/knowledge/
+</code></pre>
+
+<h3 id="memory">memory/</h3>
+<p>Memoire persistante. Le fichier <code>MEMORY.md</code> est lu automatiquement a chaque session. Les agents y stockent ce qu'ils doivent retenir entre les conversations.</p>
+<pre class="codehilite"><code class="language-bash">$ cat ~/.openclaw/workspace/memory/MEMORY.md
+</code></pre>
+
+<h3 id="sessions">sessions/</h3>
+<p>Historique complet de chaque conversation. Utile pour le debug et l'audit. Les vieilles sessions peuvent etre archivees.</p>
+<h3 id="skills">skills/</h3>
+<p>Les skills sont des capacites que l'agent peut invoquer. Le dossier <code>custom/</code> vous permet d'ajouter vos propres skills sans toucher aux skills integrées.</p>
+<h3 id="agents">agents/</h3>
+<p>Definitions d'agents avec leurs instructions systeme, skills autorisees et parametres. Le fichier <code>default.json</code> est utilise quand aucun agent n'est specifie.</p>
+<h2 id="droits-et-propriete">Droits et propriete</h2>
+<p>Tout le dossier <code>~/.openclaw/</code> doit appartenir a votre utilisateur :</p>
+<pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
+</code></pre>
+
+<p>Si ce n'est pas le cas :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo chown -R $USER:$USER ~/.openclaw/
+</code></pre>
+
+<h2 id="sauvegarder-le-workspace">Sauvegarder le workspace</h2>
+<p>Le workspace contient des donnees precieuses (memoire, knowledge, sessions). Incluez-le dans vos sauvegardes :</p>
+<pre class="codehilite"><code class="language-bash">$ tar -czf ~/backups/openclaw-workspace-$(date +%Y%m%d).tar.gz ~/.openclaw/workspace/
+</code></pre>
+
+<p>Ne sauvegardez PAS <code>credentials.json</code> dans un backup non chiffre.</p>
+<h2 id="erreurs-courantes_9">Erreurs courantes</h2>
+<ul>
+<li><strong>Modifier les fichiers dans <code>builtin/</code></strong> : Ces fichiers sont ecrases a chaque mise a jour. Utilisez le dossier <code>custom/</code> pour vos modifications.</li>
+<li><strong>Supprimer <code>MEMORY.md</code></strong> : L'agent perd toute sa memoire. Sauvegardez ce fichier regulierement.</li>
+<li><strong>Workspace cree par root</strong> : Si vous avez lance <code>sudo openclaw</code> par erreur, les fichiers appartiendront a root. Corrigez avec <code>chown</code>.</li>
+<li><strong>Sessions qui prennent trop de place</strong> : Apres quelques mois, le dossier <code>sessions/</code> peut peser lourd. Archivez les vieilles sessions.</li>
+</ul>
+<h2 id="verification_10">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
+$ ls -la ~/.openclaw/workspace/
+$ cat ~/.openclaw/workspace/memory/MEMORY.md
+</code></pre>
+
+<p>Resultats attendus :
+- Le dossier existe et appartient a votre utilisateur
+- Les sous-dossiers knowledge/, memory/, sessions/, skills/, agents/ existent
+- MEMORY.md est lisible</p>
+<h2 id="temps-estime_10">Temps estime</h2>
+<p>10 minutes (exploration et comprehension).</p>
+<h1 id="212-configuration-initiale-openclaw">2.12 -- Configuration initiale OpenClaw</h1>
+<h2 id="contexte_11">Contexte</h2>
+<p>Le fichier <code>~/.openclaw/config.json</code> est le centre de controle d'OpenClaw. Chaque champ affecte le comportement du systeme. Cette section detaille un fichier de configuration complet et commente.</p>
+<h2 id="fichier-de-configuration-complet">Fichier de configuration complet</h2>
+<p>Creez ou editez <code>~/.openclaw/config.json</code> :</p>
+<pre class="codehilite"><code class="language-json">{
+  // --- Identification ---
+  &quot;instance_name&quot;: &quot;oa-paris&quot;,
+  &quot;environment&quot;: &quot;production&quot;,
+
+  // --- Modele IA ---
+  &quot;model&quot;: {
+    &quot;provider&quot;: &quot;openrouter&quot;,
+    &quot;default_model&quot;: &quot;anthropic/claude-sonnet-4-20250514&quot;,
+    &quot;fallback_model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,
+    &quot;temperature&quot;: 0.3,
+    &quot;max_tokens&quot;: 8192
+  },
+
+  // --- Connexion Vault ---
+  &quot;vault&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;address&quot;: &quot;http://127.0.0.1:8200&quot;,
+    &quot;token_env&quot;: &quot;VAULT_TOKEN&quot;,
+    &quot;secret_prefix&quot;: &quot;secret&quot;
+  },
+
+  // --- Base de donnees ---
+  &quot;database&quot;: {
+    &quot;type&quot;: &quot;postgresql&quot;,
+    &quot;vault_path&quot;: &quot;secret/database&quot;,
+    &quot;pool_size&quot;: 10,
+    &quot;ssl&quot;: false
+  },
+
+  // --- Gateway ---
+  &quot;gateway&quot;: {
+    &quot;host&quot;: &quot;127.0.0.1&quot;,
+    &quot;port&quot;: 3000,
+    &quot;cors_origins&quot;: []
+  },
+
+  // --- Notifications ---
+  &quot;notifications&quot;: {
+    &quot;telegram&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;vault_path&quot;: &quot;secret/telegram&quot;
+    }
+  },
+
+  // --- Logging ---
+  &quot;logging&quot;: {
+    &quot;level&quot;: &quot;info&quot;,
+    &quot;file&quot;: &quot;~/.openclaw/logs/openclaw.log&quot;,
+    &quot;max_size_mb&quot;: 50,
+    &quot;max_files&quot;: 5
+  },
+
+  // --- Workspace ---
+  &quot;workspace&quot;: {
+    &quot;path&quot;: &quot;~/.openclaw/workspace&quot;,
+    &quot;auto_save_memory&quot;: true,
+    &quot;session_retention_days&quot;: 30
+  },
+
+  // --- Securite ---
+  &quot;security&quot;: {
+    &quot;allowed_commands&quot;: [&quot;git&quot;, &quot;npm&quot;, &quot;node&quot;, &quot;docker&quot;, &quot;docker compose&quot;],
+    &quot;blocked_paths&quot;: [&quot;/etc/shadow&quot;, &quot;/root&quot;],
+    &quot;require_confirmation_for&quot;: [&quot;rm&quot;, &quot;drop&quot;, &quot;delete&quot;, &quot;truncate&quot;]
+  }
+}
+</code></pre>
+
+<p><strong>Note</strong> : JSON ne supporte pas les commentaires. Retirez les lignes <code>//</code> dans le fichier final, ou utilisez un pre-processeur JSON5. Les commentaires ci-dessus sont pour la documentation uniquement.</p>
+<h2 id="explication-champ-par-champ">Explication champ par champ</h2>
+<h3 id="instance_name">instance_name</h3>
+<p>Identifiant unique de cette instance. Utile si vous avez plusieurs VPS. Apparait dans les logs et les notifications.</p>
+<h3 id="model">model</h3>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>provider</code></td>
+<td>Service d'acces aux modeles. <code>openrouter</code> permet de changer de modele sans changer de provider.</td>
+</tr>
+<tr>
+<td><code>default_model</code></td>
+<td>Modele utilise par defaut. Claude Sonnet 4 offre le meilleur rapport qualite/prix.</td>
+</tr>
+<tr>
+<td><code>fallback_model</code></td>
+<td>Modele de repli si le principal est indisponible ou trop lent. Haiku est rapide et pas cher.</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>0 = deterministe, 1 = creatif. 0.3 est un bon equilibre pour du code.</td>
+</tr>
+<tr>
+<td><code>max_tokens</code></td>
+<td>Longueur maximale de la reponse. 8192 est suffisant pour la plupart des taches.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vault">vault</h3>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td>Active la recuperation des secrets depuis Vault.</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>URL locale de Vault. Ne changez pas sauf si Vault est sur une autre machine.</td>
+</tr>
+<tr>
+<td><code>token_env</code></td>
+<td>Variable d'environnement contenant le token Vault. Definie dans le fichier systemd (section 15).</td>
+</tr>
+<tr>
+<td><code>secret_prefix</code></td>
+<td>Prefixe du chemin KV. <code>secret</code> correspond a <code>vault kv get secret/...</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="database">database</h3>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vault_path</code></td>
+<td>Chemin Vault ou sont stockes les credentials PostgreSQL.</td>
+</tr>
+<tr>
+<td><code>pool_size</code></td>
+<td>Nombre de connexions simultanees. 10 est suffisant pour un usage moderé.</td>
+</tr>
+<tr>
+<td><code>ssl</code></td>
+<td>Desactive car la connexion est locale (meme machine, via 127.0.0.1).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="security">security</h3>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allowed_commands</code></td>
+<td>Commandes systeme que l'agent peut executer. Ajoutez selon vos besoins.</td>
+</tr>
+<tr>
+<td><code>blocked_paths</code></td>
+<td>Chemins que l'agent ne peut ni lire ni ecrire.</td>
+</tr>
+<tr>
+<td><code>require_confirmation_for</code></td>
+<td>Commandes qui necessitent une confirmation manuelle avant execution.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connexion-a-vault">Connexion a Vault</h2>
+<p>Pour que la configuration fonctionne, le token Vault doit etre disponible en variable d'environnement :</p>
+<pre class="codehilite"><code class="language-bash">$ export VAULT_TOKEN=&quot;votre-token-applicatif&quot;
+</code></pre>
+
+<p>Pour rendre ca permanent, ajoutez a <code>~/.bashrc</code> :</p>
+<pre class="codehilite"><code class="language-bash">export VAULT_TOKEN=&quot;votre-token-applicatif&quot;
+</code></pre>
+
+<p>Ou mieux : utilisez le fichier systemd (section 15) pour injecter la variable.</p>
+<h2 id="choix-du-modele">Choix du modele</h2>
+<table>
+<thead>
+<tr>
+<th>Modele</th>
+<th>Forces</th>
+<th>Faiblesses</th>
+<th>Cout approx.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Sonnet 4</td>
+<td>Meilleur raisonnement, code de qualite</td>
+<td>Plus lent, plus cher</td>
+<td>~3$/M tokens entree</td>
+</tr>
+<tr>
+<td>Claude Haiku 3.5</td>
+<td>Rapide, pas cher</td>
+<td>Moins precis sur les taches complexes</td>
+<td>~0.25$/M tokens</td>
+</tr>
+<tr>
+<td>Mistral Large</td>
+<td>Bon en francais</td>
+<td>Moins bon en code</td>
+<td>~2$/M tokens</td>
+</tr>
+<tr>
+<td>Gemini 2.0 Flash</td>
+<td>Tres rapide, grande fenetre</td>
+<td>Variable en qualite</td>
+<td>~0.10$/M tokens</td>
+</tr>
+</tbody>
+</table>
+<p>Recommandation : Claude Sonnet en defaut, Haiku en fallback.</p>
+<h2 id="erreurs-courantes_10">Erreurs courantes</h2>
+<ul>
+<li><strong>JSON invalide</strong> : Retirez les commentaires <code>//</code> du fichier. Validez avec <code>jq . ~/.openclaw/config.json</code>.</li>
+<li><strong>Vault token absent</strong> : L'erreur apparait au demarrage d'OpenClaw. Verifiez <code>echo $VAULT_TOKEN</code>.</li>
+<li><strong>Modele introuvable</strong> : Verifiez le nom exact du modele sur openrouter.ai/models.</li>
+<li><strong>Pool size trop grand</strong> : PostgreSQL a un nombre limite de connexions (100 par defaut). 10 est raisonnable.</li>
+</ul>
+<h2 id="verification_11">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ cat ~/.openclaw/config.json | python3 -m json.tool
+$ openclaw doctor
+</code></pre>
+
+<p>Resultats attendus :
+- JSON valide (pas d'erreur de parsing)
+- Doctor : configuration valide</p>
+<h2 id="temps-estime_11">Temps estime</h2>
+<p>15 minutes.</p>
+<h1 id="213-connexion-openrouter">2.13 -- Connexion OpenRouter</h1>
+<h2 id="contexte_12">Contexte</h2>
+<p>OpenRouter est une passerelle API qui donne acces a plusieurs modeles IA (Claude, Gemini, Mistral, Llama, etc.) via une seule cle API et un format unifie. Avantage principal : si un modele est indisponible, vous basculez sur un autre sans changer de code.</p>
+<h2 id="etape-1-obtenir-la-cle-api">Etape 1 : Obtenir la cle API</h2>
+<ol>
+<li>Connectez-vous sur <a href="https://openrouter.ai">openrouter.ai</a></li>
+<li>Allez dans Settings &gt; API Keys</li>
+<li>Creez une nouvelle cle</li>
+<li>Copiez la cle (format : <code>sk-or-v1-...</code>)</li>
+</ol>
+<h2 id="etape-2-stocker-la-cle-dans-vault">Etape 2 : Stocker la cle dans Vault</h2>
+<p>Si ce n'est pas deja fait (section 07) :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/openrouter api_key=&quot;sk-or-v1-VOTRE_CLE_ICI&quot;
+</code></pre>
+
+<p>Verifiez :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
+</code></pre>
+
+<h2 id="etape-3-tester-un-appel-api">Etape 3 : Tester un appel API</h2>
+<p>Test rapide avec curl pour verifier que la cle fonctionne :</p>
+<pre class="codehilite"><code class="language-bash">$ API_KEY=$(docker exec vault vault kv get -field=api_key secret/openrouter)
+
+$ curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H &quot;Authorization: Bearer $API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,
+    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Reponds juste OK&quot;}]
+  }' | python3 -m json.tool
+</code></pre>
+
+<p>Resultat attendu : une reponse JSON contenant "OK" (ou equivalent) dans <code>choices[0].message.content</code>.</p>
+<h2 id="etape-4-verifier-le-credit">Etape 4 : Verifier le credit</h2>
+<pre class="codehilite"><code class="language-bash">$ curl -s https://openrouter.ai/api/v1/auth/key \
+  -H &quot;Authorization: Bearer $API_KEY&quot; | python3 -m json.tool
+</code></pre>
+
+<p>Ce endpoint retourne votre solde et vos limites.</p>
+<h2 id="comparaison-des-modeles-disponibles">Comparaison des modeles disponibles</h2>
+<table>
+<thead>
+<tr>
+<th>Modele</th>
+<th>Cas d'usage</th>
+<th>Vitesse</th>
+<th>Qualite code</th>
+<th>Cout relatif</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anthropic/claude-sonnet-4-20250514</code></td>
+<td>Taches complexes, raisonnement, code</td>
+<td>Moyen</td>
+<td>Excellent</td>
+<td>$$$</td>
+</tr>
+<tr>
+<td><code>anthropic/claude-haiku-3.5</code></td>
+<td>Taches rapides, classification, tri</td>
+<td>Rapide</td>
+<td>Bon</td>
+<td>$</td>
+</tr>
+<tr>
+<td><code>mistral/mistral-large-latest</code></td>
+<td>Texte francais, analyse</td>
+<td>Moyen</td>
+<td>Bon</td>
+<td>$$</td>
+</tr>
+<tr>
+<td><code>google/gemini-2.0-flash-001</code></td>
+<td>Volume, grande fenetre contexte</td>
+<td>Tres rapide</td>
+<td>Correct</td>
+<td>$</td>
+</tr>
+<tr>
+<td><code>meta-llama/llama-3.3-70b-instruct</code></td>
+<td>Open source, pas de filtre</td>
+<td>Moyen</td>
+<td>Correct</td>
+<td>$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="strategie-recommandee">Strategie recommandee</h3>
+<ul>
+<li><strong>Modele par defaut</strong> : Claude Sonnet 4 pour la precision</li>
+<li><strong>Modele fallback</strong> : Claude Haiku 3.5 pour la vitesse et le cout</li>
+<li><strong>Modele experimentation</strong> : Gemini Flash pour les gros volumes</li>
+</ul>
+<h2 id="configuration-dans-openclaw">Configuration dans OpenClaw</h2>
+<p>La connexion est configuree dans <code>~/.openclaw/config.json</code> (section 12). Le champ <code>model.provider</code> doit etre <code>"openrouter"</code> et la cle est lue automatiquement depuis Vault.</p>
+<h2 id="alertes-budget">Alertes budget</h2>
+<p>OpenRouter permet de definir des limites de depenses dans le dashboard. Configurez :
+- Alerte a 10 EUR/mois
+- Limite dure a 30 EUR/mois</p>
+<p>Cela evite les mauvaises surprises si un agent boucle.</p>
+<h2 id="erreurs-courantes_11">Erreurs courantes</h2>
+<ul>
+<li><strong>"Invalid API key"</strong> : La cle est mal copiee ou expiree. Regenerez-la sur openrouter.ai.</li>
+<li><strong>"Insufficient credits"</strong> : Rechargez votre compte sur openrouter.ai.</li>
+<li><strong>"Model not found"</strong> : Le nom du modele a change. Verifiez sur openrouter.ai/models le nom exact.</li>
+<li><strong>Timeout sur les appels</strong> : Certains modeles sont lents en charge. Le fallback (Haiku) prend le relais automatiquement si configure.</li>
+</ul>
+<h2 id="verification_12">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
+$ curl -s https://openrouter.ai/api/v1/auth/key \
+  -H &quot;Authorization: Bearer $(docker exec vault vault kv get -field=api_key secret/openrouter)&quot; \
+  | python3 -m json.tool
+</code></pre>
+
+<p>Resultats attendus :
+- La cle est lisible depuis Vault
+- L'API retourne les infos du compte (solde, limites)</p>
+<h2 id="temps-estime_12">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="214-connexion-telegram">2.14 -- Connexion Telegram</h1>
+<h2 id="contexte_13">Contexte</h2>
+<p>Telegram sert de canal de notification et de commande pour OpenClaw. Le systeme envoie des alertes (health check en echec, deploiement termine, erreur critique) et peut recevoir des commandes simples via le bot.</p>
+<h2 id="etape-1-creer-le-bot-avec-botfather">Etape 1 : Creer le bot avec @BotFather</h2>
+<ol>
+<li>Ouvrez Telegram et cherchez <code>@BotFather</code></li>
+<li>Envoyez <code>/newbot</code></li>
+<li>Donnez un nom : <code>OA System Bot</code> (ou ce que vous voulez)</li>
+<li>Donnez un username : <code>oa_system_bot</code> (doit etre unique et finir par <code>bot</code>)</li>
+<li>BotFather vous donne un token (format : <code>123456789:ABCDefGhIJKlmnoPQRSTuvwxyz</code>)</li>
+</ol>
+<p>Copiez ce token.</p>
+<h2 id="etape-2-stocker-le-token-dans-vault">Etape 2 : Stocker le token dans Vault</h2>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/telegram bot_token=&quot;123456789:ABCDefGhIJKlmnoPQRSTuvwxyz&quot;
+</code></pre>
+
+<h2 id="etape-3-obtenir-votre-chat_id">Etape 3 : Obtenir votre chat_id</h2>
+<p>Le chat_id identifie la conversation ou le bot enverra les messages. Pour le trouver :</p>
+<ol>
+<li>Envoyez un message quelconque a votre bot dans Telegram</li>
+<li>Appelez l'API Telegram :</li>
+</ol>
+<pre class="codehilite"><code class="language-bash">$ BOT_TOKEN=$(docker exec vault vault kv get -field=bot_token secret/telegram)
+$ curl -s &quot;https://api.telegram.org/bot${BOT_TOKEN}/getUpdates&quot; | python3 -m json.tool
+</code></pre>
+
+<ol>
+<li>Dans la reponse, cherchez <code>"chat": {"id": 123456789}</code>. Ce nombre est votre chat_id.</li>
+</ol>
+<h2 id="etape-4-stocker-le-chat_id-dans-vault">Etape 4 : Stocker le chat_id dans Vault</h2>
+<p>Mettez a jour le secret Telegram avec le chat_id :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/telegram \
+  bot_token=&quot;123456789:ABCDefGhIJKlmnoPQRSTuvwxyz&quot; \
+  chat_id=&quot;VOTRE_CHAT_ID&quot;
+</code></pre>
+
+<h2 id="etape-5-tester-lenvoi-de-message">Etape 5 : Tester l'envoi de message</h2>
+<pre class="codehilite"><code class="language-bash">$ BOT_TOKEN=$(docker exec vault vault kv get -field=bot_token secret/telegram)
+$ CHAT_ID=$(docker exec vault vault kv get -field=chat_id secret/telegram)
+
+$ curl -s -X POST &quot;https://api.telegram.org/bot${BOT_TOKEN}/sendMessage&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &quot;{\&quot;chat_id\&quot;: \&quot;${CHAT_ID}\&quot;, \&quot;text\&quot;: \&quot;[OA System] Test de notification -- installation reussie.\&quot;}&quot;
+</code></pre>
+
+<p>Verifiez que le message arrive dans Telegram.</p>
+<h2 id="etape-6-configuration-dans-openclaw">Etape 6 : Configuration dans OpenClaw</h2>
+<p>La section <code>notifications.telegram</code> dans <code>~/.openclaw/config.json</code> (section 12) doit etre :</p>
+<pre class="codehilite"><code class="language-json">&quot;notifications&quot;: {
+  &quot;telegram&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;vault_path&quot;: &quot;secret/telegram&quot;
+  }
+}
+</code></pre>
+
+<p>OpenClaw lira automatiquement <code>bot_token</code> et <code>chat_id</code> depuis Vault.</p>
+<h2 id="script-utilitaire-denvoi">Script utilitaire d'envoi</h2>
+<p>Creez <code>~/scripts/notify-telegram.sh</code> pour envoyer des notifications depuis n'importe quel script :</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# Usage : ./notify-telegram.sh &quot;Votre message ici&quot;
+
+MESSAGE=&quot;${1:-Test}&quot;
+BOT_TOKEN=$(docker exec vault vault kv get -field=bot_token secret/telegram 2&gt;/dev/null)
+CHAT_ID=$(docker exec vault vault kv get -field=chat_id secret/telegram 2&gt;/dev/null)
+
+if [ -z &quot;$BOT_TOKEN&quot; ] || [ -z &quot;$CHAT_ID&quot; ]; then
+  echo &quot;Erreur : impossible de lire les credentials Telegram depuis Vault&quot;
+  exit 1
+fi
+
+curl -s -X POST &quot;https://api.telegram.org/bot${BOT_TOKEN}/sendMessage&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &quot;{\&quot;chat_id\&quot;: \&quot;${CHAT_ID}\&quot;, \&quot;text\&quot;: \&quot;${MESSAGE}\&quot;, \&quot;parse_mode\&quot;: \&quot;Markdown\&quot;}&quot; &gt; /dev/null
+
+echo &quot;Notification envoyee.&quot;
+</code></pre>
+
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/notify-telegram.sh
+$ ~/scripts/notify-telegram.sh &quot;Hello depuis le VPS&quot;
+</code></pre>
+
+<h2 id="erreurs-courantes_12">Erreurs courantes</h2>
+<ul>
+<li><strong>"Unauthorized"</strong> : Le token est invalide. Verifiez qu'il est bien copie, sans espaces.</li>
+<li><strong>"Bad Request: chat not found"</strong> : Vous n'avez pas envoye de message au bot avant d'appeler getUpdates. Le bot ne peut pas initier une conversation.</li>
+<li><strong>chat_id negatif</strong> : C'est normal pour les groupes. Pour un chat prive, le chat_id est un nombre positif.</li>
+<li><strong>getUpdates retourne un tableau vide</strong> : Envoyez un message au bot et reessayez immediatement. Les updates expirent apres 24h.</li>
+</ul>
+<h2 id="verification_13">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/notify-telegram.sh &quot;[OA] Verification Telegram OK&quot;
+</code></pre>
+
+<p>Resultat attendu : message recu dans Telegram.</p>
+<h2 id="temps-estime_13">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="215-gateway-systemd">2.15 -- Gateway systemd</h1>
+<h2 id="contexte_14">Contexte</h2>
+<p>La gateway OpenClaw est le point d'entree HTTP du systeme. Elle doit tourner en permanence, redemarrer automatiquement en cas de crash et demarrer au boot du serveur. systemd est le gestionnaire de services standard de Linux -- c'est lui qui gere ca.</p>
+<h2 id="etape-1-creer-le-fichier-de-service">Etape 1 : Creer le fichier de service</h2>
+<p>Creez <code>/etc/systemd/system/openclaw-gateway.service</code> :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo nano /etc/systemd/system/openclaw-gateway.service
+</code></pre>
+
+<p>Contenu :</p>
+<pre class="codehilite"><code class="language-ini">[Unit]
+Description=OpenClaw Gateway
+Documentation=https://github.com/alexwill87/openclawfieldplaybook
+After=network.target docker.service
+Wants=docker.service
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy
+Environment=NODE_ENV=production
+Environment=VAULT_ADDR=http://127.0.0.1:8200
+Environment=VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
+
+ExecStart=/home/deploy/.nvm/versions/node/v22.14.0/bin/node /home/deploy/.nvm/versions/node/v22.14.0/bin/openclaw gateway start
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -TERM $MAINPID
+
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=openclaw-gateway
+
+# Securite
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/home/deploy
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<p><strong>IMPORTANT</strong> : Adaptez les chemins selon votre installation :
+- Remplacez <code>v22.14.0</code> par votre version Node.js exacte (<code>node --version</code>)
+- Remplacez <code>VOTRE_TOKEN_APPLICATIF_ICI</code> par le token Vault cree en section 07
+- Remplacez <code>deploy</code> par votre nom d'utilisateur si different</p>
+<p>Pour trouver le chemin exact de node et openclaw :</p>
+<pre class="codehilite"><code class="language-bash">$ which node
+$ which openclaw
+</code></pre>
+
+<h2 id="etape-2-activer-et-demarrer-le-service">Etape 2 : Activer et demarrer le service</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl daemon-reload
+$ sudo systemctl enable openclaw-gateway
+$ sudo systemctl start openclaw-gateway
+</code></pre>
+
+<h2 id="etape-3-verifier-le-status">Etape 3 : Verifier le status</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway
+</code></pre>
+
+<p>Resultat attendu :</p>
+<pre class="codehilite"><code>openclaw-gateway.service - OpenClaw Gateway
+     Loaded: loaded (/etc/systemd/system/openclaw-gateway.service; enabled)
+     Active: active (running) since ...
+</code></pre>
+
+<h2 id="etape-4-consulter-les-logs">Etape 4 : Consulter les logs</h2>
+<p>Logs en temps reel :</p>
+<pre class="codehilite"><code class="language-bash">$ journalctl -u openclaw-gateway -f
+</code></pre>
+
+<p>Logs depuis le dernier demarrage :</p>
+<pre class="codehilite"><code class="language-bash">$ journalctl -u openclaw-gateway -b
+</code></pre>
+
+<p>Logs des dernieres 100 lignes :</p>
+<pre class="codehilite"><code class="language-bash">$ journalctl -u openclaw-gateway -n 100 --no-pager
+</code></pre>
+
+<h2 id="etape-5-commandes-de-gestion-courantes">Etape 5 : Commandes de gestion courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Commande</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demarrer</td>
+<td><code>sudo systemctl start openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Arreter</td>
+<td><code>sudo systemctl stop openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Redemarrer</td>
+<td><code>sudo systemctl restart openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Recharger config</td>
+<td><code>sudo systemctl reload openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td><code>sudo systemctl status openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Desactiver au boot</td>
+<td><code>sudo systemctl disable openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Voir les logs</td>
+<td><code>journalctl -u openclaw-gateway -f</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="comportement-de-redemarrage-automatique">Comportement de redemarrage automatique</h2>
+<p>La configuration prevoit :
+- <code>Restart=always</code> : redemarre apres tout arret (crash, kill, etc.)
+- <code>RestartSec=10</code> : attend 10 secondes avant de redemarrer
+- <code>StartLimitBurst=5</code> et <code>StartLimitIntervalSec=300</code> : maximum 5 redemarrages en 5 minutes. Au-dela, systemd considere le service comme defaillant et arrete les tentatives.</p>
+<p>Pour reinitialiser le compteur de tentatives :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl reset-failed openclaw-gateway
+$ sudo systemctl start openclaw-gateway
+</code></pre>
+
+<h2 id="erreurs-courantes_13">Erreurs courantes</h2>
+<ul>
+<li><strong>"openclaw: command not found"</strong> dans les logs : systemd ne charge pas <code>.bashrc</code>. Il faut utiliser le chemin ABSOLU vers node et openclaw. Pas de <code>nvm</code>, pas de <code>~</code>.</li>
+<li><strong>Permission denied</strong> : L'utilisateur dans le fichier service n'a pas acces au dossier. Verifiez <code>User=</code> et <code>ReadWritePaths=</code>.</li>
+<li><strong>Service qui boucle (restart loop)</strong> : Verifiez les logs (<code>journalctl</code>). Souvent un probleme de token Vault ou de connexion base de donnees.</li>
+<li><strong>"Start request repeated too quickly"</strong> : Le service a crashe 5 fois en 5 minutes. Corrigez le probleme sous-jacent, puis <code>systemctl reset-failed</code>.</li>
+</ul>
+<h2 id="verification_14">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway
+$ curl -s http://127.0.0.1:3000/health
+$ journalctl -u openclaw-gateway -n 10 --no-pager
+</code></pre>
+
+<p>Resultats attendus :
+- Status : active (running)
+- Health endpoint retourne une reponse 200
+- Pas d'erreur dans les 10 dernieres lignes de log</p>
+<h2 id="temps-estime_14">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="216-verification-post-installation">2.16 -- Verification post-installation</h1>
+<h2 id="contexte_15">Contexte</h2>
+<p>Toutes les briques sont en place. Avant de passer au chapitre suivant, on verifie TOUT d'un coup. Si un point est rouge, le diagnostic par symptome vous dira quoi faire.</p>
+<h2 id="checklist-des-10-points">Checklist des 10 points</h2>
+<p>Executez chaque commande. Tout doit reussir.</p>
+<h3 id="1-docker-fonctionne">1. Docker fonctionne</h3>
+<pre class="codehilite"><code class="language-bash">$ docker ps
+</code></pre>
+
+<p>Attendu : au moins 2 conteneurs (vault, postgres) en etat "Up".</p>
+<h3 id="2-vault-est-unseal-et-accessible">2. Vault est unseal et accessible</h3>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault status | grep Sealed
+</code></pre>
+
+<p>Attendu : <code>Sealed          false</code></p>
+<h3 id="3-les-secrets-sont-lisibles">3. Les secrets sont lisibles</h3>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get secret/openrouter
+$ docker exec vault vault kv get secret/telegram
+$ docker exec vault vault kv get secret/database
+</code></pre>
+
+<p>Attendu : chaque commande retourne les champs stockes.</p>
+<h3 id="4-postgresql-repond">4. PostgreSQL repond</h3>
+<pre class="codehilite"><code class="language-bash">$ docker exec postgres psql -U oa_admin -d oa_system -c &quot;SELECT 'pg_ok';&quot;
+</code></pre>
+
+<p>Attendu : <code>pg_ok</code></p>
+<h3 id="5-tailscale-est-connecte">5. Tailscale est connecte</h3>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+</code></pre>
+
+<p>Attendu : votre machine apparait comme connectee.</p>
+<h3 id="6-nodejs-est-la-bonne-version">6. Node.js est la bonne version</h3>
+<pre class="codehilite"><code class="language-bash">$ node --version
+</code></pre>
+
+<p>Attendu : v22.x ou superieur.</p>
+<h3 id="7-openclaw-est-installe">7. OpenClaw est installe</h3>
+<pre class="codehilite"><code class="language-bash">$ openclaw --version
+</code></pre>
+
+<p>Attendu : numero de version affiche.</p>
+<h3 id="8-la-gateway-tourne">8. La gateway tourne</h3>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway | grep Active
+</code></pre>
+
+<p>Attendu : <code>active (running)</code></p>
+<h3 id="9-le-health-check-passe">9. Le health check passe</h3>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/health-check.sh
+</code></pre>
+
+<p>Attendu : 0 echec.</p>
+<h3 id="10-openclaw-doctor">10. openclaw doctor</h3>
+<pre class="codehilite"><code class="language-bash">$ openclaw doctor
+</code></pre>
+
+<p>Attendu : tous les checks verts.</p>
+<h2 id="script-de-verification-rapide">Script de verification rapide</h2>
+<p>Pour tout verifier en une commande :</p>
+<pre class="codehilite"><code class="language-bash">$ check() { echo -n &quot;$1: &quot;; if eval &quot;$2&quot; &gt; /dev/null 2&gt;&amp;1; then echo &quot;OK&quot;; else echo &quot;ECHEC&quot;; fi; }
+$ echo &quot;=== VERIFICATION COMPLETE ===&quot;
+$ check &quot;1. Docker&quot;      &quot;docker ps&quot;
+$ check &quot;2. Vault unseal&quot; &quot;docker exec vault vault status 2&gt;/dev/null | grep 'Sealed.*false'&quot;
+$ check &quot;3. Vault secret&quot; &quot;docker exec vault vault kv get -field=api_key secret/openrouter&quot;
+$ check &quot;4. PostgreSQL&quot;   &quot;docker exec postgres psql -U oa_admin -d oa_system -c 'SELECT 1;'&quot;
+$ check &quot;5. Tailscale&quot;    &quot;tailscale status&quot;
+$ echo -n &quot;6. Node: &quot;    &amp;&amp; node --version
+$ check &quot;7. OpenClaw&quot;     &quot;openclaw --version&quot;
+$ check &quot;8. Gateway&quot;      &quot;sudo systemctl is-active openclaw-gateway&quot;
+$ echo &quot;=== FIN ===&quot;
+</code></pre>
+
+<h2 id="diagnostic-par-symptome_1">Diagnostic par symptome</h2>
+<p>Si un point echoue, voici quoi faire :</p>
+<table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Symptome</th>
+<th>Diagnostic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Docker ps erreur</td>
+<td><code>sudo systemctl start docker</code>. Si erreur persistante : <code>journalctl -u docker -n 50</code>.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Vault sealed</td>
+<td>Normal apres redemarrage. Unseal avec 3 cles (section 07, etape 7).</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Secret illisible</td>
+<td>Token expire ? <code>docker exec vault vault token lookup</code>. Recreez si necessaire.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>PostgreSQL ne repond pas</td>
+<td><code>docker logs postgres</code> pour voir l'erreur. Souvent un probleme de permissions sur <code>data/</code>.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Tailscale deconnecte</td>
+<td><code>sudo tailscale up</code>. Si erreur : <code>sudo systemctl restart tailscaled</code>.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Node version trop vieille</td>
+<td><code>nvm install --lts &amp;&amp; nvm alias default lts/*</code>.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>OpenClaw pas installe</td>
+<td><code>npm install -g @anthropic-ai/claude-code</code>. Verifiez le PATH nvm.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Gateway inactive</td>
+<td><code>journalctl -u openclaw-gateway -n 50</code>. Souvent un chemin incorrect dans le fichier service.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Health check echoue</td>
+<td>Le script indique quel point echoue. Corrigez ce point specifique.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Doctor echoue</td>
+<td>Suivez les instructions affichees par <code>openclaw doctor</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="si-tout-est-vert">Si tout est vert</h2>
+<p>Felicitations. Votre infrastructure est operationnelle. Passez aux sections suivantes (17, 18, 19) pour finaliser le workflow de developpement, puis au chapitre 3.</p>
+<h2 id="si-un-point-reste-rouge">Si un point reste rouge</h2>
+<p>Ne passez pas au chapitre suivant avec un point rouge. Chaque brique depend des precedentes. Un probleme non resolu ici deviendra un probleme plus gros plus tard.</p>
+<h2 id="temps-estime_15">Temps estime</h2>
+<p>10 minutes (verification seule, sans correction).</p>
+<h1 id="217-initialiser-le-repo-git">2.17 -- Initialiser le repo Git</h1>
+<h2 id="contexte_16">Contexte</h2>
+<p>Le code, les scripts et la configuration (hors secrets) doivent etre versionnes dans Git. Cette section cree le depot, configure le remote GitHub et met en place un .gitignore solide pour eviter de committer des secrets ou des fichiers inutiles.</p>
+<h2 id="etape-1-initialiser-le-depot">Etape 1 : Initialiser le depot</h2>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init oa-system
+$ cd oa-system
+</code></pre>
+
+<p>Ou si vous travaillez directement dans votre home :</p>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init
+</code></pre>
+
+<h2 id="etape-2-configurer-git">Etape 2 : Configurer Git</h2>
+<pre class="codehilite"><code class="language-bash">$ git config user.name &quot;Votre Nom&quot;
+$ git config user.email &quot;votre-email@example.com&quot;
+$ git config init.defaultBranch main
+</code></pre>
+
+<h2 id="etape-3-creer-le-gitignore">Etape 3 : Creer le .gitignore</h2>
+<p>Creez <code>.gitignore</code> a la racine du depot :</p>
+<pre class="codehilite"><code class="language-gitignore"># === Secrets et credentials ===
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+vault-keys.txt
+unseal-keys.txt
+
+# === Donnees Docker ===
+docker/vault/data/
+docker/postgres/data/
+
+# === Sauvegardes ===
+backups/
+
+# === Logs ===
+logs/
+*.log
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+.npm
+
+# === OpenClaw ===
+.openclaw/credentials.json
+.openclaw/logs/
+.openclaw/workspace/sessions/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# === IDE ===
+.vscode/settings.json
+.idea/
+*.sublime-workspace
+</code></pre>
+
+<h2 id="etape-4-copier-les-fichiers-a-versionner">Etape 4 : Copier les fichiers a versionner</h2>
+<p>Les fichiers qui DOIVENT etre dans Git :</p>
+<pre class="codehilite"><code class="language-bash"># Scripts
+$ cp ~/scripts/*.sh ./scripts/
+
+# Docker compose (sans les donnees)
+$ mkdir -p docker/vault docker/postgres
+$ cp ~/docker/vault/docker-compose.yml ./docker/vault/
+$ cp ~/docker/vault/config/vault.hcl ./docker/vault/config/
+$ cp ~/docker/postgres/docker-compose.yml ./docker/postgres/
+
+# Health check
+$ cp ~/scripts/health-check.sh ./scripts/
+</code></pre>
+
+<p>Les fichiers qui NE DOIVENT PAS etre dans Git :
+- Tout ce qui est dans <code>backups/</code>
+- Les dossiers <code>data/</code> des conteneurs
+- Les fichiers <code>.env</code> ou contenant des secrets
+- Les unseal keys de Vault</p>
+<h2 id="etape-5-creer-le-remote-github">Etape 5 : Creer le remote GitHub</h2>
+<p>Creez un depot sur GitHub (prive recommande), puis :</p>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin git@github.com:VOTRE_USER/oa-system.git
+</code></pre>
+
+<p>Si vous utilisez HTTPS au lieu de SSH :</p>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin https://github.com/VOTRE_USER/oa-system.git
+</code></pre>
+
+<h2 id="etape-6-premier-commit">Etape 6 : Premier commit</h2>
+<pre class="codehilite"><code class="language-bash">$ git add .
+$ git status
+</code></pre>
+
+<p>Verifiez que AUCUN secret n'apparait dans la liste des fichiers a committer. Si un fichier sensible apparait, ajoutez-le au .gitignore et faites <code>git reset HEAD &lt;fichier&gt;</code>.</p>
+<pre class="codehilite"><code class="language-bash">$ git commit -m &quot;feat: initialisation du systeme OA - infrastructure et scripts&quot;
+$ git push -u origin main
+</code></pre>
+
+<h2 id="etape-7-verifier-sur-github">Etape 7 : Verifier sur GitHub</h2>
+<p>Allez sur votre depot GitHub et verifiez :
+- Les fichiers sont presents
+- Aucun secret n'est visible
+- Le .gitignore fonctionne (pas de <code>data/</code>, pas de <code>backups/</code>)</p>
+<h2 id="erreurs-courantes_14">Erreurs courantes</h2>
+<ul>
+<li><strong>Committer des secrets</strong> : Si ca arrive, le secret est compromis meme si vous le supprimez du prochain commit (l'historique Git le conserve). Changez le secret immediatement. Utilisez <code>git-filter-repo</code> pour purger l'historique si necessaire.</li>
+<li><strong>"Permission denied (publickey)"</strong> : Votre cle SSH n'est pas configuree sur GitHub. Ajoutez-la dans GitHub &gt; Settings &gt; SSH Keys.</li>
+<li><strong>Depot prive vs public</strong> : Pour un systeme de production, utilisez un depot PRIVE. Les fichiers docker-compose.yml peuvent reveler votre architecture.</li>
+<li><strong>Oublier le .gitignore avant le premier commit</strong> : Si <code>node_modules/</code> ou <code>data/</code> a ete committe, faites <code>git rm -r --cached node_modules/</code> puis re-committez.</li>
+</ul>
+<h2 id="verification_15">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ git status
+$ git log --oneline
+$ git remote -v
+</code></pre>
+
+<p>Resultats attendus :
+- Working tree clean (rien a committer)
+- Au moins un commit visible
+- Remote pointe vers votre depot GitHub</p>
+<h2 id="temps-estime_16">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="218-claudemd">2.18 -- CLAUDE.md</h1>
+<h2 id="contexte_17">Contexte</h2>
+<p><code>CLAUDE.md</code> est le fichier que tout agent IA lit en premier quand il travaille sur votre depot. C'est le contrat entre vous et l'agent : conventions, stack, commandes autorisees, regles. Sans ce fichier, l'agent improvise. Avec ce fichier, il suit VOS regles.</p>
+<p>Ce fichier va a la racine du depot Git.</p>
+<h2 id="le-fichier-claudemd-complet">Le fichier CLAUDE.md complet</h2>
+<p>Creez <code>CLAUDE.md</code> a la racine de votre depot :</p>
+<pre class="codehilite"><code class="language-markdown"># CLAUDE.md -- Instructions pour les agents IA
+
+## Identite du projet
+
+- Nom : OA System
+- Description : Infrastructure d'agents IA autonomes sur VPS
+- Mainteneurs : [votre nom], agents OpenClaw
+- Langue du code : anglais
+- Langue de la documentation : francais
+- Depot : prive
+
+## Stack technique
+
+| Composant | Technologie | Version |
+|-----------|-------------|---------|
+| Runtime | Node.js | 22.x LTS |
+| Base de donnees | PostgreSQL | 16 (Docker) |
+| Secrets | HashiCorp Vault | 1.17 (Docker) |
+| Process manager | PM2 | 5.x |
+| Conteneurisation | Docker + Docker Compose v2 | 28.x |
+| VPN | Tailscale | derniere |
+| OS | Ubuntu | 24.04 LTS |
+
+## Structure du depot
+</code></pre>
+
+<p>.
+├── docker/           # Fichiers Docker Compose (pas de donnees)
+├── scripts/          # Scripts bash utilitaires
+├── CLAUDE.md         # Ce fichier
+├── .gitignore        # Fichiers exclus du versionnement
+└── README.md         # Documentation du projet</p>
+<pre class="codehilite"><code>## Commandes courantes
+
+```bash
+# Deploiement
+./scripts/deploy.sh
+
+# Health check
+./scripts/health-check.sh
+
+# Backup base de donnees
+./scripts/backup-postgres.sh
+
+# Notification Telegram
+./scripts/notify-telegram.sh &quot;message&quot;
+
+# Logs gateway
+journalctl -u openclaw-gateway -f
+
+# Restart gateway
+sudo systemctl restart openclaw-gateway
+</code></pre>
+
+<h2 id="regles-de-code">Regles de code</h2>
+<ol>
+<li>Pas de secrets en dur dans le code. Tout passe par Vault.</li>
+<li>Chaque script doit etre idempotent (executable plusieurs fois sans effet de bord).</li>
+<li>Les commandes Docker utilisent <code>docker compose</code> (avec espace, pas tiret).</li>
+<li>Les chemins sont absolus dans les scripts, relatifs dans le code applicatif.</li>
+<li>Les logs vont dans ~/logs/ ou journalctl, jamais dans le depot Git.</li>
+</ol>
+<h2 id="regles-de-commit">Regles de commit</h2>
+<ul>
+<li>Format : <code>type: description courte</code></li>
+<li>Types : feat, fix, docs, refactor, test, chore</li>
+<li>En anglais</li>
+<li>Une seule responsabilite par commit</li>
+</ul>
+<h2 id="ce-quun-agent-ne-doit-pas-faire">Ce qu'un agent NE DOIT PAS faire</h2>
+<ul>
+<li>Modifier les fichiers dans /etc/ sans demander confirmation</li>
+<li>Supprimer des fichiers sans lister ce qui sera supprime</li>
+<li>Executer <code>rm -rf</code> sur quoi que ce soit</li>
+<li>Toucher aux unseal keys de Vault</li>
+<li>Committer des fichiers .env ou des credentials</li>
+<li>Faire <code>git push --force</code> sur main</li>
+<li>Modifier ce fichier (CLAUDE.md) sans approbation humaine</li>
+</ul>
+<h2 id="ce-quun-agent-peut-faire-librement">Ce qu'un agent PEUT faire librement</h2>
+<ul>
+<li>Lire n'importe quel fichier du depot</li>
+<li>Executer les scripts dans ~/scripts/</li>
+<li>Lire les secrets depuis Vault (en lecture seule)</li>
+<li>Creer des branches Git</li>
+<li>Faire des commits sur des branches (pas main directement)</li>
+<li>Consulter les logs</li>
+<li>Executer le health check</li>
+</ul>
+<h2 id="variables-denvironnement">Variables d'environnement</h2>
+<p>Les variables sont injectees via systemd ou Vault. Ne jamais les mettre dans .bashrc pour la production.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VAULT_ADDR</td>
+<td>systemd</td>
+<td>URL de Vault</td>
+</tr>
+<tr>
+<td>VAULT_TOKEN</td>
+<td>systemd</td>
+<td>Token applicatif Vault</td>
+</tr>
+<tr>
+<td>NODE_ENV</td>
+<td>systemd</td>
+<td>production</td>
+</tr>
+</tbody>
+</table>
+<pre class="codehilite"><code>## Pourquoi ce fichier est important
+
+Sans CLAUDE.md :
+- L'agent peut tenter d'installer des paquets via `sudo apt install` alors que vous utilisez Docker
+- L'agent peut creer des fichiers .env au lieu d'utiliser Vault
+- L'agent peut faire `docker-compose` (tiret) au lieu de `docker compose` (espace)
+- L'agent peut committer sur main sans branche
+
+Avec CLAUDE.md :
+- L'agent connait votre stack exacte
+- L'agent respecte vos conventions
+- L'agent sait ce qu'il peut et ne peut pas faire
+- Moins de corrections manuelles
+
+## Mise a jour
+
+Ce fichier evolue avec le projet. Chaque fois que vous ajoutez un service, un script ou une regle, mettez CLAUDE.md a jour. C'est la source de verite pour les agents.
+
+## Erreurs courantes
+
+- **Ne pas creer le fichier** : L'agent fonctionne, mais fait des choix arbitraires. Le temps perdu en corrections depasse largement le temps de redaction.
+- **Fichier trop long** : Gardez-le concis. Les agents ont un contexte limite. L'essentiel suffit.
+- **Fichier obsolete** : Un CLAUDE.md qui decrit une stack qui a change est pire qu'aucun fichier. Maintenez-le.
+- **Mettre des secrets dans CLAUDE.md** : Ce fichier est dans Git. Pas de tokens, pas de mots de passe.
+
+## Verification
+
+```bash
+$ cat CLAUDE.md | head -5
+$ git log --oneline CLAUDE.md
+</code></pre>
+
+<p>Resultats attendus :
+- Le fichier existe et est lisible
+- Il est versionne dans Git</p>
+<h2 id="temps-estime_17">Temps estime</h2>
+<p>10 minutes.</p>
+<h1 id="219-script-de-deploiement">2.19 -- Script de deploiement</h1>
+<h2 id="contexte_18">Contexte</h2>
+<p>Le script <code>deploy.sh</code> automatise le deploiement complet : pull du code, installation des dependances, build et redemarrage des services. Il doit etre <strong>idempotent</strong> : executable plusieurs fois de suite sans effet de bord. Que le systeme soit a jour ou non, le resultat final est le meme.</p>
+<h2 id="le-script-complet_1">Le script complet</h2>
+<p>Creez <code>~/scripts/deploy.sh</code> :</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+# === Configuration ===
+PROJECT_DIR=&quot;$HOME/oa-system&quot;
+LOG_FILE=&quot;$HOME/logs/deploy.log&quot;
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# === Fonctions ===
+log() {
+  echo &quot;[${TIMESTAMP}] $1&quot; | tee -a &quot;$LOG_FILE&quot;
+}
+
+notify() {
+  if [ -f &quot;$HOME/scripts/notify-telegram.sh&quot; ]; then
+    &quot;$HOME/scripts/notify-telegram.sh&quot; &quot;$1&quot; 2&gt;/dev/null || true
+  fi
+}
+
+fail() {
+  log &quot;ECHEC : $1&quot;
+  notify &quot;[OA Deploy] ECHEC : $1&quot;
+  exit 1
+}
+
+# === Pre-checks ===
+log &quot;=== Debut deploiement ===&quot;
+
+# Verifier que le repertoire existe
+[ -d &quot;$PROJECT_DIR&quot; ] || fail &quot;Repertoire $PROJECT_DIR introuvable&quot;
+
+# Verifier que Docker tourne
+docker info &gt; /dev/null 2&gt;&amp;1 || fail &quot;Docker n'est pas demarre&quot;
+
+# Verifier que Vault est unseal
+docker exec vault vault status 2&gt;&amp;1 | grep -q &quot;Sealed.*false&quot; || fail &quot;Vault est sealed&quot;
+
+cd &quot;$PROJECT_DIR&quot;
+
+# === Etape 1 : Git pull ===
+log &quot;Git pull...&quot;
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ &quot;$BRANCH&quot; != &quot;main&quot; ]; then
+  log &quot;ATTENTION : branche actuelle = $BRANCH (pas main)&quot;
+fi
+
+git fetch origin
+LOCAL=$(git rev-parse HEAD)
+REMOTE=$(git rev-parse origin/$BRANCH)
+
+if [ &quot;$LOCAL&quot; = &quot;$REMOTE&quot; ]; then
+  log &quot;Deja a jour (commit: ${LOCAL:0:8}). Rien a deployer.&quot;
+  exit 0
+fi
+
+git pull origin &quot;$BRANCH&quot; || fail &quot;git pull a echoue&quot;
+NEW_COMMIT=$(git rev-parse --short HEAD)
+log &quot;Nouveau commit : $NEW_COMMIT&quot;
+
+# === Etape 2 : Installation des dependances ===
+log &quot;Installation des dependances npm...&quot;
+if [ -f &quot;package.json&quot; ]; then
+  npm ci --production 2&gt;&amp;1 | tail -1 | tee -a &quot;$LOG_FILE&quot;
+else
+  log &quot;Pas de package.json, etape ignoree&quot;
+fi
+
+# === Etape 3 : Build ===
+log &quot;Build...&quot;
+if [ -f &quot;package.json&quot; ] &amp;&amp; grep -q '&quot;build&quot;' package.json; then
+  npm run build 2&gt;&amp;1 | tail -5 | tee -a &quot;$LOG_FILE&quot;
+else
+  log &quot;Pas de script build, etape ignoree&quot;
+fi
+
+# === Etape 4 : Mise a jour Docker Compose (si necessaire) ===
+log &quot;Verification des conteneurs Docker...&quot;
+for service_dir in docker/vault docker/postgres; do
+  if [ -f &quot;$HOME/$service_dir/docker-compose.yml&quot; ]; then
+    cd &quot;$HOME/$service_dir&quot;
+    docker compose pull 2&gt;/dev/null || true
+    docker compose up -d 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
+    cd &quot;$PROJECT_DIR&quot;
+  fi
+done
+
+# === Etape 5 : Redemarrage PM2 ===
+log &quot;Redemarrage PM2...&quot;
+if pm2 list 2&gt;/dev/null | grep -q &quot;online\|stopped&quot;; then
+  pm2 reload all --update-env 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
+else
+  log &quot;Aucun processus PM2, etape ignoree&quot;
+fi
+
+# === Etape 6 : Redemarrage gateway ===
+log &quot;Redemarrage gateway...&quot;
+sudo systemctl restart openclaw-gateway 2&gt;&amp;1 || log &quot;ATTENTION : restart gateway echoue&quot;
+
+# === Etape 7 : Health check ===
+log &quot;Health check post-deploiement...&quot;
+sleep 5  # Laisser le temps aux services de demarrer
+
+if &quot;$HOME/scripts/health-check.sh&quot; &gt;&gt; &quot;$LOG_FILE&quot; 2&gt;&amp;1; then
+  log &quot;Health check : OK&quot;
+else
+  log &quot;ATTENTION : health check a des echecs&quot;
+  notify &quot;[OA Deploy] Deploiement $NEW_COMMIT termine avec des warnings (health check partiel)&quot;
+  exit 0
+fi
+
+# === Fin ===
+log &quot;=== Deploiement termine avec succes ($NEW_COMMIT) ===&quot;
+notify &quot;[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH&quot;
+</code></pre>
+
+<h2 id="installation_1">Installation</h2>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/deploy.sh
+</code></pre>
+
+<h2 id="utilisation">Utilisation</h2>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/deploy.sh
+</code></pre>
+
+<p>Le script :
+1. Verifie les prerequis (Docker, Vault)
+2. Pull le code depuis Git
+3. S'arrete si rien n'a change (idempotent)
+4. Installe les dependances (<code>npm ci</code>)
+5. Build le projet si un script build existe
+6. Met a jour les conteneurs Docker si necessaire
+7. Recharge les processus PM2
+8. Redemarre la gateway
+9. Lance le health check
+10. Notifie via Telegram</p>
+<h2 id="proprietes-du-script">Proprietes du script</h2>
+<table>
+<thead>
+<tr>
+<th>Propriete</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idempotent</td>
+<td>Si le code est deja a jour, le script s'arrete proprement</td>
+</tr>
+<tr>
+<td>Echec rapide</td>
+<td><code>set -euo pipefail</code> arrete le script a la premiere erreur</td>
+</tr>
+<tr>
+<td>Logging</td>
+<td>Chaque etape est logguee dans <code>~/logs/deploy.log</code></td>
+</tr>
+<tr>
+<td>Notification</td>
+<td>Telegram est notifie en cas de succes ou d'echec</td>
+</tr>
+<tr>
+<td>Adaptable</td>
+<td>Les etapes optionnelles (build, PM2) sont ignorees si non applicables</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deploiement-automatique-via-git-hook-optionnel">Deploiement automatique via Git hook (optionnel)</h2>
+<p>Pour declencher le deploiement automatiquement a chaque push :</p>
+<p>Creez <code>.git/hooks/post-receive</code> sur le VPS (si vous utilisez un bare repo) :</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+~/scripts/deploy.sh
+</code></pre>
+
+<p>Ou utilisez GitHub Actions pour declencher le script via SSH.</p>
+<h2 id="erreurs-courantes_15">Erreurs courantes</h2>
+<ul>
+<li><strong>"npm ci" echoue</strong> : Le fichier <code>package-lock.json</code> est absent ou desynchronise. Faites <code>npm install</code> puis committez le lock file.</li>
+<li><strong>Gateway qui ne redemarre pas</strong> : Verifiez les logs : <code>journalctl -u openclaw-gateway -n 20</code>. Souvent un token Vault expire.</li>
+<li><strong>Script qui echoue au premier lancement</strong> : Le depot Git n'existe peut-etre pas encore dans <code>~/oa-system</code>. Creez-le d'abord (section 17).</li>
+<li><strong>Permissions</strong> : Le script doit etre execute par l'utilisateur <code>deploy</code>, pas par root. Les commandes sudo internes (restart gateway) fonctionnent grace aux droits sudo du user.</li>
+</ul>
+<h2 id="verification_16">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/deploy.sh
+$ cat ~/logs/deploy.log | tail -20
+</code></pre>
+
+<p>Resultats attendus :
+- Script s'execute sans erreur (ou s'arrete avec "Deja a jour")
+- Log montre les etapes completees
+- Notification Telegram recue (si configuree)</p>
+<h2 id="temps-estime_18">Temps estime</h2>
+<p>15 minutes (creation et premier test).</p>
+</section>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="chapitre-01.html">&larr; Chapitre 1 -- Definition</a>
+<a href="chapitre-03.html">Chapitre 3 -- Configuration &rarr;</a>
+</div>
+
+    <footer>
+      <p>Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> par <a href="https://github.com/alexwill87">Alex Willemetz</a> | <a href="https://github.com/alexwill87/openclaw-field-playbook">GitHub</a></p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
