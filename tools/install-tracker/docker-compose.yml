@@ -1,0 +1,14 @@
+services:
+  install-tracker:
+    build: .
+    container_name: openclaw-install-tracker
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3007:3007"
+    volumes:
+      - tracker-data:/app/data
+    environment:
+      PORT: 3007
+
+volumes:
+  tracker-data:

@@ -52,6 +52,20 @@ Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependa
 - La section 05 (Node.js) doit etre faite avant 10 (OpenClaw)
 - La section 16 (Verification) suppose que toutes les sections precedentes sont terminees
 
+## Outil optionnel : Install Tracker
+
+Pour suivre votre progression en temps reel, vous pouvez deployer le **Install Tracker** — un cockpit minimal qui trace les phases, les decisions, les services et les actions.
+
+```bash
+cd tools/install-tracker
+docker compose up -d
+# Accessible sur http://localhost:3007
+```
+
+C'est optionnel. Le playbook fonctionne sans. Mais si vous voulez un tableau de bord visuel de votre installation, c'est pret en une commande. Details dans [tools/install-tracker/README.md](../../tools/install-tracker/README.md).
+
+---
+
 ## Conventions dans ce chapitre
 
 - Les commandes sont prefixees par `$` pour un utilisateur normal, `#` pour root

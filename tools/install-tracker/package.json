@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-install-tracker",
+  "version": "0.1.0",
+  "description": "Cockpit minimal pour suivre une installation OpenClaw",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "express": "^4.21.0"
+  }
+}
