@@ -31,7 +31,7 @@ Methode recommandee (installation globale) :
 $ npm install -g openclaw@latest
 ```
 
-> **Attention :** Le package s'appelle `openclaw`, pas `@anthropic-ai/claude-code` (qui est Claude Code, un autre outil). Verifiez que la commande `openclaw` est disponible apres installation.
+> **Attention :** Le package s'appelle `openclaw`, pas `openclaw@latest` (qui est Claude Code, un autre outil). Verifiez que la commande `openclaw` est disponible apres installation.
 
 Verifiez :
 
@@ -72,7 +72,7 @@ Solution : Vous utilisez probablement Node.js installe via apt au lieu de nvm. A
 
 ```bash
 $ nvm use --lts
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 ```
 
 Ne faites PAS `sudo npm install -g`. Ca cree des problemes de permissions en cascade.
@@ -88,7 +88,7 @@ Solution :
 ```bash
 $ nvm install --lts
 $ nvm alias default lts/*
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 ```
 
 ### "openclaw: command not found" apres installation
@@ -113,7 +113,7 @@ Si l'installation npm echoue avec des erreurs reseau :
 ```bash
 $ npm config set registry https://registry.npmjs.org/
 $ npm cache clean --force
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 ```
 
 ## Verification

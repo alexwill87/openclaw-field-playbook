@@ -61,7 +61,7 @@ WorkingDirectory=/home/VOTRE_USER
 Environment=NODE_ENV=production
 EnvironmentFile=/etc/openclaw/gateway.env
 
-ExecStart=/home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/node /home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/openclaw gateway start
+ExecStart=/home/VOTRE_USER/scripts/openclaw-gateway.sh
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
 
@@ -83,9 +83,20 @@ ReadWritePaths=/home/VOTRE_USER
 WantedBy=multi-user.target
 ```
 
-**IMPORTANT** : Remplacez les placeholders :
+Creez le wrapper script qui charge nvm correctement (systemd ne charge pas `.bashrc`) :
+
+```bash
+$ cat > ~/scripts/openclaw-gateway.sh << 'SCRIPT'
+#!/bin/bash
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
+exec openclaw gateway start
+SCRIPT
+$ chmod +x ~/scripts/openclaw-gateway.sh
+```
+
+**IMPORTANT** : Remplacez les placeholders dans le fichier service :
 - `VOTRE_USER` : votre nom d'utilisateur (resultat de `whoami`)
-- `VOTRE_VERSION` : votre version Node.js (resultat de `node --version`, ex: `v22.22.1`)
 - Le token Vault dans `/etc/openclaw/gateway.env` : celui cree a la section 07
 
 > **PM2 ou systemd ?** Si vous utilisez deja PM2 pour d'autres services Node.js, utilisez PM2. Sinon, systemd est recommande car il est natif a Ubuntu et ne necessite pas de dependance supplementaire. Ne melangez pas les deux pour le meme service.

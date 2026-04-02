@@ -18,7 +18,7 @@ On installe Node.js via **nvm** (Node Version Manager), pas via apt. Pourquoi : 
 ## Etape 1 : Installer nvm
 
 ```bash
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 ```
 
 Rechargez le shell :

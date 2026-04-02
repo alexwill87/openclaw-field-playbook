@@ -15,9 +15,11 @@ Avant d'aller plus loin, on verifie que toute l'infrastructure de base fonctionn
 
 ## Le script complet
 
-Creez `~/scripts/health-check.sh` :
+Creez le fichier :
 
 ```bash
+$ mkdir -p ~/scripts
+$ cat > ~/scripts/health-check.sh << 'HEALTHSCRIPT'
 #!/bin/bash
 # Health check infrastructure OA
 # Usage : ./health-check.sh
@@ -73,12 +75,15 @@ else
   echo "Infrastructure operationnelle."
   exit 0
 fi
+HEALTHSCRIPT
+$ chmod +x ~/scripts/health-check.sh
 ```
 
-## Installation
+## Verification
+
+Lancez le script :
 
 ```bash
-$ chmod +x ~/scripts/health-check.sh
 $ ~/scripts/health-check.sh
 ```
 

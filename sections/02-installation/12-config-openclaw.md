@@ -26,8 +26,8 @@ Creez ou editez `~/.openclaw/config.json` :
   // --- Modele IA ---
   "model": {
     "provider": "openrouter",
-    "default_model": "anthropic/claude-sonnet-4-20250514",
-    "fallback_model": "anthropic/claude-haiku-3.5",
+    "default_model": "anthropic/claude-sonnet-4",
+    "fallback_model": "anthropic/claude-haiku-4-5",
     "temperature": 0.3,
     "max_tokens": 8192
   },
@@ -86,6 +86,8 @@ Creez ou editez `~/.openclaw/config.json` :
   }
 }
 ```
+
+> **Les noms de modeles OpenRouter changent regulierement.** Avant de configurer, verifiez les noms actuels sur [openrouter.ai/models](https://openrouter.ai/models). Les noms ci-dessus etaient valides en avril 2026.
 
 **Note** : JSON ne supporte pas les commentaires. Retirez les lignes `//` dans le fichier final, ou utilisez un pre-processeur JSON5. Les commentaires ci-dessus sont pour la documentation uniquement.
 

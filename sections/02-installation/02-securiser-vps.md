@@ -84,7 +84,6 @@ Modifiez (ou ajoutez) ces lignes :
 PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
-UsePAM no
 ```
 
 Redemarrez SSH :

@@ -37,10 +37,9 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:5432:5432"
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: oa_admin
-      POSTGRES_PASSWORD: "VOTRE_MOT_DE_PASSE_FORT"
-      POSTGRES_DB: oa_system
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./data:/var/lib/postgresql/data
@@ -53,7 +52,18 @@ networks:
     driver: bridge
 ```
 
-**IMPORTANT** : Remplacez `VOTRE_MOT_DE_PASSE_FORT` par le mot de passe stocke dans Vault. Le port est lie a `127.0.0.1` uniquement.
+Creez le fichier `.env` avec les identifiants (ne jamais le committer dans git) :
+
+```bash
+$ cat > ~/docker/postgres/.env << 'EOF'
+POSTGRES_USER=oa_admin
+POSTGRES_PASSWORD=VOTRE_MOT_DE_PASSE_FORT
+POSTGRES_DB=oa_system
+EOF
+$ chmod 600 ~/docker/postgres/.env
+```
+
+> **SECURITE :** Le fichier `.env` contient le mot de passe en clair. Protegez-le (`chmod 600`) et ajoutez `.env` a votre `.gitignore`. Idealement, recuperez le mot de passe depuis Vault : `vault kv get -field=password secret/database > ~/docker/postgres/.env`
 
 ## Etape 3 : Demarrer PostgreSQL
 

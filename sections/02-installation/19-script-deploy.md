@@ -104,33 +104,31 @@ for service_dir in docker/vault docker/postgres; do
   fi
 done
 
-# === Etape 5 : Redemarrage PM2 ===
-log "Redemarrage PM2..."
-if pm2 list 2>/dev/null | grep -q "online\|stopped"; then
-  pm2 reload all --update-env 2>&1 | tee -a "$LOG_FILE"
+# === Etape 5 : Redemarrage gateway ===
+# Le playbook recommande systemd (section 2.15).
+# Si vous utilisez PM2, remplacez cette section par : pm2 reload all --update-env
+log "Redemarrage gateway (systemd)..."
+if sudo systemctl restart openclaw-gateway 2>&1; then
+  log "Gateway redemarree"
 else
-  log "Aucun processus PM2, etape ignoree"
+  log "ATTENTION : restart gateway echoue"
+  notify "[OA Deploy] ECHEC restart gateway sur $NEW_COMMIT"
+  exit 1
 fi
 
-# === Etape 6 : Redemarrage gateway ===
-log "Redemarrage gateway..."
-sudo systemctl restart openclaw-gateway 2>&1 || log "ATTENTION : restart gateway echoue"
-
-# === Etape 7 : Health check ===
+# === Etape 6 : Health check ===
 log "Health check post-deploiement..."
 sleep 5  # Laisser le temps aux services de demarrer
 
 if "$HOME/scripts/health-check.sh" >> "$LOG_FILE" 2>&1; then
   log "Health check : OK"
+  log "=== Deploiement termine avec succes ($NEW_COMMIT) ==="
+  notify "[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH"
 else
   log "ATTENTION : health check a des echecs"
-  notify "[OA Deploy] Deploiement $NEW_COMMIT termine avec des warnings (health check partiel)"
-  exit 0
+  notify "[OA Deploy] WARNING : $NEW_COMMIT deploye mais health check en echec"
+  exit 1
 fi
-
-# === Fin ===
-log "=== Deploiement termine avec succes ($NEW_COMMIT) ==="
-notify "[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH"
 ```
 
 ## Installation
