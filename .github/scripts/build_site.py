@@ -187,79 +187,132 @@ def build_chapter_pages():
             edit_url = '{}/tree/main/sections/{}/'.format(GITHUB_URL, chapter_dir)
             edit_link = '\n<p class="edit-link"><a href="{}">Proposer une modification sur GitHub</a></p>'.format(edit_url)
 
-        full_content = wrapped + edit_link + '\n' + '\n'.join(nav_links)
+        # Giscus comments
+        giscus = """
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>"""
+
+        full_content = wrapped + edit_link + giscus + '\n' + '\n'.join(nav_links)
         page_html = render_page(title, full_content, slug)
         write_page(f'{slug}.html', page_html)
 
 
 def build_index_page():
     """Build the landing page (index.html)."""
-    content = """
-<header id="hero">
-  <h1>OpenClaw Field Playbook</h1>
-  <p class="tagline">Le guide de terrain pour installer et operer OpenClaw en entreprise</p>
-  <p>Ce guide est ne de 3 installations ratees et 5 mois de travail. Chaque section est ecrite par des praticiens qui ont fait les erreurs avant vous. Pas de theorie abstraite : des commandes, des fichiers, des decisions documentees.</p>
-  <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
-    <a href="chapitre-00.html" style="display:inline-block;padding:0.6rem 1.2rem;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9rem;">Commencer la lecture</a>
-    <a href="{github}" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid var(--border);border-radius:6px;text-decoration:none;color:var(--text);font-size:0.9rem;">GitHub</a>
-  </div>
-</header>
-
-<section class="chapter">
-<h2>A qui s'adresse ce guide</h2>
-<ul>
-  <li><strong>Entrepreneurs</strong> qui veulent un agent IA operationnel</li>
-  <li><strong>Equipes techniques</strong> qui deploient OpenClaw pour leur organisation</li>
-  <li><strong>Freelances</strong> qui cherchent un avantage competitif</li>
-  <li><strong>Agents IA</strong> qui bootstrappent leur propre installation</li>
-</ul>
-</section>
-
-<section class="chapter">
-<h2>Par ou commencer</h2>
-<p>Trois parcours selon votre profil :</p>
-
-<h3>Je decouvre</h3>
-<p><a href="chapitre-01.html">Chapitre 1 -- Definition</a> &rarr; <a href="chapitre-02.html">Chapitre 2 -- Installation</a> &rarr; <a href="chapitre-03.html">Chapitre 3 -- Configuration</a></p>
-
-<h3>J'ai deja installe, je veux configurer</h3>
-<p><a href="chapitre-03.html">Chapitre 3 -- Configuration</a> &rarr; <a href="chapitre-04.html">Chapitre 4 -- Personnalisation</a></p>
-
-<h3>Je veux des exemples concrets</h3>
-<p><a href="chapitre-06.html">Chapitre 6 -- Cas d'usage</a> &rarr; puis remonter vers les chapitres techniques selon vos besoins</p>
-</section>
-
-<section class="chapter">
-<h2>Les 8 chapitres</h2>
-<table>
-  <thead>
-    <tr><th>N.</th><th>Titre</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-""".format(github=GITHUB_URL)
-
+    # Build chapter cards
+    cards = []
     for _, slug, title, desc in CHAPTERS:
-        content += '    <tr><td><a href="{slug}.html">{title}</a></td><td>{title}</td><td>{desc}</td></tr>\n'.format(
-            slug=slug, title=title, desc=desc
+        cards.append(
+            '<a class="chapter-card" href="{slug}.html">'
+            '<div class="num">{title}</div>'
+            '<div class="card-desc">{desc}</div>'
+            '</a>'.format(slug=slug, title=title, desc=desc)
         )
 
-    content += """  </tbody>
-</table>
-</section>
+    content = """
+<div class="landing-hero">
+  <h1>OpenClaw Field Playbook</h1>
+  <p class="lead">Le guide de terrain pour installer et operer OpenClaw en entreprise.<br>
+  Ecrit par des praticiens. Teste sur le terrain. Open source.</p>
+  <p style="font-size:0.88rem;color:var(--text-muted);max-width:540px;margin:0 auto 1.5rem;">
+    Ne de 3 installations ratees et 5 mois de travail. 81 sections, 7 chapitres,
+    des commandes copiables et des decisions documentees.
+  </p>
+  <div class="hero-actions">
+    <a href="chapitre-00.html" class="btn-primary">Commencer la lecture</a>
+    <a href="decouverte.html" class="btn-secondary">C'est quoi OpenClaw ?</a>
+    <a href="{github}" class="btn-secondary" target="_blank">Voir sur GitHub</a>
+  </div>
+</div>
 
-<section class="chapter">
-<h2>Checklist</h2>
-<p><a href="checklist.html">Telechargez la checklist complete</a> pour suivre votre progression etape par etape a travers le playbook.</p>
-</section>
+<div class="landing-section">
+  <h2>A qui s'adresse ce guide</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <strong>Entrepreneurs</strong>
+      <p>Vous voulez un agent IA qui travaille pour votre business, pas juste un chatbot.</p>
+    </div>
+    <div class="audience-card">
+      <strong>Equipes techniques</strong>
+      <p>Vous deployer OpenClaw pour votre organisation et avez besoin d'un guide solide.</p>
+    </div>
+    <div class="audience-card">
+      <strong>Freelances</strong>
+      <p>Vous cherchez un avantage competitif en automatisant vos operations.</p>
+    </div>
+    <div class="audience-card">
+      <strong>Agents IA</strong>
+      <p>Vous bootstrappez votre propre installation en suivant les sections comme un runbook.</p>
+    </div>
+  </div>
+</div>
 
-<section class="chapter">
-<h2>Autres ressources</h2>
-<ul>
-  <li><a href="decouverte.html">C'est quoi OpenClaw ?</a> -- Pour ceux qui decouvrent, une introduction accessible</li>
-  <li><a href="contribuer.html">Contribuer au playbook</a> -- Comment participer a ce projet</li>
-</ul>
-</section>
-"""
+<div class="landing-section">
+  <h2>Par ou commencer</h2>
+  <p>Trois parcours selon votre profil :</p>
+  <ul class="path-list">
+    <li>
+      <strong>Je decouvre OpenClaw</strong>
+      <span><a href="chapitre-01.html">Definition</a> &rarr; <a href="chapitre-02.html">Installation</a> &rarr; <a href="chapitre-03.html">Configuration</a>. Comptez une journee.</span>
+    </li>
+    <li>
+      <strong>J'ai deja installe, je veux configurer</strong>
+      <span><a href="chapitre-03.html">Configuration</a> &rarr; <a href="chapitre-04.html">Personnalisation</a>. Les deux chapitres les plus denses.</span>
+    </li>
+    <li>
+      <strong>Je veux des exemples concrets</strong>
+      <span><a href="chapitre-06.html">Cas d'usage</a> d'abord, puis remontez vers les chapitres techniques selon vos besoins.</span>
+    </li>
+  </ul>
+</div>
+
+<div class="landing-section">
+  <h2>Les chapitres</h2>
+  <div class="chapter-grid">
+    {cards}
+  </div>
+</div>
+
+<div class="landing-section">
+  <h2>Outils</h2>
+  <div class="audience-grid">
+    <a class="audience-card" href="checklist.html" style="text-decoration:none;color:var(--text);">
+      <strong>Checklist interactive</strong>
+      <p>Suivez votre progression etape par etape. Sauvegarde automatique.</p>
+    </a>
+    <a class="audience-card" href="contribuer.html" style="text-decoration:none;color:var(--text);">
+      <strong>Contribuer</strong>
+      <p>Corrigez une erreur, ajoutez un cas d'usage, proposez une section.</p>
+    </a>
+    <a class="audience-card" href="decouverte.html" style="text-decoration:none;color:var(--text);">
+      <strong>C'est quoi OpenClaw ?</strong>
+      <p>Pour ceux qui partent de zero. Pas de jargon.</p>
+    </a>
+    <a class="audience-card" href="{github}/issues" style="text-decoration:none;color:var(--text);" target="_blank">
+      <strong>Signaler un probleme</strong>
+      <p>Une commande qui ne marche pas ? Un lien casse ? Dites-le nous.</p>
+    </a>
+  </div>
+</div>
+""".format(github=GITHUB_URL, cards='\n    '.join(cards))
+
     page_html = render_page('Accueil', content, 'index')
     write_page('index.html', page_html)
 
