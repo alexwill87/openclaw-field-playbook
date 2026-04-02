@@ -1059,26 +1059,20 @@ $ docker exec vault vault operator unseal CLE_3_ICI
 </code></pre>
 
 <p>Notez le token genere. C'est celui que vous utiliserez dans la configuration OpenClaw.</p>
-<h2 id="etape-13-script-dunseal-automatique-optionnel">Etape 13 : Script d'unseal automatique (optionnel)</h2>
-<p>Pour eviter l'unseal manuel a chaque redemarrage, vous pouvez creer un script (a utiliser avec precaution) :</p>
-<pre class="codehilite"><code class="language-bash">$ cat &gt; ~/scripts/vault-unseal.sh &lt;&lt; 'SCRIPT'
-#!/bin/bash
-export VAULT_ADDR='http://127.0.0.1:8200'
-
-# Attendre que Vault soit pret
-until docker exec vault vault status 2&gt;&amp;1 | grep -q &quot;Sealed&quot;; do
-  sleep 2
-done
-
-docker exec vault vault operator unseal &quot;CLE_1&quot;
-docker exec vault vault operator unseal &quot;CLE_2&quot;
-docker exec vault vault operator unseal &quot;CLE_3&quot;
-
-echo &quot;Vault unsealed.&quot;
-SCRIPT
-$ chmod +x ~/scripts/vault-unseal.sh
+<h2 id="etape-13-unseal-apres-redemarrage">Etape 13 : Unseal apres redemarrage</h2>
+<p>Apres chaque redemarrage du VPS, Vault demarre en mode sealed. Vous devez l'unseal manuellement :</p>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault operator unseal
+# Entrez la cle 1 quand demande
+$ docker exec vault vault operator unseal
+# Entrez la cle 2
+$ docker exec vault vault operator unseal
+# Entrez la cle 3
 </code></pre>
 
+<blockquote>
+<p><strong>SECURITE : Ne jamais stocker les unseal keys dans un fichier sur le serveur.</strong> Pas de script <code>vault-unseal.sh</code> avec les cles en clair. Les unseal keys doivent etre conservees hors du VPS (gestionnaire de mots de passe, coffre physique, ou KMS cloud). Un agent IA qui a acces aux unseal keys peut compromettre l'ensemble du systeme.</p>
+</blockquote>
+<p>Pour les environnements de production, envisagez Vault auto-unseal avec un KMS cloud (AWS KMS, GCP Cloud KMS). C'est plus complexe a configurer mais elimine le besoin d'unseal manuel.</p>
 <p><strong>IMPORTANT</strong> : Ce script contient des unseal keys en clair. C'est un compromis entre securite et praticite. En environnement critique, preferez l'unseal manuel ou Vault auto-unseal avec un KMS cloud.</p>
 <h2 id="erreurs-courantes_6">Erreurs courantes</h2>
 <ul>
@@ -1385,9 +1379,12 @@ $ docker --version # Docker 28.x+ requis
 <p>Si une version est insuffisante, retournez a la section correspondante.</p>
 <h2 id="etape-2-installer-openclaw-via-npm">Etape 2 : Installer OpenClaw via npm</h2>
 <p>Methode recommandee (installation globale) :</p>
-<pre class="codehilite"><code class="language-bash">$ npm install -g @anthropic-ai/claude-code
+<pre class="codehilite"><code class="language-bash">$ npm install -g openclaw@latest
 </code></pre>
 
+<blockquote>
+<p><strong>Attention :</strong> Le package s'appelle <code>openclaw</code>, pas <code>@anthropic-ai/claude-code</code> (qui est Claude Code, un autre outil). Verifiez que la commande <code>openclaw</code> est disponible apres installation.</p>
+</blockquote>
 <p>Verifiez :</p>
 <pre class="codehilite"><code class="language-bash">$ openclaw --version
 </code></pre>
@@ -2006,6 +2003,25 @@ $ ~/scripts/notify-telegram.sh &quot;Hello depuis le VPS&quot;
 </code></pre>
 
 <p>Contenu :</p>
+<p>D'abord, trouvez vos chemins exacts :</p>
+<pre class="codehilite"><code class="language-bash">$ which node
+$ which openclaw
+</code></pre>
+
+<p>Notez les resultats. Creez ensuite le fichier d'environnement pour les secrets :</p>
+<pre class="codehilite"><code class="language-bash">$ sudo mkdir -p /etc/openclaw
+$ sudo tee /etc/openclaw/gateway.env &gt; /dev/null &lt;&lt; 'EOF'
+VAULT_ADDR=http://127.0.0.1:8200
+VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
+EOF
+$ sudo chmod 600 /etc/openclaw/gateway.env
+$ sudo chown root:root /etc/openclaw/gateway.env
+</code></pre>
+
+<blockquote>
+<p><strong>SECURITE :</strong> Le token Vault ne doit JAMAIS apparaitre en clair dans le fichier systemd. Utilisez <code>EnvironmentFile</code> pour le charger depuis un fichier protege (chmod 600, propriete root).</p>
+</blockquote>
+<p>Creez le fichier service en remplacant <code>VOTRE_USER</code> et les chemins par vos valeurs :</p>
 <pre class="codehilite"><code class="language-ini">[Unit]
 Description=OpenClaw Gateway
 Documentation=https://github.com/alexwill87/openclawfieldplaybook
@@ -2014,14 +2030,13 @@ Wants=docker.service
 
 [Service]
 Type=simple
-User=deploy
-Group=deploy
-WorkingDirectory=/home/deploy
+User=VOTRE_USER
+Group=VOTRE_USER
+WorkingDirectory=/home/VOTRE_USER
 Environment=NODE_ENV=production
-Environment=VAULT_ADDR=http://127.0.0.1:8200
-Environment=VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
+EnvironmentFile=/etc/openclaw/gateway.env
 
-ExecStart=/home/deploy/.nvm/versions/node/v22.14.0/bin/node /home/deploy/.nvm/versions/node/v22.14.0/bin/openclaw gateway start
+ExecStart=/home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/node /home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/openclaw gateway start
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
 
@@ -2037,21 +2052,19 @@ SyslogIdentifier=openclaw-gateway
 # Securite
 NoNewPrivileges=true
 ProtectSystem=strict
-ReadWritePaths=/home/deploy
+ReadWritePaths=/home/VOTRE_USER
 
 [Install]
 WantedBy=multi-user.target
 </code></pre>
 
-<p><strong>IMPORTANT</strong> : Adaptez les chemins selon votre installation :
-- Remplacez <code>v22.14.0</code> par votre version Node.js exacte (<code>node --version</code>)
-- Remplacez <code>VOTRE_TOKEN_APPLICATIF_ICI</code> par le token Vault cree en section 07
-- Remplacez <code>deploy</code> par votre nom d'utilisateur si different</p>
-<p>Pour trouver le chemin exact de node et openclaw :</p>
-<pre class="codehilite"><code class="language-bash">$ which node
-$ which openclaw
-</code></pre>
-
+<p><strong>IMPORTANT</strong> : Remplacez les placeholders :
+- <code>VOTRE_USER</code> : votre nom d'utilisateur (resultat de <code>whoami</code>)
+- <code>VOTRE_VERSION</code> : votre version Node.js (resultat de <code>node --version</code>, ex: <code>v22.22.1</code>)
+- Le token Vault dans <code>/etc/openclaw/gateway.env</code> : celui cree a la section 07</p>
+<blockquote>
+<p><strong>PM2 ou systemd ?</strong> Si vous utilisez deja PM2 pour d'autres services Node.js, utilisez PM2. Sinon, systemd est recommande car il est natif a Ubuntu et ne necessite pas de dependance supplementaire. Ne melangez pas les deux pour le meme service.</p>
+</blockquote>
 <h2 id="etape-2-activer-et-demarrer-le-service">Etape 2 : Activer et demarrer le service</h2>
 <pre class="codehilite"><code class="language-bash">$ sudo systemctl daemon-reload
 $ sudo systemctl enable openclaw-gateway
