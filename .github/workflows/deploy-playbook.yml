@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'sections/**'
+      - 'index_template.html'
+      - 'assets/**'
+      - '.github/scripts/build_site.py'
   workflow_dispatch:
 
 jobs:
@@ -11,8 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -23,20 +26,20 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Python dependencies (for markdown conversion)
-        run: pip install markdown beautifulsoup4
+      - name: Install dependencies
+        run: pip install markdown
 
-      - name: Build site with Python script
+      - name: Build index.html from sections
+        run: python .github/scripts/build_site.py
+
+      - name: Commit and push generated index.html
         run: |
-          mkdir -p _site
-          python .github/scripts/build_site.py
-          cp index.html _site/
-          cp CNAME _site/
-          cp -r assets _site/ 2>/dev/null || true
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          force_orphan: true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to index.html"
+          else
+            git commit -m "build: regenerate index.html from sections"
+            git push
+          fi
