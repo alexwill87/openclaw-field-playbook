@@ -28,8 +28,10 @@ Si une version est insuffisante, retournez a la section correspondante.
 Methode recommandee (installation globale) :
 
 ```bash
-$ npm install -g @anthropic-ai/claude-code
+$ npm install -g openclaw@latest
 ```
+
+> **Attention :** Le package s'appelle `openclaw`, pas `@anthropic-ai/claude-code` (qui est Claude Code, un autre outil). Verifiez que la commande `openclaw` est disponible apres installation.
 
 Verifiez :
 

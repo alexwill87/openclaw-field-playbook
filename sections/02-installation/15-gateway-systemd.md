@@ -23,6 +23,29 @@ $ sudo nano /etc/systemd/system/openclaw-gateway.service
 
 Contenu :
 
+D'abord, trouvez vos chemins exacts :
+
+```bash
+$ which node
+$ which openclaw
+```
+
+Notez les resultats. Creez ensuite le fichier d'environnement pour les secrets :
+
+```bash
+$ sudo mkdir -p /etc/openclaw
+$ sudo tee /etc/openclaw/gateway.env > /dev/null << 'EOF'
+VAULT_ADDR=http://127.0.0.1:8200
+VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
+EOF
+$ sudo chmod 600 /etc/openclaw/gateway.env
+$ sudo chown root:root /etc/openclaw/gateway.env
+```
+
+> **SECURITE :** Le token Vault ne doit JAMAIS apparaitre en clair dans le fichier systemd. Utilisez `EnvironmentFile` pour le charger depuis un fichier protege (chmod 600, propriete root).
+
+Creez le fichier service en remplacant `VOTRE_USER` et les chemins par vos valeurs :
+
 ```ini
 [Unit]
 Description=OpenClaw Gateway
@@ -32,14 +55,13 @@ Wants=docker.service
 
 [Service]
 Type=simple
-User=deploy
-Group=deploy
-WorkingDirectory=/home/deploy
+User=VOTRE_USER
+Group=VOTRE_USER
+WorkingDirectory=/home/VOTRE_USER
 Environment=NODE_ENV=production
-Environment=VAULT_ADDR=http://127.0.0.1:8200
-Environment=VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
+EnvironmentFile=/etc/openclaw/gateway.env
 
-ExecStart=/home/deploy/.nvm/versions/node/v22.14.0/bin/node /home/deploy/.nvm/versions/node/v22.14.0/bin/openclaw gateway start
+ExecStart=/home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/node /home/VOTRE_USER/.nvm/versions/node/VOTRE_VERSION/bin/openclaw gateway start
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
 
@@ -55,23 +77,18 @@ SyslogIdentifier=openclaw-gateway
 # Securite
 NoNewPrivileges=true
 ProtectSystem=strict
-ReadWritePaths=/home/deploy
+ReadWritePaths=/home/VOTRE_USER
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-**IMPORTANT** : Adaptez les chemins selon votre installation :
-- Remplacez `v22.14.0` par votre version Node.js exacte (`node --version`)
-- Remplacez `VOTRE_TOKEN_APPLICATIF_ICI` par le token Vault cree en section 07
-- Remplacez `deploy` par votre nom d'utilisateur si different
+**IMPORTANT** : Remplacez les placeholders :
+- `VOTRE_USER` : votre nom d'utilisateur (resultat de `whoami`)
+- `VOTRE_VERSION` : votre version Node.js (resultat de `node --version`, ex: `v22.22.1`)
+- Le token Vault dans `/etc/openclaw/gateway.env` : celui cree a la section 07
 
-Pour trouver le chemin exact de node et openclaw :
-
-```bash
-$ which node
-$ which openclaw
-```
+> **PM2 ou systemd ?** Si vous utilisez deja PM2 pour d'autres services Node.js, utilisez PM2. Sinon, systemd est recommande car il est natif a Ubuntu et ne necessite pas de dependance supplementaire. Ne melangez pas les deux pour le meme service.
 
 ## Etape 2 : Activer et demarrer le service
 

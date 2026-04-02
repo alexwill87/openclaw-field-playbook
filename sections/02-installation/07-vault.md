@@ -254,28 +254,22 @@ $ docker exec vault vault token create \
 
 Notez le token genere. C'est celui que vous utiliserez dans la configuration OpenClaw.
 
-## Etape 13 : Script d'unseal automatique (optionnel)
+## Etape 13 : Unseal apres redemarrage
 
-Pour eviter l'unseal manuel a chaque redemarrage, vous pouvez creer un script (a utiliser avec precaution) :
+Apres chaque redemarrage du VPS, Vault demarre en mode sealed. Vous devez l'unseal manuellement :
 
 ```bash
-$ cat > ~/scripts/vault-unseal.sh << 'SCRIPT'
-#!/bin/bash
-export VAULT_ADDR='http://127.0.0.1:8200'
-
-# Attendre que Vault soit pret
-until docker exec vault vault status 2>&1 | grep -q "Sealed"; do
-  sleep 2
-done
-
-docker exec vault vault operator unseal "CLE_1"
-docker exec vault vault operator unseal "CLE_2"
-docker exec vault vault operator unseal "CLE_3"
-
-echo "Vault unsealed."
-SCRIPT
-$ chmod +x ~/scripts/vault-unseal.sh
+$ docker exec vault vault operator unseal
+# Entrez la cle 1 quand demande
+$ docker exec vault vault operator unseal
+# Entrez la cle 2
+$ docker exec vault vault operator unseal
+# Entrez la cle 3
 ```
+
+> **SECURITE : Ne jamais stocker les unseal keys dans un fichier sur le serveur.** Pas de script `vault-unseal.sh` avec les cles en clair. Les unseal keys doivent etre conservees hors du VPS (gestionnaire de mots de passe, coffre physique, ou KMS cloud). Un agent IA qui a acces aux unseal keys peut compromettre l'ensemble du systeme.
+
+Pour les environnements de production, envisagez Vault auto-unseal avec un KMS cloud (AWS KMS, GCP Cloud KMS). C'est plus complexe a configurer mais elimine le besoin d'unseal manuel.
 
 **IMPORTANT** : Ce script contient des unseal keys en clair. C'est un compromis entre securite et praticite. En environnement critique, preferez l'unseal manuel ou Vault auto-unseal avec un KMS cloud.
 
