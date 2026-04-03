@@ -241,6 +241,7 @@ def build_sidebar(all_sections, active_slug, active_chapter):
     # Utility pages
     for page_slug, page_file, page_label in [
         ('checklist', 'checklist.html', 'Checklist'),
+        ('ecosystem', 'ecosystem.html', 'Ecosysteme'),
         ('decouverte', 'decouverte.html', 'C\'est quoi OpenClaw ?'),
         ('contribuer', 'contribuer.html', 'Contribuer'),
     ]:
@@ -815,6 +816,185 @@ def cleanup_old_chapter_files():
     return removed
 
 
+def build_ecosystem_page(all_sections):
+    """Build the ecosystem.html page."""
+    content = """
+<section class="chapter">
+<h1>Ecosysteme OpenClaw</h1>
+<p>Tout ce qui gravite autour d'OpenClaw : le projet officiel, les marketplaces de skills, les frameworks concurrents, les outils communautaires, les hebergeurs, les ressources d'apprentissage et les enjeux de securite.</p>
+<p>Derniere mise a jour : avril 2026.</p>
+
+<hr>
+
+<h2>Le projet officiel</h2>
+
+<table>
+<thead><tr><th>Ressource</th><th>Description</th><th>Lien</th></tr></thead>
+<tbody>
+<tr><td><strong>OpenClaw (site officiel)</strong></td><td>Assistant IA personnel open-source. Framework d'agents qui transforme les LLM en agents operationnels.</td><td><a href="https://openclaw.ai" target="_blank">openclaw.ai</a></td></tr>
+<tr><td><strong>Documentation officielle</strong></td><td>Guide d'installation, reference API, configuration des skills et du gateway.</td><td><a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a></td></tr>
+<tr><td><strong>GitHub OpenClaw</strong></td><td>Repo principal. 250 000+ etoiles (mars 2026). Le projet open-source a la croissance la plus rapide sur GitHub.</td><td><a href="https://github.com/openclaw" target="_blank">github.com/openclaw</a></td></tr>
+<tr><td><strong>ClawHub</strong></td><td>Marketplace officielle de skills. 13 700+ skills communautaires. Standard MCP (Model Context Protocol).</td><td><a href="https://github.com/openclaw/clawhub" target="_blank">github.com/openclaw/clawhub</a></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Marketplaces et registres de skills</h2>
+
+<table>
+<thead><tr><th>Projet</th><th>Description</th><th>Lien</th></tr></thead>
+<tbody>
+<tr><td><strong>ClawHub</strong></td><td>Registre officiel. 13 729 skills (fevrier 2026). Attention : ~20% sont de faible qualite ou potentiellement risques. Toujours verifier le code source avant d'installer.</td><td><a href="https://github.com/openclaw/clawhub" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-skills</strong></td><td>5 400+ skills filtrees et categorizees depuis le registre officiel. Curate par VoltAgent.</td><td><a href="https://github.com/VoltAgent/awesome-openclaw-skills" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-agents</strong></td><td>162 templates SOUL.md prets a l'emploi, classes en 19 categories (productivite, dev, marketing, business).</td><td><a href="https://github.com/mergisi/awesome-openclaw-agents" target="_blank">GitHub</a></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Ressources communautaires et listes curatees</h2>
+
+<table>
+<thead><tr><th>Projet</th><th>Description</th><th>Lien</th></tr></thead>
+<tbody>
+<tr><td><strong>awesome-openclaw</strong> (vincentkoc)</td><td>La liste curatee la plus complete : skills, plugins, systemes de memoire, outils MCP, stacks de deploiement, plateformes ecosysteme.</td><td><a href="https://github.com/vincentkoc/awesome-openclaw" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw</strong> (SamurAIGPT)</td><td>Ressources, outils, skills, tutoriels et articles. Bonne porte d'entree pour les debutants.</td><td><a href="https://github.com/SamurAIGPT/awesome-openclaw" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-resources</strong></td><td>Projets open-source, outils, tutoriels, podcasts et createurs de contenu.</td><td><a href="https://github.com/SebConejo/awesome-openclaw-resources" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-usecases</strong></td><td>Cas d'usage reels : workflows pratiques montrant comment OpenClaw s'integre dans le quotidien.</td><td><a href="https://github.com/hesamsheikh/awesome-openclaw-usecases" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>OpenClaw Field Playbook</strong></td><td>Ce guide. 81 sections, 7 chapitres, le seul playbook francophone couvrant le parcours complet installation-a-maintenance.</td><td><a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">GitHub</a></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Livres et guides</h2>
+
+<table>
+<thead><tr><th>Titre</th><th>Auteur</th><th>Format</th><th>Prix</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>The OpenClaw Playbook</strong></td><td>Dennis Steinberg</td><td>eBook (LeanPub)</td><td>~23 USD</td><td>Guide "prompt-first" en 24 chapitres. Couvre identite, memoire, connexions, securite, taches, routines, decisions. La reference conceptuelle.</td></tr>
+<tr><td><strong>OpenClaw Playbook</strong></td><td>Lunar</td><td>eBook (Fnac/Everand)</td><td>~15 USD</td><td>Guide pratique oriente configuration.</td></tr>
+<tr><td><strong>OpenClaw Field Playbook</strong></td><td>Alex Willemetz</td><td>Site web + GitHub (CC-BY 4.0)</td><td>Gratuit</td><td>Ce guide. Open-source, francophone, teste sur le terrain.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Hebergement et deploiement</h2>
+
+<table>
+<thead><tr><th>Provider</th><th>Type</th><th>Prix</th><th>Particularite</th></tr></thead>
+<tbody>
+<tr><td><strong>Hetzner</strong></td><td>VPS auto-gere</td><td>~4-7 EUR/mois</td><td>Recommande dans ce playbook. Datacenters EU (Allemagne, Finlande). Excellent rapport qualite/prix.</td></tr>
+<tr><td><strong>OVHcloud</strong></td><td>VPS auto-gere</td><td>~4-8 EUR/mois</td><td>Datacenters en France. Ideal pour la conformite RGPD.</td></tr>
+<tr><td><strong>Scaleway</strong></td><td>VPS auto-gere</td><td>~5-10 EUR/mois</td><td>Infrastructure francaise. Bonne integration Docker.</td></tr>
+<tr><td><strong>DigitalOcean</strong></td><td>VPS + Marketplace</td><td>~6-12 USD/mois</td><td>Image OpenClaw 1-click dans le Marketplace. App Platform pour deploiement manage.</td></tr>
+<tr><td><strong>Hostinger</strong></td><td>VPS manage</td><td>~7 USD/mois</td><td>Template Docker pre-configure pour OpenClaw. 1-click deploy.</td></tr>
+<tr><td><strong>Oracle Cloud</strong></td><td>Free tier</td><td>Gratuit</td><td>24 Go RAM gratuits (Always Free). Suffisant pour des modeles 7B locaux.</td></tr>
+<tr><td><strong>Contabo</strong></td><td>VPS budget</td><td>~4 EUR/mois</td><td>Le moins cher. RAM genereuse. Performances reseau inferieures.</td></tr>
+<tr><td><strong>Kimi Claw</strong></td><td>Cloud manage</td><td>Variable</td><td>Deploiement OpenClaw en secondes, zero configuration.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Providers LLM (via OpenRouter ou direct)</h2>
+
+<table>
+<thead><tr><th>Provider</th><th>Modeles cles</th><th>Acces</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>OpenRouter</strong></td><td>Tous (proxy multi-provider)</td><td><a href="https://openrouter.ai" target="_blank">openrouter.ai</a></td><td>Recommande : un seul compte pour acceder a tous les modeles. Suivi des couts integre.</td></tr>
+<tr><td><strong>Anthropic</strong></td><td>Claude Sonnet 4, Claude Haiku 4.5, Claude Opus 4.6</td><td><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></td><td>Excellent en francais. Le meilleur pour les taches complexes.</td></tr>
+<tr><td><strong>Mistral AI</strong></td><td>Mistral Large, Mistral Medium</td><td><a href="https://console.mistral.ai" target="_blank">console.mistral.ai</a></td><td>Entreprise francaise. Tres bon en francais. Modeles efficaces en tokens.</td></tr>
+<tr><td><strong>Google</strong></td><td>Gemini 2.5 Pro, Gemini 2.5 Flash</td><td><a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></td><td>Contexte long (1M tokens). Bon pour l'analyse de documents.</td></tr>
+<tr><td><strong>OpenAI</strong></td><td>GPT-4o, o3, o4-mini</td><td><a href="https://platform.openai.com" target="_blank">platform.openai.com</a></td><td>Large ecosysteme. Bon generaliste.</td></tr>
+<tr><td><strong>Meta (Llama)</strong></td><td>Llama 4 Scout, Llama 4 Maverick</td><td>Via OpenRouter ou local</td><td>Open-source. Gratuit si heberge localement.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Frameworks concurrents et complementaires</h2>
+
+<table>
+<thead><tr><th>Framework</th><th>Approche</th><th>Force</th><th>Faiblesse vs OpenClaw</th></tr></thead>
+<tbody>
+<tr><td><strong>LangChain / LangGraph</strong></td><td>Orchestration par graphes</td><td>Controle deterministe, ideal pour la conformite</td><td>Plus complexe a configurer. Pas d'interface utilisateur native.</td></tr>
+<tr><td><strong>CrewAI</strong></td><td>Multi-agents par roles</td><td>Setup rapide (~30% plus rapide que LangChain). Architecture Crews + Flows.</td><td>Moins de skills pre-faites. Ecosysteme plus petit.</td></tr>
+<tr><td><strong>AutoGPT / AgentGPT</strong></td><td>Autonomie maximale</td><td>L'agent definit ses propres sous-taches</td><td>Difficile a controler. Cout en tokens eleve. Risque de boucles infinies.</td></tr>
+<tr><td><strong>n8n</strong></td><td>Low-code visual</td><td>1000+ connecteurs. Interface visuelle. Pas besoin de coder.</td><td>Moins flexible pour les agents conversationnels.</td></tr>
+<tr><td><strong>Nanobot</strong></td><td>Ultra-leger (4000 lignes Python)</td><td>99% plus petit qu'OpenClaw. Simple a comprendre et modifier.</td><td>Moins de features. Pas de marketplace de skills.</td></tr>
+<tr><td><strong>NanoClaw</strong></td><td>Securise par defaut</td><td>Isolation container, execution sandboxee</td><td>Moins de skills. Oriente securite enterprise.</td></tr>
+<tr><td><strong>Moltworker</strong></td><td>Serverless (Cloudflare Workers)</td><td>Pas d'acces systeme local. Sandbox par design.</td><td>Pas d'acces au filesystem. Limite pour les taches systeme.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Securite</h2>
+
+<p>OpenClaw a connu des incidents de securite significatifs en 2026. Voici ce que vous devez savoir :</p>
+
+<table>
+<thead><tr><th>Incident</th><th>Date</th><th>Impact</th><th>Mitigation</th></tr></thead>
+<tbody>
+<tr><td><strong>ClawJacked</strong></td><td>Fevrier 2026</td><td>Tout site web peut hijacker un agent OpenClaw local via WebSocket. Le rate limiter exempte localhost.</td><td>Mettre a jour vers la derniere version. Configurer un mot de passe gateway fort.</td></tr>
+<tr><td><strong>ClawHavoc</strong></td><td>Mars 2026</td><td>300+ skills malicieuses sur ClawHub avec des noms typosquattes.</td><td>Verifier le code source. Utiliser le skill Security Auditor. Verifier les scans VirusTotal sur ClawHub.</td></tr>
+<tr><td><strong>9 CVE en 4 jours</strong></td><td>Mars 2026</td><td>1 CVE critique (9.9/10), 6 high, 2 medium. 135 000 instances exposees publiquement.</td><td>Mettre a jour immediatement. Ne JAMAIS exposer le gateway sur Internet public. Utiliser Tailscale.</td></tr>
+</tbody>
+</table>
+
+<p><strong>Outils de securite :</strong></p>
+<ul>
+<li><strong>NemoClaw</strong> (NVIDIA) — Sandbox kernel-level pour les agents. Enterprise preview. <a href="https://www.chainup.com/blog/agentic-ai-openclaw-crypto-exchange-infrastructure/" target="_blank">En savoir plus</a></li>
+<li><strong>KnoxClaw</strong> (AccuKnox) — Sandboxing kernel pour les instances OpenClaw. <a href="https://accuknox.com/blog/introducing-knoxclaw-for-openclaw-instances" target="_blank">En savoir plus</a></li>
+<li><strong>Security Auditor skill</strong> — Skill ClawHub qui audite les permissions et les acces de votre agent a runtime.</li>
+</ul>
+
+<blockquote>
+<p><strong>Recommandation de ce playbook :</strong> Ne JAMAIS exposer le port du gateway OpenClaw sur Internet public. Toujours utiliser Tailscale ou un VPN. Toujours verifier le code source d'un skill avant de l'installer. Mettre a jour regulierement.</p>
+</blockquote>
+
+<hr>
+
+<h2>Outils MCP (Model Context Protocol)</h2>
+
+<p>MCP est le standard ouvert cree par Anthropic pour connecter les modeles IA au monde reel. OpenClaw supporte MCP nativement via ClawHub.</p>
+
+<table>
+<thead><tr><th>Serveur MCP</th><th>Description</th><th>Lien</th></tr></thead>
+<tbody>
+<tr><td><strong>openclaw-mcp</strong></td><td>Bridge securise entre Claude.ai et votre instance OpenClaw auto-hebergee. Authentification OAuth2.</td><td><a href="https://github.com/freema/openclaw-mcp" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>Playwright MCP</strong></td><td>Automatisation navigateur complete via MCP.</td><td>ClawHub</td></tr>
+<tr><td><strong>Supabase MCP</strong></td><td>Acces base de donnees PostgreSQL via MCP.</td><td>ClawHub</td></tr>
+<tr><td><strong>Tavily MCP</strong></td><td>Recherche web en temps reel via MCP.</td><td>ClawHub</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Apprentissage et tutoriels</h2>
+
+<table>
+<thead><tr><th>Ressource</th><th>Format</th><th>Description</th><th>Lien</th></tr></thead>
+<tbody>
+<tr><td><strong>10 GitHub Repos to Master OpenClaw</strong></td><td>Article</td><td>Selection curatee par KDnuggets des meilleurs repos pour apprendre.</td><td><a href="https://www.kdnuggets.com/10-github-repositories-to-master-openclaw" target="_blank">KDnuggets</a></td></tr>
+<tr><td><strong>9 OpenClaw Projects to Build</strong></td><td>Tutoriels</td><td>Projets pratiques : bots Reddit, serveurs auto-reparants, etc.</td><td><a href="https://www.datacamp.com/blog/openclaw-projects" target="_blank">DataCamp</a></td></tr>
+<tr><td><strong>OpenClaw Explained</strong></td><td>Article</td><td>Introduction complete pour debutants.</td><td><a href="https://www.kdnuggets.com/openclaw-explained-the-free-ai-agent-tool-going-viral-already-in-2026" target="_blank">KDnuggets</a></td></tr>
+<tr><td><strong>What is OpenClaw?</strong></td><td>Guide</td><td>Introduction technique par DigitalOcean.</td><td><a href="https://www.digitalocean.com/resources/articles/what-is-openclaw" target="_blank">DigitalOcean</a></td></tr>
+<tr><td><strong>OpenClaw MasterClass</strong></td><td>Cours</td><td>Cours structure avec module ClawHub.</td><td><a href="https://tenten.co/openclaw/en/docs/masterclass/module-04-clawhub" target="_blank">Tenten</a></td></tr>
+</tbody>
+</table>
+
+</section>
+"""
+    sidebar_html = build_sidebar(all_sections, 'ecosystem', None)
+    page_html = render_page('Ecosysteme OpenClaw', content, sidebar_html)
+    write_page('ecosystem.html', page_html)
+    print('  -> ecosystem.html')
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -845,6 +1025,7 @@ if __name__ == '__main__':
     build_checklist_page(all_sections)
     build_contribuer_page(all_sections)
     build_decouverte_page(all_sections)
+    build_ecosystem_page(all_sections)
     print()
 
     # Summary
@@ -855,7 +1036,7 @@ if __name__ == '__main__':
         n = counts.get(chapter_num, 0)
         total += n
         print(f'  Chapitre {int(chapter_num)} ({short_title}): {n} pages')
-    print(f'  Utility pages: 4 (index, checklist, contribuer, decouverte)')
-    print(f'  TOTAL: {total + 4} HTML files')
+    print(f'  Utility pages: 5 (index, checklist, contribuer, decouverte, ecosystem)')
+    print(f'  TOTAL: {total + 5} HTML files')
     print()
     print('Build complete. All files written to repo root.')
