@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>OpenClaw pour les developpeurs | OpenClaw Field Playbook</title>
+  <title>OpenClaw pour les développeurs | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenClaw Field Playbook">
-  <meta property="og:title" content="OpenClaw pour les developpeurs | OpenClaw Field Playbook">
+  <meta property="og:title" content="OpenClaw pour les développeurs | OpenClaw Field Playbook">
   <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
   <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="OpenClaw pour les developpeurs | OpenClaw Field Playbook">
+  <meta name="twitter:title" content="OpenClaw pour les développeurs | OpenClaw Field Playbook">
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -44,19 +44,20 @@
     </div>
     <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
-<div class="nav-group-label">Decouvrir</div>
+<div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
-<a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
-<a href="persona-cto.html">Pour les equipes tech</a>
-<a href="persona-dev.html" class="active">Pour les developpeurs</a>
-<a href="persona-agent.html">Pour les agents IA</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html" class="active">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
 </div>
-<div class="nav-group-label">Deployer</div>
+<div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
   <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
 </div>
@@ -66,7 +67,7 @@
 <div class="nav-chapter">
   <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
 </div>
-<div class="nav-group-label">Operer</div>
+<div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
   <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
 </div>
@@ -74,13 +75,13 @@
   <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
 </div>
 <div class="nav-group-label">Ressources</div>
-<a href="ecosystem.html">Ecosysteme</a>
+<a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
   <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
-<a href="privacy.html">Confidentialite</a>
+<a href="privacy.html">Confidentialité</a>
     </nav>
   </aside>
 
@@ -89,23 +90,23 @@
 <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>Pour les developpeurs</span>
+  <span>Pour les développeurs</span>
 </nav>
 <section class="chapter">
-<h1>OpenClaw pour les developpeurs</h1>
+<h1>OpenClaw pour les développeurs</h1>
 
 <h2>Vous savez ce qu'est Docker. Allons droit au but.</h2>
-<p>Ce playbook est votre runbook. 92 sections, des commandes copiables, des decisions documentees. Pas de blabla marketing, pas de slides, pas de "vision". Juste ce qu'il faut pour installer, configurer et faire tourner un agent OpenClaw sur un VPS.</p>
+<p>Ce playbook est votre runbook. 92 sections, des commandes copiables, des décisions documentées. Pas de blabla marketing, pas de slides, pas de "vision". Juste ce qu'il faut pour installer, configurer et faire tourner un agent OpenClaw sur un VPS.</p>
 
 <h2>Ce que vous allez installer</h2>
 <table>
   <thead><tr><th>Composant</th><th>Role</th></tr></thead>
   <tbody>
-    <tr><td>OpenClaw + OpenRouter</td><td>Framework d'agent + acces multi-modeles (Claude, GPT, Mistral, Llama)</td></tr>
-    <tr><td>HashiCorp Vault</td><td>Gestion des secrets (cles API, tokens, credentials)</td></tr>
-    <tr><td>PostgreSQL</td><td>Source de verite (memoire, configuration, logs)</td></tr>
-    <tr><td>Tailscale</td><td>VPN mesh (zero exposition publique)</td></tr>
-    <tr><td>systemd</td><td>Gateway OpenClaw (service systeme)</td></tr>
+    <tr><td>OpenClaw + OpenRouter</td><td>Framework d'agent + accès multi-modèles (Claude, GPT, Mistral, Llama)</td></tr>
+    <tr><td>HashiCorp Vault</td><td>Gestion des secrets (clés API, tokens, credentials)</td></tr>
+    <tr><td>PostgreSQL</td><td>Source de vérité (mémoire, configuration, logs)</td></tr>
+    <tr><td>Tailscale</td><td>VPN mesh (zéro exposition publique)</td></tr>
+    <tr><td>systemd</td><td>Gateway OpenClaw (service système)</td></tr>
     <tr><td>Git</td><td>Versionning de la configuration agent</td></tr>
   </tbody>
 </table>
@@ -113,33 +114,33 @@
 
 <h2>En combien de temps ?</h2>
 <table>
-  <thead><tr><th>Phase</th><th>Duree estimee</th></tr></thead>
+  <thead><tr><th>Phase</th><th>Durée estimée</th></tr></thead>
   <tbody>
-    <tr><td>Installation (chapitre 2, 19 sections)</td><td>2 a 3 heures</td></tr>
-    <tr><td>Configuration (chapitre 3)</td><td>1 a 2 heures</td></tr>
+    <tr><td>Installation (chapitre 2, 19 sections)</td><td>2 à 3 heures</td></tr>
+    <tr><td>Configuration (chapitre 3)</td><td>1 à 2 heures</td></tr>
     <tr><td>Personnalisation (chapitre 4)</td><td>Continu</td></tr>
   </tbody>
 </table>
-<p>Le chapitre 2 a 19 sections. Vous pouvez les suivre dans l'ordre ou sauter celles que vous maitrisez deja.</p>
+<p>Le chapitre 2 a 19 sections. Vous pouvez les suivre dans l'ordre ou sauter celles que vous maîtrisez déjà.</p>
 
-<h2>Si vous avez deja un VPS</h2>
-<p>Le playbook gere les configurations existantes :</p>
+<h2>Si vous avez déjà un VPS</h2>
+<p>Le playbook gère les configurations existantes :</p>
 <ul>
-  <li><strong>Docker installe ?</strong> Le playbook le detecte et passe a la suite.</li>
-  <li><strong>Tailscale connecte ?</strong> Parfait, une etape de moins.</li>
-  <li><strong>Node.js present ?</strong> La section 2.15 detecte automatiquement nvm ou node global et s'adapte.</li>
-  <li><strong>Ports occupes ?</strong> Les checks de port evitent les conflits avec vos services existants.</li>
+  <li><strong>Docker installé ?</strong> Le playbook le détecte et passe à la suite.</li>
+  <li><strong>Tailscale connecté ?</strong> Parfait, une étape de moins.</li>
+  <li><strong>Node.js présent ?</strong> La section 2.15 détecte automatiquement nvm ou node global et s'adapte.</li>
+  <li><strong>Ports occupés ?</strong> Les checks de port évitent les conflits avec vos services existants.</li>
 </ul>
 
 <h2>Contribuer</h2>
 <p>Le repo est open source sous licence CC-BY 4.0. Forkez, corrigez, ouvrez une PR.</p>
-<p>20 bugs ont ete trouves par un agent IA installateur (Claude-Aurel) en une seule session d'installation. Votre feedback rend le guide meilleur pour tout le monde.</p>
-<p>Consultez la page <a href="contribuer.html">Contribuer</a> pour les details.</p>
+<p>20 bugs ont été trouvés par un agent IA installateur (Claude-Aurel) en une seule session d'installation. Votre feedback rend le guide meilleur pour tout le monde.</p>
+<p>Consultez la page <a href="contribuer.html">Contribuer</a> pour les détails.</p>
 
 <h2>Commencer</h2>
 <ul>
-  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> : ce qu'il faut avant de commencer</li>
-  <li><a href="02-00-sommaire.html">Chapitre 2 complet -- Installation</a> : le parcours de A a Z</li>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prérequis</a> : ce qu'il faut avant de commencer</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 complet -- Installation</a> : le parcours de A à Z</li>
   <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent</li>
   <li><a href="checklist.html">Checklist interactive</a> : suivre votre avancement</li>
 </ul>

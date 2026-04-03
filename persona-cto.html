@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>OpenClaw pour les equipes techniques | OpenClaw Field Playbook</title>
+  <title>OpenClaw pour les équipes techniques | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenClaw Field Playbook">
-  <meta property="og:title" content="OpenClaw pour les equipes techniques | OpenClaw Field Playbook">
+  <meta property="og:title" content="OpenClaw pour les équipes techniques | OpenClaw Field Playbook">
   <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
   <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="OpenClaw pour les equipes techniques | OpenClaw Field Playbook">
+  <meta name="twitter:title" content="OpenClaw pour les équipes techniques | OpenClaw Field Playbook">
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -44,19 +44,20 @@
     </div>
     <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
-<div class="nav-group-label">Decouvrir</div>
+<div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
-<a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
-<a href="persona-cto.html" class="active">Pour les equipes tech</a>
-<a href="persona-dev.html">Pour les developpeurs</a>
-<a href="persona-agent.html">Pour les agents IA</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html" class="active">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
 </div>
-<div class="nav-group-label">Deployer</div>
+<div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
   <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
 </div>
@@ -66,7 +67,7 @@
 <div class="nav-chapter">
   <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
 </div>
-<div class="nav-group-label">Operer</div>
+<div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
   <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
 </div>
@@ -74,13 +75,13 @@
   <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
 </div>
 <div class="nav-group-label">Ressources</div>
-<a href="ecosystem.html">Ecosysteme</a>
+<a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
   <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
-<a href="privacy.html">Confidentialite</a>
+<a href="privacy.html">Confidentialité</a>
     </nav>
   </aside>
 
@@ -89,22 +90,22 @@
 <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>Pour les equipes tech</span>
+  <span>Pour les équipes tech</span>
 </nav>
 <section class="chapter">
-<h1>OpenClaw pour les equipes techniques</h1>
+<h1>OpenClaw pour les équipes techniques</h1>
 
 <h2>L'agent IA qui tourne sur VOTRE infra</h2>
-<p>OpenClaw n'est pas un SaaS. C'est un framework d'agents que vous deployez sur votre propre VPS. Vos donnees ne quittent jamais votre infrastructure. Il n'y a pas de serveur tiers, pas de dependance a une plateforme cloud proprietaire.</p>
-<p>C'est compatible RGPD par design : les donnees personnelles de vos clients, de vos employes, de vos partenaires restent sur une machine que vous controlez, dans un datacenter europeen si vous le souhaitez.</p>
+<p>OpenClaw n'est pas un SaaS. C'est un framework d'agents que vous déployez sur votre propre VPS. Vos données ne quittent jamais votre infrastructure. Il n'y a pas de serveur tiers, pas de dépendance à une plateforme cloud propriétaire.</p>
+<p>C'est compatible RGPD par design : les données personnelles de vos clients, de vos employés, de vos partenaires restent sur une machine que vous contrôlez, dans un datacenter européen si vous le souhaitez.</p>
 
-<h2>Cas d'usage pour une equipe de 5 a 15 personnes</h2>
+<h2>Cas d'usage pour une équipe de 5 à 15 personnes</h2>
 <ul>
-  <li><strong>Triage support client</strong> -- L'agent classe les tickets entrants par priorite, redige des reponses de premier niveau, et escalade les cas complexes.</li>
-  <li><strong>Documentation automatique</strong> -- Chaque decision, chaque changement de configuration, chaque incident est documente automatiquement par l'agent.</li>
-  <li><strong>Briefing quotidien</strong> -- Chaque matin, l'equipe recoit un resume structure : taches en cours, blocages, metriques cles.</li>
-  <li><strong>Code review assiste</strong> -- L'agent pre-review les pull requests, identifie les problemes courants, et suggere des ameliorations.</li>
-  <li><strong>Onboarding nouveaux employes</strong> -- L'agent repond aux questions recurrentes, guide les nouveaux arrivants dans la documentation interne, et accelere la prise en main.</li>
+  <li><strong>Triage support client</strong> -- L'agent classe les tickets entrants par priorité, rédige des réponses de premier niveau, et escalade les cas complexes.</li>
+  <li><strong>Documentation automatique</strong> -- Chaque décision, chaque changement de configuration, chaque incident est documenté automatiquement par l'agent.</li>
+  <li><strong>Briefing quotidien</strong> -- Chaque matin, l'équipe reçoit un résumé structuré : tâches en cours, blocages, métriques clés.</li>
+  <li><strong>Code review assisté</strong> -- L'agent pré-review les pull requests, identifie les problèmes courants, et suggère des améliorations.</li>
+  <li><strong>Onboarding nouveaux employés</strong> -- L'agent répond aux questions récurrentes, guide les nouveaux arrivants dans la documentation interne, et accélère la prise en main.</li>
 </ul>
 
 <h2>Stack technique</h2>
@@ -113,44 +114,44 @@
   <tbody>
     <tr><td>Serveur</td><td>VPS (Hetzner, OVH, Scaleway)</td></tr>
     <tr><td>Conteneurisation</td><td>Docker + Docker Compose</td></tr>
-    <tr><td>Base de donnees</td><td>PostgreSQL (source de verite)</td></tr>
+    <tr><td>Base de données</td><td>PostgreSQL (source de vérité)</td></tr>
     <tr><td>Secrets</td><td>HashiCorp Vault</td></tr>
-    <tr><td>Reseau prive</td><td>Tailscale (VPN mesh)</td></tr>
-    <tr><td>Cout mensuel</td><td>20 a 50 EUR selon la configuration</td></tr>
+    <tr><td>Réseau privé</td><td>Tailscale (VPN mesh)</td></tr>
+    <tr><td>Coût mensuel</td><td>20 à 50 EUR selon la configuration</td></tr>
   </tbody>
 </table>
 
-<h2>Securite</h2>
-<p>La securite est au coeur de l'architecture documentee dans ce playbook :</p>
+<h2>Sécurité</h2>
+<p>La sécurité est au cœur de l'architecture documentée dans ce playbook :</p>
 <ul>
   <li><strong>Pas d'exposition publique</strong> -- Le gateway OpenClaw n'est accessible que via Tailscale. Aucun port n'est ouvert sur Internet.</li>
-  <li><strong>Secrets dans Vault</strong> -- Les cles API, tokens, et credentials sont stockes dans HashiCorp Vault, pas dans des fichiers de configuration.</li>
-  <li><strong>Gateway protegee</strong> -- Authentification, rate limiting, et logs d'acces sur chaque requete.</li>
-  <li><strong>20 bugs documentes</strong> -- Ce playbook documente 20 bugs de securite trouves et corriges pendant une installation reelle par un agent IA installateur.</li>
+  <li><strong>Secrets dans Vault</strong> -- Les clés API, tokens, et credentials sont stockés dans HashiCorp Vault, pas dans des fichiers de configuration.</li>
+  <li><strong>Gateway protégée</strong> -- Authentification, rate limiting, et logs d'accès sur chaque requête.</li>
+  <li><strong>20 bugs documentés</strong> -- Ce playbook documente 20 bugs de sécurité trouvés et corrigés pendant une installation réelle par un agent IA installateur.</li>
 </ul>
 
 <h2>Ce que couvre ce playbook</h2>
 <table>
   <thead><tr><th>Chapitre</th><th>Contenu</th><th>Sections</th></tr></thead>
   <tbody>
-    <tr><td><a href="02-00-sommaire.html">Installation</a></td><td>Du VPS vierge a l'agent operationnel</td><td>19 sections</td></tr>
-    <tr><td><a href="03-00-sommaire.html">Configuration</a></td><td>Perimetre, memoire, knowledge base, crons</td><td>17 sections</td></tr>
-    <tr><td><a href="04-00-sommaire.html">Personnalisation</a></td><td>System prompt, ton, workflows, securite</td><td>14 sections</td></tr>
-    <tr><td><a href="05-00-sommaire.html">Maintenance</a></td><td>Monitoring, backups, logs, procedures</td><td>14 sections</td></tr>
+    <tr><td><a href="02-00-sommaire.html">Installation</a></td><td>Du VPS vierge à l'agent opérationnel</td><td>19 sections</td></tr>
+    <tr><td><a href="03-00-sommaire.html">Configuration</a></td><td>Périmètre, mémoire, knowledge base, crons</td><td>17 sections</td></tr>
+    <tr><td><a href="04-00-sommaire.html">Personnalisation</a></td><td>System prompt, ton, workflows, sécurité</td><td>14 sections</td></tr>
+    <tr><td><a href="05-00-sommaire.html">Maintenance</a></td><td>Monitoring, backups, logs, procédures</td><td>14 sections</td></tr>
   </tbody>
 </table>
-<p>Chaque section a ete testee par un agent IA installateur (Claude-Aurel). Chaque erreur rencontree est documentee avec sa resolution.</p>
+<p>Chaque section a été testée par un agent IA installateur (Claude-Aurel). Chaque erreur rencontrée est documentée avec sa résolution.</p>
 
 <h2>Commencer</h2>
 <ul>
-  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : deployer OpenClaw de zero sur un VPS</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : déployer OpenClaw de zéro sur un VPS</li>
   <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent pour votre contexte</li>
-  <li><a href="06-00-sommaire.html">Chapitre 6 -- Cas d'usage</a> : exemples concrets pour une equipe technique</li>
-  <li><a href="checklist.html">Checklist interactive</a> : suivre votre progression etape par etape</li>
+  <li><a href="06-00-sommaire.html">Chapitre 6 -- Cas d'usage</a> : exemples concrets pour une équipe technique</li>
+  <li><a href="checklist.html">Checklist interactive</a> : suivre votre progression étape par étape</li>
 </ul>
 
 <h2>Besoin d'accompagnement ?</h2>
-<p>Pour un deploiement assiste ou un audit de votre installation existante, contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a>.</p>
+<p>Pour un déploiement assisté ou un audit de votre installation existante, contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a>.</p>
 
 </section>
 

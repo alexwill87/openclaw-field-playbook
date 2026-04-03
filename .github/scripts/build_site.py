@@ -34,13 +34,14 @@ GISCUS_CATEGORY_ID = 'DIC_kwDORvZ2yc4C54bl'
 # Ordered chapter definitions: (folder_or_file, chapter_num, short_title, description)
 CHAPTERS = [
     ('00-reading-guide.md', '00', 'Guide de lecture',
-     'Comment lire ce guide et par ou commencer'),
-    ('01-definition', '01', 'Definition',
+     'Comment lire ce guide et par où commencer'),
+    ('01-definition', '01', 'Définition',
      'Ce qu\'est OpenClaw, ce que ce n\'est pas'),
     ('02-installation', '02', 'Installation',
-     'Installer OpenClaw de zero sur un VPS'),
+     'Installer OpenClaw de zéro sur un VPS'),
     ('03-configuration', '03', 'Configuration',
      'Configurer l\'agent pour son contexte'),
+
     ('04-personalisation', '04', 'Personnalisation',
      'Adapter le comportement, le ton, les workflows'),
     ('05-maintenance', '05', 'Maintenance',
@@ -48,15 +49,15 @@ CHAPTERS = [
     ('06-use-cases', '06', 'Cas d\'usage',
      'Exemples concrets par type d\'organisation'),
     ('07-localisation', '07', 'Localisation',
-     'Adapter OpenClaw a d\'autres langues et contextes'),
+     'Adapter OpenClaw à d\'autres langues et contextes'),
 ]
 
 MD_EXTENSIONS = ['tables', 'fenced_code', 'codehilite', 'toc']
 
 MONTH_NAMES_FR = {
-    '01': 'janvier', '02': 'fevrier', '03': 'mars', '04': 'avril',
-    '05': 'mai', '06': 'juin', '07': 'juillet', '08': 'aout',
-    '09': 'septembre', '10': 'octobre', '11': 'novembre', '12': 'decembre',
+    '01': 'janvier', '02': 'février', '03': 'mars', '04': 'avril',
+    '05': 'mai', '06': 'juin', '07': 'juillet', '08': 'août',
+    '09': 'septembre', '10': 'octobre', '11': 'novembre', '12': 'décembre',
 }
 
 
@@ -307,34 +308,37 @@ def build_sidebar(all_sections, active_slug, active_chapter):
         active_cls = ' class="active"' if active_slug == slug else ''
         items.append(f'<a href="{file}"{active_cls}>{label}</a>')
 
-    # --- DECOUVRIR ---
-    items.append('<div class="nav-group-label">Decouvrir</div>')
+    # --- AVANT-PROPOS ---
+    items.append('<div class="nav-group-label">Avant-propos</div>')
     render_util('decouverte', 'decouverte.html', "C'est quoi OpenClaw ?")
-    render_util('persona-entrepreneur', 'persona-entrepreneur.html', 'Pour les entrepreneurs')
-    render_util('persona-cto', 'persona-cto.html', 'Pour les equipes tech')
-    render_util('persona-dev', 'persona-dev.html', 'Pour les developpeurs')
-    render_util('persona-agent', 'persona-agent.html', 'Pour les agents IA')
+    render_util('persona-entrepreneur', 'persona-entrepreneur.html', 'Focus Entrepreneurs')
+    render_util('persona-cto', 'persona-cto.html', 'Focus Équipes tech')
+    render_util('persona-dev', 'persona-dev.html', 'Focus Développeurs')
+    render_util('persona-agent', 'persona-agent.html', 'Focus Agents IA')
+
+    # --- DÉCOUVRIR ---
+    items.append('<div class="nav-group-label">Découvrir</div>')
     render_chapter('00')
     render_chapter('01')
 
     # --- DEPLOYER ---
-    items.append('<div class="nav-group-label">Deployer</div>')
+    items.append('<div class="nav-group-label">Déployer</div>')
     render_chapter('02')
     render_chapter('03')
     render_chapter('04')
 
     # --- OPERER ---
-    items.append('<div class="nav-group-label">Operer</div>')
+    items.append('<div class="nav-group-label">Opérer</div>')
     render_chapter('05')
     render_chapter('06')
 
     # --- RESSOURCES ---
     items.append('<div class="nav-group-label">Ressources</div>')
-    render_util('ecosystem', 'ecosystem.html', 'Ecosysteme')
+    render_util('ecosystem', 'ecosystem.html', 'Écosystème')
     render_chapter('07')
     render_util('checklist', 'checklist.html', 'Checklist')
     render_util('contribuer', 'contribuer.html', 'Contribuer')
-    render_util('privacy', 'privacy.html', 'Confidentialite')
+    render_util('privacy', 'privacy.html', 'Confidentialité')
 
     return '\n'.join(items)
 
@@ -452,7 +456,7 @@ def build_section_pages(all_sections):
         if last_updated_val:
             formatted = format_last_updated(last_updated_val)
             if formatted:
-                last_updated_html = f'<div class="last-updated">Derniere mise a jour : {formatted}</div>'
+                last_updated_html = f'<div class="last-updated">Dernière mise à jour : {formatted}</div>'
 
         # Wrap in section div
         wrapped = f'<section class="chapter">\n{html_content}\n</section>'
@@ -522,12 +526,12 @@ def build_index_page(all_sections):
 <div class="landing-hero">
   <h1>OpenClaw Field Playbook</h1>
   <p class="lead">Le guide open-source pour installer OpenClaw proprement.<br>
-  Ecrit par un praticien. Teste sur le terrain. Partage avec tout le monde.</p>
+  Écrit par un praticien. Testé sur le terrain. Partagé avec tout le monde.</p>
   <p style="font-size:0.82rem;color:var(--text-muted);max-width:520px;margin:0.5rem auto 1rem;">
-    J'ai fait 3 installations ratees avant de comprendre. Ce playbook est le resultat :
+    J'ai fait 3 installations ratées avant de comprendre. Ce playbook est le résultat :
     <strong style="color:var(--accent);">92</strong> sections, <strong style="color:var(--accent);">7</strong> chapitres,
-    <strong style="color:var(--accent);">20</strong> bugs corriges par un agent terrain.
-    Tout est la pour que vous n'ayez pas a galérer comme moi.
+    <strong style="color:var(--accent);">20</strong> bugs corrigés par un agent terrain.
+    Tout est là pour que vous n'ayez pas à galérer comme moi.
     <span style="display:block;margin-top:0.3rem;"><a href="{github}" style="color:var(--accent);">— Alex Willemetz</a></span>
   </p>
   <div class="hero-actions">
@@ -538,34 +542,34 @@ def build_index_page(all_sections):
 </div>
 
 <div class="landing-section">
-  <h2>Vous etes qui ?</h2>
-  <p>Ce guide s'adapte a votre profil. Choisissez le votre.</p>
+  <h2>Vous êtes qui ?</h2>
+  <p>Ce guide s'adapte à votre profil. Choisissez le vôtre.</p>
   <div class="audience-grid">
     <a class="audience-card" href="persona-entrepreneur.html" style="text-decoration:none;color:var(--text);">
       <strong>Entrepreneur / Artisan</strong>
       <p>Vous dirigez une entreprise et vous voulez comprendre ce que l'IA peut faire pour vous — sans jargon.</p>
     </a>
     <a class="audience-card" href="persona-cto.html" style="text-decoration:none;color:var(--text);">
-      <strong>CTO / Equipe technique</strong>
-      <p>Vous voulez deployer un agent IA pour votre equipe, sur votre infra, avec vos contraintes.</p>
+      <strong>CTO / Équipe technique</strong>
+      <p>Vous voulez déployer un agent IA pour votre équipe, sur votre infra, avec vos contraintes.</p>
     </a>
     <a class="audience-card" href="persona-dev.html" style="text-decoration:none;color:var(--text);">
-      <strong>Developpeur independant</strong>
+      <strong>Développeur indépendant</strong>
       <p>Vous savez ce qu'est Docker. Vous voulez les commandes, pas le blabla.</p>
     </a>
     <a class="audience-card" href="persona-agent.html" style="text-decoration:none;color:var(--text);">
       <strong>Agent IA</strong>
-      <p>Vous etes un agent. Vous clonez ce repo et vous suivez les sections comme un runbook.</p>
+      <p>Vous êtes un agent. Vous clonez ce repo et vous suivez les sections comme un runbook.</p>
     </a>
   </div>
 </div>
 
 <div class="landing-section">
-  <h2>Par ou commencer</h2>
+  <h2>Par où commencer</h2>
   <ul class="path-list">
     <li>
-      <strong>Je decouvre</strong>
-      <span><a href="decouverte.html">C'est quoi OpenClaw ?</a> &rarr; <a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a></span>
+      <strong>Je découvre</strong>
+      <span><a href="decouverte.html">C'est quoi OpenClaw ?</a> &rarr; <a href="01-00-sommaire.html">Définition</a> &rarr; <a href="02-00-sommaire.html">Installation</a></span>
     </li>
     <li>
       <strong>J'installe</strong>
@@ -594,7 +598,7 @@ def build_index_page(all_sections):
   <div class="audience-grid">
     <a class="audience-card" href="checklist.html" style="text-decoration:none;color:var(--text);">
       <strong>Checklist interactive</strong>
-      <p>Suivez votre progression etape par etape. Sauvegarde automatique.</p>
+      <p>Suivez votre progression étape par étape. Sauvegarde automatique.</p>
     </a>
     <a class="audience-card" href="contribuer.html" style="text-decoration:none;color:var(--text);">
       <strong>Contribuer</strong>
@@ -602,11 +606,11 @@ def build_index_page(all_sections):
     </a>
     <a class="audience-card" href="decouverte.html" style="text-decoration:none;color:var(--text);">
       <strong>C'est quoi OpenClaw ?</strong>
-      <p>Pour ceux qui partent de zero. Pas de jargon.</p>
+      <p>Pour ceux qui partent de zéro. Pas de jargon.</p>
     </a>
     <a class="audience-card" href="{github}/issues" style="text-decoration:none;color:var(--text);" target="_blank">
-      <strong>Signaler un probleme</strong>
-      <p>Une commande qui ne marche pas ? Un lien casse ? Dites-le nous.</p>
+      <strong>Signaler un problème</strong>
+      <p>Une commande qui ne marche pas ? Un lien cassé ? Dites-le nous.</p>
     </a>
   </div>
 </div>
@@ -621,56 +625,56 @@ def build_checklist_page(all_sections):
     """Build the interactive checklist page (checklist.html)."""
     checklist_data = {
         'Chapitre 2 -- Installation': [
-            'VPS commande et accessible en SSH',
-            'Utilisateur non-root cree avec sudo',
-            'Pare-feu configure (UFW / iptables)',
-            'SSH securise (cle uniquement, port change)',
-            'Fail2ban installe et actif',
-            'Tailscale installe et connecte',
-            'Docker et Docker Compose installes',
-            'Node.js et PM2 installes',
-            'Structure de dossiers creee',
-            'Vault configure et secrets stockes',
-            'PostgreSQL installe et base creee',
+            'VPS commandé et accessible en SSH',
+            'Utilisateur non-root créé avec sudo',
+            'Pare-feu configuré (UFW / iptables)',
+            'SSH sécurisé (clé uniquement, port changé)',
+            'Fail2ban installé et actif',
+            'Tailscale installé et connecté',
+            'Docker et Docker Compose installés',
+            'Node.js et PM2 installés',
+            'Structure de dossiers créée',
+            'Vault configuré et secrets stockés',
+            'PostgreSQL installé et base créée',
             'Health check endpoint fonctionnel',
-            'OpenClaw installe et demarre',
-            'Compte OpenRouter cree et cle API configuree',
-            'Bot Telegram cree et connecte',
-            'Gateway systemd configuree et active',
-            'Repository Git initialise',
-            'CLAUDE.md cree a la racine',
-            'Script de deploiement en place',
+            'OpenClaw installé et démarré',
+            'Compte OpenRouter créé et clé API configurée',
+            'Bot Telegram créé et connecté',
+            'Gateway systemd configurée et active',
+            'Repository Git initialisé',
+            'CLAUDE.md créé à la racine',
+            'Script de déploiement en place',
         ],
         'Chapitre 3 -- Configuration': [
-            'Perimetre de l\'agent defini',
-            'SOUL.md redige',
-            'USER.md redige',
-            'AGENTS.md redige (si multi-agents)',
-            'CONSTITUTION.md redigee',
-            'Trois zones memoire configurees',
-            'MEMORY.md initialise',
-            'Knowledge base alimentee',
-            'Principe une-source-de-verite applique',
-            'Calendrier et taches connectes',
-            'Briefing du matin configure',
-            'Crons planifies',
+            'Périmètre de l\'agent défini',
+            'SOUL.md rédigé',
+            'USER.md rédigé',
+            'AGENTS.md rédigé (si multi-agents)',
+            'CONSTITUTION.md rédigée',
+            'Trois zones mémoire configurées',
+            'MEMORY.md initialisé',
+            'Knowledge base alimentée',
+            'Principe une-source-de-vérité appliqué',
+            'Calendrier et tâches connectés',
+            'Briefing du matin configuré',
+            'Crons planifiés',
         ],
         'Chapitre 4 -- Personnalisation': [
-            'System prompt redige et teste',
-            'Personnalite et ton definis',
-            'Taches recurrentes configurees',
-            'Workflows documentes dans workflows.md',
+            'System prompt rédigé et testé',
+            'Personnalité et ton définis',
+            'Tâches récurrentes configurées',
+            'Workflows documentés dans workflows.md',
             'Boundary prompt en place',
-            'Audit des acces realise',
-            'Rythme hebdomadaire etabli',
-            'Configuration bilingue si necessaire',
+            'Audit des accès réalisé',
+            'Rythme hebdomadaire établi',
+            'Configuration bilingue si nécessaire',
         ],
         'Chapitre 5 -- Maintenance': [
-            'Health check automatise',
-            'Logs centralises et consultables',
-            'Backups automatises et testes',
+            'Health check automatisé',
+            'Logs centralisés et consultables',
+            'Backups automatisés et testés',
             'Monitoring en place (alertes)',
-            'Procedure en cas de panne documentee',
+            'Procédure en cas de panne documentée',
         ],
     }
 
@@ -698,16 +702,16 @@ def build_checklist_page(all_sections):
 </nav>
 <section class="chapter">
 <h1>Checklist de progression</h1>
-<p>Cochez les etapes au fur et a mesure de votre avancement. Votre progression est sauvegardee automatiquement dans votre navigateur.</p>
+<p>Cochez les étapes au fur et à mesure de votre avancement. Votre progression est sauvegardée automatiquement dans votre navigateur.</p>
 <p style="margin-bottom:1.5rem;">
-  <strong>Progression :</strong> <span id="progress-count">0</span> / {total} etapes
+  <strong>Progression :</strong> <span id="progress-count">0</span> / {total} étapes
   <span id="progress-bar" style="display:inline-block;width:200px;height:8px;background:var(--border);border-radius:4px;margin-left:0.5rem;vertical-align:middle;">
     <span id="progress-fill" style="display:block;height:100%;background:var(--accent);border-radius:4px;width:0%;transition:width 0.3s;"></span>
   </span>
 </p>
 <div style="margin-bottom:1.5rem;">
   <button onclick="exportChecklist()" style="padding:0.5rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:0.85rem;">Exporter en texte</button>
-  <button onclick="resetChecklist()" style="padding:0.5rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:0.85rem;margin-left:0.5rem;">Reinitialiser</button>
+  <button onclick="resetChecklist()" style="padding:0.5rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:0.85rem;margin-left:0.5rem;">Réinitialiser</button>
 </div>
 
 {items}
@@ -775,7 +779,7 @@ function updateProgress() {{
 }}
 
 function resetChecklist() {{
-  if (!confirm('Reinitialiser toute la checklist ?')) return;
+  if (!confirm('Réinitialiser toute la checklist ?')) return;
   localStorage.removeItem(STORAGE_KEY);
   var boxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
   boxes.forEach(function(box) {{ box.checked = false; }});
@@ -830,24 +834,24 @@ def build_contribuer_page(all_sections):
 </nav>
 <section class="chapter">
 <h1>Contribuer au playbook</h1>
-<p>Ce playbook est un projet open-source. Toute contribution est bienvenue, a condition de respecter les niveaux de gouvernance decrits ci-dessous.</p>
+<p>Ce playbook est un projet open-source. Toute contribution est bienvenue, à condition de respecter les niveaux de gouvernance décrits ci-dessous.</p>
 
 <h2>Trois niveaux de contribution</h2>
 
 <h3>T3 -- Corrections</h3>
-<p>Typos, liens casses, exemples a clarifier, reformulations mineures. Vous pouvez soumettre une Pull Request directement ou ouvrir une Issue. Ces contributions sont mergees rapidement.</p>
+<p>Typos, liens cassés, exemples à clarifier, reformulations mineures. Vous pouvez soumettre une Pull Request directement ou ouvrir une Issue. Ces contributions sont mergées rapidement.</p>
 
 <h3>T2 -- Sections</h3>
-<p>Nouveau contenu, reecritures de sections existantes, ajout de cas d'usage. Ouvrez d'abord une Issue pour decrire votre proposition. Une fois validee par le maintainer, soumettez une Pull Request.</p>
+<p>Nouveau contenu, réécritures de sections existantes, ajout de cas d'usage. Ouvrez d'abord une Issue pour décrire votre proposition. Une fois validée par le maintainer, soumettez une Pull Request.</p>
 
 <h3>T1 -- Structure</h3>
-<p>Modifier l'organisation des chapitres, ajouter ou supprimer un chapitre, changer l'architecture du playbook. Ces modifications requierent une Issue etiquetee <code>governance</code> et une decision du fondateur. Ne soumettez pas de PR sans validation prealable.</p>
+<p>Modifier l'organisation des chapitres, ajouter ou supprimer un chapitre, changer l'architecture du playbook. Ces modifications requièrent une Issue étiquetée <code>governance</code> et une décision du fondateur. Ne soumettez pas de PR sans validation préalable.</p>
 
 <h2>Comment soumettre une correction</h2>
 <ol>
   <li><strong>Fork</strong> le repository sur GitHub</li>
-  <li><strong>Editez</strong> le fichier concerne dans le dossier <code>sections/</code> (jamais <code>PLAYBOOK.md</code> directement)</li>
-  <li><strong>Creez une Pull Request</strong> avec une description claire de votre modification</li>
+  <li><strong>Éditez</strong> le fichier concerné dans le dossier <code>sections/</code> (jamais <code>PLAYBOOK.md</code> directement)</li>
+  <li><strong>Créez une Pull Request</strong> avec une description claire de votre modification</li>
   <li><strong>Attendez la review</strong> du maintainer</li>
 </ol>
 
@@ -862,18 +866,18 @@ contributors: [nom]
 ---
 
 ## Contexte
-Pourquoi cette section existe, quel probleme elle resout.
+Pourquoi cette section existe, quel problème elle résout.
 
-## Etapes
-Les actions concretes, dans l'ordre.
+## Étapes
+Les actions concrètes, dans l'ordre.
 
 ## Erreurs courantes
-Ce qui peut mal tourner et comment l'eviter.
+Ce qui peut mal tourner et comment l'éviter.
 
 ## Template
-Fichiers ou configurations a copier-coller.
+Fichiers ou configurations à copier-coller.
 
-## Verification
+## Vérification
 Comment savoir que tout fonctionne.
 </code></pre>
 
@@ -881,8 +885,8 @@ Comment savoir que tout fonctionne.
 <p>Ce playbook est maintenu par <strong>Alex Willemetz</strong>, Paris. Fondateur du projet OpenClaw Field Playbook.</p>
 <p>Profil GitHub : <a href="https://github.com/alexwill87">github.com/alexwill87</a></p>
 
-<h2>Documentation complete</h2>
-<p>Pour plus de details, consultez le fichier <a href="{github}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> sur GitHub.</p>
+<h2>Documentation complète</h2>
+<p>Pour plus de détails, consultez le fichier <a href="{github}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> sur GitHub.</p>
 
 </section>
 """.format(github=GITHUB_URL)
@@ -902,32 +906,32 @@ def build_decouverte_page(all_sections):
 </nav>
 <section class="chapter">
 <h1>C'est quoi OpenClaw ?</h1>
-<p>Cette page est pour ceux qui ne connaissent rien a OpenClaw. Pas de jargon, pas de prerequis techniques. Juste l'essentiel pour comprendre de quoi on parle.</p>
+<p>Cette page est pour ceux qui ne connaissent rien à OpenClaw. Pas de jargon, pas de prérequis techniques. Juste l'essentiel pour comprendre de quoi on parle.</p>
 
 <h2>En une phrase</h2>
-<p>OpenClaw est un outil qui permet de creer des assistants IA qui travaillent pour vous -- pas juste repondre a des questions, mais agir, surveiller, organiser.</p>
+<p>OpenClaw est un outil qui permet de créer des assistants IA qui travaillent pour vous -- pas juste répondre à des questions, mais agir, surveiller, organiser.</p>
 
-<h2>A quoi ca sert concretement</h2>
+<h2>À quoi ça sert concrètement</h2>
 <p>Voici cinq exemples simples de ce qu'un agent OpenClaw peut faire pour vous :</p>
 <ul>
-  <li><strong>Briefing du matin</strong> -- Chaque matin, votre agent vous envoie un resume de ce qui s'est passe pendant la nuit : emails importants, alertes, taches du jour.</li>
-  <li><strong>Triage email</strong> -- L'agent lit vos emails, les classe par priorite, et vous signale ceux qui demandent une reponse urgente.</li>
-  <li><strong>Suivi clients</strong> -- Il surveille les messages de vos clients et vous alerte quand quelqu'un attend une reponse depuis trop longtemps.</li>
-  <li><strong>Surveillance serveur</strong> -- Il verifie que vos services tournent correctement et vous previent avant qu'un probleme ne devienne critique.</li>
-  <li><strong>Documentation automatique</strong> -- Il prend en note ce qui se passe dans votre projet et tient votre documentation a jour sans effort.</li>
+  <li><strong>Briefing du matin</strong> -- Chaque matin, votre agent vous envoie un résumé de ce qui s'est passé pendant la nuit : emails importants, alertes, tâches du jour.</li>
+  <li><strong>Triage email</strong> -- L'agent lit vos emails, les classe par priorité, et vous signale ceux qui demandent une réponse urgente.</li>
+  <li><strong>Suivi clients</strong> -- Il surveille les messages de vos clients et vous alerte quand quelqu'un attend une réponse depuis trop longtemps.</li>
+  <li><strong>Surveillance serveur</strong> -- Il vérifie que vos services tournent correctement et vous prévient avant qu'un problème ne devienne critique.</li>
+  <li><strong>Documentation automatique</strong> -- Il prend en note ce qui se passe dans votre projet et tient votre documentation à jour sans effort.</li>
 </ul>
 
 <h2>De quoi a-t-on besoin</h2>
 <ul>
   <li>Un serveur (VPS) -- un ordinateur distant que vous louez</li>
   <li>Une connexion internet</li>
-  <li>Une cle API pour un modele IA (OpenRouter, Anthropic, ou autre)</li>
-  <li>2 a 3 heures de configuration initiale</li>
+  <li>Une clé API pour un modèle IA (OpenRouter, Anthropic, ou autre)</li>
+  <li>2 à 3 heures de configuration initiale</li>
 </ul>
 <p><strong>Budget :</strong> entre 20 et 40 EUR par mois pour le serveur et les appels API.</p>
 
 <h2>C'est quoi un VPS ?</h2>
-<p>Un VPS, c'est un ordinateur dans un datacenter que vous louez. Vous y accedez a distance, depuis votre ordinateur ou votre telephone. C'est comme un bureau virtuel toujours allume, toujours connecte. Votre agent OpenClaw vit dessus et travaille 24h/24.</p>
+<p>Un VPS, c'est un ordinateur dans un datacenter que vous louez. Vous y accédez à distance, depuis votre ordinateur ou votre téléphone. C'est comme un bureau virtuel toujours allumé, toujours connecté. Votre agent OpenClaw vit dessus et travaille 24h/24.</p>
 
 <h2>Pourquoi pas juste ChatGPT ?</h2>
 <table>
@@ -935,24 +939,24 @@ def build_decouverte_page(all_sections):
     <tr><th>ChatGPT</th><th>OpenClaw</th></tr>
   </thead>
   <tbody>
-    <tr><td>Attend vos questions</td><td>Agit de lui-meme selon vos regles</td></tr>
-    <tr><td>Oublie tout entre les conversations</td><td>A une memoire persistante</td></tr>
+    <tr><td>Attend vos questions</td><td>Agit de lui-même selon vos règles</td></tr>
+    <tr><td>Oublie tout entre les conversations</td><td>A une mémoire persistante</td></tr>
     <tr><td>Vit chez OpenAI</td><td>Vit chez vous, sur votre serveur</td></tr>
   </tbody>
 </table>
 
-<h2>Pret a commencer ?</h2>
-<p>Si tout cela vous parle, voici les prochaines etapes :</p>
+<h2>Prêt à commencer ?</h2>
+<p>Si tout cela vous parle, voici les prochaines étapes :</p>
 <ul>
-  <li><a href="01-00-sommaire.html">Chapitre 1 -- Definition</a> : comprendre en detail ce qu'est OpenClaw et ce que ce n'est pas</li>
-  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : installer OpenClaw de zero sur un serveur</li>
+  <li><a href="01-00-sommaire.html">Chapitre 1 -- Définition</a> : comprendre en détail ce qu'est OpenClaw et ce que ce n'est pas</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : installer OpenClaw de zéro sur un serveur</li>
 </ul>
 
 <h2>Liens utiles</h2>
 <ul>
   <li><a href="https://github.com/open-claw" target="_blank">Documentation officielle OpenClaw</a></li>
   <li><a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">Ce playbook sur GitHub</a></li>
-  <li>Livre de Dennis Steinberg sur OpenClaw (reference communautaire)</li>
+  <li>Livre de Dennis Steinberg sur OpenClaw (référence communautaire)</li>
 </ul>
 
 </section>
@@ -979,44 +983,44 @@ def cleanup_old_chapter_files():
 
 
 def build_privacy_page(all_sections):
-    """Build the privacy.html page (politique de confidentialite)."""
+    """Build the privacy.html page (politique de confidentialité)."""
     content = """
 <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>Confidentialite</span>
+  <span>Confidentialité</span>
 </nav>
 <section class="chapter">
-<h1>Politique de confidentialite</h1>
-<p>Cette page decrit comment le site OpenClaw Field Playbook traite vos donnees.</p>
+<h1>Politique de confidentialité</h1>
+<p>Cette page décrit comment le site OpenClaw Field Playbook traite vos données.</p>
 
-<h2>Donnees collectees</h2>
-<p>Ce site ne collecte aucune donnee personnelle directement.</p>
+<h2>Données collectées</h2>
+<p>Ce site ne collecte aucune donnée personnelle directement.</p>
 <ul>
-  <li>Les <strong>commentaires giscus</strong> passent par GitHub et sont soumis a la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">politique de confidentialite de GitHub</a>.</li>
-  <li>Les <strong>badges GitHub</strong> (etoiles, forks) utilisent l'API publique de GitHub. Aucune donnee utilisateur n'est transmise.</li>
+  <li>Les <strong>commentaires giscus</strong> passent par GitHub et sont soumis à la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">politique de confidentialité de GitHub</a>.</li>
+  <li>Les <strong>badges GitHub</strong> (étoiles, forks) utilisent l'API publique de GitHub. Aucune donnée utilisateur n'est transmise.</li>
 </ul>
 
 <h2>Cookies</h2>
 <p>Ce site n'utilise aucun cookie.</p>
 <p>Le site utilise <code>localStorage</code> pour sauvegarder :</p>
 <ul>
-  <li>Votre preference de theme (clair ou sombre)</li>
+  <li>Votre préférence de thème (clair ou sombre)</li>
   <li>Votre progression dans la checklist interactive</li>
 </ul>
-<p>Ces donnees restent uniquement dans votre navigateur. Aucun cookie tiers. Aucun tracking. Aucun outil d'analyse (pas de Google Analytics, pas de Matomo, rien).</p>
+<p>Ces données restent uniquement dans votre navigateur. Aucun cookie tiers. Aucun tracking. Aucun outil d'analyse (pas de Google Analytics, pas de Matomo, rien).</p>
 
-<h2>Hebergement</h2>
-<p>Le site est heberge sur <strong>GitHub Pages</strong>. Le code source est public et consultable sur <a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">GitHub</a>.</p>
-<p>GitHub Pages peut collecter des informations techniques (adresse IP, user-agent) dans le cadre de son fonctionnement. Consultez la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">politique de confidentialite de GitHub</a> pour plus de details.</p>
+<h2>Hébergement</h2>
+<p>Le site est hébergé sur <strong>GitHub Pages</strong>. Le code source est public et consultable sur <a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">GitHub</a>.</p>
+<p>GitHub Pages peut collecter des informations techniques (adresse IP, user-agent) dans le cadre de son fonctionnement. Consultez la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">politique de confidentialité de GitHub</a> pour plus de détails.</p>
 
 <h2>Contact</h2>
-<p>Pour toute question relative a cette politique de confidentialite, vous pouvez <a href="https://github.com/alexwill87/openclaw-field-playbook/issues" target="_blank">ouvrir une issue sur GitHub</a>.</p>
+<p>Pour toute question relative à cette politique de confidentialité, vous pouvez <a href="https://github.com/alexwill87/openclaw-field-playbook/issues" target="_blank">ouvrir une issue sur GitHub</a>.</p>
 
 </section>
 """
     sidebar_html = build_sidebar(all_sections, 'privacy', None)
-    page_html = render_page('Politique de confidentialite', content, sidebar_html)
+    page_html = render_page('Politique de confidentialité', content, sidebar_html)
     write_page('privacy.html', page_html)
 
 
@@ -1026,12 +1030,12 @@ def build_ecosystem_page(all_sections):
 <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>Ecosysteme</span>
+  <span>Écosystème</span>
 </nav>
 <section class="chapter">
-<h1>Ecosysteme OpenClaw</h1>
-<p>Tout ce qui gravite autour d'OpenClaw : le projet officiel, les marketplaces de skills, les frameworks concurrents, les outils communautaires, les hebergeurs, les ressources d'apprentissage et les enjeux de securite.</p>
-<p>Derniere mise a jour : avril 2026.</p>
+<h1>Écosystème OpenClaw</h1>
+<p>Tout ce qui gravite autour d'OpenClaw : le projet officiel, les marketplaces de skills, les frameworks concurrents, les outils communautaires, les hébergeurs, les ressources d'apprentissage et les enjeux de sécurité.</p>
+<p>Dernière mise à jour : avril 2026.</p>
 
 <hr>
 
@@ -1040,9 +1044,9 @@ def build_ecosystem_page(all_sections):
 <table>
 <thead><tr><th>Ressource</th><th>Description</th><th>Lien</th></tr></thead>
 <tbody>
-<tr><td><strong>OpenClaw (site officiel)</strong></td><td>Assistant IA personnel open-source. Framework d'agents qui transforme les LLM en agents operationnels.</td><td><a href="https://openclaw.ai" target="_blank">openclaw.ai</a></td></tr>
-<tr><td><strong>Documentation officielle</strong></td><td>Guide d'installation, reference API, configuration des skills et du gateway.</td><td><a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a></td></tr>
-<tr><td><strong>GitHub OpenClaw</strong></td><td>Repo principal. 250 000+ etoiles (mars 2026). Le projet open-source a la croissance la plus rapide sur GitHub.</td><td><a href="https://github.com/openclaw" target="_blank">github.com/openclaw</a></td></tr>
+<tr><td><strong>OpenClaw (site officiel)</strong></td><td>Assistant IA personnel open-source. Framework d'agents qui transforme les LLM en agents opérationnels.</td><td><a href="https://openclaw.ai" target="_blank">openclaw.ai</a></td></tr>
+<tr><td><strong>Documentation officielle</strong></td><td>Guide d'installation, référence API, configuration des skills et du gateway.</td><td><a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a></td></tr>
+<tr><td><strong>GitHub OpenClaw</strong></td><td>Repo principal. 250 000+ étoiles (mars 2026). Le projet open-source à la croissance la plus rapide sur GitHub.</td><td><a href="https://github.com/openclaw" target="_blank">github.com/openclaw</a></td></tr>
 <tr><td><strong>ClawHub</strong></td><td>Marketplace officielle de skills. 13 700+ skills communautaires. Standard MCP (Model Context Protocol).</td><td><a href="https://github.com/openclaw/clawhub" target="_blank">github.com/openclaw/clawhub</a></td></tr>
 </tbody>
 </table>
@@ -1054,24 +1058,24 @@ def build_ecosystem_page(all_sections):
 <table>
 <thead><tr><th>Projet</th><th>Description</th><th>Lien</th></tr></thead>
 <tbody>
-<tr><td><strong>ClawHub</strong></td><td>Registre officiel. 13 729 skills (fevrier 2026). Attention : ~20% sont de faible qualite ou potentiellement risques. Toujours verifier le code source avant d'installer.</td><td><a href="https://github.com/openclaw/clawhub" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>awesome-openclaw-skills</strong></td><td>5 400+ skills filtrees et categorizees depuis le registre officiel. Curate par VoltAgent.</td><td><a href="https://github.com/VoltAgent/awesome-openclaw-skills" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>awesome-openclaw-agents</strong></td><td>162 templates SOUL.md prets a l'emploi, classes en 19 categories (productivite, dev, marketing, business).</td><td><a href="https://github.com/mergisi/awesome-openclaw-agents" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>ClawHub</strong></td><td>Registre officiel. 13 729 skills (février 2026). Attention : ~20% sont de faible qualité ou potentiellement risqués. Toujours vérifier le code source avant d'installer.</td><td><a href="https://github.com/openclaw/clawhub" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-skills</strong></td><td>5 400+ skills filtrées et catégorisées depuis le registre officiel. Curaté par VoltAgent.</td><td><a href="https://github.com/VoltAgent/awesome-openclaw-skills" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-agents</strong></td><td>162 templates SOUL.md prêts à l'emploi, classés en 19 catégories (productivité, dev, marketing, business).</td><td><a href="https://github.com/mergisi/awesome-openclaw-agents" target="_blank">GitHub</a></td></tr>
 </tbody>
 </table>
 
 <hr>
 
-<h2>Ressources communautaires et listes curatees</h2>
+<h2>Ressources communautaires et listes curatées</h2>
 
 <table>
 <thead><tr><th>Projet</th><th>Description</th><th>Lien</th></tr></thead>
 <tbody>
-<tr><td><strong>awesome-openclaw</strong> (vincentkoc)</td><td>La liste curatee la plus complete : skills, plugins, systemes de memoire, outils MCP, stacks de deploiement, plateformes ecosysteme.</td><td><a href="https://github.com/vincentkoc/awesome-openclaw" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>awesome-openclaw</strong> (SamurAIGPT)</td><td>Ressources, outils, skills, tutoriels et articles. Bonne porte d'entree pour les debutants.</td><td><a href="https://github.com/SamurAIGPT/awesome-openclaw" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>awesome-openclaw-resources</strong></td><td>Projets open-source, outils, tutoriels, podcasts et createurs de contenu.</td><td><a href="https://github.com/SebConejo/awesome-openclaw-resources" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>awesome-openclaw-usecases</strong></td><td>Cas d'usage reels : workflows pratiques montrant comment OpenClaw s'integre dans le quotidien.</td><td><a href="https://github.com/hesamsheikh/awesome-openclaw-usecases" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>OpenClaw Field Playbook</strong></td><td>Ce guide. 81 sections, 7 chapitres, le seul playbook francophone couvrant le parcours complet installation-a-maintenance.</td><td><a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw</strong> (vincentkoc)</td><td>La liste curatée la plus complète : skills, plugins, systèmes de mémoire, outils MCP, stacks de déploiement, plateformes écosystème.</td><td><a href="https://github.com/vincentkoc/awesome-openclaw" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw</strong> (SamurAIGPT)</td><td>Ressources, outils, skills, tutoriels et articles. Bonne porte d'entrée pour les débutants.</td><td><a href="https://github.com/SamurAIGPT/awesome-openclaw" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-resources</strong></td><td>Projets open-source, outils, tutoriels, podcasts et créateurs de contenu.</td><td><a href="https://github.com/SebConejo/awesome-openclaw-resources" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>awesome-openclaw-usecases</strong></td><td>Cas d'usage réels : workflows pratiques montrant comment OpenClaw s'intègre dans le quotidien.</td><td><a href="https://github.com/hesamsheikh/awesome-openclaw-usecases" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>OpenClaw Field Playbook</strong></td><td>Ce guide. 81 sections, 7 chapitres, le seul playbook francophone couvrant le parcours complet installation-à-maintenance.</td><td><a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">GitHub</a></td></tr>
 </tbody>
 </table>
 
@@ -1082,27 +1086,27 @@ def build_ecosystem_page(all_sections):
 <table>
 <thead><tr><th>Titre</th><th>Auteur</th><th>Format</th><th>Prix</th><th>Description</th></tr></thead>
 <tbody>
-<tr><td><strong>The OpenClaw Playbook</strong></td><td>Dennis Steinberg</td><td>eBook (LeanPub)</td><td>~23 USD</td><td>Guide "prompt-first" en 24 chapitres. Couvre identite, memoire, connexions, securite, taches, routines, decisions. La reference conceptuelle.</td></tr>
-<tr><td><strong>OpenClaw Playbook</strong></td><td>Lunar</td><td>eBook (Fnac/Everand)</td><td>~15 USD</td><td>Guide pratique oriente configuration.</td></tr>
-<tr><td><strong>OpenClaw Field Playbook</strong></td><td>Alex Willemetz</td><td>Site web + GitHub (CC-BY 4.0)</td><td>Gratuit</td><td>Ce guide. Open-source, francophone, teste sur le terrain.</td></tr>
+<tr><td><strong>The OpenClaw Playbook</strong></td><td>Dennis Steinberg</td><td>eBook (LeanPub)</td><td>~23 USD</td><td>Guide "prompt-first" en 24 chapitres. Couvre identité, mémoire, connexions, sécurité, tâches, routines, décisions. La référence conceptuelle.</td></tr>
+<tr><td><strong>OpenClaw Playbook</strong></td><td>Lunar</td><td>eBook (Fnac/Everand)</td><td>~15 USD</td><td>Guide pratique orienté configuration.</td></tr>
+<tr><td><strong>OpenClaw Field Playbook</strong></td><td>Alex Willemetz</td><td>Site web + GitHub (CC-BY 4.0)</td><td>Gratuit</td><td>Ce guide. Open-source, francophone, testé sur le terrain.</td></tr>
 </tbody>
 </table>
 
 <hr>
 
-<h2>Hebergement et deploiement</h2>
+<h2>Hébergement et déploiement</h2>
 
 <table>
-<thead><tr><th>Provider</th><th>Type</th><th>Prix</th><th>Particularite</th></tr></thead>
+<thead><tr><th>Provider</th><th>Type</th><th>Prix</th><th>Particularité</th></tr></thead>
 <tbody>
-<tr><td><strong>Hetzner</strong></td><td>VPS auto-gere</td><td>~4-7 EUR/mois</td><td>Recommande dans ce playbook. Datacenters EU (Allemagne, Finlande). Excellent rapport qualite/prix.</td></tr>
-<tr><td><strong>OVHcloud</strong></td><td>VPS auto-gere</td><td>~4-8 EUR/mois</td><td>Datacenters en France. Ideal pour la conformite RGPD.</td></tr>
-<tr><td><strong>Scaleway</strong></td><td>VPS auto-gere</td><td>~5-10 EUR/mois</td><td>Infrastructure francaise. Bonne integration Docker.</td></tr>
-<tr><td><strong>DigitalOcean</strong></td><td>VPS + Marketplace</td><td>~6-12 USD/mois</td><td>Image OpenClaw 1-click dans le Marketplace. App Platform pour deploiement manage.</td></tr>
-<tr><td><strong>Hostinger</strong></td><td>VPS manage</td><td>~7 USD/mois</td><td>Template Docker pre-configure pour OpenClaw. 1-click deploy.</td></tr>
-<tr><td><strong>Oracle Cloud</strong></td><td>Free tier</td><td>Gratuit</td><td>24 Go RAM gratuits (Always Free). Suffisant pour des modeles 7B locaux.</td></tr>
-<tr><td><strong>Contabo</strong></td><td>VPS budget</td><td>~4 EUR/mois</td><td>Le moins cher. RAM genereuse. Performances reseau inferieures.</td></tr>
-<tr><td><strong>Kimi Claw</strong></td><td>Cloud manage</td><td>Variable</td><td>Deploiement OpenClaw en secondes, zero configuration.</td></tr>
+<tr><td><strong>Hetzner</strong></td><td>VPS auto-gere</td><td>~4-7 EUR/mois</td><td>Recommandé dans ce playbook. Datacenters EU (Allemagne, Finlande). Excellent rapport qualité/prix.</td></tr>
+<tr><td><strong>OVHcloud</strong></td><td>VPS auto-gere</td><td>~4-8 EUR/mois</td><td>Datacenters en France. Idéal pour la conformité RGPD.</td></tr>
+<tr><td><strong>Scaleway</strong></td><td>VPS auto-gere</td><td>~5-10 EUR/mois</td><td>Infrastructure française. Bonne intégration Docker.</td></tr>
+<tr><td><strong>DigitalOcean</strong></td><td>VPS + Marketplace</td><td>~6-12 USD/mois</td><td>Image OpenClaw 1-click dans le Marketplace. App Platform pour déploiement managé.</td></tr>
+<tr><td><strong>Hostinger</strong></td><td>VPS manage</td><td>~7 USD/mois</td><td>Template Docker pré-configuré pour OpenClaw. 1-click deploy.</td></tr>
+<tr><td><strong>Oracle Cloud</strong></td><td>Free tier</td><td>Gratuit</td><td>24 Go RAM gratuits (Always Free). Suffisant pour des modèles 7B locaux.</td></tr>
+<tr><td><strong>Contabo</strong></td><td>VPS budget</td><td>~4 EUR/mois</td><td>Le moins cher. RAM généreuse. Performances réseau inférieures.</td></tr>
+<tr><td><strong>Kimi Claw</strong></td><td>Cloud manage</td><td>Variable</td><td>Déploiement OpenClaw en secondes, zéro configuration.</td></tr>
 </tbody>
 </table>
 
@@ -1111,73 +1115,73 @@ def build_ecosystem_page(all_sections):
 <h2>Providers LLM (via OpenRouter ou direct)</h2>
 
 <table>
-<thead><tr><th>Provider</th><th>Modeles cles</th><th>Acces</th><th>Notes</th></tr></thead>
+<thead><tr><th>Provider</th><th>Modèles clés</th><th>Accès</th><th>Notes</th></tr></thead>
 <tbody>
-<tr><td><strong>OpenRouter</strong></td><td>Tous (proxy multi-provider)</td><td><a href="https://openrouter.ai" target="_blank">openrouter.ai</a></td><td>Recommande : un seul compte pour acceder a tous les modeles. Suivi des couts integre.</td></tr>
-<tr><td><strong>Anthropic</strong></td><td>Claude Sonnet 4, Claude Haiku 4.5, Claude Opus 4.6</td><td><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></td><td>Excellent en francais. Le meilleur pour les taches complexes.</td></tr>
-<tr><td><strong>Mistral AI</strong></td><td>Mistral Large, Mistral Medium</td><td><a href="https://console.mistral.ai" target="_blank">console.mistral.ai</a></td><td>Entreprise francaise. Tres bon en francais. Modeles efficaces en tokens.</td></tr>
+<tr><td><strong>OpenRouter</strong></td><td>Tous (proxy multi-provider)</td><td><a href="https://openrouter.ai" target="_blank">openrouter.ai</a></td><td>Recommandé : un seul compte pour accéder à tous les modèles. Suivi des coûts intégré.</td></tr>
+<tr><td><strong>Anthropic</strong></td><td>Claude Sonnet 4, Claude Haiku 4.5, Claude Opus 4.6</td><td><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></td><td>Excellent en français. Le meilleur pour les tâches complexes.</td></tr>
+<tr><td><strong>Mistral AI</strong></td><td>Mistral Large, Mistral Medium</td><td><a href="https://console.mistral.ai" target="_blank">console.mistral.ai</a></td><td>Entreprise française. Très bon en français. Modèles efficaces en tokens.</td></tr>
 <tr><td><strong>Google</strong></td><td>Gemini 2.5 Pro, Gemini 2.5 Flash</td><td><a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></td><td>Contexte long (1M tokens). Bon pour l'analyse de documents.</td></tr>
-<tr><td><strong>OpenAI</strong></td><td>GPT-4o, o3, o4-mini</td><td><a href="https://platform.openai.com" target="_blank">platform.openai.com</a></td><td>Large ecosysteme. Bon generaliste.</td></tr>
-<tr><td><strong>Meta (Llama)</strong></td><td>Llama 4 Scout, Llama 4 Maverick</td><td>Via OpenRouter ou local</td><td>Open-source. Gratuit si heberge localement.</td></tr>
+<tr><td><strong>OpenAI</strong></td><td>GPT-4o, o3, o4-mini</td><td><a href="https://platform.openai.com" target="_blank">platform.openai.com</a></td><td>Large écosystème. Bon généraliste.</td></tr>
+<tr><td><strong>Meta (Llama)</strong></td><td>Llama 4 Scout, Llama 4 Maverick</td><td>Via OpenRouter ou local</td><td>Open-source. Gratuit si hébergé localement.</td></tr>
 </tbody>
 </table>
 
 <hr>
 
-<h2>Frameworks concurrents et complementaires</h2>
+<h2>Frameworks concurrents et complémentaires</h2>
 
 <table>
 <thead><tr><th>Framework</th><th>Approche</th><th>Force</th><th>Faiblesse vs OpenClaw</th></tr></thead>
 <tbody>
-<tr><td><strong>LangChain / LangGraph</strong></td><td>Orchestration par graphes</td><td>Controle deterministe, ideal pour la conformite</td><td>Plus complexe a configurer. Pas d'interface utilisateur native.</td></tr>
-<tr><td><strong>CrewAI</strong></td><td>Multi-agents par roles</td><td>Setup rapide (~30% plus rapide que LangChain). Architecture Crews + Flows.</td><td>Moins de skills pre-faites. Ecosysteme plus petit.</td></tr>
-<tr><td><strong>AutoGPT / AgentGPT</strong></td><td>Autonomie maximale</td><td>L'agent definit ses propres sous-taches</td><td>Difficile a controler. Cout en tokens eleve. Risque de boucles infinies.</td></tr>
+<tr><td><strong>LangChain / LangGraph</strong></td><td>Orchestration par graphes</td><td>Contrôle déterministe, idéal pour la conformité</td><td>Plus complexe à configurer. Pas d'interface utilisateur native.</td></tr>
+<tr><td><strong>CrewAI</strong></td><td>Multi-agents par roles</td><td>Setup rapide (~30% plus rapide que LangChain). Architecture Crews + Flows.</td><td>Moins de skills pré-faites. Écosystème plus petit.</td></tr>
+<tr><td><strong>AutoGPT / AgentGPT</strong></td><td>Autonomie maximale</td><td>L'agent définit ses propres sous-tâches</td><td>Difficile à contrôler. Coût en tokens élevé. Risque de boucles infinies.</td></tr>
 <tr><td><strong>n8n</strong></td><td>Low-code visual</td><td>1000+ connecteurs. Interface visuelle. Pas besoin de coder.</td><td>Moins flexible pour les agents conversationnels.</td></tr>
-<tr><td><strong>Nanobot</strong></td><td>Ultra-leger (4000 lignes Python)</td><td>99% plus petit qu'OpenClaw. Simple a comprendre et modifier.</td><td>Moins de features. Pas de marketplace de skills.</td></tr>
-<tr><td><strong>NanoClaw</strong></td><td>Securise par defaut</td><td>Isolation container, execution sandboxee</td><td>Moins de skills. Oriente securite enterprise.</td></tr>
-<tr><td><strong>Moltworker</strong></td><td>Serverless (Cloudflare Workers)</td><td>Pas d'acces systeme local. Sandbox par design.</td><td>Pas d'acces au filesystem. Limite pour les taches systeme.</td></tr>
+<tr><td><strong>Nanobot</strong></td><td>Ultra-leger (4000 lignes Python)</td><td>99% plus petit qu'OpenClaw. Simple à comprendre et modifier.</td><td>Moins de features. Pas de marketplace de skills.</td></tr>
+<tr><td><strong>NanoClaw</strong></td><td>Sécurisé par défaut</td><td>Isolation container, exécution sandboxée</td><td>Moins de skills. Orienté sécurité enterprise.</td></tr>
+<tr><td><strong>Moltworker</strong></td><td>Serverless (Cloudflare Workers)</td><td>Pas d'accès système local. Sandbox par design.</td><td>Pas d'accès au filesystem. Limité pour les tâches système.</td></tr>
 </tbody>
 </table>
 
 <hr>
 
-<h2>Securite</h2>
+<h2>Sécurité</h2>
 
-<p>OpenClaw a connu des incidents de securite significatifs en 2026. Voici ce que vous devez savoir :</p>
+<p>OpenClaw a connu des incidents de sécurité significatifs en 2026. Voici ce que vous devez savoir :</p>
 
 <table>
 <thead><tr><th>Incident</th><th>Date</th><th>Impact</th><th>Mitigation</th></tr></thead>
 <tbody>
-<tr><td><strong>ClawJacked</strong></td><td>Fevrier 2026</td><td>Tout site web peut hijacker un agent OpenClaw local via WebSocket. Le rate limiter exempte localhost.</td><td>Mettre a jour vers la derniere version. Configurer un mot de passe gateway fort.</td></tr>
-<tr><td><strong>ClawHavoc</strong></td><td>Mars 2026</td><td>300+ skills malicieuses sur ClawHub avec des noms typosquattes.</td><td>Verifier le code source. Utiliser le skill Security Auditor. Verifier les scans VirusTotal sur ClawHub.</td></tr>
-<tr><td><strong>9 CVE en 4 jours</strong></td><td>Mars 2026</td><td>1 CVE critique (9.9/10), 6 high, 2 medium. 135 000 instances exposees publiquement.</td><td>Mettre a jour immediatement. Ne JAMAIS exposer le gateway sur Internet public. Utiliser Tailscale.</td></tr>
+<tr><td><strong>ClawJacked</strong></td><td>Février 2026</td><td>Tout site web peut hijacker un agent OpenClaw local via WebSocket. Le rate limiter exempte localhost.</td><td>Mettre à jour vers la dernière version. Configurer un mot de passe gateway fort.</td></tr>
+<tr><td><strong>ClawHavoc</strong></td><td>Mars 2026</td><td>300+ skills malicieuses sur ClawHub avec des noms typosquattés.</td><td>Vérifier le code source. Utiliser le skill Security Auditor. Vérifier les scans VirusTotal sur ClawHub.</td></tr>
+<tr><td><strong>9 CVE en 4 jours</strong></td><td>Mars 2026</td><td>1 CVE critique (9.9/10), 6 high, 2 medium. 135 000 instances exposées publiquement.</td><td>Mettre à jour immédiatement. Ne JAMAIS exposer le gateway sur Internet public. Utiliser Tailscale.</td></tr>
 </tbody>
 </table>
 
-<p><strong>Outils de securite :</strong></p>
+<p><strong>Outils de sécurité :</strong></p>
 <ul>
 <li><strong>NemoClaw</strong> (NVIDIA) — Sandbox kernel-level pour les agents. Enterprise preview. <a href="https://www.chainup.com/blog/agentic-ai-openclaw-crypto-exchange-infrastructure/" target="_blank">En savoir plus</a></li>
 <li><strong>KnoxClaw</strong> (AccuKnox) — Sandboxing kernel pour les instances OpenClaw. <a href="https://accuknox.com/blog/introducing-knoxclaw-for-openclaw-instances" target="_blank">En savoir plus</a></li>
-<li><strong>Security Auditor skill</strong> — Skill ClawHub qui audite les permissions et les acces de votre agent a runtime.</li>
+<li><strong>Security Auditor skill</strong> — Skill ClawHub qui audite les permissions et les accès de votre agent à runtime.</li>
 </ul>
 
 <blockquote>
-<p><strong>Recommandation de ce playbook :</strong> Ne JAMAIS exposer le port du gateway OpenClaw sur Internet public. Toujours utiliser Tailscale ou un VPN. Toujours verifier le code source d'un skill avant de l'installer. Mettre a jour regulierement.</p>
+<p><strong>Recommandation de ce playbook :</strong> Ne JAMAIS exposer le port du gateway OpenClaw sur Internet public. Toujours utiliser Tailscale ou un VPN. Toujours vérifier le code source d'un skill avant de l'installer. Mettre à jour régulièrement.</p>
 </blockquote>
 
 <hr>
 
 <h2>Outils MCP (Model Context Protocol)</h2>
 
-<p>MCP est le standard ouvert cree par Anthropic pour connecter les modeles IA au monde reel. OpenClaw supporte MCP nativement via ClawHub.</p>
+<p>MCP est le standard ouvert créé par Anthropic pour connecter les modèles IA au monde réel. OpenClaw supporte MCP nativement via ClawHub.</p>
 
 <table>
 <thead><tr><th>Serveur MCP</th><th>Description</th><th>Lien</th></tr></thead>
 <tbody>
-<tr><td><strong>openclaw-mcp</strong></td><td>Bridge securise entre Claude.ai et votre instance OpenClaw auto-hebergee. Authentification OAuth2.</td><td><a href="https://github.com/freema/openclaw-mcp" target="_blank">GitHub</a></td></tr>
-<tr><td><strong>Playwright MCP</strong></td><td>Automatisation navigateur complete via MCP.</td><td>ClawHub</td></tr>
-<tr><td><strong>Supabase MCP</strong></td><td>Acces base de donnees PostgreSQL via MCP.</td><td>ClawHub</td></tr>
-<tr><td><strong>Tavily MCP</strong></td><td>Recherche web en temps reel via MCP.</td><td>ClawHub</td></tr>
+<tr><td><strong>openclaw-mcp</strong></td><td>Bridge sécurisé entre Claude.ai et votre instance OpenClaw auto-hébergée. Authentification OAuth2.</td><td><a href="https://github.com/freema/openclaw-mcp" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>Playwright MCP</strong></td><td>Automatisation navigateur complète via MCP.</td><td>ClawHub</td></tr>
+<tr><td><strong>Supabase MCP</strong></td><td>Accès base de données PostgreSQL via MCP.</td><td>ClawHub</td></tr>
+<tr><td><strong>Tavily MCP</strong></td><td>Recherche web en temps réel via MCP.</td><td>ClawHub</td></tr>
 </tbody>
 </table>
 
@@ -1188,18 +1192,18 @@ def build_ecosystem_page(all_sections):
 <table>
 <thead><tr><th>Ressource</th><th>Format</th><th>Description</th><th>Lien</th></tr></thead>
 <tbody>
-<tr><td><strong>10 GitHub Repos to Master OpenClaw</strong></td><td>Article</td><td>Selection curatee par KDnuggets des meilleurs repos pour apprendre.</td><td><a href="https://www.kdnuggets.com/10-github-repositories-to-master-openclaw" target="_blank">KDnuggets</a></td></tr>
-<tr><td><strong>9 OpenClaw Projects to Build</strong></td><td>Tutoriels</td><td>Projets pratiques : bots Reddit, serveurs auto-reparants, etc.</td><td><a href="https://www.datacamp.com/blog/openclaw-projects" target="_blank">DataCamp</a></td></tr>
-<tr><td><strong>OpenClaw Explained</strong></td><td>Article</td><td>Introduction complete pour debutants.</td><td><a href="https://www.kdnuggets.com/openclaw-explained-the-free-ai-agent-tool-going-viral-already-in-2026" target="_blank">KDnuggets</a></td></tr>
+<tr><td><strong>10 GitHub Repos to Master OpenClaw</strong></td><td>Article</td><td>Sélection curatée par KDnuggets des meilleurs repos pour apprendre.</td><td><a href="https://www.kdnuggets.com/10-github-repositories-to-master-openclaw" target="_blank">KDnuggets</a></td></tr>
+<tr><td><strong>9 OpenClaw Projects to Build</strong></td><td>Tutoriels</td><td>Projets pratiques : bots Reddit, serveurs auto-réparants, etc.</td><td><a href="https://www.datacamp.com/blog/openclaw-projects" target="_blank">DataCamp</a></td></tr>
+<tr><td><strong>OpenClaw Explained</strong></td><td>Article</td><td>Introduction complète pour débutants.</td><td><a href="https://www.kdnuggets.com/openclaw-explained-the-free-ai-agent-tool-going-viral-already-in-2026" target="_blank">KDnuggets</a></td></tr>
 <tr><td><strong>What is OpenClaw?</strong></td><td>Guide</td><td>Introduction technique par DigitalOcean.</td><td><a href="https://www.digitalocean.com/resources/articles/what-is-openclaw" target="_blank">DigitalOcean</a></td></tr>
-<tr><td><strong>OpenClaw MasterClass</strong></td><td>Cours</td><td>Cours structure avec module ClawHub.</td><td><a href="https://tenten.co/openclaw/en/docs/masterclass/module-04-clawhub" target="_blank">Tenten</a></td></tr>
+<tr><td><strong>OpenClaw MasterClass</strong></td><td>Cours</td><td>Cours structuré avec module ClawHub.</td><td><a href="https://tenten.co/openclaw/en/docs/masterclass/module-04-clawhub" target="_blank">Tenten</a></td></tr>
 </tbody>
 </table>
 
 </section>
 """
     sidebar_html = build_sidebar(all_sections, 'ecosystem', None)
-    page_html = render_page('Ecosysteme OpenClaw', content, sidebar_html)
+    page_html = render_page('Écosystème OpenClaw', content, sidebar_html)
     write_page('ecosystem.html', page_html)
     print('  -> ecosystem.html')
 
@@ -1215,55 +1219,117 @@ def build_persona_entrepreneur(all_sections):
 <section class="chapter">
 <h1>OpenClaw pour les entrepreneurs et artisans</h1>
 
-<h2>Vous n'etes pas developpeur. Et c'est pas grave.</h2>
-<p>OpenClaw, c'est un assistant IA qui travaille pour vous, 24 heures sur 24, 7 jours sur 7. Il ne dort pas, il ne prend pas de vacances, et il ne vous facture pas d'heures supplementaires.</p>
-<p>Concretement, il peut repondre a vos clients, trier vos emails, vous faire un resume chaque matin de ce qui s'est passe pendant la nuit. Il vit sur un petit serveur que vous louez pour 5 euros par mois. Vos donnees restent chez vous, pas chez une grande entreprise americaine.</p>
-<p>Vous n'avez pas besoin de savoir coder pour l'utiliser au quotidien. Vous avez juste besoin de quelqu'un pour l'installer une premiere fois -- et ce guide est la pour ca.</p>
+<h2>Vous n'êtes pas développeur. Et c'est pas grave.</h2>
+<p>OpenClaw, c'est un assistant IA qui travaille pour vous, 24 heures sur 24, 7 jours sur 7. Il ne dort pas, il ne prend pas de vacances, et il ne vous facture pas d'heures supplémentaires.</p>
+<p>Concrètement, il peut répondre à vos clients, trier vos emails, vous faire un résumé chaque matin de ce qui s'est passé pendant la nuit. Il vit sur un petit serveur que vous louez pour 5 euros par mois. Vos données restent chez vous, pas chez une grande entreprise américaine.</p>
+<p>Vous n'avez pas besoin de savoir coder pour l'utiliser au quotidien. Vous avez juste besoin de quelqu'un pour l'installer une première fois -- et ce guide est là pour ça.</p>
 
-<h2>Concretement, ca fait quoi ?</h2>
-<p>Voici cinq exemples de ce qu'un agent OpenClaw peut faire pour vous, des aujourd'hui :</p>
+<h2>Concrètement, ça fait quoi ?</h2>
+<p>Voici cinq exemples de ce qu'un agent OpenClaw peut faire pour vous, dès aujourd'hui :</p>
 <ol>
-  <li><strong>Repondre aux prospects par email</strong> -- Un client potentiel vous ecrit a 23h ? L'agent lui repond dans la minute avec les informations de base sur vos services, vos tarifs, vos disponibilites.</li>
-  <li><strong>Faire des devis</strong> -- Vous lui donnez les regles de calcul de vos prix, et il genere un devis propre a partir d'une simple demande par message.</li>
-  <li><strong>Rappeler les factures impayees</strong> -- L'agent surveille vos factures et envoie automatiquement un rappel poli quand un paiement est en retard.</li>
-  <li><strong>Resume du jour</strong> -- Chaque matin a 8h, vous recevez sur votre telephone un resume clair : emails recus, taches du jour, rappels importants.</li>
-  <li><strong>Veille sur votre secteur</strong> -- L'agent surveille les actualites de votre domaine et vous signale ce qui merite votre attention.</li>
+  <li><strong>Répondre aux prospects par email</strong> -- Un client potentiel vous écrit à 23h ? L'agent lui répond dans la minute avec les informations de base sur vos services, vos tarifs, vos disponibilités.</li>
+  <li><strong>Faire des devis</strong> -- Vous lui donnez les règles de calcul de vos prix, et il génère un devis propre à partir d'une simple demande par message.</li>
+  <li><strong>Rappeler les factures impayées</strong> -- L'agent surveille vos factures et envoie automatiquement un rappel poli quand un paiement est en retard.</li>
+  <li><strong>Résumé du jour</strong> -- Chaque matin à 8h, vous recevez sur votre téléphone un résumé clair : emails reçus, tâches du jour, rappels importants.</li>
+  <li><strong>Veille sur votre secteur</strong> -- L'agent surveille les actualités de votre domaine et vous signale ce qui mérite votre attention.</li>
 </ol>
 
-<h2>Combien ca coute ?</h2>
+<h2>Combien ça coûte ?</h2>
 <table>
-  <thead><tr><th>Poste</th><th>Cout mensuel</th></tr></thead>
+  <thead><tr><th>Poste</th><th>Coût mensuel</th></tr></thead>
   <tbody>
-    <tr><td>Serveur (VPS)</td><td>5 a 10 EUR</td></tr>
-    <tr><td>Intelligence artificielle (API)</td><td>10 a 30 EUR selon l'usage</td></tr>
-    <tr><td><strong>Total</strong></td><td><strong>15 a 40 EUR par mois</strong></td></tr>
+    <tr><td>Serveur (VPS)</td><td>5 à 10 EUR</td></tr>
+    <tr><td>Intelligence artificielle (API)</td><td>10 à 30 EUR selon l'usage</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>15 à 40 EUR par mois</strong></td></tr>
   </tbody>
 </table>
-<p>C'est moins cher qu'un stagiaire, et c'est disponible 24 heures sur 24, week-ends et jours feries compris.</p>
+<p>C'est moins cher qu'un stagiaire, et c'est disponible 24 heures sur 24, week-ends et jours fériés compris.</p>
 
-<h2>Comment ca marche ?</h2>
-<p>En trois etapes simples :</p>
+<h2>Comment ça marche ?</h2>
+<p>En trois étapes simples :</p>
 <ol>
-  <li><strong>Un technicien installe OpenClaw sur votre serveur.</strong> C'est l'equivalent d'installer une application sur un ordinateur. Ca prend quelques heures, une seule fois.</li>
-  <li><strong>On configure l'agent pour votre metier.</strong> On lui explique qui vous etes, ce que vous faites, comment vous travaillez. Il apprend vos regles.</li>
-  <li><strong>Vous recevez les resultats sur votre telephone.</strong> Via Telegram, vous pouvez lire les resumes, valider les reponses, et interagir avec votre agent comme avec un collegue.</li>
+  <li><strong>Un technicien installe OpenClaw sur votre serveur.</strong> C'est l'équivalent d'installer une application sur un ordinateur. Ça prend quelques heures, une seule fois.</li>
+  <li><strong>On configure l'agent pour votre métier.</strong> On lui explique qui vous êtes, ce que vous faites, comment vous travaillez. Il apprend vos règles.</li>
+  <li><strong>Vous recevez les résultats sur votre téléphone.</strong> Via Telegram, vous pouvez lire les résumés, valider les réponses, et interagir avec votre agent comme avec un collègue.</li>
 </ol>
 
-<h2>Est-ce que c'est securise ?</h2>
-<p>Oui. Et c'est meme l'un des avantages principaux d'OpenClaw par rapport aux autres solutions.</p>
-<p>Vos donnees restent sur <strong>votre</strong> serveur. Pas chez Google. Pas chez OpenAI. Pas chez une startup qui pourrait fermer demain. C'est vous qui controlez qui a acces a quoi.</p>
-<p>Ce playbook documente en detail toutes les mesures de securite mises en place pendant l'installation.</p>
+<h2>Est-ce que c'est sécurisé ?</h2>
+<p>Oui. Et c'est même l'un des avantages principaux d'OpenClaw par rapport aux autres solutions.</p>
+<p>Vos données restent sur <strong>votre</strong> serveur. Pas chez Google. Pas chez OpenAI. Pas chez une startup qui pourrait fermer demain. C'est vous qui contrôlez qui a accès à quoi.</p>
+<p>Ce playbook documente en détail toutes les mesures de sécurité mises en place pendant l'installation.</p>
 
 <h2>Je veux essayer</h2>
-<p>Deux options s'offrent a vous :</p>
+<p>Deux options s'offrent à vous :</p>
 <ul>
-  <li><strong>Option A : vous suivez le guide vous-meme.</strong> Commencez par le <a href="02-00-sommaire.html">Chapitre 2 -- Installation</a>. Chaque etape est expliquee en detail.</li>
-  <li><strong>Option B : vous faites appel a un installateur.</strong> Contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a> pour un accompagnement personnalise.</li>
+  <li><strong>Option A : vous suivez le guide vous-même.</strong> Commencez par le <a href="02-00-sommaire.html">Chapitre 2 — Installation</a>. Chaque étape est expliquée en détail.</li>
+  <li><strong>Option B : vous faites appel à un installateur.</strong> Remplissez le formulaire ci-dessous.</li>
 </ul>
 
-<h2>Qui a ecrit ce guide ?</h2>
-<p>Alex Willemetz, entrepreneur a Paris. Pas developpeur de formation. Il a galere avec OpenClaw pendant des mois, a fait trois installations ratees avant de comprendre comment ca marche, et a fini par maitriser le sujet.</p>
-<p>Ce guide est le resultat de cette experience. Il est ecrit pour que vous n'ayez pas a galérer comme lui.</p>
+<div id="contact-form" style="margin-top:1.5rem;padding:1.25rem;border:1px solid var(--border);border-radius:8px;background:var(--bg-section);">
+  <h3 style="margin-bottom:0.75rem;font-size:1rem;">Parlons de votre projet</h3>
+
+  <div id="form-step-1" class="form-step">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Quel est votre secteur d'activité ?</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <button class="form-option" onclick="nextStep('secteur', this.textContent)">Artisan / BTP</button>
+      <button class="form-option" onclick="nextStep('secteur', this.textContent)">Commerce / Retail</button>
+      <button class="form-option" onclick="nextStep('secteur', this.textContent)">Services / Conseil</button>
+      <button class="form-option" onclick="nextStep('secteur', this.textContent)">Tech / Startup</button>
+      <button class="form-option" onclick="nextStep('secteur', this.textContent)">Autre</button>
+    </div>
+  </div>
+
+  <div id="form-step-2" class="form-step" style="display:none;">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Qu'est-ce qui vous prend le plus de temps aujourd'hui ?</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Répondre aux clients</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Gérer les emails</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Faire des devis</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Suivi administratif</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Autre chose</button>
+    </div>
+  </div>
+
+  <div id="form-step-3" class="form-step" style="display:none;">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Avez-vous déjà essayé un outil IA ?</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Jamais</button>
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">ChatGPT / Claude</button>
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Un autre outil</button>
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Oui, mais ça n'a pas marché</button>
+    </div>
+  </div>
+
+  <div id="form-step-4" class="form-step" style="display:none;">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Parfait. Laissez-moi vos coordonnées et je vous recontacte sous 48h.</p>
+    <div style="display:flex;flex-direction:column;gap:0.4rem;max-width:400px;">
+      <input type="text" id="contact-name" placeholder="Votre nom" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;">
+      <input type="email" id="contact-email" placeholder="Votre email" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;">
+      <textarea id="contact-message" placeholder="Décrivez votre besoin en quelques mots (optionnel)" rows="3" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;font-family:inherit;resize:vertical;"></textarea>
+      <button onclick="submitContactForm()" style="padding:0.5rem 1rem;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:0.85rem;cursor:pointer;">Envoyer</button>
+    </div>
+  </div>
+
+  <div id="form-step-done" class="form-step" style="display:none;">
+    <p style="font-size:0.9rem;font-weight:600;color:var(--accent);">Merci ! Votre message a été envoyé.</p>
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.3rem;">Alex vous recontactera sous 48h. En attendant : <a href="decouverte.html">C'est quoi OpenClaw ?</a></p>
+  </div>
+</div>
+
+<style>
+.form-option { padding:0.4rem 0.75rem; border:1px solid var(--border); border-radius:6px; background:var(--bg); color:var(--text); font-size:0.8rem; cursor:pointer; transition:all 0.15s; }
+.form-option:hover { border-color:var(--accent); background:var(--accent-light); }
+</style>
+
+<script>
+var formData={};
+function nextStep(k,v){ formData[k]=v; var c=document.querySelector('.form-step:not([style*="display: none"])'); if(!c)return; c.style.display='none'; var n='form-step-'+(parseInt(c.id.split('-')[2])+1); var el=document.getElementById(n); if(el)el.style.display='block'; }
+function submitContactForm(){ var n=document.getElementById('contact-name').value,e=document.getElementById('contact-email').value,m=document.getElementById('contact-message').value; if(!n||!e){alert('Merci de remplir votre nom et email.');return;} formData.name=n;formData.email=e;formData.message=m; var s=encodeURIComponent('OpenClaw Playbook — Demande de '+n),b=encodeURIComponent('Nom : '+n+'\\nEmail : '+e+'\\nSecteur : '+(formData.secteur||'Non précisé')+'\\nBesoin : '+(formData.besoin||'Non précisé')+'\\nExpérience IA : '+(formData.experience||'Non précisé')+'\\nMessage : '+(m||'Aucun')+'\\n'); window.open('mailto:alexwillemetz@gmail.com?subject='+s+'&body='+b); document.getElementById('form-step-4').style.display='none'; document.getElementById('form-step-done').style.display='block'; }
+</script>
+
+<h2>Qui a écrit ce guide ?</h2>
+<p>Alex Willemetz, entrepreneur à Paris. Pas développeur de formation. Il a galéré avec OpenClaw pendant des mois, a fait trois installations ratées avant de comprendre comment ça marche, et a fini par maîtriser le sujet.</p>
+<p>Ce guide est le résultat de cette expérience. Il est écrit pour que vous n'ayez pas à galérer comme lui.</p>
 
 </section>
 """
@@ -1278,22 +1344,22 @@ def build_persona_cto(all_sections):
 <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>Pour les equipes tech</span>
+  <span>Pour les équipes tech</span>
 </nav>
 <section class="chapter">
-<h1>OpenClaw pour les equipes techniques</h1>
+<h1>OpenClaw pour les équipes techniques</h1>
 
 <h2>L'agent IA qui tourne sur VOTRE infra</h2>
-<p>OpenClaw n'est pas un SaaS. C'est un framework d'agents que vous deployez sur votre propre VPS. Vos donnees ne quittent jamais votre infrastructure. Il n'y a pas de serveur tiers, pas de dependance a une plateforme cloud proprietaire.</p>
-<p>C'est compatible RGPD par design : les donnees personnelles de vos clients, de vos employes, de vos partenaires restent sur une machine que vous controlez, dans un datacenter europeen si vous le souhaitez.</p>
+<p>OpenClaw n'est pas un SaaS. C'est un framework d'agents que vous déployez sur votre propre VPS. Vos données ne quittent jamais votre infrastructure. Il n'y a pas de serveur tiers, pas de dépendance à une plateforme cloud propriétaire.</p>
+<p>C'est compatible RGPD par design : les données personnelles de vos clients, de vos employés, de vos partenaires restent sur une machine que vous contrôlez, dans un datacenter européen si vous le souhaitez.</p>
 
-<h2>Cas d'usage pour une equipe de 5 a 15 personnes</h2>
+<h2>Cas d'usage pour une équipe de 5 à 15 personnes</h2>
 <ul>
-  <li><strong>Triage support client</strong> -- L'agent classe les tickets entrants par priorite, redige des reponses de premier niveau, et escalade les cas complexes.</li>
-  <li><strong>Documentation automatique</strong> -- Chaque decision, chaque changement de configuration, chaque incident est documente automatiquement par l'agent.</li>
-  <li><strong>Briefing quotidien</strong> -- Chaque matin, l'equipe recoit un resume structure : taches en cours, blocages, metriques cles.</li>
-  <li><strong>Code review assiste</strong> -- L'agent pre-review les pull requests, identifie les problemes courants, et suggere des ameliorations.</li>
-  <li><strong>Onboarding nouveaux employes</strong> -- L'agent repond aux questions recurrentes, guide les nouveaux arrivants dans la documentation interne, et accelere la prise en main.</li>
+  <li><strong>Triage support client</strong> -- L'agent classe les tickets entrants par priorité, rédige des réponses de premier niveau, et escalade les cas complexes.</li>
+  <li><strong>Documentation automatique</strong> -- Chaque décision, chaque changement de configuration, chaque incident est documenté automatiquement par l'agent.</li>
+  <li><strong>Briefing quotidien</strong> -- Chaque matin, l'équipe reçoit un résumé structuré : tâches en cours, blocages, métriques clés.</li>
+  <li><strong>Code review assisté</strong> -- L'agent pré-review les pull requests, identifie les problèmes courants, et suggère des améliorations.</li>
+  <li><strong>Onboarding nouveaux employés</strong> -- L'agent répond aux questions récurrentes, guide les nouveaux arrivants dans la documentation interne, et accélère la prise en main.</li>
 </ul>
 
 <h2>Stack technique</h2>
@@ -1302,49 +1368,49 @@ def build_persona_cto(all_sections):
   <tbody>
     <tr><td>Serveur</td><td>VPS (Hetzner, OVH, Scaleway)</td></tr>
     <tr><td>Conteneurisation</td><td>Docker + Docker Compose</td></tr>
-    <tr><td>Base de donnees</td><td>PostgreSQL (source de verite)</td></tr>
+    <tr><td>Base de données</td><td>PostgreSQL (source de vérité)</td></tr>
     <tr><td>Secrets</td><td>HashiCorp Vault</td></tr>
-    <tr><td>Reseau prive</td><td>Tailscale (VPN mesh)</td></tr>
-    <tr><td>Cout mensuel</td><td>20 a 50 EUR selon la configuration</td></tr>
+    <tr><td>Réseau privé</td><td>Tailscale (VPN mesh)</td></tr>
+    <tr><td>Coût mensuel</td><td>20 à 50 EUR selon la configuration</td></tr>
   </tbody>
 </table>
 
-<h2>Securite</h2>
-<p>La securite est au coeur de l'architecture documentee dans ce playbook :</p>
+<h2>Sécurité</h2>
+<p>La sécurité est au cœur de l'architecture documentée dans ce playbook :</p>
 <ul>
   <li><strong>Pas d'exposition publique</strong> -- Le gateway OpenClaw n'est accessible que via Tailscale. Aucun port n'est ouvert sur Internet.</li>
-  <li><strong>Secrets dans Vault</strong> -- Les cles API, tokens, et credentials sont stockes dans HashiCorp Vault, pas dans des fichiers de configuration.</li>
-  <li><strong>Gateway protegee</strong> -- Authentification, rate limiting, et logs d'acces sur chaque requete.</li>
-  <li><strong>20 bugs documentes</strong> -- Ce playbook documente 20 bugs de securite trouves et corriges pendant une installation reelle par un agent IA installateur.</li>
+  <li><strong>Secrets dans Vault</strong> -- Les clés API, tokens, et credentials sont stockés dans HashiCorp Vault, pas dans des fichiers de configuration.</li>
+  <li><strong>Gateway protégée</strong> -- Authentification, rate limiting, et logs d'accès sur chaque requête.</li>
+  <li><strong>20 bugs documentés</strong> -- Ce playbook documente 20 bugs de sécurité trouvés et corrigés pendant une installation réelle par un agent IA installateur.</li>
 </ul>
 
 <h2>Ce que couvre ce playbook</h2>
 <table>
   <thead><tr><th>Chapitre</th><th>Contenu</th><th>Sections</th></tr></thead>
   <tbody>
-    <tr><td><a href="02-00-sommaire.html">Installation</a></td><td>Du VPS vierge a l'agent operationnel</td><td>19 sections</td></tr>
-    <tr><td><a href="03-00-sommaire.html">Configuration</a></td><td>Perimetre, memoire, knowledge base, crons</td><td>17 sections</td></tr>
-    <tr><td><a href="04-00-sommaire.html">Personnalisation</a></td><td>System prompt, ton, workflows, securite</td><td>14 sections</td></tr>
-    <tr><td><a href="05-00-sommaire.html">Maintenance</a></td><td>Monitoring, backups, logs, procedures</td><td>14 sections</td></tr>
+    <tr><td><a href="02-00-sommaire.html">Installation</a></td><td>Du VPS vierge à l'agent opérationnel</td><td>19 sections</td></tr>
+    <tr><td><a href="03-00-sommaire.html">Configuration</a></td><td>Périmètre, mémoire, knowledge base, crons</td><td>17 sections</td></tr>
+    <tr><td><a href="04-00-sommaire.html">Personnalisation</a></td><td>System prompt, ton, workflows, sécurité</td><td>14 sections</td></tr>
+    <tr><td><a href="05-00-sommaire.html">Maintenance</a></td><td>Monitoring, backups, logs, procédures</td><td>14 sections</td></tr>
   </tbody>
 </table>
-<p>Chaque section a ete testee par un agent IA installateur (Claude-Aurel). Chaque erreur rencontree est documentee avec sa resolution.</p>
+<p>Chaque section a été testée par un agent IA installateur (Claude-Aurel). Chaque erreur rencontrée est documentée avec sa résolution.</p>
 
 <h2>Commencer</h2>
 <ul>
-  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : deployer OpenClaw de zero sur un VPS</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : déployer OpenClaw de zéro sur un VPS</li>
   <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent pour votre contexte</li>
-  <li><a href="06-00-sommaire.html">Chapitre 6 -- Cas d'usage</a> : exemples concrets pour une equipe technique</li>
-  <li><a href="checklist.html">Checklist interactive</a> : suivre votre progression etape par etape</li>
+  <li><a href="06-00-sommaire.html">Chapitre 6 -- Cas d'usage</a> : exemples concrets pour une équipe technique</li>
+  <li><a href="checklist.html">Checklist interactive</a> : suivre votre progression étape par étape</li>
 </ul>
 
 <h2>Besoin d'accompagnement ?</h2>
-<p>Pour un deploiement assiste ou un audit de votre installation existante, contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a>.</p>
+<p>Pour un déploiement assisté ou un audit de votre installation existante, contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a>.</p>
 
 </section>
 """
     sidebar_html = build_sidebar(all_sections, 'persona-cto', None)
-    page_html = render_page('OpenClaw pour les equipes techniques', content, sidebar_html)
+    page_html = render_page('OpenClaw pour les équipes techniques', content, sidebar_html)
     write_page('persona-cto.html', page_html)
 
 
@@ -1354,23 +1420,23 @@ def build_persona_dev(all_sections):
 <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>Pour les developpeurs</span>
+  <span>Pour les développeurs</span>
 </nav>
 <section class="chapter">
-<h1>OpenClaw pour les developpeurs</h1>
+<h1>OpenClaw pour les développeurs</h1>
 
 <h2>Vous savez ce qu'est Docker. Allons droit au but.</h2>
-<p>Ce playbook est votre runbook. 92 sections, des commandes copiables, des decisions documentees. Pas de blabla marketing, pas de slides, pas de "vision". Juste ce qu'il faut pour installer, configurer et faire tourner un agent OpenClaw sur un VPS.</p>
+<p>Ce playbook est votre runbook. 92 sections, des commandes copiables, des décisions documentées. Pas de blabla marketing, pas de slides, pas de "vision". Juste ce qu'il faut pour installer, configurer et faire tourner un agent OpenClaw sur un VPS.</p>
 
 <h2>Ce que vous allez installer</h2>
 <table>
   <thead><tr><th>Composant</th><th>Role</th></tr></thead>
   <tbody>
-    <tr><td>OpenClaw + OpenRouter</td><td>Framework d'agent + acces multi-modeles (Claude, GPT, Mistral, Llama)</td></tr>
-    <tr><td>HashiCorp Vault</td><td>Gestion des secrets (cles API, tokens, credentials)</td></tr>
-    <tr><td>PostgreSQL</td><td>Source de verite (memoire, configuration, logs)</td></tr>
-    <tr><td>Tailscale</td><td>VPN mesh (zero exposition publique)</td></tr>
-    <tr><td>systemd</td><td>Gateway OpenClaw (service systeme)</td></tr>
+    <tr><td>OpenClaw + OpenRouter</td><td>Framework d'agent + accès multi-modèles (Claude, GPT, Mistral, Llama)</td></tr>
+    <tr><td>HashiCorp Vault</td><td>Gestion des secrets (clés API, tokens, credentials)</td></tr>
+    <tr><td>PostgreSQL</td><td>Source de vérité (mémoire, configuration, logs)</td></tr>
+    <tr><td>Tailscale</td><td>VPN mesh (zéro exposition publique)</td></tr>
+    <tr><td>systemd</td><td>Gateway OpenClaw (service système)</td></tr>
     <tr><td>Git</td><td>Versionning de la configuration agent</td></tr>
   </tbody>
 </table>
@@ -1378,33 +1444,33 @@ def build_persona_dev(all_sections):
 
 <h2>En combien de temps ?</h2>
 <table>
-  <thead><tr><th>Phase</th><th>Duree estimee</th></tr></thead>
+  <thead><tr><th>Phase</th><th>Durée estimée</th></tr></thead>
   <tbody>
-    <tr><td>Installation (chapitre 2, 19 sections)</td><td>2 a 3 heures</td></tr>
-    <tr><td>Configuration (chapitre 3)</td><td>1 a 2 heures</td></tr>
+    <tr><td>Installation (chapitre 2, 19 sections)</td><td>2 à 3 heures</td></tr>
+    <tr><td>Configuration (chapitre 3)</td><td>1 à 2 heures</td></tr>
     <tr><td>Personnalisation (chapitre 4)</td><td>Continu</td></tr>
   </tbody>
 </table>
-<p>Le chapitre 2 a 19 sections. Vous pouvez les suivre dans l'ordre ou sauter celles que vous maitrisez deja.</p>
+<p>Le chapitre 2 a 19 sections. Vous pouvez les suivre dans l'ordre ou sauter celles que vous maîtrisez déjà.</p>
 
-<h2>Si vous avez deja un VPS</h2>
-<p>Le playbook gere les configurations existantes :</p>
+<h2>Si vous avez déjà un VPS</h2>
+<p>Le playbook gère les configurations existantes :</p>
 <ul>
-  <li><strong>Docker installe ?</strong> Le playbook le detecte et passe a la suite.</li>
-  <li><strong>Tailscale connecte ?</strong> Parfait, une etape de moins.</li>
-  <li><strong>Node.js present ?</strong> La section 2.15 detecte automatiquement nvm ou node global et s'adapte.</li>
-  <li><strong>Ports occupes ?</strong> Les checks de port evitent les conflits avec vos services existants.</li>
+  <li><strong>Docker installé ?</strong> Le playbook le détecte et passe à la suite.</li>
+  <li><strong>Tailscale connecté ?</strong> Parfait, une étape de moins.</li>
+  <li><strong>Node.js présent ?</strong> La section 2.15 détecte automatiquement nvm ou node global et s'adapte.</li>
+  <li><strong>Ports occupés ?</strong> Les checks de port évitent les conflits avec vos services existants.</li>
 </ul>
 
 <h2>Contribuer</h2>
 <p>Le repo est open source sous licence CC-BY 4.0. Forkez, corrigez, ouvrez une PR.</p>
-<p>20 bugs ont ete trouves par un agent IA installateur (Claude-Aurel) en une seule session d'installation. Votre feedback rend le guide meilleur pour tout le monde.</p>
-<p>Consultez la page <a href="contribuer.html">Contribuer</a> pour les details.</p>
+<p>20 bugs ont été trouvés par un agent IA installateur (Claude-Aurel) en une seule session d'installation. Votre feedback rend le guide meilleur pour tout le monde.</p>
+<p>Consultez la page <a href="contribuer.html">Contribuer</a> pour les détails.</p>
 
 <h2>Commencer</h2>
 <ul>
-  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> : ce qu'il faut avant de commencer</li>
-  <li><a href="02-00-sommaire.html">Chapitre 2 complet -- Installation</a> : le parcours de A a Z</li>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prérequis</a> : ce qu'il faut avant de commencer</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 complet -- Installation</a> : le parcours de A à Z</li>
   <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent</li>
   <li><a href="checklist.html">Checklist interactive</a> : suivre votre avancement</li>
 </ul>
@@ -1412,7 +1478,7 @@ def build_persona_dev(all_sections):
 </section>
 """
     sidebar_html = build_sidebar(all_sections, 'persona-dev', None)
-    page_html = render_page('OpenClaw pour les developpeurs', content, sidebar_html)
+    page_html = render_page('OpenClaw pour les développeurs', content, sidebar_html)
     write_page('persona-dev.html', page_html)
 
 
@@ -1427,50 +1493,50 @@ def build_persona_agent(all_sections):
 <section class="chapter">
 <h1>OpenClaw pour les agents IA</h1>
 
-<h2>Vous etes un agent. Ce playbook est votre runbook.</h2>
-<p>Ce repository est concu pour etre clone et execute par un agent IA. Chaque section du chapitre 2 est une instruction executable. Chaque verification a un resultat attendu. Chaque erreur courante est documentee avec sa resolution.</p>
-<p>Le format est structure pour une lecture sequentielle par un agent : contexte, etapes, erreurs, template, verification.</p>
+<h2>Vous êtes un agent. Ce playbook est votre runbook.</h2>
+<p>Ce repository est conçu pour être cloné et exécuté par un agent IA. Chaque section du chapitre 2 est une instruction exécutable. Chaque vérification a un résultat attendu. Chaque erreur courante est documentée avec sa résolution.</p>
+<p>Le format est structuré pour une lecture séquentielle par un agent : contexte, étapes, erreurs, template, vérification.</p>
 
 <h2>Comment utiliser ce playbook</h2>
 <ol>
   <li><strong>Cloner le repo</strong> -- <code>git clone https://github.com/alexwill87/openclaw-field-playbook.git</code></li>
-  <li><strong>Lire CLAUDE.md</strong> -- Ce fichier contient les instructions specifiques pour les agents Claude Code. Il definit les regles, les conventions, et les priorites.</li>
-  <li><strong>Suivre les sections du chapitre 2 dans l'ordre</strong> -- Chaque section est une etape. Ne sautez pas d'etape. Chaque verification doit passer avant de continuer.</li>
-  <li><strong>Logger chaque resultat dans le Install Tracker</strong> -- L'outil <code>tools/install-tracker/</code> fournit une API REST pour enregistrer le statut de chaque etape.</li>
-  <li><strong>Ouvrir des issues pour les problemes rencontres</strong> -- Chaque probleme non documente est une amelioration potentielle du playbook.</li>
+  <li><strong>Lire CLAUDE.md</strong> -- Ce fichier contient les instructions spécifiques pour les agents Claude Code. Il définit les règles, les conventions, et les priorités.</li>
+  <li><strong>Suivre les sections du chapitre 2 dans l'ordre</strong> -- Chaque section est une étape. Ne sautez pas d'étape. Chaque vérification doit passer avant de continuer.</li>
+  <li><strong>Logger chaque résultat dans le Install Tracker</strong> -- L'outil <code>tools/install-tracker/</code> fournit une API REST pour enregistrer le statut de chaque étape.</li>
+  <li><strong>Ouvrir des issues pour les problèmes rencontrés</strong> -- Chaque problème non documenté est une amélioration potentielle du playbook.</li>
 </ol>
 
 <h2>Outils disponibles</h2>
 <table>
   <thead><tr><th>Outil</th><th>Description</th><th>Emplacement</th></tr></thead>
   <tbody>
-    <tr><td><strong>CLAUDE.md</strong></td><td>Instructions agent. Regles, conventions, priorites.</td><td>Racine du repo</td></tr>
-    <tr><td><strong>Install Tracker</strong></td><td>API REST pour logger le statut de chaque etape d'installation.</td><td><code>tools/install-tracker/</code></td></tr>
-    <tr><td><strong>Checklist</strong></td><td>44 items couvrant les chapitres 2 a 5. Verification exhaustive.</td><td><a href="checklist.html">checklist.html</a></td></tr>
+    <tr><td><strong>CLAUDE.md</strong></td><td>Instructions agent. Règles, conventions, priorités.</td><td>Racine du repo</td></tr>
+    <tr><td><strong>Install Tracker</strong></td><td>API REST pour logger le statut de chaque étape d'installation.</td><td><code>tools/install-tracker/</code></td></tr>
+    <tr><td><strong>Checklist</strong></td><td>44 items couvrant les chapitres 2 à 5. Vérification exhaustive.</td><td><a href="checklist.html">checklist.html</a></td></tr>
     <tr><td><strong>search-index.json</strong></td><td>Index de recherche machine-readable. Slug, titre, URL, extrait pour chaque section.</td><td>Racine du repo</td></tr>
   </tbody>
 </table>
 
-<h2>Ce qui a ete teste</h2>
-<p>Un agent Claude Code (Claude-Aurel) a execute l'integralite du playbook en avril 2026 :</p>
+<h2>Ce qui a été testé</h2>
+<p>Un agent Claude Code (Claude-Aurel) a exécuté l'intégralité du playbook en avril 2026 :</p>
 <ul>
-  <li><strong>11 phases sur 11 completees</strong> -- De la creation du VPS au deploiement final.</li>
-  <li><strong>20 bugs remontes et corriges</strong> -- Chaque bug a ete documente dans une issue GitHub et corrige dans le playbook.</li>
-  <li><strong>Validation complete</strong> -- Le playbook a ete valide par une installation reelle, de bout en bout, executee par un agent.</li>
+  <li><strong>11 phases sur 11 complétées</strong> -- De la création du VPS au déploiement final.</li>
+  <li><strong>20 bugs remontés et corrigés</strong> -- Chaque bug a été documenté dans une issue GitHub et corrigé dans le playbook.</li>
+  <li><strong>Validation complète</strong> -- Le playbook a été validé par une installation réelle, de bout en bout, exécutée par un agent.</li>
 </ul>
 
 <h2>Conventions</h2>
 <ul>
-  <li><strong>Prefixer les commits</strong> avec <code>[AGENT-NOM]</code> (exemple : <code>[AGENT-AUREL] fix: corriger le chemin vault dans section 2.7</code>).</li>
-  <li><strong>Ouvrir des issues</strong> pour chaque probleme rencontre, meme mineur.</li>
-  <li><strong>Utiliser le format standard</strong> pour chaque section : Contexte / Etapes / Erreurs courantes / Template / Verification.</li>
-  <li><strong>Ne pas modifier la structure T1</strong> (les 7 chapitres). Les changements de structure requierent une issue <code>governance</code>.</li>
+  <li><strong>Préfixer les commits</strong> avec <code>[AGENT-NOM]</code> (exemple : <code>[AGENT-AUREL] fix: corriger le chemin vault dans section 2.7</code>).</li>
+  <li><strong>Ouvrir des issues</strong> pour chaque problème rencontré, même mineur.</li>
+  <li><strong>Utiliser le format standard</strong> pour chaque section : Contexte / Étapes / Erreurs courantes / Template / Vérification.</li>
+  <li><strong>Ne pas modifier la structure T1</strong> (les 7 chapitres). Les changements de structure requièrent une issue <code>governance</code>.</li>
 </ul>
 
 <h2>Commencer</h2>
 <ul>
   <li><a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md" target="_blank">CLAUDE.md sur GitHub</a> -- Instructions agent completes</li>
-  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> -- Premiere etape d'installation</li>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prérequis</a> -- Première étape d'installation</li>
   <li><a href="https://github.com/alexwill87/openclaw-field-playbook/tree/main/tools/install-tracker" target="_blank">Install Tracker README</a> -- Documentation de l'outil de suivi</li>
 </ul>
 

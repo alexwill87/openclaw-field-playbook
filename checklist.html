@@ -44,19 +44,20 @@
     </div>
     <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
-<div class="nav-group-label">Decouvrir</div>
+<div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
-<a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
-<a href="persona-cto.html">Pour les equipes tech</a>
-<a href="persona-dev.html">Pour les developpeurs</a>
-<a href="persona-agent.html">Pour les agents IA</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
 </div>
-<div class="nav-group-label">Deployer</div>
+<div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
   <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
 </div>
@@ -66,7 +67,7 @@
 <div class="nav-chapter">
   <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
 </div>
-<div class="nav-group-label">Operer</div>
+<div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
   <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
 </div>
@@ -74,13 +75,13 @@
   <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
 </div>
 <div class="nav-group-label">Ressources</div>
-<a href="ecosystem.html">Ecosysteme</a>
+<a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
   <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html" class="active">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
-<a href="privacy.html">Confidentialite</a>
+<a href="privacy.html">Confidentialité</a>
     </nav>
   </aside>
 
@@ -93,66 +94,66 @@
 </nav>
 <section class="chapter">
 <h1>Checklist de progression</h1>
-<p>Cochez les etapes au fur et a mesure de votre avancement. Votre progression est sauvegardee automatiquement dans votre navigateur.</p>
+<p>Cochez les étapes au fur et à mesure de votre avancement. Votre progression est sauvegardée automatiquement dans votre navigateur.</p>
 <p style="margin-bottom:1.5rem;">
-  <strong>Progression :</strong> <span id="progress-count">0</span> / 44 etapes
+  <strong>Progression :</strong> <span id="progress-count">0</span> / 44 étapes
   <span id="progress-bar" style="display:inline-block;width:200px;height:8px;background:var(--border);border-radius:4px;margin-left:0.5rem;vertical-align:middle;">
     <span id="progress-fill" style="display:block;height:100%;background:var(--accent);border-radius:4px;width:0%;transition:width 0.3s;"></span>
   </span>
 </p>
 <div style="margin-bottom:1.5rem;">
   <button onclick="exportChecklist()" style="padding:0.5rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:0.85rem;">Exporter en texte</button>
-  <button onclick="resetChecklist()" style="padding:0.5rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:0.85rem;margin-left:0.5rem;">Reinitialiser</button>
+  <button onclick="resetChecklist()" style="padding:0.5rem 1rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:0.85rem;margin-left:0.5rem;">Réinitialiser</button>
 </div>
 
 <h3>Chapitre 2 -- Installation</h3>
-<label class="checklist-item"><input type="checkbox" data-index="0" onchange="saveChecklist()"><span>VPS commande et accessible en SSH</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="1" onchange="saveChecklist()"><span>Utilisateur non-root cree avec sudo</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="2" onchange="saveChecklist()"><span>Pare-feu configure (UFW / iptables)</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="3" onchange="saveChecklist()"><span>SSH securise (cle uniquement, port change)</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="4" onchange="saveChecklist()"><span>Fail2ban installe et actif</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="5" onchange="saveChecklist()"><span>Tailscale installe et connecte</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="6" onchange="saveChecklist()"><span>Docker et Docker Compose installes</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="7" onchange="saveChecklist()"><span>Node.js et PM2 installes</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="8" onchange="saveChecklist()"><span>Structure de dossiers creee</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="9" onchange="saveChecklist()"><span>Vault configure et secrets stockes</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="10" onchange="saveChecklist()"><span>PostgreSQL installe et base creee</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="0" onchange="saveChecklist()"><span>VPS commandé et accessible en SSH</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="1" onchange="saveChecklist()"><span>Utilisateur non-root créé avec sudo</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="2" onchange="saveChecklist()"><span>Pare-feu configuré (UFW / iptables)</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="3" onchange="saveChecklist()"><span>SSH sécurisé (clé uniquement, port changé)</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="4" onchange="saveChecklist()"><span>Fail2ban installé et actif</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="5" onchange="saveChecklist()"><span>Tailscale installé et connecté</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="6" onchange="saveChecklist()"><span>Docker et Docker Compose installés</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="7" onchange="saveChecklist()"><span>Node.js et PM2 installés</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="8" onchange="saveChecklist()"><span>Structure de dossiers créée</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="9" onchange="saveChecklist()"><span>Vault configuré et secrets stockés</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="10" onchange="saveChecklist()"><span>PostgreSQL installé et base créée</span></label>
 <label class="checklist-item"><input type="checkbox" data-index="11" onchange="saveChecklist()"><span>Health check endpoint fonctionnel</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="12" onchange="saveChecklist()"><span>OpenClaw installe et demarre</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="13" onchange="saveChecklist()"><span>Compte OpenRouter cree et cle API configuree</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="14" onchange="saveChecklist()"><span>Bot Telegram cree et connecte</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="15" onchange="saveChecklist()"><span>Gateway systemd configuree et active</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="16" onchange="saveChecklist()"><span>Repository Git initialise</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="17" onchange="saveChecklist()"><span>CLAUDE.md cree a la racine</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="18" onchange="saveChecklist()"><span>Script de deploiement en place</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="12" onchange="saveChecklist()"><span>OpenClaw installé et démarré</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="13" onchange="saveChecklist()"><span>Compte OpenRouter créé et clé API configurée</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="14" onchange="saveChecklist()"><span>Bot Telegram créé et connecté</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="15" onchange="saveChecklist()"><span>Gateway systemd configurée et active</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="16" onchange="saveChecklist()"><span>Repository Git initialisé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="17" onchange="saveChecklist()"><span>CLAUDE.md créé à la racine</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="18" onchange="saveChecklist()"><span>Script de déploiement en place</span></label>
 <h3>Chapitre 3 -- Configuration</h3>
-<label class="checklist-item"><input type="checkbox" data-index="19" onchange="saveChecklist()"><span>Perimetre de l'agent defini</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="20" onchange="saveChecklist()"><span>SOUL.md redige</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="21" onchange="saveChecklist()"><span>USER.md redige</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="22" onchange="saveChecklist()"><span>AGENTS.md redige (si multi-agents)</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="23" onchange="saveChecklist()"><span>CONSTITUTION.md redigee</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="24" onchange="saveChecklist()"><span>Trois zones memoire configurees</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="25" onchange="saveChecklist()"><span>MEMORY.md initialise</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="26" onchange="saveChecklist()"><span>Knowledge base alimentee</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="27" onchange="saveChecklist()"><span>Principe une-source-de-verite applique</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="28" onchange="saveChecklist()"><span>Calendrier et taches connectes</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="29" onchange="saveChecklist()"><span>Briefing du matin configure</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="30" onchange="saveChecklist()"><span>Crons planifies</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="19" onchange="saveChecklist()"><span>Périmètre de l'agent défini</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="20" onchange="saveChecklist()"><span>SOUL.md rédigé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="21" onchange="saveChecklist()"><span>USER.md rédigé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="22" onchange="saveChecklist()"><span>AGENTS.md rédigé (si multi-agents)</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="23" onchange="saveChecklist()"><span>CONSTITUTION.md rédigée</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="24" onchange="saveChecklist()"><span>Trois zones mémoire configurées</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="25" onchange="saveChecklist()"><span>MEMORY.md initialisé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="26" onchange="saveChecklist()"><span>Knowledge base alimentée</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="27" onchange="saveChecklist()"><span>Principe une-source-de-vérité appliqué</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="28" onchange="saveChecklist()"><span>Calendrier et tâches connectés</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="29" onchange="saveChecklist()"><span>Briefing du matin configuré</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="30" onchange="saveChecklist()"><span>Crons planifiés</span></label>
 <h3>Chapitre 4 -- Personnalisation</h3>
-<label class="checklist-item"><input type="checkbox" data-index="31" onchange="saveChecklist()"><span>System prompt redige et teste</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="32" onchange="saveChecklist()"><span>Personnalite et ton definis</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="33" onchange="saveChecklist()"><span>Taches recurrentes configurees</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="34" onchange="saveChecklist()"><span>Workflows documentes dans workflows.md</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="31" onchange="saveChecklist()"><span>System prompt rédigé et testé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="32" onchange="saveChecklist()"><span>Personnalité et ton définis</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="33" onchange="saveChecklist()"><span>Tâches récurrentes configurées</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="34" onchange="saveChecklist()"><span>Workflows documentés dans workflows.md</span></label>
 <label class="checklist-item"><input type="checkbox" data-index="35" onchange="saveChecklist()"><span>Boundary prompt en place</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="36" onchange="saveChecklist()"><span>Audit des acces realise</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="37" onchange="saveChecklist()"><span>Rythme hebdomadaire etabli</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="38" onchange="saveChecklist()"><span>Configuration bilingue si necessaire</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="36" onchange="saveChecklist()"><span>Audit des accès réalisé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="37" onchange="saveChecklist()"><span>Rythme hebdomadaire établi</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="38" onchange="saveChecklist()"><span>Configuration bilingue si nécessaire</span></label>
 <h3>Chapitre 5 -- Maintenance</h3>
-<label class="checklist-item"><input type="checkbox" data-index="39" onchange="saveChecklist()"><span>Health check automatise</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="40" onchange="saveChecklist()"><span>Logs centralises et consultables</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="41" onchange="saveChecklist()"><span>Backups automatises et testes</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="39" onchange="saveChecklist()"><span>Health check automatisé</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="40" onchange="saveChecklist()"><span>Logs centralisés et consultables</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="41" onchange="saveChecklist()"><span>Backups automatisés et testés</span></label>
 <label class="checklist-item"><input type="checkbox" data-index="42" onchange="saveChecklist()"><span>Monitoring en place (alertes)</span></label>
-<label class="checklist-item"><input type="checkbox" data-index="43" onchange="saveChecklist()"><span>Procedure en cas de panne documentee</span></label>
+<label class="checklist-item"><input type="checkbox" data-index="43" onchange="saveChecklist()"><span>Procédure en cas de panne documentée</span></label>
 
 </section>
 
@@ -217,7 +218,7 @@ function updateProgress() {
 }
 
 function resetChecklist() {
-  if (!confirm('Reinitialiser toute la checklist ?')) return;
+  if (!confirm('Réinitialiser toute la checklist ?')) return;
   localStorage.removeItem(STORAGE_KEY);
   var boxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
   boxes.forEach(function(box) { box.checked = false; });

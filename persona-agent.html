@@ -44,19 +44,20 @@
     </div>
     <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
-<div class="nav-group-label">Decouvrir</div>
+<div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
-<a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
-<a href="persona-cto.html">Pour les equipes tech</a>
-<a href="persona-dev.html">Pour les developpeurs</a>
-<a href="persona-agent.html" class="active">Pour les agents IA</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html" class="active">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
 </div>
-<div class="nav-group-label">Deployer</div>
+<div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
   <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
 </div>
@@ -66,7 +67,7 @@
 <div class="nav-chapter">
   <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
 </div>
-<div class="nav-group-label">Operer</div>
+<div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
   <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
 </div>
@@ -74,13 +75,13 @@
   <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
 </div>
 <div class="nav-group-label">Ressources</div>
-<a href="ecosystem.html">Ecosysteme</a>
+<a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
   <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
-<a href="privacy.html">Confidentialite</a>
+<a href="privacy.html">Confidentialité</a>
     </nav>
   </aside>
 
@@ -94,50 +95,50 @@
 <section class="chapter">
 <h1>OpenClaw pour les agents IA</h1>
 
-<h2>Vous etes un agent. Ce playbook est votre runbook.</h2>
-<p>Ce repository est concu pour etre clone et execute par un agent IA. Chaque section du chapitre 2 est une instruction executable. Chaque verification a un resultat attendu. Chaque erreur courante est documentee avec sa resolution.</p>
-<p>Le format est structure pour une lecture sequentielle par un agent : contexte, etapes, erreurs, template, verification.</p>
+<h2>Vous êtes un agent. Ce playbook est votre runbook.</h2>
+<p>Ce repository est conçu pour être cloné et exécuté par un agent IA. Chaque section du chapitre 2 est une instruction exécutable. Chaque vérification a un résultat attendu. Chaque erreur courante est documentée avec sa résolution.</p>
+<p>Le format est structuré pour une lecture séquentielle par un agent : contexte, étapes, erreurs, template, vérification.</p>
 
 <h2>Comment utiliser ce playbook</h2>
 <ol>
   <li><strong>Cloner le repo</strong> -- <code>git clone https://github.com/alexwill87/openclaw-field-playbook.git</code></li>
-  <li><strong>Lire CLAUDE.md</strong> -- Ce fichier contient les instructions specifiques pour les agents Claude Code. Il definit les regles, les conventions, et les priorites.</li>
-  <li><strong>Suivre les sections du chapitre 2 dans l'ordre</strong> -- Chaque section est une etape. Ne sautez pas d'etape. Chaque verification doit passer avant de continuer.</li>
-  <li><strong>Logger chaque resultat dans le Install Tracker</strong> -- L'outil <code>tools/install-tracker/</code> fournit une API REST pour enregistrer le statut de chaque etape.</li>
-  <li><strong>Ouvrir des issues pour les problemes rencontres</strong> -- Chaque probleme non documente est une amelioration potentielle du playbook.</li>
+  <li><strong>Lire CLAUDE.md</strong> -- Ce fichier contient les instructions spécifiques pour les agents Claude Code. Il définit les règles, les conventions, et les priorités.</li>
+  <li><strong>Suivre les sections du chapitre 2 dans l'ordre</strong> -- Chaque section est une étape. Ne sautez pas d'étape. Chaque vérification doit passer avant de continuer.</li>
+  <li><strong>Logger chaque résultat dans le Install Tracker</strong> -- L'outil <code>tools/install-tracker/</code> fournit une API REST pour enregistrer le statut de chaque étape.</li>
+  <li><strong>Ouvrir des issues pour les problèmes rencontrés</strong> -- Chaque problème non documenté est une amélioration potentielle du playbook.</li>
 </ol>
 
 <h2>Outils disponibles</h2>
 <table>
   <thead><tr><th>Outil</th><th>Description</th><th>Emplacement</th></tr></thead>
   <tbody>
-    <tr><td><strong>CLAUDE.md</strong></td><td>Instructions agent. Regles, conventions, priorites.</td><td>Racine du repo</td></tr>
-    <tr><td><strong>Install Tracker</strong></td><td>API REST pour logger le statut de chaque etape d'installation.</td><td><code>tools/install-tracker/</code></td></tr>
-    <tr><td><strong>Checklist</strong></td><td>44 items couvrant les chapitres 2 a 5. Verification exhaustive.</td><td><a href="checklist.html">checklist.html</a></td></tr>
+    <tr><td><strong>CLAUDE.md</strong></td><td>Instructions agent. Règles, conventions, priorités.</td><td>Racine du repo</td></tr>
+    <tr><td><strong>Install Tracker</strong></td><td>API REST pour logger le statut de chaque étape d'installation.</td><td><code>tools/install-tracker/</code></td></tr>
+    <tr><td><strong>Checklist</strong></td><td>44 items couvrant les chapitres 2 à 5. Vérification exhaustive.</td><td><a href="checklist.html">checklist.html</a></td></tr>
     <tr><td><strong>search-index.json</strong></td><td>Index de recherche machine-readable. Slug, titre, URL, extrait pour chaque section.</td><td>Racine du repo</td></tr>
   </tbody>
 </table>
 
-<h2>Ce qui a ete teste</h2>
-<p>Un agent Claude Code (Claude-Aurel) a execute l'integralite du playbook en avril 2026 :</p>
+<h2>Ce qui a été testé</h2>
+<p>Un agent Claude Code (Claude-Aurel) a exécuté l'intégralité du playbook en avril 2026 :</p>
 <ul>
-  <li><strong>11 phases sur 11 completees</strong> -- De la creation du VPS au deploiement final.</li>
-  <li><strong>20 bugs remontes et corriges</strong> -- Chaque bug a ete documente dans une issue GitHub et corrige dans le playbook.</li>
-  <li><strong>Validation complete</strong> -- Le playbook a ete valide par une installation reelle, de bout en bout, executee par un agent.</li>
+  <li><strong>11 phases sur 11 complétées</strong> -- De la création du VPS au déploiement final.</li>
+  <li><strong>20 bugs remontés et corrigés</strong> -- Chaque bug a été documenté dans une issue GitHub et corrigé dans le playbook.</li>
+  <li><strong>Validation complète</strong> -- Le playbook a été validé par une installation réelle, de bout en bout, exécutée par un agent.</li>
 </ul>
 
 <h2>Conventions</h2>
 <ul>
-  <li><strong>Prefixer les commits</strong> avec <code>[AGENT-NOM]</code> (exemple : <code>[AGENT-AUREL] fix: corriger le chemin vault dans section 2.7</code>).</li>
-  <li><strong>Ouvrir des issues</strong> pour chaque probleme rencontre, meme mineur.</li>
-  <li><strong>Utiliser le format standard</strong> pour chaque section : Contexte / Etapes / Erreurs courantes / Template / Verification.</li>
-  <li><strong>Ne pas modifier la structure T1</strong> (les 7 chapitres). Les changements de structure requierent une issue <code>governance</code>.</li>
+  <li><strong>Préfixer les commits</strong> avec <code>[AGENT-NOM]</code> (exemple : <code>[AGENT-AUREL] fix: corriger le chemin vault dans section 2.7</code>).</li>
+  <li><strong>Ouvrir des issues</strong> pour chaque problème rencontré, même mineur.</li>
+  <li><strong>Utiliser le format standard</strong> pour chaque section : Contexte / Étapes / Erreurs courantes / Template / Vérification.</li>
+  <li><strong>Ne pas modifier la structure T1</strong> (les 7 chapitres). Les changements de structure requièrent une issue <code>governance</code>.</li>
 </ul>
 
 <h2>Commencer</h2>
 <ul>
   <li><a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md" target="_blank">CLAUDE.md sur GitHub</a> -- Instructions agent completes</li>
-  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> -- Premiere etape d'installation</li>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prérequis</a> -- Première étape d'installation</li>
   <li><a href="https://github.com/alexwill87/openclaw-field-playbook/tree/main/tools/install-tracker" target="_blank">Install Tracker README</a> -- Documentation de l'outil de suivi</li>
 </ul>
 
