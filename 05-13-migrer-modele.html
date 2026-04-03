@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.13 -- Migrer vers un autre modele | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html" class="active">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="513-migrer-vers-un-autre-modele">5.13 -- Migrer vers un autre modele</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Le monde des LLM bouge vite. Un nouveau modele sort, les prix changent, les performances evoluent. Vous allez peut-etre vouloir migrer de Claude vers GPT (ou l'inverse), ou tester un modele open source. Le risque : casser ce qui marchait.</p>
+<h2 id="quand-migrer">Quand migrer</h2>
+<p>Bonnes raisons :</p>
+<ul>
+<li><strong>Cout.</strong> Le nouveau modele est significativement moins cher pour des performances equivalentes.</li>
+<li><strong>Performance.</strong> Meilleure qualite de reponse pour votre cas d'usage specifique.</li>
+<li><strong>Feature.</strong> Le nouveau modele supporte quelque chose dont vous avez besoin (vision, plus de contexte, outils specifiques).</li>
+<li><strong>Disponibilite.</strong> Votre modele actuel a des problemes de fiabilite ou de rate limiting.</li>
+</ul>
+<p>Mauvaises raisons :</p>
+<ul>
+<li>"C'est nouveau, ca doit etre mieux." Pas toujours.</li>
+<li>"Tout le monde migre." Votre cas d'usage est unique.</li>
+<li>"Le benchmark dit que c'est meilleur." Les benchmarks ne mesurent pas votre usage specifique.</li>
+</ul>
+<h2 id="comment-tester-sans-casser">Comment tester sans casser</h2>
+<h3 id="phase-1-test-en-parallele">Phase 1 : test en parallele</h3>
+<p>Gardez votre modele actuel en production. Testez le nouveau sur le cote.</p>
+<pre class="codehilite"><code>Semaine 1-2 : envoyez les memes requetes aux deux modeles.
+Comparez :
+- Qualite des reponses
+- Respect du system prompt
+- Ton et format
+- Temps de reponse
+- Cout
+</code></pre>
+
+<h3 id="grille-de-comparaison">Grille de comparaison</h3>
+<p>Creez un fichier <code>model-comparison.md</code> :</p>
+<pre class="codehilite"><code class="language-markdown"># Comparaison : [Modele A] vs [Modele B]
+
+Date : YYYY-MM-DD
+Requetes testees : 20
+
+| Critere | Modele A | Modele B | Gagnant |
+|---|---|---|---|
+| Respect du system prompt | 9/10 | 7/10 | A |
+| Qualite technique | 8/10 | 9/10 | B |
+| Respect du ton | 9/10 | 6/10 | A |
+| Respect du francais | 9/10 | 8/10 | A |
+| Temps de reponse moyen | 2.1s | 1.8s | B |
+| Cout moyen/requete | $0.015 | $0.008 | B |
+| Hallucinations | 1/20 | 3/20 | A |
+| Suivi du boundary prompt | 10/10 | 8/10 | A |
+
+Verdict : [decision]
+Raison : [justification]
+</code></pre>
+
+<h3 id="phase-2-migration-progressive">Phase 2 : migration progressive</h3>
+<p>Si le nouveau modele est meilleur, migrez progressivement :</p>
+<ol>
+<li><strong>Semaine 1</strong> : utilisez le nouveau modele pour les taches a faible risque (questions, recherche, redaction).</li>
+<li><strong>Semaine 2</strong> : utilisez-le pour les taches operationnelles (mais avec validation).</li>
+<li><strong>Semaine 3</strong> : utilisez-le comme modele principal.</li>
+<li><strong>Semaine 4</strong> : evaluez. Gardez ou revenez en arriere.</li>
+</ol>
+<h3 id="phase-3-couper-lancien">Phase 3 : couper l'ancien</h3>
+<p>Ne desactivez l'ancien modele qu'apres 1 mois de fonctionnement satisfaisant du nouveau. Gardez la configuration de l'ancien en backup.</p>
+<h2 id="adapter-le-system-prompt">Adapter le system prompt</h2>
+<p>Chaque modele interprete le system prompt differemment. Ce qui fonctionne avec Claude peut ne pas fonctionner avec GPT-4.</p>
+<h3 id="points-dattention">Points d'attention</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Claude</th>
+<th>GPT-4</th>
+<th>Modeles open source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Longueur du prompt</td>
+<td>Tolere les longs prompts</td>
+<td>Prefere les prompts structures</td>
+<td>Court = mieux</td>
+</tr>
+<tr>
+<td>Ton en francais</td>
+<td>Naturel</td>
+<td>Parfois anglicise</td>
+<td>Variable</td>
+</tr>
+<tr>
+<td>Boundaries</td>
+<td>Respecte bien</td>
+<td>Respecte bien</td>
+<td>Moins fiable</td>
+</tr>
+<tr>
+<td>Format XML dans le prompt</td>
+<td>Excellent</td>
+<td>Moyen</td>
+<td>Faible</td>
+</tr>
+<tr>
+<td>Bullet points vs prose</td>
+<td>Les deux</td>
+<td>Prefere les bullets</td>
+<td>Bullets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="adapter-sans-reecrire">Adapter sans reecrire</h3>
+<ol>
+<li>Copiez votre system prompt actuel.</li>
+<li>Testez 5 requetes.</li>
+<li>Notez les differences de comportement.</li>
+<li>Ajustez les parties qui ne fonctionnent pas.</li>
+<li>Ne reecrivez pas tout -- ajustez chirurgicalement.</li>
+</ol>
+<h2 id="garder-le-fallback">Garder le fallback</h2>
+<p>Toujours avoir un plan B.</p>
+<pre class="codehilite"><code class="language-bash"># Configuration avec fallback
+PRIMARY_MODEL=&quot;claude-sonnet-4-20250514&quot;
+FALLBACK_MODEL=&quot;claude-3-5-sonnet-20241022&quot;
+
+# Si le modele principal echoue, basculer
+if ! call_model &quot;$PRIMARY_MODEL&quot; &quot;$PROMPT&quot;; then
+    echo &quot;Fallback sur $FALLBACK_MODEL&quot;
+    call_model &quot;$FALLBACK_MODEL&quot; &quot;$PROMPT&quot;
+fi
+</code></pre>
+
+<h3 id="ce-quil-faut-sauvegarder">Ce qu'il faut sauvegarder</h3>
+<ul>
+<li>System prompt de l'ancien modele (versionne).</li>
+<li>Configuration de connexion (API key, endpoint).</li>
+<li>Notes sur les ajustements specifiques au modele.</li>
+</ul>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Migrer en un jour.</strong> Lundi Claude, mardi GPT-4. Vous ne savez pas si les problemes viennent du modele ou de la transition. Migrez progressivement.</p>
+<p><strong>Ne pas adapter le prompt.</strong> Le meme prompt verbatim sur deux modeles donnera des resultats differents. Testez et ajustez.</p>
+<p><strong>Jeter l'ancien.</strong> Vous supprimez la config de l'ancien modele. Le nouveau a un probleme le week-end. Pas de fallback.</p>
+<p><strong>Se fier aux benchmarks.</strong> "GPT-4 a un meilleur score MMLU." Les benchmarks generiques ne predisent pas la performance sur votre cas d'usage precis. Seul votre test A/B compte.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Identifiez pourquoi vous voulez migrer (raison concrete).</li>
+<li>Testez le nouveau modele en parallele pendant 2 semaines.</li>
+<li>Remplissez la grille de comparaison avec 20 requetes reelles.</li>
+<li>Si le nouveau gagne, migrez progressivement (3 semaines).</li>
+<li>Gardez le fallback actif pendant 1 mois.</li>
+<li>Documentez les ajustements de prompt specifiques au modele.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] La raison de la migration est concrete (pas juste "c'est nouveau").</li>
+<li>[ ] Un test A/B a ete fait avec au moins 20 requetes.</li>
+<li>[ ] La grille de comparaison est remplie.</li>
+<li>[ ] Le system prompt a ete adapte au nouveau modele.</li>
+<li>[ ] Un fallback est configure et fonctionnel.</li>
+<li>[ ] L'ancienne configuration est sauvegardee.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/13-migrer-modele.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-12-deuxieme-agent.html">&larr; 5.12 -- Quand ajouter un deuxieme agent</a>
+<a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

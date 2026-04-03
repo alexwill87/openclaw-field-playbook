@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.12 -- Quand ajouter un deuxieme agent | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html" class="active">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="512-quand-ajouter-un-deuxieme-agent">5.12 -- Quand ajouter un deuxieme agent</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un agent, ca marche bien pour un contexte. Quand le contexte grossit trop -- trop de projets, trop de responsabilites, trop de contexte a maintenir -- la qualite des reponses baisse. C'est le signal qu'il est peut-etre temps d'ajouter un deuxieme agent.</p>
+<h2 id="signes-quil-est-temps">Signes qu'il est temps</h2>
+<ol>
+<li>
+<p><strong>Le system prompt depasse 500 mots</strong> et vous ne pouvez plus condenser sans perdre du contexte critique.</p>
+</li>
+<li>
+<p><strong>Les domaines sont disjoints.</strong> Votre agent gere a la fois l'infra et la communication client. Ce sont deux competences differentes avec des regles differentes.</p>
+</li>
+<li>
+<p><strong>Les erreurs de contexte augmentent.</strong> L'agent applique les regles du projet A au projet B. Il confond les clients. Il melange les workflows.</p>
+</li>
+<li>
+<p><strong>Le cout tokens explose.</strong> Trop de memoire, trop de contexte charge a chaque requete.</p>
+</li>
+<li>
+<p><strong>Vous passez du temps a recadrer.</strong> "Non, la c'est le projet X, pas Y." Si ca arrive plusieurs fois par semaine, le contexte est trop large.</p>
+</li>
+</ol>
+<h2 id="comment-structurer">Comment structurer</h2>
+<h3 id="option-1-par-domaine">Option 1 : par domaine</h3>
+<pre class="codehilite"><code>Agent 1 : Infrastructure / DevOps
+  - Gere : VPS, Docker, PostgreSQL, Vault, backups, monitoring
+  - System prompt : technique, commandes, procedures
+
+Agent 2 : Business / Communication
+  - Gere : emails clients, documentation, planning, facturation
+  - System prompt : ton professionnel, templates, regles business
+</code></pre>
+
+<h3 id="option-2-par-projet">Option 2 : par projet</h3>
+<pre class="codehilite"><code>Agent 1 : Projet Cockpit
+  - Gere : tout ce qui concerne cockpit (code, deploy, taches)
+  - Contexte : stack cockpit, workflows cockpit
+
+Agent 2 : Projet OpenClaw
+  - Gere : redaction, structure, review
+  - Contexte : plan du playbook, style guide
+</code></pre>
+
+<h3 id="option-3-par-niveau-de-confiance">Option 3 : par niveau de confiance</h3>
+<pre class="codehilite"><code>Agent 1 : Operations (niveau 1-2)
+  - Peut agir (dans les limites)
+  - Acces bash, Docker, PostgreSQL
+
+Agent 2 : Conseil (niveau 0)
+  - Lecture seule
+  - Analyse, recommandations, redaction
+  - Pas d'acces infrastructure
+</code></pre>
+
+<h2 id="isolation">Isolation</h2>
+<p>Chaque agent a son propre perimetre. Ne partagez pas tout.</p>
+<h3 id="ce-quil-faut-separer">Ce qu'il faut separer</h3>
+<ul>
+<li><strong>System prompt</strong> : chaque agent a le sien, adapte a son domaine.</li>
+<li><strong>Memoire</strong> : chaque agent a sa memoire. La memoire de l'agent infra ne contient pas le contexte client.</li>
+<li><strong>Acces</strong> : l'agent business n'a pas acces a bash. L'agent infra n'a pas acces aux emails.</li>
+<li><strong>Boundaries</strong> : adaptees au domaine de chaque agent.</li>
+</ul>
+<h3 id="ce-qui-peut-etre-partage">Ce qui peut etre partage</h3>
+<ul>
+<li><strong>Taches</strong> : si les deux agents travaillent sur les memes taches (table PostgreSQL commune).</li>
+<li><strong>Workflows transversaux</strong> : deploiement qui implique code + infra.</li>
+<li><strong>Fichiers de reference</strong> : CONSTITUTION.md, BOUNDARIES.md (avec des sections par agent).</li>
+</ul>
+<h3 id="structure-de-fichiers">Structure de fichiers</h3>
+<pre class="codehilite"><code>~/.claude/
+  agent-infra/
+    system-prompt.md
+    memory/
+    boundaries.md
+  agent-business/
+    system-prompt.md
+    memory/
+    boundaries.md
+  shared/
+    CONSTITUTION.md
+    TASKS (table PostgreSQL commune)
+</code></pre>
+
+<h2 id="communication-entre-agents">Communication entre agents</h2>
+<p>Les agents ne se parlent pas directement. Vous etes le lien.</p>
+<h3 id="pattern-recommande">Pattern recommande</h3>
+<pre class="codehilite"><code>1. Agent Infra detecte un probleme : &quot;Le container cockpit redemarre en boucle.&quot;
+2. Vous diagnostiquez avec Agent Infra.
+3. Si le fix implique du code, vous passez a Agent Business/Code.
+4. Vous revenez a Agent Infra pour deployer le fix.
+</code></pre>
+
+<h3 id="ce-quil-ne-faut-pas-faire">Ce qu'il ne faut PAS faire</h3>
+<ul>
+<li>Faire passer des messages d'un agent a l'autre sans les relire. ("Agent 1 dit X, dis-le a Agent 2.") Vous perdez le controle.</li>
+<li>Donner aux deux agents acces au meme canal de communication. Confusion garantie.</li>
+</ul>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Ajouter un agent trop tot.</strong> Vous avez 3 taches et 1 projet. Un seul agent suffit largement. N'ajoutez un agent que quand le premier sature.</p>
+<p><strong>Pas d'isolation.</strong> Les deux agents ont les memes acces et la meme memoire. Ils se marchent dessus.</p>
+<p><strong>Trop d'agents.</strong> 4 agents specialises pour un setup solo. Le temps passe a coordonner depasse le temps gagne. Pour la plupart des setups : 1 suffit, 2 maximum.</p>
+<p><strong>Pas de convention de nommage.</strong> Vous ne savez plus quel agent fait quoi. Nommez-les clairement : "agent-infra", "agent-content", pas "agent-1", "agent-2".</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Identifiez les domaines disjoints dans votre usage actuel.</li>
+<li>Evaluez : est-ce que la separation resout un probleme reel ?</li>
+<li>Si oui, creez le deuxieme agent avec un system prompt minimal.</li>
+<li>Definissez l'isolation (acces, memoire, boundaries).</li>
+<li>Testez pendant 2 semaines avec les deux agents.</li>
+<li>Evaluez : la qualite des reponses s'est-elle amelioree ?</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Le besoin d'un deuxieme agent est justifie (au moins 2 signes de la liste).</li>
+<li>[ ] Chaque agent a son propre system prompt et sa propre memoire.</li>
+<li>[ ] Les acces sont separes (l'agent business n'a pas acces a bash, etc.).</li>
+<li>[ ] La communication passe par vous, pas entre agents.</li>
+<li>[ ] Le nombre total d'agents est inferieur ou egal a 2 (sauf besoin demontre).</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/12-deuxieme-agent.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-11-en-cas-de-panne.html">&larr; 5.11 -- En cas de panne</a>
+<a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

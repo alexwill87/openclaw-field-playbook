@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.1 -- Definir le perimetre de l'agent | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html" class="active">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="31-definir-le-perimetre-de-lagent">3.1 -- Definir le perimetre de l'agent</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un agent sans perimetre clair est un agent dangereux. Pas parce qu'il va "se rebeller" -- parce qu'il va faire des choses que vous n'aviez pas anticipees. Envoyer un email a un client avec un ton inapproprie. Modifier un fichier de production. Prendre une decision financiere.</p>
+<p>Le perimetre n'est pas une liste de fonctionnalites. C'est un contrat de confiance entre vous et l'agent.</p>
+<h2 id="la-pyramide-des-droits">La pyramide des droits</h2>
+<p>Trois niveaux, du plus permissif au plus restrictif :</p>
+<pre class="codehilite"><code>        /\
+       /  \
+      / 3  \    ACTION EXTERNE
+     / val. \   Validation requise a chaque fois
+    /--------\
+   /    2     \  ECRITURE
+  /  autonome  \ L'agent agit seul dans un cadre defini
+ /--------------\
+/       1        \ LECTURE
+/ toujours autorise\ L'agent lit tout ce qu'il a besoin
+---------------------|
+</code></pre>
+
+<h3 id="niveau-1-lecture-toujours-autorise">Niveau 1 -- Lecture (toujours autorise)</h3>
+<p>L'agent peut lire sans restriction :
+- Vos fichiers de configuration
+- Votre calendrier
+- Vos emails (en lecture seule)
+- Vos taches
+- Les documents dans knowledge/</p>
+<p>Pourquoi sans restriction : un agent qui ne comprend pas le contexte produit des reponses generiques. La lecture est le carburant de la pertinence.</p>
+<h3 id="niveau-2-ecriture-autonome-dans-un-cadre">Niveau 2 -- Ecriture (autonome, dans un cadre)</h3>
+<p>L'agent peut modifier SANS vous demander :
+- MEMORY.md (ajout, compression, nettoyage)
+- Fichiers dans knowledge/ (mise a jour)
+- Brouillons d'emails (mais pas l'envoi)
+- Rapports et syntheses
+- Notes de session</p>
+<p>Exemples concrets :</p>
+<table>
+<thead>
+<tr>
+<th>L'agent PEUT</th>
+<th>L'agent NE PEUT PAS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ecrire un brouillon de reponse email</td>
+<td>Envoyer l'email</td>
+</tr>
+<tr>
+<td>Mettre a jour un fichier knowledge/</td>
+<td>Supprimer un fichier knowledge/</td>
+</tr>
+<tr>
+<td>Creer un resume de reunion</td>
+<td>Publier le resume quelque part</td>
+</tr>
+<tr>
+<td>Ajouter une entree dans MEMORY.md</td>
+<td>Modifier CONSTITUTION.md</td>
+</tr>
+<tr>
+<td>Modifier un fichier de code en dev</td>
+<td>Deployer en production</td>
+</tr>
+</tbody>
+</table>
+<h3 id="niveau-3-action-externe-validation-requise">Niveau 3 -- Action externe (validation requise)</h3>
+<p>L'agent DOIT vous demander avant :
+- Envoyer un email ou message
+- Publier quoi que ce soit
+- Modifier une base de donnees de production
+- Effectuer un paiement ou une transaction
+- Contacter un tiers
+- Supprimer des donnees</p>
+<p>Formulation de la demande de validation :</p>
+<pre class="codehilite"><code>[VALIDATION REQUISE]
+Action : Envoyer un email a dupont@client.fr
+Contenu : [resume du contenu]
+Raison : Reponse a sa demande de devis du 28/03
+Impact : Le client recevra votre proposition tarifaire
+
+Valider ? (oui / non / modifier)
+</code></pre>
+
+<h2 id="etape-par-etape">Etape par etape</h2>
+<h3 id="1-lister-les-actions-de-votre-semaine-type">1. Lister les actions de votre semaine type</h3>
+<p>Passez en revue votre derniere semaine. Notez chaque action que vous aimeriez deleguer. Classez-la dans la pyramide.</p>
+<h3 id="2-definir-les-interdictions-explicites">2. Definir les interdictions explicites</h3>
+<p>Ce qui n'est PAS dans le perimetre est aussi important que ce qui y est. Exemples :</p>
+<pre class="codehilite"><code>INTERDIT :
+- Prendre des engagements financiers
+- Repondre aux RH en mon nom
+- Modifier les contrats clients
+- Acceder aux donnees medicales
+- Partager des informations confidentielles hors contexte
+</code></pre>
+
+<h3 id="3-ecrire-le-perimetre-dans-constitutionmd">3. Ecrire le perimetre dans CONSTITUTION.md</h3>
+<p>Le perimetre se traduit directement dans votre fichier CONSTITUTION.md (voir section 3.5).</p>
+<h3 id="4-tester-le-perimetre">4. Tester le perimetre</h3>
+<p>Demandez a l'agent :</p>
+<pre class="codehilite"><code>Montre-moi 3 situations ou tu me demanderais une validation
+et 3 situations ou tu agirais seul.
+</code></pre>
+
+<p>Si ses exemples ne correspondent pas a votre intention, ajustez le perimetre.</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Perimetre trop large</strong> : "Fais ce que tu juges necessaire." L'agent finira par faire quelque chose que vous n'aviez pas imagine. Garantie.</p>
+<p><strong>Perimetre trop etroit</strong> : "Demande-moi avant chaque action." Vous finissez par valider 50 demandes par jour. Autant ne pas avoir d'agent.</p>
+<p><strong>Perimetre flou</strong> : "Gere mes emails, mais pas les importants." Qu'est-ce qui est "important" ? Pour l'agent, sans criteres explicites, c'est arbitraire.</p>
+<p><strong>Perimetre statique</strong> : Ne jamais reviser le perimetre. Votre contexte evolue. Revoyez le perimetre chaque mois.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous avez liste les actions de votre semaine type</li>
+<li>[ ] Chaque action est classee dans un des 3 niveaux</li>
+<li>[ ] Les interdictions explicites sont ecrites</li>
+<li>[ ] Le perimetre est documente dans CONSTITUTION.md</li>
+<li>[ ] L'agent decrit correctement ses limites quand vous le testez</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/01-perimetre-agent.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-00-sommaire.html">&larr; Chapitre 3 -- Configuration</a>
+<a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l'agent &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

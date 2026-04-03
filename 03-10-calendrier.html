@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.10 -- Calendrier d'abord, toujours (principe de Steinberg) | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html" class="active">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="310-calendrier-dabord-toujours-principe-de-steinberg">3.10 -- Calendrier d'abord, toujours (principe de Steinberg)</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Si vous ne connectez qu'une seule source, connectez le calendrier. C'est la premiere connexion, sans exception.</p>
+<p>Steinberg est formel : le calendrier est le signal le plus honnete de votre vie professionnelle. Pas ce que vous dites que vous faites. Pas ce que vous aimeriez faire. Ce que vous faites REELLEMENT.</p>
+<h2 id="les-4-raisons-de-commencer-par-le-calendrier">Les 4 raisons de commencer par le calendrier</h2>
+<h3 id="1-le-calendrier-ne-ment-pas">1. Le calendrier ne ment pas</h3>
+<p>Vos emails sont bruyants. Vos taches sont incompletes. Votre CRM est desynchronise. Mais votre calendrier reflete vos engagements reels. Si c'est dans le calendrier, ca va se passer (ou ca aurait du).</p>
+<h3 id="2-le-calendrier-donne-le-tempo">2. Le calendrier donne le tempo</h3>
+<p>Un agent qui connait votre calendrier sait :
+- Que vous etes en reunion de 10h a 11h (ne pas deranger)
+- Que vous avez une presentation client a 14h (preparer le contexte)
+- Que votre apres-midi est libre (moment ideal pour du travail de fond)
+- Que demain est charge (compresser le briefing)</p>
+<h3 id="3-le-calendrier-connecte-les-personnes">3. Le calendrier connecte les personnes</h3>
+<p>Chaque evenement du calendrier implique des personnes. L'agent croise ces personnes avec USER.md (interlocuteurs cles) et knowledge/ (contexte client). Le briefing passe de "Vous avez 4 reunions" a "Vous voyez Marc de ClientAlpha a 14h -- rappel : la proposition tarifaire est en attente depuis le 25/03."</p>
+<h3 id="4-le-calendrier-est-peu-bruyant">4. Le calendrier est peu bruyant</h3>
+<p>Contrairement aux emails (50/jour) ou aux messages (200/jour), le calendrier genere 5 a 15 evenements par jour. Peu de volume, forte pertinence.</p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="via-skill">Via skill</h3>
+<pre class="codehilite"><code>openclaw skill add calendar
+</code></pre>
+
+<p>L'agent va :
+1. Vous demander le fournisseur (Google Calendar, Outlook, CalDAV)
+2. Configurer l'authentification
+3. Definir la portee (lecture seule recommandee au debut)
+4. Creer le skill dans votre workspace</p>
+<h3 id="portee-recommandee">Portee recommandee</h3>
+<table>
+<thead>
+<tr>
+<th>Droit</th>
+<th>Recommandation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lecture des evenements</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>Lecture des participants</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>Lecture des descriptions</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>Creation d'evenements</td>
+<td>Non (ajoutez plus tard si besoin)</td>
+</tr>
+<tr>
+<td>Modification d'evenements</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>Suppression d'evenements</td>
+<td>Non</td>
+</tr>
+</tbody>
+</table>
+<p>Commencez en lecture seule. Ajoutez les droits d'ecriture apres 2 semaines d'utilisation si necessaire.</p>
+<h2 id="validation">Validation</h2>
+<p>Le test de validation est simple :</p>
+<pre class="codehilite"><code>Montre-moi mes prochaines 48h.
+</code></pre>
+
+<p>L'agent doit afficher :
+- Les evenements dans l'ordre chronologique
+- Les participants de chaque reunion
+- Les creneaux libres
+- Les evenements qui meritent une preparation</p>
+<p>Si l'affichage est correct et les croisements pertinents (lien avec les interlocuteurs de USER.md), la connexion est validee.</p>
+<h3 id="ce-qui-rend-un-briefing-calendrier-utile">Ce qui rend un briefing calendrier UTILE</h3>
+<pre class="codehilite"><code>MERCREDI 2 AVRIL
+
+09:00-09:30  Standup equipe
+  &gt; RAS -- routine hebdomadaire
+
+10:00-11:00  Point projet Alpha avec Marc (ClientAlpha)
+  &gt; Preparation : la proposition tarifaire envoyee le 25/03
+    n'a pas encore recu de retour. Sujet probable.
+
+11:00-14:00  Bloc libre
+  &gt; Suggestion : traiter les 3 emails en attente de reponse
+
+14:00-15:00  Entretien recrutement -- Lea Martin (poste dev backend)
+  &gt; CV dans knowledge/recrutement/lea-martin.md
+
+15:30-16:00  Call investisseur -- Fonds Epsilon
+  &gt; Contexte : second call. Le premier etait le 18/03.
+    Notes dans MEMORY.md.
+</code></pre>
+
+<h3 id="ce-qui-rend-un-briefing-calendrier-inutile">Ce qui rend un briefing calendrier INUTILE</h3>
+<pre class="codehilite"><code>Vous avez 4 reunions demain : standup, point projet,
+entretien, call. Bonne journee !
+</code></pre>
+
+<p>Si votre briefing ressemble au deuxieme exemple, le probleme n'est pas le calendrier. C'est que USER.md et knowledge/ sont trop vides pour que l'agent fasse des croisements.</p>
+<h2 id="etape-par-etape">Etape par etape</h2>
+<ol>
+<li>Connectez le calendrier en lecture seule</li>
+<li>Testez avec "Montre-moi mes prochaines 48h"</li>
+<li>Verifiez que les croisements avec USER.md fonctionnent</li>
+<li>Vivez avec pendant 5 jours avant d'ajouter une autre source</li>
+<li>Ajoutez les droits d'ecriture seulement si necessaire</li>
+</ol>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Connecter l'email avant le calendrier</strong> : L'email est bruyant, le calendrier est structure. Inversez l'ordre et vous deboguerez le bruit email sans le repere du calendrier.</p>
+<p><strong>Ignorer les participants</strong> : Le calendrier sans croisement avec les interlocuteurs cles est un simple agenda. La valeur vient du lien entre l'evenement et le contexte.</p>
+<p><strong>Donner les droits d'ecriture immediatement</strong> : L'agent cree un evenement par erreur, vous avez un "Revue strategie Q3" dans votre calendrier un samedi. Commencez en lecture.</p>
+<p><strong>Ne pas remplir USER.md avant</strong> : Le calendrier sans contexte = une liste d'evenements. Le calendrier avec USER.md = un briefing intelligent.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Calendrier connecte en lecture seule</li>
+<li>[ ] Test "Montre-moi mes prochaines 48h" reussi</li>
+<li>[ ] Les participants sont croises avec les interlocuteurs cles de USER.md</li>
+<li>[ ] Les creneaux libres sont identifies</li>
+<li>[ ] Le briefing est contextualise (pas une simple liste)</li>
+<li>[ ] 5 jours d'utilisation avant d'ajouter une autre source</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/10-calendrier.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-09-principe-une-source.html">&larr; 3.9 -- Une source a la fois (principe de Steinb...</a>
+<a href="03-11-taches.html">3.11 -- Taches : la pression invisible &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

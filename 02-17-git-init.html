@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.17 -- Initialiser le repo Git | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-01-prerequis.html">2.1 -- Prerequis materiel et log...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securiser le VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Reseau prive Tailscale</a>
+    <a href="02-04-docker.html">2.4 -- Docker et Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js et PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Structure de dossiers</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- Premier health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- Installation OpenClaw</a>
+    <a href="02-11-workspace.html">2.11 -- Structure du workspace</a>
+    <a href="02-12-config-openclaw.html">2.12 -- Configuration initiale O...</a>
+    <a href="02-13-openrouter.html">2.13 -- Connexion OpenRouter</a>
+    <a href="02-14-telegram.html">2.14 -- Connexion Telegram</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Verification post-instal...</a>
+    <a href="02-17-git-init.html" class="active">2.17 -- Initialiser le repo Git</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Script de deploiement</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="217-initialiser-le-repo-git">2.17 -- Initialiser le repo Git</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Le code, les scripts et la configuration (hors secrets) doivent etre versionnes dans Git. Cette section cree le depot, configure le remote GitHub et met en place un .gitignore solide pour eviter de committer des secrets ou des fichiers inutiles.</p>
+<h2 id="etape-1-initialiser-le-depot">Etape 1 : Initialiser le depot</h2>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init oa-system
+$ cd oa-system
+</code></pre>
+
+<p>Ou si vous travaillez directement dans votre home :</p>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init
+</code></pre>
+
+<h2 id="etape-2-configurer-git">Etape 2 : Configurer Git</h2>
+<pre class="codehilite"><code class="language-bash">$ git config user.name &quot;Votre Nom&quot;
+$ git config user.email &quot;votre-email@example.com&quot;
+$ git config init.defaultBranch main
+</code></pre>
+
+<h2 id="etape-3-creer-le-gitignore">Etape 3 : Creer le .gitignore</h2>
+<p>Creez <code>.gitignore</code> a la racine du depot :</p>
+<pre class="codehilite"><code class="language-gitignore"># === Secrets et credentials ===
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+vault-keys.txt
+unseal-keys.txt
+
+# === Donnees Docker ===
+docker/vault/data/
+docker/postgres/data/
+
+# === Sauvegardes ===
+backups/
+
+# === Logs ===
+logs/
+*.log
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+.npm
+
+# === OpenClaw ===
+.openclaw/credentials.json
+.openclaw/logs/
+.openclaw/workspace/sessions/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# === IDE ===
+.vscode/settings.json
+.idea/
+*.sublime-workspace
+</code></pre>
+
+<h2 id="etape-4-copier-les-fichiers-a-versionner">Etape 4 : Copier les fichiers a versionner</h2>
+<p>Les fichiers qui DOIVENT etre dans Git :</p>
+<pre class="codehilite"><code class="language-bash"># Scripts
+$ cp ~/scripts/*.sh ./scripts/
+
+# Docker compose (sans les donnees)
+$ mkdir -p docker/vault docker/postgres
+$ cp ~/docker/vault/docker-compose.yml ./docker/vault/
+$ cp ~/docker/vault/config/vault.hcl ./docker/vault/config/
+$ cp ~/docker/postgres/docker-compose.yml ./docker/postgres/
+
+# Health check
+$ cp ~/scripts/health-check.sh ./scripts/
+</code></pre>
+
+<p>Les fichiers qui NE DOIVENT PAS etre dans Git :
+- Tout ce qui est dans <code>backups/</code>
+- Les dossiers <code>data/</code> des conteneurs
+- Les fichiers <code>.env</code> ou contenant des secrets
+- Les unseal keys de Vault</p>
+<h2 id="etape-5-creer-le-remote-github">Etape 5 : Creer le remote GitHub</h2>
+<p>Creez un depot sur GitHub (prive recommande), puis :</p>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin git@github.com:VOTRE_USER/oa-system.git
+</code></pre>
+
+<p>Si vous utilisez HTTPS au lieu de SSH :</p>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin https://github.com/VOTRE_USER/oa-system.git
+</code></pre>
+
+<h2 id="etape-6-premier-commit">Etape 6 : Premier commit</h2>
+<pre class="codehilite"><code class="language-bash">$ git add .
+$ git status
+</code></pre>
+
+<p>Verifiez que AUCUN secret n'apparait dans la liste des fichiers a committer. Si un fichier sensible apparait, ajoutez-le au .gitignore et faites <code>git reset HEAD &lt;fichier&gt;</code>.</p>
+<pre class="codehilite"><code class="language-bash">$ git commit -m &quot;feat: initialisation du systeme OA - infrastructure et scripts&quot;
+$ git push -u origin main
+</code></pre>
+
+<h2 id="etape-7-verifier-sur-github">Etape 7 : Verifier sur GitHub</h2>
+<p>Allez sur votre depot GitHub et verifiez :
+- Les fichiers sont presents
+- Aucun secret n'est visible
+- Le .gitignore fonctionne (pas de <code>data/</code>, pas de <code>backups/</code>)</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<ul>
+<li><strong>Committer des secrets</strong> : Si ca arrive, le secret est compromis meme si vous le supprimez du prochain commit (l'historique Git le conserve). Changez le secret immediatement. Utilisez <code>git-filter-repo</code> pour purger l'historique si necessaire.</li>
+<li><strong>"Permission denied (publickey)"</strong> : Votre cle SSH n'est pas configuree sur GitHub. Ajoutez-la dans GitHub &gt; Settings &gt; SSH Keys.</li>
+<li><strong>Depot prive vs public</strong> : Pour un systeme de production, utilisez un depot PRIVE. Les fichiers docker-compose.yml peuvent reveler votre architecture.</li>
+<li><strong>Oublier le .gitignore avant le premier commit</strong> : Si <code>node_modules/</code> ou <code>data/</code> a ete committe, faites <code>git rm -r --cached node_modules/</code> puis re-committez.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ git status
+$ git log --oneline
+$ git remote -v
+</code></pre>
+
+<p>Resultats attendus :
+- Working tree clean (rien a committer)
+- Au moins un commit visible
+- Remote pointe vers votre depot GitHub</p>
+<h2 id="temps-estime">Temps estime</h2>
+<p>10 minutes.</p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/17-git-init.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-16-verification-complete.html">&larr; 2.16 -- Verification post-installation</a>
+<a href="02-18-claude-md.html">2.18 -- CLAUDE.md &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

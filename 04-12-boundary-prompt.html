@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.12 -- Le boundary prompt | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Ecrire votre system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personnalite et ton</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration : la premiere v...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Pourquoi un systeme de ta...</a>
+    <a href="04-05-comment-taches.html">4.5 -- Comment les taches se font</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Base de donnees comme sou...</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Reconnaitre une routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run avant confiance</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- Le rythme hebdomadaire</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- La confiance est une con...</a>
+    <a href="04-12-boundary-prompt.html" class="active">4.12 -- Le boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit : que peut acceder...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Configuration bilingue</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="412-le-boundary-prompt">4.12 -- Le boundary prompt</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Le boundary prompt est la liste des choses que votre agent ne doit JAMAIS faire. Pas "eviter", pas "sauf si necessaire" -- JAMAIS. C'est le filet de securite. Vous l'ecrivez une fois, vous le mettez dans le system prompt ou dans un fichier dedie, et vous n'y touchez plus sauf pour ajouter une regle apres un incident.</p>
+<p>Steinberg compare ca a une constitution : on ne la reecrit pas chaque semaine, mais on peut l'amender.</p>
+<h2 id="pourquoi-cest-necessaire">Pourquoi c'est necessaire</h2>
+<p>Les agents LLM sont cooperatifs par defaut. Si vous demandez quelque chose de risque, l'agent va essayer de vous aider. C'est sa force et son danger.</p>
+<p>Sans boundary prompt :
+- "Montre-moi le contenu de .env" -&gt; l'agent affiche les secrets.
+- "Push --force sur main" -&gt; l'agent execute.
+- "Supprime les vieux backups pour faire de la place" -&gt; l'agent supprime.</p>
+<p>Avec boundary prompt :
+- "Montre-moi le contenu de .env" -&gt; "Je ne peux pas afficher les fichiers contenant des secrets. Utilisez <code>vault kv get</code> pour acceder aux secrets de facon securisee."</p>
+<h2 id="structure-du-boundary-prompt">Structure du boundary prompt</h2>
+<pre class="codehilite"><code class="language-markdown"># BOUNDARIES — Actions interdites
+
+Tu ne dois JAMAIS, meme si je te le demande explicitement :
+
+## Securite
+- Afficher des mots de passe, tokens, ou cles API en clair.
+- Modifier .env, .env.production, ou tout fichier contenant des secrets.
+- Desactiver le firewall ou ouvrir des ports.
+- Stocker des secrets dans des fichiers non-chiffres.
+- Commiter des fichiers contenant des credentials.
+
+## Git
+- Executer git push --force sur main ou master.
+- Executer git reset --hard sans backup prealable.
+- Modifier l'historique git d'une branche partagee.
+- Amend un commit deja pousse.
+
+## Infrastructure
+- Supprimer des backups.
+- DROP TABLE ou DELETE sans WHERE en production.
+- Arreter un service en production sans procedure de rollback.
+- Modifier les regles DNS sans validation.
+
+## Communication
+- Envoyer un message a un client sans validation.
+- Partager des informations internes a l'exterieur.
+- Repondre a la place de l'utilisateur sur un canal public.
+
+## Si on te demande de violer ces regles
+Refuse poliment. Explique pourquoi c'est interdit.
+Propose une alternative securisee si elle existe.
+</code></pre>
+
+<h2 id="ou-le-placer">Ou le placer</h2>
+<p>Deux options :</p>
+<h3 id="option-1-dans-le-system-prompt">Option 1 : dans le system prompt</h3>
+<p>Avantage : toujours lu en premier. Pas de risque d'oubli.
+Inconvenient : consomme des tokens a chaque requete.</p>
+<h3 id="option-2-dans-un-fichier-boundariesmd">Option 2 : dans un fichier BOUNDARIES.md</h3>
+<p>Avantage : le system prompt reste court. Le fichier est versionne.
+Inconvenient : l'agent doit savoir qu'il doit le lire. Ajoutez dans le system prompt : "Lis et respecte BOUNDARIES.md avant toute action."</p>
+<p>Recommandation : les 3-5 regles les plus critiques dans le system prompt. Le reste dans BOUNDARIES.md.</p>
+<h2 id="exemples-concrets-par-domaine">Exemples concrets par domaine</h2>
+<h3 id="pour-un-devops">Pour un devops</h3>
+<pre class="codehilite"><code>JAMAIS :
+- rm -rf sur / ou /home ou /opt sans confirmation du chemin exact
+- Modifier iptables/ufw sans procedure documentee
+- Redemarrer PostgreSQL en production sans verifier les connexions actives
+- Deployer un vendredi apres 16h
+</code></pre>
+
+<h3 id="pour-un-consultant">Pour un consultant</h3>
+<pre class="codehilite"><code>JAMAIS :
+- Envoyer un email client sans relecture
+- Partager des tarifs ou conditions sans validation
+- Ecrire au nom du cabinet sur les reseaux sociaux
+- Promettre une deadline sans verification
+</code></pre>
+
+<h3 id="pour-un-developpeur">Pour un developpeur</h3>
+<pre class="codehilite"><code>JAMAIS :
+- Merge sur main sans CI verte
+- Modifier une migration deja appliquee en production
+- Hardcoder des credentials
+- Desactiver des tests pour que la CI passe
+</code></pre>
+
+<h2 id="apres-un-incident">Apres un incident</h2>
+<p>Quand l'agent fait quelque chose qu'il n'aurait pas du :</p>
+<ol>
+<li>Corrigez les degats.</li>
+<li>Identifiez la regle manquante.</li>
+<li>Ajoutez-la au boundary prompt.</li>
+<li>Testez que l'agent refuse desormais cette action.</li>
+</ol>
+<p>Le boundary prompt grossit avec l'experience. C'est normal. Chaque regle ajoutee est une erreur qui ne se reproduira pas.</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Pas de boundary prompt.</strong> "Il est assez intelligent pour savoir." Non. L'agent fait ce que vous demandez. Si vous ne dites pas non, il dit oui.</p>
+<p><strong>Trop vague.</strong> "Ne fais rien de dangereux." L'agent ne sait pas ce que vous considerez comme dangereux. Soyez specifique : quelle commande, quel fichier, quelle action.</p>
+<p><strong>Trop permissif.</strong> "Sauf si c'est vraiment necessaire." Ca annule la regle. JAMAIS signifie JAMAIS. Si vous avez besoin d'une exception, gerez-la vous-meme manuellement.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Listez les 5 actions les plus dangereuses que votre agent pourrait faire.</li>
+<li>Ecrivez-les dans BOUNDARIES.md.</li>
+<li>Ajoutez les 3 plus critiques dans le system prompt.</li>
+<li>Testez : demandez a l'agent de faire quelque chose d'interdit. Il doit refuser.</li>
+<li>Apres chaque incident, ajoutez une regle.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] BOUNDARIES.md existe avec au moins 10 regles.</li>
+<li>[ ] Les 3 regles les plus critiques sont dans le system prompt.</li>
+<li>[ ] L'agent refuse quand on lui demande de violer une regle (teste).</li>
+<li>[ ] L'agent propose une alternative quand il refuse.</li>
+<li>[ ] Le boundary prompt est mis a jour apres chaque incident.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/12-boundary-prompt.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-11-confiance-configuration.html">&larr; 4.11 -- La confiance est une configuration</a>
+<a href="04-13-audit-acces.html">4.13 -- Audit : que peut acceder votre agent ? &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>07 -- Comment soumettre votre cas d'usage | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Cabinet comptable</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html" class="active">07 -- Comment soumettre votre ca...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="07-comment-soumettre-votre-cas-dusage">07 -- Comment soumettre votre cas d'usage</h1>
+<p><strong>Pour qui :</strong> toute personne ou equipe utilisant OpenClaw en situation reelle
+<strong>Temps requis :</strong> 30 minutes a 1 heure
+<strong>Difficulte :</strong> Debutant</p>
+<hr />
+<h2 id="pourquoi-contribuer">Pourquoi contribuer</h2>
+<p>Les cas d'usage sont la partie la plus utile de ce playbook. Chaque nouveau cas aide d'autres praticiens a :
+- Evaluer si OpenClaw correspond a leur situation
+- Gagner du temps en reutilisant une configuration testee
+- Eviter les erreurs que d'autres ont deja faites</p>
+<p>Votre experience, meme partielle, a de la valeur. Un cas d'usage n'a pas besoin d'etre parfait pour etre utile.</p>
+<hr />
+<h2 id="format-standard">Format standard</h2>
+<p>Chaque cas d'usage suit cette structure. Vous pouvez copier ce template directement.</p>
+<pre class="codehilite"><code class="language-markdown">---
+status: draft
+audience: both
+chapter: 06
+last_updated: YYYY-MM
+contributors: [votre-github-handle]
+lang: fr
+---
+
+# XX -- [Titre du cas d'usage]
+
+**Pour qui :** [profil en une ligne]
+**Temps de mise en place :** [estimation]
+**Difficulte :** Debutant / Intermediaire / Avance
+
+---
+
+## Contexte
+
+Qui vous etes, ce que fait votre organisation, la taille de l'equipe.
+
+## Probleme
+
+Ce que vous deviez resoudre ou automatiser. Soyez specifique.
+
+## Configuration
+
+Votre infrastructure (serveur, OS, outils).
+Vos agents (combien, quels roles).
+Votre budget approximatif.
+
+## Mise en place
+
+Les etapes que vous avez suivies, dans l'ordre chronologique.
+
+## Resultat
+
+Ce qui a change concretement. Chiffres si possible (temps gagne, taux de reussite, couts).
+
+## Lecons apprises
+
+Ce que vous referiez differemment. Ce qui a mieux marche que prevu.
+
+## Erreurs courantes
+
+Les pieges que vous avez rencontres et comment les eviter.
+
+## Template
+
+Un prompt, une configuration, ou un snippet reutilisable par d'autres.
+
+## Verification
+
+Une checklist pour valider que la configuration fonctionne.
+</code></pre>
+
+<hr />
+<h2 id="option-1-soumettre-via-issue-github">Option 1 : Soumettre via Issue GitHub</h2>
+<p>C'est la methode la plus simple. Aucune connaissance de Git n'est requise.</p>
+<ol>
+<li>Allez sur <a href="https://github.com/alexwill87/openclawfieldplaybook/issues">github.com/alexwill87/openclawfieldplaybook/issues</a></li>
+<li>Cliquez sur <strong>New Issue</strong></li>
+<li>Choisissez le template <strong>suggestion</strong></li>
+<li>Dans le titre, ecrivez : <code>use-case: [votre titre]</code></li>
+<li>Dans le corps, collez le format standard ci-dessus et remplissez-le</li>
+<li>Ajoutez le label <code>use-case</code></li>
+<li>Soumettez</li>
+</ol>
+<p>Un agent IA analysera votre Issue et postera un commentaire. Un maintainer humain validera et integrera le cas dans le chapitre.</p>
+<hr />
+<h2 id="option-2-soumettre-via-pull-request">Option 2 : Soumettre via Pull Request</h2>
+<p>Si vous etes a l'aise avec GitHub :</p>
+<ol>
+<li>Forkez le repo <a href="https://github.com/alexwill87/openclawfieldplaybook">alexwill87/openclawfieldplaybook</a></li>
+<li>Creez votre fichier dans <code>sections/06-use-cases/</code></li>
+<li>Nommez-le avec le prochain numero disponible : <code>XX-titre-court.md</code></li>
+<li>Utilisez le format standard ci-dessus</li>
+<li>Ajoutez le frontmatter YAML avec <code>status: draft</code></li>
+<li>Committez avec un message clair : <code>feat: add use case for [votre titre]</code></li>
+<li>Ouvrez une Pull Request vers le repo principal</li>
+</ol>
+<h3 id="regles-pour-la-pr">Regles pour la PR :</h3>
+<ul>
+<li>Un fichier par cas d'usage</li>
+<li>Le frontmatter YAML est obligatoire</li>
+<li>Le status initial est toujours <code>draft</code></li>
+<li>Pas de donnees nominatives (clients, employeurs) sans leur accord</li>
+<li>Les montants et metriques peuvent etre approximatifs, indiquez-le si c'est le cas</li>
+</ul>
+<hr />
+<h2 id="ce-qui-rend-un-cas-dusage-utile">Ce qui rend un cas d'usage utile</h2>
+<table>
+<thead>
+<tr>
+<th>Critere</th>
+<th>Bon exemple</th>
+<th>Mauvais exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Specificite</td>
+<td>"Nous avons reduit le temps de triage de 3h a 45min"</td>
+<td>"Ca a bien marche"</td>
+</tr>
+<tr>
+<td>Reproductibilite</td>
+<td>Configuration complete avec system prompt</td>
+<td>"On a configure un agent"</td>
+</tr>
+<tr>
+<td>Honnetete</td>
+<td>"L'agent se trompe sur 15% des cas, voici comment on gere"</td>
+<td>"Ca marche parfaitement"</td>
+</tr>
+<tr>
+<td>Template</td>
+<td>Prompt copier-coller pret a l'emploi</td>
+<td>Description vague du prompt</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ce-que-nous-recherchons-particulierement">Ce que nous recherchons particulierement</h2>
+<p>Les cas d'usage suivants sont les plus demandes par la communaute. Si vous avez de l'experience dans l'un de ces domaines, votre contribution sera particulierement valorisee :</p>
+<ul>
+<li>Artisan / metiers manuels (devis, suivi chantier, relance client)</li>
+<li>Profession medicale (prise de rendez-vous, suivi patient, conformite)</li>
+<li>Association / ONG (gestion benevoles, communication, reporting)</li>
+<li>Enseignement (preparation de cours, suivi eleves, administration)</li>
+<li>Profession juridique (triage dossiers, recherche jurisprudentielle, conformite)</li>
+<li>Immobilier (gestion locative, relation proprietaires, suivi travaux)</li>
+</ul>
+<hr />
+<h2 id="apres-la-soumission">Apres la soumission</h2>
+<ol>
+<li>Un agent IA analyse votre contribution et poste un commentaire</li>
+<li>Un maintainer humain relit le cas d'usage</li>
+<li>Si des ajustements sont necessaires, ils sont demandes via commentaire</li>
+<li>Le cas est merge avec le status <code>draft</code> puis passe en <code>review</code> puis <code>complete</code></li>
+<li>Le cas apparait dans le sommaire du chapitre 6</li>
+</ol>
+<p>Temps de traitement habituel : 1 a 2 semaines.</p>
+<hr />
+<h2 id="questions-frequentes">Questions frequentes</h2>
+<p><strong>Mon cas est trop simple, est-ce utile ?</strong>
+Oui. Les cas simples sont souvent les plus utiles car ils sont accessibles a davantage de personnes.</p>
+<p><strong>Je ne peux pas partager les details de mon entreprise.</strong>
+Anonymisez. Remplacez les noms, les montants exacts, et les details sensibles par des valeurs generiques. Le format et l'experience sont ce qui compte.</p>
+<p><strong>Mon cas d'usage n'a pas fonctionne.</strong>
+Partagez-le quand meme. Un echec documente est aussi utile qu'une reussite. Expliquez ce qui n'a pas marche et pourquoi.</p>
+<p><strong>Je ne parle pas francais.</strong>
+Les contributions en anglais sont bienvenues. Un contributeur ou un agent se chargera de la traduction.</p>
+<hr />
+<p><em>Chaque cas d'usage soumis rend ce playbook plus utile pour le prochain praticien. Votre experience compte.</em></p>
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Soumettre via Issue</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/07-contribuer.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-06-startup.html">&larr; 06 -- Startup early-stage</a>
+<a href="07-00-sommaire.html">Chapter 7 — Localisation &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

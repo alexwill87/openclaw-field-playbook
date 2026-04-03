@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>06 -- Startup early-stage | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Cabinet comptable</a>
+    <a href="06-06-startup.html" class="active">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- Comment soumettre votre ca...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="06-startup-early-stage">06 -- Startup early-stage</h1>
+<p><strong>Pour qui :</strong> fondateurs de startup en phase de demarrage (pre-seed a seed), equipe de 2 a 8 personnes
+<strong>Temps de mise en place :</strong> 3 a 5 jours
+<strong>Difficulte :</strong> Intermediaire</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Une startup early-stage a des ressources limitees et des besoins disproportionnes. Les fondateurs portent tous les roles : produit, commercial, technique, finance, RH. Ils doivent communiquer regulierement avec leurs investisseurs, surveiller le marche, recruter les premiers employes, et construire le produit -- le tout avec un budget serre.</p>
+<p>OpenClaw peut devenir un multiplicateur de force en automatisant les taches a faible valeur ajoutee, liberant du temps pour les decisions strategiques.</p>
+<hr />
+<h2 id="probleme">Probleme</h2>
+<ul>
+<li>Les investor updates sont rediges a la derniere minute, souvent incomplets</li>
+<li>La veille concurrentielle est faite de facon sporadique et non structuree</li>
+<li>Le recrutement est lent : tri de CV manuel, suivi des candidatures dans des emails</li>
+<li>Les metriques cles (MRR, churn, runway) sont calculees manuellement dans des tableurs</li>
+<li>Les fondateurs passent plus de temps sur l'operationnel que sur la strategie</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS economique (Hetzner CX22) ou laptop local</td>
+<td>0-5 EUR</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation VPS ou locale</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Slack ou Mattermost (plan gratuit)</td>
+<td>gratuit</td>
+</tr>
+<tr>
+<td>Suivi</td>
+<td>Notion, Linear ou fichiers Markdown</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Service email existant</td>
+<td>existant</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Budget total : moins de 50 EUR/mois tout compris</strong> (VPS + API LLM).</p>
+<h3 id="agents">Agents</h3>
+<p><strong>Agent Investor Relations :</strong>
+- Collecte les metriques cles depuis les outils de la startup (tableur, base de donnees, API)
+- Genere un brouillon d'investor update mensuel au format standard
+- Inclut : metriques cles, faits marquants, defis, besoins, prochaines etapes
+- Le fondateur relit, ajuste le ton, et envoie</p>
+<p><strong>Agent Veille :</strong>
+- Surveille les sources definies (blogs, newsletters, Product Hunt, reseaux sociaux)
+- Genere un resume hebdomadaire des mouvements concurrentiels
+- Signale les evenements critiques en temps reel (levee de fonds d'un concurrent, lancement produit)
+- Classe par pertinence : impact direct / a surveiller / bruit de fond</p>
+<p><strong>Agent Recrutement :</strong>
+- Trie les candidatures recues par adequation avec la fiche de poste
+- Genere un resume de chaque CV avec points forts et points d'attention
+- Propose un brouillon de reponse (acceptation pour entretien / refus courtois)
+- Suit les candidatures en cours et relance les candidats en attente</p>
+<hr />
+<h2 id="mise-en-place">Mise en place</h2>
+<h3 id="jour-1-2-infrastructure-et-agent-investor-relations">Jour 1-2 : Infrastructure et agent Investor Relations</h3>
+<ol>
+<li>Installer OpenClaw (VPS ou local)</li>
+<li>Configurer l'agent Investor Relations avec :</li>
+<li>Le format d'investor update utilise par la startup</li>
+<li>Les sources de metriques (tableur, API, base de donnees)</li>
+<li>Le ton de communication avec les investisseurs</li>
+<li>Tester en generant l'update du mois precedent</li>
+<li>Comparer avec l'update reel et ajuster</li>
+</ol>
+<h3 id="jour-3-agent-veille">Jour 3 : Agent Veille</h3>
+<ol>
+<li>Definir les sources de veille (5 a 10 sources maximum au debut)</li>
+<li>Definir les concurrents a surveiller</li>
+<li>Configurer la frequence : resume hebdomadaire + alertes en temps reel</li>
+<li>Tester sur la semaine ecoulee</li>
+<li>Ajuster les filtres de pertinence</li>
+</ol>
+<h3 id="jour-4-5-agent-recrutement-et-stabilisation">Jour 4-5 : Agent Recrutement et stabilisation</h3>
+<ol>
+<li>Configurer l'agent Recrutement avec les fiches de poste actives</li>
+<li>Definir les criteres de tri (competences requises, nice-to-have, red flags)</li>
+<li>Tester sur un lot de 20 CV (reels ou anonymises)</li>
+<li>Configurer les notifications pour l'ensemble des agents</li>
+<li>Documenter les workflows pour l'equipe</li>
+</ol>
+<hr />
+<h2 id="resultat">Resultat</h2>
+<p>Apres un mois d'utilisation :</p>
+<ul>
+<li><strong>Investor updates en 30 minutes au lieu de 3 heures</strong> : l'agent collecte les metriques et genere le premier jet. Le fondateur ajuste le narratif et envoie. Les updates sortent a l'heure, chaque mois</li>
+<li><strong>Veille structuree</strong> : le resume hebdomadaire remplace la surveillance sporadique. Deux alertes critiques ont ete detectees (lancement concurrent, changement reglementaire) qui auraient ete manquees autrement</li>
+<li><strong>Tri de CV accelere</strong> : 80% du tri est fait par l'agent. Le fondateur ne passe du temps que sur les candidatures pre-selectionnees. Temps de recrutement reduit de 30%</li>
+<li><strong>Budget maitrise</strong> : l'ensemble de la configuration coute moins de 50 EUR/mois, soit le prix d'un outil SaaS unique</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>L'investor update est le workflow a deployer en premier.</strong> C'est regulier, structure, et chaque fondateur deteste le faire. L'impact sur la relation investisseur est immediat : les updates arrivent a l'heure et sont plus complets.</p>
+</li>
+<li>
+<p><strong>La veille doit etre filtree agressivement.</strong> 10 sources bien choisies valent mieux que 50 sources qui generent du bruit. L'agent doit etre configure pour ignorer le bruit, pas pour tout rapporter.</p>
+</li>
+<li>
+<p><strong>Le tri de CV par IA a des biais.</strong> L'agent peut eliminer des profils atypiques qui seraient de bons candidats. Le fondateur doit verifier un echantillon des candidatures refusees par l'agent pour calibrer.</p>
+</li>
+<li>
+<p><strong>Pas de stack complexe en early-stage.</strong> Si l'equipe a 3 personnes, un VPS a 5 EUR et des fichiers Markdown suffisent. PostgreSQL et Mattermost viendront quand l'equipe depassera 8 personnes.</p>
+</li>
+<li>
+<p><strong>Documenter les prompts dans Git des le debut.</strong> Meme en early-stage, les prompts sont du code. Les versionner permet de revenir en arriere quand un changement degrade les resultats.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Investor update envoye sans relecture</td>
+<td>Metriques incorrectes envoyees aux investisseurs</td>
+<td>Toujours relire et valider les chiffres manuellement</td>
+</tr>
+<tr>
+<td>Trop de sources de veille</td>
+<td>Resume hebdomadaire trop long, non lu</td>
+<td>Maximum 10 sources au debut, ajouter progressivement</td>
+</tr>
+<tr>
+<td>Confiance aveugle dans le tri de CV</td>
+<td>Bons candidats elimines par l'agent</td>
+<td>Verifier un echantillon de candidatures refusees</td>
+</tr>
+<tr>
+<td>Stack sur-dimensionnee</td>
+<td>Temps passe a maintenir l'infra au lieu de construire le produit</td>
+<td>Commencer minimal, evoluer avec l'equipe</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-investor-relations">Template -- System prompt de l'agent Investor Relations</h2>
+<pre class="codehilite"><code>Tu es l'assistant Investor Relations de [NOM DE LA STARTUP].
+
+Contexte :
+- [NOM] est une startup [SECTEUR] en phase [PHASE]
+- Derniere levee : [MONTANT] en [DATE]
+- Investisseurs : [LISTE]
+- Metriques cles suivies : MRR, nombre d'utilisateurs, churn, runway
+
+Format de l'investor update mensuel :
+
+## [NOM] - Update [MOIS ANNEE]
+
+### Metriques cles
+| Metrique | Ce mois | Mois precedent | Variation |
+|----------|---------|----------------|-----------|
+| MRR | | | |
+| Utilisateurs actifs | | | |
+| Churn | | | |
+| Runway (mois) | | | |
+
+### Faits marquants
+- [3 a 5 points positifs du mois]
+
+### Defis
+- [2 a 3 points de friction ou de risque]
+
+### Comment vous pouvez aider
+- [1 a 2 demandes concretes aux investisseurs]
+
+### Prochaines etapes
+- [3 a 5 objectifs pour le mois suivant]
+
+Regles :
+- Tu collectes les metriques depuis [SOURCE]
+- Tu generes un brouillon, jamais un document final
+- Tu ne specules pas sur les chiffres : si une donnee manque, tu le signales
+- Tu gardes un ton professionnel et factuel, ni trop optimiste ni alarmiste
+</code></pre>
+
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] L'agent Investor Relations genere un update coherent avec les metriques disponibles</li>
+<li>[ ] Le format de l'update correspond a celui utilise habituellement par la startup</li>
+<li>[ ] L'agent Veille produit un resume hebdomadaire pertinent</li>
+<li>[ ] Les alertes critiques sont detectees et notifiees rapidement</li>
+<li>[ ] L'agent Recrutement classe correctement un lot de 20 CV test</li>
+<li>[ ] Le cout mensuel total reste sous 50 EUR</li>
+</ul>
+<hr />
+<p><em>Une startup early-stage n'a pas besoin d'une plateforme IA enterprise. Elle a besoin de 3 agents bien configures et d'un budget maitrise.</em></p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/06-startup.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-05-cabinet-comptable.html">&larr; 05 -- Cabinet comptable</a>
+<a href="06-07-contribuer.html">07 -- Comment soumettre votre cas d'usage &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

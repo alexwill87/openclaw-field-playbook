@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.13 -- Construire un skill custom (methode Steinberg) | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html" class="active">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="313-construire-un-skill-custom-methode-steinberg">3.13 -- Construire un skill custom (methode Steinberg)</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Les skills integres (calendrier, email, taches) couvrent les besoins generiques. Mais votre metier a des besoins specifiques. Un consultant veut interroger son CRM. Un e-commercant veut suivre ses commandes. Un dev veut monitorer ses deployments.</p>
+<p>C'est la que les skills custom entrent en jeu. Un skill custom est un module que l'agent utilise pour interagir avec une source de donnees ou un service externe specifique a votre contexte.</p>
+<h2 id="les-4-parties-dun-skill">Les 4 parties d'un skill</h2>
+<p>Chaque skill custom contient exactement 4 parties :</p>
+<h3 id="1-authentification">1. Authentification</h3>
+<p>Comment l'agent se connecte au service.</p>
+<pre class="codehilite"><code class="language-markdown">## Authentification
+- Type : API key / OAuth / token
+- Stockage : vault (jamais en clair dans le skill)
+- Rotation : tous les 90 jours
+- Fallback : si le token expire, notifier l'utilisateur
+</code></pre>
+
+<h3 id="2-requetes">2. Requetes</h3>
+<p>Ce que l'agent peut demander au service.</p>
+<pre class="codehilite"><code class="language-markdown">## Requetes autorisees
+- GET /clients : liste des clients actifs
+- GET /clients/{id}/historique : historique d'un client
+- GET /factures/en-attente : factures impayees
+- POST /notes : ajouter une note client (avec validation)
+</code></pre>
+
+<h3 id="3-perimetre">3. Perimetre</h3>
+<p>Les limites du skill : ce qu'il peut voir, ce qu'il ne peut pas voir.</p>
+<pre class="codehilite"><code class="language-markdown">## Perimetre
+- Donnees accessibles : clients actifs uniquement (pas les archives)
+- Periode : 12 derniers mois
+- Champs sensibles exclus : coordonnees bancaires, IBAN
+- Volume max par requete : 50 resultats
+</code></pre>
+
+<h3 id="4-garde-fous">4. Garde-fous</h3>
+<p>Les regles de securite et les limites d'usage.</p>
+<pre class="codehilite"><code class="language-markdown">## Garde-fous
+- Jamais de modification de donnees sans validation utilisateur
+- Jamais d'export massif (plus de 100 enregistrements)
+- Jamais d'acces aux donnees supprimees
+- Rate limit : 10 requetes par minute max
+- En cas d'erreur API : notifier, ne pas retenter automatiquement
+</code></pre>
+
+<h2 id="la-regle-dor-lire-le-skillmd-genere">La regle d'or : lire le SKILL.md genere</h2>
+<p>Quand vous creez un skill avec le prompt generique (ci-dessous), l'agent genere un fichier SKILL.md dans votre workspace. LISEZ-LE.</p>
+<p>L'agent interprete votre demande et la traduit en regles. Ces regles ne correspondent pas toujours a votre intention. Verifiez :</p>
+<ul>
+<li>Les requetes autorisees sont-elles completes ? (pas trop, pas trop peu)</li>
+<li>Le perimetre est-il correct ? (pas d'acces a des donnees sensibles)</li>
+<li>Les garde-fous sont-ils assez stricts ?</li>
+</ul>
+<h2 id="supprimer-les-regles-de-decision">Supprimer les regles de decision</h2>
+<p>Un skill ne doit PAS contenir de regles de decision. Un skill se connecte, recupere des donnees, et les presente. La decision appartient a CONSTITUTION.md.</p>
+<p>Mauvais (dans le skill) :</p>
+<pre class="codehilite"><code class="language-markdown">Si le client n'a pas paye depuis 30 jours, envoyer une relance.
+</code></pre>
+
+<p>Bon (dans CONSTITUTION.md) :</p>
+<pre class="codehilite"><code class="language-markdown">Quand un client a une facture impayee depuis plus de 30 jours,
+me signaler et proposer un brouillon de relance. Ne pas envoyer.
+</code></pre>
+
+<p>Le skill donne l'information. CONSTITUTION.md dit quoi en faire.</p>
+<h2 id="prompt-generique-pour-creer-un-skill">Prompt generique pour creer un skill</h2>
+<pre class="codehilite"><code>Je veux creer un skill custom pour [nom du service].
+
+Contexte :
+- Service : [description du service, URL de l'API si disponible]
+- Usage : [ce que je veux en faire, en 2-3 phrases]
+- Frequence : [combien de fois par jour/semaine j'en ai besoin]
+
+Contraintes :
+- Authentification : [type d'auth disponible]
+- Donnees sensibles : [ce qui ne doit jamais etre expose]
+- Actions interdites : [ce que le skill ne doit jamais faire]
+
+Genere le skill avec les 4 parties :
+authentification, requetes, perimetre, garde-fous.
+
+Montre-moi le SKILL.md avant de l'installer.
+</code></pre>
+
+<h2 id="exemple-complet-skill-client-pulse-adapte-de-steinberg">Exemple complet : skill "client-pulse" (adapte de Steinberg)</h2>
+<p>Le "client-pulse" de Steinberg est un skill qui donne une vue rapide de la sante de la relation client. Voici une adaptation :</p>
+<pre class="codehilite"><code class="language-markdown"># SKILL.md -- client-pulse
+
+## Description
+Donne un apercu rapide de la relation avec un client :
+derniere interaction, factures en cours, satisfaction.
+
+## Authentification
+- Source : CRM via API REST
+- Auth : Bearer token (stocke dans vault)
+- Rotation : 90 jours
+
+## Requetes
+- GET /clients/{id}/derniere-interaction
+  &gt; Retourne : date, type (email/call/reunion), resume
+- GET /clients/{id}/factures
+  &gt; Retourne : factures des 6 derniers mois, statut
+- GET /clients/{id}/satisfaction
+  &gt; Retourne : dernier score NPS, tendance
+
+## Perimetre
+- Clients actifs uniquement
+- 6 derniers mois d'historique
+- Pas d'acces aux donnees financieres detaillees (montants oui, marges non)
+- Pas d'acces aux notes internes marquees &quot;confidentiel&quot;
+
+## Garde-fous
+- Lecture seule (aucune modification du CRM)
+- Maximum 5 clients interroges par session
+- Pas de comparaison entre clients (donnees isolees)
+- En cas d'indisponibilite API : signaler, ne pas inventer de donnees
+
+## Usage type
+&quot;Donne-moi le pulse de ClientAlpha&quot;
+&gt; Derniere interaction : call le 28/03, sujet devis
+&gt; Factures : 1 en attente (2 800 EUR, echeance 05/04)
+&gt; Satisfaction : NPS 8/10 (stable)
+</code></pre>
+
+<h2 id="etape-par-etape">Etape par etape</h2>
+<ol>
+<li>Identifiez le service que vous voulez connecter</li>
+<li>Verifiez que l'API est disponible et documentee</li>
+<li>Utilisez le prompt generique ci-dessus</li>
+<li>Lisez le SKILL.md genere par l'agent</li>
+<li>Verifiez les 4 parties (auth, requetes, perimetre, garde-fous)</li>
+<li>Supprimez toute regle de decision (elles vont dans CONSTITUTION.md)</li>
+<li>Testez le skill avec une requete simple</li>
+<li>Validez pendant 3-5 jours avant de l'integrer au briefing quotidien</li>
+</ol>
+<h2 id="template-de-prompt-avance">Template de prompt avance</h2>
+<p>Pour les cas ou vous avez besoin de plus de controle :</p>
+<pre class="codehilite"><code>Cree un skill custom avec ces specifications exactes :
+
+NOM : [nom-du-skill]
+SERVICE : [nom et URL]
+AUTH : [methode d'authentification]
+
+REQUETES AUTORISEES :
+1. [methode] [endpoint] -- [description] -- [frequence d'usage]
+2. [methode] [endpoint] -- [description] -- [frequence d'usage]
+
+REQUETES INTERDITES :
+- [methode] [endpoint] -- [raison de l'interdiction]
+
+PERIMETRE :
+- Donnees visibles : [liste]
+- Donnees exclues : [liste]
+- Periode : [duree]
+
+GARDE-FOUS :
+- [regle 1]
+- [regle 2]
+
+Genere le SKILL.md. Ne l'installe pas avant que je valide.
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Ne pas lire le SKILL.md genere</strong> : L'agent a peut-etre ajoute des requetes que vous ne voulez pas, ou oublie des garde-fous. Lisez toujours.</p>
+<p><strong>Mettre des regles de decision dans le skill</strong> : Un skill recupere des donnees. Il ne decide pas quoi en faire. La decision va dans CONSTITUTION.md.</p>
+<p><strong>Skill trop large</strong> : Un skill qui fait 15 requetes differentes est probablement 3 skills. Decoupez.</p>
+<p><strong>Pas de garde-fous</strong> : Un skill sans garde-fous est un acces direct a un service externe. Definissez toujours les limites.</p>
+<p><strong>Oublier la rotation des tokens</strong> : Un token d'API qui n'expire jamais est un risque de securite. Planifiez la rotation.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Le service cible a une API documentee</li>
+<li>[ ] Le skill contient les 4 parties (auth, requetes, perimetre, garde-fous)</li>
+<li>[ ] Le SKILL.md genere a ete relu et valide</li>
+<li>[ ] Aucune regle de decision dans le skill</li>
+<li>[ ] Les garde-fous sont definis et explicites</li>
+<li>[ ] Le token est stocke dans le vault (pas en clair)</li>
+<li>[ ] Test avec une requete simple reussi</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/13-skill-custom.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-12-email-messages.html">&larr; 3.12 -- Email et messages</a>
+<a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

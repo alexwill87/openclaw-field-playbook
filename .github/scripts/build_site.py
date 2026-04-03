@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
 """
-Build script for OpenClaw Field Playbook -- multi-page static site.
+Build script for OpenClaw Field Playbook -- multi-page static site (v2).
+
+One HTML page per SECTION (not per chapter).
 
 Generates:
-  - index.html        (landing page)
-  - chapitre-00.html  through  chapitre-07.html
+  - index.html          (landing page)
+  - 00-guide.html       (chapter 0)
+  - XX-00-sommaire.html (chapter summary pages)
+  - XX-NN-slug.html     (individual section pages)
   - checklist.html
+  - contribuer.html
+  - decouverte.html
 
 All output files are written to the repo root for GitHub Pages.
 """
 
 import os
+import re
 import markdown
 
 REPO_ROOT = os.path.normpath(
@@ -20,24 +27,26 @@ SECTIONS_DIR = os.path.join(REPO_ROOT, 'sections')
 TEMPLATE_PATH = os.path.join(REPO_ROOT, 'index_template.html')
 
 GITHUB_URL = 'https://github.com/alexwill87/openclaw-field-playbook'
+GISCUS_REPO_ID = 'R_kgDORvZ2yQ'
+GISCUS_CATEGORY_ID = 'DIC_kwDORvZ2yc4C54bl'
 
-# Ordered chapter definitions: (folder_or_file, slug, short_title, description)
+# Ordered chapter definitions: (folder_or_file, chapter_num, short_title, description)
 CHAPTERS = [
-    ('00-reading-guide.md', 'chapitre-00', 'Chapitre 0 -- Guide de lecture',
+    ('00-reading-guide.md', '00', 'Guide de lecture',
      'Comment lire ce guide et par ou commencer'),
-    ('01-definition', 'chapitre-01', 'Chapitre 1 -- Definition',
+    ('01-definition', '01', 'Definition',
      'Ce qu\'est OpenClaw, ce que ce n\'est pas'),
-    ('02-installation', 'chapitre-02', 'Chapitre 2 -- Installation',
+    ('02-installation', '02', 'Installation',
      'Installer OpenClaw de zero sur un VPS'),
-    ('03-configuration', 'chapitre-03', 'Chapitre 3 -- Configuration',
+    ('03-configuration', '03', 'Configuration',
      'Configurer l\'agent pour son contexte'),
-    ('04-personalisation', 'chapitre-04', 'Chapitre 4 -- Personnalisation',
+    ('04-personalisation', '04', 'Personnalisation',
      'Adapter le comportement, le ton, les workflows'),
-    ('05-maintenance', 'chapitre-05', 'Chapitre 5 -- Maintenance',
+    ('05-maintenance', '05', 'Maintenance',
      'Garder l\'agent fiable dans le temps'),
-    ('06-use-cases', 'chapitre-06', 'Chapitre 6 -- Cas d\'usage',
+    ('06-use-cases', '06', 'Cas d\'usage',
      'Exemples concrets par type d\'organisation'),
-    ('07-localisation', 'chapitre-07', 'Chapitre 7 -- Localisation',
+    ('07-localisation', '07', 'Localisation',
      'Adapter OpenClaw a d\'autres langues et contextes'),
 ]
 
@@ -63,77 +72,193 @@ def read_template():
         return f.read()
 
 
-def get_chapter_md_files(entry):
-    """Return ordered list of .md file paths for a chapter entry."""
-    path = os.path.join(SECTIONS_DIR, entry)
-
-    # Single file (chapter 00)
-    if os.path.isfile(path):
-        return [path]
-
-    # Directory -- README first, then alphabetical
-    if os.path.isdir(path):
-        readme = os.path.join(path, 'README.md')
-        others = sorted([
-            os.path.join(path, f)
-            for f in os.listdir(path)
-            if f.endswith('.md') and f != 'README.md'
-        ])
-        files = []
-        if os.path.exists(readme):
-            files.append(readme)
-        files.extend(others)
-        return files
-
-    return []
+def extract_h1(md_text):
+    """Extract the first H1 title from markdown content (after frontmatter)."""
+    clean = strip_frontmatter(md_text)
+    for line in clean.split('\n'):
+        line = line.strip()
+        if line.startswith('# '):
+            return line[2:].strip()
+    return 'Sans titre'
 
 
-def concatenate_chapter_md(entry):
-    """Read and concatenate all markdown for a chapter, stripped of frontmatter."""
-    parts = []
-    for filepath in get_chapter_md_files(entry):
-        with open(filepath, 'r', encoding='utf-8') as f:
-            raw = f.read()
-        parts.append(strip_frontmatter(raw))
-    return '\n\n'.join(parts)
+def truncate(text, max_len=35):
+    """Truncate text to max_len characters, adding ... if needed."""
+    if len(text) <= max_len:
+        return text
+    return text[:max_len - 3].rstrip() + '...'
 
 
-def build_sidebar(active_slug):
-    """Build sidebar navigation HTML with the active chapter highlighted."""
+# ---------------------------------------------------------------------------
+# Section registry -- build the ordered list of all pages
+# ---------------------------------------------------------------------------
+
+class Section:
+    """Represents one page of the site."""
+    def __init__(self, slug, html_file, title, sidebar_title, chapter_num,
+                 is_sommaire, md_path, github_edit_path):
+        self.slug = slug
+        self.html_file = html_file
+        self.title = title                # full H1 title
+        self.sidebar_title = sidebar_title  # truncated for sidebar
+        self.chapter_num = chapter_num    # '00', '01', etc.
+        self.is_sommaire = is_sommaire    # True for README / chapter 0
+        self.md_path = md_path            # absolute path to .md file
+        self.github_edit_path = github_edit_path  # relative path for edit link
+
+
+def build_section_registry():
+    """Scan sections/ and build an ordered list of Section objects."""
+    all_sections = []
+
+    for entry, chapter_num, short_title, description in CHAPTERS:
+        path = os.path.join(SECTIONS_DIR, entry)
+
+        # Chapter 0 -- single file
+        if os.path.isfile(path):
+            with open(path, 'r', encoding='utf-8') as f:
+                raw = f.read()
+            h1 = extract_h1(raw)
+            slug = '00-guide'
+            sec = Section(
+                slug=slug,
+                html_file=f'{slug}.html',
+                title=h1,
+                sidebar_title=f'0. {short_title}',
+                chapter_num=chapter_num,
+                is_sommaire=True,
+                md_path=path,
+                github_edit_path=f'sections/{entry}',
+            )
+            all_sections.append(sec)
+            continue
+
+        # Multi-section chapter -- README first, then numbered files
+        if os.path.isdir(path):
+            readme = os.path.join(path, 'README.md')
+            if os.path.exists(readme):
+                with open(readme, 'r', encoding='utf-8') as f:
+                    raw = f.read()
+                h1 = extract_h1(raw)
+                slug = f'{chapter_num}-00-sommaire'
+                sec = Section(
+                    slug=slug,
+                    html_file=f'{slug}.html',
+                    title=h1,
+                    sidebar_title=f'{int(chapter_num)}. {short_title}',
+                    chapter_num=chapter_num,
+                    is_sommaire=True,
+                    md_path=readme,
+                    github_edit_path=f'sections/{entry}/README.md',
+                )
+                all_sections.append(sec)
+
+            # Sub-sections (sorted alphabetically = numerically)
+            sub_files = sorted([
+                f for f in os.listdir(path)
+                if f.endswith('.md') and f != 'README.md'
+            ])
+            for sub_file in sub_files:
+                sub_path = os.path.join(path, sub_file)
+                with open(sub_path, 'r', encoding='utf-8') as f:
+                    raw = f.read()
+                h1 = extract_h1(raw)
+
+                # Extract section number from filename, e.g. "07-vault.md" -> "07"
+                match = re.match(r'^(\d+)-(.+)\.md$', sub_file)
+                if match:
+                    sec_num = match.group(1)
+                    file_slug = match.group(2)
+                else:
+                    sec_num = '00'
+                    file_slug = sub_file.replace('.md', '')
+
+                slug = f'{chapter_num}-{sec_num}-{file_slug}'
+                sec = Section(
+                    slug=slug,
+                    html_file=f'{slug}.html',
+                    title=h1,
+                    sidebar_title=truncate(h1),
+                    chapter_num=chapter_num,
+                    is_sommaire=False,
+                    md_path=sub_path,
+                    github_edit_path=f'sections/{entry}/{sub_file}',
+                )
+                all_sections.append(sec)
+
+    return all_sections
+
+
+# ---------------------------------------------------------------------------
+# Sidebar builder
+# ---------------------------------------------------------------------------
+
+def build_sidebar(all_sections, active_slug, active_chapter):
+    """Build hierarchical sidebar navigation HTML."""
     items = []
-    items.append(
-        '<a href="index.html"{}>Accueil</a>'.format(
-            ' class="active"' if active_slug == 'index' else ''
-        )
-    )
-    for _, slug, title, _ in CHAPTERS:
-        active = ' class="active"' if slug == active_slug else ''
-        items.append(
-            '<a href="{}.html"{}>{}</a>'.format(slug, active, title)
-        )
-    items.append(
-        '<a href="checklist.html"{}>Checklist</a>'.format(
-            ' class="active"' if active_slug == 'checklist' else ''
-        )
-    )
-    items.append(
-        '<a href="decouverte.html"{}>C\'est quoi OpenClaw ?</a>'.format(
-            ' class="active"' if active_slug == 'decouverte' else ''
-        )
-    )
-    items.append(
-        '<a href="contribuer.html"{}>Contribuer</a>'.format(
-            ' class="active"' if active_slug == 'contribuer' else ''
-        )
-    )
+
+    # Home link
+    active_cls = ' class="active"' if active_slug == 'index' else ''
+    items.append(f'<a href="index.html" class="nav-home"{active_cls}>Accueil</a>')
+
+    # Group sections by chapter
+    chapters_order = []
+    chapters_map = {}
+    for sec in all_sections:
+        if sec.chapter_num not in chapters_map:
+            chapters_order.append(sec.chapter_num)
+            chapters_map[sec.chapter_num] = []
+        chapters_map[sec.chapter_num].append(sec)
+
+    for ch_num in chapters_order:
+        ch_sections = chapters_map[ch_num]
+        sommaire = ch_sections[0]  # first entry is always the sommaire / single page
+        sub_sections = ch_sections[1:]  # remaining are sub-sections
+
+        # Chapter 0 has no sub-sections
+        if ch_num == '00':
+            active_cls = ' class="active"' if active_slug == sommaire.slug else ''
+            items.append(f'<div class="nav-chapter">')
+            items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}>{sommaire.sidebar_title}</a>')
+            items.append(f'</div>')
+            continue
+
+        # Multi-section chapter
+        is_open = (active_chapter == ch_num)
+        items.append(f'<div class="nav-chapter">')
+        active_cls = ' class="active"' if active_slug == sommaire.slug else ''
+        items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}>{sommaire.sidebar_title}</a>')
+
+        if is_open and sub_sections:
+            items.append(f'  <div class="nav-sections">')
+            for sub in sub_sections:
+                active_cls = ' class="active"' if active_slug == sub.slug else ''
+                items.append(f'    <a href="{sub.html_file}"{active_cls}>{sub.sidebar_title}</a>')
+            items.append(f'  </div>')
+
+        items.append(f'</div>')
+
+    # Utility pages
+    for page_slug, page_file, page_label in [
+        ('checklist', 'checklist.html', 'Checklist'),
+        ('decouverte', 'decouverte.html', 'C\'est quoi OpenClaw ?'),
+        ('contribuer', 'contribuer.html', 'Contribuer'),
+    ]:
+        active_cls = ' class="active"' if active_slug == page_slug else ''
+        items.append(f'<a href="{page_file}"{active_cls}>{page_label}</a>')
+
     return '\n'.join(items)
 
 
-def render_page(title, content_html, active_slug):
+# ---------------------------------------------------------------------------
+# Rendering
+# ---------------------------------------------------------------------------
+
+def render_page(title, content_html, sidebar_html):
     """Inject content into the template and return final HTML."""
     template = read_template()
     html = template.replace('<!-- TITLE_PLACEHOLDER -->', title)
-    html = html.replace('<!-- NAVIGATION_PLACEHOLDER -->', build_sidebar(active_slug))
+    html = html.replace('<!-- NAVIGATION_PLACEHOLDER -->', sidebar_html)
     html = html.replace('<!-- CONTENT_PLACEHOLDER -->', content_html)
     return html
 
@@ -146,56 +271,16 @@ def write_page(filename, html):
     print(f'  -> {filename}')
 
 
-# ---------------------------------------------------------------------------
-# Page builders
-# ---------------------------------------------------------------------------
-
-def build_chapter_pages():
-    """Build one HTML page per chapter."""
-    for entry, slug, title, _ in CHAPTERS:
-        md_content = concatenate_chapter_md(entry)
-        html_content = markdown.markdown(md_content, extensions=MD_EXTENSIONS)
-
-        # Wrap in chapter div
-        wrapped = '<section class="chapter">\n{}\n</section>'.format(html_content)
-
-        # Determine prev / next
-        idx = [c[1] for c in CHAPTERS].index(slug)
-        nav_links = ['<hr>', '<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">']
-        if idx > 0:
-            prev_slug = CHAPTERS[idx - 1][1]
-            prev_title = CHAPTERS[idx - 1][2]
-            nav_links.append(
-                '<a href="{}.html">&larr; {}</a>'.format(prev_slug, prev_title)
-            )
-        else:
-            nav_links.append('<span></span>')
-        if idx < len(CHAPTERS) - 1:
-            next_slug = CHAPTERS[idx + 1][1]
-            next_title = CHAPTERS[idx + 1][2]
-            nav_links.append(
-                '<a href="{}.html">{} &rarr;</a>'.format(next_slug, next_title)
-            )
-        else:
-            nav_links.append('<span></span>')
-        nav_links.append('</div>')
-
-        # Lien "Editer sur GitHub" pour les chapitres avec dossier
-        edit_link = ''
-        chapter_dir = entry
-        if os.path.isdir(os.path.join(SECTIONS_DIR, entry)):
-            edit_url = '{}/tree/main/sections/{}/'.format(GITHUB_URL, chapter_dir)
-            edit_link = '\n<p class="edit-link"><a href="{}">Proposer une modification sur GitHub</a></p>'.format(edit_url)
-
-        # Giscus comments
-        giscus = """
+def build_giscus_widget():
+    """Return the Giscus comments widget HTML."""
+    return """
 <div class="giscus-wrapper">
   <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
   <script src="https://giscus.app/client.js"
     data-repo="alexwill87/openclaw-field-playbook"
-    data-repo-id="R_kgDORvZ2yQ"
+    data-repo-id="{repo_id}"
     data-category="General"
-    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-category-id="{cat_id}"
     data-mapping="pathname"
     data-strict="0"
     data-reactions-enabled="1"
@@ -207,23 +292,89 @@ def build_chapter_pages():
     crossorigin="anonymous"
     async>
   </script>
-</div>"""
+</div>""".format(repo_id=GISCUS_REPO_ID, cat_id=GISCUS_CATEGORY_ID)
 
+
+def build_edit_link(github_edit_path):
+    """Return an 'Edit on GitHub' link."""
+    edit_url = f'{GITHUB_URL}/edit/main/{github_edit_path}'
+    return f'\n<p class="edit-link"><a href="{edit_url}">Proposer une modification sur GitHub</a></p>'
+
+
+# ---------------------------------------------------------------------------
+# Section page builder
+# ---------------------------------------------------------------------------
+
+def build_section_pages(all_sections):
+    """Build one HTML page per section."""
+    counts = {}  # chapter_num -> count of pages generated
+
+    for i, sec in enumerate(all_sections):
+        # Read and convert markdown
+        with open(sec.md_path, 'r', encoding='utf-8') as f:
+            raw = f.read()
+        md_content = strip_frontmatter(raw)
+        html_content = markdown.markdown(md_content, extensions=MD_EXTENSIONS)
+
+        # Wrap in section div
+        wrapped = f'<section class="chapter">\n{html_content}\n</section>'
+
+        # Edit link
+        edit_link = build_edit_link(sec.github_edit_path)
+
+        # Giscus
+        giscus = build_giscus_widget()
+
+        # Prev/Next navigation
+        nav_links = ['<hr>', '<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">']
+        if i > 0:
+            prev_sec = all_sections[i - 1]
+            nav_links.append(
+                f'<a href="{prev_sec.html_file}">&larr; {truncate(prev_sec.title, 50)}</a>'
+            )
+        else:
+            nav_links.append('<span></span>')
+        if i < len(all_sections) - 1:
+            next_sec = all_sections[i + 1]
+            nav_links.append(
+                f'<a href="{next_sec.html_file}">{truncate(next_sec.title, 50)} &rarr;</a>'
+            )
+        else:
+            nav_links.append('<span></span>')
+        nav_links.append('</div>')
+
+        # Assemble
         full_content = wrapped + edit_link + giscus + '\n' + '\n'.join(nav_links)
-        page_html = render_page(title, full_content, slug)
-        write_page(f'{slug}.html', page_html)
+        sidebar_html = build_sidebar(all_sections, sec.slug, sec.chapter_num)
+        page_html = render_page(sec.title, full_content, sidebar_html)
+        write_page(sec.html_file, page_html)
+
+        # Track counts
+        counts[sec.chapter_num] = counts.get(sec.chapter_num, 0) + 1
+
+    return counts
 
 
-def build_index_page():
+# ---------------------------------------------------------------------------
+# Page builders (kept from v1)
+# ---------------------------------------------------------------------------
+
+def build_index_page(all_sections):
     """Build the landing page (index.html)."""
-    # Build chapter cards
+    # Build chapter cards -- point to sommaire pages
     cards = []
-    for _, slug, title, desc in CHAPTERS:
+    for entry, chapter_num, short_title, desc in CHAPTERS:
+        # Find the sommaire/first page for this chapter
+        if chapter_num == '00':
+            href = '00-guide.html'
+        else:
+            href = f'{chapter_num}-00-sommaire.html'
+        title = f'Chapitre {int(chapter_num)} -- {short_title}'
         cards.append(
-            '<a class="chapter-card" href="{slug}.html">'
+            '<a class="chapter-card" href="{href}">'
             '<div class="num">{title}</div>'
             '<div class="card-desc">{desc}</div>'
-            '</a>'.format(slug=slug, title=title, desc=desc)
+            '</a>'.format(href=href, title=title, desc=desc)
         )
 
     content = """
@@ -236,7 +387,7 @@ def build_index_page():
     des commandes copiables et des decisions documentees.
   </p>
   <div class="hero-actions">
-    <a href="chapitre-00.html" class="btn-primary">Commencer la lecture</a>
+    <a href="00-guide.html" class="btn-primary">Commencer la lecture</a>
     <a href="decouverte.html" class="btn-secondary">C'est quoi OpenClaw ?</a>
     <a href="{github}" class="btn-secondary" target="_blank">Voir sur GitHub</a>
   </div>
@@ -270,15 +421,15 @@ def build_index_page():
   <ul class="path-list">
     <li>
       <strong>Je decouvre OpenClaw</strong>
-      <span><a href="chapitre-01.html">Definition</a> &rarr; <a href="chapitre-02.html">Installation</a> &rarr; <a href="chapitre-03.html">Configuration</a>. Comptez une journee.</span>
+      <span><a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a> &rarr; <a href="03-00-sommaire.html">Configuration</a>. Comptez une journee.</span>
     </li>
     <li>
       <strong>J'ai deja installe, je veux configurer</strong>
-      <span><a href="chapitre-03.html">Configuration</a> &rarr; <a href="chapitre-04.html">Personnalisation</a>. Les deux chapitres les plus denses.</span>
+      <span><a href="03-00-sommaire.html">Configuration</a> &rarr; <a href="04-00-sommaire.html">Personnalisation</a>. Les deux chapitres les plus denses.</span>
     </li>
     <li>
       <strong>Je veux des exemples concrets</strong>
-      <span><a href="chapitre-06.html">Cas d'usage</a> d'abord, puis remontez vers les chapitres techniques selon vos besoins.</span>
+      <span><a href="06-00-sommaire.html">Cas d'usage</a> d'abord, puis remontez vers les chapitres techniques selon vos besoins.</span>
     </li>
   </ul>
 </div>
@@ -313,11 +464,12 @@ def build_index_page():
 </div>
 """.format(github=GITHUB_URL, cards='\n    '.join(cards))
 
-    page_html = render_page('Accueil', content, 'index')
+    sidebar_html = build_sidebar(all_sections, 'index', None)
+    page_html = render_page('Accueil', content, sidebar_html)
     write_page('index.html', page_html)
 
 
-def build_checklist_page():
+def build_checklist_page(all_sections):
     """Build the interactive checklist page (checklist.html)."""
     checklist_data = {
         'Chapitre 2 -- Installation': [
@@ -510,11 +662,12 @@ document.addEventListener('DOMContentLoaded', loadChecklist);
 </script>
 """.format(items='\n'.join(items_html), total=total_items)
 
-    page_html = render_page('Checklist', content, 'checklist')
+    sidebar_html = build_sidebar(all_sections, 'checklist', None)
+    page_html = render_page('Checklist', content, sidebar_html)
     write_page('checklist.html', page_html)
 
 
-def build_contribuer_page():
+def build_contribuer_page(all_sections):
     """Build the contribuer.html page."""
     content = """
 <section class="chapter">
@@ -576,11 +729,12 @@ Comment savoir que tout fonctionne.
 </section>
 """.format(github=GITHUB_URL)
 
-    page_html = render_page('Contribuer', content, 'contribuer')
+    sidebar_html = build_sidebar(all_sections, 'contribuer', None)
+    page_html = render_page('Contribuer', content, sidebar_html)
     write_page('contribuer.html', page_html)
 
 
-def build_decouverte_page():
+def build_decouverte_page(all_sections):
     """Build the decouverte.html page."""
     content = """
 <section class="chapter">
@@ -627,8 +781,8 @@ def build_decouverte_page():
 <h2>Pret a commencer ?</h2>
 <p>Si tout cela vous parle, voici les prochaines etapes :</p>
 <ul>
-  <li><a href="chapitre-01.html">Chapitre 1 -- Definition</a> : comprendre en detail ce qu'est OpenClaw et ce que ce n'est pas</li>
-  <li><a href="chapitre-02.html">Chapitre 2 -- Installation</a> : installer OpenClaw de zero sur un serveur</li>
+  <li><a href="01-00-sommaire.html">Chapitre 1 -- Definition</a> : comprendre en detail ce qu'est OpenClaw et ce que ce n'est pas</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : installer OpenClaw de zero sur un serveur</li>
 </ul>
 
 <h2>Liens utiles</h2>
@@ -641,8 +795,24 @@ def build_decouverte_page():
 </section>
 """
 
-    page_html = render_page('C\'est quoi OpenClaw ?', content, 'decouverte')
+    sidebar_html = build_sidebar(all_sections, 'decouverte', None)
+    page_html = render_page('C\'est quoi OpenClaw ?', content, sidebar_html)
     write_page('decouverte.html', page_html)
+
+
+# ---------------------------------------------------------------------------
+# Cleanup old files
+# ---------------------------------------------------------------------------
+
+def cleanup_old_chapter_files():
+    """Remove old chapitre-XX.html files from repo root."""
+    removed = 0
+    for f in os.listdir(REPO_ROOT):
+        if re.match(r'^chapitre-\d+\.html$', f):
+            os.remove(os.path.join(REPO_ROOT, f))
+            print(f'  [cleanup] removed {f}')
+            removed += 1
+    return removed
 
 
 # ---------------------------------------------------------------------------
@@ -650,14 +820,42 @@ def build_decouverte_page():
 # ---------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    print('OpenClaw Field Playbook -- build multi-page site')
-    print('=' * 50)
+    print('OpenClaw Field Playbook -- build multi-page site (v2: 1 page per section)')
+    print('=' * 60)
 
-    build_index_page()
-    build_chapter_pages()
-    build_checklist_page()
-    build_contribuer_page()
-    build_decouverte_page()
+    # Cleanup old chapter files
+    removed = cleanup_old_chapter_files()
+    if removed:
+        print(f'  Removed {removed} old chapitre-XX.html files')
+        print()
 
-    print('=' * 50)
+    # Build section registry
+    all_sections = build_section_registry()
+    print(f'Found {len(all_sections)} sections across {len(CHAPTERS)} chapters')
+    print()
+
+    # Build all section pages
+    print('Building section pages...')
+    counts = build_section_pages(all_sections)
+    print()
+
+    # Build utility pages
+    print('Building utility pages...')
+    build_index_page(all_sections)
+    build_checklist_page(all_sections)
+    build_contribuer_page(all_sections)
+    build_decouverte_page(all_sections)
+    print()
+
+    # Summary
+    print('=' * 60)
+    print('Build summary:')
+    total = 0
+    for entry, chapter_num, short_title, _ in CHAPTERS:
+        n = counts.get(chapter_num, 0)
+        total += n
+        print(f'  Chapitre {int(chapter_num)} ({short_title}): {n} pages')
+    print(f'  Utility pages: 4 (index, checklist, contribuer, decouverte)')
+    print(f'  TOTAL: {total + 4} HTML files')
+    print()
     print('Build complete. All files written to repo root.')

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.15 -- Les crons : automatisations planifiees | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html" class="active">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="315-les-crons-automatisations-planifiees">3.15 -- Les crons : automatisations planifiees</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un agent reactif repond quand vous lui parlez. Un agent proactif agit sans que vous le demandiez, a des moments definis.</p>
+<p>Les crons sont le mecanisme de proactivite. Un cron = une action planifiee qui se declenche a heure fixe. Le briefing du matin a 7h. Le recap du soir a 18h. Le triage email toutes les 2 heures. Le heartbeat qui verifie que tout fonctionne.</p>
+<h2 id="les-4-crons-essentiels">Les 4 crons essentiels</h2>
+<h3 id="1-briefing-matin">1. Briefing matin</h3>
+<p>Le plus important. Detail complet dans la section 3.16.</p>
+<pre class="codehilite"><code>openclaw cron add --name &quot;briefing-matin&quot; \
+  --schedule &quot;0 7 * * 1-5&quot; \
+  --prompt &quot;Genere mon briefing du matin selon le format defini dans CONSTITUTION.md&quot;
+</code></pre>
+
+<p>Declenchement : lundi au vendredi, 7h00.</p>
+<h3 id="2-recap-soir">2. Recap soir</h3>
+<p>Resume de la journee. Ce qui a ete fait, ce qui reste, ce qui a change.</p>
+<pre class="codehilite"><code>openclaw cron add --name &quot;recap-soir&quot; \
+  --schedule &quot;0 18 * * 1-5&quot; \
+  --prompt &quot;Resume de la journee : decisions prises, taches completees, 
+  points en attente. Mets a jour MEMORY.md avec ce qui doit etre retenu.&quot;
+</code></pre>
+
+<p>Declenchement : lundi au vendredi, 18h00.</p>
+<p>Le recap soir fait le lien avec le briefing du lendemain. Ce que le recap capture le soir, le briefing le presente le matin.</p>
+<h3 id="3-triage-email">3. Triage email</h3>
+<p>Classement periodique des emails entrants.</p>
+<pre class="codehilite"><code>openclaw cron add --name &quot;triage-email&quot; \
+  --schedule &quot;0 9,13,17 * * 1-5&quot; \
+  --prompt &quot;Trie les emails recus depuis le dernier triage. 
+  Classe en urgent/a-traiter/informatif. 
+  Notifie-moi uniquement s'il y a des urgents.&quot;
+</code></pre>
+
+<p>Declenchement : 3 fois par jour (9h, 13h, 17h).</p>
+<p>Note : ne triez pas toutes les 30 minutes. L'email n'est pas un chat. 3 fois par jour suffit pour la grande majorite des contextes.</p>
+<h3 id="4-heartbeat">4. Heartbeat</h3>
+<p>Verification que l'agent et ses connexions fonctionnent.</p>
+<pre class="codehilite"><code>openclaw cron add --name &quot;heartbeat&quot; \
+  --schedule &quot;0 6 * * *&quot; \
+  --prompt &quot;Verifie que toutes les connexions sont actives 
+  (calendrier, email, taches). Signale uniquement les problemes.&quot;
+</code></pre>
+
+<p>Declenchement : tous les jours, 6h00 (avant le briefing).</p>
+<p>Le heartbeat est silencieux quand tout va bien. Il ne vous notifie que si quelque chose est casse.</p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="syntaxe-cron">Syntaxe cron</h3>
+<pre class="codehilite"><code>openclaw cron add --name &quot;[nom]&quot; \
+  --schedule &quot;[expression cron]&quot; \
+  --prompt &quot;[instruction pour l'agent]&quot;
+</code></pre>
+
+<p>Expressions cron courantes :</p>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0 7 * * 1-5</code></td>
+<td>Lundi-vendredi a 7h</td>
+</tr>
+<tr>
+<td><code>0 7 * * *</code></td>
+<td>Tous les jours a 7h</td>
+</tr>
+<tr>
+<td><code>0 */2 * * 1-5</code></td>
+<td>Toutes les 2h, lun-ven</td>
+</tr>
+<tr>
+<td><code>0 9,13,17 * * 1-5</code></td>
+<td>9h, 13h, 17h, lun-ven</td>
+</tr>
+<tr>
+<td><code>30 8 * * 1</code></td>
+<td>Lundi a 8h30</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gestion-des-crons">Gestion des crons</h3>
+<pre class="codehilite"><code>openclaw cron list              # Voir tous les crons actifs
+openclaw cron pause [nom]       # Mettre en pause
+openclaw cron resume [nom]      # Reactiver
+openclaw cron remove [nom]      # Supprimer
+openclaw cron logs [nom]        # Voir les logs d'execution
+</code></pre>
+
+<h2 id="commencer-par-un-seul-cron">Commencer par UN seul cron</h2>
+<p>Regle de Steinberg appliquee aux crons : commencez par un seul. Le briefing matin.</p>
+<p>Pourquoi :
+- Vous validez que le mecanisme de cron fonctionne
+- Vous verifiez que le prompt produit un resultat utile
+- Vous ajustez l'heure et le contenu avant d'en ajouter d'autres
+- Un cron mal configure qui tourne 3 fois par jour, c'est 3 fois plus de bruit qu'un seul</p>
+<p>Ordre d'ajout recommande :</p>
+<pre class="codehilite"><code>Semaine 1 : briefing matin
+Semaine 2 : recap soir (si le briefing est valide)
+Semaine 3 : triage email (si l'email est connecte)
+Semaine 4 : heartbeat
+</code></pre>
+
+<h2 id="etape-par-etape">Etape par etape</h2>
+<ol>
+<li>Creez le cron "briefing-matin" avec le prompt de la section 3.16</li>
+<li>Verifiez le premier briefing le lendemain matin</li>
+<li>Ajustez le prompt si le resultat n'est pas satisfaisant</li>
+<li>Vivez avec pendant 5 jours</li>
+<li>Ajoutez le cron suivant seulement quand le premier est stable</li>
+</ol>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Trop de crons d'entree</strong> : 8 crons des le premier jour. Vous etes noye de notifications. Commencez par 1.</p>
+<p><strong>Crons trop frequents</strong> : Triage email toutes les 15 minutes. L'agent consomme des tokens pour des resultats quasi identiques. Reduisez la frequence.</p>
+<p><strong>Prompts de cron trop vagues</strong> : "Fais un point." Un point sur quoi ? Avec quelles sources ? Quel format ? Soyez aussi precis dans un prompt de cron que dans une interaction directe.</p>
+<p><strong>Ne pas lire les logs</strong> : Un cron qui echoue silencieusement pendant 2 semaines. Verifiez les logs regulierement, au moins au debut.</p>
+<p><strong>Pas de heartbeat</strong> : Tout fonctionne jusqu'au jour ou le token API expire et le briefing est vide. Le heartbeat detecte les problemes avant qu'ils impactent votre travail.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Au moins 1 cron actif (briefing matin recommande)</li>
+<li>[ ] Le prompt du cron est precis et teste</li>
+<li>[ ] L'heure de declenchement correspond a votre rythme</li>
+<li>[ ] Les logs sont accessibles et verifies</li>
+<li>[ ] Pas plus de 2 crons actifs la premiere semaine</li>
+<li>[ ] Heartbeat prevu (meme s'il est ajoute plus tard)</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/15-crons.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-14-souverainete-donnees.html">&larr; 3.14 -- Souverainete des donnees</a>
+<a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (methode Steinberg) &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

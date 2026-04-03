@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.9 -- WORKFLOWS.md | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Ecrire votre system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personnalite et ton</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration : la premiere v...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Pourquoi un systeme de ta...</a>
+    <a href="04-05-comment-taches.html">4.5 -- Comment les taches se font</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Base de donnees comme sou...</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Reconnaitre une routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run avant confiance</a>
+    <a href="04-09-workflows-md.html" class="active">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- Le rythme hebdomadaire</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- La confiance est une con...</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- Le boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit : que peut acceder...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Configuration bilingue</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="49-workflowsmd">4.9 -- WORKFLOWS.md</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un workflow documente, c'est une routine que n'importe qui (vous, un autre dev, un autre agent) peut executer sans deviner les etapes. Si la procedure est dans votre tete, elle meurt quand vous changez d'outil ou quand vous oubliez.</p>
+<p>WORKFLOWS.md est le fichier qui contient toutes vos procedures standardisees. L'agent le lit, l'execute, et le met a jour quand une etape change.</p>
+<h2 id="format-standardise">Format standardise</h2>
+<p>Chaque workflow suit la meme structure :</p>
+<pre class="codehilite"><code class="language-markdown">## [Nom du workflow]
+
+**Declencheur :** Quand ce workflow se lance (manuellement, cron, evenement).
+**Niveau de confiance :** 1 (dry run) / 2 (avec validation) / 3 (autonome)
+**Derniere verification :** YYYY-MM-DD
+
+### Prerequis
+- [Ce qui doit etre vrai avant de commencer]
+- [Acces necessaires]
+
+### Etapes
+1. [Action concrete avec la commande exacte]
+2. [Action suivante]
+3. [Action suivante]
+
+### Verification
+- [ ] [Comment savoir que ca a marche]
+- [ ] [Test de validation]
+
+### En cas d'erreur
+- Si [erreur A] : [action corrective]
+- Si [erreur B] : [action corrective]
+- Si inconnu : arreter et signaler.
+</code></pre>
+
+<h2 id="exemples-concrets">Exemples concrets</h2>
+<h3 id="deploiement-cockpit">Deploiement cockpit</h3>
+<pre class="codehilite"><code class="language-markdown">## Deployer cockpit
+
+**Declencheur :** Manuel, apres merge sur main.
+**Niveau de confiance :** 2 (avec validation)
+**Derniere verification :** 2026-03-28
+
+### Prerequis
+- Branch main a jour (git pull)
+- Tests locaux passes
+- Aucun deployment en cours
+
+### Etapes
+1. `cd /opt/cockpit &amp;&amp; git pull origin main`
+2. `docker compose build --no-cache`
+3. `docker compose down &amp;&amp; docker compose up -d`
+4. Attendre 10 secondes.
+5. `curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000`
+   Attendu : 200
+
+### Verification
+- [ ] curl retourne 200
+- [ ] `docker ps` montre le container &quot;Up&quot;
+- [ ] Les logs ne contiennent pas d'erreur : `docker logs cockpit --tail 20`
+
+### En cas d'erreur
+- Si build echoue : verifier les dependances dans package.json.
+- Si le container ne demarre pas : `docker logs cockpit` pour diagnostic.
+- Si curl retourne 502 : le service met du temps a demarrer, attendre 30s et retester.
+- Si inconnu : rollback avec `git checkout HEAD~1 &amp;&amp; docker compose up -d`
+</code></pre>
+
+<h3 id="creer-une-tache">Creer une tache</h3>
+<pre class="codehilite"><code class="language-markdown">## Creer une tache
+
+**Declencheur :** Manuel.
+**Niveau de confiance :** 3 (autonome)
+**Derniere verification :** 2026-03-25
+
+### Prerequis
+- Acces PostgreSQL
+
+### Etapes
+1. `./tasks.sh add &quot;Titre de la tache&quot; [priority] [project] [deadline]`
+2. Confirmer la creation : `./tasks.sh list todo`
+
+### Verification
+- [ ] La tache apparait dans la liste avec le bon statut et la bonne priorite.
+
+### En cas d'erreur
+- Si connexion PostgreSQL echoue : verifier que le service tourne (`systemctl status postgresql`).
+</code></pre>
+
+<h3 id="rotation-des-secrets">Rotation des secrets</h3>
+<pre class="codehilite"><code class="language-markdown">## Rotation des secrets
+
+**Declencheur :** Mensuel (1er du mois) ou apres incident de securite.
+**Niveau de confiance :** 2 (avec validation)
+**Derniere verification :** 2026-03-01
+
+### Prerequis
+- Acces Vault
+- Acces root/sudo
+- Fenetre de maintenance (pas de deploiement en cours)
+
+### Etapes
+1. Generer le nouveau secret : `openssl rand -hex 32`
+2. Stocker dans Vault : `vault kv put secret/[service] key=[nouveau_secret]`
+3. Mettre a jour la config du service.
+4. Redemarrer le service : `docker compose restart [service]`
+5. Tester le service : `curl -s http://localhost:[port]/health`
+6. Logger la rotation : `echo &quot;$(date) [service] secret rotated&quot; &gt;&gt; /var/log/secret-rotation.log`
+
+### Verification
+- [ ] Le service repond correctement avec le nouveau secret.
+- [ ] L'ancien secret ne fonctionne plus.
+- [ ] La rotation est loggee.
+
+### En cas d'erreur
+- Si le service ne demarre pas : restaurer l'ancien secret depuis Vault (version precedente).
+- Si inconnu : ne pas continuer les autres rotations, diagnostiquer d'abord.
+</code></pre>
+
+<h2 id="organiser-le-fichier">Organiser le fichier</h2>
+<p>Un seul fichier WORKFLOWS.md avec une table des matieres :</p>
+<pre class="codehilite"><code class="language-markdown"># WORKFLOWS.md
+
+## Table des matieres
+1. [Deployer cockpit](#deployer-cockpit)
+2. [Creer une tache](#creer-une-tache)
+3. [Rotation des secrets](#rotation-des-secrets)
+4. [Health check quotidien](#health-check-quotidien)
+5. [Backup base de donnees](#backup-base-de-donnees)
+</code></pre>
+
+<p>Quand le fichier depasse 500 lignes, decoupez en fichiers separes dans un dossier <code>workflows/</code>.</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Pas de section "En cas d'erreur".</strong> Tout va bien jusqu'au jour ou ca casse. Sans procedure de rollback, vous improvisez sous stress.</p>
+<p><strong>Commandes approximatives.</strong> "Deployer le service" au lieu de la commande exacte. Si la commande n'est pas copiable-collable, elle n'est pas assez precise.</p>
+<p><strong>Ne jamais mettre a jour.</strong> Le workflow date de 6 mois, les chemins ont change, une etape a ete ajoutee a l'oral. Verifiez chaque workflow au moins une fois par mois.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Creez <code>WORKFLOWS.md</code> a la racine du projet.</li>
+<li>Documentez votre workflow le plus frequent (celui que vous faites chaque jour).</li>
+<li>Testez : donnez le workflow a l'agent et demandez-lui de l'executer en dry run.</li>
+<li>Corrigez les etapes manquantes ou imprecises.</li>
+<li>Ajoutez un workflow par semaine jusqu'a ce que vos routines principales soient couvertes.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] WORKFLOWS.md existe et contient au moins 3 workflows.</li>
+<li>[ ] Chaque workflow suit le format standardise (prerequis, etapes, verification, erreur).</li>
+<li>[ ] Les commandes sont exactes et copiables-collables.</li>
+<li>[ ] Chaque workflow a ete teste en dry run par l'agent.</li>
+<li>[ ] La date de derniere verification est renseignee et recente (&lt; 1 mois).</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/09-workflows-md.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-08-dry-run.html">&larr; 4.8 -- Dry run avant confiance</a>
+<a href="04-10-rythme-hebdo.html">4.10 -- Le rythme hebdomadaire &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

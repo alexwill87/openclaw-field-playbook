@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.3 -- USER.md : votre profil pour l'agent | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html" class="active">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="33-usermd-votre-profil-pour-lagent">3.3 -- USER.md : votre profil pour l'agent</h1>
+<h2 id="contexte">Contexte</h2>
+<p>SOUL.md definit qui est l'agent. USER.md definit qui VOUS etes.</p>
+<p>Sans USER.md, l'agent repond dans le vide. Il ne sait pas que vous detestez les longs emails. Que vous etes en phase de levee de fonds. Que vous ne travaillez jamais le vendredi apres-midi. Que votre interlocuteur principal s'appelle Marc et qu'il est directeur technique chez votre plus gros client.</p>
+<p>USER.md est le fichier le plus sous-estime de la configuration. C'est aussi celui qui fait la plus grande difference.</p>
+<h2 id="lonboarding-interview-methode-steinberg">L'onboarding interview (methode Steinberg)</h2>
+<p>Steinberg recommande de commencer par une "interview d'onboarding" : 20 questions que l'agent vous pose pour construire votre profil. Voici la liste adaptee :</p>
+<h3 id="identite-et-role">Identite et role</h3>
+<ol>
+<li>Quel est votre role actuel ? Depuis combien de temps ?</li>
+<li>A qui rendez-vous des comptes ? Qui vous rend des comptes ?</li>
+<li>Quels sont vos 3 objectifs principaux ce trimestre ?</li>
+<li>Quelle est votre expertise distinctive (ce que vous faites mieux que la moyenne) ?</li>
+</ol>
+<h3 id="style-de-travail">Style de travail</h3>
+<ol>
+<li>Comment preferez-vous recevoir de l'information ? (listes, paragraphes, tableaux, visuels)</li>
+<li>Quel est votre rythme de travail ? (matin/soir, blocs de focus, disponibilite)</li>
+<li>Qu'est-ce qui vous irrite dans la communication ecrite ?</li>
+<li>Tutoiement ou vouvoiement avec l'agent ?</li>
+</ol>
+<h3 id="contexte-metier">Contexte metier</h3>
+<ol>
+<li>Quel est votre secteur d'activite ?</li>
+<li>Quelle est la taille de votre organisation ?</li>
+<li>Quels sont vos outils principaux au quotidien ?</li>
+<li>Quels sont les 3 sujets sur lesquels vous passez le plus de temps ?</li>
+</ol>
+<h3 id="preferences-de-lagent">Preferences de l'agent</h3>
+<ol>
+<li>Que doit faire l'agent quand il ne sait pas ? (deviner, demander, signaler)</li>
+<li>Preferez-vous une reponse rapide et imparfaite ou lente et precise ?</li>
+<li>L'agent doit-il vous challenger ou executer ?</li>
+<li>Quel niveau de detail attendez-vous par defaut ?</li>
+</ol>
+<h3 id="relations-cles">Relations cles</h3>
+<ol>
+<li>Quels sont vos 5 interlocuteurs les plus frequents ? (nom, role, contexte)</li>
+<li>Y a-t-il des relations sensibles ou l'agent doit etre particulierement prudent ?</li>
+<li>Qui sont les personnes dont les messages meritent une reponse prioritaire ?</li>
+</ol>
+<h3 id="limites">Limites</h3>
+<ol>
+<li>Qu'est-ce que l'agent ne doit JAMAIS faire en votre nom ?</li>
+</ol>
+<h2 id="ce-qui-appartient-a-usermd">Ce qui appartient a USER.md</h2>
+<p>USER.md contient ce qui est STABLE dans votre profil. La regle :</p>
+<p><strong>Si ca change plus d'une fois par mois, ca ne va pas dans USER.md.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Appartient a USER.md</th>
+<th>N'appartient PAS a USER.md</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Votre role et vos responsabilites</td>
+<td>Votre emploi du temps de la semaine</td>
+</tr>
+<tr>
+<td>Vos preferences de communication</td>
+<td>Vos taches en cours</td>
+</tr>
+<tr>
+<td>Vos interlocuteurs cles</td>
+<td>Les decisions en attente</td>
+</tr>
+<tr>
+<td>Votre expertise</td>
+<td>Les faits recents (ca va dans MEMORY.md)</td>
+</tr>
+<tr>
+<td>Vos objectifs trimestriels</td>
+<td>Votre humeur du jour</td>
+</tr>
+<tr>
+<td>Vos outils de travail</td>
+<td>Les deadlines specifiques</td>
+</tr>
+<tr>
+<td>Vos limites et interdictions</td>
+<td>Le contenu d'une reunion</td>
+</tr>
+</tbody>
+</table>
+<p>Ou vont les informations exclues :
+- Emploi du temps : connexion calendrier (section 3.10)
+- Taches en cours : systeme de taches (section 3.11)
+- Faits recents : MEMORY.md (section 3.7)
+- Decisions en attente : session active</p>
+<h2 id="etape-par-etape">Etape par etape</h2>
+<h3 id="1-lancer-lonboarding-interview">1. Lancer l'onboarding interview</h3>
+<pre class="codehilite"><code>Je veux que tu me poses les 20 questions d'onboarding
+une par une. Attends ma reponse avant de passer a la suivante.
+A la fin, genere mon USER.md.
+</code></pre>
+
+<h3 id="2-relire-et-ajuster">2. Relire et ajuster</h3>
+<p>L'agent va generer un USER.md. Relisez-le. Supprimez ce qui est trop volatile. Ajoutez ce qui manque.</p>
+<h3 id="3-valider-avec-le-test-des-5-phrases">3. Valider avec le test des 5 phrases</h3>
+<pre class="codehilite"><code>Decris-moi en 5 phrases.
+</code></pre>
+
+<p>Verifiez que :
+- Les 5 phrases sont factuelles (pas de flatterie)
+- Elles couvrent role, style, contexte
+- Rien d'important ne manque
+- Rien de faux n'apparait</p>
+<p>Si la description est generique ("Vous etes un professionnel motive qui..."), USER.md est trop vague.</p>
+<h3 id="4-mettre-a-jour-trimestriellement">4. Mettre a jour trimestriellement</h3>
+<p>Bloquez 15 minutes chaque trimestre pour relire USER.md. Vos objectifs changent. Vos interlocuteurs evoluent. Votre role peut avoir bouge.</p>
+<h2 id="template-usermd-complet">Template USER.md complet</h2>
+<pre class="codehilite"><code class="language-markdown"># USER.md
+
+## Identite
+- Nom : [votre nom]
+- Role : [votre role actuel]
+- Organisation : [nom, secteur, taille]
+- Responsabilites principales : [3-5 lignes max]
+
+## Objectifs ce trimestre
+1. [Objectif 1]
+2. [Objectif 2]
+3. [Objectif 3]
+
+## Style de travail
+- Format prefere : [listes / paragraphes / tableaux]
+- Longueur des reponses : [concis / detaille / ca depend -- preciser]
+- Rythme : [matin tot / journee standard / soir]
+- Focus : [blocs de 2h / multitache / variable]
+- Langue de travail : [francais / anglais / les deux selon contexte]
+
+## Communication
+- Tutoiement / Vouvoiement : [choix]
+- Ce qui m'irrite : [exemples concrets]
+- Ce que j'apprecie : [exemples concrets]
+- Quand je dis &quot;[expression recurrente]&quot;, je veux dire [traduction]
+
+## Interlocuteurs cles
+| Nom | Role | Contexte | Priorite |
+|-----|------|----------|----------|
+| [Nom 1] | [Role] | [Contexte de la relation] | Haute |
+| [Nom 2] | [Role] | [Contexte de la relation] | Moyenne |
+| [Nom 3] | [Role] | [Contexte de la relation] | Normale |
+
+## Preferences agent
+- Quand tu ne sais pas : [demander / signaler / proposer une hypothese]
+- Rapidite vs precision : [rapide et imparfait / lent et precis]
+- Challenger vs executer : [challenger / executer / les deux]
+- Niveau de detail par defaut : [minimum / standard / maximum]
+
+## Interdictions
+- Ne jamais [interdit 1]
+- Ne jamais [interdit 2]
+- Ne jamais [interdit 3]
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>USER.md trop court</strong> : "Je suis dev, je code en Python." L'agent ne vous connait pas. Il donnera des reponses generiques a un "dev Python" generique.</p>
+<p><strong>USER.md trop long</strong> : 200 lignes de biographie. L'agent perd le signal dans le bruit. Visez 40-60 lignes.</p>
+<p><strong>Mettre des taches dans USER.md</strong> : "Je dois finir le rapport pour vendredi." Ca change chaque semaine. Ca va dans le systeme de taches ou dans MEMORY.md.</p>
+<p><strong>Ne jamais mettre a jour</strong> : Vous avez change de role il y a 3 mois mais USER.md dit encore l'ancien. L'agent travaille avec des informations obsoletes.</p>
+<p><strong>Oublier les interlocuteurs</strong> : L'agent ne peut pas savoir que "Marc" dans vos emails est votre client principal si vous ne le lui dites pas.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Onboarding interview completee (ou reponses aux 20 questions)</li>
+<li>[ ] USER.md genere et relu</li>
+<li>[ ] Test "Decris-moi en 5 phrases" reussi</li>
+<li>[ ] Aucune information volatile dans le fichier</li>
+<li>[ ] Interlocuteurs cles documentes</li>
+<li>[ ] Preferences agent explicites</li>
+<li>[ ] Date de prochaine revision notee (dans 3 mois)</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/03-user-md.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-02-soul-md.html">&larr; 3.2 -- SOUL.md : l'identite de l'agent</a>
+<a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre des agents &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

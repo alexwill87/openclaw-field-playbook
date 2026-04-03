@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.5 -- Comment les taches se font | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Ecrire votre system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personnalite et ton</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration : la premiere v...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Pourquoi un systeme de ta...</a>
+    <a href="04-05-comment-taches.html" class="active">4.5 -- Comment les taches se font</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Base de donnees comme sou...</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Reconnaitre une routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run avant confiance</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- Le rythme hebdomadaire</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- La confiance est une con...</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- Le boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit : que peut acceder...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Configuration bilingue</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="45-comment-les-taches-se-font">4.5 -- Comment les taches se font</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Avoir un systeme de taches ne suffit pas. Ce qui compte, c'est le workflow : qui propose quoi, qui decide, qui execute. Si vous ne definissez pas ce workflow, l'agent va soit tout faire sans demander (dangereux), soit ne rien faire sans qu'on lui dise (inutile).</p>
+<p>Le bon equilibre, selon le modele Steinberg : l'agent propose, vous decidez.</p>
+<h2 id="le-workflow-proposedecide">Le workflow propose/decide</h2>
+<h3 id="1-lagent-propose">1. L'agent propose</h3>
+<p>L'agent analyse les taches en cours, les deadlines, le contexte. Il propose :</p>
+<pre class="codehilite"><code>Bonjour. 3 taches prioritaires aujourd'hui :
+
+1. [URGENT] Migration S3 — en retard de 2 jours. 
+   Proposition : finir le script de transfert, tester, deployer.
+
+2. [NORMAL] Doc API /users — pas de deadline, mais bloque l'onboarding dev.
+   Proposition : generer le squelette depuis le code, vous completez.
+
+3. [INFO] Certificat SSL expire dans 43 jours.
+   Proposition : planifier le renouvellement pour semaine prochaine.
+
+Quoi en premier ?
+</code></pre>
+
+<h3 id="2-vous-decidez">2. Vous decidez</h3>
+<p>Vous ne validez pas tout en bloc. Vous triez :</p>
+<ul>
+<li>"1 : oui, commence par le script."</li>
+<li>"2 : pas aujourd'hui."</li>
+<li>"3 : ajoute au planning semaine prochaine."</li>
+</ul>
+<p>C'est du triage. L'agent fait le travail de preparation (analyser, prioriser, formuler). Vous gardez le jugement (decider, prioriser selon vos contraintes reelles).</p>
+<h3 id="3-lagent-execute-et-rend-compte">3. L'agent execute et rend compte</h3>
+<p>Apres validation, l'agent execute et met a jour le statut :</p>
+<pre class="codehilite"><code>Migration S3 : script de transfert termine. 
+Test de restauration : OK (3 fichiers, 12s).
+Statut mis a jour : in_progress -&gt; done.
+
+Prochaine tache ?
+</code></pre>
+
+<h2 id="triage-sans-deleguer-le-jugement">Triage sans deleguer le jugement</h2>
+<p>Le piege : laisser l'agent decider de la priorite. Il n'a pas votre contexte complet. Il ne sait pas que le client X appelle demain, que vous etes fatigue, que le budget est serre.</p>
+<p>Ce que l'agent peut faire :
+- Ordonner par deadline.
+- Signaler les retards.
+- Identifier les dependances.
+- Proposer un plan.</p>
+<p>Ce que vous devez faire :
+- Valider ou reordonner.
+- Decider de reporter ou annuler.
+- Juger de l'urgence reelle (pas la deadline theorique).</p>
+<h2 id="les-taches-nourrissent-le-briefing">Les taches nourrissent le briefing</h2>
+<p>Chaque tache terminee enrichit le contexte. Apres une semaine, votre agent peut dire :</p>
+<pre class="codehilite"><code>Cette semaine : 8 taches terminees, 2 reportees, 1 bloquee.
+Le pattern : les taches infra se terminent vite, les taches doc trainent.
+Suggestion : bloquer 2h doc le jeudi.
+</code></pre>
+
+<p>Ce feedback n'est possible que si les taches sont tracees avec leur statut et leurs dates. Un fichier texte sans dates ne permet pas ca.</p>
+<h2 id="format-minimal-dune-tache">Format minimal d'une tache</h2>
+<p>Pour que le workflow fonctionne, chaque tache a besoin de :</p>
+<pre class="codehilite"><code>- Titre (quoi)
+- Statut (todo / in_progress / done / blocked)
+- Priorite (high / medium / low)
+- Date de creation
+- Date de deadline (optionnel)
+- Notes (optionnel — contexte, blocages, decisions)
+</code></pre>
+
+<p>Pas besoin de plus au debut. Ajoutez des champs quand le besoin se manifeste, pas avant.</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>L'agent decide seul.</strong> Il ferme une tache, en ouvre une autre, change les priorites. Vous decouvrez les changements apres coup. Solution : regle dans le system prompt -- "Ne change jamais le statut d'une tache sans validation."</p>
+<p><strong>Vous micro-managez.</strong> Chaque sous-etape doit etre validee. L'agent passe plus de temps a attendre qu'a executer. Solution : definir des niveaux de confiance (voir section 4.11).</p>
+<p><strong>Pas de rendu de compte.</strong> L'agent execute mais ne dit pas ce qu'il a fait. Vous ne savez pas ou on en est. Solution : exiger un resume apres chaque tache completee.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Ajoutez cette regle au system prompt : "Propose les taches, ne les execute pas sans validation."</li>
+<li>Demandez un briefing quotidien : "Quelles taches prioritaires aujourd'hui ?"</li>
+<li>Pratiquez le triage : validez, reportez ou annulez chaque proposition.</li>
+<li>Apres chaque execution, verifiez que le statut est mis a jour.</li>
+<li>En fin de semaine, demandez un resume.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] L'agent propose sans executer automatiquement.</li>
+<li>[ ] Vous validez chaque tache avant execution.</li>
+<li>[ ] Les statuts sont mis a jour apres chaque action.</li>
+<li>[ ] Un resume hebdomadaire est possible a partir des donnees.</li>
+<li>[ ] L'agent ne change jamais une priorite sans votre accord.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/05-comment-taches.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-04-pourquoi-taches.html">&larr; 4.4 -- Pourquoi un systeme de taches</a>
+<a href="04-06-db-source-verite.html">4.6 -- Base de donnees comme source de verite &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.6 -- Quand l'agent se trompe | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html" class="active">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="56-quand-lagent-se-trompe">5.6 -- Quand l'agent se trompe</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Votre agent va se tromper. Pas "peut-etre" -- va. Les LLM hallucinent, sur-interpretent, appliquent le mauvais contexte. Ce n'est pas un defaut, c'est une propriete. La question n'est pas "comment empecher toute erreur" mais "comment detecter, corriger et prevenir".</p>
+<h2 id="types-derreurs">Types d'erreurs</h2>
+<h3 id="hallucination-factuelle">Hallucination factuelle</h3>
+<p>L'agent affirme quelque chose de faux avec assurance.</p>
+<pre class="codehilite"><code>Agent : &quot;Votre certificat SSL expire le 15 mai.&quot;
+Realite : il expire le 15 juin.
+</code></pre>
+
+<h3 id="sur-interpretation">Sur-interpretation</h3>
+<p>L'agent interprete plus que ce que vous avez dit.</p>
+<pre class="codehilite"><code>Vous : &quot;Le deploy a plante.&quot;
+Agent : &quot;J'ai identifie le probleme : la base de donnees a manque de memoire,
+        ce qui a cause un OOM kill du container, probablement lie a une fuite
+        memoire dans le dernier commit.&quot;
+Realite : c'etait une typo dans le docker-compose.yml.
+</code></pre>
+
+<h3 id="mauvais-contexte">Mauvais contexte</h3>
+<p>L'agent applique une information d'un contexte a un autre.</p>
+<pre class="codehilite"><code>Vous travaillez sur le projet A.
+L'agent applique les regles du projet B.
+</code></pre>
+
+<h3 id="execution-incorrecte">Execution incorrecte</h3>
+<p>L'agent fait la bonne chose mais mal.</p>
+<pre class="codehilite"><code>Vous : &quot;Backup la base.&quot;
+Agent : pg_dump sans compression, dans le mauvais dossier.
+</code></pre>
+
+<h2 id="protocole-de-correction">Protocole de correction</h2>
+<h3 id="1-diagnostic">1. Diagnostic</h3>
+<p>Identifiez le type d'erreur. Utilisez ce prompt :</p>
+<pre class="codehilite"><code>Tu viens de te tromper. Avant de corriger, reponds :
+1. Quelle etait l'erreur exacte ?
+2. Quel type : hallucination, sur-interpretation, mauvais contexte, execution incorrecte ?
+3. Pourquoi l'erreur s'est-elle produite (d'apres toi) ?
+</code></pre>
+
+<h3 id="2-correction">2. Correction</h3>
+<p>Corrigez les degats d'abord, analysez apres.</p>
+<ul>
+<li>Si l'agent a modifie un fichier : <code>git diff</code> pour voir ce qui a change, <code>git checkout</code> si necessaire.</li>
+<li>Si l'agent a execute une commande : verifier l'impact (<code>docker ps</code>, <code>psql</code>, logs).</li>
+<li>Si l'agent a donne une mauvaise information : corrigez le fait dans la memoire.</li>
+</ul>
+<h3 id="3-prevention">3. Prevention</h3>
+<p>Apres correction, empecchez la recidive :</p>
+<ul>
+<li><strong>Hallucination</strong> : ajoutez au prompt -- "Si tu n'es pas sur d'un fait, dis-le. Ne fabrique pas."</li>
+<li><strong>Sur-interpretation</strong> : utilisez le prompt de Steinberg (voir ci-dessous).</li>
+<li><strong>Mauvais contexte</strong> : clarifiez quel projet/contexte est actif.</li>
+<li><strong>Execution incorrecte</strong> : mettez a jour le workflow dans WORKFLOWS.md.</li>
+</ul>
+<h2 id="le-prompt-de-correction-de-steinberg">Le prompt de correction de Steinberg</h2>
+<p>Quand l'agent sur-interprete, utilisez ce recadrage :</p>
+<pre class="codehilite"><code>Tu surinterpretes. Reformule ta reponse avec ce format :
+1. Signal : qu'est-ce que tu as observe factuellement ?
+2. Incertitude : qu'est-ce que tu ne sais PAS ?
+3. Question pour moi : qu'est-ce que tu aurais besoin de savoir pour conclure ?
+</code></pre>
+
+<p>Exemple :</p>
+<p><strong>Avant (sur-interpretation) :</strong></p>
+<pre class="codehilite"><code>&quot;Le deploy a plante a cause d'un OOM kill lie a une fuite memoire 
+dans le dernier commit. Je recommande de profiler le code et 
+d'augmenter la memoire du container.&quot;
+</code></pre>
+
+<p><strong>Apres (recadrage) :</strong></p>
+<pre class="codehilite"><code>Signal : le container cockpit est passe de &quot;Up&quot; a &quot;Exited&quot; a 14h32.
+Incertitude : je ne connais pas la cause. Ca peut etre OOM, erreur de config, 
+ou probleme de runtime.
+Question : peux-tu me montrer `docker logs cockpit --tail 50` et 
+`dmesg | tail -20` pour que je diagnostique ?
+</code></pre>
+
+<p>La difference : le recadrage distingue ce que l'agent sait de ce qu'il suppose. Ca evite les fausses pistes.</p>
+<h2 id="quand-lerreur-est-grave">Quand l'erreur est grave</h2>
+<p>Si l'agent a cause des degats (donnees supprimees, service casse, information envoyee a tort) :</p>
+<ol>
+<li><strong>Arreter l'agent.</strong> Ne lui demandez pas de corriger seul.</li>
+<li><strong>Evaluer les degats.</strong> Manuellement.</li>
+<li><strong>Restaurer si possible.</strong> Backups, git, snapshots.</li>
+<li><strong>Documenter l'incident.</strong> Quoi, quand, pourquoi, comment eviter.</li>
+<li><strong>Ajouter au boundary prompt.</strong> L'action qui a cause le probleme rejoint la liste des interdictions.</li>
+</ol>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Blame l'agent.</strong> L'erreur vient souvent de vos instructions, pas du modele. Prompt vague = reponse vague. Pas de boundary = pas de limite.</p>
+<p><strong>Ignorer l'erreur.</strong> "C'est pas grave, il a a peu pres compris." Les petites erreurs repetees deviennent des grosses erreurs.</p>
+<p><strong>Corriger sans prevenir.</strong> Vous corrigez le tir mais vous n'ajoutez pas de regle. La meme erreur revient la semaine suivante.</p>
+<p><strong>Sur-corriger.</strong> Apres une erreur, vous ajoutez 10 regles restrictives. L'agent devient inutilisable. Une regle ciblee suffit.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Quand l'agent se trompe, identifiez le type d'erreur.</li>
+<li>Corrigez les degats (fichiers, DB, services).</li>
+<li>Utilisez le prompt de recadrage si c'est de la sur-interpretation.</li>
+<li>Ajoutez une regle de prevention (prompt, boundary, workflow).</li>
+<li>Documentez l'incident si c'est une erreur grave.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous savez identifier le type d'erreur (hallucination, sur-interpretation, etc.).</li>
+<li>[ ] Le prompt de recadrage de Steinberg est dans vos notes/prompt.</li>
+<li>[ ] Les erreurs graves sont documentees avec les mesures de prevention.</li>
+<li>[ ] Le boundary prompt est mis a jour apres chaque incident.</li>
+<li>[ ] L'agent a la regle "Si tu n'es pas sur, dis-le" dans son system prompt.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/06-agent-se-trompe.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-05-derive-memoire.html">&larr; 5.5 -- Derive de la memoire</a>
+<a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integrations &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

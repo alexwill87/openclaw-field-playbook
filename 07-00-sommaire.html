@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>C'est quoi OpenClaw ? | OpenClaw Field Playbook</title>
+  <title>Chapter 7 — Localisation | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -54,73 +54,91 @@
   <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
 </div>
 <div class="nav-chapter">
-  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+  <a href="07-00-sommaire.html" class="nav-chapter-title" class="active">7. Localisation</a>
+  <div class="nav-sections">
+    <a href="07-00-en-US.html">Locale: en-US — United States (b...</a>
+    <a href="07-00-fr-FR.html">Locale: fr-FR — France</a>
+  </div>
 </div>
 <a href="checklist.html">Checklist</a>
-<a href="decouverte.html" class="active">C'est quoi OpenClaw ?</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
 <a href="contribuer.html">Contribuer</a>
     </nav>
   </aside>
 
   <main id="content">
-    
-<section class="chapter">
-<h1>C'est quoi OpenClaw ?</h1>
-<p>Cette page est pour ceux qui ne connaissent rien a OpenClaw. Pas de jargon, pas de prerequis techniques. Juste l'essentiel pour comprendre de quoi on parle.</p>
-
-<h2>En une phrase</h2>
-<p>OpenClaw est un outil qui permet de creer des assistants IA qui travaillent pour vous -- pas juste repondre a des questions, mais agir, surveiller, organiser.</p>
-
-<h2>A quoi ca sert concretement</h2>
-<p>Voici cinq exemples simples de ce qu'un agent OpenClaw peut faire pour vous :</p>
-<ul>
-  <li><strong>Briefing du matin</strong> -- Chaque matin, votre agent vous envoie un resume de ce qui s'est passe pendant la nuit : emails importants, alertes, taches du jour.</li>
-  <li><strong>Triage email</strong> -- L'agent lit vos emails, les classe par priorite, et vous signale ceux qui demandent une reponse urgente.</li>
-  <li><strong>Suivi clients</strong> -- Il surveille les messages de vos clients et vous alerte quand quelqu'un attend une reponse depuis trop longtemps.</li>
-  <li><strong>Surveillance serveur</strong> -- Il verifie que vos services tournent correctement et vous previent avant qu'un probleme ne devienne critique.</li>
-  <li><strong>Documentation automatique</strong> -- Il prend en note ce qui se passe dans votre projet et tient votre documentation a jour sans effort.</li>
-</ul>
-
-<h2>De quoi a-t-on besoin</h2>
-<ul>
-  <li>Un serveur (VPS) -- un ordinateur distant que vous louez</li>
-  <li>Une connexion internet</li>
-  <li>Une cle API pour un modele IA (OpenRouter, Anthropic, ou autre)</li>
-  <li>2 a 3 heures de configuration initiale</li>
-</ul>
-<p><strong>Budget :</strong> entre 20 et 40 EUR par mois pour le serveur et les appels API.</p>
-
-<h2>C'est quoi un VPS ?</h2>
-<p>Un VPS, c'est un ordinateur dans un datacenter que vous louez. Vous y accedez a distance, depuis votre ordinateur ou votre telephone. C'est comme un bureau virtuel toujours allume, toujours connecte. Votre agent OpenClaw vit dessus et travaille 24h/24.</p>
-
-<h2>Pourquoi pas juste ChatGPT ?</h2>
+    <section class="chapter">
+<h1 id="chapter-7-localisation">Chapter 7 — Localisation</h1>
+<blockquote>
+<p>The playbook content is universal (EN-US). This chapter documents what changes per local context — legislation, ecosystem, tools, cultural practices.</p>
+</blockquote>
+<h2 id="available-locales">Available locales</h2>
 <table>
-  <thead>
-    <tr><th>ChatGPT</th><th>OpenClaw</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Attend vos questions</td><td>Agit de lui-meme selon vos regles</td></tr>
-    <tr><td>Oublie tout entre les conversations</td><td>A une memoire persistante</td></tr>
-    <tr><td>Vit chez OpenAI</td><td>Vit chez vous, sur votre serveur</td></tr>
-  </tbody>
+<thead>
+<tr>
+<th>Locale</th>
+<th>File</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🇫🇷 France</td>
+<td><a href="fr-FR.md">fr-FR.md</a></td>
+<td>draft</td>
+</tr>
+<tr>
+<td>🇺🇸 United States</td>
+<td><a href="en-US.md">en-US.md</a></td>
+<td>draft</td>
+</tr>
+<tr>
+<td>🇨🇦 Canada (FR)</td>
+<td>fr-CA.md</td>
+<td><em>not yet created — <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">contribute</a></em></td>
+</tr>
+<tr>
+<td>🇬🇧 United Kingdom</td>
+<td>en-GB.md</td>
+<td><em>not yet created — <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">contribute</a></em></td>
+</tr>
+</tbody>
 </table>
-
-<h2>Pret a commencer ?</h2>
-<p>Si tout cela vous parle, voici les prochaines etapes :</p>
-<ul>
-  <li><a href="01-00-sommaire.html">Chapitre 1 -- Definition</a> : comprendre en detail ce qu'est OpenClaw et ce que ce n'est pas</li>
-  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : installer OpenClaw de zero sur un serveur</li>
-</ul>
-
-<h2>Liens utiles</h2>
-<ul>
-  <li><a href="https://github.com/open-claw" target="_blank">Documentation officielle OpenClaw</a></li>
-  <li><a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">Ce playbook sur GitHub</a></li>
-  <li>Livre de Dennis Steinberg sur OpenClaw (reference communautaire)</li>
-</ul>
-
+<h2 id="how-to-add-a-locale">How to add a locale</h2>
+<p>Open an Issue with label <code>new-locale</code> and include:
+- The locale code (e.g. <code>de-DE</code>)
+- A brief summary of what is locally specific
+- Whether you can write the first draft</p>
+<h2 id="language-contract">Language contract</h2>
+<p>Everything in chapters 0–6 is universal. This chapter is the only place where content differs per geography. See <code>sections/00-reading-guide.md</code> for the full language contract.</p>
+<hr />
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribute to this chapter</a></em></p>
 </section>
-
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/07-localisation/README.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-07-contribuer.html">&larr; 07 -- Comment soumettre votre cas d'usage</a>
+<a href="07-00-en-US.html">Locale: en-US — United States (baseline) &rarr;</a>
+</div>
 
     <footer>
       <p>

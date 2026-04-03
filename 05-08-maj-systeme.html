@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.8 -- Mises a jour systeme | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html" class="active">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="58-mises-a-jour-systeme">5.8 -- Mises a jour systeme</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Les mises a jour systeme, c'est l'hygiene de base. Ne pas les faire = accumulation de failles de securite. Les faire n'importe comment = casser la production. L'equilibre : regulier, teste, documente.</p>
+<h2 id="ubuntu">Ubuntu</h2>
+<h3 id="mises-a-jour-de-securite-hebdomadaire">Mises a jour de securite (hebdomadaire)</h3>
+<pre class="codehilite"><code class="language-bash"># Voir les mises a jour disponibles
+sudo apt update &amp;&amp; apt list --upgradable
+
+# Appliquer uniquement les mises a jour de securite
+sudo apt upgrade -y --only-upgrade
+
+# Ou pour les securite uniquement
+sudo unattended-upgrade --dry-run  # voir ce qui serait fait
+sudo unattended-upgrade             # appliquer
+</code></pre>
+
+<h3 id="mise-a-jour-majeure-annuelle">Mise a jour majeure (annuelle)</h3>
+<p>Ubuntu 24.04 LTS -&gt; 26.04 LTS : ne faites PAS ca un vendredi soir.</p>
+<ol>
+<li>Snapshot Hetzner complet avant.</li>
+<li>Lire les release notes.</li>
+<li>Tester sur un VPS de test si possible.</li>
+<li><code>do-release-upgrade</code> en screen/tmux (pour survivre a une deconnexion SSH).</li>
+<li>Tester tous les services apres.</li>
+</ol>
+<h3 id="configurer-les-mises-a-jour-automatiques">Configurer les mises a jour automatiques</h3>
+<pre class="codehilite"><code class="language-bash"># Installer
+sudo apt install unattended-upgrades
+
+# Configurer : /etc/apt/apt.conf.d/50unattended-upgrades
+# Garder uniquement les mises a jour de securite
+Unattended-Upgrade::Allowed-Origins {
+    &quot;${distro_id}:${distro_codename}-security&quot;;
+};
+
+# Activer les notifications par email (optionnel)
+Unattended-Upgrade::Mail &quot;votre@email.com&quot;;
+
+# Reboot automatique si necessaire (a 3h du matin)
+Unattended-Upgrade::Automatic-Reboot &quot;true&quot;;
+Unattended-Upgrade::Automatic-Reboot-Time &quot;03:00&quot;;
+</code></pre>
+
+<h2 id="docker">Docker</h2>
+<h3 id="images-docker">Images Docker</h3>
+<pre class="codehilite"><code class="language-bash"># Voir les images et leurs dates
+docker images --format &quot;{{.Repository}}:{{.Tag}} {{.CreatedSince}}&quot;
+
+# Pull les dernieres versions
+docker compose pull
+
+# Rebuild et redemarrer
+docker compose up -d --build
+
+# Nettoyer les anciennes images
+docker image prune -a --filter &quot;until=720h&quot;  # &gt; 30 jours
+</code></pre>
+
+<h3 id="docker-engine">Docker Engine</h3>
+<pre class="codehilite"><code class="language-bash"># Version actuelle
+docker version
+
+# Mise a jour
+sudo apt update &amp;&amp; sudo apt install docker-ce docker-ce-cli containerd.io
+
+# Verifier apres mise a jour
+docker version
+docker ps  # les containers tournent-ils encore ?
+</code></pre>
+
+<p>Attention : une mise a jour de Docker Engine peut redemarrer le daemon et donc arreter tous les containers. Planifiez une fenetre de maintenance.</p>
+<h2 id="nodejs">Node.js</h2>
+<h3 id="avec-nvm-recommande">Avec nvm (recommande)</h3>
+<pre class="codehilite"><code class="language-bash"># Version actuelle
+node -v
+
+# Lister les versions disponibles
+nvm ls-remote --lts
+
+# Installer une nouvelle version
+nvm install 22  # par exemple
+
+# Utiliser la nouvelle version
+nvm use 22
+
+# Tester vos applications
+cd /opt/cockpit &amp;&amp; npm test
+
+# Si tout est OK, definir comme defaut
+nvm alias default 22
+</code></pre>
+
+<h3 id="avec-apt-si-pas-de-nvm">Avec apt (si pas de nvm)</h3>
+<pre class="codehilite"><code class="language-bash"># Mettre a jour via NodeSource
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install nodejs
+</code></pre>
+
+<h2 id="vault">Vault</h2>
+<pre class="codehilite"><code class="language-bash"># Version actuelle
+vault version
+
+# Mise a jour
+# Telecharger la nouvelle version depuis releases.hashicorp.com
+wget https://releases.hashicorp.com/vault/X.Y.Z/vault_X.Y.Z_linux_amd64.zip
+unzip vault_X.Y.Z_linux_amd64.zip
+sudo mv vault /usr/local/bin/vault
+
+# Redemarrer
+sudo systemctl restart vault
+
+# Verifier
+vault status
+vault kv list secret/  # les secrets sont-ils accessibles ?
+</code></pre>
+
+<p>Attention : lisez TOUJOURS les upgrade notes de Vault avant de mettre a jour. Certaines versions ont des breaking changes sur le storage backend.</p>
+<h2 id="quand-ne-pas-mettre-a-jour">Quand NE PAS mettre a jour</h2>
+<p>Ne mettez pas a jour quand :</p>
+<ol>
+<li>
+<p><strong>Vous etes en production critique.</strong> Un client attend un livrable dans 2 heures. Ce n'est pas le moment.</p>
+</li>
+<li>
+<p><strong>C'est un vendredi.</strong> La panne du vendredi soir se resout le lundi matin. Ne mettez a jour que du lundi au jeudi.</p>
+</li>
+<li>
+<p><strong>Vous n'avez pas de backup recent.</strong> Pas de snapshot, pas de pg_dump du jour = pas de mise a jour.</p>
+</li>
+<li>
+<p><strong>La version est fraiche.</strong> La version X.0.0 vient de sortir. Attendez X.0.1 ou X.0.2. Laissez les autres essuyer les platres.</p>
+</li>
+<li>
+<p><strong>Plusieurs mises a jour en meme temps.</strong> Ne mettez pas a jour Ubuntu, Docker et Node.js le meme jour. Un changement a la fois.</p>
+</li>
+<li>
+<p><strong>Vous ne comprenez pas le changelog.</strong> Si les breaking changes ne sont pas clairs, renseignez-vous avant.</p>
+</li>
+</ol>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Ne jamais mettre a jour.</strong> Le serveur tourne sur une version de 2 ans avec des failles connues. La securite est une dette qui s'accumule.</p>
+<p><strong>Tout mettre a jour en meme temps.</strong> Si ca casse, vous ne savez pas quoi.</p>
+<p><strong>Pas de snapshot avant.</strong> La mise a jour casse quelque chose. Pas de rollback possible. 3 heures de debug au lieu de 5 minutes de restauration.</p>
+<p><strong>Mettre a jour sans tester.</strong> <code>apt upgrade -y</code> et retour a autre chose. Vous decouvrez le probleme 2 jours plus tard.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Planifiez une fenetre de maintenance (mardi ou mercredi, pas vendredi).</li>
+<li>Faites un snapshot Hetzner et un pg_dump.</li>
+<li>Mettez a jour un composant a la fois.</li>
+<li>Testez chaque service apres la mise a jour.</li>
+<li>Documentez ce qui a ete mis a jour et la date.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Les mises a jour de securite Ubuntu sont automatiques (unattended-upgrades).</li>
+<li>[ ] Les images Docker sont a jour (moins de 30 jours).</li>
+<li>[ ] Un snapshot existe avant chaque mise a jour majeure.</li>
+<li>[ ] Les mises a jour ne sont jamais faites le vendredi.</li>
+<li>[ ] Chaque mise a jour est suivie d'un test des services.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/08-maj-systeme.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-07-maj-integrations.html">&larr; 5.7 -- Mettre a jour les integrations</a>
+<a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

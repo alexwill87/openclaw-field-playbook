@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>05 -- Cabinet comptable | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
+    <a href="06-05-cabinet-comptable.html" class="active">05 -- Cabinet comptable</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- Comment soumettre votre ca...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="05-cabinet-comptable">05 -- Cabinet comptable</h1>
+<p><strong>Pour qui :</strong> cabinet d'expertise comptable ou de gestion, de 3 a 20 collaborateurs
+<strong>Temps de mise en place :</strong> 2 a 3 semaines
+<strong>Difficulte :</strong> Avance (contraintes reglementaires)</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Un cabinet comptable gere des dizaines de dossiers clients simultanement. Chaque dossier a ses echeances fiscales, ses documents a collecter, ses declarations a produire. Les collaborateurs passent un temps considerable sur le triage de documents, les rappels clients, et la verification de conformite.</p>
+<p>Le cabinet veut utiliser OpenClaw pour automatiser les taches administratives repetitives tout en respectant strictement le RGPD et le secret professionnel.</p>
+<hr />
+<h2 id="probleme">Probleme</h2>
+<ul>
+<li>Le triage des documents recus (factures, releves, pieces justificatives) est manuel et chronophage</li>
+<li>Les echeances fiscales sont suivies dans des tableurs, avec des risques d'oubli</li>
+<li>Les rappels aux clients pour les pieces manquantes sont envoyes trop tard</li>
+<li>La verification de conformite (TVA, charges sociales) repose sur l'experience individuelle</li>
+<li>Les nouveaux collaborateurs n'ont pas acces a la jurisprudence et aux procedures internes de facon structuree</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS dedie en France (OVH, Scaleway)</td>
+<td>15-30 EUR</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04 LTS</td>
+<td>--</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation on-premise</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Base de donnees</td>
+<td>PostgreSQL (chiffrement au repos)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Stockage documents</td>
+<td>Systeme de fichiers chiffre (LUKS)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication interne</td>
+<td>Mattermost self-hosted</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Obligation : hebergement en France ou dans l'UE.</strong> Le secret professionnel et le RGPD imposent que les donnees clients ne sortent pas de l'UE. Aucun appel API vers un LLM cloud ne doit contenir de donnees nominatives clients.</p>
+<h3 id="strategie-danonymisation">Strategie d'anonymisation</h3>
+<p>Avant tout traitement par un LLM :
+1. Les donnees nominatives (noms, SIRET, adresses, montants specifiques) sont remplacees par des placeholders
+2. L'agent travaille sur les donnees anonymisees
+3. Les placeholders sont restitues dans le resultat final
+4. Les logs de l'agent ne contiennent jamais de donnees nominatives</p>
+<h3 id="agents">Agents</h3>
+<p><strong>Agent Triage :</strong>
+- Recoit les documents entrants (scan, email, upload)
+- Classe par type : facture / releve bancaire / piece justificative / courrier fiscal / autre
+- Associe au dossier client correspondant
+- Signale les documents incomplets ou illisibles</p>
+<p><strong>Agent Echeances :</strong>
+- Maintient le calendrier fiscal de chaque dossier
+- Envoie des alertes aux collaborateurs : J-30, J-15, J-7, J-3
+- Genere la liste des pieces manquantes pour chaque echeance
+- Propose un brouillon de rappel client pour les pieces en retard</p>
+<p><strong>Agent Conformite :</strong>
+- Verifie les declarations avant soumission
+- Controle les taux de TVA appliques
+- Detecte les incoherences entre les documents et les declarations
+- Signale les points d'attention sans prendre de decision</p>
+<hr />
+<h2 id="mise-en-place">Mise en place</h2>
+<h3 id="semaine-1-infrastructure-securisee">Semaine 1 : Infrastructure securisee</h3>
+<ol>
+<li>Provisionner le VPS en France</li>
+<li>Configurer le chiffrement du disque (LUKS)</li>
+<li>Installer PostgreSQL avec chiffrement au repos</li>
+<li>Installer OpenClaw</li>
+<li>Configurer l'anonymisation des donnees (pipeline de pre-traitement)</li>
+<li>Tester que les logs ne contiennent aucune donnee nominative</li>
+</ol>
+<h3 id="semaine-2-agents-de-triage-et-echeances">Semaine 2 : Agents de triage et echeances</h3>
+<ol>
+<li>Deployer l'agent Triage avec les categories de documents du cabinet</li>
+<li>Tester sur un echantillon de 50 documents reels (anonymises)</li>
+<li>Configurer l'agent Echeances avec le calendrier fiscal en cours</li>
+<li>Tester les alertes sur des echeances proches</li>
+<li>Former 2 collaborateurs pilotes</li>
+</ol>
+<h3 id="semaine-3-conformite-et-deploiement">Semaine 3 : Conformite et deploiement</h3>
+<ol>
+<li>Deployer l'agent Conformite avec les regles fiscales de base</li>
+<li>Tester sur 10 dossiers de declarations passees</li>
+<li>Ajuster les regles selon les retours des experts-comptables</li>
+<li>Deployer pour l'ensemble du cabinet</li>
+<li>Documenter les procedures et les limites</li>
+</ol>
+<hr />
+<h2 id="resultat">Resultat</h2>
+<p>Apres deux mois d'utilisation :</p>
+<ul>
+<li><strong>Triage automatise a 85%</strong> : 85% des documents sont correctement classes et associes au bon dossier. Les 15% restants sont signales pour classification manuelle</li>
+<li><strong>Zero echeance oubliee</strong> : les alertes progressives (J-30 a J-3) ont elimine les retards de declaration</li>
+<li><strong>Rappels clients en temps voulu</strong> : les clients sont relances pour les pieces manquantes des que le seuil J-15 est atteint, au lieu du rappel de derniere minute habituel</li>
+<li><strong>Verification de conformite systematique</strong> : chaque declaration passe par l'agent avant soumission. Il ne remplace pas l'expert-comptable mais detecte les erreurs mecaniques (mauvais taux, montant incoherent)</li>
+<li><strong>Confidentialite preservee</strong> : l'audit des logs confirme l'absence de donnees nominatives dans les appels LLM</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>L'anonymisation est non negociable.</strong> Ce n'est pas une option, c'est un prerequis. Le pipeline d'anonymisation doit etre teste et audite avant tout deploiement.</p>
+</li>
+<li>
+<p><strong>L'agent Conformite assiste, il ne certifie pas.</strong> L'expert-comptable reste responsable. L'agent detecte les anomalies, l'humain decide.</p>
+</li>
+<li>
+<p><strong>Les categories de triage doivent correspondre aux categories du cabinet, pas a des categories generiques.</strong> Chaque cabinet a sa propre nomenclature. Le prompt doit la refleter exactement.</p>
+</li>
+<li>
+<p><strong>Hebergement en France, pas juste en UE.</strong> Pour un cabinet comptable francais, l'hebergement en France simplifie la conformite et la communication avec les clients sur la securite de leurs donnees.</p>
+</li>
+<li>
+<p><strong>Former les collaborateurs sur ce que l'agent ne fait pas.</strong> La formation doit insister sur les limites : l'agent ne prend pas de decision fiscale, ne signe pas de declaration, ne communique pas directement avec les clients.</p>
+</li>
+</ol>
+<hr />
+<h2 id="contraintes-reglementaires">Contraintes reglementaires</h2>
+<h3 id="rgpd">RGPD</h3>
+<ul>
+<li>Registre des traitements : documenter l'utilisation d'OpenClaw dans le registre RGPD du cabinet</li>
+<li>Base legale : interet legitime (amelioration de l'efficacite interne) ou consentement client selon les cas</li>
+<li>Droit d'acces : les clients doivent pouvoir demander quelles donnees sont traitees par l'agent</li>
+<li>Duree de conservation : aligner sur les obligations comptables (10 ans pour les pieces comptables)</li>
+<li>Sous-traitance : si un LLM cloud est utilise, le fournisseur est un sous-traitant au sens du RGPD</li>
+</ul>
+<h3 id="secret-professionnel">Secret professionnel</h3>
+<ul>
+<li>Aucune donnee nominative ne doit etre transmise a un service tiers sans anonymisation prealable</li>
+<li>Les acces a OpenClaw doivent etre traces et auditables</li>
+<li>Un collaborateur qui quitte le cabinet doit perdre immediatement ses acces</li>
+</ul>
+<h3 id="recommandations-de-lordre-des-experts-comptables">Recommandations de l'Ordre des Experts-Comptables</h3>
+<ul>
+<li>Documenter l'utilisation de l'IA dans les procedures internes</li>
+<li>Informer les clients de l'utilisation d'outils IA dans le traitement de leurs dossiers</li>
+<li>Maintenir la responsabilite humaine sur toute production fiscale ou comptable</li>
+</ul>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Envoyer des donnees nominatives au LLM</td>
+<td>Violation du RGPD et du secret professionnel</td>
+<td>Pipeline d'anonymisation obligatoire</td>
+</tr>
+<tr>
+<td>Agent qui "decide" du taux de TVA</td>
+<td>Erreur fiscale engageant la responsabilite du cabinet</td>
+<td>L'agent propose, l'expert-comptable valide</td>
+</tr>
+<tr>
+<td>Hebergement hors UE</td>
+<td>Non-conformite RGPD</td>
+<td>VPS en France, fournisseur UE uniquement</td>
+</tr>
+<tr>
+<td>Pas de trace d'audit</td>
+<td>Impossible de prouver la conformite</td>
+<td>Logs complets et non modifiables</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-triage">Template -- System prompt de l'agent Triage</h2>
+<pre class="codehilite"><code>Tu es l'assistant de triage documentaire du cabinet [NOM].
+
+Ton role est de classer les documents recus et de les associer aux dossiers clients.
+
+REGLE ABSOLUE : tu ne traites que des donnees anonymisees. Si tu detectes des
+donnees nominatives non anonymisees dans un document, tu le signales immediatement
+et tu ne le traites pas.
+
+Categories de documents :
+1. Facture d'achat
+2. Facture de vente
+3. Releve bancaire
+4. Bulletin de salaire
+5. Avis d'imposition
+6. Piece justificative diverse
+7. Courrier de l'administration fiscale
+8. Document non classifiable -&gt; signaler pour traitement manuel
+
+Pour chaque document :
+- Identifie la categorie
+- Identifie le dossier client (via le placeholder client)
+- Verifie la lisibilite et la completude
+- Signale les anomalies (montant manquant, date illisible, document tronque)
+
+Format de sortie :
+Categorie : [categorie]
+Dossier : [placeholder client]
+Statut : complet / incomplet / illisible
+Anomalies : [liste ou &quot;aucune&quot;]
+</code></pre>
+
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Le VPS est heberge en France avec chiffrement du disque</li>
+<li>[ ] Le pipeline d'anonymisation fonctionne sur un echantillon de 20 documents</li>
+<li>[ ] Les logs ne contiennent aucune donnee nominative (audit)</li>
+<li>[ ] L'agent Triage classe correctement 80%+ d'un echantillon de 50 documents</li>
+<li>[ ] Les alertes d'echeances se declenchent aux bons seuils (J-30, J-15, J-7, J-3)</li>
+<li>[ ] L'agent Conformite detecte une erreur de taux de TVA inseree intentionnellement</li>
+<li>[ ] Le registre RGPD du cabinet mentionne le traitement OpenClaw</li>
+</ul>
+<hr />
+<p><em>Un cabinet comptable qui deploie de l'IA sans anonymisation prend un risque juridique disproportionne par rapport au gain operationnel. L'anonymisation est la premiere etape, pas la derniere.</em></p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/05-cabinet-comptable.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-04-equipe-technique.html">&larr; 04 -- Equipe technique (5-15 personnes)</a>
+<a href="06-06-startup.html">06 -- Startup early-stage &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.4 -- Revoir le system prompt | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html" class="active">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="54-revoir-le-system-prompt">5.4 -- Revoir le system prompt</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un system prompt n'est pas un texte sacre. Votre contexte change, vos projets evoluent, vos besoins se precisent. Un prompt ecrit il y a 3 mois ne reflete plus votre realite d'aujourd'hui. Si vous ne le revoyez pas, il accumule des instructions obsoletes et l'agent degrade progressivement.</p>
+<h2 id="frequence">Frequence</h2>
+<ul>
+<li><strong>Review complete</strong> : tous les mois.</li>
+<li><strong>Ajustements ponctuels</strong> : quand un declencheur se manifeste (voir ci-dessous).</li>
+<li><strong>Condensation</strong> : tous les 3 mois (le prompt grossit naturellement, il faut le comprimer).</li>
+</ul>
+<h2 id="declencheurs-dune-revision">Declencheurs d'une revision</h2>
+<p>Vous devez revoir le prompt quand :</p>
+<ol>
+<li><strong>Un projet se termine.</strong> Les instructions liees a ce projet polluent le prompt.</li>
+<li><strong>Un outil change.</strong> Vous migrez de X vers Y mais le prompt mentionne encore X.</li>
+<li><strong>Vous corrigez l'agent regulierement sur le meme point.</strong> Signal que le prompt ne couvre pas ce cas.</li>
+<li><strong>Le prompt depasse 300 mots.</strong> Il est temps de condenser.</li>
+<li><strong>Vous changez de modele.</strong> Chaque modele interprete differemment. Testez et ajustez.</li>
+<li><strong>Un incident s'est produit.</strong> L'agent a fait quelque chose qu'il n'aurait pas du. Ajoutez une regle ou clarifiez.</li>
+</ol>
+<h2 id="quoi-preserver">Quoi preserver</h2>
+<p>Certaines parties du prompt sont stables. Ne les touchez pas sauf raison forte :</p>
+<ul>
+<li><strong>La mission</strong> (qui est l'agent, pour qui).</li>
+<li><strong>Le ton et le format</strong> (une fois calibre, ca tient).</li>
+<li><strong>Les boundaries</strong> (les interdictions ne changent pas).</li>
+<li><strong>La langue</strong> (stable une fois definie).</li>
+</ul>
+<h2 id="quoi-reecrire">Quoi reecrire</h2>
+<p>Ce qui change le plus souvent :</p>
+<ul>
+<li><strong>Le contexte</strong> : projets actifs, stack, outils.</li>
+<li><strong>Les regles operationnelles</strong> : workflows, priorites, processus.</li>
+<li><strong>Les acces</strong> : quels outils l'agent peut utiliser.</li>
+</ul>
+<h2 id="methode-de-revision">Methode de revision</h2>
+<h3 id="1-relire-le-prompt-actuel">1. Relire le prompt actuel</h3>
+<p>Lisez-le comme si c'etait la premiere fois. Marquez :
+- [OBSOLETE] : ce qui n'est plus vrai.
+- [VAGUE] : ce qui pourrait etre plus precis.
+- [MANQUE] : ce qui devrait etre la mais n'y est pas.
+- [OK] : ce qui est bon.</p>
+<h3 id="2-supprimer-avant-dajouter">2. Supprimer avant d'ajouter</h3>
+<p>La regle : pour chaque ligne ajoutee, cherchez une ligne a supprimer. Le prompt doit rester court.</p>
+<h3 id="3-tester">3. Tester</h3>
+<p>Apres la revision, testez avec 5 requetes typiques. Comparez les reponses avec les reponses d'avant. Si la qualite baisse, revenez en arriere.</p>
+<h3 id="4-versionner">4. Versionner</h3>
+<p>Gardez les versions precedentes. Un simple fichier :</p>
+<pre class="codehilite"><code>system-prompt-v1.md    (2026-01-15)
+system-prompt-v2.md    (2026-02-20)
+system-prompt-v3.md    (2026-04-01)  &lt;- actuel
+</code></pre>
+
+<p>Si une revision degrade les performances, vous pouvez revenir a la version precedente.</p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Ne jamais reviser.</strong> Le prompt de janvier 2026 est toujours actif en decembre. Il mentionne des projets termines, des outils remplaces, des regles obsoletes.</p>
+<p><strong>Reviser trop souvent.</strong> Chaque jour vous changez un truc. L'agent n'a jamais le temps de "se stabiliser" et vous ne pouvez pas evaluer l'impact d'un changement.</p>
+<p><strong>Ajouter sans supprimer.</strong> Le prompt passe de 150 a 500 mots en 3 mois. Performance en baisse, cout en hausse.</p>
+<p><strong>Pas de versioning.</strong> Vous modifiez le prompt et vous ne savez plus ce qu'il y avait avant. Impossible de revenir en arriere.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Planifiez une review mensuelle (mettez un rappel).</li>
+<li>Relisez le prompt avec le systeme OBSOLETE/VAGUE/MANQUE/OK.</li>
+<li>Supprimez ce qui est obsolete.</li>
+<li>Precisez ce qui est vague.</li>
+<li>Ajoutez ce qui manque.</li>
+<li>Condensez si &gt; 300 mots.</li>
+<li>Testez avec 5 requetes.</li>
+<li>Sauvegardez l'ancienne version.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] La derniere review du prompt date de moins d'un mois.</li>
+<li>[ ] Le prompt fait moins de 300 mots.</li>
+<li>[ ] Aucune instruction ne fait reference a un projet termine ou un outil remplace.</li>
+<li>[ ] Les versions precedentes sont sauvegardees.</li>
+<li>[ ] 5 requetes test donnent des reponses correctes apres la revision.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/04-revoir-system-prompt.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-03-backups.html">&larr; 5.3 -- Backups</a>
+<a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

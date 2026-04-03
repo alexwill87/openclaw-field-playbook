@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.11 -- En cas de panne | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html" class="active">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="511-en-cas-de-panne">5.11 -- En cas de panne</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Une panne, ca arrive. Le reflexe : ne pas paniquer, diagnostiquer, corriger, prevenir. Ce guide vous donne un tableau de diagnostic par symptome pour les pannes les plus courantes.</p>
+<h2 id="reflexe-en-cas-de-panne">Reflexe en cas de panne</h2>
+<ol>
+<li><strong>Ne pas toucher a tout en meme temps.</strong> Un diagnostic a la fois.</li>
+<li><strong>Noter l'heure.</strong> Quand ca a commence. Pour correler les logs.</li>
+<li><strong>Verifier le plus simple d'abord.</strong> Le serveur est-il up ? Le service tourne-t-il ? L'espace disque est-il plein ?</li>
+</ol>
+<h2 id="tableau-diagnostic">Tableau diagnostic</h2>
+<h3 id="le-siteservice-ne-repond-pas">Le site/service ne repond pas</h3>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Le container est arrete</td>
+<td><code>docker ps -a</code></td>
+<td><code>docker compose up -d</code></td>
+</tr>
+<tr>
+<td>Le port n'est pas expose</td>
+<td><code>ss -tlnp \| grep PORT</code></td>
+<td>Verifier docker-compose.yml ports</td>
+</tr>
+<tr>
+<td>Nginx ne proxy pas</td>
+<td><code>nginx -t &amp;&amp; systemctl status nginx</code></td>
+<td>Corriger la config, <code>systemctl restart nginx</code></td>
+</tr>
+<tr>
+<td>Le service crash au demarrage</td>
+<td><code>docker logs CONTAINER --tail 50</code></td>
+<td>Lire l'erreur, corriger, rebuild</td>
+</tr>
+<tr>
+<td>DNS ne pointe pas</td>
+<td><code>dig votre-domaine.com</code></td>
+<td>Verifier la config DNS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prevention :</strong> health check automatise (section 5.1) + monitoring (section 5.10).</p>
+<h3 id="le-serveur-est-inaccessible-en-ssh">Le serveur est inaccessible en SSH</h3>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Le serveur est down</td>
+<td>Console Hetzner Cloud</td>
+<td>Reboot depuis la console</td>
+</tr>
+<tr>
+<td>SSH est bloque par le firewall</td>
+<td>Console Hetzner &gt; rescue mode</td>
+<td><code>ufw allow 22</code></td>
+</tr>
+<tr>
+<td>Disque plein (SSH ne peut pas creer de session)</td>
+<td>Console Hetzner</td>
+<td>Rescue mode, monter le disque, liberer de l'espace</td>
+</tr>
+<tr>
+<td>Mauvaise cle SSH</td>
+<td>Depuis votre machine : <code>ssh -vvv user@ip</code></td>
+<td>Verifier authorized_keys</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prevention :</strong> ne jamais modifier ufw/iptables sans regle SSH confirmee. Snapshot avant modification reseau.</p>
+<h3 id="la-base-de-donnees-ne-repond-pas">La base de donnees ne repond pas</h3>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL est arrete</td>
+<td><code>systemctl status postgresql</code></td>
+<td><code>systemctl start postgresql</code></td>
+</tr>
+<tr>
+<td>Trop de connexions</td>
+<td><code>psql -c "SELECT count(*) FROM pg_stat_activity;"</code></td>
+<td>Identifier les connexions fantomes, augmenter max_connections</td>
+</tr>
+<tr>
+<td>Disque plein</td>
+<td><code>df -h /var/lib/postgresql</code></td>
+<td>Liberer de l'espace (logs, tmp)</td>
+</tr>
+<tr>
+<td>Corruption</td>
+<td>Logs PostgreSQL</td>
+<td>Restaurer depuis le dernier backup (section 5.3)</td>
+</tr>
+<tr>
+<td>Mauvais mot de passe (apres rotation)</td>
+<td><code>psql -U oa_admin -d cockpit</code></td>
+<td>Verifier le secret dans Vault, corriger</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prevention :</strong> monitoring PostgreSQL + backup quotidien teste.</p>
+<h3 id="le-disque-est-plein">Le disque est plein</h3>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identifier quoi prend de la place</td>
+<td><code>du -sh /* \| sort -rh \| head -10</code></td>
+<td>Voir ci-dessous</td>
+</tr>
+<tr>
+<td>Logs Docker</td>
+<td><code>du -sh /var/lib/docker/containers/</code></td>
+<td>Configurer la rotation (section 5.2)</td>
+</tr>
+<tr>
+<td>Logs systeme</td>
+<td><code>journalctl --disk-usage</code></td>
+<td><code>journalctl --vacuum-size=200M</code></td>
+</tr>
+<tr>
+<td>Vieux backups</td>
+<td><code>du -sh /var/backups/</code></td>
+<td>Supprimer les plus vieux, garder 7 jours</td>
+</tr>
+<tr>
+<td>Images Docker inutilisees</td>
+<td><code>docker system df</code></td>
+<td><code>docker system prune -a --filter "until=720h"</code></td>
+</tr>
+<tr>
+<td>Fichiers temporaires</td>
+<td><code>du -sh /tmp/</code></td>
+<td><code>rm -rf /tmp/old-*</code> (avec discernement)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prevention :</strong> alerte a 80% d'utilisation disque dans le health check. Rotation des logs configuree.</p>
+<h3 id="un-container-redemarrerait-en-boucle">Un container redemarrerait en boucle</h3>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Erreur au demarrage</td>
+<td><code>docker logs CONTAINER --tail 100</code></td>
+<td>Lire l'erreur, corriger</td>
+</tr>
+<tr>
+<td>Dependance manquante</td>
+<td><code>docker logs CONTAINER 2&gt;&amp;1 \| grep -i "error\|fatal"</code></td>
+<td>npm install, pip install, etc.</td>
+</tr>
+<tr>
+<td>Variable d'environnement manquante</td>
+<td><code>docker inspect CONTAINER \| jq '.[0].Config.Env'</code></td>
+<td>Ajouter dans .env ou docker-compose.yml</td>
+</tr>
+<tr>
+<td>Port deja utilise</td>
+<td><code>ss -tlnp \| grep PORT</code></td>
+<td>Arreter l'autre service ou changer le port</td>
+</tr>
+<tr>
+<td>OOM Kill</td>
+<td><code>dmesg \| grep -i oom</code></td>
+<td>Augmenter la memoire ou optimiser l'app</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prevention :</strong> <code>restart: unless-stopped</code> dans docker-compose.yml + health check + logs.</p>
+<h3 id="lagent-ne-fonctionne-plus">L'agent ne fonctionne plus</h3>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API key invalide/expiree</td>
+<td>Tester un appel API direct</td>
+<td>Renouveler la cle</td>
+</tr>
+<tr>
+<td>Rate limit atteint</td>
+<td>Verifier les headers de reponse</td>
+<td>Attendre ou changer de plan</td>
+</tr>
+<tr>
+<td>Service API down</td>
+<td>Verifier status.anthropic.com (ou equivalent)</td>
+<td>Attendre</td>
+</tr>
+<tr>
+<td>Configuration cassee</td>
+<td>Lire .claude/ ou equivalent</td>
+<td>Restaurer depuis backup</td>
+</tr>
+<tr>
+<td>Modele deprece</td>
+<td>Lire les logs d'erreur</td>
+<td>Changer le modele dans la config</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prevention :</strong> fallback sur un autre modele configure (section 5.13). Budget et rate limits surveilles.</p>
+<h2 id="apres-la-panne">Apres la panne</h2>
+<ol>
+<li><strong>Documenter.</strong> Quoi, quand, cause, fix, duree.</li>
+<li><strong>Prevenir.</strong> Ajouter un check dans le health check, une regle dans le boundary prompt, un workflow dans WORKFLOWS.md.</li>
+<li><strong>Tester la prevention.</strong> Simuler la panne a nouveau et verifier que le monitoring la detecte.</li>
+</ol>
+<h3 id="template-post-mortem">Template post-mortem</h3>
+<pre class="codehilite"><code class="language-markdown">## Incident — YYYY-MM-DD
+
+**Symptome :** [ce qui a ete observe]
+**Debut :** HH:MM — **Fin :** HH:MM — **Duree :** X min
+**Cause :** [cause racine]
+**Fix :** [ce qui a ete fait]
+**Impact :** [qui/quoi a ete affecte]
+**Prevention :** [mesure ajoutee pour eviter la recidive]
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Paniquer et toucher a tout.</strong> Vous changez 3 configs en meme temps. Maintenant vous avez 4 problemes au lieu d'un.</p>
+<p><strong>Pas de backup recent.</strong> La restauration est impossible ou trop vieille. Voir section 5.3.</p>
+<p><strong>Ne pas documenter.</strong> La meme panne revient 3 mois plus tard et vous avez oublie le fix.</p>
+<p><strong>Corriger sans comprendre.</strong> "J'ai redemarre et ca marche." Jusqu'a la prochaine fois. Identifiez la cause racine.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous savez diagnostiquer les 6 scenarios ci-dessus.</li>
+<li>[ ] Les commandes de diagnostic sont testees et fonctionnent sur votre setup.</li>
+<li>[ ] Un template post-mortem existe.</li>
+<li>[ ] Les pannes passees sont documentees.</li>
+<li>[ ] Chaque panne a genere une mesure de prevention.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/11-en-cas-de-panne.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-10-monitoring.html">&larr; 5.10 -- Monitoring et alertes</a>
+<a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxieme agent &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

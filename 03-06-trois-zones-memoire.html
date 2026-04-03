@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.6 -- Les trois zones de memoire | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html" class="active">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="36-les-trois-zones-de-memoire">3.6 -- Les trois zones de memoire</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un agent sans memoire est un agent amnesique. Chaque session repart de zero. Vous repetez les memes choses. Il pose les memes questions.</p>
+<p>Un agent avec trop de memoire est un agent noye. Il melange le contexte d'il y a 6 mois avec celui d'aujourd'hui. Il cite des decisions obsoletes. Il traite comme actuel ce qui ne l'est plus.</p>
+<p>La solution de Steinberg : trois zones de memoire, chacune avec sa portee et ses regles.</p>
+<h2 id="les-trois-zones">Les trois zones</h2>
+<pre class="codehilite"><code>+--------------------------------------------------+
+|                                                  |
+|  MEMOIRE CHAUDE (session)                        |
+|  Duree : cette conversation                      |
+|  Taille : illimitee (dans la fenetre de contexte)|
+|  Contenu : tout ce qui se dit maintenant         |
+|  Disparait : a la fin de la session              |
+|                                                  |
++--------------------------------------------------+
+          |
+          | Ce qui merite d'etre retenu
+          v
++--------------------------------------------------+
+|                                                  |
+|  MEMOIRE TIEDE (MEMORY.md)                       |
+|  Duree : jours a semaines                        |
+|  Taille : 80 lignes max                          |
+|  Contenu : faits recents, decisions, contexte    |
+|  Nettoyage : compression reguliere               |
+|                                                  |
++--------------------------------------------------+
+          |
+          | Ce qui est durable et structure
+          v
++--------------------------------------------------+
+|                                                  |
+|  MEMOIRE FROIDE (knowledge/)                     |
+|  Duree : mois a indefini                         |
+|  Taille : illimitee (un fichier par sujet)       |
+|  Contenu : savoirs stables, references, guides   |
+|  Nettoyage : revision trimestrielle              |
+|                                                  |
++--------------------------------------------------+
+</code></pre>
+
+<h2 id="memoire-chaude-la-session">Memoire chaude : la session</h2>
+<p>C'est la conversation en cours. Tout ce que vous dites, tout ce que l'agent repond, reste accessible pendant la session.</p>
+<p><strong>Ce qui y va</strong> : tout. Questions, reponses, reflexions, essais, erreurs.</p>
+<p><strong>Ce qui en sort</strong> : rien automatiquement. A la fin de la session, tout disparait SAUF ce que vous ou l'agent decidez de sauvegarder dans MEMORY.md ou knowledge/.</p>
+<p><strong>Piege</strong> : croire que l'agent "se souviendra" demain de ce que vous avez dit aujourd'hui. Sans sauvegarde explicite, la memoire chaude est volatile.</p>
+<p>Bonne pratique en fin de session :</p>
+<pre class="codehilite"><code>Qu'est-ce qui merite d'etre retenu de cette session ?
+Mets a jour MEMORY.md.
+</code></pre>
+
+<h2 id="memoire-tiede-memorymd">Memoire tiede : MEMORY.md</h2>
+<p>Le tampon entre le present et le durable. 80 lignes maximum (regle de Steinberg). Contient le contexte recent necessaire pour que l'agent soit pertinent des l'ouverture de la prochaine session.</p>
+<p><strong>Ce qui y va</strong> :
+- Decisions prises cette semaine
+- Faits recents importants
+- Contexte en cours (projet, negociation, evenement)
+- Notes temporaires a ne pas oublier</p>
+<p><strong>Ce qui n'y va PAS</strong> :
+- Des connaissances stables (ca va dans knowledge/)
+- Des informations personnelles permanentes (ca va dans USER.md)
+- Des regles de fonctionnement (ca va dans CONSTITUTION.md)
+- Des taches (ca va dans le systeme de taches)</p>
+<p>Detail dans la section 3.7.</p>
+<h2 id="memoire-froide-knowledge">Memoire froide : knowledge/</h2>
+<p>Le savoir durable. Structure par domaine. Un fichier par sujet. Pas de limite de taille globale, mais chaque fichier doit rester lisible (200 lignes max par fichier recommande).</p>
+<p><strong>Ce qui y va</strong> :
+- Processus documentes
+- Informations metier stables
+- References techniques
+- Guides et procedures
+- Profils de clients ou partenaires durables</p>
+<p><strong>Ce qui n'y va PAS</strong> :
+- Du contexte temporaire (ca va dans MEMORY.md)
+- Des opinions ou preferences (ca va dans USER.md)
+- Des regles agent (ca va dans CONSTITUTION.md)</p>
+<p>Detail dans la section 3.8.</p>
+<h2 id="pourquoi-separer">Pourquoi separer</h2>
+<p><strong>Raison 1 : le cout en tokens.</strong> Tout ce que l'agent lit au demarrage consomme des tokens. MEMORY.md (80 lignes) est lu a chaque session. knowledge/ est lu a la demande ou selon la boot sequence. Melanger les deux = charger 500 lignes de connaissances stables a chaque session, meme quand elles ne sont pas pertinentes.</p>
+<p><strong>Raison 2 : le bruit.</strong> Un agent qui lit 200 lignes de contexte au demarrage va perdre le signal. Les informations recentes (MEMORY.md) doivent etre separees des connaissances de fond (knowledge/) pour que l'agent sache ce qui est ACTUEL.</p>
+<p><strong>Raison 3 : la maintenance.</strong> MEMORY.md se compresse chaque semaine. knowledge/ se revise chaque trimestre. Deux rythmes differents pour deux types d'information differents.</p>
+<p><strong>Raison 4 : la pertinence.</strong> Quand l'agent lit "Decision du 28/03 : on reporte le lancement a avril" dans MEMORY.md, il sait que c'est recent et actionnable. Quand il lit "Processus de lancement produit" dans knowledge/, il sait que c'est une reference stable.</p>
+<h2 id="diagramme-de-decision">Diagramme de decision</h2>
+<pre class="codehilite"><code>Une information arrive. Ou la stocker ?
+
+Est-ce que ca concerne UNIQUEMENT cette session ?
+  OUI --&gt; Ne rien faire. Memoire chaude.
+  NON --&gt; continuer
+
+Est-ce que ca va changer dans les 2 prochaines semaines ?
+  OUI --&gt; MEMORY.md (memoire tiede)
+  NON --&gt; continuer
+
+Est-ce que c'est un savoir stable et reutilisable ?
+  OUI --&gt; knowledge/ (memoire froide)
+  NON --&gt; continuer
+
+Est-ce que c'est une information sur MOI qui ne change pas souvent ?
+  OUI --&gt; USER.md
+  NON --&gt; continuer
+
+Est-ce que c'est une regle de fonctionnement de l'agent ?
+  OUI --&gt; CONSTITUTION.md
+  NON --&gt; Probablement pas necessaire de le stocker.
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Tout dans MEMORY.md</strong> : Le fichier grossit, depasse 80 lignes, l'agent perd le signal. MEMORY.md est un tampon, pas une base de donnees.</p>
+<p><strong>Rien dans knowledge/</strong> : Vous repetez les memes explications a chaque session parce que l'agent n'a pas de reference durable.</p>
+<p><strong>Pas de nettoyage</strong> : MEMORY.md contient des notes de 3 mois. knowledge/ contient des fichiers obsoletes. La memoire non entretenue est pire que pas de memoire.</p>
+<p><strong>Confusion memoire chaude / tiede</strong> : "Je te l'ai dit tout a l'heure" -- oui, en session. Mais sans sauvegarde dans MEMORY.md, demain c'est oublie.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous comprenez la difference entre les 3 zones</li>
+<li>[ ] MEMORY.md existe et fait moins de 80 lignes</li>
+<li>[ ] Le dossier knowledge/ est cree avec au moins un fichier</li>
+<li>[ ] Vous avez une routine de fin de session ("Mets a jour MEMORY.md")</li>
+<li>[ ] Les informations sont dans la bonne zone (pas de taches dans USER.md, pas de connaissances stables dans MEMORY.md)</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/06-trois-zones-memoire.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-05-constitution-md.html">&larr; 3.5 -- CONSTITUTION.md : les regles du jeu</a>
+<a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire collective &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

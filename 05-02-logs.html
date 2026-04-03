@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.2 -- Gestion des logs | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html" class="active">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="52-gestion-des-logs">5.2 -- Gestion des logs</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Les logs sont votre boite noire. Quand tout va bien, personne ne les regarde. Quand ca casse, c'est la premiere chose qu'on ouvre. Si vous ne savez pas ou ils sont et comment les lire, vous perdez du temps au pire moment.</p>
+<h2 id="ou-sont-les-logs">Ou sont les logs</h2>
+<h3 id="logs-systeme-journalctl">Logs systeme (journalctl)</h3>
+<pre class="codehilite"><code class="language-bash"># Tous les logs depuis le dernier boot
+journalctl -b
+
+# Logs d'un service specifique
+journalctl -u postgresql
+journalctl -u docker
+
+# Logs des 30 dernieres minutes
+journalctl --since &quot;30 min ago&quot;
+
+# Logs d'aujourd'hui
+journalctl --since today
+
+# Suivre en temps reel
+journalctl -f
+
+# Filtrer par priorite (erreurs et plus grave)
+journalctl -p err
+</code></pre>
+
+<h3 id="logs-docker">Logs Docker</h3>
+<pre class="codehilite"><code class="language-bash"># Logs d'un container
+docker logs cockpit
+
+# Les 50 dernieres lignes
+docker logs cockpit --tail 50
+
+# Suivre en temps reel
+docker logs cockpit -f
+
+# Depuis une date
+docker logs cockpit --since &quot;2026-04-01T10:00:00&quot;
+
+# Tous les containers avec leurs logs recents
+for c in $(docker ps --format &quot;{{.Names}}&quot;); do
+    echo &quot;=== $c ===&quot;
+    docker logs &quot;$c&quot; --tail 5 2&gt;&amp;1
+    echo &quot;&quot;
+done
+</code></pre>
+
+<h3 id="logs-applicatifs">Logs applicatifs</h3>
+<p>Selon votre stack :</p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Emplacement typique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node.js</td>
+<td>stdout (capte par Docker) ou <code>/var/log/app/</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><code>/var/log/postgresql/</code> ou journalctl</td>
+</tr>
+<tr>
+<td>Nginx</td>
+<td><code>/var/log/nginx/access.log</code>, <code>/var/log/nginx/error.log</code></td>
+</tr>
+<tr>
+<td>Vault</td>
+<td>journalctl -u vault</td>
+</tr>
+<tr>
+<td>Scripts perso</td>
+<td><code>/var/log/</code> (ou vous les avez diriges)</td>
+</tr>
+<tr>
+<td>Health check</td>
+<td><code>/var/log/health-check.log</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="logs-des-sessions-agent">Logs des sessions agent</h3>
+<p>Si votre agent a un log de session :</p>
+<pre class="codehilite"><code class="language-bash"># Claude Code sessions
+ls ~/.claude/sessions/
+
+# Historique des commandes executees
+cat ~/.bash_history | tail -50
+</code></pre>
+
+<h2 id="comment-lire-les-logs">Comment lire les logs</h2>
+<h3 id="le-reflexe-fin-du-fichier-dabord">Le reflexe : fin du fichier d'abord</h3>
+<p>Les logs les plus recents sont les plus utiles. Toujours commencer par la fin :</p>
+<pre class="codehilite"><code class="language-bash"># Les 100 dernieres lignes
+tail -100 /var/log/nginx/error.log
+
+# Ou avec journalctl
+journalctl -u postgresql -n 100
+</code></pre>
+
+<h3 id="filtrer-le-bruit">Filtrer le bruit</h3>
+<pre class="codehilite"><code class="language-bash"># Chercher les erreurs
+journalctl -p err --since today
+
+# Grep sur un pattern
+docker logs cockpit 2&gt;&amp;1 | grep -i &quot;error\|fail\|exception&quot;
+
+# Exclure le bruit connu
+docker logs cockpit 2&gt;&amp;1 | grep -iv &quot;healthcheck\|GET /favicon&quot;
+</code></pre>
+
+<h3 id="correler-par-timestamp">Correler par timestamp</h3>
+<p>Quand un probleme survient, notez l'heure. Puis cherchez dans tous les logs autour de cette heure :</p>
+<pre class="codehilite"><code class="language-bash"># Tous les logs systeme autour de 14h30
+journalctl --since &quot;14:25&quot; --until &quot;14:35&quot;
+
+# Docker logs autour du meme moment
+docker logs cockpit --since &quot;2026-04-01T14:25:00&quot; --until &quot;2026-04-01T14:35:00&quot;
+</code></pre>
+
+<h2 id="rotation-des-logs">Rotation des logs</h2>
+<p>Les logs grandissent indefiniment si vous ne les gerez pas. Un disque plein a cause des logs est une panne evitable.</p>
+<h3 id="journalctl-systemd">journalctl (systemd)</h3>
+<pre class="codehilite"><code class="language-bash"># Taille actuelle des logs systeme
+journalctl --disk-usage
+
+# Garder seulement les 7 derniers jours
+sudo journalctl --vacuum-time=7d
+
+# Limiter a 500M
+sudo journalctl --vacuum-size=500M
+
+# Configuration permanente dans /etc/systemd/journald.conf
+# SystemMaxUse=500M
+# MaxRetentionSec=7d
+</code></pre>
+
+<h3 id="docker">Docker</h3>
+<pre class="codehilite"><code class="language-bash"># Configurer la rotation dans /etc/docker/daemon.json
+{
+    &quot;log-driver&quot;: &quot;json-file&quot;,
+    &quot;log-opts&quot;: {
+        &quot;max-size&quot;: &quot;10m&quot;,
+        &quot;max-file&quot;: &quot;3&quot;
+    }
+}
+
+# Puis redemarrer Docker
+sudo systemctl restart docker
+</code></pre>
+
+<h3 id="logrotate-fichiers-classiques">Logrotate (fichiers classiques)</h3>
+<pre class="codehilite"><code class="language-bash"># Creer /etc/logrotate.d/openclaw
+/var/log/health-check.log
+/var/log/backup.log
+{
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+}
+</code></pre>
+
+<h2 id="quoi-surveiller">Quoi surveiller</h2>
+<p>Ne surveillez pas tout. Surveillez ce qui annonce un probleme :</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Ou le trouver</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"OOM" ou "Out of memory"</td>
+<td>journalctl, docker logs</td>
+<td>Augmenter la memoire ou optimiser</td>
+</tr>
+<tr>
+<td>"Connection refused"</td>
+<td>Docker logs</td>
+<td>Service down, redemarrer</td>
+</tr>
+<tr>
+<td>"Disk full"</td>
+<td>journalctl</td>
+<td>Nettoyer les logs, les tmp</td>
+</tr>
+<tr>
+<td>"SSL certificate expired"</td>
+<td>Nginx error log</td>
+<td>Renouveler le certificat</td>
+</tr>
+<tr>
+<td>"Too many connections"</td>
+<td>PostgreSQL logs</td>
+<td>Augmenter max_connections ou fix connection leak</td>
+</tr>
+<tr>
+<td>"Permission denied"</td>
+<td>Tout log</td>
+<td>Verifier les droits utilisateur</td>
+</tr>
+<tr>
+<td>Pics d'erreurs 5xx</td>
+<td>Nginx access log</td>
+<td>Investiguer le service backend</td>
+</tr>
+</tbody>
+</table>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Ne jamais regarder les logs.</strong> Vous ne les ouvrez que quand c'est casse. A ce moment, vous ne savez pas les lire et vous perdez du temps.</p>
+<p><strong>Pas de rotation.</strong> Les logs remplissent le disque. Le serveur plante. Ironie : c'est la panne la plus facile a prevenir.</p>
+<p><strong>Trop de logs.</strong> Le mode debug est active en production. Chaque requete genere 50 lignes. Le signal est noye dans le bruit. Utilisez le niveau INFO en production, DEBUG uniquement pour diagnostiquer.</p>
+<p><strong>Logs sans timestamp.</strong> Vos scripts ecrivent des logs sans date. Impossible de correler avec les autres logs. Toujours : <code>echo "$(date '+%Y-%m-%d %H:%M:%S') [INFO] message"</code>.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Identifiez ou sont vos logs (journalctl, Docker, fichiers).</li>
+<li>Configurez la rotation (journald.conf, daemon.json, logrotate).</li>
+<li>Testez que vous savez chercher une erreur : simulez un probleme, trouvez-le dans les logs.</li>
+<li>Ajoutez des timestamps a vos scripts si ce n'est pas fait.</li>
+<li>Definissez les 5 signaux a surveiller pour votre setup.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous savez ou trouver les logs de chaque composant.</li>
+<li>[ ] La rotation est configuree pour tous les logs.</li>
+<li>[ ] La taille totale des logs est connue (<code>journalctl --disk-usage</code>, <code>du -sh /var/log</code>).</li>
+<li>[ ] Vous savez filtrer les logs par erreur et par timestamp.</li>
+<li>[ ] Le mode debug est desactive en production.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/02-logs.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-01-health-check.html">&larr; 5.1 -- Health check quotidien</a>
+<a href="05-03-backups.html">5.3 -- Backups &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

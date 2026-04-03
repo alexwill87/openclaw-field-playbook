@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.1 -- Health check quotidien | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html" class="active">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="51-health-check-quotidien">5.1 -- Health check quotidien</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un health check, c'est 30 secondes de diagnostic qui evitent 3 heures de panne. Vous verifiez que tout tourne, chaque jour, automatiquement. Si quelque chose tombe, vous le savez avant vos utilisateurs.</p>
+<h2 id="ce-quil-faut-verifier">Ce qu'il faut verifier</h2>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Commande</th>
+<th>Attendu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Containers Docker</td>
+<td><code>docker ps --format "{{.Names}} {{.Status}}"</code></td>
+<td>Tous "Up"</td>
+</tr>
+<tr>
+<td>Services web</td>
+<td><code>curl -s -o /dev/null -w "%{http_code}" http://localhost:PORT</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>Espace disque</td>
+<td><code>df -h / --output=pcent</code></td>
+<td>&lt; 80%</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><code>pg_isready</code></td>
+<td>Accepting connections</td>
+</tr>
+<tr>
+<td>Memoire</td>
+<td><code>free -m</code></td>
+<td>Memoire libre &gt; 20%</td>
+</tr>
+<tr>
+<td>Certificats SSL</td>
+<td><code>openssl s_client -connect domain:443 2&gt;/dev/null \| openssl x509 -noout -enddate</code></td>
+<td>&gt; 30 jours</td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><code>vault status</code></td>
+<td>Sealed: false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="script-complet-health-checksh">Script complet : health-check.sh</h2>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# health-check.sh — Diagnostic quotidien
+# Usage : ./health-check.sh [--quiet]
+# --quiet : n'affiche que les erreurs (pour cron)
+
+TELEGRAM_BOT_TOKEN=&quot;${TELEGRAM_BOT_TOKEN:-}&quot;
+TELEGRAM_CHAT_ID=&quot;${TELEGRAM_CHAT_ID:-}&quot;
+QUIET=&quot;${1:-}&quot;
+ERRORS=&quot;&quot;
+
+log() {
+    if [ &quot;$QUIET&quot; != &quot;--quiet&quot; ]; then
+        echo &quot;$1&quot;
+    fi
+}
+
+error() {
+    ERRORS=&quot;${ERRORS}\n[KO] $1&quot;
+    echo &quot;[KO] $1&quot; &gt;&amp;2
+}
+
+ok() {
+    log &quot;[OK] $1&quot;
+}
+
+send_telegram() {
+    if [ -n &quot;$TELEGRAM_BOT_TOKEN&quot; ] &amp;&amp; [ -n &quot;$TELEGRAM_CHAT_ID&quot; ]; then
+        local message=&quot;$1&quot;
+        curl -s -X POST &quot;https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage&quot; \
+            -d chat_id=&quot;$TELEGRAM_CHAT_ID&quot; \
+            -d text=&quot;$message&quot; \
+            -d parse_mode=&quot;Markdown&quot; &gt; /dev/null
+    fi
+}
+
+# === Containers Docker ===
+log &quot;--- Docker ---&quot;
+if command -v docker &amp;&gt; /dev/null; then
+    DOWN_CONTAINERS=$(docker ps -a --filter &quot;status=exited&quot; --format &quot;{{.Names}}&quot; 2&gt;/dev/null)
+    if [ -n &quot;$DOWN_CONTAINERS&quot; ]; then
+        error &quot;Containers down : $DOWN_CONTAINERS&quot;
+    else
+        ok &quot;Tous les containers sont up&quot;
+    fi
+else
+    error &quot;Docker non installe&quot;
+fi
+
+# === Services web ===
+log &quot;--- Services web ---&quot;
+SERVICES=(&quot;http://localhost:3000&quot; &quot;http://localhost:8080&quot;)
+SERVICE_NAMES=(&quot;cockpit&quot; &quot;api&quot;)
+
+for i in &quot;${!SERVICES[@]}&quot;; do
+    HTTP_CODE=$(curl -s -o /dev/null -w &quot;%{http_code}&quot; --max-time 5 &quot;${SERVICES[$i]}&quot; 2&gt;/dev/null)
+    if [ &quot;$HTTP_CODE&quot; = &quot;200&quot; ]; then
+        ok &quot;${SERVICE_NAMES[$i]} repond (HTTP $HTTP_CODE)&quot;
+    else
+        error &quot;${SERVICE_NAMES[$i]} ne repond pas (HTTP $HTTP_CODE)&quot;
+    fi
+done
+
+# === Espace disque ===
+log &quot;--- Disque ---&quot;
+DISK_USAGE=$(df / --output=pcent | tail -1 | tr -d ' %')
+if [ &quot;$DISK_USAGE&quot; -lt 80 ]; then
+    ok &quot;Disque : ${DISK_USAGE}% utilise&quot;
+elif [ &quot;$DISK_USAGE&quot; -lt 90 ]; then
+    error &quot;Disque : ${DISK_USAGE}% utilise (seuil 80%)&quot;
+else
+    error &quot;CRITIQUE — Disque : ${DISK_USAGE}% utilise&quot;
+fi
+
+# === PostgreSQL ===
+log &quot;--- PostgreSQL ---&quot;
+if pg_isready -q 2&gt;/dev/null; then
+    ok &quot;PostgreSQL OK&quot;
+else
+    error &quot;PostgreSQL ne repond pas&quot;
+fi
+
+# === Memoire ===
+log &quot;--- Memoire ---&quot;
+MEM_TOTAL=$(free -m | awk '/Mem:/ {print $2}')
+MEM_AVAIL=$(free -m | awk '/Mem:/ {print $7}')
+MEM_PERCENT=$((MEM_AVAIL * 100 / MEM_TOTAL))
+if [ &quot;$MEM_PERCENT&quot; -gt 20 ]; then
+    ok &quot;Memoire : ${MEM_PERCENT}% disponible (${MEM_AVAIL}M/${MEM_TOTAL}M)&quot;
+else
+    error &quot;Memoire faible : ${MEM_PERCENT}% disponible (${MEM_AVAIL}M/${MEM_TOTAL}M)&quot;
+fi
+
+# === Vault ===
+log &quot;--- Vault ---&quot;
+if command -v vault &amp;&gt; /dev/null; then
+    VAULT_STATUS=$(vault status -format=json 2&gt;/dev/null | jq -r '.sealed' 2&gt;/dev/null)
+    if [ &quot;$VAULT_STATUS&quot; = &quot;false&quot; ]; then
+        ok &quot;Vault unsealed&quot;
+    else
+        error &quot;Vault sealed ou inaccessible&quot;
+    fi
+else
+    log &quot;[SKIP] Vault non installe&quot;
+fi
+
+# === Resume et alerte ===
+log &quot;&quot;
+if [ -n &quot;$ERRORS&quot; ]; then
+    log &quot;=== PROBLEMES DETECTES ===&quot;
+    echo -e &quot;$ERRORS&quot;
+
+    # Alerte Telegram
+    ALERT_MSG=&quot;*Health Check KO* — $(hostname) — $(date '+%Y-%m-%d %H:%M')&quot;
+    ALERT_MSG=&quot;${ALERT_MSG}$(echo -e &quot;$ERRORS&quot;)&quot;
+    send_telegram &quot;$ALERT_MSG&quot;
+
+    exit 1
+else
+    log &quot;=== TOUT EST OK ===&quot;
+    exit 0
+fi
+</code></pre>
+
+<h2 id="automatiser-avec-cron">Automatiser avec cron</h2>
+<pre class="codehilite"><code class="language-bash"># Editer le crontab
+crontab -e
+
+# Health check tous les jours a 7h00
+0 7 * * * /opt/scripts/health-check.sh --quiet &gt;&gt; /var/log/health-check.log 2&gt;&amp;1
+
+# Health check toutes les 4 heures (pour les services critiques)
+0 */4 * * * /opt/scripts/health-check.sh --quiet &gt;&gt; /var/log/health-check.log 2&gt;&amp;1
+</code></pre>
+
+<h2 id="configurer-les-alertes-telegram">Configurer les alertes Telegram</h2>
+<h3 id="1-creer-un-bot-telegram">1. Creer un bot Telegram</h3>
+<ol>
+<li>Ouvrez Telegram, cherchez <code>@BotFather</code>.</li>
+<li>Envoyez <code>/newbot</code>.</li>
+<li>Donnez un nom et un username.</li>
+<li>Copiez le token.</li>
+</ol>
+<h3 id="2-obtenir-votre-chat-id">2. Obtenir votre chat ID</h3>
+<ol>
+<li>Envoyez un message a votre bot.</li>
+<li>Ouvrez <code>https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</code>.</li>
+<li>Trouvez <code>chat.id</code> dans la reponse.</li>
+</ol>
+<h3 id="3-stocker-les-credentials">3. Stocker les credentials</h3>
+<pre class="codehilite"><code class="language-bash"># Dans Vault (recommande)
+vault kv put secret/telegram bot_token=&quot;123456:ABC...&quot; chat_id=&quot;987654321&quot;
+
+# Ou en variables d'environnement dans /etc/environment
+TELEGRAM_BOT_TOKEN=&quot;123456:ABC...&quot;
+TELEGRAM_CHAT_ID=&quot;987654321&quot;
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Pas de health check.</strong> Vous decouvrez la panne quand un utilisateur vous ecrit. Toujours trop tard.</p>
+<p><strong>Health check sans alerte.</strong> Le script tourne, le log se remplit, mais personne ne le lit. Sans alerte, c'est inutile.</p>
+<p><strong>Trop de checks.</strong> 50 verifications avec des seuils trop sensibles. Vous recevez 10 alertes par jour et vous ignorez tout. Commencez avec 5-7 checks essentiels.</p>
+<p><strong>Pas de test du script.</strong> Le script a un bug, le cron tourne, mais il ne detecte rien. Testez manuellement en simulant une panne (arretez un container, remplissez le disque).</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Copiez le script <code>health-check.sh</code> dans <code>/opt/scripts/</code>.</li>
+<li>Adaptez les services et ports a votre setup.</li>
+<li>Rendez executable : <code>chmod +x /opt/scripts/health-check.sh</code>.</li>
+<li>Testez manuellement : <code>./health-check.sh</code>.</li>
+<li>Configurez le bot Telegram et les variables.</li>
+<li>Testez l'alerte : arretez un container, lancez le script.</li>
+<li>Ajoutez au crontab.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Le script tourne sans erreur en mode normal et --quiet.</li>
+<li>[ ] Chaque composant critique est verifie.</li>
+<li>[ ] L'alerte Telegram fonctionne (testee avec une panne simulee).</li>
+<li>[ ] Le cron est configure et tourne.</li>
+<li>[ ] Le log est ecrit dans /var/log/health-check.log.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/01-health-check.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-00-sommaire.html">&larr; Chapitre 5 -- Maintenance</a>
+<a href="05-02-logs.html">5.2 -- Gestion des logs &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

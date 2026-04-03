@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>03 -- E-commerce | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
+    <a href="06-03-ecommerce.html" class="active">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Cabinet comptable</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- Comment soumettre votre ca...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="03-e-commerce">03 -- E-commerce</h1>
+<p><strong>Pour qui :</strong> vendeur en ligne gerant une boutique (Shopify, WooCommerce, PrestaShop ou equivalent)
+<strong>Temps de mise en place :</strong> 3 a 5 jours
+<strong>Difficulte :</strong> Intermediaire</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Un vendeur en ligne gere une boutique avec quelques centaines de references. Il vend sur sa propre boutique et potentiellement sur des marketplaces. Il est seul ou avec un assistant a temps partiel. Son quotidien : commandes a traiter, questions clients a repondre, stock a surveiller, et des decisions d'approvisionnement a prendre.</p>
+<p>Il cherche un systeme qui automatise les taches repetitives sans dependre d'un SaaS supplementaire a 200 EUR/mois.</p>
+<hr />
+<h2 id="probleme">Probleme</h2>
+<ul>
+<li>Les questions clients arrivent par email, formulaire de contact, et marketplaces -- reponses lentes ou oubliees</li>
+<li>Le suivi de stock est manuel : ruptures decouvertes trop tard, surstock sur d'autres references</li>
+<li>Les rapports de vente sont generes a la main dans des tableurs</li>
+<li>Aucune alerte proactive sur les tendances (produit qui decolle, produit qui stagne)</li>
+<li>Le temps passe sur l'operationnel empeche de travailler sur la strategie</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix</th>
+<th>Cout mensuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur</td>
+<td>VPS leger (Hetzner CX22 ou equivalent)</td>
+<td>5.00 EUR</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Installation sur le VPS</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Boutique</td>
+<td>Plateforme e-commerce existante (API)</td>
+<td>existant</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td>Email + webhook vers Mattermost ou Slack</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h3 id="agents">Agents</h3>
+<p><strong>Agent Support Client :</strong>
+- Lit les messages clients entrants (via API ou export)
+- Classe par categorie : suivi commande / question produit / reclamation / autre
+- Genere un brouillon de reponse adapte
+- Escalade les reclamations vers le vendeur avec un resume</p>
+<p><strong>Agent Stock :</strong>
+- Interroge l'API de la boutique quotidiennement
+- Alerte quand un produit passe sous le seuil de reapprovisionnement
+- Detecte les produits a rotation lente (pas de vente depuis X jours)
+- Genere une suggestion de commande fournisseur</p>
+<p><strong>Agent Reporting :</strong>
+- Genere un rapport quotidien : ventes, panier moyen, produits les plus vendus
+- Genere un rapport hebdomadaire avec tendances et comparaison semaine precedente
+- Signale les anomalies (chute de ventes soudaine, pic inhabituel)</p>
+<hr />
+<h2 id="mise-en-place">Mise en place</h2>
+<h3 id="jour-1-2-infrastructure-et-connexion-boutique">Jour 1-2 : Infrastructure et connexion boutique</h3>
+<ol>
+<li>Provisionner le VPS et installer OpenClaw</li>
+<li>Configurer l'acces API a la plateforme e-commerce</li>
+<li>Tester la lecture des commandes et du stock via l'API</li>
+<li>Creer la structure de fichiers pour les templates de reponse</li>
+</ol>
+<h3 id="jour-3-agent-support-client">Jour 3 : Agent Support Client</h3>
+<ol>
+<li>Rediger le system prompt avec le ton de la boutique et les FAQ courantes</li>
+<li>Configurer la lecture des messages entrants</li>
+<li>Definir les regles de classification (suivi / question / reclamation)</li>
+<li>Tester sur 20 messages reels</li>
+<li>Ajuster le prompt selon les resultats</li>
+</ol>
+<h3 id="jour-4-agent-stock-et-reporting">Jour 4 : Agent Stock et Reporting</h3>
+<ol>
+<li>Configurer les seuils de reapprovisionnement par categorie de produit</li>
+<li>Mettre en place l'alerte quotidienne de stock</li>
+<li>Configurer le rapport de ventes quotidien</li>
+<li>Tester le rapport hebdomadaire sur les donnees de la semaine precedente</li>
+</ol>
+<h3 id="jour-5-stabilisation">Jour 5 : Stabilisation</h3>
+<ol>
+<li>Configurer les notifications (email ou webhook)</li>
+<li>Tester le flux complet sur une journee reelle</li>
+<li>Ajuster les seuils et les templates selon les retours</li>
+<li>Documenter les procedures pour l'assistant eventuel</li>
+</ol>
+<hr />
+<h2 id="resultat">Resultat</h2>
+<p>Apres deux semaines d'utilisation :</p>
+<ul>
+<li><strong>Temps de reponse client divise par 3</strong> : les brouillons de reponse sont prets en quelques secondes. Le vendeur relit, ajuste si necessaire, et envoie</li>
+<li><strong>Zero rupture de stock surprise</strong> : les alertes arrivent 5 a 7 jours avant la rupture, laissant le temps de commander</li>
+<li><strong>Reporting automatique</strong> : le rapport quotidien arrive chaque matin. Plus besoin de manipuler des tableurs</li>
+<li><strong>Detection de tendances</strong> : l'agent a signale un produit dont les ventes avaient triple en une semaine, permettant un reapprovisionnement anticipe</li>
+<li><strong>2 heures liberees par jour</strong> : le temps recupere sur le support et le reporting est reinvesti dans la strategie produit</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>Les FAQ couvrent 80% des questions.</strong> Investir du temps pour rediger 20 a 30 reponses types dans le system prompt elimine la majorite du travail de support.</p>
+</li>
+<li>
+<p><strong>Les seuils de stock doivent etre par categorie, pas universels.</strong> Un produit a forte rotation a besoin d'un seuil plus haut qu'un produit de niche.</p>
+</li>
+<li>
+<p><strong>Le rapport quotidien doit etre court.</strong> 5 lignes maximum. Si le rapport est trop long, il n'est pas lu. Les details doivent etre accessibles a la demande.</p>
+</li>
+<li>
+<p><strong>Ne pas automatiser les reclamations.</strong> Une reclamation mal geree coute un client. L'agent resume et escalade, le vendeur repond personnellement.</p>
+</li>
+<li>
+<p><strong>Tester sur des donnees reelles, pas des donnees fictives.</strong> Les cas limites (produits en rupture, commandes annulees, retours) ne se revelent qu'avec des donnees de production.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reponses automatiques sans relecture</td>
+<td>Client qui recoit une reponse incorrecte ou froide</td>
+<td>Toujours relire les brouillons avant envoi</td>
+</tr>
+<tr>
+<td>Seuil de stock unique pour tout</td>
+<td>Ruptures sur les best-sellers, surstock sur les niches</td>
+<td>Seuils differencies par categorie</td>
+</tr>
+<tr>
+<td>Ignorer les erreurs API</td>
+<td>Donnees de stock obsoletes</td>
+<td>Monitoring des appels API, alerte en cas d'echec</td>
+</tr>
+<tr>
+<td>Rapport trop detaille</td>
+<td>Le rapport n'est pas lu</td>
+<td>Rapport court avec lien vers le detail</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-de-lagent-support-client">Template -- System prompt de l'agent support client</h2>
+<pre class="codehilite"><code>Tu es l'assistant support de [NOM DE LA BOUTIQUE].
+
+Contexte :
+- Boutique en ligne vendant [TYPE DE PRODUITS]
+- Clientele principalement [PAYS/REGION]
+- Ton : professionnel, chaleureux, concis
+
+Regles :
+- Tu generes des brouillons de reponse, jamais des reponses finales
+- Tu vouvoies toujours le client
+- Tu ne promets jamais de remboursement ou de geste commercial sans validation du vendeur
+- Tu escalades toute reclamation avec un resume factuel
+- Tu inclus le numero de commande dans chaque reponse
+
+Classification des messages :
+1. Suivi de commande -&gt; verifier le statut, repondre avec le tracking
+2. Question produit -&gt; repondre a partir de la fiche produit et des FAQ
+3. Reclamation -&gt; resumer le probleme, escalader au vendeur
+4. Autre -&gt; classer et signaler
+
+FAQ :
+- Delai de livraison : [X jours ouvrables]
+- Politique de retour : [conditions]
+- Modes de paiement : [liste]
+</code></pre>
+
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] L'API de la boutique est accessible depuis le VPS</li>
+<li>[ ] L'agent support classe correctement un echantillon de 20 messages</li>
+<li>[ ] Les alertes stock se declenchent au bon seuil sur un produit test</li>
+<li>[ ] Le rapport quotidien est genere et envoye chaque matin</li>
+<li>[ ] Les reclamations sont escaladees et non repondues automatiquement</li>
+<li>[ ] Les notifications arrivent par le canal choisi (email ou webhook)</li>
+</ul>
+<hr />
+<p><em>Un vendeur en ligne n'a pas besoin d'une equipe support. Il a besoin d'un agent bien configure et d'une relecture humaine.</em></p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/03-ecommerce.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-02-consultant-freelance.html">&larr; 02 -- Consultant freelance</a>
+<a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 personnes) &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

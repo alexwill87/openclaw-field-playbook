@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.3 -- Backups | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html" class="active">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="53-backups">5.3 -- Backups</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un backup qui n'a jamais ete teste n'est pas un backup. C'est un espoir. Et l'espoir n'est pas une strategie.</p>
+<p>Ce qui compte : frequence adaptee, stockage separe, et test de restauration regulier.</p>
+<h2 id="quoi-sauvegarder">Quoi sauvegarder</h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Methode</th>
+<th>Frequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base PostgreSQL</td>
+<td>pg_dump</td>
+<td>Quotidien</td>
+</tr>
+<tr>
+<td>Fichiers de config</td>
+<td>tar/rsync</td>
+<td>Hebdomadaire</td>
+</tr>
+<tr>
+<td>Docker volumes</td>
+<td>docker cp / tar</td>
+<td>Hebdomadaire</td>
+</tr>
+<tr>
+<td>Secrets (Vault)</td>
+<td>vault operator raft snapshot</td>
+<td>Hebdomadaire</td>
+</tr>
+<tr>
+<td>Code source</td>
+<td>Git (deja sauvegarde si pousse)</td>
+<td>A chaque push</td>
+</tr>
+<tr>
+<td>VPS complet</td>
+<td>Snapshot Hetzner</td>
+<td>Mensuel</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pg_dump-backup-de-la-base">pg_dump : backup de la base</h2>
+<h3 id="script-complet-backup-dbsh">Script complet : backup-db.sh</h3>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# backup-db.sh — Backup PostgreSQL quotidien
+# Usage : ./backup-db.sh
+
+BACKUP_DIR=&quot;/var/backups/postgresql&quot;
+DB_NAME=&quot;${DB_NAME:-cockpit}&quot;
+DB_USER=&quot;${DB_USER:-oa_admin}&quot;
+RETENTION_DAYS=14
+TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
+BACKUP_FILE=&quot;${BACKUP_DIR}/${DB_NAME}_${TIMESTAMP}.sql.gz&quot;
+LOG_FILE=&quot;/var/log/backup.log&quot;
+
+log() {
+    echo &quot;$(date '+%Y-%m-%d %H:%M:%S') [BACKUP-DB] $1&quot; | tee -a &quot;$LOG_FILE&quot;
+}
+
+# Creer le dossier si necessaire
+mkdir -p &quot;$BACKUP_DIR&quot;
+
+# Backup
+log &quot;Debut backup ${DB_NAME}&quot;
+if pg_dump -U &quot;$DB_USER&quot; &quot;$DB_NAME&quot; | gzip &gt; &quot;$BACKUP_FILE&quot;; then
+    SIZE=$(du -h &quot;$BACKUP_FILE&quot; | cut -f1)
+    log &quot;OK — ${BACKUP_FILE} (${SIZE})&quot;
+else
+    log &quot;ERREUR — pg_dump a echoue&quot;
+    exit 1
+fi
+
+# Verification : le fichier n'est pas vide
+if [ ! -s &quot;$BACKUP_FILE&quot; ]; then
+    log &quot;ERREUR — Le fichier backup est vide&quot;
+    exit 1
+fi
+
+# Rotation : supprimer les backups de plus de N jours
+DELETED=$(find &quot;$BACKUP_DIR&quot; -name &quot;${DB_NAME}_*.sql.gz&quot; -mtime +${RETENTION_DAYS} -delete -print | wc -l)
+log &quot;Rotation : ${DELETED} ancien(s) backup(s) supprime(s)&quot;
+
+log &quot;Backup termine&quot;
+</code></pre>
+
+<h3 id="cron">Cron</h3>
+<pre class="codehilite"><code class="language-bash"># Backup quotidien a 2h du matin
+0 2 * * * /opt/scripts/backup-db.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1
+</code></pre>
+
+<h2 id="fichiers-critiques">Fichiers critiques</h2>
+<h3 id="script-backup-filessh">Script : backup-files.sh</h3>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# backup-files.sh — Backup des fichiers de configuration
+# Usage : ./backup-files.sh
+
+BACKUP_DIR=&quot;/var/backups/files&quot;
+TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
+BACKUP_FILE=&quot;${BACKUP_DIR}/config_${TIMESTAMP}.tar.gz&quot;
+LOG_FILE=&quot;/var/log/backup.log&quot;
+
+mkdir -p &quot;$BACKUP_DIR&quot;
+
+log() {
+    echo &quot;$(date '+%Y-%m-%d %H:%M:%S') [BACKUP-FILES] $1&quot; | tee -a &quot;$LOG_FILE&quot;
+}
+
+log &quot;Debut backup fichiers&quot;
+
+# Liste des fichiers/dossiers a sauvegarder
+FILES=(
+    &quot;/opt/cockpit/docker-compose.yml&quot;
+    &quot;/opt/cockpit/.env&quot;
+    &quot;/opt/scripts/&quot;
+    &quot;/etc/nginx/sites-available/&quot;
+    &quot;/etc/docker/daemon.json&quot;
+    &quot;$HOME/.claude/&quot;
+    &quot;$HOME/CONSTITUTION.md&quot;
+    &quot;$HOME/BOUNDARIES.md&quot;
+    &quot;$HOME/WORKFLOWS.md&quot;
+)
+
+# Creer l'archive
+tar -czf &quot;$BACKUP_FILE&quot; &quot;${FILES[@]}&quot; 2&gt;/dev/null
+
+if [ $? -eq 0 ]; then
+    SIZE=$(du -h &quot;$BACKUP_FILE&quot; | cut -f1)
+    log &quot;OK — ${BACKUP_FILE} (${SIZE})&quot;
+else
+    log &quot;ERREUR — tar a echoue&quot;
+    exit 1
+fi
+
+# Rotation : garder 4 semaines
+find &quot;$BACKUP_DIR&quot; -name &quot;config_*.tar.gz&quot; -mtime +28 -delete
+
+log &quot;Backup fichiers termine&quot;
+</code></pre>
+
+<h2 id="snapshots-hetzner">Snapshots Hetzner</h2>
+<p>Les snapshots Hetzner sauvegardent le VPS complet. C'est le dernier recours.</p>
+<pre class="codehilite"><code class="language-bash"># Via hcloud CLI
+hcloud server create-image --type snapshot --description &quot;Snapshot mensuel $(date '+%Y-%m')&quot; &lt;server-id&gt;
+
+# Lister les snapshots existants
+hcloud image list --type snapshot
+
+# Supprimer un vieux snapshot
+hcloud image delete &lt;image-id&gt;
+</code></pre>
+
+<p>Frequence : mensuelle ou avant une operation risquee (migration, mise a jour majeure).</p>
+<p>Cout : les snapshots Hetzner sont factures au Go/mois. Un VPS de 40 Go = environ 0.80 EUR/mois par snapshot.</p>
+<h2 id="test-de-restauration">TEST de restauration</h2>
+<p>Le test le plus important. Faites-le au moins une fois par mois.</p>
+<h3 id="tester-la-restauration-postgresql">Tester la restauration PostgreSQL</h3>
+<pre class="codehilite"><code class="language-bash"># 1. Creer une base de test
+createdb -U oa_admin cockpit_restore_test
+
+# 2. Restaurer le dernier backup
+gunzip -c /var/backups/postgresql/cockpit_$(ls -t /var/backups/postgresql/ | head -1) | psql -U oa_admin cockpit_restore_test
+
+# 3. Verifier : compter les tables et les lignes
+psql -U oa_admin cockpit_restore_test -c &quot;\dt&quot;
+psql -U oa_admin cockpit_restore_test -c &quot;SELECT 'tasks' AS tbl, COUNT(*) FROM tasks;&quot;
+
+# 4. Comparer avec la production
+psql -U oa_admin cockpit -c &quot;SELECT 'tasks' AS tbl, COUNT(*) FROM tasks;&quot;
+
+# 5. Nettoyer
+dropdb -U oa_admin cockpit_restore_test
+</code></pre>
+
+<h3 id="tester-la-restauration-des-fichiers">Tester la restauration des fichiers</h3>
+<pre class="codehilite"><code class="language-bash"># 1. Extraire dans un dossier temporaire
+mkdir -p /tmp/restore_test
+tar -xzf /var/backups/files/config_$(ls -t /var/backups/files/ | head -1) -C /tmp/restore_test
+
+# 2. Verifier que les fichiers critiques sont la
+ls -la /tmp/restore_test/opt/cockpit/docker-compose.yml
+ls -la /tmp/restore_test/opt/scripts/
+
+# 3. Comparer avec les fichiers actuels
+diff /opt/cockpit/docker-compose.yml /tmp/restore_test/opt/cockpit/docker-compose.yml
+
+# 4. Nettoyer
+rm -rf /tmp/restore_test
+</code></pre>
+
+<h3 id="logger-le-test">Logger le test</h3>
+<pre class="codehilite"><code class="language-bash">echo &quot;$(date '+%Y-%m-%d') Restauration testee : DB OK, fichiers OK&quot; &gt;&gt; /var/log/backup-test.log
+</code></pre>
+
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Backup sans test.</strong> Vous avez des fichiers .sql.gz depuis 6 mois. Jamais testes. Le jour ou vous en avez besoin, le fichier est corrompu ou incomplet.</p>
+<p><strong>Backup sur le meme disque.</strong> Le disque tombe, les backups aussi. Stockez au minimum sur un volume separe, idealement hors du serveur (S3, autre VPS).</p>
+<p><strong>Pas de rotation.</strong> Les backups s'accumulent et remplissent le disque. Ironie maximale : la panne causee par les backups.</p>
+<p><strong>Backup sans log.</strong> Le cron tourne mais vous ne savez pas si ca marche. Loggez chaque execution et verifiez le log une fois par semaine.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Installez <code>backup-db.sh</code> et <code>backup-files.sh</code> dans <code>/opt/scripts/</code>.</li>
+<li>Testez manuellement les deux scripts.</li>
+<li>Configurez les crons.</li>
+<li>Testez la restauration (DB + fichiers).</li>
+<li>Planifiez un test de restauration mensuel.</li>
+<li>Configurez un snapshot Hetzner mensuel.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] backup-db.sh tourne quotidiennement et produit des fichiers non-vides.</li>
+<li>[ ] backup-files.sh tourne hebdomadairement.</li>
+<li>[ ] La rotation supprime les vieux backups.</li>
+<li>[ ] Un test de restauration a ete fait dans le dernier mois.</li>
+<li>[ ] Les backups ne sont pas sur le meme disque que les donnees.</li>
+<li>[ ] Un snapshot Hetzner mensuel est planifie.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/03-backups.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-02-logs.html">&larr; 5.2 -- Gestion des logs</a>
+<a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

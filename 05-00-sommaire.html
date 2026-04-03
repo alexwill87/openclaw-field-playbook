@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Chapitre 5 -- Maintenance | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title" class="active">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Health check quotidien</a>
+    <a href="05-02-logs.html">5.2 -- Gestion des logs</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Revoir le system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Derive de la memoire</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- Quand l'agent se trompe</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Mettre a jour les integra...</a>
+    <a href="05-08-maj-systeme.html">5.8 -- Mises a jour systeme</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Rotation des secrets</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring et alertes</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="chapitre-5-maintenance">Chapitre 5 -- Maintenance</h1>
+<blockquote>
+<p>Garder votre setup OpenClaw performant, fiable et digne de confiance dans la duree.</p>
+</blockquote>
+<h2 id="partie-a-operations-quotidiennes">Partie A -- Operations quotidiennes</h2>
+<ul>
+<li>
+<p><strong>5.1</strong> -- <a href="01-health-check.md">Health check quotidien</a>
+  Script diagnostic. Automatiser avec cron. Alertes Telegram.</p>
+</li>
+<li>
+<p><strong>5.2</strong> -- <a href="02-logs.md">Gestion des logs</a>
+  Ou les trouver, comment les lire, rotation, quoi surveiller.</p>
+</li>
+<li>
+<p><strong>5.3</strong> -- <a href="03-backups.md">Backups</a>
+  pg_dump, snapshots Hetzner, fichiers critiques. Test de restauration.</p>
+</li>
+</ul>
+<h2 id="partie-b-maintenance-agent">Partie B -- Maintenance agent</h2>
+<ul>
+<li>
+<p><strong>5.4</strong> -- <a href="04-revoir-system-prompt.md">Revoir le system prompt</a>
+  Frequence, declencheurs, quoi preserver vs reecrire.</p>
+</li>
+<li>
+<p><strong>5.5</strong> -- <a href="05-derive-memoire.md">Derive de la memoire</a>
+  Memoire obsolete ou contradictoire. Nettoyage periodique.</p>
+</li>
+<li>
+<p><strong>5.6</strong> -- <a href="06-agent-se-trompe.md">Quand l'agent se trompe</a>
+  Protocole : diagnostic, correction, prevention.</p>
+</li>
+<li>
+<p><strong>5.7</strong> -- <a href="07-maj-integrations.md">Mettre a jour les integrations</a>
+  API qui change. Adapter sans casser.</p>
+</li>
+</ul>
+<h2 id="partie-c-maintenance-infra">Partie C -- Maintenance infra</h2>
+<ul>
+<li>
+<p><strong>5.8</strong> -- <a href="08-maj-systeme.md">Mises a jour systeme</a>
+  Ubuntu, Docker, Node.js, Vault. Quand NE PAS mettre a jour.</p>
+</li>
+<li>
+<p><strong>5.9</strong> -- <a href="09-rotation-secrets.md">Rotation des secrets</a>
+  Pourquoi, comment, frequence.</p>
+</li>
+<li>
+<p><strong>5.10</strong> -- <a href="10-monitoring.md">Monitoring et alertes</a>
+  Simple (cron+Telegram), intermediaire (Uptime Kuma), avance (Grafana).</p>
+</li>
+<li>
+<p><strong>5.11</strong> -- <a href="11-en-cas-de-panne.md">En cas de panne</a>
+  Tableau diagnostic par symptome. Pour chaque : diagnostic, fix, prevention.</p>
+</li>
+</ul>
+<h2 id="partie-d-evolution">Partie D -- Evolution</h2>
+<ul>
+<li>
+<p><strong>5.12</strong> -- <a href="12-deuxieme-agent.md">Quand ajouter un deuxieme agent</a>
+  Signes, structure, isolation, communication.</p>
+</li>
+<li>
+<p><strong>5.13</strong> -- <a href="13-migrer-modele.md">Migrer vers un autre modele</a>
+  Comment tester sans casser. Comparaison A/B. Garder le fallback.</p>
+</li>
+<li>
+<p><strong>5.14</strong> -- <a href="14-mesurer-roi.md">Mesurer le ROI</a>
+  Temps gagne, decisions ameliorees, erreurs evitees.</p>
+</li>
+</ul>
+<hr />
+<p>Specifications locales : voir <code>sections/07-localisation/</code></p>
+<hr />
+<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/README.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-14-config-bilingue.html">&larr; 4.14 -- Configuration bilingue</a>
+<a href="05-01-health-check.html">5.1 -- Health check quotidien &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

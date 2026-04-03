@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Chapitre 7 -- Localisation | OpenClaw Field Playbook</title>
+  <title>Locale: fr-FR — France | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -31,15 +31,35 @@
 <div class="layout-wrapper">
   <aside class="sidebar">
     <nav id="side-nav">
-      <a href="index.html">Accueil</a>
-<a href="chapitre-00.html">Chapitre 0 -- Guide de lecture</a>
-<a href="chapitre-01.html">Chapitre 1 -- Definition</a>
-<a href="chapitre-02.html">Chapitre 2 -- Installation</a>
-<a href="chapitre-03.html">Chapitre 3 -- Configuration</a>
-<a href="chapitre-04.html">Chapitre 4 -- Personnalisation</a>
-<a href="chapitre-05.html">Chapitre 5 -- Maintenance</a>
-<a href="chapitre-06.html">Chapitre 6 -- Cas d'usage</a>
-<a href="chapitre-07.html" class="active">Chapitre 7 -- Localisation</a>
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+  <div class="nav-sections">
+    <a href="07-00-en-US.html">Locale: en-US — United States (b...</a>
+    <a href="07-00-fr-FR.html" class="active">Locale: fr-FR — France</a>
+  </div>
+</div>
 <a href="checklist.html">Checklist</a>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
 <a href="contribuer.html">Contribuer</a>
@@ -48,116 +68,13 @@
 
   <main id="content">
     <section class="chapter">
-<h1 id="chapter-7-localisation">Chapter 7 — Localisation</h1>
-<blockquote>
-<p>The playbook content is universal (EN-US). This chapter documents what changes per local context — legislation, ecosystem, tools, cultural practices.</p>
-</blockquote>
-<h2 id="available-locales">Available locales</h2>
-<table>
-<thead>
-<tr>
-<th>Locale</th>
-<th>File</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>🇫🇷 France</td>
-<td><a href="fr-FR.md">fr-FR.md</a></td>
-<td>draft</td>
-</tr>
-<tr>
-<td>🇺🇸 United States</td>
-<td><a href="en-US.md">en-US.md</a></td>
-<td>draft</td>
-</tr>
-<tr>
-<td>🇨🇦 Canada (FR)</td>
-<td>fr-CA.md</td>
-<td><em>not yet created — <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">contribute</a></em></td>
-</tr>
-<tr>
-<td>🇬🇧 United Kingdom</td>
-<td>en-GB.md</td>
-<td><em>not yet created — <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">contribute</a></em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-add-a-locale">How to add a locale</h2>
-<p>Open an Issue with label <code>new-locale</code> and include:
-- The locale code (e.g. <code>de-DE</code>)
-- A brief summary of what is locally specific
-- Whether you can write the first draft</p>
-<h2 id="language-contract">Language contract</h2>
-<p>Everything in chapters 0–6 is universal. This chapter is the only place where content differs per geography. See <code>sections/00-reading-guide.md</code> for the full language contract.</p>
-<hr />
-<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribute to this chapter</a></em></p>
-<h1 id="locale-en-us-united-states-baseline">Locale: en-US — United States (baseline)</h1>
-<blockquote>
-<p>This is the reference locale. All other locales document differences from this baseline.
-The playbook is written in EN-US — this file documents the implicit assumptions behind that default.</p>
-</blockquote>
-<hr />
-<h2 id="regulatory-context">Regulatory context</h2>
-<h3 id="data-privacy">Data privacy</h3>
-<ul>
-<li>No federal data protection law equivalent to GDPR (as of 2026)</li>
-<li>State-level laws apply: CCPA (California), VCDPA (Virginia), others</li>
-<li>For most individual entrepreneurs: local OpenClaw deployment = minimal regulatory exposure</li>
-<li>Enterprise deployment: consult legal counsel on applicable state laws</li>
-</ul>
-<h3 id="business-context">Business context</h3>
-<ul>
-<li>At-will employment standard — different implications for HR automations vs EU</li>
-<li>No mandatory "right to disconnect" — but best practice to respect boundaries</li>
-</ul>
-<hr />
-<h2 id="local-ecosystem">Local ecosystem</h2>
-<h3 id="common-infrastructure">Common infrastructure</h3>
-<ul>
-<li>AWS, Google Cloud, Azure — widely used</li>
-<li>GitHub — primary for repos and collaboration</li>
-<li>Cloudflare — DNS, CDN</li>
-</ul>
-<h3 id="common-business-tools-strong-openclaw-skill-support">Common business tools (strong OpenClaw skill support)</h3>
-<ul>
-<li><strong>Email:</strong> Gmail, Outlook</li>
-<li><strong>Calendar:</strong> Google Calendar, Outlook Calendar</li>
-<li><strong>CRM:</strong> Salesforce, HubSpot</li>
-<li><strong>Accounting:</strong> QuickBooks, FreshBooks, Wave</li>
-<li><strong>Communication:</strong> Slack, Teams, Discord</li>
-<li><strong>Project management:</strong> Notion, Linear, Asana</li>
-</ul>
-<hr />
-<h2 id="language-specifics">Language specifics</h2>
-<h3 id="tone-conventions">Tone conventions</h3>
-<ul>
-<li>Business communication is generally informal</li>
-<li>First-name basis from first contact is common</li>
-<li>Direct, action-oriented language preferred</li>
-</ul>
-<h3 id="recommended-models">Recommended models</h3>
-<ul>
-<li>GPT-4o — strong EN-US, culturally attuned</li>
-<li>Claude Sonnet — consistent, professional tone</li>
-<li>Gemini Flash — fast, good for routine tasks</li>
-</ul>
-<hr />
-<h2 id="known-differences-from-other-locales">Known differences from other locales</h2>
-<p>This is the baseline. See individual locale files for differences:
-- <a href="fr-FR.md">fr-FR.md</a> — France
-- fr-CA.md — Canada (French) — <em>not yet created</em>
-- en-GB.md — United Kingdom — <em>not yet created</em></p>
-<hr />
-<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Improve this locale</a></em></p>
 <h1 id="locale-fr-fr-france">Locale: fr-FR — France</h1>
 <blockquote>
 <p>This file documents what is specific to France when using OpenClaw in a business context.
 Universal content is in chapters 1–6. Only the differences are here.</p>
 </blockquote>
 <hr />
-<h2 id="regulatory-context_1">Regulatory context</h2>
+<h2 id="regulatory-context">Regulatory context</h2>
 <h3 id="rgpd-gdpr">RGPD (GDPR)</h3>
 <p>OpenClaw processes personal data — emails, calendar, contacts. In France, this falls under RGPD (Règlement Général sur la Protection des Données).</p>
 <p>Key implications for your configuration:
@@ -170,7 +87,7 @@ Universal content is in chapters 1–6. Only the differences are here.</p>
 <h3 id="labour-law-considerations">Labour law considerations</h3>
 <p>If OpenClaw is used to monitor employee activity (emails, schedules), French labour law applies. Consult a legal advisor before deploying in HR contexts.</p>
 <hr />
-<h2 id="local-ecosystem_1">Local ecosystem</h2>
+<h2 id="local-ecosystem">Local ecosystem</h2>
 <h3 id="recommended-french-infrastructure">Recommended French infrastructure</h3>
 <ul>
 <li><strong>Hosting:</strong> OVHcloud, Scaleway, Infomaniak (Swiss-French)</li>
@@ -189,7 +106,7 @@ Universal content is in chapters 1–6. Only the differences are here.</p>
 <h3 id="tools-that-may-require-custom-integration">Tools that may require custom integration</h3>
 <p>Standard OpenClaw skills are built for anglophone tools. French-specific tools (Pennylane, Sellsy, etc.) may require custom skill development via ClawHub or manual configuration.</p>
 <hr />
-<h2 id="language-specifics_1">Language specifics</h2>
+<h2 id="language-specifics">Language specifics</h2>
 <h3 id="prompt-language">Prompt language</h3>
 <p>Write your system prompt in French if your business operates in French. OpenClaw passes your prompts to the underlying LLM — French prompts work well with Claude, GPT-4, and Mistral (which has strong French-language performance).</p>
 <h3 id="recommended-models-for-french-content">Recommended models for French content</h3>
@@ -198,7 +115,7 @@ Universal content is in chapters 1–6. Only the differences are here.</p>
 <li><strong>Claude Sonnet</strong> — high quality in French, consistent tone</li>
 <li><strong>GPT-4o</strong> — good French but occasionally anglophone cultural assumptions</li>
 </ul>
-<h3 id="tone-conventions_1">Tone conventions</h3>
+<h3 id="tone-conventions">Tone conventions</h3>
 <ul>
 <li>French business communication defaults to <strong>vouvoiement</strong> (formal "vous")</li>
 <li>Configure your agent accordingly in the system prompt: <em>"Tu utilises le vouvoiement dans toutes les communications externes."</em></li>
@@ -269,7 +186,7 @@ Universal content is in chapters 1–6. Only the differences are here.</p>
 <hr />
 <p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Improve this locale</a> · <a href="../../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
 </section>
-<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/tree/main/sections/07-localisation/">Proposer une modification sur GitHub</a></p>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/07-localisation/fr-FR.md">Proposer une modification sur GitHub</a></p>
 <div class="giscus-wrapper">
   <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
   <script src="https://giscus.app/client.js"
@@ -291,7 +208,7 @@ Universal content is in chapters 1–6. Only the differences are here.</p>
 </div>
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="chapitre-06.html">&larr; Chapitre 6 -- Cas d'usage</a>
+<a href="07-00-en-US.html">&larr; Locale: en-US — United States (baseline)</a>
 <span></span>
 </div>
 

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.6 -- Base de donnees comme source de verite | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Ecrire votre system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personnalite et ton</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration : la premiere v...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Pourquoi un systeme de ta...</a>
+    <a href="04-05-comment-taches.html">4.5 -- Comment les taches se font</a>
+    <a href="04-06-db-source-verite.html" class="active">4.6 -- Base de donnees comme sou...</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Reconnaitre une routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run avant confiance</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- Le rythme hebdomadaire</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- La confiance est une con...</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- Le boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit : que peut acceder...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Configuration bilingue</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="46-base-de-donnees-comme-source-de-verite">4.6 -- Base de donnees comme source de verite</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Un fichier TASKS.md marche pour 10-20 taches. Au-dela, ca devient penible : pas de filtre, pas d'historique, pas de requetes, conflits de merge si plusieurs agents ecrivent. La solution : une base de donnees PostgreSQL comme source de verite.</p>
+<p>Pourquoi PostgreSQL et pas SQLite ? Parce que votre agent tourne sur un VPS ou PostgreSQL est deja installe. Autant utiliser ce qui est la.</p>
+<h2 id="pourquoi-db-fichiers-md">Pourquoi DB &gt; fichiers .md</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Fichier .md</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filtre par statut/priorite</td>
+<td>Manuel (grep)</td>
+<td><code>WHERE status = 'todo'</code></td>
+</tr>
+<tr>
+<td>Historique des changements</td>
+<td>Git log (penible)</td>
+<td>Colonne <code>updated_at</code></td>
+</tr>
+<tr>
+<td>Requetes complexes</td>
+<td>Impossible</td>
+<td>SQL standard</td>
+</tr>
+<tr>
+<td>Acces concurrent</td>
+<td>Conflits de merge</td>
+<td>Transactions</td>
+</tr>
+<tr>
+<td>Taches &gt; 50</td>
+<td>Illisible</td>
+<td>Pas de probleme</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Avec le repo</td>
+<td>pg_dump</td>
+</tr>
+</tbody>
+</table>
+<p>Le fichier .md reste utile comme vue (genere depuis la DB). Mais la source de verite est la base.</p>
+<h2 id="schema-postgresql">Schema PostgreSQL</h2>
+<pre class="codehilite"><code class="language-sql">CREATE TABLE tasks (
+    id          SERIAL PRIMARY KEY,
+    title       VARCHAR(255) NOT NULL,
+    description TEXT,
+    status      VARCHAR(20) DEFAULT 'todo' 
+                CHECK (status IN ('todo', 'in_progress', 'done', 'blocked', 'cancelled')),
+    priority    VARCHAR(10) DEFAULT 'medium'
+                CHECK (priority IN ('high', 'medium', 'low')),
+    project     VARCHAR(100),
+    assigned_to VARCHAR(100),
+    created_at  TIMESTAMPTZ DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ DEFAULT NOW(),
+    deadline    DATE,
+    notes       TEXT
+);
+
+-- Index pour les requetes frequentes
+CREATE INDEX idx_tasks_status ON tasks(status);
+CREATE INDEX idx_tasks_priority ON tasks(priority);
+CREATE INDEX idx_tasks_project ON tasks(project);
+
+-- Mise a jour automatique du updated_at
+CREATE OR REPLACE FUNCTION update_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tasks_updated_at
+    BEFORE UPDATE ON tasks
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at();
+</code></pre>
+
+<h2 id="requetes-utiles">Requetes utiles</h2>
+<h3 id="taches-prioritaires-du-jour">Taches prioritaires du jour</h3>
+<pre class="codehilite"><code class="language-sql">SELECT id, title, priority, deadline
+FROM tasks
+WHERE status IN ('todo', 'in_progress')
+ORDER BY 
+    CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 ELSE 3 END,
+    deadline NULLS LAST;
+</code></pre>
+
+<h3 id="taches-en-retard">Taches en retard</h3>
+<pre class="codehilite"><code class="language-sql">SELECT id, title, deadline, 
+       NOW()::date - deadline AS jours_retard
+FROM tasks
+WHERE status NOT IN ('done', 'cancelled')
+  AND deadline &lt; CURRENT_DATE
+ORDER BY deadline;
+</code></pre>
+
+<h3 id="resume-de-la-semaine">Resume de la semaine</h3>
+<pre class="codehilite"><code class="language-sql">SELECT status, COUNT(*) AS total
+FROM tasks
+WHERE updated_at &gt;= NOW() - INTERVAL '7 days'
+GROUP BY status
+ORDER BY total DESC;
+</code></pre>
+
+<h3 id="taches-par-projet">Taches par projet</h3>
+<pre class="codehilite"><code class="language-sql">SELECT project, status, COUNT(*) AS total
+FROM tasks
+GROUP BY project, status
+ORDER BY project, status;
+</code></pre>
+
+<h2 id="script-cli-taskssh">Script CLI : tasks.sh</h2>
+<p>Un script bash pour gerer les taches sans ouvrir psql a chaque fois.</p>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# tasks.sh — CLI pour la gestion des taches
+# Usage : ./tasks.sh [commande] [arguments]
+
+DB_NAME=&quot;${TASKS_DB:-cockpit}&quot;
+DB_USER=&quot;${TASKS_USER:-oa_admin}&quot;
+
+cmd_list() {
+    local filter=&quot;${1:-all}&quot;
+    case &quot;$filter&quot; in
+        todo|in_progress|done|blocked)
+            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+                &quot;SELECT id, title, priority, deadline FROM tasks WHERE status = '$filter' ORDER BY priority, deadline NULLS LAST;&quot;
+            ;;
+        urgent)
+            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+                &quot;SELECT id, title, deadline FROM tasks WHERE status IN ('todo','in_progress') AND (priority = 'high' OR deadline &lt;= CURRENT_DATE + 3) ORDER BY deadline NULLS LAST;&quot;
+            ;;
+        *)
+            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+                &quot;SELECT id, title, status, priority, deadline FROM tasks WHERE status NOT IN ('done','cancelled') ORDER BY priority, deadline NULLS LAST;&quot;
+            ;;
+    esac
+}
+
+cmd_add() {
+    local title=&quot;$1&quot;
+    local priority=&quot;${2:-medium}&quot;
+    local project=&quot;${3:-}&quot;
+    local deadline=&quot;${4:-}&quot;
+
+    # Utiliser des variables psql pour eviter l'injection SQL
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; \
+        -v title=&quot;$title&quot; \
+        -v priority=&quot;$priority&quot; \
+        -v project=&quot;$project&quot; \
+        -v deadline=&quot;$deadline&quot; \
+        -c &quot;INSERT INTO tasks (title, priority, project, deadline) VALUES (:'title', :'priority', NULLIF(:'project',''), NULLIF(:'deadline','')::date) RETURNING id, title;&quot;
+}
+
+cmd_done() {
+    local id=&quot;$1&quot;
+    # Valider que id est un entier
+    if ! [[ &quot;$id&quot; =~ ^[0-9]+$ ]]; then
+        echo &quot;Erreur : id doit etre un entier&quot; &gt;&amp;2
+        return 1
+    fi
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+        &quot;UPDATE tasks SET status = 'done' WHERE id = $id RETURNING id, title, status;&quot;
+}
+
+cmd_status() {
+    local id=&quot;$1&quot;
+    local new_status=&quot;$2&quot;
+    if ! [[ &quot;$id&quot; =~ ^[0-9]+$ ]]; then
+        echo &quot;Erreur : id doit etre un entier&quot; &gt;&amp;2
+        return 1
+    fi
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; \
+        -v new_status=&quot;$new_status&quot; \
+        -c &quot;UPDATE tasks SET status = :'new_status' WHERE id = $id RETURNING id, title, status;&quot;
+}
+
+cmd_summary() {
+    echo &quot;=== Resume des taches ===&quot;
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+        &quot;SELECT status, COUNT(*) FROM tasks GROUP BY status ORDER BY COUNT(*) DESC;&quot;
+    echo &quot;&quot;
+    echo &quot;=== En retard ===&quot;
+    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
+        &quot;SELECT id, title, deadline FROM tasks WHERE deadline &lt; CURRENT_DATE AND status NOT IN ('done','cancelled') ORDER BY deadline;&quot;
+}
+
+case &quot;${1:-help}&quot; in
+    list)    cmd_list &quot;$2&quot; ;;
+    add)     cmd_add &quot;$2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; ;;
+    done)    cmd_done &quot;$2&quot; ;;
+    status)  cmd_status &quot;$2&quot; &quot;$3&quot; ;;
+    summary) cmd_summary ;;
+    help)
+        echo &quot;Usage : tasks.sh &lt;commande&gt;&quot;
+        echo &quot;  list [filtre]     — Lister (all/todo/in_progress/done/blocked/urgent)&quot;
+        echo &quot;  add &lt;titre&gt; [priorite] [projet] [deadline]&quot;
+        echo &quot;  done &lt;id&gt;         — Marquer comme terminee&quot;
+        echo &quot;  status &lt;id&gt; &lt;statut&gt;&quot;
+        echo &quot;  summary           — Resume global&quot;
+        ;;
+    *)       echo &quot;Commande inconnue : $1. Utilisez 'help'.&quot; ;;
+esac
+</code></pre>
+
+<p>Rendez le executable : <code>chmod +x tasks.sh</code></p>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Creer la DB trop tot.</strong> Si vous avez 5 taches, un fichier TASKS.md suffit. Ne complexifiez pas sans raison.</p>
+<p><strong>Pas de backup.</strong> La DB est la source de verite mais elle n'est pas sauvegardee. Voir section 5.3 pour pg_dump automatise.</p>
+<p><strong>Schema trop complexe.</strong> Tags, sous-taches, dependances, commentaires, historique complet... Commencez avec le schema minimal. Ajoutez quand le besoin est reel.</p>
+<p><strong>Pas de script CLI.</strong> Vous ouvrez psql pour chaque operation. Friction = abandon. Le script reduit la friction a zero.</p>
+<h2 id="etapes">Etapes</h2>
+<ol>
+<li>Creez la table avec le schema ci-dessus.</li>
+<li>Migrez vos taches existantes (TASKS.md -&gt; INSERT INTO).</li>
+<li>Installez le script <code>tasks.sh</code>.</li>
+<li>Testez : <code>./tasks.sh list</code>, <code>./tasks.sh add "Test" high</code>.</li>
+<li>Ajoutez au system prompt : "Les taches sont dans PostgreSQL, table tasks."</li>
+<li>Configurez pg_dump quotidien (section 5.3).</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] La table <code>tasks</code> existe avec le schema minimal.</li>
+<li>[ ] Le trigger <code>updated_at</code> fonctionne.</li>
+<li>[ ] Le script <code>tasks.sh</code> est executable et fonctionnel.</li>
+<li>[ ] L'agent sait interroger la table (instruction dans le system prompt).</li>
+<li>[ ] Un backup pg_dump est configure.</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/06-db-source-verite.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-05-comment-taches.html">&larr; 4.5 -- Comment les taches se font</a>
+<a href="04-07-reconnaitre-routine.html">4.7 -- Reconnaitre une routine &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -149,6 +149,84 @@ body {
   font-weight: 500;
 }
 
+/* Hierarchical sidebar */
+.nav-home {
+  display: block;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+}
+
+.nav-home:hover { color: var(--accent); }
+
+.nav-chapter { margin-bottom: 0.15rem; }
+
+.nav-chapter-title {
+  display: block;
+  padding: 0.4rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--text);
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+
+.nav-chapter-title:hover {
+  color: var(--accent);
+  background: var(--bg-section);
+}
+
+.nav-chapter-title.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.nav-sections {
+  display: none;
+}
+
+.nav-chapter.open .nav-sections {
+  display: block;
+}
+
+.nav-sections a {
+  display: block;
+  padding: 0.25rem 1.25rem 0.25rem 2rem;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-sections a:hover {
+  color: var(--text);
+  background: var(--bg-section);
+}
+
+.nav-sections a.active {
+  color: var(--accent);
+  background: var(--accent-light);
+  border-left-color: var(--accent);
+  font-weight: 500;
+}
+
+.nav-utils {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
 /* ========== MAIN CONTENT ========== */
 main#content {
   flex: 1;

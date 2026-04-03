@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.12 -- Email et messages | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html" class="active">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="312-email-et-messages">3.12 -- Email et messages</h1>
+<h2 id="contexte">Contexte</h2>
+<p>L'email est la source la plus volumineuse et la plus bruitee. C'est pour ca qu'elle vient en troisieme position, apres le calendrier et les taches. Connecter l'email a un agent mal configure, c'est lui donner un tuyau d'incendie quand il a besoin d'un verre d'eau.</p>
+<h2 id="connexion-email">Connexion email</h2>
+<h3 id="configuration">Configuration</h3>
+<pre class="codehilite"><code>openclaw skill add email
+</code></pre>
+
+<p>L'agent va :
+1. Demander le fournisseur (Gmail, Outlook, IMAP generique)
+2. Configurer l'authentification (OAuth recommande, pas de mot de passe en clair)
+3. Definir la portee initiale</p>
+<h3 id="portee-recommandee-au-demarrage">Portee recommandee au demarrage</h3>
+<table>
+<thead>
+<tr>
+<th>Droit</th>
+<th>Recommandation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lecture des emails recus</td>
+<td>Oui -- 48h glissantes</td>
+</tr>
+<tr>
+<td>Lecture des emails envoyes</td>
+<td>Oui -- pour le contexte des conversations</td>
+</tr>
+<tr>
+<td>Brouillon de reponse</td>
+<td>Oui -- l'agent prepare, vous envoyez</td>
+</tr>
+<tr>
+<td>Envoi direct</td>
+<td>Non -- ajoutez apres plusieurs semaines de confiance</td>
+</tr>
+<tr>
+<td>Suppression</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>Gestion des labels/dossiers</td>
+<td>Non au debut</td>
+</tr>
+</tbody>
+</table>
+<p>La portee de 48h glissantes est importante : l'agent n'a pas besoin de vos emails d'il y a 6 mois. Il a besoin de ce qui est arrive recemment et attend une action.</p>
+<h2 id="triage-automatique-vs-assiste">Triage : automatique vs assiste</h2>
+<p>Deux modes possibles :</p>
+<h3 id="triage-assiste-recommande-pour-debuter">Triage assiste (recommande pour debuter)</h3>
+<p>L'agent classe vos emails et vous presente un resume. Vous decidez.</p>
+<pre class="codehilite"><code>TRIAGE EMAIL -- 2 avril 2026, 08:15
+
+URGENT (reponse aujourd'hui) :
+- Marc (ClientAlpha) : Demande de modification du devis
+  &gt; Impact : le devis expire vendredi. Repondre avant jeudi.
+- Lea Martin : Confirmation entretien 14h
+  &gt; Action : confirmer ou reporter
+
+A TRAITER (cette semaine) :
+- Fournisseur X : Nouvelle grille tarifaire
+  &gt; Pas urgent mais impacte le budget Q2
+- Comptable : Documents manquants bilan
+  &gt; Deadline : 10 avril
+
+INFORMATIF (pas d'action requise) :
+- Newsletter secteur [archiver]
+- Notification GitHub [archiver]
+- Publicite [supprimer]
+
+3 emails non classes -- voulez-vous que je les affiche ?
+</code></pre>
+
+<h3 id="triage-automatique-pour-les-agents-matures">Triage automatique (pour les agents matures)</h3>
+<p>L'agent agit selon des regles predefinies dans CONSTITUTION.md :</p>
+<pre class="codehilite"><code class="language-markdown">## Regles de triage email
+- Newsletter et notifications : archiver automatiquement
+- Publicite et spam : supprimer automatiquement
+- Email d'un interlocuteur cle (voir USER.md) : priorite haute
+- Email avec deadline mentionnee : extraire la deadline, ajouter aux taches
+- Tout le reste : classer en &quot;a traiter&quot; pour le prochain briefing
+</code></pre>
+
+<p>N'activez le triage automatique qu'apres 2-3 semaines de triage assiste valide.</p>
+<h2 id="brouillons-de-reponse">Brouillons de reponse</h2>
+<p>L'agent peut preparer des brouillons. C'est souvent la fonctionnalite la plus utile :</p>
+<pre class="codehilite"><code>Prepare un brouillon de reponse pour l'email de Marc
+sur la modification du devis. Ton professionnel mais ferme :
+on peut ajuster la portee, pas le prix.
+</code></pre>
+
+<p>L'agent redige. Vous relisez. Vous envoyez (ou vous modifiez et envoyez).</p>
+<p>Regle dans CONSTITUTION.md :</p>
+<pre class="codehilite"><code class="language-markdown">## Emails
+- Tu peux rediger des brouillons de reponse
+- Tu ne peux JAMAIS envoyer un email sans ma validation explicite
+- Chaque brouillon doit indiquer : destinataire, objet, ton utilise
+</code></pre>
+
+<h2 id="le-piege-ne-pas-tout-connecter">Le piege : ne pas tout connecter</h2>
+<p>L'email est la source ou le piege du "tout connecter" est le plus dangereux.</p>
+<p>Ne connectez PAS :
+- Les boites emails partagees (trop de bruit, contexte manquant)
+- Les comptes personnels (separation pro/perso)
+- Les listes de diffusion a haut volume (mailing lists techniques, etc.)</p>
+<p>Connectez uniquement votre boite email professionnelle principale.</p>
+<h2 id="messages-slack-teams-etc">Messages (Slack, Teams, etc.)</h2>
+<p>Les plateformes de messagerie instantanee sont encore plus bruitees que l'email. Si vous les connectez :</p>
+<ul>
+<li>Limitez a 2-3 channels pertinents, pas tout le workspace</li>
+<li>Mode lecture seule uniquement</li>
+<li>Pas de reponse automatique (jamais)</li>
+<li>Utilisez-les pour le contexte, pas pour l'action</li>
+</ul>
+<pre class="codehilite"><code class="language-markdown">## Messaging
+- Channels connectes : #general, #projet-alpha, #urgent
+- Mode : lecture seule
+- Usage : contexte pour le briefing, pas d'action directe
+</code></pre>
+
+<h2 id="etape-par-etape">Etape par etape</h2>
+<ol>
+<li>Connectez l'email en lecture seule (48h glissantes)</li>
+<li>Activez le triage assiste pendant 2 semaines</li>
+<li>Verifiez que le classement correspond a vos priorites</li>
+<li>Ajoutez les brouillons de reponse</li>
+<li>Si pertinent, passez au triage automatique apres validation</li>
+<li>Les messages instantanes sont optionnels et viennent en dernier</li>
+</ol>
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Connecter l'email en premier</strong> : Sans calendrier et taches, l'agent ne peut pas prioriser vos emails. Il ne sait pas que vous etes en reunion toute la matinee ni que vous avez 5 taches urgentes.</p>
+<p><strong>Donner le droit d'envoi immediatement</strong> : Un email envoye par erreur a un client, ca ne se rattrape pas. Mode brouillon obligatoire au debut.</p>
+<p><strong>Connecter toutes les boites</strong> : 3 boites emails = 150 emails/jour dans le contexte. L'agent noie.</p>
+<p><strong>Pas de regles de triage</strong> : Sans regles explicites dans CONSTITUTION.md, l'agent trie selon son jugement. Son jugement ne connait pas vos priorites implicites.</p>
+<p><strong>Oublier de deconnecter les sources bruitees</strong> : Vous avez connecte la mailing list technique "au cas ou". 40 emails/jour de bruit pur.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Email connecte en lecture seule (48h glissantes)</li>
+<li>[ ] Triage assiste actif et valide</li>
+<li>[ ] Regles de triage documentees dans CONSTITUTION.md</li>
+<li>[ ] Brouillons de reponse fonctionnels</li>
+<li>[ ] Envoi direct desactive</li>
+<li>[ ] Aucune boite partagee ou personnelle connectee</li>
+<li>[ ] Si messaging connecte : 2-3 channels max, lecture seule</li>
+</ul>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/12-email-messages.md">Proposer une modification sur GitHub</a></p>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-11-taches.html">&larr; 3.11 -- Taches : la pression invisible</a>
+<a href="03-13-skill-custom.html">3.13 -- Construire un skill custom (methode Ste... &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
