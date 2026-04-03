@@ -234,22 +234,23 @@ def build_sidebar(all_sections, active_slug, active_chapter):
             chapters_map[sec.chapter_num] = []
         chapters_map[sec.chapter_num].append(sec)
 
-    for ch_num in chapters_order:
-        ch_sections = chapters_map[ch_num]
-        sommaire = ch_sections[0]  # first entry is always the sommaire / single page
-        sub_sections = ch_sections[1:]  # remaining are sub-sections
+    # Helper to render a chapter block
+    def render_chapter(ch_num):
+        ch_sections = chapters_map.get(ch_num, [])
+        if not ch_sections:
+            return
+        sommaire = ch_sections[0]
+        sub_sections = ch_sections[1:]
 
-        # Chapter 0 has no sub-sections
         if ch_num == '00':
             active_cls = ' class="active"' if active_slug == sommaire.slug else ''
             items.append(f'<div class="nav-chapter">')
             items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}>{sommaire.sidebar_title}</a>')
             items.append(f'</div>')
-            continue
+            return
 
-        # Multi-section chapter
         is_open = (active_chapter == ch_num)
-        items.append(f'<div class="nav-chapter">')
+        items.append(f'<div class="nav-chapter{"  open" if is_open else ""}">')
         active_cls = ' class="active"' if active_slug == sommaire.slug else ''
         items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}>{sommaire.sidebar_title}</a>')
 
@@ -262,15 +263,33 @@ def build_sidebar(all_sections, active_slug, active_chapter):
 
         items.append(f'</div>')
 
-    # Utility pages
-    for page_slug, page_file, page_label in [
-        ('checklist', 'checklist.html', 'Checklist'),
-        ('ecosystem', 'ecosystem.html', 'Ecosysteme'),
-        ('decouverte', 'decouverte.html', 'C\'est quoi OpenClaw ?'),
-        ('contribuer', 'contribuer.html', 'Contribuer'),
-    ]:
-        active_cls = ' class="active"' if active_slug == page_slug else ''
-        items.append(f'<a href="{page_file}"{active_cls}>{page_label}</a>')
+    def render_util(slug, file, label):
+        active_cls = ' class="active"' if active_slug == slug else ''
+        items.append(f'<a href="{file}"{active_cls}>{label}</a>')
+
+    # --- DECOUVRIR ---
+    items.append('<div class="nav-group-label">Decouvrir</div>')
+    render_util('decouverte', 'decouverte.html', "C'est quoi OpenClaw ?")
+    render_chapter('00')
+    render_chapter('01')
+
+    # --- DEPLOYER ---
+    items.append('<div class="nav-group-label">Deployer</div>')
+    render_chapter('02')
+    render_chapter('03')
+    render_chapter('04')
+
+    # --- OPERER ---
+    items.append('<div class="nav-group-label">Operer</div>')
+    render_chapter('05')
+    render_chapter('06')
+
+    # --- RESSOURCES ---
+    items.append('<div class="nav-group-label">Ressources</div>')
+    render_util('ecosystem', 'ecosystem.html', 'Ecosysteme')
+    render_chapter('07')
+    render_util('checklist', 'checklist.html', 'Checklist')
+    render_util('contribuer', 'contribuer.html', 'Contribuer')
 
     return '\n'.join(items)
 
@@ -423,16 +442,30 @@ def build_index_page(all_sections):
     content = """
 <div class="landing-hero">
   <h1>OpenClaw Field Playbook</h1>
-  <p class="lead">Le guide de terrain pour installer et operer OpenClaw en entreprise.<br>
-  Ecrit par des praticiens. Teste sur le terrain. Open source.</p>
-  <p style="font-size:0.88rem;color:var(--text-muted);max-width:540px;margin:0 auto 1.5rem;">
-    Ne de 3 installations ratees et 5 mois de travail. 81 sections, 7 chapitres,
-    des commandes copiables et des decisions documentees.
+  <p class="lead">Le seul guide open-source qui couvre le parcours complet :<br>
+  de l'installation a l'operation quotidienne d'OpenClaw en entreprise.</p>
+  <div style="display:flex;gap:2rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:1.8rem;font-weight:700;color:var(--accent);">92</div>
+      <div style="font-size:0.78rem;color:var(--text-muted);">sections</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:1.8rem;font-weight:700;color:var(--accent);">7</div>
+      <div style="font-size:0.78rem;color:var(--text-muted);">chapitres</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:1.8rem;font-weight:700;color:var(--accent);">20</div>
+      <div style="font-size:0.78rem;color:var(--text-muted);">bugs corriges par un agent terrain</div>
+    </div>
+  </div>
+  <p style="font-size:0.88rem;color:var(--text-muted);max-width:560px;margin:0 auto 1.5rem;">
+    Ne de 3 installations ratees et 5 mois de travail. Teste sur un VPS reel par un agent IA installateur.
+    Des commandes copiables, des decisions documentees, des erreurs corrigees.
   </p>
   <div class="hero-actions">
-    <a href="00-guide.html" class="btn-primary">Commencer la lecture</a>
-    <a href="decouverte.html" class="btn-secondary">C'est quoi OpenClaw ?</a>
-    <a href="{github}" class="btn-secondary" target="_blank">Voir sur GitHub</a>
+    <a href="decouverte.html" class="btn-primary">C'est quoi OpenClaw ?</a>
+    <a href="02-00-sommaire.html" class="btn-secondary">Commencer l'installation</a>
+    <a href="{github}" class="btn-secondary" target="_blank">GitHub</a>
   </div>
 </div>
 

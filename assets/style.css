@@ -221,6 +221,20 @@ body {
   font-weight: 500;
 }
 
+.nav-group-label {
+  padding: 0.6rem 1.25rem 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+.nav-group-label:first-child {
+  margin-top: 0;
+}
+
 .nav-utils {
   margin-top: 0.75rem;
   padding-top: 0.75rem;
