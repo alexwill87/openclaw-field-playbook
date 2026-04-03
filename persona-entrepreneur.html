@@ -150,57 +150,136 @@
       <button class="form-option" onclick="nextStep('secteur', this.textContent)">Artisan / BTP</button>
       <button class="form-option" onclick="nextStep('secteur', this.textContent)">Commerce / Retail</button>
       <button class="form-option" onclick="nextStep('secteur', this.textContent)">Services / Conseil</button>
+      <button class="form-option" onclick="nextStep('secteur', this.textContent)">Santé / Médical</button>
       <button class="form-option" onclick="nextStep('secteur', this.textContent)">Tech / Startup</button>
       <button class="form-option" onclick="nextStep('secteur', this.textContent)">Autre</button>
     </div>
   </div>
 
   <div id="form-step-2" class="form-step" style="display:none;">
-    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Qu'est-ce qui vous prend le plus de temps aujourd'hui ?</p>
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Quel est votre plus gros problème au quotidien ?</p>
     <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Répondre aux clients</button>
-      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Gérer les emails</button>
-      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Faire des devis</button>
-      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Suivi administratif</button>
-      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Autre chose</button>
+      <button class="form-option" onclick="nextStep('probleme', this.textContent)">Je perds des clients parce que je réponds trop tard</button>
+      <button class="form-option" onclick="nextStep('probleme', this.textContent)">Je passe trop de temps sur l'administratif</button>
+      <button class="form-option" onclick="nextStep('probleme', this.textContent)">Je n'arrive pas à suivre mes emails</button>
+      <button class="form-option" onclick="nextStep('probleme', this.textContent)">Je fais tout moi-même et je suis débordé</button>
+      <button class="form-option" onclick="nextStep('probleme', this.textContent)">Autre chose</button>
     </div>
   </div>
 
   <div id="form-step-3" class="form-step" style="display:none;">
-    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Avez-vous déjà essayé un outil IA ?</p>
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Qu'est-ce qui vous aiderait le plus ?</p>
     <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-      <button class="form-option" onclick="nextStep('experience', this.textContent)">Jamais</button>
-      <button class="form-option" onclick="nextStep('experience', this.textContent)">ChatGPT / Claude</button>
-      <button class="form-option" onclick="nextStep('experience', this.textContent)">Un autre outil</button>
-      <button class="form-option" onclick="nextStep('experience', this.textContent)">Oui, mais ça n'a pas marché</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Un assistant qui répond à mes clients</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Un tri automatique de mes emails</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Un résumé quotidien de ce qui se passe</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">De l'aide pour faire mes devis et factures</button>
+      <button class="form-option" onclick="nextStep('besoin', this.textContent)">Je ne sais pas encore, je veux en discuter</button>
     </div>
   </div>
 
   <div id="form-step-4" class="form-step" style="display:none;">
-    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Parfait. Laissez-moi vos coordonnées et je vous recontacte sous 48h.</p>
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Avez-vous déjà essayé un outil IA ?</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Non, jamais</button>
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Oui, ChatGPT ou Claude</button>
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Oui, mais ça n'a pas marché</button>
+      <button class="form-option" onclick="nextStep('experience', this.textContent)">Oui, et je veux aller plus loin</button>
+    </div>
+  </div>
+
+  <div id="form-step-5" class="form-step" style="display:none;">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Combien êtes-vous dans votre entreprise ?</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <button class="form-option" onclick="nextStep('taille', this.textContent)">Je suis seul</button>
+      <button class="form-option" onclick="nextStep('taille', this.textContent)">2-5 personnes</button>
+      <button class="form-option" onclick="nextStep('taille', this.textContent)">6-20 personnes</button>
+      <button class="form-option" onclick="nextStep('taille', this.textContent)">Plus de 20</button>
+    </div>
+  </div>
+
+  <div id="form-step-6" class="form-step" style="display:none;">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Comment préférez-vous qu'on en parle ?</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <button class="form-option" onclick="nextStep('contact_pref', this.textContent)">Par email</button>
+      <button class="form-option" onclick="nextStep('contact_pref', this.textContent)">Un appel de 15 minutes</button>
+      <button class="form-option" onclick="nextStep('contact_pref', this.textContent)">Un message Telegram</button>
+    </div>
+  </div>
+
+  <div id="form-step-7" class="form-step" style="display:none;">
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">Parfait. Laissez-moi vos coordonnées.</p>
     <div style="display:flex;flex-direction:column;gap:0.4rem;max-width:400px;">
       <input type="text" id="contact-name" placeholder="Votre nom" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;">
       <input type="email" id="contact-email" placeholder="Votre email" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;">
-      <textarea id="contact-message" placeholder="Décrivez votre besoin en quelques mots (optionnel)" rows="3" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;font-family:inherit;resize:vertical;"></textarea>
-      <button onclick="submitContactForm()" style="padding:0.5rem 1rem;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:0.85rem;cursor:pointer;">Envoyer</button>
+      <input type="text" id="contact-company" placeholder="Nom de votre entreprise (optionnel)" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;">
+      <textarea id="contact-message" placeholder="Autre chose à ajouter ? (optionnel)" rows="2" style="padding:0.45rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:0.85rem;font-family:inherit;resize:vertical;"></textarea>
+      <button id="submit-btn" onclick="submitContactForm()" style="padding:0.5rem 1rem;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:0.85rem;cursor:pointer;">Envoyer ma demande</button>
     </div>
   </div>
 
   <div id="form-step-done" class="form-step" style="display:none;">
-    <p style="font-size:0.9rem;font-weight:600;color:var(--accent);">Merci ! Votre message a été envoyé.</p>
-    <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.3rem;">Alex vous recontactera sous 48h. En attendant : <a href="decouverte.html">C'est quoi OpenClaw ?</a></p>
+    <p style="font-size:0.92rem;font-weight:600;color:var(--accent);">Merci ! Votre demande a bien été envoyée.</p>
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.3rem;">Alex vous recontactera sous 48h. En attendant, découvrez ce que fait OpenClaw : <a href="decouverte.html">C'est quoi OpenClaw ?</a></p>
+  </div>
+
+  <div id="form-step-error" class="form-step" style="display:none;">
+    <p style="font-size:0.88rem;color:var(--text);">Un problème est survenu. Vous pouvez envoyer votre demande directement par email :</p>
+    <p><a href="mailto:alexwillemetz@gmail.com" style="color:var(--accent);">alexwillemetz@gmail.com</a></p>
   </div>
 </div>
 
 <style>
-.form-option { padding:0.4rem 0.75rem; border:1px solid var(--border); border-radius:6px; background:var(--bg); color:var(--text); font-size:0.8rem; cursor:pointer; transition:all 0.15s; }
+.form-option { padding:0.4rem 0.75rem; border:1px solid var(--border); border-radius:6px; background:var(--bg); color:var(--text); font-size:0.8rem; cursor:pointer; transition:all 0.15s; text-align:left; }
 .form-option:hover { border-color:var(--accent); background:var(--accent-light); }
 </style>
 
 <script>
 var formData={};
-function nextStep(k,v){ formData[k]=v; var c=document.querySelector('.form-step:not([style*="display: none"])'); if(!c)return; c.style.display='none'; var n='form-step-'+(parseInt(c.id.split('-')[2])+1); var el=document.getElementById(n); if(el)el.style.display='block'; }
-function submitContactForm(){ var n=document.getElementById('contact-name').value,e=document.getElementById('contact-email').value,m=document.getElementById('contact-message').value; if(!n||!e){alert('Merci de remplir votre nom et email.');return;} formData.name=n;formData.email=e;formData.message=m; var s=encodeURIComponent('OpenClaw Playbook — Demande de '+n),b=encodeURIComponent('Nom : '+n+'\nEmail : '+e+'\nSecteur : '+(formData.secteur||'Non précisé')+'\nBesoin : '+(formData.besoin||'Non précisé')+'\nExpérience IA : '+(formData.experience||'Non précisé')+'\nMessage : '+(m||'Aucun')+'\n'); window.open('mailto:alexwillemetz@gmail.com?subject='+s+'&body='+b); document.getElementById('form-step-4').style.display='none'; document.getElementById('form-step-done').style.display='block'; }
+function nextStep(k,v){
+  formData[k]=v;
+  var steps=document.querySelectorAll('.form-step');
+  var current=null;
+  for(var i=0;i<steps.length;i++){if(steps[i].style.display!=='none'&&steps[i].offsetParent!==null){current=steps[i];break;}}
+  if(!current)return;
+  current.style.display='none';
+  var num=parseInt(current.id.replace('form-step-',''));
+  var next=document.getElementById('form-step-'+(num+1));
+  if(next)next.style.display='block';
+}
+function submitContactForm(){
+  var n=document.getElementById('contact-name').value;
+  var e=document.getElementById('contact-email').value;
+  var c=document.getElementById('contact-company').value;
+  var m=document.getElementById('contact-message').value;
+  if(!n||!e){alert('Merci de remplir votre nom et email.');return;}
+  var btn=document.getElementById('submit-btn');
+  btn.textContent='Envoi en cours...';
+  btn.disabled=true;
+  var body='Nouvelle demande depuis le OpenClaw Field Playbook\n\n'+
+    'Nom : '+n+'\n'+
+    'Email : '+e+'\n'+
+    'Entreprise : '+(c||'Non précisé')+'\n'+
+    'Secteur : '+(formData.secteur||'Non précisé')+'\n'+
+    'Problème : '+(formData.probleme||'Non précisé')+'\n'+
+    'Besoin : '+(formData.besoin||'Non précisé')+'\n'+
+    'Expérience IA : '+(formData.experience||'Non précisé')+'\n'+
+    'Taille équipe : '+(formData.taille||'Non précisé')+'\n'+
+    'Préférence contact : '+(formData.contact_pref||'Non précisé')+'\n'+
+    'Message : '+(m||'Aucun')+'\n';
+  fetch('https://api.agentmail.to/v0/inboxes/omar-oa%40agentmail.to/messages/send',{
+    method:'POST',
+    headers:{'Authorization':'Bearer am_us_96ce579f7d6099cf38e4e4359b9fe043203cd30e61ea2b250f5aa3bc90d8bc50','Content-Type':'application/json'},
+    body:JSON.stringify({to:['alexwillemetz@gmail.com'],subject:'[Playbook] Demande de '+n+' — '+(formData.secteur||'')+'  '+(formData.taille||''),text:body})
+  }).then(function(r){
+    if(!r.ok)throw new Error('API error');
+    document.getElementById('form-step-7').style.display='none';
+    document.getElementById('form-step-done').style.display='block';
+  }).catch(function(){
+    document.getElementById('form-step-7').style.display='none';
+    document.getElementById('form-step-error').style.display='block';
+  });
+}
 </script>
 
 <h2>Qui a écrit ce guide ?</h2>
