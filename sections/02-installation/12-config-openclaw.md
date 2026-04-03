@@ -159,6 +159,77 @@ Ou mieux : utilisez le fichier systemd (section 15) pour injecter la variable.
 
 Recommandation : Claude Sonnet en defaut, Haiku en fallback.
 
+## Enregistrement des modeles dans `agents.defaults.models`
+
+En plus de la configuration du modele principal, OpenClaw a besoin que les modeles soient enregistres dans la section `agents.defaults.models` pour que les agents puissent les utiliser. Ajoutez cette section dans `~/.openclaw/config.json` :
+
+```json
+"agents": {
+  "defaults": {
+    "models": [
+      {
+        "id": "anthropic/claude-sonnet-4",
+        "provider": "openrouter",
+        "role": "primary"
+      },
+      {
+        "id": "anthropic/claude-haiku-4-5",
+        "provider": "openrouter",
+        "role": "fallback"
+      }
+    ]
+  }
+}
+```
+
+Ou via la CLI :
+
+```bash
+$ openclaw config set agents.defaults.models --strict-json '[{"id":"anthropic/claude-sonnet-4","provider":"openrouter","role":"primary"},{"id":"anthropic/claude-haiku-4-5","provider":"openrouter","role":"fallback"}]'
+```
+
+> **Sans cette etape**, les agents OpenClaw ne sauront pas quel modele utiliser et echoueront avec une erreur de type "no model configured for agent".
+
+## Syntaxe de `openclaw config set`
+
+Si vous preferez configurer via la CLI plutot qu'en editant le JSON a la main, voici la syntaxe de `openclaw config set` :
+
+**Strings** (guillemets obligatoires pour les valeurs contenant des espaces ou caracteres speciaux) :
+
+```bash
+$ openclaw config set instance_name "oa-paris"
+$ openclaw config set model.default_model "anthropic/claude-sonnet-4"
+```
+
+**Booleans** :
+
+```bash
+$ openclaw config set vault.enabled true
+$ openclaw config set database.ssl false
+```
+
+**Nombres** :
+
+```bash
+$ openclaw config set model.temperature 0.3
+$ openclaw config set model.max_tokens 8192
+```
+
+**Objets JSON** (utilisez `--strict-json` pour passer un objet complet) :
+
+```bash
+$ openclaw config set model --strict-json '{"provider":"openrouter","default_model":"anthropic/claude-sonnet-4","fallback_model":"anthropic/claude-haiku-4-5","temperature":0.3,"max_tokens":8192}'
+```
+
+**Lister la configuration actuelle** :
+
+```bash
+$ openclaw config get
+$ openclaw config get model.default_model
+```
+
+> **Piege courant :** Si vous oubliez les guillemets autour d'une string contenant `/` (comme `anthropic/claude-sonnet-4`), le shell peut l'interpreter differemment. Encadrez toujours les valeurs de guillemets.
+
 ## Erreurs courantes
 
 - **JSON invalide** : Retirez les commentaires `//` du fichier. Validez avec `jq . ~/.openclaw/config.json`.

@@ -13,6 +13,33 @@ lang: fr
 
 La gateway OpenClaw est le point d'entree HTTP du systeme. Elle doit tourner en permanence, redemarrer automatiquement en cas de crash et demarrer au boot du serveur. systemd est le gestionnaire de services standard de Linux -- c'est lui qui gere ca.
 
+## Etape 0 : Verifier les anciens services (CRITIQUE)
+
+Avant de creer un nouveau service, verifiez qu'il n'existe pas un ancien service OpenClaw qui pourrait entrer en conflit :
+
+```bash
+$ systemctl --user list-units --all | grep openclaw
+$ sudo systemctl list-units --all | grep openclaw
+```
+
+Si un ancien service existe (par exemple `openclaw.service`, `openclaw-gateway.service` d'une installation precedente), desactivez-le et supprimez-le :
+
+```bash
+# Pour un service utilisateur :
+$ systemctl --user stop openclaw-gateway
+$ systemctl --user disable openclaw-gateway
+$ rm ~/.config/systemd/user/openclaw-gateway.service
+$ systemctl --user daemon-reload
+
+# Pour un service systeme :
+$ sudo systemctl stop openclaw-gateway
+$ sudo systemctl disable openclaw-gateway
+$ sudo rm /etc/systemd/system/openclaw-gateway.service
+$ sudo systemctl daemon-reload
+```
+
+> **Pourquoi ?** Deux services systemd avec le meme nom ou pointant vers le meme binaire vont se battre pour le meme port. Le symptome : la gateway crashe en boucle avec "EADDRINUSE" ou "port already in use". Ce probleme est tres difficile a diagnostiquer si on ne pense pas a verifier les anciens services.
+
 ## Etape 1 : Creer le fichier de service
 
 Creez `/etc/systemd/system/openclaw-gateway.service` :
@@ -39,10 +66,10 @@ VAULT_ADDR=http://127.0.0.1:8200
 VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
 EOF
 $ sudo chmod 600 /etc/openclaw/gateway.env
-$ sudo chown root:root /etc/openclaw/gateway.env
+$ sudo chown VOTRE_USER:VOTRE_USER /etc/openclaw/gateway.env
 ```
 
-> **SECURITE :** Le token Vault ne doit JAMAIS apparaitre en clair dans le fichier systemd. Utilisez `EnvironmentFile` pour le charger depuis un fichier protege (chmod 600, propriete root).
+> **SECURITE :** Le token Vault ne doit JAMAIS apparaitre en clair dans le fichier systemd. Utilisez `EnvironmentFile` pour le charger depuis un fichier protege (chmod 600). Le fichier doit appartenir a l'utilisateur qui execute le service (VOTRE_USER), sinon systemd ne pourra pas le lire et le service echouera silencieusement avec des variables d'environnement vides.
 
 Creez le fichier service en remplacant `VOTRE_USER` et les chemins par vos valeurs :
 
@@ -88,12 +115,17 @@ Creez le wrapper script qui charge nvm correctement (systemd ne charge pas `.bas
 ```bash
 $ cat > ~/scripts/openclaw-gateway.sh << 'SCRIPT'
 #!/bin/bash
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
+# Charge nvm si present, sinon utilise le node global
+if [ -f "$HOME/.nvm/nvm.sh" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  source "$NVM_DIR/nvm.sh"
+fi
 exec openclaw gateway start
 SCRIPT
 $ chmod +x ~/scripts/openclaw-gateway.sh
 ```
+
+> **Pourquoi cette detection ?** Si nvm n'est pas installe (par exemple si node a ete installe via apt ou un autre gestionnaire), le script plantera au `source` d'un fichier inexistant. Avec cette detection, le script fonctionne dans les deux cas.
 
 **IMPORTANT** : Remplacez les placeholders dans le fichier service :
 - `VOTRE_USER` : votre nom d'utilisateur (resultat de `whoami`)

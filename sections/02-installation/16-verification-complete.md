@@ -13,7 +13,7 @@ lang: fr
 
 Toutes les briques sont en place. Avant de passer au chapitre suivant, on verifie TOUT d'un coup. Si un point est rouge, le diagnostic par symptome vous dira quoi faire.
 
-## Checklist des 10 points
+## Checklist des 11 points
 
 Executez chaque commande. Tout doit reussir.
 
@@ -91,7 +91,28 @@ $ ~/scripts/health-check.sh
 
 Attendu : 0 echec.
 
-### 10. openclaw doctor
+### 10. Tester le modele IA
+
+Verifiez que la connexion au provider IA fonctionne avec un appel simple :
+
+```bash
+$ openclaw model test
+```
+
+Si `openclaw model test` n'est pas disponible, testez directement via OpenRouter :
+
+```bash
+$ OPENROUTER_KEY=$(docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get -field=api_key secret/openrouter)
+$ curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer ${OPENROUTER_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"anthropic/claude-haiku-4-5","messages":[{"role":"user","content":"Reponds juste OK"}],"max_tokens":10}' \
+  | python3 -m json.tool
+```
+
+Attendu : une reponse JSON contenant le texte "OK" (ou similaire) dans `choices[0].message.content`.
+
+### 11. openclaw doctor
 
 ```bash
 $ openclaw doctor

@@ -81,6 +81,8 @@ La section `notifications.telegram` dans `~/.openclaw/config.json` (section 12) 
 
 OpenClaw lira automatiquement `bot_token` et `chat_id` depuis Vault.
 
+> **Attention au nom du champ :** Le champ dans Vault doit s'appeler `bot_token` (avec underscore), pas `token` ni `botToken`. Si vous avez stocke le token sous un autre nom, OpenClaw ne le trouvera pas. Verifiez avec : `docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get secret/telegram`.
+
 ## Script utilitaire d'envoi
 
 Creez `~/scripts/notify-telegram.sh` pour envoyer des notifications depuis n'importe quel script :

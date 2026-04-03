@@ -66,6 +66,30 @@ def strip_frontmatter(text):
     return text
 
 
+def rewrite_md_links(html, section_map):
+    """Rewrite .md links to .html links using the section filename mapping.
+
+    section_map: dict mapping source .md filename to output .html filename
+    e.g. {'01-prerequis.md': '02-01-prerequis.html', 'README.md': '02-00-sommaire.html'}
+    """
+    import re
+    def replacer(match):
+        prefix = match.group(1)  # href=" or src="
+        md_file = match.group(2)  # e.g. 01-prerequis.md
+        suffix = match.group(3)  # closing quote
+        # Try direct match
+        if md_file in section_map:
+            return f'{prefix}{section_map[md_file]}{suffix}'
+        # Try without path components (e.g. ../../tools/install-tracker/README.md)
+        basename = os.path.basename(md_file)
+        if basename in section_map:
+            return f'{prefix}{section_map[basename]}{suffix}'
+        # Leave as-is if no match (external links, anchors, etc.)
+        return match.group(0)
+
+    return re.sub(r'(href=")([^"]*\.md)(")', replacer, html)
+
+
 def read_template():
     """Read the HTML template."""
     with open(TEMPLATE_PATH, 'r', encoding='utf-8') as f:
@@ -316,12 +340,21 @@ def build_section_pages(all_sections):
     """Build one HTML page per section."""
     counts = {}  # chapter_num -> count of pages generated
 
+    # Build a mapping from .md filename to .html filename for link rewriting
+    section_map = {}
+    for sec in all_sections:
+        md_basename = os.path.basename(sec.md_path)
+        section_map[md_basename] = sec.html_file
+
     for i, sec in enumerate(all_sections):
         # Read and convert markdown
         with open(sec.md_path, 'r', encoding='utf-8') as f:
             raw = f.read()
         md_content = strip_frontmatter(raw)
         html_content = markdown.markdown(md_content, extensions=MD_EXTENSIONS)
+
+        # Rewrite .md links to .html links
+        html_content = rewrite_md_links(html_content, section_map)
 
         # Wrap in section div
         wrapped = f'<section class="chapter">\n{html_content}\n</section>'

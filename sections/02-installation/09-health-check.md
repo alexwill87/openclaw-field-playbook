@@ -45,6 +45,10 @@ echo "=== Health Check Infrastructure ==="
 echo "Date : $(date)"
 echo "---"
 
+# Ports critiques (verification avant lancement de conteneurs)
+check "Port 8200 (Vault) occupe" "ss -ltnp | grep -q :8200"
+check "Port 5432 (PostgreSQL) occupe" "ss -ltnp | grep -q :5432"
+
 # Docker
 check "Docker daemon" "docker info"
 check "Docker Compose" "docker compose version"
@@ -122,6 +126,8 @@ Ajoutez :
 ```
 */15 * * * * /home/deploy/scripts/health-check.sh >> /home/deploy/logs/health-check.log 2>&1
 ```
+
+> **Note :** Les checks de ports verifient que les ports sont bien utilises (par les conteneurs attendus). Si un port est libre alors qu'un conteneur devrait tourner, c'est un indicateur de probleme. Avant un `docker compose up`, vous pouvez aussi verifier qu'un port n'est PAS deja occupe par un autre processus avec `ss -ltnp | grep :PORT`.
 
 ## Diagnostic par symptome
 

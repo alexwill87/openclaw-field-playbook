@@ -105,6 +105,14 @@ $ cd ~/docker/vault
 $ docker compose up -d
 ```
 
+Corrigez les permissions du volume de donnees (le conteneur Vault tourne avec l'utilisateur `vault`, pas `root`) :
+
+```bash
+$ docker exec vault chown -R vault:vault /vault/data
+```
+
+> **Pourquoi ?** Sans cette commande, Vault peut crasher au demarrage avec une erreur de permissions sur `/vault/data`. Le volume monte depuis l'hote appartient a root par defaut, mais le processus Vault dans le conteneur tourne sous l'utilisateur `vault`.
+
 Verifiez que le conteneur tourne :
 
 ```bash
@@ -113,11 +121,12 @@ $ docker ps | grep vault
 
 ## Etape 5 : Initialiser Vault
 
+> **ATTENTION -- VAULT_ADDR et TLS :** Vault CLI utilise HTTPS par defaut. Si TLS est desactive (comme dans cette configuration avec `tls_disable = 1`), vous devez toujours passer `VAULT_ADDR=http://...` dans chaque commande `docker exec vault`. Sans cela, vous obtiendrez des erreurs de type "http: server gave HTTP response to HTTPS client". Toutes les commandes ci-dessous incluent deja `-e VAULT_ADDR=http://127.0.0.1:8200` pour cette raison.
+
 L'initialisation ne se fait qu'UNE SEULE FOIS. Elle genere les cles de dechiffrement (unseal keys) et le token root.
 
 ```bash
-$ export VAULT_ADDR='http://127.0.0.1:8200'
-$ docker exec vault vault operator init -key-shares=5 -key-threshold=3
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator init -key-shares=5 -key-threshold=3
 ```
 
 Resultat : 5 unseal keys et 1 root token. Exemple de sortie :
@@ -150,15 +159,15 @@ Methode recommandee :
 Apres chaque redemarrage, Vault demarre en etat "sealed" (chiffre). Il faut 3 cles pour l'ouvrir :
 
 ```bash
-$ docker exec vault vault operator unseal CLE_1_ICI
-$ docker exec vault vault operator unseal CLE_2_ICI
-$ docker exec vault vault operator unseal CLE_3_ICI
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator unseal CLE_1_ICI
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator unseal CLE_2_ICI
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator unseal CLE_3_ICI
 ```
 
 Verifiez l'etat :
 
 ```bash
-$ docker exec vault vault status
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault status
 ```
 
 Resultat attendu : `Sealed: false`
@@ -166,7 +175,7 @@ Resultat attendu : `Sealed: false`
 ## Etape 8 : Se connecter avec le token root
 
 ```bash
-$ docker exec vault vault login TOKEN_ROOT_ICI
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault login TOKEN_ROOT_ICI
 ```
 
 Ou via variable d'environnement (plus pratique pour les scripts) :
@@ -180,13 +189,13 @@ $ export VAULT_TOKEN='TOKEN_ROOT_ICI'
 KV (Key-Value) v2 permet le versionnement des secrets :
 
 ```bash
-$ docker exec vault vault secrets enable -path=secret kv-v2
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault secrets enable -path=secret kv-v2
 ```
 
 Verifiez :
 
 ```bash
-$ docker exec vault vault secrets list
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault secrets list
 ```
 
 Vous devez voir `secret/` dans la liste.
@@ -198,25 +207,25 @@ Stockez vos secrets par categorie. Chaque commande cree ou met a jour un secret 
 **Cle API OpenRouter :**
 
 ```bash
-$ docker exec vault vault kv put secret/openrouter api_key="sk-or-VOTRE_CLE_ICI"
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/openrouter api_key="sk-or-VOTRE_CLE_ICI"
 ```
 
 **Token Telegram :**
 
 ```bash
-$ docker exec vault vault kv put secret/telegram bot_token="123456:ABC-DEF..." chat_id="VOTRE_CHAT_ID"
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/telegram bot_token="123456:ABC-DEF..." chat_id="VOTRE_CHAT_ID"
 ```
 
 **Token GitHub :**
 
 ```bash
-$ docker exec vault vault kv put secret/github token="ghp_VOTRE_TOKEN_ICI"
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/github token="ghp_VOTRE_TOKEN_ICI"
 ```
 
 **Credentials base de donnees :**
 
 ```bash
-$ docker exec vault vault kv put secret/database \
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/database \
   host="127.0.0.1" \
   port="5432" \
   name="oa_system" \
@@ -227,7 +236,7 @@ $ docker exec vault vault kv put secret/database \
 **Secret cockpit :**
 
 ```bash
-$ docker exec vault vault kv put secret/cockpit \
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/cockpit \
   jwt_secret="GENERER_AVEC_openssl_rand_hex_32" \
   admin_password="MOT_DE_PASSE_ADMIN"
 ```
@@ -235,7 +244,7 @@ $ docker exec vault vault kv put secret/cockpit \
 ## Etape 11 : Lire un secret (verification)
 
 ```bash
-$ docker exec vault vault kv get secret/openrouter
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get secret/openrouter
 ```
 
 Resultat attendu : les champs `api_key` avec la valeur stockee.
@@ -245,7 +254,7 @@ Resultat attendu : les champs `api_key` avec la valeur stockee.
 N'utilisez PAS le root token dans vos applications. Creez un token dedie :
 
 ```bash
-$ docker exec vault vault token create \
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault token create \
   -display-name="openclaw-app" \
   -ttl=720h \
   -renewable=true \
@@ -259,11 +268,11 @@ Notez le token genere. C'est celui que vous utiliserez dans la configuration Ope
 Apres chaque redemarrage du VPS, Vault demarre en mode sealed. Vous devez l'unseal manuellement :
 
 ```bash
-$ docker exec vault vault operator unseal
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator unseal
 # Entrez la cle 1 quand demande
-$ docker exec vault vault operator unseal
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator unseal
 # Entrez la cle 2
-$ docker exec vault vault operator unseal
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault operator unseal
 # Entrez la cle 3
 ```
 
@@ -284,9 +293,9 @@ Pour les environnements de production, envisagez Vault auto-unseal avec un KMS c
 ## Verification
 
 ```bash
-$ docker exec vault vault status
-$ docker exec vault vault kv list secret/
-$ docker exec vault vault kv get secret/openrouter
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault status
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv list secret/
+$ docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get secret/openrouter
 ```
 
 Resultats attendus :

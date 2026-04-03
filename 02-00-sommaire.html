@@ -97,88 +97,88 @@
 <h3 id="partie-a-preparation-du-serveur">Partie A -- Preparation du serveur</h3>
 <ul>
 <li>
-<p><strong>2.1 -- <a href="01-prerequis.md">Prerequis</a></strong>
+<p><strong>2.1 -- <a href="02-01-prerequis.html">Prerequis</a></strong>
   Inventaire complet de ce qu'il faut avant de commencer : materiel, logiciels, comptes et budget</p>
 </li>
 <li>
-<p><strong>2.2 -- <a href="02-securiser-vps.md">Securiser le VPS</a></strong>
+<p><strong>2.2 -- <a href="02-02-securiser-vps.html">Securiser le VPS</a></strong>
   Creer un utilisateur non-root, verrouiller SSH, configurer le pare-feu et les mises a jour automatiques</p>
 </li>
 <li>
-<p><strong>2.3 -- <a href="03-tailscale.md">Tailscale</a></strong>
+<p><strong>2.3 -- <a href="02-03-tailscale.html">Tailscale</a></strong>
   Deployer un reseau prive mesh pour acceder au serveur sans exposer de ports publics</p>
 </li>
 <li>
-<p><strong>2.4 -- <a href="04-docker.md">Docker</a></strong>
+<p><strong>2.4 -- <a href="02-04-docker.html">Docker</a></strong>
   Installer Docker Engine et Docker Compose, verifier que les conteneurs tournent correctement</p>
 </li>
 <li>
-<p><strong>2.5 -- <a href="05-nodejs-pm2.md">Node.js et PM2</a></strong>
+<p><strong>2.5 -- <a href="02-05-nodejs-pm2.html">Node.js et PM2</a></strong>
   Installer Node.js via nvm et configurer PM2 pour gerer les processus en arriere-plan</p>
 </li>
 <li>
-<p><strong>2.6 -- <a href="06-structure-dossiers.md">Structure de dossiers</a></strong>
+<p><strong>2.6 -- <a href="02-06-structure-dossiers.html">Structure de dossiers</a></strong>
   Creer l'arborescence conventionnelle du projet pour que chaque fichier ait sa place</p>
 </li>
 </ul>
 <h3 id="partie-b-infrastructure-et-secrets">Partie B -- Infrastructure et secrets</h3>
 <ul>
 <li>
-<p><strong>2.7 -- <a href="07-vault.md">HashiCorp Vault</a></strong>
+<p><strong>2.7 -- <a href="02-07-vault.html">HashiCorp Vault</a></strong>
   Deployer un gestionnaire de secrets centralise pour ne jamais stocker de credentials en clair</p>
 </li>
 <li>
-<p><strong>2.8 -- <a href="08-postgresql.md">PostgreSQL</a></strong>
+<p><strong>2.8 -- <a href="02-08-postgresql.html">PostgreSQL</a></strong>
   Lancer la base de donnees via Docker et la connecter a Vault pour les credentials</p>
 </li>
 <li>
-<p><strong>2.9 -- <a href="09-health-check.md">Health check</a></strong>
+<p><strong>2.9 -- <a href="02-09-health-check.html">Health check</a></strong>
   Ecrire un script qui verifie en une commande que toute l'infrastructure est operationnelle</p>
 </li>
 </ul>
 <h3 id="partie-c-openclaw">Partie C -- OpenClaw</h3>
 <ul>
 <li>
-<p><strong>2.10 -- <a href="10-openclaw-install.md">Installation OpenClaw</a></strong>
+<p><strong>2.10 -- <a href="02-10-openclaw-install.html">Installation OpenClaw</a></strong>
   Telecharger, installer et lancer OpenClaw pour la premiere fois</p>
 </li>
 <li>
-<p><strong>2.11 -- <a href="11-workspace.md">Workspace</a></strong>
+<p><strong>2.11 -- <a href="02-11-workspace.html">Workspace</a></strong>
   Comprendre et organiser la structure du workspace ou l'agent va operer</p>
 </li>
 <li>
-<p><strong>2.12 -- <a href="12-config-openclaw.md">Configuration OpenClaw</a></strong>
+<p><strong>2.12 -- <a href="02-12-config-openclaw.html">Configuration OpenClaw</a></strong>
   Remplir le fichier de configuration principal avec les valeurs adaptees a votre contexte</p>
 </li>
 <li>
-<p><strong>2.13 -- <a href="13-openrouter.md">OpenRouter</a></strong>
+<p><strong>2.13 -- <a href="02-13-openrouter.html">OpenRouter</a></strong>
   Connecter OpenClaw a plusieurs modeles IA via une API unique</p>
 </li>
 <li>
-<p><strong>2.14 -- <a href="14-telegram.md">Telegram</a></strong>
+<p><strong>2.14 -- <a href="02-14-telegram.html">Telegram</a></strong>
   Creer un bot Telegram pour recevoir des notifications et envoyer des commandes a l'agent</p>
 </li>
 <li>
-<p><strong>2.15 -- <a href="15-gateway-systemd.md">Gateway systemd</a></strong>
+<p><strong>2.15 -- <a href="02-15-gateway-systemd.html">Gateway systemd</a></strong>
   Enregistrer la gateway comme service systeme pour qu'elle redemarre automatiquement</p>
 </li>
 </ul>
 <h3 id="partie-d-verification-et-deploiement">Partie D -- Verification et deploiement</h3>
 <ul>
 <li>
-<p><strong>2.16 -- <a href="16-verification-complete.md">Verification complete</a></strong>
+<p><strong>2.16 -- <a href="02-16-verification-complete.html">Verification complete</a></strong>
   Passer la checklist post-installation pour confirmer que chaque composant fonctionne</p>
 </li>
 <li>
-<p><strong>2.17 -- <a href="17-git-init.md">Git init</a></strong>
+<p><strong>2.17 -- <a href="02-17-git-init.html">Git init</a></strong>
   Initialiser le depot Git et faire le premier commit pour versionner toute la configuration</p>
 </li>
 <li>
-<p><strong>2.18 -- <a href="18-claude-md.md">CLAUDE.md</a></strong>
+<p><strong>2.18 -- <a href="02-18-claude-md.html">CLAUDE.md</a></strong>
   Rediger le fichier de reference que les agents IA liront en ouvrant le repo</p>
 </li>
 <li>
-<p><strong>2.19 -- <a href="19-script-deploy.md">Script de deploiement</a></strong>
+<p><strong>2.19 -- <a href="02-19-script-deploy.html">Script de deploiement</a></strong>
   Construire un script deploy.sh idempotent qui reproduit l'installation en une commande</p>
 </li>
 </ul>
@@ -190,7 +190,7 @@ docker compose up -d
 # Accessible sur http://localhost:3007
 </code></pre>
 
-<p>C'est optionnel. Le playbook fonctionne sans. Mais si vous voulez un tableau de bord visuel de votre installation, c'est pret en une commande. Details dans <a href="../../tools/install-tracker/README.md">tools/install-tracker/README.md</a>.</p>
+<p>C'est optionnel. Le playbook fonctionne sans. Mais si vous voulez un tableau de bord visuel de votre installation, c'est pret en une commande. Details dans <a href="07-00-sommaire.html">tools/install-tracker/README.md</a>.</p>
 <hr />
 <h2 id="conventions-dans-ce-chapitre">Conventions dans ce chapitre</h2>
 <ul>

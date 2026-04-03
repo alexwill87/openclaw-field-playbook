@@ -319,6 +319,62 @@
 </tbody>
 </table>
 <p>Recommandation : Claude Sonnet en defaut, Haiku en fallback.</p>
+<h2 id="enregistrement-des-modeles-dans-agentsdefaultsmodels">Enregistrement des modeles dans <code>agents.defaults.models</code></h2>
+<p>En plus de la configuration du modele principal, OpenClaw a besoin que les modeles soient enregistres dans la section <code>agents.defaults.models</code> pour que les agents puissent les utiliser. Ajoutez cette section dans <code>~/.openclaw/config.json</code> :</p>
+<pre class="codehilite"><code class="language-json">&quot;agents&quot;: {
+  &quot;defaults&quot;: {
+    &quot;models&quot;: [
+      {
+        &quot;id&quot;: &quot;anthropic/claude-sonnet-4&quot;,
+        &quot;provider&quot;: &quot;openrouter&quot;,
+        &quot;role&quot;: &quot;primary&quot;
+      },
+      {
+        &quot;id&quot;: &quot;anthropic/claude-haiku-4-5&quot;,
+        &quot;provider&quot;: &quot;openrouter&quot;,
+        &quot;role&quot;: &quot;fallback&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+
+<p>Ou via la CLI :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw config set agents.defaults.models --strict-json '[{&quot;id&quot;:&quot;anthropic/claude-sonnet-4&quot;,&quot;provider&quot;:&quot;openrouter&quot;,&quot;role&quot;:&quot;primary&quot;},{&quot;id&quot;:&quot;anthropic/claude-haiku-4-5&quot;,&quot;provider&quot;:&quot;openrouter&quot;,&quot;role&quot;:&quot;fallback&quot;}]'
+</code></pre>
+
+<blockquote>
+<p><strong>Sans cette etape</strong>, les agents OpenClaw ne sauront pas quel modele utiliser et echoueront avec une erreur de type "no model configured for agent".</p>
+</blockquote>
+<h2 id="syntaxe-de-openclaw-config-set">Syntaxe de <code>openclaw config set</code></h2>
+<p>Si vous preferez configurer via la CLI plutot qu'en editant le JSON a la main, voici la syntaxe de <code>openclaw config set</code> :</p>
+<p><strong>Strings</strong> (guillemets obligatoires pour les valeurs contenant des espaces ou caracteres speciaux) :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw config set instance_name &quot;oa-paris&quot;
+$ openclaw config set model.default_model &quot;anthropic/claude-sonnet-4&quot;
+</code></pre>
+
+<p><strong>Booleans</strong> :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw config set vault.enabled true
+$ openclaw config set database.ssl false
+</code></pre>
+
+<p><strong>Nombres</strong> :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw config set model.temperature 0.3
+$ openclaw config set model.max_tokens 8192
+</code></pre>
+
+<p><strong>Objets JSON</strong> (utilisez <code>--strict-json</code> pour passer un objet complet) :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw config set model --strict-json '{&quot;provider&quot;:&quot;openrouter&quot;,&quot;default_model&quot;:&quot;anthropic/claude-sonnet-4&quot;,&quot;fallback_model&quot;:&quot;anthropic/claude-haiku-4-5&quot;,&quot;temperature&quot;:0.3,&quot;max_tokens&quot;:8192}'
+</code></pre>
+
+<p><strong>Lister la configuration actuelle</strong> :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw config get
+$ openclaw config get model.default_model
+</code></pre>
+
+<blockquote>
+<p><strong>Piege courant :</strong> Si vous oubliez les guillemets autour d'une string contenant <code>/</code> (comme <code>anthropic/claude-sonnet-4</code>), le shell peut l'interpreter differemment. Encadrez toujours les valeurs de guillemets.</p>
+</blockquote>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <ul>
 <li><strong>JSON invalide</strong> : Retirez les commentaires <code>//</code> du fichier. Validez avec <code>jq . ~/.openclaw/config.json</code>.</li>

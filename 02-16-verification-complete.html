@@ -89,7 +89,7 @@
 <h1 id="216-verification-post-installation">2.16 -- Verification post-installation</h1>
 <h2 id="contexte">Contexte</h2>
 <p>Toutes les briques sont en place. Avant de passer au chapitre suivant, on verifie TOUT d'un coup. Si un point est rouge, le diagnostic par symptome vous dira quoi faire.</p>
-<h2 id="checklist-des-10-points">Checklist des 10 points</h2>
+<h2 id="checklist-des-11-points">Checklist des 11 points</h2>
 <p>Executez chaque commande. Tout doit reussir.</p>
 <h3 id="1-docker-fonctionne">1. Docker fonctionne</h3>
 <pre class="codehilite"><code class="language-bash">$ docker ps
@@ -138,7 +138,22 @@ $ docker exec vault vault kv get secret/database
 </code></pre>
 
 <p>Attendu : 0 echec.</p>
-<h3 id="10-openclaw-doctor">10. openclaw doctor</h3>
+<h3 id="10-tester-le-modele-ia">10. Tester le modele IA</h3>
+<p>Verifiez que la connexion au provider IA fonctionne avec un appel simple :</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw model test
+</code></pre>
+
+<p>Si <code>openclaw model test</code> n'est pas disponible, testez directement via OpenRouter :</p>
+<pre class="codehilite"><code class="language-bash">$ OPENROUTER_KEY=$(docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get -field=api_key secret/openrouter)
+$ curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H &quot;Authorization: Bearer ${OPENROUTER_KEY}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;model&quot;:&quot;anthropic/claude-haiku-4-5&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Reponds juste OK&quot;}],&quot;max_tokens&quot;:10}' \
+  | python3 -m json.tool
+</code></pre>
+
+<p>Attendu : une reponse JSON contenant le texte "OK" (ou similaire) dans <code>choices[0].message.content</code>.</p>
+<h3 id="11-openclaw-doctor">11. openclaw doctor</h3>
 <pre class="codehilite"><code class="language-bash">$ openclaw doctor
 </code></pre>
 

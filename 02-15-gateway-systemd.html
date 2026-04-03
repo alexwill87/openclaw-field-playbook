@@ -89,6 +89,29 @@
 <h1 id="215-gateway-systemd">2.15 -- Gateway systemd</h1>
 <h2 id="contexte">Contexte</h2>
 <p>La gateway OpenClaw est le point d'entree HTTP du systeme. Elle doit tourner en permanence, redemarrer automatiquement en cas de crash et demarrer au boot du serveur. systemd est le gestionnaire de services standard de Linux -- c'est lui qui gere ca.</p>
+<h2 id="etape-0-verifier-les-anciens-services-critique">Etape 0 : Verifier les anciens services (CRITIQUE)</h2>
+<p>Avant de creer un nouveau service, verifiez qu'il n'existe pas un ancien service OpenClaw qui pourrait entrer en conflit :</p>
+<pre class="codehilite"><code class="language-bash">$ systemctl --user list-units --all | grep openclaw
+$ sudo systemctl list-units --all | grep openclaw
+</code></pre>
+
+<p>Si un ancien service existe (par exemple <code>openclaw.service</code>, <code>openclaw-gateway.service</code> d'une installation precedente), desactivez-le et supprimez-le :</p>
+<pre class="codehilite"><code class="language-bash"># Pour un service utilisateur :
+$ systemctl --user stop openclaw-gateway
+$ systemctl --user disable openclaw-gateway
+$ rm ~/.config/systemd/user/openclaw-gateway.service
+$ systemctl --user daemon-reload
+
+# Pour un service systeme :
+$ sudo systemctl stop openclaw-gateway
+$ sudo systemctl disable openclaw-gateway
+$ sudo rm /etc/systemd/system/openclaw-gateway.service
+$ sudo systemctl daemon-reload
+</code></pre>
+
+<blockquote>
+<p><strong>Pourquoi ?</strong> Deux services systemd avec le meme nom ou pointant vers le meme binaire vont se battre pour le meme port. Le symptome : la gateway crashe en boucle avec "EADDRINUSE" ou "port already in use". Ce probleme est tres difficile a diagnostiquer si on ne pense pas a verifier les anciens services.</p>
+</blockquote>
 <h2 id="etape-1-creer-le-fichier-de-service">Etape 1 : Creer le fichier de service</h2>
 <p>Creez <code>/etc/systemd/system/openclaw-gateway.service</code> :</p>
 <pre class="codehilite"><code class="language-bash">$ sudo nano /etc/systemd/system/openclaw-gateway.service
@@ -107,11 +130,11 @@ VAULT_ADDR=http://127.0.0.1:8200
 VAULT_TOKEN=VOTRE_TOKEN_APPLICATIF_ICI
 EOF
 $ sudo chmod 600 /etc/openclaw/gateway.env
-$ sudo chown root:root /etc/openclaw/gateway.env
+$ sudo chown VOTRE_USER:VOTRE_USER /etc/openclaw/gateway.env
 </code></pre>
 
 <blockquote>
-<p><strong>SECURITE :</strong> Le token Vault ne doit JAMAIS apparaitre en clair dans le fichier systemd. Utilisez <code>EnvironmentFile</code> pour le charger depuis un fichier protege (chmod 600, propriete root).</p>
+<p><strong>SECURITE :</strong> Le token Vault ne doit JAMAIS apparaitre en clair dans le fichier systemd. Utilisez <code>EnvironmentFile</code> pour le charger depuis un fichier protege (chmod 600). Le fichier doit appartenir a l'utilisateur qui execute le service (VOTRE_USER), sinon systemd ne pourra pas le lire et le service echouera silencieusement avec des variables d'environnement vides.</p>
 </blockquote>
 <p>Creez le fichier service en remplacant <code>VOTRE_USER</code> et les chemins par vos valeurs :</p>
 <pre class="codehilite"><code class="language-ini">[Unit]
@@ -153,13 +176,19 @@ WantedBy=multi-user.target
 <p>Creez le wrapper script qui charge nvm correctement (systemd ne charge pas <code>.bashrc</code>) :</p>
 <pre class="codehilite"><code class="language-bash">$ cat &gt; ~/scripts/openclaw-gateway.sh &lt;&lt; 'SCRIPT'
 #!/bin/bash
-export NVM_DIR=&quot;$HOME/.nvm&quot;
-source &quot;$NVM_DIR/nvm.sh&quot;
+# Charge nvm si present, sinon utilise le node global
+if [ -f &quot;$HOME/.nvm/nvm.sh&quot; ]; then
+  export NVM_DIR=&quot;$HOME/.nvm&quot;
+  source &quot;$NVM_DIR/nvm.sh&quot;
+fi
 exec openclaw gateway start
 SCRIPT
 $ chmod +x ~/scripts/openclaw-gateway.sh
 </code></pre>
 
+<blockquote>
+<p><strong>Pourquoi cette detection ?</strong> Si nvm n'est pas installe (par exemple si node a ete installe via apt ou un autre gestionnaire), le script plantera au <code>source</code> d'un fichier inexistant. Avec cette detection, le script fonctionne dans les deux cas.</p>
+</blockquote>
 <p><strong>IMPORTANT</strong> : Remplacez les placeholders dans le fichier service :
 - <code>VOTRE_USER</code> : votre nom d'utilisateur (resultat de <code>whoami</code>)
 - Le token Vault dans <code>/etc/openclaw/gateway.env</code> : celui cree a la section 07</p>

@@ -143,6 +143,9 @@ $ curl -s -X POST &quot;https://api.telegram.org/bot${BOT_TOKEN}/sendMessage&quo
 </code></pre>
 
 <p>OpenClaw lira automatiquement <code>bot_token</code> et <code>chat_id</code> depuis Vault.</p>
+<blockquote>
+<p><strong>Attention au nom du champ :</strong> Le champ dans Vault doit s'appeler <code>bot_token</code> (avec underscore), pas <code>token</code> ni <code>botToken</code>. Si vous avez stocke le token sous un autre nom, OpenClaw ne le trouvera pas. Verifiez avec : <code>docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get secret/telegram</code>.</p>
+</blockquote>
 <h2 id="script-utilitaire-denvoi">Script utilitaire d'envoi</h2>
 <p>Creez <code>~/scripts/notify-telegram.sh</code> pour envoyer des notifications depuis n'importe quel script :</p>
 <pre class="codehilite"><code class="language-bash">#!/bin/bash
