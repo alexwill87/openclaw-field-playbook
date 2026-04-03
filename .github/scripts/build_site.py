@@ -18,6 +18,7 @@ All output files are written to the repo root for GitHub Pages.
 
 import os
 import re
+import json
 import markdown
 
 REPO_ROOT = os.path.normpath(
@@ -290,6 +291,7 @@ def build_sidebar(all_sections, active_slug, active_chapter):
     render_chapter('07')
     render_util('checklist', 'checklist.html', 'Checklist')
     render_util('contribuer', 'contribuer.html', 'Contribuer')
+    render_util('privacy', 'privacy.html', 'Confidentialite')
 
     return '\n'.join(items)
 
@@ -891,6 +893,43 @@ def cleanup_old_chapter_files():
     return removed
 
 
+def build_privacy_page(all_sections):
+    """Build the privacy.html page (politique de confidentialite)."""
+    content = """
+<section class="chapter">
+<h1>Politique de confidentialite</h1>
+<p>Cette page decrit comment le site OpenClaw Field Playbook traite vos donnees.</p>
+
+<h2>Donnees collectees</h2>
+<p>Ce site ne collecte aucune donnee personnelle directement.</p>
+<ul>
+  <li>Les <strong>commentaires giscus</strong> passent par GitHub et sont soumis a la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">politique de confidentialite de GitHub</a>.</li>
+  <li>Les <strong>badges GitHub</strong> (etoiles, forks) utilisent l'API publique de GitHub. Aucune donnee utilisateur n'est transmise.</li>
+</ul>
+
+<h2>Cookies</h2>
+<p>Ce site n'utilise aucun cookie.</p>
+<p>Le site utilise <code>localStorage</code> pour sauvegarder :</p>
+<ul>
+  <li>Votre preference de theme (clair ou sombre)</li>
+  <li>Votre progression dans la checklist interactive</li>
+</ul>
+<p>Ces donnees restent uniquement dans votre navigateur. Aucun cookie tiers. Aucun tracking. Aucun outil d'analyse (pas de Google Analytics, pas de Matomo, rien).</p>
+
+<h2>Hebergement</h2>
+<p>Le site est heberge sur <strong>GitHub Pages</strong>. Le code source est public et consultable sur <a href="https://github.com/alexwill87/openclaw-field-playbook" target="_blank">GitHub</a>.</p>
+<p>GitHub Pages peut collecter des informations techniques (adresse IP, user-agent) dans le cadre de son fonctionnement. Consultez la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">politique de confidentialite de GitHub</a> pour plus de details.</p>
+
+<h2>Contact</h2>
+<p>Pour toute question relative a cette politique de confidentialite, vous pouvez <a href="https://github.com/alexwill87/openclaw-field-playbook/issues" target="_blank">ouvrir une issue sur GitHub</a>.</p>
+
+</section>
+"""
+    sidebar_html = build_sidebar(all_sections, 'privacy', None)
+    page_html = render_page('Politique de confidentialite', content, sidebar_html)
+    write_page('privacy.html', page_html)
+
+
 def build_ecosystem_page(all_sections):
     """Build the ecosystem.html page."""
     content = """
@@ -1070,6 +1109,37 @@ def build_ecosystem_page(all_sections):
     print('  -> ecosystem.html')
 
 
+def build_search_index(all_sections):
+    """Generate search-index.json with slug, title, url and body excerpt for each section."""
+    index = []
+    for sec in all_sections:
+        with open(sec.md_path, 'r', encoding='utf-8') as f:
+            raw = f.read()
+        # Strip frontmatter
+        content = strip_frontmatter(raw)
+        # Strip markdown headings, code fences, links syntax, images, bold/italic markers
+        plain = re.sub(r'```[\s\S]*?```', ' ', content)   # code blocks
+        plain = re.sub(r'`[^`]*`', ' ', plain)            # inline code
+        plain = re.sub(r'!\[[^\]]*\]\([^)]*\)', ' ', plain)  # images
+        plain = re.sub(r'\[[^\]]*\]\([^)]*\)', ' ', plain)   # links
+        plain = re.sub(r'#{1,6}\s+', ' ', plain)          # headings
+        plain = re.sub(r'[*_~]{1,3}', '', plain)          # bold/italic/strikethrough
+        plain = re.sub(r'\|', ' ', plain)                  # table pipes
+        plain = re.sub(r'-{3,}', ' ', plain)              # horizontal rules
+        plain = re.sub(r'\s+', ' ', plain).strip()         # collapse whitespace
+        body = plain[:200]
+        index.append({
+            'slug': sec.slug,
+            'title': sec.title,
+            'url': sec.html_file,
+            'body': body,
+        })
+    output_path = os.path.join(REPO_ROOT, 'search-index.json')
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False, indent=2)
+    print(f'  -> search-index.json ({len(index)} entries)')
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -1101,6 +1171,12 @@ if __name__ == '__main__':
     build_contribuer_page(all_sections)
     build_decouverte_page(all_sections)
     build_ecosystem_page(all_sections)
+    build_privacy_page(all_sections)
+    print()
+
+    # Build search index
+    print('Building search index...')
+    build_search_index(all_sections)
     print()
 
     # Summary
@@ -1111,7 +1187,7 @@ if __name__ == '__main__':
         n = counts.get(chapter_num, 0)
         total += n
         print(f'  Chapitre {int(chapter_num)} ({short_title}): {n} pages')
-    print(f'  Utility pages: 5 (index, checklist, contribuer, decouverte, ecosystem)')
-    print(f'  TOTAL: {total + 5} HTML files')
+    print(f'  Utility pages: 6 (index, checklist, contribuer, decouverte, ecosystem, privacy)')
+    print(f'  TOTAL: {total + 6} HTML files')
     print()
     print('Build complete. All files written to repo root.')

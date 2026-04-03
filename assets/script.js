@@ -138,6 +138,81 @@ if (chapters.length > 0) {
     });
 })();
 
+// ========== FULL-TEXT SEARCH ==========
+(function() {
+  var searchInput = document.getElementById('search-input');
+  if (!searchInput) return;
+
+  var searchResults = document.getElementById('search-results');
+  var searchIndex = null;
+
+  // Fetch search index
+  fetch('search-index.json')
+    .then(function(res) {
+      if (!res.ok) throw new Error('Search index not found');
+      return res.json();
+    })
+    .then(function(data) {
+      searchIndex = data;
+    })
+    .catch(function() {
+      // Silently fail -- search just won't work
+    });
+
+  function normalize(str) {
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function performSearch(query) {
+    if (!searchIndex || query.length < 2) {
+      searchResults.innerHTML = '';
+      searchResults.style.display = 'none';
+      return;
+    }
+
+    var q = normalize(query);
+    var results = searchIndex.filter(function(entry) {
+      return normalize(entry.title).indexOf(q) !== -1 ||
+             normalize(entry.body).indexOf(q) !== -1;
+    }).slice(0, 8);
+
+    if (results.length === 0) {
+      searchResults.innerHTML = '<div class="search-no-result">Aucun resultat</div>';
+      searchResults.style.display = 'block';
+      return;
+    }
+
+    var html = '';
+    results.forEach(function(r) {
+      html += '<a class="search-result-item" href="' + r.url + '">' +
+              '<div class="search-result-title">' + r.title + '</div>' +
+              '<div class="search-result-body">' + r.body.substring(0, 80) + '...</div>' +
+              '</a>';
+    });
+    searchResults.innerHTML = html;
+    searchResults.style.display = 'block';
+  }
+
+  searchInput.addEventListener('input', function() {
+    performSearch(this.value.trim());
+  });
+
+  // Close results when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.style.display = 'none';
+    }
+  });
+
+  // Reopen on focus if there's a query
+  searchInput.addEventListener('focus', function() {
+    if (this.value.trim().length >= 2) {
+      performSearch(this.value.trim());
+    }
+  });
+})();
+
 // ========== OPEN ISSUES WIDGET ==========
 (function() {
   var widget = document.getElementById('issues-widget');

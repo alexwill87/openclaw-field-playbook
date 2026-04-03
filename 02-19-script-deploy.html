@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <title>2.19 -- Script de deploiement | OpenClaw Field Playbook</title>
-  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -30,6 +31,10 @@
 
 <div class="layout-wrapper">
   <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
     <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
 <div class="nav-group-label">Decouvrir</div>
@@ -85,6 +90,7 @@
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
+<a href="privacy.html">Confidentialite</a>
     </nav>
   </aside>
 
@@ -321,6 +327,7 @@ $ cat ~/logs/deploy.log | tail -20
         <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
         &middot; <a href="contribuer.html">Contribuer</a>
         &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+        &middot; <a href="privacy.html">Confidentialite</a>
       </p>
     </footer>
   </main>
