@@ -506,12 +506,12 @@ def build_index_page(all_sections):
             href = '00-guide.html'
         else:
             href = f'{chapter_num}-00-sommaire.html'
-        title = f'Chapitre {int(chapter_num)} -- {short_title}'
         cards.append(
             '<a class="chapter-card" href="{href}">'
-            '<div class="num">{title}</div>'
+            '<div class="num">{num}</div>'
+            '<div class="card-title">{short}</div>'
             '<div class="card-desc">{desc}</div>'
-            '</a>'.format(href=href, title=title, desc=desc)
+            '</a>'.format(href=href, num=int(chapter_num), short=short_title, desc=desc)
         )
 
     content = """
@@ -519,23 +519,8 @@ def build_index_page(all_sections):
   <h1>OpenClaw Field Playbook</h1>
   <p class="lead">Le seul guide open-source qui couvre le parcours complet :<br>
   de l'installation a l'operation quotidienne d'OpenClaw en entreprise.</p>
-  <div style="display:flex;gap:2rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap;">
-    <div style="text-align:center;">
-      <div style="font-size:1.8rem;font-weight:700;color:var(--accent);">92</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);">sections</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-size:1.8rem;font-weight:700;color:var(--accent);">7</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);">chapitres</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-size:1.8rem;font-weight:700;color:var(--accent);">20</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);">bugs corriges par un agent terrain</div>
-    </div>
-  </div>
-  <p style="font-size:0.88rem;color:var(--text-muted);max-width:560px;margin:0 auto 1.5rem;">
-    Ne de 3 installations ratees et 5 mois de travail. Teste sur un VPS reel par un agent IA installateur.
-    Des commandes copiables, des decisions documentees, des erreurs corrigees.
+  <p style="font-size:0.82rem;color:var(--text-muted);max-width:500px;margin:0.5rem auto 1rem;">
+    <strong style="color:var(--accent);">92</strong> sections · <strong style="color:var(--accent);">7</strong> chapitres · <strong style="color:var(--accent);">20</strong> bugs corriges par un agent terrain · Open source (CC-BY 4.0)
   </p>
   <div class="hero-actions">
     <a href="decouverte.html" class="btn-primary">C'est quoi OpenClaw ?</a>

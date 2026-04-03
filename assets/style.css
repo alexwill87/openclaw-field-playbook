@@ -323,8 +323,8 @@ body {
 /* ========== MAIN CONTENT ========== */
 main#content {
   flex: 1;
-  max-width: var(--content-max);
-  padding: 0 2.5rem 4rem;
+  max-width: 960px;
+  padding: 0 3rem 4rem;
   overflow-x: hidden;
 }
 
@@ -624,23 +624,23 @@ footer a:hover { color: var(--text); }
 }
 
 .landing-hero {
-  margin: 4rem 0 3rem;
+  margin: 2rem 0 1.5rem;
   text-align: center;
 }
 
 .landing-hero h1 {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.4rem;
 }
 
 .landing-hero .lead {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto 1.5rem;
-  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 1rem;
+  line-height: 1.5;
 }
 
 .landing-hero .hero-actions {
@@ -679,47 +679,48 @@ footer a:hover { color: var(--text); }
 .btn-secondary:hover { border-color: var(--text); }
 
 .landing-section {
-  margin: 3rem 0;
-  padding-top: 1.5rem;
+  margin: 2rem 0;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--border);
 }
 
 .landing-section h2 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .landing-section p {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--text);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .audience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin: 0.75rem 0;
 }
 
 .audience-card {
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   background: var(--bg-section);
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--border);
 }
 
 .audience-card strong {
   display: block;
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+  font-size: 0.82rem;
 }
 
 .audience-card p {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   margin: 0;
+  line-height: 1.4;
 }
 
 .path-list {
@@ -729,17 +730,17 @@ footer a:hover { color: var(--text); }
 }
 
 .path-list li {
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-left: 3px solid var(--accent);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   background: var(--accent-light);
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 4px 4px 0;
 }
 
 .path-list li strong {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 0.2rem;
+  display: inline;
+  font-size: 0.85rem;
+  margin-right: 0.3rem;
 }
 
 .path-list li span {
@@ -749,44 +750,43 @@ footer a:hover { color: var(--text); }
 
 .chapter-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 0.75rem;
-  margin: 1rem 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin: 0.75rem 0;
 }
 
 .chapter-card {
   display: block;
-  padding: 1rem 1.25rem;
+  padding: 0.6rem 0.85rem;
   background: var(--bg-section);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   text-decoration: none;
   color: var(--text);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s;
 }
 
 .chapter-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
 
 .chapter-card .num {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 .chapter-card .card-title {
   font-weight: 600;
-  font-size: 0.92rem;
-  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  margin: 0.1rem 0;
 }
 
 .chapter-card .card-desc {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
+  line-height: 1.3;
 }
 
 /* ========== CHECKLIST ========== */
