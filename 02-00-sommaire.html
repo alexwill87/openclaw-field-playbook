@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Chapitre 2 -- Installation | OpenClaw Field Playbook</title>
+  <title>2. Installation | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -86,151 +86,105 @@
 
   <main id="content">
     <section class="chapter">
-<h1 id="chapitre-2-installation">Chapitre 2 -- Installation</h1>
+<h1 id="2-installation">2. Installation</h1>
 <blockquote>
 <p>Du VPS vierge a une instance OpenClaw fonctionnelle. Etape par etape, sans rien supposer.</p>
 </blockquote>
-<p>Ce chapitre est le plus dense du playbook. Il couvre 19 sections, de la preparation du serveur jusqu'au premier deploiement automatise. Chaque section est autonome : vous pouvez reprendre a n'importe quel point si une etape a deja ete faite.</p>
-<p>Temps total estime : 3 a 5 heures pour une premiere installation complete.</p>
+<p>Ce chapitre couvre le parcours complet d'installation : preparation du serveur, mise en place de l'infrastructure (Docker, Vault, PostgreSQL), installation d'OpenClaw et de ses connexions, puis verification et automatisation du deploiement. C'est le chapitre le plus dense du playbook, avec 19 sections autonomes. A la fin, vous aurez un environnement de production fonctionnel et un script de deploiement idempotent.</p>
+<p>Temps total estime : 3 a 5 heures pour une premiere installation complete. Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances importantes : Docker (04) avant Vault (07) et PostgreSQL (08), Vault (07) avant OpenRouter (13) et Telegram (14), Node.js (05) avant OpenClaw (10).</p>
 <hr />
 <h2 id="sommaire">Sommaire</h2>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Section</th>
-<th>Description</th>
-<th>Temps estime</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>01</td>
-<td><a href="01-prerequis.md">Prerequis</a></td>
-<td>Materiel, logiciel, comptes, budget</td>
-<td>15 min</td>
-</tr>
-<tr>
-<td>02</td>
-<td><a href="02-securiser-vps.md">Securiser le VPS</a></td>
-<td>Utilisateur, SSH, pare-feu, mises a jour</td>
-<td>20 min</td>
-</tr>
-<tr>
-<td>03</td>
-<td><a href="03-tailscale.md">Tailscale</a></td>
-<td>Reseau prive mesh VPN</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>04</td>
-<td><a href="04-docker.md">Docker</a></td>
-<td>Docker Engine et Docker Compose</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>05</td>
-<td><a href="05-nodejs-pm2.md">Node.js et PM2</a></td>
-<td>Runtime Node via nvm, gestionnaire PM2</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>06</td>
-<td><a href="06-structure-dossiers.md">Structure de dossiers</a></td>
-<td>Arborescence conventionnelle du projet</td>
-<td>5 min</td>
-</tr>
-<tr>
-<td>07</td>
-<td><a href="07-vault.md">HashiCorp Vault</a></td>
-<td>Gestion centralisee des secrets</td>
-<td>30 min</td>
-</tr>
-<tr>
-<td>08</td>
-<td><a href="08-postgresql.md">PostgreSQL</a></td>
-<td>Base de donnees via Docker</td>
-<td>15 min</td>
-</tr>
-<tr>
-<td>09</td>
-<td><a href="09-health-check.md">Health check</a></td>
-<td>Script de verification de l'infrastructure</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>10</td>
-<td><a href="10-openclaw-install.md">Installation OpenClaw</a></td>
-<td>Installation de l'outil principal</td>
-<td>15 min</td>
-</tr>
-<tr>
-<td>11</td>
-<td><a href="11-workspace.md">Workspace</a></td>
-<td>Structure du workspace OpenClaw</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>12</td>
-<td><a href="12-config-openclaw.md">Configuration OpenClaw</a></td>
-<td>Fichier de configuration commente</td>
-<td>15 min</td>
-</tr>
-<tr>
-<td>13</td>
-<td><a href="13-openrouter.md">OpenRouter</a></td>
-<td>Connexion multi-modeles IA</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>14</td>
-<td><a href="14-telegram.md">Telegram</a></td>
-<td>Bot de notification et commande</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>15</td>
-<td><a href="15-gateway-systemd.md">Gateway systemd</a></td>
-<td>Service systemd pour la gateway</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>16</td>
-<td><a href="16-verification-complete.md">Verification complete</a></td>
-<td>Checklist post-installation</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>17</td>
-<td><a href="17-git-init.md">Git init</a></td>
-<td>Depot Git et premier commit</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>18</td>
-<td><a href="18-claude-md.md">CLAUDE.md</a></td>
-<td>Fichier de reference pour agents IA</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>19</td>
-<td><a href="19-script-deploy.md">Script de deploiement</a></td>
-<td>Script deploy.sh idempotent</td>
-<td>15 min</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="ordre-recommande">Ordre recommande</h2>
-<p>Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances :</p>
+<h3 id="partie-a-preparation-du-serveur">Partie A -- Preparation du serveur</h3>
 <ul>
-<li>La section 07 (Vault) doit etre faite avant 08 (PostgreSQL), 13 (OpenRouter) et 14 (Telegram)</li>
-<li>La section 04 (Docker) doit etre faite avant 07 (Vault) et 08 (PostgreSQL)</li>
-<li>La section 05 (Node.js) doit etre faite avant 10 (OpenClaw)</li>
-<li>La section 16 (Verification) suppose que toutes les sections precedentes sont terminees</li>
+<li>
+<p><strong>2.1 -- <a href="01-prerequis.md">Prerequis</a></strong>
+  Inventaire complet de ce qu'il faut avant de commencer : materiel, logiciels, comptes et budget</p>
+</li>
+<li>
+<p><strong>2.2 -- <a href="02-securiser-vps.md">Securiser le VPS</a></strong>
+  Creer un utilisateur non-root, verrouiller SSH, configurer le pare-feu et les mises a jour automatiques</p>
+</li>
+<li>
+<p><strong>2.3 -- <a href="03-tailscale.md">Tailscale</a></strong>
+  Deployer un reseau prive mesh pour acceder au serveur sans exposer de ports publics</p>
+</li>
+<li>
+<p><strong>2.4 -- <a href="04-docker.md">Docker</a></strong>
+  Installer Docker Engine et Docker Compose, verifier que les conteneurs tournent correctement</p>
+</li>
+<li>
+<p><strong>2.5 -- <a href="05-nodejs-pm2.md">Node.js et PM2</a></strong>
+  Installer Node.js via nvm et configurer PM2 pour gerer les processus en arriere-plan</p>
+</li>
+<li>
+<p><strong>2.6 -- <a href="06-structure-dossiers.md">Structure de dossiers</a></strong>
+  Creer l'arborescence conventionnelle du projet pour que chaque fichier ait sa place</p>
+</li>
 </ul>
+<h3 id="partie-b-infrastructure-et-secrets">Partie B -- Infrastructure et secrets</h3>
+<ul>
+<li>
+<p><strong>2.7 -- <a href="07-vault.md">HashiCorp Vault</a></strong>
+  Deployer un gestionnaire de secrets centralise pour ne jamais stocker de credentials en clair</p>
+</li>
+<li>
+<p><strong>2.8 -- <a href="08-postgresql.md">PostgreSQL</a></strong>
+  Lancer la base de donnees via Docker et la connecter a Vault pour les credentials</p>
+</li>
+<li>
+<p><strong>2.9 -- <a href="09-health-check.md">Health check</a></strong>
+  Ecrire un script qui verifie en une commande que toute l'infrastructure est operationnelle</p>
+</li>
+</ul>
+<h3 id="partie-c-openclaw">Partie C -- OpenClaw</h3>
+<ul>
+<li>
+<p><strong>2.10 -- <a href="10-openclaw-install.md">Installation OpenClaw</a></strong>
+  Telecharger, installer et lancer OpenClaw pour la premiere fois</p>
+</li>
+<li>
+<p><strong>2.11 -- <a href="11-workspace.md">Workspace</a></strong>
+  Comprendre et organiser la structure du workspace ou l'agent va operer</p>
+</li>
+<li>
+<p><strong>2.12 -- <a href="12-config-openclaw.md">Configuration OpenClaw</a></strong>
+  Remplir le fichier de configuration principal avec les valeurs adaptees a votre contexte</p>
+</li>
+<li>
+<p><strong>2.13 -- <a href="13-openrouter.md">OpenRouter</a></strong>
+  Connecter OpenClaw a plusieurs modeles IA via une API unique</p>
+</li>
+<li>
+<p><strong>2.14 -- <a href="14-telegram.md">Telegram</a></strong>
+  Creer un bot Telegram pour recevoir des notifications et envoyer des commandes a l'agent</p>
+</li>
+<li>
+<p><strong>2.15 -- <a href="15-gateway-systemd.md">Gateway systemd</a></strong>
+  Enregistrer la gateway comme service systeme pour qu'elle redemarre automatiquement</p>
+</li>
+</ul>
+<h3 id="partie-d-verification-et-deploiement">Partie D -- Verification et deploiement</h3>
+<ul>
+<li>
+<p><strong>2.16 -- <a href="16-verification-complete.md">Verification complete</a></strong>
+  Passer la checklist post-installation pour confirmer que chaque composant fonctionne</p>
+</li>
+<li>
+<p><strong>2.17 -- <a href="17-git-init.md">Git init</a></strong>
+  Initialiser le depot Git et faire le premier commit pour versionner toute la configuration</p>
+</li>
+<li>
+<p><strong>2.18 -- <a href="18-claude-md.md">CLAUDE.md</a></strong>
+  Rediger le fichier de reference que les agents IA liront en ouvrant le repo</p>
+</li>
+<li>
+<p><strong>2.19 -- <a href="19-script-deploy.md">Script de deploiement</a></strong>
+  Construire un script deploy.sh idempotent qui reproduit l'installation en une commande</p>
+</li>
+</ul>
+<hr />
 <h2 id="outil-optionnel-install-tracker">Outil optionnel : Install Tracker</h2>
-<p>Pour suivre votre progression en temps reel, vous pouvez deployer le <strong>Install Tracker</strong> — un cockpit minimal qui trace les phases, les decisions, les services et les actions.</p>
+<p>Pour suivre votre progression en temps reel, vous pouvez deployer le <strong>Install Tracker</strong> -- un cockpit minimal qui trace les phases, les decisions, les services et les actions.</p>
 <pre class="codehilite"><code class="language-bash">cd tools/install-tracker
 docker compose up -d
 # Accessible sur http://localhost:3007
@@ -246,9 +200,10 @@ docker compose up -d
 <li>Les chemins sont relatifs au home de l'utilisateur (<code>~</code>) sauf indication contraire</li>
 </ul>
 <hr />
-<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
 </section>
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/README.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
   <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
   <script src="https://giscus.app/client.js"
@@ -270,7 +225,7 @@ docker compose up -d
 </div>
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="01-00-sommaire.html">&larr; Chapitre 1 -- Definition</a>
+<a href="01-06-ce-que-vous-construisez.html">&larr; 1.6 -- Ce que vous allez construire dans ce guide</a>
 <a href="02-01-prerequis.html">2.1 -- Prerequis materiel et logiciel &rarr;</a>
 </div>
 

@@ -7,54 +7,88 @@ contributors: [alexwill87, claude-cockpit]
 lang: fr
 ---
 
-# Chapitre 2 -- Installation
+# 2. Installation
 
 > Du VPS vierge a une instance OpenClaw fonctionnelle. Etape par etape, sans rien supposer.
 
-Ce chapitre est le plus dense du playbook. Il couvre 19 sections, de la preparation du serveur jusqu'au premier deploiement automatise. Chaque section est autonome : vous pouvez reprendre a n'importe quel point si une etape a deja ete faite.
+Ce chapitre couvre le parcours complet d'installation : preparation du serveur, mise en place de l'infrastructure (Docker, Vault, PostgreSQL), installation d'OpenClaw et de ses connexions, puis verification et automatisation du deploiement. C'est le chapitre le plus dense du playbook, avec 19 sections autonomes. A la fin, vous aurez un environnement de production fonctionnel et un script de deploiement idempotent.
 
-Temps total estime : 3 a 5 heures pour une premiere installation complete.
+Temps total estime : 3 a 5 heures pour une premiere installation complete. Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances importantes : Docker (04) avant Vault (07) et PostgreSQL (08), Vault (07) avant OpenRouter (13) et Telegram (14), Node.js (05) avant OpenClaw (10).
 
 ---
 
 ## Sommaire
 
-| #  | Section | Description | Temps estime |
-|----|---------|-------------|--------------|
-| 01 | [Prerequis](01-prerequis.md) | Materiel, logiciel, comptes, budget | 15 min |
-| 02 | [Securiser le VPS](02-securiser-vps.md) | Utilisateur, SSH, pare-feu, mises a jour | 20 min |
-| 03 | [Tailscale](03-tailscale.md) | Reseau prive mesh VPN | 10 min |
-| 04 | [Docker](04-docker.md) | Docker Engine et Docker Compose | 10 min |
-| 05 | [Node.js et PM2](05-nodejs-pm2.md) | Runtime Node via nvm, gestionnaire PM2 | 10 min |
-| 06 | [Structure de dossiers](06-structure-dossiers.md) | Arborescence conventionnelle du projet | 5 min |
-| 07 | [HashiCorp Vault](07-vault.md) | Gestion centralisee des secrets | 30 min |
-| 08 | [PostgreSQL](08-postgresql.md) | Base de donnees via Docker | 15 min |
-| 09 | [Health check](09-health-check.md) | Script de verification de l'infrastructure | 10 min |
-| 10 | [Installation OpenClaw](10-openclaw-install.md) | Installation de l'outil principal | 15 min |
-| 11 | [Workspace](11-workspace.md) | Structure du workspace OpenClaw | 10 min |
-| 12 | [Configuration OpenClaw](12-config-openclaw.md) | Fichier de configuration commente | 15 min |
-| 13 | [OpenRouter](13-openrouter.md) | Connexion multi-modeles IA | 10 min |
-| 14 | [Telegram](14-telegram.md) | Bot de notification et commande | 10 min |
-| 15 | [Gateway systemd](15-gateway-systemd.md) | Service systemd pour la gateway | 10 min |
-| 16 | [Verification complete](16-verification-complete.md) | Checklist post-installation | 10 min |
-| 17 | [Git init](17-git-init.md) | Depot Git et premier commit | 10 min |
-| 18 | [CLAUDE.md](18-claude-md.md) | Fichier de reference pour agents IA | 10 min |
-| 19 | [Script de deploiement](19-script-deploy.md) | Script deploy.sh idempotent | 15 min |
+### Partie A -- Preparation du serveur
+
+- **2.1 -- [Prerequis](01-prerequis.md)**
+  Inventaire complet de ce qu'il faut avant de commencer : materiel, logiciels, comptes et budget
+
+- **2.2 -- [Securiser le VPS](02-securiser-vps.md)**
+  Creer un utilisateur non-root, verrouiller SSH, configurer le pare-feu et les mises a jour automatiques
+
+- **2.3 -- [Tailscale](03-tailscale.md)**
+  Deployer un reseau prive mesh pour acceder au serveur sans exposer de ports publics
+
+- **2.4 -- [Docker](04-docker.md)**
+  Installer Docker Engine et Docker Compose, verifier que les conteneurs tournent correctement
+
+- **2.5 -- [Node.js et PM2](05-nodejs-pm2.md)**
+  Installer Node.js via nvm et configurer PM2 pour gerer les processus en arriere-plan
+
+- **2.6 -- [Structure de dossiers](06-structure-dossiers.md)**
+  Creer l'arborescence conventionnelle du projet pour que chaque fichier ait sa place
+
+### Partie B -- Infrastructure et secrets
+
+- **2.7 -- [HashiCorp Vault](07-vault.md)**
+  Deployer un gestionnaire de secrets centralise pour ne jamais stocker de credentials en clair
+
+- **2.8 -- [PostgreSQL](08-postgresql.md)**
+  Lancer la base de donnees via Docker et la connecter a Vault pour les credentials
+
+- **2.9 -- [Health check](09-health-check.md)**
+  Ecrire un script qui verifie en une commande que toute l'infrastructure est operationnelle
+
+### Partie C -- OpenClaw
+
+- **2.10 -- [Installation OpenClaw](10-openclaw-install.md)**
+  Telecharger, installer et lancer OpenClaw pour la premiere fois
+
+- **2.11 -- [Workspace](11-workspace.md)**
+  Comprendre et organiser la structure du workspace ou l'agent va operer
+
+- **2.12 -- [Configuration OpenClaw](12-config-openclaw.md)**
+  Remplir le fichier de configuration principal avec les valeurs adaptees a votre contexte
+
+- **2.13 -- [OpenRouter](13-openrouter.md)**
+  Connecter OpenClaw a plusieurs modeles IA via une API unique
+
+- **2.14 -- [Telegram](14-telegram.md)**
+  Creer un bot Telegram pour recevoir des notifications et envoyer des commandes a l'agent
+
+- **2.15 -- [Gateway systemd](15-gateway-systemd.md)**
+  Enregistrer la gateway comme service systeme pour qu'elle redemarre automatiquement
+
+### Partie D -- Verification et deploiement
+
+- **2.16 -- [Verification complete](16-verification-complete.md)**
+  Passer la checklist post-installation pour confirmer que chaque composant fonctionne
+
+- **2.17 -- [Git init](17-git-init.md)**
+  Initialiser le depot Git et faire le premier commit pour versionner toute la configuration
+
+- **2.18 -- [CLAUDE.md](18-claude-md.md)**
+  Rediger le fichier de reference que les agents IA liront en ouvrant le repo
+
+- **2.19 -- [Script de deploiement](19-script-deploy.md)**
+  Construire un script deploy.sh idempotent qui reproduit l'installation en une commande
 
 ---
 
-## Ordre recommande
-
-Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances :
-
-- La section 07 (Vault) doit etre faite avant 08 (PostgreSQL), 13 (OpenRouter) et 14 (Telegram)
-- La section 04 (Docker) doit etre faite avant 07 (Vault) et 08 (PostgreSQL)
-- La section 05 (Node.js) doit etre faite avant 10 (OpenClaw)
-- La section 16 (Verification) suppose que toutes les sections precedentes sont terminees
-
 ## Outil optionnel : Install Tracker
 
-Pour suivre votre progression en temps reel, vous pouvez deployer le **Install Tracker** — un cockpit minimal qui trace les phases, les decisions, les services et les actions.
+Pour suivre votre progression en temps reel, vous pouvez deployer le **Install Tracker** -- un cockpit minimal qui trace les phases, les decisions, les services et les actions.
 
 ```bash
 cd tools/install-tracker
@@ -75,4 +109,4 @@ C'est optionnel. Le playbook fonctionne sans. Mais si vous voulez un tableau de 
 
 ---
 
-*[Contribuer a ce chapitre](https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml) -- [CONTRIBUTING.md](../../CONTRIBUTING.md)*
+[Contribuer a ce chapitre](https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml) -- [CONTRIBUTING.md](../../CONTRIBUTING.md)

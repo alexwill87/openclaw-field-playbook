@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Chapitre 3 -- Configuration | OpenClaw Field Playbook</title>
+  <title>3. Configuration | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -84,154 +84,99 @@
 
   <main id="content">
     <section class="chapter">
-<h1 id="chapitre-3-configuration">Chapitre 3 -- Configuration</h1>
+<h1 id="3-configuration">3. Configuration</h1>
 <blockquote>
 <p>Configurer OpenClaw pour votre contexte specifique : votre metier, vos outils, vos contraintes.</p>
 </blockquote>
-<p>Ce chapitre est le coeur du playbook. L'installation (chapitre 2) vous donne un agent generique. La configuration en fait VOTRE agent.</p>
+<p>L'installation (chapitre 2) vous donne un agent generique. La configuration en fait VOTRE agent. Ce chapitre couvre quatre axes : definir l'identite et les regles de l'agent, organiser sa memoire, le connecter a vos sources de donnees, et automatiser ses declenchements. A la fin, vous aurez un agent qui connait votre metier, respecte vos limites, et se reveille tout seul le matin.</p>
+<p><strong>Debutant</strong> : commencez par 3.1, 3.2, 3.3, 3.5, 3.6, 3.10, 3.16. Le reste viendra apres. <strong>Presse</strong> : 3.1 (5 min), 3.5 (5 min), 3.16 (5 min) -- un agent fonctionnel en 15 minutes. <strong>Praticien</strong> : lisez dans l'ordre, chaque section construit sur la precedente.</p>
 <hr />
-<h2 id="partie-a-lagent">Partie A -- L'agent</h2>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Titre</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3.1</td>
-<td><a href="01-perimetre-agent.md">Perimetre de l'agent</a></td>
-<td>Ce qu'il doit faire vs jamais faire</td>
-</tr>
-<tr>
-<td>3.2</td>
-<td><a href="02-soul-md.md">SOUL.md</a></td>
-<td>L'identite de l'agent</td>
-</tr>
-<tr>
-<td>3.3</td>
-<td><a href="03-user-md.md">USER.md</a></td>
-<td>Votre profil pour l'agent</td>
-</tr>
-<tr>
-<td>3.4</td>
-<td><a href="04-agents-md.md">AGENTS.md</a></td>
-<td>Le registre des agents</td>
-</tr>
-<tr>
-<td>3.5</td>
-<td><a href="05-constitution-md.md">CONSTITUTION.md</a></td>
-<td>Les regles du jeu</td>
-</tr>
-</tbody>
-</table>
-<h2 id="partie-b-la-memoire">Partie B -- La memoire</h2>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Titre</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3.6</td>
-<td><a href="06-trois-zones-memoire.md">Trois zones de memoire</a></td>
-<td>Chaude, tiede, froide</td>
-</tr>
-<tr>
-<td>3.7</td>
-<td><a href="07-memory-md.md">MEMORY.md</a></td>
-<td>La memoire collective</td>
-</tr>
-<tr>
-<td>3.8</td>
-<td><a href="08-knowledge.md">knowledge/</a></td>
-<td>Le dossier de connaissances</td>
-</tr>
-</tbody>
-</table>
-<h2 id="partie-c-les-connexions">Partie C -- Les connexions</h2>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Titre</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3.9</td>
-<td><a href="09-principe-une-source.md">Une source a la fois</a></td>
-<td>Principe de connexion progressive</td>
-</tr>
-<tr>
-<td>3.10</td>
-<td><a href="10-calendrier.md">Calendrier</a></td>
-<td>Premiere connexion, toujours</td>
-</tr>
-<tr>
-<td>3.11</td>
-<td><a href="11-taches.md">Taches</a></td>
-<td>La pression invisible</td>
-</tr>
-<tr>
-<td>3.12</td>
-<td><a href="12-email-messages.md">Email et messages</a></td>
-<td>Connexion et triage</td>
-</tr>
-<tr>
-<td>3.13</td>
-<td><a href="13-skill-custom.md">Skill custom</a></td>
-<td>Construire vos propres skills</td>
-</tr>
-<tr>
-<td>3.14</td>
-<td><a href="14-souverainete-donnees.md">Souverainete des donnees</a></td>
-<td>Ou vivent vos donnees</td>
-</tr>
-</tbody>
-</table>
-<h2 id="partie-d-triggers-et-automatisations">Partie D -- Triggers et automatisations</h2>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Titre</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3.15</td>
-<td><a href="15-crons.md">Les crons</a></td>
-<td>Automatisations planifiees</td>
-</tr>
-<tr>
-<td>3.16</td>
-<td><a href="16-briefing-matin.md">Le briefing du matin</a></td>
-<td>Le test ultime de la configuration</td>
-</tr>
-<tr>
-<td>3.17</td>
-<td><a href="17-multi-agents.md">Multi-agents</a></td>
-<td>Architecture multi-agents</td>
-</tr>
-</tbody>
-</table>
+<h2 id="sommaire">Sommaire</h2>
+<h3 id="partie-a-lagent">Partie A -- L'agent</h3>
+<ul>
+<li>
+<p><strong>3.1 -- <a href="01-perimetre-agent.md">Perimetre de l'agent</a></strong>
+  Definir explicitement ce que l'agent doit faire, peut faire, et ne doit jamais faire</p>
+</li>
+<li>
+<p><strong>3.2 -- <a href="02-soul-md.md">SOUL.md</a></strong>
+  Ecrire le document qui donne a l'agent son identite, ses valeurs et sa posture</p>
+</li>
+<li>
+<p><strong>3.3 -- <a href="03-user-md.md">USER.md</a></strong>
+  Decrire votre profil, vos preferences et votre contexte pour que l'agent s'adapte a vous</p>
+</li>
+<li>
+<p><strong>3.4 -- <a href="04-agents-md.md">AGENTS.md</a></strong>
+  Tenir le registre de tous les agents actifs, leur role et leurs permissions</p>
+</li>
+<li>
+<p><strong>3.5 -- <a href="05-constitution-md.md">CONSTITUTION.md</a></strong>
+  Fixer les regles du jeu : ce qui est negoociable, ce qui ne l'est pas</p>
+</li>
+</ul>
+<h3 id="partie-b-la-memoire">Partie B -- La memoire</h3>
+<ul>
+<li>
+<p><strong>3.6 -- <a href="06-trois-zones-memoire.md">Trois zones de memoire</a></strong>
+  Comprendre l'architecture chaude/tiede/froide et ou stocker chaque type d'information</p>
+</li>
+<li>
+<p><strong>3.7 -- <a href="07-memory-md.md">MEMORY.md</a></strong>
+  Alimenter la memoire collective que tous les agents partagent entre les sessions</p>
+</li>
+<li>
+<p><strong>3.8 -- <a href="08-knowledge.md">knowledge/</a></strong>
+  Organiser le dossier de connaissances metier que l'agent consulte en contexte</p>
+</li>
+</ul>
+<h3 id="partie-c-les-connexions">Partie C -- Les connexions</h3>
+<ul>
+<li>
+<p><strong>3.9 -- <a href="09-principe-une-source.md">Une source a la fois</a></strong>
+  Pourquoi connecter progressivement plutot que tout brancher d'un coup</p>
+</li>
+<li>
+<p><strong>3.10 -- <a href="10-calendrier.md">Calendrier</a></strong>
+  Brancher le calendrier en premier -- la connexion la plus simple et la plus utile</p>
+</li>
+<li>
+<p><strong>3.11 -- <a href="11-taches.md">Taches</a></strong>
+  Connecter le gestionnaire de taches et gerer la pression invisible des listes</p>
+</li>
+<li>
+<p><strong>3.12 -- <a href="12-email-messages.md">Email et messages</a></strong>
+  Configurer le triage automatique des emails et messages entrants</p>
+</li>
+<li>
+<p><strong>3.13 -- <a href="13-skill-custom.md">Skill custom</a></strong>
+  Construire vos propres skills pour etendre les capacites de l'agent a votre metier</p>
+</li>
+<li>
+<p><strong>3.14 -- <a href="14-souverainete-donnees.md">Souverainete des donnees</a></strong>
+  Savoir exactement ou vivent vos donnees et qui y a acces</p>
+</li>
+</ul>
+<h3 id="partie-d-triggers-et-automatisations">Partie D -- Triggers et automatisations</h3>
+<ul>
+<li>
+<p><strong>3.15 -- <a href="15-crons.md">Les crons</a></strong>
+  Planifier des declenchements automatiques a heures fixes ou sur evenement</p>
+</li>
+<li>
+<p><strong>3.16 -- <a href="16-briefing-matin.md">Le briefing du matin</a></strong>
+  Configurer le test ultime : l'agent qui vous prepare un resume chaque matin</p>
+</li>
+<li>
+<p><strong>3.17 -- <a href="17-multi-agents.md">Multi-agents</a></strong>
+  Orchestrer plusieurs agents specialises qui collaborent sur des taches complexes</p>
+</li>
+</ul>
 <hr />
-<h2 id="ordre-de-lecture-recommande">Ordre de lecture recommande</h2>
-<p><strong>Debutant</strong> : 3.1 &gt; 3.2 &gt; 3.3 &gt; 3.5 &gt; 3.6 &gt; 3.10 &gt; 3.16. Le reste viendra apres.</p>
-<p><strong>Praticien</strong> : Lisez dans l'ordre. Chaque section construit sur la precedente.</p>
-<p><strong>Presse</strong> : 3.1 (5 min) &gt; 3.5 (5 min) &gt; 3.16 (5 min). Vous aurez un agent fonctionnel en 15 minutes.</p>
-<hr />
-<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
 </section>
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/README.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
   <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
   <script src="https://giscus.app/client.js"

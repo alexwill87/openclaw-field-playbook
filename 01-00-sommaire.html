@@ -37,6 +37,14 @@
 </div>
 <div class="nav-chapter">
   <a href="01-00-sommaire.html" class="nav-chapter-title" class="active">1. Definition</a>
+  <div class="nav-sections">
+    <a href="01-01-definition.html">1.1 -- Ce qu'OpenClaw est (et n'...</a>
+    <a href="01-02-proactif-reactif.html">1.2 -- La distinction proactif v...</a>
+    <a href="01-03-comparaison.html">1.3 -- OpenClaw vs les autres as...</a>
+    <a href="01-04-souverainete.html">1.4 -- Pourquoi la souverainete...</a>
+    <a href="01-05-architecture-mentale.html">1.5 -- L'architecture mentale av...</a>
+    <a href="01-06-ce-que-vous-construisez.html">1.6 -- Ce que vous allez constru...</a>
+  </div>
 </div>
 <div class="nav-chapter">
   <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
@@ -69,350 +77,34 @@
 <blockquote>
 <p>Qu'est-ce qu'OpenClaw, concretement ? Qu'est-ce que ca fait, qu'est-ce que ca ne fait pas, et pourquoi est-ce que ca merite votre temps ?</p>
 </blockquote>
+<p>Ce chapitre pose les fondations. Il definit ce qu'est OpenClaw, ce qui le distingue des autres outils IA, et pourquoi des concepts comme la proactivite et la souverainete des donnees comptent pour un entrepreneur. Il se termine par l'architecture mentale necessaire avant de passer a l'installation.</p>
 <hr />
-<h2 id="11-ce-quopenclaw-est-et-nest-pas">1.1 -- Ce qu'OpenClaw est (et n'est pas)</h2>
-<p><strong>A qui s'adresse cette section :</strong> Toute personne qui decouvre OpenClaw ou qui l'utilise sans en avoir un modele mental clair.
-<strong>Temps de lecture :</strong> 10 minutes.
-<strong>Difficulte :</strong> Debutant.</p>
-<h3 id="contexte">Contexte</h3>
-<p>La plupart des gens rencontrent OpenClaw a travers une demo, un tweet, ou une recommandation. Ils voient quelque chose d'impressionnant, essaient de le reproduire, et se retrouvent perdus. La raison est simple : ils n'ont pas le bon modele mental.</p>
-<p>Cette section vous donne ce modele.</p>
-<h3 id="ce-quopenclaw-est">Ce qu'OpenClaw est</h3>
-<p>OpenClaw est un <strong>framework d'agents</strong>. Il permet de construire et faire tourner des assistants IA capables de <strong>prendre des actions</strong>, pas seulement de repondre a des questions.</p>
-<p>La difference est fondamentale. Un chatbot classique attend votre question et repond. Un agent OpenClaw peut etre configure pour agir selon un calendrier, reagir a des evenements, utiliser des outils, conserver une memoire d'une session a l'autre, et se coordonner avec d'autres agents.</p>
-<p>Pour un entrepreneur, ca signifie la difference entre un assistant que vous consultez et un assistant qui travaille a cote de vous.</p>
-<p>Concretement, un agent OpenClaw peut :</p>
+<h2 id="sommaire">Sommaire</h2>
 <ul>
-<li>Surveiller un flux de donnees et vous alerter quand quelque chose merite votre attention.</li>
-<li>Preparer un brouillon de reponse a un email en s'appuyant sur le contexte de vos echanges precedents.</li>
-<li>Executer une sequence d'actions techniques (deploiement, sauvegarde, verification) sans votre intervention.</li>
-<li>Combiner des informations de plusieurs sources pour produire un rapport ou une synthese.</li>
+<li>
+<p><strong><a href="01-definition.md">1.1 -- Ce qu'OpenClaw est (et n'est pas)</a></strong> — Le modele mental fondamental : framework d'agents, composabilite, et ce que ca change par rapport a un chatbot.</p>
+</li>
+<li>
+<p><strong><a href="02-proactif-reactif.md">1.2 -- La distinction proactif vs reactif</a></strong> — La spirale de Steinberg et les quatre paliers qui separent un assistant passif d'un systeme qui avance seul.</p>
+</li>
+<li>
+<p><strong><a href="03-comparaison.md">1.3 -- OpenClaw vs les autres assistants IA</a></strong> — Comparaison honnete avec ChatGPT, Copilot, AutoGPT et CrewAI : qui fait quoi, et ou OpenClaw se place.</p>
+</li>
+<li>
+<p><strong><a href="04-souverainete.md">1.4 -- Pourquoi la souverainete compte pour un entrepreneur</a></strong> — Donnees, RGPD, controle de l'infrastructure : pourquoi ca n'est pas qu'un argument marketing.</p>
+</li>
+<li>
+<p><strong><a href="05-architecture-mentale.md">1.5 -- L'architecture mentale avant de commencer</a></strong> — Les 3 couches (identite, visibilite, action) et le concept de piliers universels et metier.</p>
+</li>
+<li>
+<p><strong><a href="06-ce-que-vous-construisez.md">1.6 -- Ce que vous allez construire dans ce guide</a></strong> — Vue d'ensemble de l'architecture cible et de ce que vous aurez a la fin du parcours.</p>
+</li>
 </ul>
-<h3 id="ce-quopenclaw-nest-pas">Ce qu'OpenClaw n'est pas</h3>
-<p><strong>Ce n'est pas un produit fini.</strong> Vous n'installez pas OpenClaw comme vous installez une application. C'est une boite a outils. Le resultat depend de ce que vous construisez avec.</p>
-<p><strong>Ce n'est pas un chatbot.</strong> Si vous l'utilisez uniquement pour poser des questions et obtenir des reponses, vous passez a cote de 80 % de sa valeur.</p>
-<p><strong>Ce n'est pas de la magie.</strong> Un agent fait ce qu'il est configure pour faire, rien de plus. Pas de configuration = pas de resultat.</p>
-<p><strong>Ce n'est pas sans risque.</strong> Un agent mal configure peut envoyer des messages que vous n'avez pas valides, modifier des fichiers qu'il n'aurait pas du toucher, ou creer du bruit au lieu de la valeur. La configuration n'est pas un detail -- c'est le travail principal.</p>
-<h3 id="les-trois-caracteristiques-distinctives">Les trois caracteristiques distinctives</h3>
-<p><strong>1. Composabilite.</strong> Vous pouvez construire plusieurs agents specialises et les connecter. Un gere vos emails. Un autre surveille votre secteur. Un troisieme gere vos taches. Ils partagent un contexte et se passent le relais.</p>
-<p><strong>2. Souverainete.</strong> Vous decidez ou vivent vos donnees. Local, cloud, hybride -- l'architecture est la votre. C'est rarement le cas avec les outils IA grand public.</p>
-<p><strong>3. Proactivite programmable.</strong> Vous pouvez configurer OpenClaw pour agir sans qu'on lui demande -- sur un horaire, sur un evenement, sur une condition. C'est la fonctionnalite qui le separe de tous les autres outils de cet espace.</p>
-<blockquote>
-<p><strong>Erreur courante :</strong> Configurer trop de choses trop vite. Les nouveaux utilisateurs veulent tout automatiser la premiere semaine et se retrouvent avec un systeme casse et imprevisible. Commencez par un seul cas d'usage. Faites-le fonctionner correctement. Ajoutez le suivant.</p>
-</blockquote>
-<hr />
-<h2 id="12-la-distinction-proactif-vs-reactif">1.2 -- La distinction proactif vs reactif</h2>
-<p><strong>A qui s'adresse cette section :</strong> Tout utilisateur qui veut comprendre ce qui fait la difference entre un assistant qui attend et un assistant qui avance.
-<strong>Temps de lecture :</strong> 10 minutes.
-<strong>Difficulte :</strong> Debutant.</p>
-<h3 id="contexte_1">Contexte</h3>
-<p>La plupart des outils IA que vous utilisez aujourd'hui sont reactifs. Vous posez une question, ils repondent. Vous donnez une instruction, ils executent. Puis ils attendent. En silence.</p>
-<p>C'est utile, mais c'est le premier palier. Et la majorite des utilisateurs restent bloques a ce palier.</p>
-<h3 id="la-spirale-de-dennis-steinberg">La spirale de Dennis Steinberg</h3>
-<p>Dennis Steinberg a formalise une progression en quatre etapes pour decrire ce qu'un agent IA devrait pouvoir faire :</p>
-<pre class="codehilite"><code>Comprendre -&gt; Automatiser -&gt; Decider -&gt; Reflechir
-     |                                       |
-     +&lt;--------------------------------------+
-</code></pre>
-
-<p><strong>Comprendre :</strong> L'agent sait interpreter votre contexte. Il ne repond pas dans le vide -- il sait qui vous etes, ce que vous faites, quels sont vos outils, vos contraintes.</p>
-<p><strong>Automatiser :</strong> L'agent execute des taches repetitives sans intervention. Pas besoin de lui demander a chaque fois : il sait que le lundi matin, il doit preparer le point hebdomadaire.</p>
-<p><strong>Decider :</strong> L'agent fait des choix dans un cadre que vous avez defini. "Si le stock tombe en dessous de X, passer la commande. Si le client n'a pas repondu en 48h, relancer." Il ne vous sollicite pas pour chaque micro-decision.</p>
-<p><strong>Reflechir :</strong> L'agent evalue ses propres resultats. Ce qu'il a fait a-t-il produit l'effet attendu ? Faut-il ajuster ? C'est la boucle de feedback qui transforme un automate en systeme adaptatif.</p>
-<p>La fleche de retour est cruciale. Ce n'est pas une progression lineaire -- c'est une spirale. Chaque cycle enrichit la comprehension, qui enrichit l'automatisation, et ainsi de suite.</p>
-<h3 id="ce-que-ca-change-en-pratique">Ce que ca change en pratique</h3>
-<p>Un agent qui ne fait que comprendre (palier 1) est un ChatGPT glorifie. Il est utile, mais il ne vous fait pas gagner de temps de maniere structurelle.</p>
-<p>Un agent qui comprend et automatise (paliers 1-2) commence a creer de la valeur reelle. Les taches repetitives disparaissent de votre journee.</p>
-<p>Un agent qui comprend, automatise et decide (paliers 1-3) change votre facon de travailler. Vous ne gerez plus les details -- vous definissez les regles et vous validez les resultats.</p>
-<p>Un agent qui boucle les quatre paliers est un systeme qui s'ameliore avec le temps. C'est ce vers quoi OpenClaw est concu pour vous amener.</p>
-<blockquote>
-<p><strong>Principe :</strong> L'agent qui attend vos questions ne sert qu'a 20 % de son potentiel. La valeur reelle commence quand il agit de lui-meme, dans un cadre que vous avez defini.</p>
-<p><strong>Note de terrain :</strong> En pratique, la plupart des installations OpenClaw commencent aux paliers 1-2. C'est normal. Le palier 3 demande de la confiance dans le systeme, et la confiance se construit avec le temps. Ne brulez pas les etapes -- un agent qui decide trop tot sans cadre clair, c'est un probleme, pas une solution.</p>
-</blockquote>
-<hr />
-<h2 id="13-openclaw-vs-les-autres-assistants-ia">1.3 -- OpenClaw vs les autres assistants IA</h2>
-<p><strong>A qui s'adresse cette section :</strong> Quiconque se demande "pourquoi ne pas simplement utiliser ChatGPT / Claude.ai / Copilot ?"
-<strong>Temps de lecture :</strong> 10 minutes.
-<strong>Difficulte :</strong> Debutant.</p>
-<h3 id="contexte_2">Contexte</h3>
-<p>La question est legitime. Il existe deja des outils IA puissants, faciles d'acces, qui ne demandent aucune configuration. Pourquoi se compliquer la vie ?</p>
-<p>Cette section repond sans detour. OpenClaw n'est pas meilleur que tout -- il est different. La question n'est pas "quel est le meilleur outil ?" mais "quel outil pour quel usage ?"</p>
-<h3 id="comparaison-honnete">Comparaison honnete</h3>
-<p><strong>ChatGPT / Claude.ai (interfaces conversationnelles grand public)</strong></p>
-<p>Ce qu'ils font bien : repondre a des questions, rediger du texte, analyser des documents, brainstormer. Ils sont excellents en mode reactif, avec zero configuration.</p>
-<p>Ce qu'ils ne font pas : agir de maniere proactive, conserver une memoire structuree a long terme, s'integrer a vos outils metier, tourner sur votre infrastructure. Vos donnees transitent par leurs serveurs. Vous n'avez pas de controle sur le modele sous-jacent ni sur les mises a jour.</p>
-<p><strong>GitHub Copilot</strong></p>
-<p>Ce qu'il fait bien : completer du code en temps reel, directement dans l'IDE. Pour un developpeur, c'est un gain de productivite immediat et tangible.</p>
-<p>Ce qu'il ne fait pas : quoi que ce soit en dehors du code. Ce n'est pas un framework d'agents -- c'est un assistant de saisie specialise.</p>
-<p><strong>AutoGPT</strong></p>
-<p>Ce qu'il fait bien : demontrer le concept d'agent autonome. AutoGPT a popularise l'idee qu'un LLM peut decomposer un objectif en sous-taches et les executer de maniere autonome.</p>
-<p>Ce qu'il ne fait pas de maniere fiable : a peu pres tout ce qu'il promet. En pratique, AutoGPT boucle souvent sur lui-meme, consomme un nombre excessif de tokens, et produit des resultats imprevisibles. Le concept est bon. L'execution n'est pas encore a la hauteur pour un usage professionnel.</p>
-<p><strong>CrewAI et frameworks multi-agents similaires</strong></p>
-<p>Ce qu'ils font bien : orchestrer plusieurs agents sur une tache complexe. L'architecture multi-agents avec des roles definis (chercheur, redacteur, validateur) est une approche puissante pour certaines categories de problemes.</p>
-<p>Ce qu'ils ne font pas : fournir une solution integree pour un entrepreneur qui veut un systeme complet (infra + agents + memoire + outils). Ce sont des briques, pas un edifice.</p>
-<h3 id="ou-se-place-openclaw">Ou se place OpenClaw</h3>
-<p>OpenClaw n'est pas un concurrent direct de ces outils. Il se situe a un niveau different :</p>
-<table>
-<thead>
-<tr>
-<th>Critere</th>
-<th>ChatGPT/Claude.ai</th>
-<th>Copilot</th>
-<th>AutoGPT</th>
-<th>CrewAI</th>
-<th>OpenClaw</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Mode reactif</td>
-<td>Excellent</td>
-<td>Excellent</td>
-<td>Moyen</td>
-<td>Bon</td>
-<td>Bon</td>
-</tr>
-<tr>
-<td>Mode proactif</td>
-<td>Non</td>
-<td>Non</td>
-<td>Tente</td>
-<td>Possible</td>
-<td>Oui</td>
-</tr>
-<tr>
-<td>Memoire long terme</td>
-<td>Limitee</td>
-<td>Non</td>
-<td>Limitee</td>
-<td>Limitee</td>
-<td>Configurable</td>
-</tr>
-<tr>
-<td>Souverainete donnees</td>
-<td>Non</td>
-<td>Non</td>
-<td>Partielle</td>
-<td>Partielle</td>
-<td>Oui</td>
-</tr>
-<tr>
-<td>Integration outils metier</td>
-<td>Via plugins</td>
-<td>IDE seul</td>
-<td>Limitee</td>
-<td>Via code</td>
-<td>Via agents</td>
-</tr>
-<tr>
-<td>Temps de mise en route</td>
-<td>0 min</td>
-<td>5 min</td>
-<td>30 min</td>
-<td>1h+</td>
-<td>Plusieurs heures</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>Erreur courante :</strong> Voir OpenClaw comme un remplacement de ChatGPT. Ce n'est pas un remplacement, c'est un complement. Pour poser une question rapide, ChatGPT ou Claude.ai restent imbattables. OpenClaw intervient quand vous voulez un systeme qui tourne en continu, avec vos regles, sur vos donnees.</p>
-<p><strong>Note de terrain :</strong> La majorite des utilisateurs OpenClaw utilisent aussi ChatGPT ou Claude.ai au quotidien. Il n'y a pas de contradiction. Utilisez l'outil le plus simple qui resout le probleme. OpenClaw est la pour les problemes que les outils simples ne resolvent pas.</p>
-</blockquote>
-<hr />
-<h2 id="14-pourquoi-la-souverainete-compte-pour-un-entrepreneur">1.4 -- Pourquoi la souverainete compte pour un entrepreneur</h2>
-<p><strong>A qui s'adresse cette section :</strong> Entrepreneurs, dirigeants de TPE/PME, independants qui utilisent des outils IA dans un contexte professionnel.
-<strong>Temps de lecture :</strong> 8 minutes.
-<strong>Difficulte :</strong> Debutant.</p>
-<h3 id="contexte_3">Contexte</h3>
-<p>Le mot "souverainete" sonne abstrait. Dans le contexte IA, il est tres concret : c'est la question de savoir qui controle vos donnees, qui peut y acceder, et ce qui se passe si le fournisseur change ses regles du jeu.</p>
-<h3 id="ce-que-souverainete-des-donnees-signifie-en-pratique">Ce que "souverainete des donnees" signifie en pratique</h3>
-<p>Quand vous utilisez ChatGPT ou Claude.ai via leur interface web, vos donnees -- vos questions, vos documents, le contexte de vos conversations -- transitent par les serveurs du fournisseur. En general :</p>
-<ul>
-<li>Vous n'avez pas de garantie contractuelle forte sur ce qui est fait avec vos donnees.</li>
-<li>Le fournisseur peut changer ses conditions d'utilisation unilateralement.</li>
-<li>Si le service ferme ou change de politique tarifaire, vous n'avez pas de plan B immediat.</li>
-<li>Les donnees sont stockees dans des datacenters dont vous ne choisissez pas la localisation.</li>
-</ul>
-<p>Pour beaucoup d'usages personnels, c'est acceptable. Pour un usage professionnel -- en particulier dans l'UE -- c'est un risque.</p>
-<h3 id="le-rgpd-nest-pas-un-detail">Le RGPD n'est pas un detail</h3>
-<p>Si vous etes une entreprise europeenne, le Reglement General sur la Protection des Donnees s'applique a vous. Les points critiques :</p>
-<p><strong>Localisation des donnees.</strong> Le RGPD impose des restrictions sur le transfert de donnees personnelles hors de l'UE. Si votre agent IA traite des donnees clients (noms, emails, historiques d'achat, echanges), ces donnees ne devraient pas transiter par des serveurs americains sans garanties adequates.</p>
-<p><strong>Droit a l'effacement.</strong> Vos clients ont le droit de demander la suppression de leurs donnees. Si ces donnees sont dispersees dans les logs d'un service IA tiers, comment les retrouver et les supprimer ?</p>
-<p><strong>Responsabilite.</strong> En cas de fuite, c'est vous le responsable de traitement, pas le fournisseur IA. La question n'est pas "est-ce que je fais confiance a OpenAI ?" mais "est-ce que je peux prouver que j'ai pris les mesures adequates ?"</p>
-<h3 id="ce-quopenclaw-permet">Ce qu'OpenClaw permet</h3>
-<p>Avec OpenClaw, vous avez le choix :</p>
-<ul>
-<li><strong>Hebergement local ou VPS europeen.</strong> Vos donnees restent dans un perimetre que vous controlez. Un VPS chez un hebergeur francais (OVH, Scaleway, Infomaniak) vous donne une infrastructure conforme sans effort supplementaire.</li>
-<li><strong>Choix du modele.</strong> Vous n'etes pas lie a un fournisseur de LLM unique. Vous pouvez utiliser des modeles open source (Mistral, LLaMA) pour les donnees sensibles et des modeles commerciaux (Claude API, GPT-4) pour le reste.</li>
-<li><strong>Transparence.</strong> Vous voyez exactement ce que l'agent fait, quelles donnees il utilise, ou elles sont stockees. Pas de boite noire.</li>
-</ul>
-<blockquote>
-<p><strong>Principe :</strong> La souverainete n'est pas une ideologie. C'est une question de gestion du risque. Plus vos donnees sont sensibles, plus le controle de l'infrastructure compte.</p>
-<p><strong>Erreur courante :</strong> Penser que "mes donnees ne sont pas si sensibles". Relisez vos 50 dernieres conversations avec un assistant IA. Comptez le nombre de fois ou vous avez partage un nom de client, un chiffre d'affaires, une strategie, un probleme interne. Si quelqu'un d'autre avait acces a tout ca, est-ce que ca vous serait egal ?</p>
-<p><strong>Note de terrain :</strong> La conformite RGPD n'est pas un argument marketing pour OpenClaw. C'est un effet de bord de l'architecture. Quand vous controlez l'infrastructure, la conformite reglementaire devient un probleme d'infrastructure classique, pas un acte de foi envers un tiers.</p>
-</blockquote>
-<hr />
-<h2 id="15-larchitecture-mentale-avant-de-commencer">1.5 -- L'architecture mentale avant de commencer</h2>
-<p><strong>A qui s'adresse cette section :</strong> Toute personne qui va installer et configurer OpenClaw. Lisez ceci avant de toucher au terminal.
-<strong>Temps de lecture :</strong> 12 minutes.
-<strong>Difficulte :</strong> Intermediaire.</p>
-<h3 id="contexte_4">Contexte</h3>
-<p>Avant de lancer le moindre <code>docker compose up</code>, vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir.</p>
-<h3 id="les-3-couches">Les 3 couches</h3>
-<p>Toute installation OpenClaw s'organise en trois couches superposees :</p>
-<pre class="codehilite"><code>+------------------------------------------+
-|            3. ACTION                      |
-|  Ce que vos agents font concretement     |
-|  (envoyer, creer, modifier, alerter)     |
-+------------------------------------------+
-|            2. VISIBILITE                  |
-|  Ce que vos agents savent                |
-|  (memoire, contexte, outils, donnees)    |
-+------------------------------------------+
-|            1. IDENTITE                    |
-|  Qui sont vos agents                     |
-|  (roles, regles, limites, personnalite)  |
-+------------------------------------------+
-</code></pre>
-
-<p><strong>Couche 1 -- Identite.</strong> C'est le socle. Avant de donner des outils a un agent, definissez qui il est. Quel est son role ? Quelles sont ses limites ? Qu'a-t-il le droit de faire et de ne pas faire ? Un agent sans identite claire est un agent dangereux -- pas parce qu'il est malveillant, mais parce qu'il est imprevisible.</p>
-<p><strong>Couche 2 -- Visibilite.</strong> Une fois l'identite posee, definissez ce que l'agent sait. A quelles donnees a-t-il acces ? Quelle est sa memoire ? Quels outils peut-il utiliser ? Un agent qui a une identite claire mais pas de visibilite est un agent impuissant.</p>
-<p><strong>Couche 3 -- Action.</strong> Enfin, definissez ce que l'agent fait. Quelles actions concretes peut-il prendre ? Dans quelles conditions ? Avec quelles validations ? Un agent qui a identite + visibilite + capacite d'action est un agent operationnel.</p>
-<blockquote>
-<p><strong>Principe :</strong> Toujours construire de bas en haut. Identite d'abord, visibilite ensuite, action en dernier. Inverser cet ordre est la source la plus frequente de problemes.</p>
-</blockquote>
-<h3 id="le-concept-de-piliers">Le concept de "piliers"</h3>
-<p>Un pilier est un <strong>bloc fonctionnel</strong> qui structure une installation OpenClaw. Pensez-y comme un domaine de responsabilite.</p>
-<p>Il existe deux categories :</p>
-<p><strong>Piliers universels</strong> -- presents dans toute installation, quel que soit le metier :</p>
-<table>
-<thead>
-<tr>
-<th>Pilier</th>
-<th>Responsabilite</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Infra</strong></td>
-<td>L'infrastructure technique. Serveur, Docker, reverse proxy, certificats SSL, sauvegardes. C'est le sol sur lequel tout repose.</td>
-</tr>
-<tr>
-<td><strong>Agents</strong></td>
-<td>Les agents eux-memes. Leur configuration, leur orchestration, leurs interactions.</td>
-</tr>
-<tr>
-<td><strong>Knowledge</strong></td>
-<td>La base de connaissances. Memoire, contexte, documents de reference, regles metier.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Piliers metier</strong> -- specifiques a votre activite :</p>
-<p>Ces piliers dependent de ce que vous faites. Exemples :</p>
-<table>
-<thead>
-<tr>
-<th>Metier</th>
-<th>Piliers metier possibles</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Consultant independant</td>
-<td>Prospection, Livrables, Facturation</td>
-</tr>
-<tr>
-<td>E-commerce</td>
-<td>Catalogue, Commandes, Service client</td>
-</tr>
-<tr>
-<td>Agence</td>
-<td>Projets, Clients, Production</td>
-</tr>
-<tr>
-<td>Formateur</td>
-<td>Contenu, Apprenants, Planning</td>
-</tr>
-</tbody>
-</table>
-<p>Vous n'avez pas besoin de definir tous vos piliers metier avant de commencer. Commencez par les piliers universels. Les piliers metier emergeront naturellement au fur et a mesure que vous utilisez le systeme.</p>
-<blockquote>
-<p><strong>Erreur courante :</strong> Vouloir definir l'architecture complete avant de commencer. Vous ne pouvez pas tout prevoir. Posez les piliers universels, construisez un premier agent fonctionnel, et laissez l'architecture evoluer avec l'usage.</p>
-<p><strong>Note de terrain :</strong> Sur les installations que nous avons accompagnees, les piliers metier se stabilisent generalement apres 2 a 4 semaines d'usage reel. Pas avant. Toute tentative de les figer en amont produit une architecture qui ne correspond pas a la realite.</p>
-</blockquote>
-<hr />
-<h2 id="16-ce-que-vous-allez-construire-dans-ce-guide">1.6 -- Ce que vous allez construire dans ce guide</h2>
-<p><strong>A qui s'adresse cette section :</strong> Tout lecteur qui veut voir la destination avant d'entamer le chemin.
-<strong>Temps de lecture :</strong> 8 minutes.
-<strong>Difficulte :</strong> Debutant.</p>
-<h3 id="contexte_5">Contexte</h3>
-<p>Avant de plonger dans les chapitres techniques, voici une vue d'ensemble de ce que vous aurez a la fin du parcours. Pas une promesse -- une cible.</p>
-<h3 id="le-resultat-final">Le resultat final</h3>
-<p>A la fin de ce playbook, si vous suivez les etapes, vous aurez :</p>
-<ol>
-<li><strong>Un serveur operationnel</strong> -- un VPS (ou une machine locale) avec une stack technique propre, securisee, maintenable.</li>
-<li><strong>Un ou plusieurs agents configures</strong> -- avec des roles clairs, une memoire structuree, des outils connectes.</li>
-<li><strong>Une base de connaissances</strong> -- vos documents, vos regles, votre contexte, organises pour que les agents puissent les exploiter.</li>
-<li><strong>Des workflows automatises</strong> -- des sequences d'actions qui tournent sans votre intervention, avec des garde-fous.</li>
-<li><strong>Un systeme de maintenance</strong> -- sauvegardes, mises a jour, monitoring, pour que le tout continue a fonctionner dans la duree.</li>
-</ol>
-<h3 id="schema-de-larchitecture-cible">Schema de l'architecture cible</h3>
-<pre class="codehilite"><code>+================================================================+
-|                        VOTRE VPS / MACHINE                     |
-|================================================================|
-|                                                                |
-|  +------------------+    +------------------+                  |
-|  |   REVERSE PROXY  |    |    MONITORING    |                  |
-|  |   (Caddy/Nginx)  |    |  (logs, alertes) |                  |
-|  +--------+---------+    +------------------+                  |
-|           |                                                    |
-|  +--------v-------------------------------------------------+  |
-|  |                    DOCKER NETWORK                         |  |
-|  |                                                           |  |
-|  |  +-------------+  +-------------+  +----------------+    |  |
-|  |  |  AGENT 1    |  |  AGENT 2    |  |  AGENT N       |    |  |
-|  |  |  (role A)   |  |  (role B)   |  |  (role ...)    |    |  |
-|  |  +------+------+  +------+------+  +-------+--------+    |  |
-|  |         |                |                  |             |  |
-|  |  +------v----------------v------------------v---------+   |  |
-|  |  |              COUCHE KNOWLEDGE                       |   |  |
-|  |  |  +----------+  +-----------+  +----------------+   |   |  |
-|  |  |  | Memoire  |  | Documents |  | Regles metier  |   |   |  |
-|  |  |  +----------+  +-----------+  +----------------+   |   |  |
-|  |  +----------------------------------------------------+   |  |
-|  |                                                           |  |
-|  |  +----------------------------------------------------+   |  |
-|  |  |              COUCHE OUTILS                          |   |  |
-|  |  |  +-------+  +-------+  +--------+  +-----------+   |   |  |
-|  |  |  | Email |  |  API  |  | Fichiers|  | Calendrier|   |   |  |
-|  |  |  +-------+  +-------+  +--------+  +-----------+   |   |  |
-|  |  +----------------------------------------------------+   |  |
-|  |                                                           |  |
-|  +-----------------------------------------------------------+  |
-|                                                                |
-|  +-----------------------------------------------------------+  |
-|  |  SECURITE : Vault / secrets, certificats SSL, firewall    |  |
-|  +-----------------------------------------------------------+  |
-|                                                                |
-+================================================================+
-</code></pre>
-
-<h3 id="ce-que-ce-schema-vous-dit">Ce que ce schema vous dit</h3>
-<p><strong>Tout tourne dans Docker.</strong> Chaque composant est isole, reproductible, et peut etre mis a jour independamment.</p>
-<p><strong>Les agents partagent une couche Knowledge commune.</strong> Ils ne sont pas isoles les uns des autres -- ils peuvent partager du contexte, de la memoire, des regles. C'est ce qui permet la coordination.</p>
-<p><strong>Les outils sont des connexions, pas des composants.</strong> Votre email, vos API, vos fichiers -- ce sont des interfaces que les agents utilisent. Ils ne font pas partie de l'installation OpenClaw elle-meme.</p>
-<p><strong>La securite est transversale.</strong> Elle n'est pas un composant parmi d'autres -- elle enveloppe tout le reste. Vault pour les secrets, SSL pour les communications, firewall pour le perimetre.</p>
-<h3 id="ce-que-ce-schema-ne-vous-dit-pas">Ce que ce schema ne vous dit pas</h3>
-<p>Il ne montre pas la complexite reelle de la configuration. Chaque boite dans ce schema represente des heures de travail de configuration, de test et d'ajustement. Ce playbook vous guide a travers chacune de ces etapes.</p>
-<p>Il ne montre pas non plus l'evolution dans le temps. Votre installation dans un mois ne ressemblera pas a votre installation du premier jour. C'est normal et souhaitable.</p>
-<blockquote>
-<p><strong>Principe :</strong> Construisez l'architecture minimale qui fonctionne, puis iterez. Le schema ci-dessus est une cible, pas un prerequis. Votre premiere installation aura un seul agent, pas cinq.</p>
-<p><strong>Note de terrain :</strong> Les installations les plus robustes que nous avons vues sont celles qui ont commence petit. Un VPS, un agent, un cas d'usage. Puis un deuxieme agent quand le premier tournait de maniere fiable. Puis un troisieme. La tentation de tout deployer d'un coup est forte. Resistez-y.</p>
-</blockquote>
 <hr />
 <p><em>Pour contribuer a ce chapitre, voir <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</em></p>
 </section>
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/01-definition/README.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
   <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
   <script src="https://giscus.app/client.js"
@@ -435,7 +127,7 @@
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
 <a href="00-guide.html">&larr; Chapitre 0 -- Guide de lecture</a>
-<a href="02-00-sommaire.html">Chapitre 2 -- Installation &rarr;</a>
+<a href="01-01-definition.html">1.1 -- Ce qu'OpenClaw est (et n'est pas) &rarr;</a>
 </div>
 
     <footer>

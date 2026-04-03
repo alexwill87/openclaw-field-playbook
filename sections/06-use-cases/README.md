@@ -7,9 +7,13 @@ contributors: [alexwill87, claude-cockpit]
 lang: fr
 ---
 
-# Chapitre 6 -- Cas d'usage
+# 6. Cas d'usage
 
 > Des cas concrets, documentes par des praticiens. Comment ils utilisent OpenClaw, ce qu'ils ont configure, ce qui a change.
+
+Ce chapitre rassemble des retours d'experience reels : entrepreneurs, freelances, equipes techniques et professions reglementees partagent leur configuration, leurs resultats et leurs erreurs. Chaque cas suit un format standard (contexte, probleme, configuration, resultat, lecons, template reutilisable). A la fin, vous aurez des modeles concrets pour adapter OpenClaw a votre propre situation.
+
+Lisez d'abord le cas le plus proche de votre profil, puis explorez les autres pour decouvrir des patterns reutilisables.
 
 ---
 
@@ -17,40 +21,30 @@ lang: fr
 
 ### Partie A -- Entrepreneurs et freelances
 
-| # | Cas d'usage | Profil | Fichier |
-|---|-------------|--------|---------|
-| 01 | Agence digitale (2 associes + agents IA) | PME / duo technique | [01-agence-digitale.md](01-agence-digitale.md) |
-| 02 | Consultant freelance | Solo / independant | [02-consultant-freelance.md](02-consultant-freelance.md) |
-| 03 | E-commerce | Vendeur en ligne | [03-ecommerce.md](03-ecommerce.md) |
+- **6.1 -- [Agence digitale](01-agence-digitale.md)**
+  Deux associes qui orchestrent des agents IA pour gerer clients, projets et livraisons
+
+- **6.2 -- [Consultant freelance](02-consultant-freelance.md)**
+  Un independant qui delegue a l'agent le triage, la planification et le suivi client
+
+- **6.3 -- [E-commerce](03-ecommerce.md)**
+  Un vendeur en ligne qui automatise le catalogue, les commandes et le support
 
 ### Partie B -- Equipes et entreprises
 
-| # | Cas d'usage | Profil | Fichier |
-|---|-------------|--------|---------|
-| 04 | Equipe technique (5-15 personnes) | Dev / ops | [04-equipe-technique.md](04-equipe-technique.md) |
-| 05 | Cabinet comptable | Profession reglementee | [05-cabinet-comptable.md](05-cabinet-comptable.md) |
-| 06 | Startup early-stage | Fondateurs + premiers employes | [06-startup.md](06-startup.md) |
+- **6.4 -- [Equipe technique](04-equipe-technique.md)**
+  Une equipe de 5 a 15 personnes qui integre l'agent dans ses workflows dev et ops
+
+- **6.5 -- [Cabinet comptable](05-cabinet-comptable.md)**
+  Une profession reglementee qui utilise l'agent tout en respectant ses obligations legales
+
+- **6.6 -- [Startup early-stage](06-startup.md)**
+  Des fondateurs qui compensent le manque de ressources avec un agent polyvalent
 
 ### Partie C -- Contribuer
 
-| # | Sujet | Fichier |
-|---|-------|---------|
-| 07 | Comment soumettre votre cas d'usage | [07-contribuer.md](07-contribuer.md) |
-
----
-
-## Comment lire ces cas d'usage
-
-Chaque cas suit un format standard :
-
-```
-Contexte :       Qui, quel metier, quelle taille
-Probleme :       Ce qui devait etre resolu ou automatise
-Configuration :  Ce qui a ete mis en place (infra, agents, outils)
-Resultat :       Ce qui a change concretement
-Lecons :         Ce qu'on referait differemment
-Template :       Configuration ou prompt reutilisable
-```
+- **6.7 -- [Comment soumettre votre cas d'usage](07-contribuer.md)**
+  Le processus et le format pour partager votre experience et enrichir ce chapitre
 
 ---
 
@@ -61,14 +55,8 @@ Deux options :
 1. **Via Issue GitHub** -- Utilisez le template [suggestion](https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml) avec le label `use-case`
 2. **Via Pull Request** -- Forkez le repo, ajoutez votre fichier dans `sections/06-use-cases/`, suivez le format standard decrit dans [07-contribuer.md](07-contribuer.md)
 
-Les cas soumis sont relus par un agent IA puis valides par un maintainer humain avant publication.
+Les cas soumis sont relus par un agent IA puis valides par un maintainer humain avant publication. Les adaptations reglementaires par pays sont documentees dans le chapitre 7 (Localisation).
 
 ---
 
-## Specifications locales
-
-Les adaptations reglementaires et culturelles par pays sont documentees dans [sections/07-localisation/](../07-localisation/).
-
----
-
-*[Soumettre votre cas d'usage](https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml) -- [CONTRIBUTING.md](../../CONTRIBUTING.md)*
+[Contribuer a ce chapitre](https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml) -- [CONTRIBUTING.md](../../CONTRIBUTING.md)

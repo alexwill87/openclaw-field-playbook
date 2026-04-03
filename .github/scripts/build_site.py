@@ -272,6 +272,12 @@ def write_page(filename, html):
     print(f'  -> {filename}')
 
 
+def build_issues_widget():
+    """Return the issues widget HTML (populated by JS)."""
+    return """
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>"""
+
+
 def build_giscus_widget():
     """Return the Giscus comments widget HTML."""
     return """
@@ -344,8 +350,11 @@ def build_section_pages(all_sections):
             nav_links.append('<span></span>')
         nav_links.append('</div>')
 
+        # Issues widget
+        issues = build_issues_widget()
+
         # Assemble
-        full_content = wrapped + edit_link + giscus + '\n' + '\n'.join(nav_links)
+        full_content = wrapped + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
         sidebar_html = build_sidebar(all_sections, sec.slug, sec.chapter_num)
         page_html = render_page(sec.title, full_content, sidebar_html)
         write_page(sec.html_file, page_html)

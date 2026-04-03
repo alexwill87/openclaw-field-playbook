@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Chapitre 5 -- Maintenance | OpenClaw Field Playbook</title>
+  <title>5. Maintenance | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -81,84 +81,87 @@
 
   <main id="content">
     <section class="chapter">
-<h1 id="chapitre-5-maintenance">Chapitre 5 -- Maintenance</h1>
+<h1 id="5-maintenance">5. Maintenance</h1>
 <blockquote>
 <p>Garder votre setup OpenClaw performant, fiable et digne de confiance dans la duree.</p>
 </blockquote>
-<h2 id="partie-a-operations-quotidiennes">Partie A -- Operations quotidiennes</h2>
-<ul>
-<li>
-<p><strong>5.1</strong> -- <a href="01-health-check.md">Health check quotidien</a>
-  Script diagnostic. Automatiser avec cron. Alertes Telegram.</p>
-</li>
-<li>
-<p><strong>5.2</strong> -- <a href="02-logs.md">Gestion des logs</a>
-  Ou les trouver, comment les lire, rotation, quoi surveiller.</p>
-</li>
-<li>
-<p><strong>5.3</strong> -- <a href="03-backups.md">Backups</a>
-  pg_dump, snapshots Hetzner, fichiers critiques. Test de restauration.</p>
-</li>
-</ul>
-<h2 id="partie-b-maintenance-agent">Partie B -- Maintenance agent</h2>
-<ul>
-<li>
-<p><strong>5.4</strong> -- <a href="04-revoir-system-prompt.md">Revoir le system prompt</a>
-  Frequence, declencheurs, quoi preserver vs reecrire.</p>
-</li>
-<li>
-<p><strong>5.5</strong> -- <a href="05-derive-memoire.md">Derive de la memoire</a>
-  Memoire obsolete ou contradictoire. Nettoyage periodique.</p>
-</li>
-<li>
-<p><strong>5.6</strong> -- <a href="06-agent-se-trompe.md">Quand l'agent se trompe</a>
-  Protocole : diagnostic, correction, prevention.</p>
-</li>
-<li>
-<p><strong>5.7</strong> -- <a href="07-maj-integrations.md">Mettre a jour les integrations</a>
-  API qui change. Adapter sans casser.</p>
-</li>
-</ul>
-<h2 id="partie-c-maintenance-infra">Partie C -- Maintenance infra</h2>
-<ul>
-<li>
-<p><strong>5.8</strong> -- <a href="08-maj-systeme.md">Mises a jour systeme</a>
-  Ubuntu, Docker, Node.js, Vault. Quand NE PAS mettre a jour.</p>
-</li>
-<li>
-<p><strong>5.9</strong> -- <a href="09-rotation-secrets.md">Rotation des secrets</a>
-  Pourquoi, comment, frequence.</p>
-</li>
-<li>
-<p><strong>5.10</strong> -- <a href="10-monitoring.md">Monitoring et alertes</a>
-  Simple (cron+Telegram), intermediaire (Uptime Kuma), avance (Grafana).</p>
-</li>
-<li>
-<p><strong>5.11</strong> -- <a href="11-en-cas-de-panne.md">En cas de panne</a>
-  Tableau diagnostic par symptome. Pour chaque : diagnostic, fix, prevention.</p>
-</li>
-</ul>
-<h2 id="partie-d-evolution">Partie D -- Evolution</h2>
-<ul>
-<li>
-<p><strong>5.12</strong> -- <a href="12-deuxieme-agent.md">Quand ajouter un deuxieme agent</a>
-  Signes, structure, isolation, communication.</p>
-</li>
-<li>
-<p><strong>5.13</strong> -- <a href="13-migrer-modele.md">Migrer vers un autre modele</a>
-  Comment tester sans casser. Comparaison A/B. Garder le fallback.</p>
-</li>
-<li>
-<p><strong>5.14</strong> -- <a href="14-mesurer-roi.md">Mesurer le ROI</a>
-  Temps gagne, decisions ameliorees, erreurs evitees.</p>
-</li>
-</ul>
+<p>Un agent bien installe et configure ne reste fiable que s'il est entretenu. Ce chapitre couvre les operations quotidiennes (logs, backups, health checks), la maintenance de l'agent lui-meme (prompt, memoire, erreurs), la gestion de l'infrastructure (mises a jour, secrets, monitoring), et les evolutions a moyen terme (multi-agents, changement de modele, mesure du ROI). A la fin, vous saurez diagnostiquer un probleme, prevenir les derives, et faire evoluer votre setup sans le casser.</p>
+<p>Pour les adaptations reglementaires par pays, voir le chapitre 7 (Localisation).</p>
 <hr />
-<p>Specifications locales : voir <code>sections/07-localisation/</code></p>
+<h2 id="sommaire">Sommaire</h2>
+<h3 id="partie-a-operations-quotidiennes">Partie A -- Operations quotidiennes</h3>
+<ul>
+<li>
+<p><strong>5.1 -- <a href="01-health-check.md">Health check quotidien</a></strong>
+  Automatiser un diagnostic complet de l'infrastructure avec cron et alertes Telegram</p>
+</li>
+<li>
+<p><strong>5.2 -- <a href="02-logs.md">Gestion des logs</a></strong>
+  Localiser les logs, les lire efficacement, configurer la rotation et reperer les signaux d'alerte</p>
+</li>
+<li>
+<p><strong>5.3 -- <a href="03-backups.md">Backups</a></strong>
+  Mettre en place pg_dump, snapshots Hetzner et sauvegarde des fichiers critiques, puis tester la restauration</p>
+</li>
+</ul>
+<h3 id="partie-b-maintenance-agent">Partie B -- Maintenance agent</h3>
+<ul>
+<li>
+<p><strong>5.4 -- <a href="04-revoir-system-prompt.md">Revoir le system prompt</a></strong>
+  Savoir quand et comment reecrire le prompt sans perdre ce qui fonctionne deja</p>
+</li>
+<li>
+<p><strong>5.5 -- <a href="05-derive-memoire.md">Derive de la memoire</a></strong>
+  Detecter et nettoyer les informations obsoletes ou contradictoires dans la memoire de l'agent</p>
+</li>
+<li>
+<p><strong>5.6 -- <a href="06-agent-se-trompe.md">Quand l'agent se trompe</a></strong>
+  Appliquer le protocole diagnostic, correction, prevention pour chaque erreur</p>
+</li>
+<li>
+<p><strong>5.7 -- <a href="07-maj-integrations.md">Mettre a jour les integrations</a></strong>
+  Adapter les connexions quand une API change, sans casser les workflows existants</p>
+</li>
+</ul>
+<h3 id="partie-c-maintenance-infra">Partie C -- Maintenance infra</h3>
+<ul>
+<li>
+<p><strong>5.8 -- <a href="08-maj-systeme.md">Mises a jour systeme</a></strong>
+  Planifier les mises a jour Ubuntu, Docker, Node.js et Vault -- et savoir quand ne pas les faire</p>
+</li>
+<li>
+<p><strong>5.9 -- <a href="09-rotation-secrets.md">Rotation des secrets</a></strong>
+  Renouveler les credentials selon un calendrier defini, sans interruption de service</p>
+</li>
+<li>
+<p><strong>5.10 -- <a href="10-monitoring.md">Monitoring et alertes</a></strong>
+  Choisir entre trois niveaux : cron+Telegram, Uptime Kuma, ou Grafana selon vos besoins</p>
+</li>
+<li>
+<p><strong>5.11 -- <a href="11-en-cas-de-panne.md">En cas de panne</a></strong>
+  Consulter le tableau diagnostic par symptome avec pour chaque cas : cause, fix et prevention</p>
+</li>
+</ul>
+<h3 id="partie-d-evolution">Partie D -- Evolution</h3>
+<ul>
+<li>
+<p><strong>5.12 -- <a href="12-deuxieme-agent.md">Quand ajouter un deuxieme agent</a></strong>
+  Reconnaitre les signes, structurer l'isolation et definir la communication inter-agents</p>
+</li>
+<li>
+<p><strong>5.13 -- <a href="13-migrer-modele.md">Migrer vers un autre modele</a></strong>
+  Tester un nouveau modele en comparaison A/B sans couper le modele en production</p>
+</li>
+<li>
+<p><strong>5.14 -- <a href="14-mesurer-roi.md">Mesurer le ROI</a></strong>
+  Quantifier le temps gagne, les decisions ameliorees et les erreurs evitees</p>
+</li>
+</ul>
 <hr />
 <p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
 </section>
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/README.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
   <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
   <script src="https://giscus.app/client.js"

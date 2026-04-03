@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>1.6 -- Ce que vous allez construire dans ce guide | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide de terrain pour installer, configurer et operer OpenClaw en entreprise. Par des praticiens, pour des praticiens.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <div class="nav-sections">
+    <a href="01-01-definition.html">1.1 -- Ce qu'OpenClaw est (et n'...</a>
+    <a href="01-02-proactif-reactif.html">1.2 -- La distinction proactif v...</a>
+    <a href="01-03-comparaison.html">1.3 -- OpenClaw vs les autres as...</a>
+    <a href="01-04-souverainete.html">1.4 -- Pourquoi la souverainete...</a>
+    <a href="01-05-architecture-mentale.html">1.5 -- L'architecture mentale av...</a>
+    <a href="01-06-ce-que-vous-construisez.html" class="active">1.6 -- Ce que vous allez constru...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="ecosystem.html">Ecosysteme</a>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="contribuer.html">Contribuer</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="chapter">
+<h1 id="16-ce-que-vous-allez-construire-dans-ce-guide">1.6 -- Ce que vous allez construire dans ce guide</h1>
+<p><strong>A qui s'adresse cette section :</strong> Tout lecteur qui veut voir la destination avant d'entamer le chemin.
+<strong>Temps de lecture :</strong> 8 minutes.
+<strong>Difficulte :</strong> Debutant.</p>
+<h3 id="contexte">Contexte</h3>
+<p>Avant de plonger dans les chapitres techniques, voici une vue d'ensemble de ce que vous aurez a la fin du parcours. Pas une promesse -- une cible.</p>
+<h3 id="le-resultat-final">Le resultat final</h3>
+<p>A la fin de ce playbook, si vous suivez les etapes, vous aurez :</p>
+<ol>
+<li><strong>Un serveur operationnel</strong> -- un VPS (ou une machine locale) avec une stack technique propre, securisee, maintenable.</li>
+<li><strong>Un ou plusieurs agents configures</strong> -- avec des roles clairs, une memoire structuree, des outils connectes.</li>
+<li><strong>Une base de connaissances</strong> -- vos documents, vos regles, votre contexte, organises pour que les agents puissent les exploiter.</li>
+<li><strong>Des workflows automatises</strong> -- des sequences d'actions qui tournent sans votre intervention, avec des garde-fous.</li>
+<li><strong>Un systeme de maintenance</strong> -- sauvegardes, mises a jour, monitoring, pour que le tout continue a fonctionner dans la duree.</li>
+</ol>
+<h3 id="schema-de-larchitecture-cible">Schema de l'architecture cible</h3>
+<pre class="codehilite"><code>+================================================================+
+|                        VOTRE VPS / MACHINE                     |
+|================================================================|
+|                                                                |
+|  +------------------+    +------------------+                  |
+|  |   REVERSE PROXY  |    |    MONITORING    |                  |
+|  |   (Caddy/Nginx)  |    |  (logs, alertes) |                  |
+|  +--------+---------+    +------------------+                  |
+|           |                                                    |
+|  +--------v-------------------------------------------------+  |
+|  |                    DOCKER NETWORK                         |  |
+|  |                                                           |  |
+|  |  +-------------+  +-------------+  +----------------+    |  |
+|  |  |  AGENT 1    |  |  AGENT 2    |  |  AGENT N       |    |  |
+|  |  |  (role A)   |  |  (role B)   |  |  (role ...)    |    |  |
+|  |  +------+------+  +------+------+  +-------+--------+    |  |
+|  |         |                |                  |             |  |
+|  |  +------v----------------v------------------v---------+   |  |
+|  |  |              COUCHE KNOWLEDGE                       |   |  |
+|  |  |  +----------+  +-----------+  +----------------+   |   |  |
+|  |  |  | Memoire  |  | Documents |  | Regles metier  |   |   |  |
+|  |  |  +----------+  +-----------+  +----------------+   |   |  |
+|  |  +----------------------------------------------------+   |  |
+|  |                                                           |  |
+|  |  +----------------------------------------------------+   |  |
+|  |  |              COUCHE OUTILS                          |   |  |
+|  |  |  +-------+  +-------+  +--------+  +-----------+   |   |  |
+|  |  |  | Email |  |  API  |  | Fichiers|  | Calendrier|   |   |  |
+|  |  |  +-------+  +-------+  +--------+  +-----------+   |   |  |
+|  |  +----------------------------------------------------+   |  |
+|  |                                                           |  |
+|  +-----------------------------------------------------------+  |
+|                                                                |
+|  +-----------------------------------------------------------+  |
+|  |  SECURITE : Vault / secrets, certificats SSL, firewall    |  |
+|  +-----------------------------------------------------------+  |
+|                                                                |
++================================================================+
+</code></pre>
+
+<h3 id="ce-que-ce-schema-vous-dit">Ce que ce schema vous dit</h3>
+<p><strong>Tout tourne dans Docker.</strong> Chaque composant est isole, reproductible, et peut etre mis a jour independamment.</p>
+<p><strong>Les agents partagent une couche Knowledge commune.</strong> Ils ne sont pas isoles les uns des autres -- ils peuvent partager du contexte, de la memoire, des regles. C'est ce qui permet la coordination.</p>
+<p><strong>Les outils sont des connexions, pas des composants.</strong> Votre email, vos API, vos fichiers -- ce sont des interfaces que les agents utilisent. Ils ne font pas partie de l'installation OpenClaw elle-meme.</p>
+<p><strong>La securite est transversale.</strong> Elle n'est pas un composant parmi d'autres -- elle enveloppe tout le reste. Vault pour les secrets, SSL pour les communications, firewall pour le perimetre.</p>
+<h3 id="ce-que-ce-schema-ne-vous-dit-pas">Ce que ce schema ne vous dit pas</h3>
+<p>Il ne montre pas la complexite reelle de la configuration. Chaque boite dans ce schema represente des heures de travail de configuration, de test et d'ajustement. Ce playbook vous guide a travers chacune de ces etapes.</p>
+<p>Il ne montre pas non plus l'evolution dans le temps. Votre installation dans un mois ne ressemblera pas a votre installation du premier jour. C'est normal et souhaitable.</p>
+<blockquote>
+<p><strong>Principe :</strong> Construisez l'architecture minimale qui fonctionne, puis iterez. Le schema ci-dessus est une cible, pas un prerequis. Votre premiere installation aura un seul agent, pas cinq.</p>
+<p><strong>Note de terrain :</strong> Les installations les plus robustes que nous avons vues sont celles qui ont commence petit. Un VPS, un agent, un cas d'usage. Puis un deuxieme agent quand le premier tournait de maniere fiable. Puis un troisieme. La tentation de tout deployer d'un coup est forte. Resistez-y.</p>
+</blockquote>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/01-definition/06-ce-que-vous-construisez.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="01-05-architecture-mentale.html">&larr; 1.5 -- L'architecture mentale avant de commencer</a>
+<a href="02-00-sommaire.html">2. Installation &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

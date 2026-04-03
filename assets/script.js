@@ -137,3 +137,70 @@ if (chapters.length > 0) {
       // Silently fail -- badges just won't show
     });
 })();
+
+// ========== OPEN ISSUES WIDGET ==========
+(function() {
+  var widget = document.getElementById('issues-widget');
+  if (!widget) return;
+
+  var cacheKey = 'gh_issues_data';
+  var cacheTimeKey = 'gh_issues_time';
+  var cacheDuration = 10 * 60 * 1000;
+
+  function renderIssues(issues) {
+    if (!issues.length) {
+      widget.innerHTML = '<p style="color:var(--text-muted);font-size:0.82rem;">Aucune issue ouverte pour cette section.</p>';
+      return;
+    }
+    var html = '<div style="font-size:0.82rem;">';
+    html += '<strong>' + issues.length + ' issue(s) ouverte(s) liee(s) a cette section</strong>';
+    html += '<ul style="margin:0.5rem 0 0 1.2rem;padding:0;">';
+    issues.forEach(function(issue) {
+      var labels = '';
+      if (issue.labels && issue.labels.length) {
+        issue.labels.forEach(function(l) {
+          labels += ' <span style="display:inline-block;padding:0.1rem 0.4rem;border-radius:8px;font-size:0.7rem;background:#' + l.color + '20;color:#' + l.color + ';">' + l.name + '</span>';
+        });
+      }
+      html += '<li style="margin-bottom:0.3rem;"><a href="' + issue.html_url + '" target="_blank" style="color:var(--accent);text-decoration:none;">#' + issue.number + ' ' + issue.title + '</a>' + labels + '</li>';
+    });
+    html += '</ul></div>';
+    widget.innerHTML = html;
+  }
+
+  var pagePath = window.location.pathname.split('/').pop().replace('.html', '');
+
+  var cached = sessionStorage.getItem(cacheKey);
+  var cachedTime = sessionStorage.getItem(cacheTimeKey);
+
+  function filterAndRender(issues) {
+    var matched = issues.filter(function(issue) {
+      var text = ((issue.title || '') + ' ' + (issue.body || '')).toLowerCase();
+      var parts = pagePath.split('-');
+      if (parts.length >= 2) {
+        var chap = parts[0];
+        var sec = parts[1];
+        return text.indexOf(chap + '.' + sec) !== -1 ||
+               text.indexOf(chap + '-' + sec) !== -1 ||
+               text.indexOf(chap + '.' + parseInt(sec)) !== -1 ||
+               text.indexOf('section ' + parseInt(chap) + '.' + parseInt(sec)) !== -1 ||
+               text.indexOf(pagePath) !== -1;
+      }
+      return false;
+    });
+    renderIssues(matched);
+  }
+
+  if (cached && cachedTime && (Date.now() - parseInt(cachedTime, 10)) < cacheDuration) {
+    try { filterAndRender(JSON.parse(cached)); return; } catch(e) {}
+  }
+
+  fetch('https://api.github.com/repos/alexwill87/openclaw-field-playbook/issues?state=open&per_page=100')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      sessionStorage.setItem(cacheKey, JSON.stringify(data));
+      sessionStorage.setItem(cacheTimeKey, String(Date.now()));
+      filterAndRender(data);
+    })
+    .catch(function() {});
+})();
