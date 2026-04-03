@@ -30,6 +30,9 @@ Lisez d'abord le cas le plus proche de votre profil, puis explorez les autres po
 - **6.3 -- [E-commerce](03-ecommerce.md)**
   Un vendeur en ligne qui automatise le catalogue, les commandes et le support
 
+- **6.8 -- [Artisan et TPE](08-artisan-tpe.md)**
+  Un artisan seul qui automatise ses reponses clients, ses devis et ses relances
+
 ### Partie B -- Equipes et entreprises
 
 - **6.4 -- [Equipe technique](04-equipe-technique.md)**

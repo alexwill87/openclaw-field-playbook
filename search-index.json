@@ -54,6 +54,12 @@
     "body": "2. Installation > Du VPS vierge a une instance OpenClaw fonctionnelle. Etape par etape, sans rien supposer. Ce chapitre couvre le parcours complet d'installation : preparation du serveur, mise en plac"
   },
   {
+    "slug": "02-00-preflight",
+    "title": "Checklist pre-vol -- Tout preparer avant de commencer",
+    "url": "02-00-preflight.html",
+    "body": "Checklist pre-vol -- Tout preparer avant de commencer Cette page existe parce qu'on en a marre de decouvrir un prerequis a la section 13 alors qu'on aurait pu le preparer avant de commencer. Tout ce q"
+  },
+  {
     "slug": "02-01-prerequis",
     "title": "2.1 -- Prerequis materiel et logiciel",
     "url": "02-01-prerequis.html",
@@ -166,6 +172,12 @@
     "title": "2.19 -- Script de deploiement",
     "url": "02-19-script-deploy.html",
     "body": "2.19 -- Script de deploiement Contexte Le script automatise le deploiement complet : pull du code, installation des dependances, build et redemarrage des services. Il doit etre idempotent : executable"
+  },
+  {
+    "slug": "02-20-adapter-existant",
+    "title": "Adapter le playbook a un VPS existant",
+    "url": "02-20-adapter-existant.html",
+    "body": "Adapter le playbook a un VPS existant > Vous avez deja un serveur avec des services qui tournent. Cette section vous aide a diagnostiquer ce qui est deja en place et a adapter votre parcours. Diagnost"
   },
   {
     "slug": "03-00-sommaire",
@@ -502,6 +514,12 @@
     "title": "07 -- Comment soumettre votre cas d'usage",
     "url": "06-07-contribuer.html",
     "body": "07 -- Comment soumettre votre cas d'usage Pour qui : toute personne ou equipe utilisant OpenClaw en situation reelle Temps requis : 30 minutes a 1 heure Difficulte : Debutant Pourquoi contribuer Les c"
+  },
+  {
+    "slug": "06-08-artisan-tpe",
+    "title": "6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls",
+    "url": "06-08-artisan-tpe.html",
+    "body": "6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls > Vous etes plombier, electricien, consultant, photographe, ou coach. Vous etes seul ou presque. Vous faites tout : les clients, l"
   },
   {
     "slug": "07-00-sommaire",

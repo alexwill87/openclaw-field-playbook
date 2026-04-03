@@ -19,6 +19,11 @@ Temps total estime : 3 a 5 heures pour une premiere installation complete. Les s
 
 ## Sommaire
 
+### Avant de commencer
+
+- **[Checklist pre-vol](00-preflight.md)**
+  Tous les comptes, cles, decisions et budgets a preparer avant de lancer l'installation
+
 ### Partie A -- Preparation du serveur
 
 - **2.1 -- [Prerequis](01-prerequis.md)**
@@ -83,6 +88,11 @@ Temps total estime : 3 a 5 heures pour une premiere installation complete. Les s
 
 - **2.19 -- [Script de deploiement](19-script-deploy.md)**
   Construire un script deploy.sh idempotent qui reproduit l'installation en une commande
+
+### Annexe
+
+- **2.20 -- [Adapter pour un VPS existant](20-adapter-existant.md)**
+  Diagnostiquer ce qui est deja en place et adapter le parcours d'installation
 
 ---
 

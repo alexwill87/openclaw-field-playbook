@@ -61,6 +61,7 @@
 <div class="nav-chapter  open">
   <a href="02-00-sommaire.html" class="nav-chapter-title" class="active">2. Installation</a>
   <div class="nav-sections">
+    <a href="02-00-preflight.html">Checklist pre-vol -- Tout prepar...</a>
     <a href="02-01-prerequis.html">2.1 -- Prerequis materiel et log...</a>
     <a href="02-02-securiser-vps.html">2.2 -- Securiser le VPS</a>
     <a href="02-03-tailscale.html">2.3 -- Reseau prive Tailscale</a>
@@ -80,6 +81,7 @@
     <a href="02-17-git-init.html">2.17 -- Initialiser le repo Git</a>
     <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
     <a href="02-19-script-deploy.html">2.19 -- Script de deploiement</a>
+    <a href="02-20-adapter-existant.html">Adapter le playbook a un VPS exi...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -122,6 +124,11 @@
 <p>Temps total estime : 3 a 5 heures pour une premiere installation complete. Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances importantes : Docker (04) avant Vault (07) et PostgreSQL (08), Vault (07) avant OpenRouter (13) et Telegram (14), Node.js (05) avant OpenClaw (10).</p>
 <hr />
 <h2 id="sommaire">Sommaire</h2>
+<h3 id="avant-de-commencer">Avant de commencer</h3>
+<ul>
+<li><strong><a href="02-00-preflight.html">Checklist pre-vol</a></strong>
+  Tous les comptes, cles, decisions et budgets a preparer avant de lancer l'installation</li>
+</ul>
 <h3 id="partie-a-preparation-du-serveur">Partie A -- Preparation du serveur</h3>
 <ul>
 <li>
@@ -210,6 +217,11 @@
   Construire un script deploy.sh idempotent qui reproduit l'installation en une commande</p>
 </li>
 </ul>
+<h3 id="annexe">Annexe</h3>
+<ul>
+<li><strong>2.20 -- <a href="02-20-adapter-existant.html">Adapter pour un VPS existant</a></strong>
+  Diagnostiquer ce qui est deja en place et adapter le parcours d'installation</li>
+</ul>
 <hr />
 <h2 id="outil-optionnel-install-tracker">Outil optionnel : Install Tracker</h2>
 <p>Pour suivre votre progression en temps reel, vous pouvez deployer le <strong>Install Tracker</strong> -- un cockpit minimal qui trace les phases, les decisions, les services et les actions.</p>
@@ -254,7 +266,7 @@ docker compose up -d
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
 <a href="01-06-ce-que-vous-construisez.html">&larr; 1.6 -- Ce que vous allez construire dans ce guide</a>
-<a href="02-01-prerequis.html">2.1 -- Prerequis materiel et logiciel &rarr;</a>
+<a href="02-00-preflight.html">Checklist pre-vol -- Tout preparer avant de com... &rarr;</a>
 </div>
 
     <footer>

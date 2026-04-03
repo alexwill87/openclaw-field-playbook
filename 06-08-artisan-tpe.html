@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls | OpenClaw Field Playbook">
+  <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-group-label">Avant-propos</div>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+</div>
+<div class="nav-group-label">Déployer</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-group-label">Opérer</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Cabinet comptable</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- Comment soumettre votre ca...</a>
+    <a href="06-08-artisan-tpe.html" class="active">6.8 -- Artisan et TPE : un assis...</a>
+  </div>
+</div>
+<div class="nav-group-label">Ressources</div>
+<a href="ecosystem.html">Écosystème</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribuer</a>
+<a href="privacy.html">Confidentialité</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <span class="sep">/</span>
+  <span>6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls</span>
+</nav>
+<div class="last-updated">Dernière mise à jour : avril 2026</div>
+<section class="chapter">
+<h1 id="68-artisan-et-tpe-un-assistant-ia-pour-ceux-qui-font-tout-seuls">6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls</h1>
+<blockquote>
+<p>Vous etes plombier, electricien, consultant, photographe, ou coach. Vous etes seul ou presque. Vous faites tout : les clients, les devis, la compta, la com. Voici comment OpenClaw peut vous aider.</p>
+</blockquote>
+<p><strong>Pour qui :</strong> artisan ou entrepreneur de TPE qui gere tout seul son activite
+<strong>Temps de mise en place :</strong> 3 heures (avec un installateur)
+<strong>Difficulte :</strong> Debutant</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Jean est artisan plombier a Montreuil. Il travaille seul. Ses journees : 7h sur les chantiers, puis le soir il repond aux clients, fait les devis, relance les impayes, met a jour son site. Il dort 5 heures par nuit. Il a entendu parler de "l'IA" par son comptable.</p>
+<hr />
+<h2 id="probleme">Probleme</h2>
+<ul>
+<li>Il perd des clients parce qu'il repond aux demandes 48h apres</li>
+<li>Ses devis prennent 30 minutes chacun alors que c'est toujours le meme format</li>
+<li>Il oublie de relancer les factures impayees</li>
+<li>Il ne sait pas quels prospects sont chauds et lesquels ont abandonne</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="ce-que-jean-a-installe-avec-laide-dun-installateur">Ce que Jean a installe (avec l'aide d'un installateur)</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Detail</th>
+<th>Cout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPS</td>
+<td>Hetzner CPX11 (2 CPU, 4 Go RAM)</td>
+<td>4,50 EUR/mois</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Via OpenRouter (Claude Haiku)</td>
+<td>~10 EUR/mois</td>
+</tr>
+<tr>
+<td>Canal</td>
+<td>Telegram (@JeanPlomberieBot)</td>
+<td>Gratuit</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Gmail connecte via skill Himalaya</td>
+<td>Gratuit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cout total : ~15 EUR/mois</strong> -- moins cher qu'un abonnement Netflix.</p>
+<h3 id="ce-que-lagent-fait-pour-jean">Ce que l'agent fait pour Jean</h3>
+<p><strong>Chaque matin a 7h (cron briefing) :</strong>
+- "3 nouveaux messages clients hier soir. 2 demandes de devis, 1 question sur un chantier en cours."
+- "Facture #2024-089 impayee depuis 15 jours. Voulez-vous que j'envoie une relance ?"
+- "Meteo : pluie demain, prevoir bache pour le chantier rue de la Paix."</p>
+<p><strong>Quand un client envoie un email :</strong>
+- L'agent classe le message (demande de devis / question / reclamation / spam)
+- Pour les demandes de devis : il prepare un brouillon base sur les devis precedents similaires
+- Pour les questions : il repond avec les infos de la base de connaissances (horaires, zones d'intervention, tarifs)</p>
+<p><strong>Chaque vendredi soir (cron resume) :</strong>
+- "Cette semaine : 5 nouveaux contacts, 3 devis envoyes, 1 chantier termine. Chiffre d'affaires estime : 2 400 EUR."</p>
+<h3 id="system-prompt-de-jean-simplifie">System prompt de Jean (simplifie)</h3>
+<pre class="codehilite"><code>Tu es l'assistant de Jean, artisan plombier a Montreuil.
+
+Tu geres :
+- Le triage des emails entrants
+- La preparation des brouillons de devis
+- Les relances de factures impayees
+- Le briefing quotidien
+
+Tu ne fais JAMAIS :
+- Envoyer un email sans que Jean valide
+- Modifier un devis deja envoye
+- Repondre a un client mecontent (escalade vers Jean)
+
+Ton ton : professionnel, simple, pas de jargon technique.
+Langue : francais uniquement.
+</code></pre>
+
+<hr />
+<h2 id="resultat-apres-2-mois">Resultat apres 2 mois</h2>
+<ul>
+<li>Temps de reponse aux clients : 48h -&gt; 4h (l'agent prepare, Jean valide depuis Telegram)</li>
+<li>Devis envoyes par semaine : 3 -&gt; 8 (brouillons pre-remplis)</li>
+<li>Factures impayees : 5 -&gt; 1 (relances automatiques)</li>
+<li>Jean dort 7 heures par nuit au lieu de 5</li>
+</ul>
+<hr />
+<h2 id="lecons-apprises">Lecons apprises</h2>
+<ol>
+<li>
+<p><strong>Commencer par UN seul use case.</strong> Jean a commence par le triage email. Il a ajoute les devis 3 semaines plus tard, les relances encore apres.</p>
+</li>
+<li>
+<p><strong>L'agent ne remplace pas Jean.</strong> Il prepare. Jean valide. La confiance se construit etape par etape.</p>
+</li>
+<li>
+<p><strong>Le cout le plus eleve n'est pas le serveur.</strong> C'est le temps de configuration initiale (3 heures avec un installateur). Apres, c'est 15 EUR/mois.</p>
+</li>
+<li>
+<p><strong>Telegram est le bon canal.</strong> Jean est sur son telephone toute la journee. Un message Telegram, il le voit en 30 secondes. Un email, il le voit le soir.</p>
+</li>
+</ol>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tout automatiser d'un coup</td>
+<td>L'artisan perd confiance, desactive tout</td>
+<td>Commencer par un seul use case, valider, puis etendre</td>
+</tr>
+<tr>
+<td>Laisser l'agent repondre sans validation</td>
+<td>Reponse inappropriee a un client mecontent</td>
+<td>Garder la validation humaine sur tout pendant le premier mois</td>
+</tr>
+<tr>
+<td>Ignorer le canal de notification</td>
+<td>L'artisan ne voit pas les alertes</td>
+<td>Utiliser Telegram, pas email -- l'artisan est sur son telephone</td>
+</tr>
+<tr>
+<td>Ne pas alimenter la base de connaissances</td>
+<td>L'agent invente des tarifs ou des horaires</td>
+<td>Passer 30 minutes a entrer les infos de base au demarrage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-reutilisable">Template reutilisable</h2>
+<p>Checklist pour un artisan/TPE :</p>
+<ul>
+<li>[ ] Choisir un canal (Telegram recommande)</li>
+<li>[ ] Identifier LE use case le plus douloureux (souvent : repondre aux clients)</li>
+<li>[ ] Installer OpenClaw (seul ou avec un installateur)</li>
+<li>[ ] Configurer le triage email</li>
+<li>[ ] Tester pendant 1 semaine avec validation manuelle sur tout</li>
+<li>[ ] Ajouter un 2eme use case apres 2-3 semaines</li>
+</ul>
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] L'agent envoie le briefing matinal sur Telegram</li>
+<li>[ ] Un email de test est correctement trie et un brouillon de reponse est genere</li>
+<li>[ ] Jean peut valider ou rejeter une action depuis Telegram</li>
+<li>[ ] Le resume hebdomadaire arrive le vendredi soir</li>
+</ul>
+<hr />
+<p><em>Ce cas d'usage est inspire d'une experience reelle de mise en place. Les montants et configurations sont representatifs d'un deploiement en Europe en 2026.</em></p>
+</section>
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/08-artisan-tpe.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-07-contribuer.html">&larr; 07 -- Comment soumettre votre cas d'usage</a>
+<a href="07-00-sommaire.html">7. Localisation &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+        &middot; <a href="privacy.html">Confidentialite</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
