@@ -46,6 +46,10 @@
       <a href="index.html" class="nav-home" class="active">Accueil</a>
 <div class="nav-group-label">Decouvrir</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
+<a href="persona-cto.html">Pour les equipes tech</a>
+<a href="persona-dev.html">Pour les developpeurs</a>
+<a href="persona-agent.html">Pour les agents IA</a>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
 </div>
@@ -84,10 +88,14 @@
     
 <div class="landing-hero">
   <h1>OpenClaw Field Playbook</h1>
-  <p class="lead">Le seul guide open-source qui couvre le parcours complet :<br>
-  de l'installation a l'operation quotidienne d'OpenClaw en entreprise.</p>
-  <p style="font-size:0.82rem;color:var(--text-muted);max-width:500px;margin:0.5rem auto 1rem;">
-    <strong style="color:var(--accent);">92</strong> sections · <strong style="color:var(--accent);">7</strong> chapitres · <strong style="color:var(--accent);">20</strong> bugs corriges par un agent terrain · Open source (CC-BY 4.0)
+  <p class="lead">Le guide open-source pour installer OpenClaw proprement.<br>
+  Ecrit par un praticien. Teste sur le terrain. Partage avec tout le monde.</p>
+  <p style="font-size:0.82rem;color:var(--text-muted);max-width:520px;margin:0.5rem auto 1rem;">
+    J'ai fait 3 installations ratees avant de comprendre. Ce playbook est le resultat :
+    <strong style="color:var(--accent);">92</strong> sections, <strong style="color:var(--accent);">7</strong> chapitres,
+    <strong style="color:var(--accent);">20</strong> bugs corriges par un agent terrain.
+    Tout est la pour que vous n'ayez pas a galérer comme moi.
+    <span style="display:block;margin-top:0.3rem;"><a href="https://github.com/alexwill87/openclaw-field-playbook" style="color:var(--accent);">— Alex Willemetz</a></span>
   </p>
   <div class="hero-actions">
     <a href="decouverte.html" class="btn-primary">C'est quoi OpenClaw ?</a>
@@ -97,42 +105,46 @@
 </div>
 
 <div class="landing-section">
-  <h2>A qui s'adresse ce guide</h2>
+  <h2>Vous etes qui ?</h2>
+  <p>Ce guide s'adapte a votre profil. Choisissez le votre.</p>
   <div class="audience-grid">
-    <div class="audience-card">
-      <strong>Entrepreneurs</strong>
-      <p>Vous voulez un agent IA qui travaille pour votre business, pas juste un chatbot.</p>
-    </div>
-    <div class="audience-card">
-      <strong>Equipes techniques</strong>
-      <p>Vous deployer OpenClaw pour votre organisation et avez besoin d'un guide solide.</p>
-    </div>
-    <div class="audience-card">
-      <strong>Freelances</strong>
-      <p>Vous cherchez un avantage competitif en automatisant vos operations.</p>
-    </div>
-    <div class="audience-card">
-      <strong>Agents IA</strong>
-      <p>Vous bootstrappez votre propre installation en suivant les sections comme un runbook.</p>
-    </div>
+    <a class="audience-card" href="persona-entrepreneur.html" style="text-decoration:none;color:var(--text);">
+      <strong>Entrepreneur / Artisan</strong>
+      <p>Vous dirigez une entreprise et vous voulez comprendre ce que l'IA peut faire pour vous — sans jargon.</p>
+    </a>
+    <a class="audience-card" href="persona-cto.html" style="text-decoration:none;color:var(--text);">
+      <strong>CTO / Equipe technique</strong>
+      <p>Vous voulez deployer un agent IA pour votre equipe, sur votre infra, avec vos contraintes.</p>
+    </a>
+    <a class="audience-card" href="persona-dev.html" style="text-decoration:none;color:var(--text);">
+      <strong>Developpeur independant</strong>
+      <p>Vous savez ce qu'est Docker. Vous voulez les commandes, pas le blabla.</p>
+    </a>
+    <a class="audience-card" href="persona-agent.html" style="text-decoration:none;color:var(--text);">
+      <strong>Agent IA</strong>
+      <p>Vous etes un agent. Vous clonez ce repo et vous suivez les sections comme un runbook.</p>
+    </a>
   </div>
 </div>
 
 <div class="landing-section">
   <h2>Par ou commencer</h2>
-  <p>Trois parcours selon votre profil :</p>
   <ul class="path-list">
     <li>
-      <strong>Je decouvre OpenClaw</strong>
-      <span><a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a> &rarr; <a href="03-00-sommaire.html">Configuration</a>. Comptez une journee.</span>
+      <strong>Je decouvre</strong>
+      <span><a href="decouverte.html">C'est quoi OpenClaw ?</a> &rarr; <a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a></span>
     </li>
     <li>
-      <strong>J'ai deja installe, je veux configurer</strong>
-      <span><a href="03-00-sommaire.html">Configuration</a> &rarr; <a href="04-00-sommaire.html">Personnalisation</a>. Les deux chapitres les plus denses.</span>
+      <strong>J'installe</strong>
+      <span><a href="02-00-sommaire.html">Installation</a> &rarr; <a href="03-00-sommaire.html">Configuration</a> &rarr; <a href="04-00-sommaire.html">Personnalisation</a></span>
     </li>
     <li>
-      <strong>Je veux des exemples concrets</strong>
-      <span><a href="06-00-sommaire.html">Cas d'usage</a> d'abord, puis remontez vers les chapitres techniques selon vos besoins.</span>
+      <strong>Je veux des exemples</strong>
+      <span><a href="06-00-sommaire.html">Cas d'usage</a> &rarr; puis remontez vers les chapitres techniques</span>
+    </li>
+    <li>
+      <strong>Je suis un agent IA</strong>
+      <span>Lisez <a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md">CLAUDE.md</a> &rarr; <a href="02-01-prerequis.html">Section 2.1</a> et suivez dans l'ordre</span>
     </li>
   </ul>
 </div>

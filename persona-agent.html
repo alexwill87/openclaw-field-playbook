@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>7. Localisation | OpenClaw Field Playbook</title>
+  <title>OpenClaw pour les agents IA | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenClaw Field Playbook">
-  <meta property="og:title" content="7. Localisation | OpenClaw Field Playbook">
+  <meta property="og:title" content="OpenClaw pour les agents IA | OpenClaw Field Playbook">
   <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
   <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="7. Localisation | OpenClaw Field Playbook">
+  <meta name="twitter:title" content="OpenClaw pour les agents IA | OpenClaw Field Playbook">
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -49,7 +49,7 @@
 <a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
 <a href="persona-cto.html">Pour les equipes tech</a>
 <a href="persona-dev.html">Pour les developpeurs</a>
-<a href="persona-agent.html">Pour les agents IA</a>
+<a href="persona-agent.html" class="active">Pour les agents IA</a>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
 </div>
@@ -75,12 +75,8 @@
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Ecosysteme</a>
-<div class="nav-chapter  open">
-  <a href="07-00-sommaire.html" class="nav-chapter-title" class="active">7. Localisation</a>
-  <div class="nav-sections">
-    <a href="07-00-en-US.html">Locale: en-US — United States (b...</a>
-    <a href="07-00-fr-FR.html">Locale: fr-FR — France</a>
-  </div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -89,74 +85,64 @@
   </aside>
 
   <main id="content">
-    <nav class="breadcrumb">
+    
+<nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>7. Localisation</span>
+  <span>Pour les agents IA</span>
 </nav>
-<div class="last-updated">Derniere mise a jour : avril 2026</div>
 <section class="chapter">
-<h1 id="7-localisation">7. Localisation</h1>
-<blockquote>
-<p>Le contenu du playbook est universel. Ce chapitre documente ce qui change selon le contexte local -- legislation, ecosysteme, outils, pratiques culturelles.</p>
-</blockquote>
-<p>Les chapitres 0 a 6 s'appliquent partout. Ce chapitre est le seul endroit ou le contenu differe par pays : cadre legal (RGPD, CCPA, PIPEDA...), fournisseurs locaux, conventions fiscales et culturelles. Consultez la fiche de votre pays pour adapter votre installation, ou contribuez une nouvelle locale si la votre manque.</p>
-<p>Voir <code>sections/00-reading-guide.md</code> pour le contrat linguistique complet du playbook.</p>
-<hr />
-<h2 id="sommaire">Sommaire</h2>
+<h1>OpenClaw pour les agents IA</h1>
+
+<h2>Vous etes un agent. Ce playbook est votre runbook.</h2>
+<p>Ce repository est concu pour etre clone et execute par un agent IA. Chaque section du chapitre 2 est une instruction executable. Chaque verification a un resultat attendu. Chaque erreur courante est documentee avec sa resolution.</p>
+<p>Le format est structure pour une lecture sequentielle par un agent : contexte, etapes, erreurs, template, verification.</p>
+
+<h2>Comment utiliser ce playbook</h2>
+<ol>
+  <li><strong>Cloner le repo</strong> -- <code>git clone https://github.com/alexwill87/openclaw-field-playbook.git</code></li>
+  <li><strong>Lire CLAUDE.md</strong> -- Ce fichier contient les instructions specifiques pour les agents Claude Code. Il definit les regles, les conventions, et les priorites.</li>
+  <li><strong>Suivre les sections du chapitre 2 dans l'ordre</strong> -- Chaque section est une etape. Ne sautez pas d'etape. Chaque verification doit passer avant de continuer.</li>
+  <li><strong>Logger chaque resultat dans le Install Tracker</strong> -- L'outil <code>tools/install-tracker/</code> fournit une API REST pour enregistrer le statut de chaque etape.</li>
+  <li><strong>Ouvrir des issues pour les problemes rencontres</strong> -- Chaque probleme non documente est une amelioration potentielle du playbook.</li>
+</ol>
+
+<h2>Outils disponibles</h2>
+<table>
+  <thead><tr><th>Outil</th><th>Description</th><th>Emplacement</th></tr></thead>
+  <tbody>
+    <tr><td><strong>CLAUDE.md</strong></td><td>Instructions agent. Regles, conventions, priorites.</td><td>Racine du repo</td></tr>
+    <tr><td><strong>Install Tracker</strong></td><td>API REST pour logger le statut de chaque etape d'installation.</td><td><code>tools/install-tracker/</code></td></tr>
+    <tr><td><strong>Checklist</strong></td><td>44 items couvrant les chapitres 2 a 5. Verification exhaustive.</td><td><a href="checklist.html">checklist.html</a></td></tr>
+    <tr><td><strong>search-index.json</strong></td><td>Index de recherche machine-readable. Slug, titre, URL, extrait pour chaque section.</td><td>Racine du repo</td></tr>
+  </tbody>
+</table>
+
+<h2>Ce qui a ete teste</h2>
+<p>Un agent Claude Code (Claude-Aurel) a execute l'integralite du playbook en avril 2026 :</p>
 <ul>
-<li>
-<p><strong>7.1 -- <a href="07-00-fr-FR.html">France</a></strong>
-  Specificites RGPD, hebergement souverain, obligations fiscales et ecosysteme francais</p>
-</li>
-<li>
-<p><strong>7.2 -- <a href="07-00-en-US.html">United States</a></strong>
-  Cadre legal americain, fournisseurs cloud US, conventions et pratiques locales</p>
-</li>
-<li>
-<p><strong>7.3 -- Canada (FR)</strong> -- <em>pas encore cree</em>
-  <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer cette locale</a></p>
-</li>
-<li>
-<p><strong>7.4 -- United Kingdom</strong> -- <em>pas encore cree</em>
-  <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer cette locale</a></p>
-</li>
+  <li><strong>11 phases sur 11 completees</strong> -- De la creation du VPS au deploiement final.</li>
+  <li><strong>20 bugs remontes et corriges</strong> -- Chaque bug a ete documente dans une issue GitHub et corrige dans le playbook.</li>
+  <li><strong>Validation complete</strong> -- Le playbook a ete valide par une installation reelle, de bout en bout, executee par un agent.</li>
 </ul>
-<hr />
-<h2 id="comment-ajouter-une-locale">Comment ajouter une locale</h2>
-<p>Ouvrez une Issue avec le label <code>new-locale</code> en precisant :
-- Le code locale (ex. <code>de-DE</code>)
-- Un resume de ce qui est specifique localement
-- Si vous pouvez rediger le premier brouillon</p>
-<hr />
-<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a></p>
+
+<h2>Conventions</h2>
+<ul>
+  <li><strong>Prefixer les commits</strong> avec <code>[AGENT-NOM]</code> (exemple : <code>[AGENT-AUREL] fix: corriger le chemin vault dans section 2.7</code>).</li>
+  <li><strong>Ouvrir des issues</strong> pour chaque probleme rencontre, meme mineur.</li>
+  <li><strong>Utiliser le format standard</strong> pour chaque section : Contexte / Etapes / Erreurs courantes / Template / Verification.</li>
+  <li><strong>Ne pas modifier la structure T1</strong> (les 7 chapitres). Les changements de structure requierent une issue <code>governance</code>.</li>
+</ul>
+
+<h2>Commencer</h2>
+<ul>
+  <li><a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md" target="_blank">CLAUDE.md sur GitHub</a> -- Instructions agent completes</li>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> -- Premiere etape d'installation</li>
+  <li><a href="https://github.com/alexwill87/openclaw-field-playbook/tree/main/tools/install-tracker" target="_blank">Install Tracker README</a> -- Documentation de l'outil de suivi</li>
+</ul>
+
 </section>
-<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/07-localisation/README.md">Proposer une modification sur GitHub</a></p>
-<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
-<div class="giscus-wrapper">
-  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
-  <script src="https://giscus.app/client.js"
-    data-repo="alexwill87/openclaw-field-playbook"
-    data-repo-id="R_kgDORvZ2yQ"
-    data-category="General"
-    data-category-id="DIC_kwDORvZ2yc4C54bl"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="fr"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async>
-  </script>
-</div>
-<hr>
-<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="06-07-contribuer.html">&larr; 07 -- Comment soumettre votre cas d'usage</a>
-<a href="07-00-en-US.html">Locale: en-US — United States (baseline) &rarr;</a>
-</div>
+
 
     <footer>
       <p>

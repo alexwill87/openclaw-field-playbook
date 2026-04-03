@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>7. Localisation | OpenClaw Field Playbook</title>
+  <title>OpenClaw pour les developpeurs | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenClaw Field Playbook">
-  <meta property="og:title" content="7. Localisation | OpenClaw Field Playbook">
+  <meta property="og:title" content="OpenClaw pour les developpeurs | OpenClaw Field Playbook">
   <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
   <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="7. Localisation | OpenClaw Field Playbook">
+  <meta name="twitter:title" content="OpenClaw pour les developpeurs | OpenClaw Field Playbook">
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -48,7 +48,7 @@
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
 <a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
 <a href="persona-cto.html">Pour les equipes tech</a>
-<a href="persona-dev.html">Pour les developpeurs</a>
+<a href="persona-dev.html" class="active">Pour les developpeurs</a>
 <a href="persona-agent.html">Pour les agents IA</a>
 <div class="nav-chapter">
   <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
@@ -75,12 +75,8 @@
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Ecosysteme</a>
-<div class="nav-chapter  open">
-  <a href="07-00-sommaire.html" class="nav-chapter-title" class="active">7. Localisation</a>
-  <div class="nav-sections">
-    <a href="07-00-en-US.html">Locale: en-US — United States (b...</a>
-    <a href="07-00-fr-FR.html">Locale: fr-FR — France</a>
-  </div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -89,74 +85,67 @@
   </aside>
 
   <main id="content">
-    <nav class="breadcrumb">
+    
+<nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>7. Localisation</span>
+  <span>Pour les developpeurs</span>
 </nav>
-<div class="last-updated">Derniere mise a jour : avril 2026</div>
 <section class="chapter">
-<h1 id="7-localisation">7. Localisation</h1>
-<blockquote>
-<p>Le contenu du playbook est universel. Ce chapitre documente ce qui change selon le contexte local -- legislation, ecosysteme, outils, pratiques culturelles.</p>
-</blockquote>
-<p>Les chapitres 0 a 6 s'appliquent partout. Ce chapitre est le seul endroit ou le contenu differe par pays : cadre legal (RGPD, CCPA, PIPEDA...), fournisseurs locaux, conventions fiscales et culturelles. Consultez la fiche de votre pays pour adapter votre installation, ou contribuez une nouvelle locale si la votre manque.</p>
-<p>Voir <code>sections/00-reading-guide.md</code> pour le contrat linguistique complet du playbook.</p>
-<hr />
-<h2 id="sommaire">Sommaire</h2>
+<h1>OpenClaw pour les developpeurs</h1>
+
+<h2>Vous savez ce qu'est Docker. Allons droit au but.</h2>
+<p>Ce playbook est votre runbook. 92 sections, des commandes copiables, des decisions documentees. Pas de blabla marketing, pas de slides, pas de "vision". Juste ce qu'il faut pour installer, configurer et faire tourner un agent OpenClaw sur un VPS.</p>
+
+<h2>Ce que vous allez installer</h2>
+<table>
+  <thead><tr><th>Composant</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td>OpenClaw + OpenRouter</td><td>Framework d'agent + acces multi-modeles (Claude, GPT, Mistral, Llama)</td></tr>
+    <tr><td>HashiCorp Vault</td><td>Gestion des secrets (cles API, tokens, credentials)</td></tr>
+    <tr><td>PostgreSQL</td><td>Source de verite (memoire, configuration, logs)</td></tr>
+    <tr><td>Tailscale</td><td>VPN mesh (zero exposition publique)</td></tr>
+    <tr><td>systemd</td><td>Gateway OpenClaw (service systeme)</td></tr>
+    <tr><td>Git</td><td>Versionning de la configuration agent</td></tr>
+  </tbody>
+</table>
+<p>Le tout sur un VPS Ubuntu 24.04.</p>
+
+<h2>En combien de temps ?</h2>
+<table>
+  <thead><tr><th>Phase</th><th>Duree estimee</th></tr></thead>
+  <tbody>
+    <tr><td>Installation (chapitre 2, 19 sections)</td><td>2 a 3 heures</td></tr>
+    <tr><td>Configuration (chapitre 3)</td><td>1 a 2 heures</td></tr>
+    <tr><td>Personnalisation (chapitre 4)</td><td>Continu</td></tr>
+  </tbody>
+</table>
+<p>Le chapitre 2 a 19 sections. Vous pouvez les suivre dans l'ordre ou sauter celles que vous maitrisez deja.</p>
+
+<h2>Si vous avez deja un VPS</h2>
+<p>Le playbook gere les configurations existantes :</p>
 <ul>
-<li>
-<p><strong>7.1 -- <a href="07-00-fr-FR.html">France</a></strong>
-  Specificites RGPD, hebergement souverain, obligations fiscales et ecosysteme francais</p>
-</li>
-<li>
-<p><strong>7.2 -- <a href="07-00-en-US.html">United States</a></strong>
-  Cadre legal americain, fournisseurs cloud US, conventions et pratiques locales</p>
-</li>
-<li>
-<p><strong>7.3 -- Canada (FR)</strong> -- <em>pas encore cree</em>
-  <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer cette locale</a></p>
-</li>
-<li>
-<p><strong>7.4 -- United Kingdom</strong> -- <em>pas encore cree</em>
-  <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer cette locale</a></p>
-</li>
+  <li><strong>Docker installe ?</strong> Le playbook le detecte et passe a la suite.</li>
+  <li><strong>Tailscale connecte ?</strong> Parfait, une etape de moins.</li>
+  <li><strong>Node.js present ?</strong> La section 2.15 detecte automatiquement nvm ou node global et s'adapte.</li>
+  <li><strong>Ports occupes ?</strong> Les checks de port evitent les conflits avec vos services existants.</li>
 </ul>
-<hr />
-<h2 id="comment-ajouter-une-locale">Comment ajouter une locale</h2>
-<p>Ouvrez une Issue avec le label <code>new-locale</code> en precisant :
-- Le code locale (ex. <code>de-DE</code>)
-- Un resume de ce qui est specifique localement
-- Si vous pouvez rediger le premier brouillon</p>
-<hr />
-<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a></p>
+
+<h2>Contribuer</h2>
+<p>Le repo est open source sous licence CC-BY 4.0. Forkez, corrigez, ouvrez une PR.</p>
+<p>20 bugs ont ete trouves par un agent IA installateur (Claude-Aurel) en une seule session d'installation. Votre feedback rend le guide meilleur pour tout le monde.</p>
+<p>Consultez la page <a href="contribuer.html">Contribuer</a> pour les details.</p>
+
+<h2>Commencer</h2>
+<ul>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> : ce qu'il faut avant de commencer</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 complet -- Installation</a> : le parcours de A a Z</li>
+  <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent</li>
+  <li><a href="checklist.html">Checklist interactive</a> : suivre votre avancement</li>
+</ul>
+
 </section>
-<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/07-localisation/README.md">Proposer une modification sur GitHub</a></p>
-<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
-<div class="giscus-wrapper">
-  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
-  <script src="https://giscus.app/client.js"
-    data-repo="alexwill87/openclaw-field-playbook"
-    data-repo-id="R_kgDORvZ2yQ"
-    data-category="General"
-    data-category-id="DIC_kwDORvZ2yc4C54bl"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="fr"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async>
-  </script>
-</div>
-<hr>
-<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="06-07-contribuer.html">&larr; 07 -- Comment soumettre votre cas d'usage</a>
-<a href="07-00-en-US.html">Locale: en-US — United States (baseline) &rarr;</a>
-</div>
+
 
     <footer>
       <p>

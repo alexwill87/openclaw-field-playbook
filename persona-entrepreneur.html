@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>7. Localisation | OpenClaw Field Playbook</title>
+  <title>OpenClaw pour les entrepreneurs | OpenClaw Field Playbook</title>
   <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenClaw Field Playbook">
-  <meta property="og:title" content="7. Localisation | OpenClaw Field Playbook">
+  <meta property="og:title" content="OpenClaw pour les entrepreneurs | OpenClaw Field Playbook">
   <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
   <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="7. Localisation | OpenClaw Field Playbook">
+  <meta name="twitter:title" content="OpenClaw pour les entrepreneurs | OpenClaw Field Playbook">
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -46,7 +46,7 @@
       <a href="index.html" class="nav-home">Accueil</a>
 <div class="nav-group-label">Decouvrir</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
-<a href="persona-entrepreneur.html">Pour les entrepreneurs</a>
+<a href="persona-entrepreneur.html" class="active">Pour les entrepreneurs</a>
 <a href="persona-cto.html">Pour les equipes tech</a>
 <a href="persona-dev.html">Pour les developpeurs</a>
 <a href="persona-agent.html">Pour les agents IA</a>
@@ -75,12 +75,8 @@
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Ecosysteme</a>
-<div class="nav-chapter  open">
-  <a href="07-00-sommaire.html" class="nav-chapter-title" class="active">7. Localisation</a>
-  <div class="nav-sections">
-    <a href="07-00-en-US.html">Locale: en-US — United States (b...</a>
-    <a href="07-00-fr-FR.html">Locale: fr-FR — France</a>
-  </div>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -89,74 +85,67 @@
   </aside>
 
   <main id="content">
-    <nav class="breadcrumb">
+    
+<nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <span>7. Localisation</span>
+  <span>Pour les entrepreneurs</span>
 </nav>
-<div class="last-updated">Derniere mise a jour : avril 2026</div>
 <section class="chapter">
-<h1 id="7-localisation">7. Localisation</h1>
-<blockquote>
-<p>Le contenu du playbook est universel. Ce chapitre documente ce qui change selon le contexte local -- legislation, ecosysteme, outils, pratiques culturelles.</p>
-</blockquote>
-<p>Les chapitres 0 a 6 s'appliquent partout. Ce chapitre est le seul endroit ou le contenu differe par pays : cadre legal (RGPD, CCPA, PIPEDA...), fournisseurs locaux, conventions fiscales et culturelles. Consultez la fiche de votre pays pour adapter votre installation, ou contribuez une nouvelle locale si la votre manque.</p>
-<p>Voir <code>sections/00-reading-guide.md</code> pour le contrat linguistique complet du playbook.</p>
-<hr />
-<h2 id="sommaire">Sommaire</h2>
+<h1>OpenClaw pour les entrepreneurs et artisans</h1>
+
+<h2>Vous n'etes pas developpeur. Et c'est pas grave.</h2>
+<p>OpenClaw, c'est un assistant IA qui travaille pour vous, 24 heures sur 24, 7 jours sur 7. Il ne dort pas, il ne prend pas de vacances, et il ne vous facture pas d'heures supplementaires.</p>
+<p>Concretement, il peut repondre a vos clients, trier vos emails, vous faire un resume chaque matin de ce qui s'est passe pendant la nuit. Il vit sur un petit serveur que vous louez pour 5 euros par mois. Vos donnees restent chez vous, pas chez une grande entreprise americaine.</p>
+<p>Vous n'avez pas besoin de savoir coder pour l'utiliser au quotidien. Vous avez juste besoin de quelqu'un pour l'installer une premiere fois -- et ce guide est la pour ca.</p>
+
+<h2>Concretement, ca fait quoi ?</h2>
+<p>Voici cinq exemples de ce qu'un agent OpenClaw peut faire pour vous, des aujourd'hui :</p>
+<ol>
+  <li><strong>Repondre aux prospects par email</strong> -- Un client potentiel vous ecrit a 23h ? L'agent lui repond dans la minute avec les informations de base sur vos services, vos tarifs, vos disponibilites.</li>
+  <li><strong>Faire des devis</strong> -- Vous lui donnez les regles de calcul de vos prix, et il genere un devis propre a partir d'une simple demande par message.</li>
+  <li><strong>Rappeler les factures impayees</strong> -- L'agent surveille vos factures et envoie automatiquement un rappel poli quand un paiement est en retard.</li>
+  <li><strong>Resume du jour</strong> -- Chaque matin a 8h, vous recevez sur votre telephone un resume clair : emails recus, taches du jour, rappels importants.</li>
+  <li><strong>Veille sur votre secteur</strong> -- L'agent surveille les actualites de votre domaine et vous signale ce qui merite votre attention.</li>
+</ol>
+
+<h2>Combien ca coute ?</h2>
+<table>
+  <thead><tr><th>Poste</th><th>Cout mensuel</th></tr></thead>
+  <tbody>
+    <tr><td>Serveur (VPS)</td><td>5 a 10 EUR</td></tr>
+    <tr><td>Intelligence artificielle (API)</td><td>10 a 30 EUR selon l'usage</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>15 a 40 EUR par mois</strong></td></tr>
+  </tbody>
+</table>
+<p>C'est moins cher qu'un stagiaire, et c'est disponible 24 heures sur 24, week-ends et jours feries compris.</p>
+
+<h2>Comment ca marche ?</h2>
+<p>En trois etapes simples :</p>
+<ol>
+  <li><strong>Un technicien installe OpenClaw sur votre serveur.</strong> C'est l'equivalent d'installer une application sur un ordinateur. Ca prend quelques heures, une seule fois.</li>
+  <li><strong>On configure l'agent pour votre metier.</strong> On lui explique qui vous etes, ce que vous faites, comment vous travaillez. Il apprend vos regles.</li>
+  <li><strong>Vous recevez les resultats sur votre telephone.</strong> Via Telegram, vous pouvez lire les resumes, valider les reponses, et interagir avec votre agent comme avec un collegue.</li>
+</ol>
+
+<h2>Est-ce que c'est securise ?</h2>
+<p>Oui. Et c'est meme l'un des avantages principaux d'OpenClaw par rapport aux autres solutions.</p>
+<p>Vos donnees restent sur <strong>votre</strong> serveur. Pas chez Google. Pas chez OpenAI. Pas chez une startup qui pourrait fermer demain. C'est vous qui controlez qui a acces a quoi.</p>
+<p>Ce playbook documente en detail toutes les mesures de securite mises en place pendant l'installation.</p>
+
+<h2>Je veux essayer</h2>
+<p>Deux options s'offrent a vous :</p>
 <ul>
-<li>
-<p><strong>7.1 -- <a href="07-00-fr-FR.html">France</a></strong>
-  Specificites RGPD, hebergement souverain, obligations fiscales et ecosysteme francais</p>
-</li>
-<li>
-<p><strong>7.2 -- <a href="07-00-en-US.html">United States</a></strong>
-  Cadre legal americain, fournisseurs cloud US, conventions et pratiques locales</p>
-</li>
-<li>
-<p><strong>7.3 -- Canada (FR)</strong> -- <em>pas encore cree</em>
-  <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer cette locale</a></p>
-</li>
-<li>
-<p><strong>7.4 -- United Kingdom</strong> -- <em>pas encore cree</em>
-  <a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer cette locale</a></p>
-</li>
+  <li><strong>Option A : vous suivez le guide vous-meme.</strong> Commencez par le <a href="02-00-sommaire.html">Chapitre 2 -- Installation</a>. Chaque etape est expliquee en detail.</li>
+  <li><strong>Option B : vous faites appel a un installateur.</strong> Contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a> pour un accompagnement personnalise.</li>
 </ul>
-<hr />
-<h2 id="comment-ajouter-une-locale">Comment ajouter une locale</h2>
-<p>Ouvrez une Issue avec le label <code>new-locale</code> en precisant :
-- Le code locale (ex. <code>de-DE</code>)
-- Un resume de ce qui est specifique localement
-- Si vous pouvez rediger le premier brouillon</p>
-<hr />
-<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a></p>
+
+<h2>Qui a ecrit ce guide ?</h2>
+<p>Alex Willemetz, entrepreneur a Paris. Pas developpeur de formation. Il a galere avec OpenClaw pendant des mois, a fait trois installations ratees avant de comprendre comment ca marche, et a fini par maitriser le sujet.</p>
+<p>Ce guide est le resultat de cette experience. Il est ecrit pour que vous n'ayez pas a galérer comme lui.</p>
+
 </section>
-<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/07-localisation/README.md">Proposer une modification sur GitHub</a></p>
-<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
-<div class="giscus-wrapper">
-  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
-  <script src="https://giscus.app/client.js"
-    data-repo="alexwill87/openclaw-field-playbook"
-    data-repo-id="R_kgDORvZ2yQ"
-    data-category="General"
-    data-category-id="DIC_kwDORvZ2yc4C54bl"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="fr"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async>
-  </script>
-</div>
-<hr>
-<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="06-07-contribuer.html">&larr; 07 -- Comment soumettre votre cas d'usage</a>
-<a href="07-00-en-US.html">Locale: en-US — United States (baseline) &rarr;</a>
-</div>
+
 
     <footer>
       <p>

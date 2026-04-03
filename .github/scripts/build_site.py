@@ -310,6 +310,10 @@ def build_sidebar(all_sections, active_slug, active_chapter):
     # --- DECOUVRIR ---
     items.append('<div class="nav-group-label">Decouvrir</div>')
     render_util('decouverte', 'decouverte.html', "C'est quoi OpenClaw ?")
+    render_util('persona-entrepreneur', 'persona-entrepreneur.html', 'Pour les entrepreneurs')
+    render_util('persona-cto', 'persona-cto.html', 'Pour les equipes tech')
+    render_util('persona-dev', 'persona-dev.html', 'Pour les developpeurs')
+    render_util('persona-agent', 'persona-agent.html', 'Pour les agents IA')
     render_chapter('00')
     render_chapter('01')
 
@@ -517,10 +521,14 @@ def build_index_page(all_sections):
     content = """
 <div class="landing-hero">
   <h1>OpenClaw Field Playbook</h1>
-  <p class="lead">Le seul guide open-source qui couvre le parcours complet :<br>
-  de l'installation a l'operation quotidienne d'OpenClaw en entreprise.</p>
-  <p style="font-size:0.82rem;color:var(--text-muted);max-width:500px;margin:0.5rem auto 1rem;">
-    <strong style="color:var(--accent);">92</strong> sections · <strong style="color:var(--accent);">7</strong> chapitres · <strong style="color:var(--accent);">20</strong> bugs corriges par un agent terrain · Open source (CC-BY 4.0)
+  <p class="lead">Le guide open-source pour installer OpenClaw proprement.<br>
+  Ecrit par un praticien. Teste sur le terrain. Partage avec tout le monde.</p>
+  <p style="font-size:0.82rem;color:var(--text-muted);max-width:520px;margin:0.5rem auto 1rem;">
+    J'ai fait 3 installations ratees avant de comprendre. Ce playbook est le resultat :
+    <strong style="color:var(--accent);">92</strong> sections, <strong style="color:var(--accent);">7</strong> chapitres,
+    <strong style="color:var(--accent);">20</strong> bugs corriges par un agent terrain.
+    Tout est la pour que vous n'ayez pas a galérer comme moi.
+    <span style="display:block;margin-top:0.3rem;"><a href="{github}" style="color:var(--accent);">— Alex Willemetz</a></span>
   </p>
   <div class="hero-actions">
     <a href="decouverte.html" class="btn-primary">C'est quoi OpenClaw ?</a>
@@ -530,42 +538,46 @@ def build_index_page(all_sections):
 </div>
 
 <div class="landing-section">
-  <h2>A qui s'adresse ce guide</h2>
+  <h2>Vous etes qui ?</h2>
+  <p>Ce guide s'adapte a votre profil. Choisissez le votre.</p>
   <div class="audience-grid">
-    <div class="audience-card">
-      <strong>Entrepreneurs</strong>
-      <p>Vous voulez un agent IA qui travaille pour votre business, pas juste un chatbot.</p>
-    </div>
-    <div class="audience-card">
-      <strong>Equipes techniques</strong>
-      <p>Vous deployer OpenClaw pour votre organisation et avez besoin d'un guide solide.</p>
-    </div>
-    <div class="audience-card">
-      <strong>Freelances</strong>
-      <p>Vous cherchez un avantage competitif en automatisant vos operations.</p>
-    </div>
-    <div class="audience-card">
-      <strong>Agents IA</strong>
-      <p>Vous bootstrappez votre propre installation en suivant les sections comme un runbook.</p>
-    </div>
+    <a class="audience-card" href="persona-entrepreneur.html" style="text-decoration:none;color:var(--text);">
+      <strong>Entrepreneur / Artisan</strong>
+      <p>Vous dirigez une entreprise et vous voulez comprendre ce que l'IA peut faire pour vous — sans jargon.</p>
+    </a>
+    <a class="audience-card" href="persona-cto.html" style="text-decoration:none;color:var(--text);">
+      <strong>CTO / Equipe technique</strong>
+      <p>Vous voulez deployer un agent IA pour votre equipe, sur votre infra, avec vos contraintes.</p>
+    </a>
+    <a class="audience-card" href="persona-dev.html" style="text-decoration:none;color:var(--text);">
+      <strong>Developpeur independant</strong>
+      <p>Vous savez ce qu'est Docker. Vous voulez les commandes, pas le blabla.</p>
+    </a>
+    <a class="audience-card" href="persona-agent.html" style="text-decoration:none;color:var(--text);">
+      <strong>Agent IA</strong>
+      <p>Vous etes un agent. Vous clonez ce repo et vous suivez les sections comme un runbook.</p>
+    </a>
   </div>
 </div>
 
 <div class="landing-section">
   <h2>Par ou commencer</h2>
-  <p>Trois parcours selon votre profil :</p>
   <ul class="path-list">
     <li>
-      <strong>Je decouvre OpenClaw</strong>
-      <span><a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a> &rarr; <a href="03-00-sommaire.html">Configuration</a>. Comptez une journee.</span>
+      <strong>Je decouvre</strong>
+      <span><a href="decouverte.html">C'est quoi OpenClaw ?</a> &rarr; <a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a></span>
     </li>
     <li>
-      <strong>J'ai deja installe, je veux configurer</strong>
-      <span><a href="03-00-sommaire.html">Configuration</a> &rarr; <a href="04-00-sommaire.html">Personnalisation</a>. Les deux chapitres les plus denses.</span>
+      <strong>J'installe</strong>
+      <span><a href="02-00-sommaire.html">Installation</a> &rarr; <a href="03-00-sommaire.html">Configuration</a> &rarr; <a href="04-00-sommaire.html">Personnalisation</a></span>
     </li>
     <li>
-      <strong>Je veux des exemples concrets</strong>
-      <span><a href="06-00-sommaire.html">Cas d'usage</a> d'abord, puis remontez vers les chapitres techniques selon vos besoins.</span>
+      <strong>Je veux des exemples</strong>
+      <span><a href="06-00-sommaire.html">Cas d'usage</a> &rarr; puis remontez vers les chapitres techniques</span>
+    </li>
+    <li>
+      <strong>Je suis un agent IA</strong>
+      <span>Lisez <a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md">CLAUDE.md</a> &rarr; <a href="02-01-prerequis.html">Section 2.1</a> et suivez dans l'ordre</span>
     </li>
   </ul>
 </div>
@@ -1192,6 +1204,283 @@ def build_ecosystem_page(all_sections):
     print('  -> ecosystem.html')
 
 
+def build_persona_entrepreneur(all_sections):
+    """Build the persona-entrepreneur.html page."""
+    content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Pour les entrepreneurs</span>
+</nav>
+<section class="chapter">
+<h1>OpenClaw pour les entrepreneurs et artisans</h1>
+
+<h2>Vous n'etes pas developpeur. Et c'est pas grave.</h2>
+<p>OpenClaw, c'est un assistant IA qui travaille pour vous, 24 heures sur 24, 7 jours sur 7. Il ne dort pas, il ne prend pas de vacances, et il ne vous facture pas d'heures supplementaires.</p>
+<p>Concretement, il peut repondre a vos clients, trier vos emails, vous faire un resume chaque matin de ce qui s'est passe pendant la nuit. Il vit sur un petit serveur que vous louez pour 5 euros par mois. Vos donnees restent chez vous, pas chez une grande entreprise americaine.</p>
+<p>Vous n'avez pas besoin de savoir coder pour l'utiliser au quotidien. Vous avez juste besoin de quelqu'un pour l'installer une premiere fois -- et ce guide est la pour ca.</p>
+
+<h2>Concretement, ca fait quoi ?</h2>
+<p>Voici cinq exemples de ce qu'un agent OpenClaw peut faire pour vous, des aujourd'hui :</p>
+<ol>
+  <li><strong>Repondre aux prospects par email</strong> -- Un client potentiel vous ecrit a 23h ? L'agent lui repond dans la minute avec les informations de base sur vos services, vos tarifs, vos disponibilites.</li>
+  <li><strong>Faire des devis</strong> -- Vous lui donnez les regles de calcul de vos prix, et il genere un devis propre a partir d'une simple demande par message.</li>
+  <li><strong>Rappeler les factures impayees</strong> -- L'agent surveille vos factures et envoie automatiquement un rappel poli quand un paiement est en retard.</li>
+  <li><strong>Resume du jour</strong> -- Chaque matin a 8h, vous recevez sur votre telephone un resume clair : emails recus, taches du jour, rappels importants.</li>
+  <li><strong>Veille sur votre secteur</strong> -- L'agent surveille les actualites de votre domaine et vous signale ce qui merite votre attention.</li>
+</ol>
+
+<h2>Combien ca coute ?</h2>
+<table>
+  <thead><tr><th>Poste</th><th>Cout mensuel</th></tr></thead>
+  <tbody>
+    <tr><td>Serveur (VPS)</td><td>5 a 10 EUR</td></tr>
+    <tr><td>Intelligence artificielle (API)</td><td>10 a 30 EUR selon l'usage</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>15 a 40 EUR par mois</strong></td></tr>
+  </tbody>
+</table>
+<p>C'est moins cher qu'un stagiaire, et c'est disponible 24 heures sur 24, week-ends et jours feries compris.</p>
+
+<h2>Comment ca marche ?</h2>
+<p>En trois etapes simples :</p>
+<ol>
+  <li><strong>Un technicien installe OpenClaw sur votre serveur.</strong> C'est l'equivalent d'installer une application sur un ordinateur. Ca prend quelques heures, une seule fois.</li>
+  <li><strong>On configure l'agent pour votre metier.</strong> On lui explique qui vous etes, ce que vous faites, comment vous travaillez. Il apprend vos regles.</li>
+  <li><strong>Vous recevez les resultats sur votre telephone.</strong> Via Telegram, vous pouvez lire les resumes, valider les reponses, et interagir avec votre agent comme avec un collegue.</li>
+</ol>
+
+<h2>Est-ce que c'est securise ?</h2>
+<p>Oui. Et c'est meme l'un des avantages principaux d'OpenClaw par rapport aux autres solutions.</p>
+<p>Vos donnees restent sur <strong>votre</strong> serveur. Pas chez Google. Pas chez OpenAI. Pas chez une startup qui pourrait fermer demain. C'est vous qui controlez qui a acces a quoi.</p>
+<p>Ce playbook documente en detail toutes les mesures de securite mises en place pendant l'installation.</p>
+
+<h2>Je veux essayer</h2>
+<p>Deux options s'offrent a vous :</p>
+<ul>
+  <li><strong>Option A : vous suivez le guide vous-meme.</strong> Commencez par le <a href="02-00-sommaire.html">Chapitre 2 -- Installation</a>. Chaque etape est expliquee en detail.</li>
+  <li><strong>Option B : vous faites appel a un installateur.</strong> Contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a> pour un accompagnement personnalise.</li>
+</ul>
+
+<h2>Qui a ecrit ce guide ?</h2>
+<p>Alex Willemetz, entrepreneur a Paris. Pas developpeur de formation. Il a galere avec OpenClaw pendant des mois, a fait trois installations ratees avant de comprendre comment ca marche, et a fini par maitriser le sujet.</p>
+<p>Ce guide est le resultat de cette experience. Il est ecrit pour que vous n'ayez pas a galérer comme lui.</p>
+
+</section>
+"""
+    sidebar_html = build_sidebar(all_sections, 'persona-entrepreneur', None)
+    page_html = render_page('OpenClaw pour les entrepreneurs', content, sidebar_html)
+    write_page('persona-entrepreneur.html', page_html)
+
+
+def build_persona_cto(all_sections):
+    """Build the persona-cto.html page."""
+    content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Pour les equipes tech</span>
+</nav>
+<section class="chapter">
+<h1>OpenClaw pour les equipes techniques</h1>
+
+<h2>L'agent IA qui tourne sur VOTRE infra</h2>
+<p>OpenClaw n'est pas un SaaS. C'est un framework d'agents que vous deployez sur votre propre VPS. Vos donnees ne quittent jamais votre infrastructure. Il n'y a pas de serveur tiers, pas de dependance a une plateforme cloud proprietaire.</p>
+<p>C'est compatible RGPD par design : les donnees personnelles de vos clients, de vos employes, de vos partenaires restent sur une machine que vous controlez, dans un datacenter europeen si vous le souhaitez.</p>
+
+<h2>Cas d'usage pour une equipe de 5 a 15 personnes</h2>
+<ul>
+  <li><strong>Triage support client</strong> -- L'agent classe les tickets entrants par priorite, redige des reponses de premier niveau, et escalade les cas complexes.</li>
+  <li><strong>Documentation automatique</strong> -- Chaque decision, chaque changement de configuration, chaque incident est documente automatiquement par l'agent.</li>
+  <li><strong>Briefing quotidien</strong> -- Chaque matin, l'equipe recoit un resume structure : taches en cours, blocages, metriques cles.</li>
+  <li><strong>Code review assiste</strong> -- L'agent pre-review les pull requests, identifie les problemes courants, et suggere des ameliorations.</li>
+  <li><strong>Onboarding nouveaux employes</strong> -- L'agent repond aux questions recurrentes, guide les nouveaux arrivants dans la documentation interne, et accelere la prise en main.</li>
+</ul>
+
+<h2>Stack technique</h2>
+<table>
+  <thead><tr><th>Composant</th><th>Technologie</th></tr></thead>
+  <tbody>
+    <tr><td>Serveur</td><td>VPS (Hetzner, OVH, Scaleway)</td></tr>
+    <tr><td>Conteneurisation</td><td>Docker + Docker Compose</td></tr>
+    <tr><td>Base de donnees</td><td>PostgreSQL (source de verite)</td></tr>
+    <tr><td>Secrets</td><td>HashiCorp Vault</td></tr>
+    <tr><td>Reseau prive</td><td>Tailscale (VPN mesh)</td></tr>
+    <tr><td>Cout mensuel</td><td>20 a 50 EUR selon la configuration</td></tr>
+  </tbody>
+</table>
+
+<h2>Securite</h2>
+<p>La securite est au coeur de l'architecture documentee dans ce playbook :</p>
+<ul>
+  <li><strong>Pas d'exposition publique</strong> -- Le gateway OpenClaw n'est accessible que via Tailscale. Aucun port n'est ouvert sur Internet.</li>
+  <li><strong>Secrets dans Vault</strong> -- Les cles API, tokens, et credentials sont stockes dans HashiCorp Vault, pas dans des fichiers de configuration.</li>
+  <li><strong>Gateway protegee</strong> -- Authentification, rate limiting, et logs d'acces sur chaque requete.</li>
+  <li><strong>20 bugs documentes</strong> -- Ce playbook documente 20 bugs de securite trouves et corriges pendant une installation reelle par un agent IA installateur.</li>
+</ul>
+
+<h2>Ce que couvre ce playbook</h2>
+<table>
+  <thead><tr><th>Chapitre</th><th>Contenu</th><th>Sections</th></tr></thead>
+  <tbody>
+    <tr><td><a href="02-00-sommaire.html">Installation</a></td><td>Du VPS vierge a l'agent operationnel</td><td>19 sections</td></tr>
+    <tr><td><a href="03-00-sommaire.html">Configuration</a></td><td>Perimetre, memoire, knowledge base, crons</td><td>17 sections</td></tr>
+    <tr><td><a href="04-00-sommaire.html">Personnalisation</a></td><td>System prompt, ton, workflows, securite</td><td>14 sections</td></tr>
+    <tr><td><a href="05-00-sommaire.html">Maintenance</a></td><td>Monitoring, backups, logs, procedures</td><td>14 sections</td></tr>
+  </tbody>
+</table>
+<p>Chaque section a ete testee par un agent IA installateur (Claude-Aurel). Chaque erreur rencontree est documentee avec sa resolution.</p>
+
+<h2>Commencer</h2>
+<ul>
+  <li><a href="02-00-sommaire.html">Chapitre 2 -- Installation</a> : deployer OpenClaw de zero sur un VPS</li>
+  <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent pour votre contexte</li>
+  <li><a href="06-00-sommaire.html">Chapitre 6 -- Cas d'usage</a> : exemples concrets pour une equipe technique</li>
+  <li><a href="checklist.html">Checklist interactive</a> : suivre votre progression etape par etape</li>
+</ul>
+
+<h2>Besoin d'accompagnement ?</h2>
+<p>Pour un deploiement assiste ou un audit de votre installation existante, contactez <a href="mailto:alexwillemetz@gmail.com">alexwillemetz@gmail.com</a>.</p>
+
+</section>
+"""
+    sidebar_html = build_sidebar(all_sections, 'persona-cto', None)
+    page_html = render_page('OpenClaw pour les equipes techniques', content, sidebar_html)
+    write_page('persona-cto.html', page_html)
+
+
+def build_persona_dev(all_sections):
+    """Build the persona-dev.html page."""
+    content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Pour les developpeurs</span>
+</nav>
+<section class="chapter">
+<h1>OpenClaw pour les developpeurs</h1>
+
+<h2>Vous savez ce qu'est Docker. Allons droit au but.</h2>
+<p>Ce playbook est votre runbook. 92 sections, des commandes copiables, des decisions documentees. Pas de blabla marketing, pas de slides, pas de "vision". Juste ce qu'il faut pour installer, configurer et faire tourner un agent OpenClaw sur un VPS.</p>
+
+<h2>Ce que vous allez installer</h2>
+<table>
+  <thead><tr><th>Composant</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td>OpenClaw + OpenRouter</td><td>Framework d'agent + acces multi-modeles (Claude, GPT, Mistral, Llama)</td></tr>
+    <tr><td>HashiCorp Vault</td><td>Gestion des secrets (cles API, tokens, credentials)</td></tr>
+    <tr><td>PostgreSQL</td><td>Source de verite (memoire, configuration, logs)</td></tr>
+    <tr><td>Tailscale</td><td>VPN mesh (zero exposition publique)</td></tr>
+    <tr><td>systemd</td><td>Gateway OpenClaw (service systeme)</td></tr>
+    <tr><td>Git</td><td>Versionning de la configuration agent</td></tr>
+  </tbody>
+</table>
+<p>Le tout sur un VPS Ubuntu 24.04.</p>
+
+<h2>En combien de temps ?</h2>
+<table>
+  <thead><tr><th>Phase</th><th>Duree estimee</th></tr></thead>
+  <tbody>
+    <tr><td>Installation (chapitre 2, 19 sections)</td><td>2 a 3 heures</td></tr>
+    <tr><td>Configuration (chapitre 3)</td><td>1 a 2 heures</td></tr>
+    <tr><td>Personnalisation (chapitre 4)</td><td>Continu</td></tr>
+  </tbody>
+</table>
+<p>Le chapitre 2 a 19 sections. Vous pouvez les suivre dans l'ordre ou sauter celles que vous maitrisez deja.</p>
+
+<h2>Si vous avez deja un VPS</h2>
+<p>Le playbook gere les configurations existantes :</p>
+<ul>
+  <li><strong>Docker installe ?</strong> Le playbook le detecte et passe a la suite.</li>
+  <li><strong>Tailscale connecte ?</strong> Parfait, une etape de moins.</li>
+  <li><strong>Node.js present ?</strong> La section 2.15 detecte automatiquement nvm ou node global et s'adapte.</li>
+  <li><strong>Ports occupes ?</strong> Les checks de port evitent les conflits avec vos services existants.</li>
+</ul>
+
+<h2>Contribuer</h2>
+<p>Le repo est open source sous licence CC-BY 4.0. Forkez, corrigez, ouvrez une PR.</p>
+<p>20 bugs ont ete trouves par un agent IA installateur (Claude-Aurel) en une seule session d'installation. Votre feedback rend le guide meilleur pour tout le monde.</p>
+<p>Consultez la page <a href="contribuer.html">Contribuer</a> pour les details.</p>
+
+<h2>Commencer</h2>
+<ul>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> : ce qu'il faut avant de commencer</li>
+  <li><a href="02-00-sommaire.html">Chapitre 2 complet -- Installation</a> : le parcours de A a Z</li>
+  <li><a href="03-00-sommaire.html">Chapitre 3 -- Configuration</a> : configurer l'agent</li>
+  <li><a href="checklist.html">Checklist interactive</a> : suivre votre avancement</li>
+</ul>
+
+</section>
+"""
+    sidebar_html = build_sidebar(all_sections, 'persona-dev', None)
+    page_html = render_page('OpenClaw pour les developpeurs', content, sidebar_html)
+    write_page('persona-dev.html', page_html)
+
+
+def build_persona_agent(all_sections):
+    """Build the persona-agent.html page."""
+    content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Pour les agents IA</span>
+</nav>
+<section class="chapter">
+<h1>OpenClaw pour les agents IA</h1>
+
+<h2>Vous etes un agent. Ce playbook est votre runbook.</h2>
+<p>Ce repository est concu pour etre clone et execute par un agent IA. Chaque section du chapitre 2 est une instruction executable. Chaque verification a un resultat attendu. Chaque erreur courante est documentee avec sa resolution.</p>
+<p>Le format est structure pour une lecture sequentielle par un agent : contexte, etapes, erreurs, template, verification.</p>
+
+<h2>Comment utiliser ce playbook</h2>
+<ol>
+  <li><strong>Cloner le repo</strong> -- <code>git clone https://github.com/alexwill87/openclaw-field-playbook.git</code></li>
+  <li><strong>Lire CLAUDE.md</strong> -- Ce fichier contient les instructions specifiques pour les agents Claude Code. Il definit les regles, les conventions, et les priorites.</li>
+  <li><strong>Suivre les sections du chapitre 2 dans l'ordre</strong> -- Chaque section est une etape. Ne sautez pas d'etape. Chaque verification doit passer avant de continuer.</li>
+  <li><strong>Logger chaque resultat dans le Install Tracker</strong> -- L'outil <code>tools/install-tracker/</code> fournit une API REST pour enregistrer le statut de chaque etape.</li>
+  <li><strong>Ouvrir des issues pour les problemes rencontres</strong> -- Chaque probleme non documente est une amelioration potentielle du playbook.</li>
+</ol>
+
+<h2>Outils disponibles</h2>
+<table>
+  <thead><tr><th>Outil</th><th>Description</th><th>Emplacement</th></tr></thead>
+  <tbody>
+    <tr><td><strong>CLAUDE.md</strong></td><td>Instructions agent. Regles, conventions, priorites.</td><td>Racine du repo</td></tr>
+    <tr><td><strong>Install Tracker</strong></td><td>API REST pour logger le statut de chaque etape d'installation.</td><td><code>tools/install-tracker/</code></td></tr>
+    <tr><td><strong>Checklist</strong></td><td>44 items couvrant les chapitres 2 a 5. Verification exhaustive.</td><td><a href="checklist.html">checklist.html</a></td></tr>
+    <tr><td><strong>search-index.json</strong></td><td>Index de recherche machine-readable. Slug, titre, URL, extrait pour chaque section.</td><td>Racine du repo</td></tr>
+  </tbody>
+</table>
+
+<h2>Ce qui a ete teste</h2>
+<p>Un agent Claude Code (Claude-Aurel) a execute l'integralite du playbook en avril 2026 :</p>
+<ul>
+  <li><strong>11 phases sur 11 completees</strong> -- De la creation du VPS au deploiement final.</li>
+  <li><strong>20 bugs remontes et corriges</strong> -- Chaque bug a ete documente dans une issue GitHub et corrige dans le playbook.</li>
+  <li><strong>Validation complete</strong> -- Le playbook a ete valide par une installation reelle, de bout en bout, executee par un agent.</li>
+</ul>
+
+<h2>Conventions</h2>
+<ul>
+  <li><strong>Prefixer les commits</strong> avec <code>[AGENT-NOM]</code> (exemple : <code>[AGENT-AUREL] fix: corriger le chemin vault dans section 2.7</code>).</li>
+  <li><strong>Ouvrir des issues</strong> pour chaque probleme rencontre, meme mineur.</li>
+  <li><strong>Utiliser le format standard</strong> pour chaque section : Contexte / Etapes / Erreurs courantes / Template / Verification.</li>
+  <li><strong>Ne pas modifier la structure T1</strong> (les 7 chapitres). Les changements de structure requierent une issue <code>governance</code>.</li>
+</ul>
+
+<h2>Commencer</h2>
+<ul>
+  <li><a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md" target="_blank">CLAUDE.md sur GitHub</a> -- Instructions agent completes</li>
+  <li><a href="02-01-prerequis.html">Section 2.1 -- Prerequis</a> -- Premiere etape d'installation</li>
+  <li><a href="https://github.com/alexwill87/openclaw-field-playbook/tree/main/tools/install-tracker" target="_blank">Install Tracker README</a> -- Documentation de l'outil de suivi</li>
+</ul>
+
+</section>
+"""
+    sidebar_html = build_sidebar(all_sections, 'persona-agent', None)
+    page_html = render_page('OpenClaw pour les agents IA', content, sidebar_html)
+    write_page('persona-agent.html', page_html)
+
+
 def build_search_index(all_sections):
     """Generate search-index.json with slug, title, url and body excerpt for each section."""
     index = []
@@ -1255,6 +1544,10 @@ if __name__ == '__main__':
     build_decouverte_page(all_sections)
     build_ecosystem_page(all_sections)
     build_privacy_page(all_sections)
+    build_persona_entrepreneur(all_sections)
+    build_persona_cto(all_sections)
+    build_persona_dev(all_sections)
+    build_persona_agent(all_sections)
     print()
 
     # Build search index
@@ -1270,7 +1563,7 @@ if __name__ == '__main__':
         n = counts.get(chapter_num, 0)
         total += n
         print(f'  Chapitre {int(chapter_num)} ({short_title}): {n} pages')
-    print(f'  Utility pages: 6 (index, checklist, contribuer, decouverte, ecosystem, privacy)')
-    print(f'  TOTAL: {total + 6} HTML files')
+    print(f'  Utility pages: 10 (index, checklist, contribuer, decouverte, ecosystem, privacy, persona-entrepreneur, persona-cto, persona-dev, persona-agent)')
+    print(f'  TOTAL: {total + 10} HTML files')
     print()
     print('Build complete. All files written to repo root.')
