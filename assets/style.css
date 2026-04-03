@@ -359,30 +359,98 @@ main#content {
 
 /* Titres dans le contenu genere par markdown */
 .chapter h1 {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin: 2rem 0 1rem;
-  padding-top: 1rem;
+  margin: 2.5rem 0 1rem;
+  padding-top: 1.5rem;
+  letter-spacing: -0.02em;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
 }
 
 .chapter h2 {
   font-size: 1.3rem;
   font-weight: 600;
-  margin: 1.8rem 0 0.75rem;
-  padding-top: 0.75rem;
+  margin: 2rem 0 0.75rem;
+  padding-top: 1rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
 }
 
 .chapter h3 {
   font-size: 1.05rem;
   font-weight: 600;
   margin: 1.5rem 0 0.5rem;
+  color: var(--accent);
 }
 
 .chapter h4 {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  margin: 1rem 0 0.5rem;
+  margin: 1.2rem 0 0.4rem;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.78rem;
+}
+
+/* Copy button on code blocks */
+.code-wrapper {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  background: rgba(255,255,255,0.1);
+  color: #999;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.copy-btn:hover {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.copy-btn.copied {
+  color: #22c55e;
+  border-color: #22c55e;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb .sep {
+  margin: 0 0.3rem;
+}
+
+/* Last updated badge */
+.last-updated {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
 }
 
 .chapter p {
@@ -432,6 +500,10 @@ main#content {
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
+}
+
+.chapter tr:nth-child(even) {
+  background: var(--bg-section);
 }
 
 .chapter tr:last-child td {

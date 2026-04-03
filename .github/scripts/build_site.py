@@ -53,6 +53,12 @@ CHAPTERS = [
 
 MD_EXTENSIONS = ['tables', 'fenced_code', 'codehilite', 'toc']
 
+MONTH_NAMES_FR = {
+    '01': 'janvier', '02': 'fevrier', '03': 'mars', '04': 'avril',
+    '05': 'mai', '06': 'juin', '07': 'juillet', '08': 'aout',
+    '09': 'septembre', '10': 'octobre', '11': 'novembre', '12': 'decembre',
+}
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -65,6 +71,39 @@ def strip_frontmatter(text):
         if end != -1:
             return text[end + 3:].strip()
     return text
+
+
+def parse_frontmatter(text):
+    """Parse YAML front matter and return (metadata_dict, content_without_frontmatter).
+
+    Returns a tuple (dict, str). If no frontmatter is found, returns ({}, text).
+    """
+    if text.startswith('---'):
+        end = text.find('---', 3)
+        if end != -1:
+            fm_block = text[3:end].strip()
+            meta = {}
+            for line in fm_block.split('\n'):
+                line = line.strip()
+                if ':' in line:
+                    key, _, value = line.partition(':')
+                    meta[key.strip()] = value.strip()
+            return meta, text[end + 3:].strip()
+    return {}, text
+
+
+def format_last_updated(value):
+    """Format a last_updated value like '2026-04' into 'avril 2026'."""
+    if not value:
+        return None
+    value = str(value).strip()
+    match = re.match(r'^(\d{4})-(\d{2})$', value)
+    if match:
+        year, month = match.group(1), match.group(2)
+        month_name = MONTH_NAMES_FR.get(month, month)
+        return f'{month_name} {year}'
+    # Fallback: return as-is
+    return value
 
 
 def rewrite_md_links(html, section_map):
@@ -367,15 +406,49 @@ def build_section_pages(all_sections):
         md_basename = os.path.basename(sec.md_path)
         section_map[md_basename] = sec.html_file
 
+    # Build a lookup: chapter_num -> sommaire Section (for breadcrumb level 2)
+    sommaire_map = {}
+    for sec in all_sections:
+        if sec.is_sommaire and sec.chapter_num not in sommaire_map:
+            sommaire_map[sec.chapter_num] = sec
+
     for i, sec in enumerate(all_sections):
         # Read and convert markdown
         with open(sec.md_path, 'r', encoding='utf-8') as f:
             raw = f.read()
-        md_content = strip_frontmatter(raw)
+        meta, md_content = parse_frontmatter(raw)
         html_content = markdown.markdown(md_content, extensions=MD_EXTENSIONS)
 
         # Rewrite .md links to .html links
         html_content = rewrite_md_links(html_content, section_map)
+
+        # Build breadcrumb
+        breadcrumb_parts = [
+            '<nav class="breadcrumb">',
+            '  <a href="index.html">Accueil</a>',
+        ]
+        if sec.is_sommaire:
+            # Sommaire page: Accueil / Chapitre (text, no link)
+            breadcrumb_parts.append('  <span class="sep">/</span>')
+            breadcrumb_parts.append(f'  <span>{sec.title}</span>')
+        else:
+            # Sub-section page: Accueil / Chapitre (link) / Section (text)
+            sommaire = sommaire_map.get(sec.chapter_num)
+            if sommaire:
+                breadcrumb_parts.append('  <span class="sep">/</span>')
+                breadcrumb_parts.append(f'  <a href="{sommaire.html_file}">{sommaire.sidebar_title}</a>')
+            breadcrumb_parts.append('  <span class="sep">/</span>')
+            breadcrumb_parts.append(f'  <span>{sec.title}</span>')
+        breadcrumb_parts.append('</nav>')
+        breadcrumb_html = '\n'.join(breadcrumb_parts)
+
+        # Build last-updated
+        last_updated_html = ''
+        last_updated_val = meta.get('last_updated')
+        if last_updated_val:
+            formatted = format_last_updated(last_updated_val)
+            if formatted:
+                last_updated_html = f'<div class="last-updated">Derniere mise a jour : {formatted}</div>'
 
         # Wrap in section div
         wrapped = f'<section class="chapter">\n{html_content}\n</section>'
@@ -407,8 +480,8 @@ def build_section_pages(all_sections):
         # Issues widget
         issues = build_issues_widget()
 
-        # Assemble
-        full_content = wrapped + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
+        # Assemble: breadcrumb + last-updated BEFORE the section content
+        full_content = breadcrumb_html + '\n' + last_updated_html + '\n' + wrapped + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
         sidebar_html = build_sidebar(all_sections, sec.slug, sec.chapter_num)
         page_html = render_page(sec.title, full_content, sidebar_html)
         write_page(sec.html_file, page_html)
@@ -621,6 +694,11 @@ def build_checklist_page(all_sections):
     total_items = item_index
 
     content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Checklist</span>
+</nav>
 <section class="chapter">
 <h1>Checklist de progression</h1>
 <p>Cochez les etapes au fur et a mesure de votre avancement. Votre progression est sauvegardee automatiquement dans votre navigateur.</p>
@@ -748,6 +826,11 @@ document.addEventListener('DOMContentLoaded', loadChecklist);
 def build_contribuer_page(all_sections):
     """Build the contribuer.html page."""
     content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Contribuer</span>
+</nav>
 <section class="chapter">
 <h1>Contribuer au playbook</h1>
 <p>Ce playbook est un projet open-source. Toute contribution est bienvenue, a condition de respecter les niveaux de gouvernance decrits ci-dessous.</p>
@@ -815,6 +898,11 @@ Comment savoir que tout fonctionne.
 def build_decouverte_page(all_sections):
     """Build the decouverte.html page."""
     content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>C'est quoi OpenClaw ?</span>
+</nav>
 <section class="chapter">
 <h1>C'est quoi OpenClaw ?</h1>
 <p>Cette page est pour ceux qui ne connaissent rien a OpenClaw. Pas de jargon, pas de prerequis techniques. Juste l'essentiel pour comprendre de quoi on parle.</p>
@@ -896,6 +984,11 @@ def cleanup_old_chapter_files():
 def build_privacy_page(all_sections):
     """Build the privacy.html page (politique de confidentialite)."""
     content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Confidentialite</span>
+</nav>
 <section class="chapter">
 <h1>Politique de confidentialite</h1>
 <p>Cette page decrit comment le site OpenClaw Field Playbook traite vos donnees.</p>
@@ -933,6 +1026,11 @@ def build_privacy_page(all_sections):
 def build_ecosystem_page(all_sections):
     """Build the ecosystem.html page."""
     content = """
+<nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <span>Ecosysteme</span>
+</nav>
 <section class="chapter">
 <h1>Ecosysteme OpenClaw</h1>
 <p>Tout ce qui gravite autour d'OpenClaw : le projet officiel, les marketplaces de skills, les frameworks concurrents, les outils communautaires, les hebergeurs, les ressources d'apprentissage et les enjeux de securite.</p>

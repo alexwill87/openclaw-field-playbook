@@ -12,6 +12,35 @@ document.querySelectorAll('#side-nav a').forEach(function(a) {
   });
 });
 
+// ========== COPY CODE BUTTON ==========
+(function() {
+  document.querySelectorAll('.chapter pre').forEach(function(pre) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'code-wrapper';
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'Copier';
+    btn.addEventListener('click', function() {
+      var code = pre.querySelector('code');
+      var text = (code || pre).textContent;
+      // Remove leading $ prompts
+      text = text.replace(/^\$ /gm, '');
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'Copie !';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copier';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+    wrapper.appendChild(btn);
+  });
+})();
+
 // ========== SMOOTH SCROLL ==========
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
