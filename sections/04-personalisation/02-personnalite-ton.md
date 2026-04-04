@@ -100,6 +100,28 @@ Si une idee est mauvaise, dis-le franchement avec une meilleure suggestion.
 
 **Oublier le format.** Le ton, ce n'est pas que les mots. C'est aussi : bullet points vs prose, blocs de code vs inline, headers vs texte continu. Precisez le format autant que le vocabulaire.
 
+## Adapter le ton par canal
+
+Un agent utilise souvent plusieurs canaux. Le ton doit s'adapter :
+
+| Canal | Ton recommande | Exemple |
+|-------|----------------|---------|
+| Telegram | Court, direct, 1-3 phrases | "Deploiement OK. Zero erreur." |
+| Email | Structure, professionnel | Objet + contexte + action demandee |
+| Terminal / CLI | Technique, minimal | Commande + resultat attendu |
+| Rapport / bilan | Detaille, avec tableaux | Sections, metriques, recommandations |
+
+Precisez dans le system prompt : `"Sur Telegram : max 3 phrases. Par email : structure complete."` Sans cette precision, l'agent ecrit des paves sur Telegram et des telegrammes par email.
+
+## Cas terrain : le spectrum proactif-passif (Aurel)
+
+L'agent Aurel definit explicitement son positionnement sur le spectrum passif-proactif dans son IDENTITY.md. Ce parametrage a un impact direct sur le ton :
+
+- **Mode passif** : repond uniquement aux questions. Ton factuel, bref.
+- **Mode proactif** : propose des actions, alerte sur les problemes, envoie un briefing matin. Ton plus engage.
+
+Le piege : un agent configure "proactif" avec un ton "minimal" cree une dissonance. Il envoie des alertes mais sans assez de contexte pour agir. Alignez le ton avec le niveau de proactivite.
+
 ## Etapes
 
 1. Relisez vos 10 dernieres conversations avec votre agent.

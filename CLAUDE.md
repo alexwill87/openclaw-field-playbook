@@ -84,9 +84,13 @@ Trois niveaux de contribution, documentes dans `CONTRIBUTING.md` :
 
 ## Utilisation comme runbook par un agent
 
-Ce repository peut etre clone par un agent Claude Code sur un VPS pour guider une installation OpenClaw. L'agent peut :
+Ce repository peut etre clone par un agent Claude Code sur un VPS pour guider une installation OpenClaw.
 
-1. Cloner le repo : `git clone https://github.com/alexwill87/openclawfieldplaybook.git`
+**Point d'entree agent : lire `INDEX-AGENT.md` en premier.** Ce fichier est un sommaire navigable par probleme, avec des liens vers les sections et les issues terrain pertinentes.
+
+Workflow recommande :
+
+1. Lire `INDEX-AGENT.md` — dispatch par probleme, liens vers les bonnes sections
 2. Lire les sections du **chapitre 2 (Installation)** comme un runbook
 3. Executer les commandes decrites etape par etape
 4. Documenter les resultats de chaque etape dans un fichier de log
@@ -94,6 +98,10 @@ Ce repository peut etre clone par un agent Claude Code sur un VPS pour guider un
 6. Utiliser les **cas d'usage du chapitre 6** pour adapter la configuration au contexte specifique
 
 L'agent doit toujours verifier les prerequis avant d'executer une commande et ne jamais sauter une etape de verification.
+
+**Contenu complet** : les 96 fichiers .md dans `sections/` contiennent tout le contenu du playbook. Le site web (www.openclawfieldplaybook.com) est genere depuis ces fichiers. Le fichier `search-index.json` a la racine permet la recherche programmatique.
+
+**Issues GitHub** : les issues contiennent du savoir terrain (bugs reels, solutions testees, configs copiables) non encore integre dans toutes les sections. Voir `FIELD-REPORTS.md` pour la correspondance issues/sections.
 
 ---
 

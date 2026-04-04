@@ -77,6 +77,8 @@ Ce endpoint retourne votre solde et vos limites.
 - **Modele fallback** : Claude Haiku 3.5 pour la vitesse et le cout
 - **Modele experimentation** : Gemini Flash pour les gros volumes
 
+> **ATTENTION : ne jamais utiliser `openrouter/auto` comme modele primaire.** Le routage automatique choisit un modele different a chaque appel. Certains modeles choisis par `auto` ne supportent pas tous les parametres (ex : `reasoning: true` obligatoire), ce qui cause des erreurs 400 silencieuses. L'agent parait "endormi" alors que le probleme est purement technique. Toujours specifier un modele explicite (ex : `anthropic/claude-sonnet-4`). Voir section 5.11 pour le diagnostic.
+
 ## Configuration dans OpenClaw
 
 La connexion est configuree dans `~/.openclaw/config.json` (section 12). Le champ `model.provider` doit etre `"openrouter"` et la cle est lue automatiquement depuis Vault.
@@ -94,6 +96,8 @@ Cela evite les mauvaises surprises si un agent boucle.
 - **"Invalid API key"** : La cle est mal copiee ou expiree. Regenerez-la sur openrouter.ai.
 - **"Insufficient credits"** : Rechargez votre compte sur openrouter.ai.
 - **"Model not found"** : Le nom du modele a change. Verifiez sur openrouter.ai/models le nom exact.
+- **"Reasoning is mandatory for this endpoint"** : Le modele route par `auto` exige `reasoning: true`. Solution : ne pas utiliser `auto`, specifier un modele explicite.
+- **Erreurs 400 silencieuses** : L'agent ne repond pas, aucune erreur visible. Verifier les sessions JSONL : `grep "stopReason.*error" ~/.openclaw/sessions/*.jsonl`. Voir section 5.11.
 - **Timeout sur les appels** : Certains modeles sont lents en charge. Le fallback (Haiku) prend le relais automatiquement si configure.
 
 ## Verification

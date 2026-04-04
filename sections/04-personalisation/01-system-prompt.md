@@ -109,6 +109,24 @@ Tu n'as PAS acces a : [liste].
 - [Format prefere : bullet points, prose, code]
 ```
 
+## Cas terrain : workspace Aurel (VPS Pantheos)
+
+L'agent Aurel utilise un systeme de fichiers complementaires au system prompt qui merite d'etre documente comme pattern reutilisable :
+
+| Fichier | Role | Contenu cle |
+|---------|------|-------------|
+| `SOUL.md` | Boussole morale | Mission, valeurs, 4 principes fondateurs, limites inviolables |
+| `IDENTITY.md` | Identite operationnelle | 3 roles integres (Majordome, Ingenieur, Premier Ministre), signature de communication |
+| `USER_PROFILE.md` | Contexte utilisateur | Qui est l'utilisateur, horaires, budget, contraintes |
+| `AGENTS.md` | Manifeste agent | Regles comportementales, memoire, proactivite, fleet de 8 agents |
+| `mode_DEV.md` / `mode_ARCHI.md` | Modes operationnels | DEV = execution, ARCHI = gouvernance |
+
+**Pourquoi ca marche** : le system prompt reste court (~200 mots) et pointe vers ces fichiers. Chaque fichier a un perimetre precis. Quand une regle change, on modifie un seul fichier sans toucher au system prompt.
+
+**Pattern "Last Word Rule"** (extrait du SOUL.md d'Aurel) : l'humain a toujours le dernier mot. Si l'agent est en desaccord, il exprime sa position une fois, puis execute la decision humaine sans resistance passive. Ce pattern evite les boucles de negociation agent-humain.
+
+> **Recommandation** : commencez avec un system prompt simple (template ci-dessus). Quand il depasse 300 mots, eclatez-le en fichiers thematiques. Voir section 4.11 pour les niveaux de confiance dans CONSTITUTION.md.
+
 ## Etapes
 
 1. Ecrivez une premiere version en suivant la structure ci-dessus.

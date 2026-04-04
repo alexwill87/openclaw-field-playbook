@@ -93,6 +93,26 @@ Une panne, ca arrive. Le reflexe : ne pas paniquer, diagnostiquer, corriger, pre
 
 **Prevention :** fallback sur un autre modele configure (section 5.13). Budget et rate limits surveilles.
 
+### L'agent ne repond pas (muet) — erreurs LLM silencieuses
+
+L'agent semble "endormi" : il recoit les messages mais ne repond pas, ou repond apres 5-6 tentatives. Ce n'est pas un bug OpenClaw, c'est un probleme de modele.
+
+| Diagnostic | Commande | Fix |
+|---|---|---|
+| Erreur modele silencieuse (400/422) | Chercher `stopReason: "error"` dans les sessions JSONL : `grep -c '"stopReason":"error"' ~/.openclaw/sessions/*.jsonl` | Changer de modele primaire (voir section 2.12) |
+| `openrouter/auto` route vers un modele incompatible | Verifier les sessions : `grep '"model"' ~/.openclaw/sessions/*.jsonl \| tail -20` | Remplacer `openrouter/auto` par un modele explicite |
+| Erreur "Reasoning is mandatory" | `grep -i "reasoning" ~/.openclaw/sessions/*.jsonl` | Le modele exige `reasoning: true`. Changer de modele ou activer le parametre |
+| Fallback fonctionne mais lent | Compter les erreurs primaires vs fallback dans les sessions | Le modele primaire echoue en silence, le fallback prend le relais apres timeout |
+| Taux d'erreur eleve (>5%) | `grep -c "error" ~/.openclaw/sessions/SESSION.jsonl` | Changer de modele. Un bon setup a <1% d'erreurs |
+
+**Cas terrain (Aurel, avril 2026)** : `openrouter/auto` a cause 11.6% d'erreurs silencieuses (erreur 400 "Reasoning is mandatory"). L'agent paraissait endormi pendant que le fallback Gemini Flash prenait le relais apres timeout. Solution : remplacer `openrouter/auto` par un modele explicite (`anthropic/claude-sonnet-4`).
+
+**Prevention :**
+- **Ne jamais utiliser `openrouter/auto` en production** — le routage automatique cause des incompatibilites (voir section 2.13).
+- Verifier periodiquement les sessions JSONL pour detecter les erreurs silencieuses.
+- Configurer au moins 2 modeles fallback de providers differents.
+- Apres chaque changement de modele, envoyer un message test et verifier la reponse.
+
 ## Apres la panne
 
 1. **Documenter.** Quoi, quand, cause, fix, duree.
@@ -124,7 +144,7 @@ Une panne, ca arrive. Le reflexe : ne pas paniquer, diagnostiquer, corriger, pre
 
 ## Verification
 
-- [ ] Vous savez diagnostiquer les 6 scenarios ci-dessus.
+- [ ] Vous savez diagnostiquer les 7 scenarios ci-dessus.
 - [ ] Les commandes de diagnostic sont testees et fonctionnent sur votre setup.
 - [ ] Un template post-mortem existe.
 - [ ] Les pannes passees sont documentees.

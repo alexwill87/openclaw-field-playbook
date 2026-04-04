@@ -155,9 +155,26 @@ Ou mieux : utilisez le fichier systemd (section 15) pour injecter la variable.
 | Claude Sonnet 4 | Meilleur raisonnement, code de qualite | Plus lent, plus cher | ~3$/M tokens entree |
 | Claude Haiku 3.5 | Rapide, pas cher | Moins precis sur les taches complexes | ~0.25$/M tokens |
 | Mistral Large | Bon en francais | Moins bon en code | ~2$/M tokens |
-| Gemini 2.0 Flash | Tres rapide, grande fenetre | Variable en qualite | ~0.10$/M tokens |
+| Gemini 2.5 Flash | Tres rapide, grande fenetre | Variable en qualite | ~0.10$/M tokens |
 
-Recommandation : Claude Sonnet en defaut, Haiku en fallback.
+### Tableau de decision par profil
+
+| Profil | Modele recommande | Provider | Cout estime/jour | Notes |
+|--------|-------------------|----------|-------------------|-------|
+| Solo budget serre | `google/gemini-2.5-flash` | Google direct ou OpenRouter | ~0.50 EUR | Bon rapport qualite/prix |
+| Solo qualite | `anthropic/claude-sonnet-4` | Anthropic direct | ~2-5 EUR | Meilleur raisonnement |
+| Multi-modele | Modele explicite via OpenRouter | OpenRouter | Variable | **Jamais `auto`** |
+| Production fiable | 1 primaire + 2 fallbacks | Mix | Variable | Tester chaque modele avant deploy |
+
+### Regles de choix
+
+1. **Ne jamais utiliser `openrouter/auto` en production.** Le routage automatique choisit un modele different a chaque appel, ce qui cause des incompatibilites (ex : certains modeles exigent `reasoning: true`). Resultat : erreurs 400 silencieuses, agent percu comme "endormi". Cas reel : 11.6% d'erreurs sur un VPS en avril 2026.
+2. **Toujours tester le modele avant de configurer un canal.** Envoyez un message test via l'API et verifiez la reponse (section 2.13).
+3. **Verifier la compatibilite reasoning.** Certains modeles exigent `reasoning: true` et retournent une erreur 400 silencieuse si desactive.
+4. **Documenter les fallbacks.** Au moins 2 fallbacks de providers differents pour eviter les pannes totales.
+5. **Monitorer.** Verifier periodiquement les sessions JSONL pour detecter les erreurs silencieuses (`grep "stopReason.*error"` — voir section 5.11).
+
+Recommandation : Claude Sonnet en defaut, Haiku en fallback, Gemini Flash en fallback secondaire.
 
 ## Enregistrement des modeles dans `agents.defaults.models`
 
