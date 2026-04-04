@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.15 -- Gateway systemd | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.15 -- Gateway systemd | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.15 -- Gateway systemd | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html" class="active">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.15 -- Gateway systemd</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#step-0-check-for-old-services-critical">Step 0: Check for old services (CRITICAL)</a></li>
+    <li><a href="#step-1-create-the-service-file">Step 1: Create the service file</a></li>
+    <li><a href="#step-2-enable-and-start-the-service">Step 2: Enable and start the service</a></li>
+    <li><a href="#step-3-check-the-status">Step 3: Check the status</a></li>
+    <li><a href="#step-4-view-the-logs">Step 4: View the logs</a></li>
+    <li><a href="#step-5-common-management-commands">Step 5: Common management commands</a></li>
+    <li><a href="#automatic-restart-behavior">Automatic restart behavior</a></li>
+    <li><a href="#common-errors">Common errors</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#estimated-time">Estimated time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 02
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="215-gateway-systemd">2.15 -- Gateway systemd</h1>
+<h2 id="context">Context</h2>
+<p>The OpenClaw gateway is the HTTP entry point of the system. It must run continuously, restart automatically in case of crash, and start at server boot. systemd is the standard Linux service manager — it handles this.</p>
+<h2 id="step-0-check-for-old-services-critical">Step 0: Check for old services (CRITICAL)</h2>
+<p>Before creating a new service, verify that there is no old OpenClaw service that could conflict:</p>
+<pre class="codehilite"><code class="language-bash">$ systemctl --user list-units --all | grep openclaw
+$ sudo systemctl list-units --all | grep openclaw
+</code></pre>
+
+<p>If an old service exists (for example <code>openclaw.service</code>, <code>openclaw-gateway.service</code> from a previous installation), disable and remove it:</p>
+<pre class="codehilite"><code class="language-bash"># For a user service:
+$ systemctl --user stop openclaw-gateway
+$ systemctl --user disable openclaw-gateway
+$ rm ~/.config/systemd/user/openclaw-gateway.service
+$ systemctl --user daemon-reload
+
+# For a system service:
+$ sudo systemctl stop openclaw-gateway
+$ sudo systemctl disable openclaw-gateway
+$ sudo rm /etc/systemd/system/openclaw-gateway.service
+$ sudo systemctl daemon-reload
+</code></pre>
+
+<blockquote>
+<p><strong>Why?</strong> Two systemd services with the same name or pointing to the same binary will fight over the same port. The symptom: the gateway crashes in a loop with "EADDRINUSE" or "port already in use". This problem is very difficult to diagnose if you don't think to check for old services.</p>
+</blockquote>
+<h2 id="step-1-create-the-service-file">Step 1: Create the service file</h2>
+<p>Create <code>/etc/systemd/system/openclaw-gateway.service</code>:</p>
+<pre class="codehilite"><code class="language-bash">$ sudo nano /etc/systemd/system/openclaw-gateway.service
+</code></pre>
+
+<p>Content:</p>
+<p>First, find your exact paths:</p>
+<pre class="codehilite"><code class="language-bash">$ which node
+$ which openclaw
+</code></pre>
+
+<p>Note the results. Then create the environment file for secrets:</p>
+<pre class="codehilite"><code class="language-bash">$ sudo mkdir -p /etc/openclaw
+$ sudo tee /etc/openclaw/gateway.env &gt; /dev/null &lt;&lt; 'EOF'
+VAULT_ADDR=http://127.0.0.1:8200
+VAULT_TOKEN=YOUR_APPLICATION_TOKEN_HERE
+EOF
+$ sudo chmod 600 /etc/openclaw/gateway.env
+$ sudo chown YOUR_USER:YOUR_USER /etc/openclaw/gateway.env
+</code></pre>
+
+<blockquote>
+<p><strong>SECURITY:</strong> The Vault token must NEVER appear in plain text in the systemd file. Use <code>EnvironmentFile</code> to load it from a protected file (chmod 600). The file must be owned by the user who executes the service (YOUR_USER), otherwise systemd will not be able to read it and the service will fail silently with empty environment variables.</p>
+</blockquote>
+<p>Create the service file by replacing <code>YOUR_USER</code> and paths with your values:</p>
+<pre class="codehilite"><code class="language-ini">[Unit]
+Description=OpenClaw Gateway
+Documentation=https://github.com/alexwill87/openclawfieldplaybook
+After=network.target docker.service
+Wants=docker.service
+
+[Service]
+Type=simple
+User=YOUR_USER
+Group=YOUR_USER
+WorkingDirectory=/home/YOUR_USER
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/openclaw/gateway.env
+
+ExecStart=/home/YOUR_USER/scripts/openclaw-gateway.sh
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -TERM $MAINPID
+
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=openclaw-gateway
+
+# Security
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/home/YOUR_USER
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<p>Create the wrapper script that loads nvm correctly (systemd does not load <code>.bashrc</code>):</p>
+<pre class="codehilite"><code class="language-bash">$ cat &gt; ~/scripts/openclaw-gateway.sh &lt;&lt; 'SCRIPT'
+#!/bin/bash
+# Load nvm if present, otherwise use global node
+if [ -f &quot;$HOME/.nvm/nvm.sh&quot; ]; then
+  export NVM_DIR=&quot;$HOME/.nvm&quot;
+  source &quot;$NVM_DIR/nvm.sh&quot;
+fi
+exec openclaw gateway start
+SCRIPT
+$ chmod +x ~/scripts/openclaw-gateway.sh
+</code></pre>
+
+<blockquote>
+<p><strong>Why this detection?</strong> If nvm is not installed (for example if node was installed via apt or another package manager), the script will crash on the <code>source</code> of a non-existent file. With this detection, the script works in both cases.</p>
+</blockquote>
+<p><strong>IMPORTANT</strong>: Replace the placeholders in the service file:
+- <code>YOUR_USER</code>: your username (result of <code>whoami</code>)
+- The Vault token in <code>/etc/openclaw/gateway.env</code>: the one created in section 07</p>
+<blockquote>
+<p><strong>PM2 or systemd?</strong> If you already use PM2 for other Node.js services, use PM2. Otherwise, systemd is recommended because it is native to Ubuntu and does not require additional dependencies. Do not mix the two for the same service.</p>
+</blockquote>
+<h2 id="step-2-enable-and-start-the-service">Step 2: Enable and start the service</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl daemon-reload
+$ sudo systemctl enable openclaw-gateway
+$ sudo systemctl start openclaw-gateway
+</code></pre>
+
+<h2 id="step-3-check-the-status">Step 3: Check the status</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway
+</code></pre>
+
+<p>Expected result:</p>
+<pre class="codehilite"><code>openclaw-gateway.service - OpenClaw Gateway
+     Loaded: loaded (/etc/systemd/system/openclaw-gateway.service; enabled)
+     Active: active (running) since ...
+</code></pre>
+
+<h2 id="step-4-view-the-logs">Step 4: View the logs</h2>
+<p>Real-time logs:</p>
+<pre class="codehilite"><code class="language-bash">$ journalctl -u openclaw-gateway -f
+</code></pre>
+
+<p>Logs since last boot:</p>
+<pre class="codehilite"><code class="language-bash">$ journalctl -u openclaw-gateway -b
+</code></pre>
+
+<p>Logs from the last 100 lines:</p>
+<pre class="codehilite"><code class="language-bash">$ journalctl -u openclaw-gateway -n 100 --no-pager
+</code></pre>
+
+<h2 id="step-5-common-management-commands">Step 5: Common management commands</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start</td>
+<td><code>sudo systemctl start openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Stop</td>
+<td><code>sudo systemctl stop openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Restart</td>
+<td><code>sudo systemctl restart openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Reload config</td>
+<td><code>sudo systemctl reload openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td><code>sudo systemctl status openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>Disable at boot</td>
+<td><code>sudo systemctl disable openclaw-gateway</code></td>
+</tr>
+<tr>
+<td>View logs</td>
+<td><code>journalctl -u openclaw-gateway -f</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="automatic-restart-behavior">Automatic restart behavior</h2>
+<p>The configuration provides:
+- <code>Restart=always</code>: restarts after any stop (crash, kill, etc.)
+- <code>RestartSec=10</code>: waits 10 seconds before restarting
+- <code>StartLimitBurst=5</code> and <code>StartLimitIntervalSec=300</code>: maximum 5 restarts in 5 minutes. Beyond that, systemd considers the service as failing and stops attempts.</p>
+<p>To reset the attempt counter:</p>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl reset-failed openclaw-gateway
+$ sudo systemctl start openclaw-gateway
+</code></pre>
+
+<h2 id="common-errors">Common errors</h2>
+<ul>
+<li><strong>"openclaw: command not found"</strong> in logs: systemd does not load <code>.bashrc</code>. You must use the ABSOLUTE path to node and openclaw. No <code>nvm</code>, no <code>~</code>.</li>
+<li><strong>Permission denied</strong>: The user in the service file does not have access to the folder. Check <code>User=</code> and <code>ReadWritePaths=</code>.</li>
+<li><strong>Service looping (restart loop)</strong>: Check the logs (<code>journalctl</code>). Often a problem with Vault token or database connection.</li>
+<li><strong>"Start request repeated too quickly"</strong>: The service crashed 5 times in 5 minutes. Fix the underlying problem, then <code>systemctl reset-failed</code>.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway
+$ curl -s http://127.0.0.1:3000/health
+$ journalctl -u openclaw-gateway -n 10 --no-pager
+</code></pre>
+
+<p>Expected results:
+- Status: active (running)
+- Health endpoint returns a 200 response
+- No errors in the last 10 lines of log</p>
+<h2 id="estimated-time">Estimated time</h2>
+<p>10 minutes.</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Step 0: Check for old services (CRITICAL), Step 1: Create the service file, Step 2: Enable and start the service and 7 more. <a href="02-16-verification-complete.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/15-gateway-systemd.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-14-telegram.html">&larr; 2.14 -- Telegram Connection</a>
+<a href="02-16-verification-complete.html">2.16 -- Post-installation verification &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

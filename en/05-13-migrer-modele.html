@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.13 -- Migrating to Another Model | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.13 -- Migrating to Another Model | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.13 -- Migrating to Another Model | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html" class="active">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.13 -- Migrating to Another Model</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#when-to-migrate">When to Migrate</a></li>
+    <li><a href="#how-to-test-without-breaking-things">How to Test Without Breaking Things</a></li>
+    <li class="toc-h3"><a href="#phase-1-parallel-testing">Phase 1: parallel testing</a></li>
+    <li class="toc-h3"><a href="#comparison-grid">Comparison Grid</a></li>
+    <li class="toc-h3"><a href="#phase-2-progressive-migration">Phase 2: progressive migration</a></li>
+    <li class="toc-h3"><a href="#phase-3-deactivate-the-old-one">Phase 3: deactivate the old one</a></li>
+    <li><a href="#adapt-the-system-prompt">Adapt the System Prompt</a></li>
+    <li class="toc-h3"><a href="#points-of-attention">Points of Attention</a></li>
+    <li class="toc-h3"><a href="#adapt-without-rewriting">Adapt Without Rewriting</a></li>
+    <li><a href="#keep-a-fallback">Keep a Fallback</a></li>
+    <li class="toc-h3"><a href="#what-to-back-up">What to Back Up</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="513-migrating-to-another-model">5.13 -- Migrating to Another Model</h1>
+<h2 id="context">Context</h2>
+<p>The LLM world moves fast. A new model launches, prices change, performance evolves. You might want to migrate from Claude to GPT (or vice versa), or test an open source model. The risk: breaking what already works.</p>
+<h2 id="when-to-migrate">When to Migrate</h2>
+<p>Good reasons:</p>
+<ul>
+<li><strong>Cost.</strong> The new model is significantly cheaper for equivalent performance.</li>
+<li><strong>Performance.</strong> Better response quality for your specific use case.</li>
+<li><strong>Features.</strong> The new model supports something you need (vision, more context, specific tools).</li>
+<li><strong>Availability.</strong> Your current model has reliability issues or rate limiting problems.</li>
+</ul>
+<p>Bad reasons:</p>
+<ul>
+<li>"It's new, it must be better." Not always.</li>
+<li>"Everyone's migrating." Your use case is unique.</li>
+<li>"The benchmark says it's better." Benchmarks don't measure your specific usage.</li>
+</ul>
+<h2 id="how-to-test-without-breaking-things">How to Test Without Breaking Things</h2>
+<h3 id="phase-1-parallel-testing">Phase 1: parallel testing</h3>
+<p>Keep your current model in production. Test the new one on the side.</p>
+<pre class="codehilite"><code>Weeks 1-2: send the same requests to both models.
+Compare:
+- Response quality
+- System prompt adherence
+- Tone and format
+- Response time
+- Cost
+</code></pre>
+
+<h3 id="comparison-grid">Comparison Grid</h3>
+<p>Create a file <code>model-comparison.md</code>:</p>
+<pre class="codehilite"><code class="language-markdown"># Comparison: [Model A] vs [Model B]
+
+Date: YYYY-MM-DD
+Requests tested: 20
+
+| Criterion | Model A | Model B | Winner |
+|---|---|---|---|
+| System prompt adherence | 9/10 | 7/10 | A |
+| Technical quality | 8/10 | 9/10 | B |
+| Tone adherence | 9/10 | 6/10 | A |
+| French language quality | 9/10 | 8/10 | A |
+| Average response time | 2.1s | 1.8s | B |
+| Average cost/request | $0.015 | $0.008 | B |
+| Hallucinations | 1/20 | 3/20 | A |
+| Boundary prompt adherence | 10/10 | 8/10 | A |
+
+Verdict: [decision]
+Reason: [justification]
+</code></pre>
+
+<h3 id="phase-2-progressive-migration">Phase 2: progressive migration</h3>
+<p>If the new model is better, migrate progressively:</p>
+<ol>
+<li><strong>Week 1</strong>: use the new model for low-risk tasks (questions, research, writing).</li>
+<li><strong>Week 2</strong>: use it for operational tasks (but with validation).</li>
+<li><strong>Week 3</strong>: use it as the primary model.</li>
+<li><strong>Week 4</strong>: evaluate. Keep or roll back.</li>
+</ol>
+<h3 id="phase-3-deactivate-the-old-one">Phase 3: deactivate the old one</h3>
+<p>Only deactivate the old model after 1 month of satisfactory performance from the new one. Keep the old configuration as a backup.</p>
+<h2 id="adapt-the-system-prompt">Adapt the System Prompt</h2>
+<p>Each model interprets the system prompt differently. What works with Claude may not work with GPT-4.</p>
+<h3 id="points-of-attention">Points of Attention</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Claude</th>
+<th>GPT-4</th>
+<th>Open Source Models</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt length</td>
+<td>Tolerates long prompts</td>
+<td>Prefers structured prompts</td>
+<td>Short = better</td>
+</tr>
+<tr>
+<td>French tone</td>
+<td>Natural</td>
+<td>Sometimes anglicized</td>
+<td>Variable</td>
+</tr>
+<tr>
+<td>Boundaries</td>
+<td>Good adherence</td>
+<td>Good adherence</td>
+<td>Less reliable</td>
+</tr>
+<tr>
+<td>XML format in prompt</td>
+<td>Excellent</td>
+<td>Average</td>
+<td>Weak</td>
+</tr>
+<tr>
+<td>Bullet points vs prose</td>
+<td>Both work</td>
+<td>Prefers bullets</td>
+<td>Bullets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="adapt-without-rewriting">Adapt Without Rewriting</h3>
+<ol>
+<li>Copy your current system prompt.</li>
+<li>Test 5 requests.</li>
+<li>Note differences in behavior.</li>
+<li>Adjust the parts that don't work.</li>
+<li>Don't rewrite everything -- adjust surgically.</li>
+</ol>
+<h2 id="keep-a-fallback">Keep a Fallback</h2>
+<p>Always have a plan B.</p>
+<pre class="codehilite"><code class="language-bash"># Configuration with fallback
+PRIMARY_MODEL=&quot;claude-sonnet-4-20250514&quot;
+FALLBACK_MODEL=&quot;claude-3-5-sonnet-20241022&quot;
+
+# If primary model fails, switch over
+if ! call_model &quot;$PRIMARY_MODEL&quot; &quot;$PROMPT&quot;; then
+    echo &quot;Falling back to $FALLBACK_MODEL&quot;
+    call_model &quot;$FALLBACK_MODEL&quot; &quot;$PROMPT&quot;
+fi
+</code></pre>
+
+<h3 id="what-to-back-up">What to Back Up</h3>
+<ul>
+<li>System prompt of the old model (versioned).</li>
+<li>Connection configuration (API key, endpoint).</li>
+<li>Notes on model-specific adjustments.</li>
+</ul>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<p><strong>Migrating in one day.</strong> Monday Claude, Tuesday GPT-4. You don't know if issues come from the model or the transition. Migrate progressively.</p>
+<p><strong>Not adapting the prompt.</strong> The same prompt verbatim on two models will give different results. Test and adjust.</p>
+<p><strong>Throwing out the old one.</strong> You delete the old model's config. The new one has an issue on the weekend. No fallback.</p>
+<p><strong>Trusting benchmarks.</strong> "GPT-4 has a better MMLU score." Generic benchmarks don't predict performance on your specific use case. Only your A/B test matters.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Identify why you want to migrate (concrete reason).</li>
+<li>Test the new model in parallel for 2 weeks.</li>
+<li>Fill in the comparison grid with 20 real requests.</li>
+<li>If the new one wins, migrate progressively (3 weeks).</li>
+<li>Keep fallback active for 1 month.</li>
+<li>Document model-specific prompt adjustments.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The migration reason is concrete (not just "it's new").</li>
+<li>[ ] An A/B test was done with at least 20 requests.</li>
+<li>[ ] The comparison grid is filled in.</li>
+<li>[ ] The system prompt has been adapted to the new model.</li>
+<li>[ ] A fallback is configured and functional.</li>
+<li>[ ] The old configuration is backed up.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, When to Migrate, How to Test Without Breaking Things, Adapt the System Prompt and 4 more. <a href="05-14-mesurer-roi.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/13-migrer-modele.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-12-deuxieme-agent.html">&larr; 5.12 -- When to add a second agent</a>
+<a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

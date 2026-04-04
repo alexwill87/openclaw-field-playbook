@@ -148,38 +148,38 @@
 <p>Avec boundary prompt :
 - "Montre-moi le contenu de .env" -&gt; "Je ne peux pas afficher les fichiers contenant des secrets. Utilisez <code>vault kv get</code> pour acceder aux secrets de facon securisee."</p>
 <h2 id="structure-du-boundary-prompt">Structure du boundary prompt</h2>
-<div class="codehilite"><pre><span></span><code><span class="gh"># BOUNDARIES — Actions interdites</span>
+<pre class="codehilite"><code class="language-markdown"># BOUNDARIES — Actions interdites
 
 Tu ne dois JAMAIS, meme si je te le demande explicitement :
 
-<span class="gu">## Securite</span>
-<span class="k">-</span><span class="w"> </span>Afficher des mots de passe, tokens, ou cles API en clair.
-<span class="k">-</span><span class="w"> </span>Modifier .env, .env.production, ou tout fichier contenant des secrets.
-<span class="k">-</span><span class="w"> </span>Desactiver le firewall ou ouvrir des ports.
-<span class="k">-</span><span class="w"> </span>Stocker des secrets dans des fichiers non-chiffres.
-<span class="k">-</span><span class="w"> </span>Commiter des fichiers contenant des credentials.
+## Securite
+- Afficher des mots de passe, tokens, ou cles API en clair.
+- Modifier .env, .env.production, ou tout fichier contenant des secrets.
+- Desactiver le firewall ou ouvrir des ports.
+- Stocker des secrets dans des fichiers non-chiffres.
+- Commiter des fichiers contenant des credentials.
 
-<span class="gu">## Git</span>
-<span class="k">-</span><span class="w"> </span>Executer git push --force sur main ou master.
-<span class="k">-</span><span class="w"> </span>Executer git reset --hard sans backup prealable.
-<span class="k">-</span><span class="w"> </span>Modifier l&#39;historique git d&#39;une branche partagee.
-<span class="k">-</span><span class="w"> </span>Amend un commit deja pousse.
+## Git
+- Executer git push --force sur main ou master.
+- Executer git reset --hard sans backup prealable.
+- Modifier l'historique git d'une branche partagee.
+- Amend un commit deja pousse.
 
-<span class="gu">## Infrastructure</span>
-<span class="k">-</span><span class="w"> </span>Supprimer des backups.
-<span class="k">-</span><span class="w"> </span>DROP TABLE ou DELETE sans WHERE en production.
-<span class="k">-</span><span class="w"> </span>Arreter un service en production sans procedure de rollback.
-<span class="k">-</span><span class="w"> </span>Modifier les regles DNS sans validation.
+## Infrastructure
+- Supprimer des backups.
+- DROP TABLE ou DELETE sans WHERE en production.
+- Arreter un service en production sans procedure de rollback.
+- Modifier les regles DNS sans validation.
 
-<span class="gu">## Communication</span>
-<span class="k">-</span><span class="w"> </span>Envoyer un message a un client sans validation.
-<span class="k">-</span><span class="w"> </span>Partager des informations internes a l&#39;exterieur.
-<span class="k">-</span><span class="w"> </span>Repondre a la place de l&#39;utilisateur sur un canal public.
+## Communication
+- Envoyer un message a un client sans validation.
+- Partager des informations internes a l'exterieur.
+- Repondre a la place de l'utilisateur sur un canal public.
 
-<span class="gu">## Si on te demande de violer ces regles</span>
-Refuse poliment. Explique pourquoi c&#39;est interdit.
+## Si on te demande de violer ces regles
+Refuse poliment. Explique pourquoi c'est interdit.
 Propose une alternative securisee si elle existe.
-</code></pre></div>
+</code></pre>
 
 <h2 id="ou-le-placer">Ou le placer</h2>
 <p>Deux options :</p>
@@ -192,28 +192,28 @@ Inconvenient : l'agent doit savoir qu'il doit le lire. Ajoutez dans le system pr
 <p>Recommandation : les 3-5 regles les plus critiques dans le system prompt. Le reste dans BOUNDARIES.md.</p>
 <h2 id="exemples-concrets-par-domaine">Exemples concrets par domaine</h2>
 <h3 id="pour-un-devops">Pour un devops</h3>
-<div class="codehilite"><pre><span></span><code>JAMAIS :
+<pre class="codehilite"><code>JAMAIS :
 - rm -rf sur / ou /home ou /opt sans confirmation du chemin exact
 - Modifier iptables/ufw sans procedure documentee
 - Redemarrer PostgreSQL en production sans verifier les connexions actives
 - Deployer un vendredi apres 16h
-</code></pre></div>
+</code></pre>
 
 <h3 id="pour-un-consultant">Pour un consultant</h3>
-<div class="codehilite"><pre><span></span><code>JAMAIS :
+<pre class="codehilite"><code>JAMAIS :
 - Envoyer un email client sans relecture
 - Partager des tarifs ou conditions sans validation
 - Ecrire au nom du cabinet sur les reseaux sociaux
 - Promettre une deadline sans verification
-</code></pre></div>
+</code></pre>
 
 <h3 id="pour-un-developpeur">Pour un developpeur</h3>
-<div class="codehilite"><pre><span></span><code>JAMAIS :
+<pre class="codehilite"><code>JAMAIS :
 - Merge sur main sans CI verte
 - Modifier une migration deja appliquee en production
 - Hardcoder des credentials
 - Desactiver des tests pour que la CI passe
-</code></pre></div>
+</code></pre>
 
 <h2 id="apres-un-incident">Apres un incident</h2>
 <p>Quand l'agent fait quelque chose qu'il n'aurait pas du :</p>

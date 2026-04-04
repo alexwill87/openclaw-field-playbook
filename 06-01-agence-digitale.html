@@ -256,14 +256,14 @@
 - Agent Recherche : veille concurrentielle, analyse de marche, documentation technique
 - Agent Ops : monitoring serveur, alertes, rapports de cout</p>
 <h3 id="schema-jd6-organisation-des-domaines">Schema JD6 -- Organisation des domaines</h3>
-<div class="codehilite"><pre><span></span><code><span class="mf">10</span><span class="o">-</span><span class="mf">19</span><span class="w">  </span><span class="n">Infrastructure</span><span class="w">    </span><span class="p">(</span><span class="n">serveurs</span><span class="p">,</span><span class="w"> </span><span class="n">reseau</span><span class="p">,</span><span class="w"> </span><span class="n">DNS</span><span class="p">,</span><span class="w"> </span><span class="n">backups</span><span class="p">)</span>
-<span class="mf">20</span><span class="o">-</span><span class="mf">29</span><span class="w">  </span><span class="n">Securite</span><span class="w">          </span><span class="p">(</span><span class="n">Vault</span><span class="p">,</span><span class="w"> </span><span class="n">acces</span><span class="p">,</span><span class="w"> </span><span class="n">audit</span><span class="p">,</span><span class="w"> </span><span class="n">RGPD</span><span class="p">)</span>
-<span class="mf">30</span><span class="o">-</span><span class="mf">39</span><span class="w">  </span><span class="n">Agents</span><span class="w"> </span><span class="n">IA</span><span class="w">         </span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span><span class="w"> </span><span class="n">prompts</span><span class="p">,</span><span class="w"> </span><span class="n">memoire</span><span class="p">,</span><span class="w"> </span><span class="n">couts</span><span class="p">)</span>
-<span class="mf">40</span><span class="o">-</span><span class="mf">49</span><span class="w">  </span><span class="n">Knowledge</span><span class="w">         </span><span class="p">(</span><span class="n">base</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">connaissances</span><span class="p">,</span><span class="w"> </span><span class="n">embeddings</span><span class="p">,</span><span class="w"> </span><span class="n">RAG</span><span class="p">)</span>
-<span class="mf">50</span><span class="o">-</span><span class="mf">59</span><span class="w">  </span><span class="n">Communication</span><span class="w">     </span><span class="p">(</span><span class="n">Mattermost</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="ow">not</span><span class="kr">if</span><span class="n">ications</span><span class="p">)</span>
-<span class="mf">60</span><span class="o">-</span><span class="mf">69</span><span class="w">  </span><span class="n">Business</span><span class="w">          </span><span class="p">(</span><span class="n">clients</span><span class="p">,</span><span class="w"> </span><span class="n">projets</span><span class="p">,</span><span class="w"> </span><span class="n">facturation</span><span class="p">,</span><span class="w"> </span><span class="n">CRM</span><span class="p">)</span>
-<span class="mf">70</span><span class="o">-</span><span class="mf">79</span><span class="w">  </span><span class="n">Reporting</span><span class="w">         </span><span class="p">(</span><span class="n">dashboards</span><span class="p">,</span><span class="w"> </span><span class="n">metriques</span><span class="p">,</span><span class="w"> </span><span class="n">KPIs</span><span class="p">)</span>
-</code></pre></div>
+<pre class="codehilite"><code>10-19  Infrastructure    (serveurs, reseau, DNS, backups)
+20-29  Securite          (Vault, acces, audit, RGPD)
+30-39  Agents IA         (configuration, prompts, memoire, couts)
+40-49  Knowledge         (base de connaissances, embeddings, RAG)
+50-59  Communication     (Mattermost, email, notifications)
+60-69  Business          (clients, projets, facturation, CRM)
+70-79  Reporting         (dashboards, metriques, KPIs)
+</code></pre>
 
 <p>Chaque domaine a un dossier correspondant dans la knowledge base et un canal dedie dans Mattermost.</p>
 <hr />
@@ -364,28 +364,28 @@
 </table>
 <hr />
 <h2 id="template-system-prompt-de-lagent-principal">Template -- System prompt de l'agent principal</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="s1">&#39;agent principal de [NOM DE L&#39;</span><span class="n">AGENCE</span><span class="p">]</span><span class="o">.</span>
+<pre class="codehilite"><code>Tu es l'agent principal de [NOM DE L'AGENCE].
 
-<span class="n">Ton</span><span class="w"> </span><span class="n">role</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">coordonner</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">operations</span><span class="w"> </span><span class="n">entre</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">fondateurs</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">specialises</span><span class="o">.</span>
+Ton role est de coordonner les operations entre les fondateurs et les agents specialises.
 
-<span class="n">Regles</span><span class="w"> </span><span class="p">:</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">reponds</span><span class="w"> </span><span class="n">toujours</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">francais</span><span class="w"> </span><span class="n">sauf</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">te</span><span class="w"> </span><span class="n">demande</span><span class="w"> </span><span class="n">explicitement</span><span class="w"> </span><span class="n">l</span><span class="s1">&#39;anglais</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">postes</span><span class="w"> </span><span class="n">tes</span><span class="w"> </span><span class="n">resultats</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">canal</span><span class="w"> </span><span class="n">Mattermost</span><span class="w"> </span><span class="n">correspondant</span><span class="w"> </span><span class="n">au</span><span class="w"> </span><span class="n">domaine</span><span class="w"> </span><span class="n">JD6</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">prends</span><span class="w"> </span><span class="n">jamais</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decision</span><span class="w"> </span><span class="n">financiere</span><span class="w"> </span><span class="n">sans</span><span class="w"> </span><span class="n">validation</span><span class="w"> </span><span class="n">humaine</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">documentes</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">PostgreSQL</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">signales</span><span class="w"> </span><span class="n">immediatement</span><span class="w"> </span><span class="n">toute</span><span class="w"> </span><span class="n">anomalie</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="n">API</span>
+Regles :
+- Tu reponds toujours en francais sauf si on te demande explicitement l'anglais
+- Tu postes tes resultats dans le canal Mattermost correspondant au domaine JD6
+- Tu ne prends jamais de decision financiere sans validation humaine
+- Tu documentes chaque action dans la base PostgreSQL
+- Tu signales immediatement toute anomalie de cout API
 
-<span class="n">Domaines</span><span class="w"> </span><span class="n">JD6</span><span class="w"> </span><span class="p">:</span>
-<span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="w"> </span><span class="n">Infrastructure</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">20</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="n">Securite</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">30</span><span class="o">-</span><span class="mi">39</span><span class="w"> </span><span class="n">Agents</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">40</span><span class="o">-</span><span class="mi">49</span><span class="w"> </span><span class="n">Knowledge</span>
-<span class="mi">50</span><span class="o">-</span><span class="mi">59</span><span class="w"> </span><span class="n">Communication</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">60</span><span class="o">-</span><span class="mi">69</span><span class="w"> </span><span class="n">Business</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">70</span><span class="o">-</span><span class="mi">79</span><span class="w"> </span><span class="n">Reporting</span>
+Domaines JD6 :
+10-19 Infrastructure | 20-29 Securite | 30-39 Agents | 40-49 Knowledge
+50-59 Communication | 60-69 Business | 70-79 Reporting
 
-<span class="n">Quand</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">recois</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">instruction</span><span class="w"> </span><span class="p">:</span>
-<span class="mf">1.</span><span class="w"> </span><span class="n">Identifie</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">domaine</span><span class="w"> </span><span class="n">JD6</span><span class="w"> </span><span class="n">concerne</span>
-<span class="mf">2.</span><span class="w"> </span><span class="n">Verifie</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">agent</span><span class="w"> </span><span class="n">specialise</span><span class="w"> </span><span class="n">existe</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="n">domaine</span>
-<span class="mf">3.</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">oui</span><span class="p">,</span><span class="w"> </span><span class="n">delegue</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">contexte</span><span class="w"> </span><span class="n">necessaire</span>
-<span class="mf">4.</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">non</span><span class="p">,</span><span class="w"> </span><span class="n">traite</span><span class="w"> </span><span class="n">directement</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">signale</span><span class="w"> </span><span class="n">qu</span><span class="s1">&#39;un agent specialise serait utile</span>
-<span class="mf">5.</span><span class="w"> </span><span class="n">Poste</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">resultat</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">canal</span><span class="w"> </span><span class="n">Mattermost</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">domaine</span>
-</code></pre></div>
+Quand tu recois une instruction :
+1. Identifie le domaine JD6 concerne
+2. Verifie si un agent specialise existe pour ce domaine
+3. Si oui, delegue avec le contexte necessaire
+4. Si non, traite directement et signale qu'un agent specialise serait utile
+5. Poste le resultat dans le canal Mattermost du domaine
+</code></pre>
 
 <hr />
 <h2 id="verification">Verification</h2>

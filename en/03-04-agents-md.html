@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.4 -- AGENTS.md: the agent registry | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.4 -- AGENTS.md: the agent registry | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.4 -- AGENTS.md: the agent registry | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html" class="active">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.4 -- AGENTS.md: the agent registry</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#what-agentsmd-contains">What AGENTS.md contains</a></li>
+    <li><a href="#boot-sequence-the-order-of-reading">Boot sequence: the order of reading</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li class="toc-h3"><a href="#1-list-your-agents">1. List your agents</a></li>
+    <li class="toc-h3"><a href="#2-define-the-role-of-each">2. Define the role of each</a></li>
+    <li class="toc-h3"><a href="#3-assign-permissions">3. Assign permissions</a></li>
+    <li class="toc-h3"><a href="#4-document-the-boot-sequence">4. Document the boot sequence</a></li>
+    <li class="toc-h3"><a href="#5-define-inter-agent-communication-channels">5. Define inter-agent communication channels</a></li>
+    <li><a href="#agentsmd-template">AGENTS.md template</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="34-agentsmd-the-agent-registry">3.4 -- AGENTS.md: the agent registry</h1>
+<h2 id="context">Context</h2>
+<p>When you have only one agent, AGENTS.md seems unnecessary. The moment you have two, it becomes essential.</p>
+<p>AGENTS.md is the central registry. It answers three questions:
+- Which agents exist?
+- What does each one do?
+- In what order do they start?</p>
+<p>Even with a single agent, AGENTS.md clarifies the boot sequence: the order in which the agent reads its configuration files at startup.</p>
+<h2 id="what-agentsmd-contains">What AGENTS.md contains</h2>
+<ul>
+<li>The list of agents with their roles</li>
+<li>The model used by each</li>
+<li>The permissions for each agent</li>
+<li>The boot sequence (order of file reading)</li>
+<li>Dependencies between agents (if multi-agent)</li>
+</ul>
+<h2 id="boot-sequence-the-order-of-reading">Boot sequence: the order of reading</h2>
+<p>When the agent starts a session, it reads its configuration files in a precise order. This order matters: files read first carry more weight.</p>
+<p>Recommended sequence:</p>
+<pre class="codehilite"><code>1. SOUL.md        -- Who am I?
+2. USER.md        -- Who do I work for?
+3. CONSTITUTION.md -- What are my rules?
+4. AGENTS.md      -- Who else exists? What is my specific role?
+5. MEMORY.md      -- What happened recently?
+6. knowledge/     -- What else should I know?
+</code></pre>
+
+<p>Why this order:
+- Identity (SOUL.md) frames everything else
+- User profile (USER.md) guides the responses
+- Rules (CONSTITUTION.md) define the boundaries
+- The registry (AGENTS.md) situates the agent within the whole
+- Memory (MEMORY.md) provides recent context
+- Knowledge (knowledge/) fills in as needed</p>
+<h2 id="step-by-step">Step by step</h2>
+<h3 id="1-list-your-agents">1. List your agents</h3>
+<p>Even if you have only one, document it.</p>
+<h3 id="2-define-the-role-of-each">2. Define the role of each</h3>
+<p>One role = one sentence. If you need more, the agent is probably doing too many things.</p>
+<h3 id="3-assign-permissions">3. Assign permissions</h3>
+<p>Each agent has its own levels in the permissions pyramid (section 3.1).</p>
+<h3 id="4-document-the-boot-sequence">4. Document the boot sequence</h3>
+<p>List the order of file reading for each agent.</p>
+<h3 id="5-define-inter-agent-communication-channels">5. Define inter-agent communication channels</h3>
+<p>If you have multiple agents, how do they communicate? Via shared files? Via MEMORY.md? Via a message bus?</p>
+<h2 id="agentsmd-template">AGENTS.md template</h2>
+<pre class="codehilite"><code class="language-markdown"># AGENTS.md
+
+## Primary agent
+
+| Field | Value |
+|-------|-------|
+| Name | [Name defined in SOUL.md] |
+| Role | [Role in one sentence] |
+| Model | [claude-opus-4 / claude-sonnet-4 / other] |
+| Workspace | [workspace path] |
+| Status | active |
+
+### Permissions
+- Read: everything
+- Write: MEMORY.md, knowledge/, drafts
+- External action: validation required
+
+### Boot sequence
+1. SOUL.md
+2. USER.md
+3. CONSTITUTION.md
+4. AGENTS.md
+5. MEMORY.md
+6. knowledge/*.md
+
+---
+
+## Secondary agent (if applicable)
+
+| Field | Value |
+|-------|-------|
+| Name | [Name] |
+| Role | [Role in one sentence] |
+| Model | [model] |
+| Workspace | [workspace path] |
+| Status | active / inactive |
+
+### Permissions
+- Read: [restricted scope]
+- Write: [restricted scope]
+- External action: [specific rules]
+
+### Boot sequence
+1. SOUL.md (specific to this agent)
+2. USER.md (shared)
+3. CONSTITUTION.md (specific to this agent)
+4. AGENTS.md (shared)
+5. MEMORY.md (shared or specific)
+
+---
+
+## Inter-agent communication
+
+| From | To | Channel | Content |
+|------|----|---------|---------| 
+| [Agent 1] | [Agent 2] | [MEMORY.md / file / API] | [Type of information] |
+
+## Notes
+- [Additional rules, constraints, change history]
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>No AGENTS.md with a single agent</strong>: You think it's unnecessary. Then you add a second agent 3 months later and can't remember the boot sequence of the first one.</p>
+<p><strong>Boot sequence not documented</strong>: The agent reads files in a default order that may not match your intention. Be explicit.</p>
+<p><strong>Identical permissions for all agents</strong>: If two agents have the same permissions, they will probably get in each other's way. Differentiate.</p>
+<p><strong>Forgetting the status</strong>: An agent disabled but still in AGENTS.md can create confusion. Mark it "inactive" or remove it.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Each agent has an entry in AGENTS.md</li>
+<li>[ ] Role defined in one sentence per agent</li>
+<li>[ ] Model specified for each agent</li>
+<li>[ ] Explicit permissions (read, write, external action)</li>
+<li>[ ] Boot sequence documented</li>
+<li>[ ] If multi-agent: communication channels defined</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, What AGENTS.md contains, Boot sequence: the order of reading, Step by step and 3 more. <a href="03-05-constitution-md.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/04-agents-md.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-03-user-md.html">&larr; 3.3 -- USER.md : your profile for the agent</a>
+<a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rules of the game &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

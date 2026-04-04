@@ -140,16 +140,16 @@
 <h2 id="contexte">Contexte</h2>
 <p>Avant d'installer les services, on cree une arborescence coherente. Ca evite l'effet "fichiers partout" qui rend la maintenance impossible. Cette convention est utilisee dans tout le playbook.</p>
 <h2 id="etape-1-creer-larborescence">Etape 1 : Creer l'arborescence</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/docker/vault
-$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/docker/postgres
-$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/scripts
-$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/backups/postgres
-$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/backups/vault
-$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/logs
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ mkdir -p ~/docker/vault
+$ mkdir -p ~/docker/postgres
+$ mkdir -p ~/scripts
+$ mkdir -p ~/backups/postgres
+$ mkdir -p ~/backups/vault
+$ mkdir -p ~/logs
+</code></pre>
 
 <h2 id="arborescence-resultante">Arborescence resultante</h2>
-<div class="codehilite"><pre><span></span><code>~/
+<pre class="codehilite"><code>~/
 ├── docker/
 │   ├── vault/              # docker-compose.yml + config Vault
 │   │   ├── docker-compose.yml
@@ -167,7 +167,7 @@ $<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>
 │   └── vault/              # Snapshots Vault
 ├── logs/                   # Logs applicatifs (hors journalctl)
 └── .openclaw/              # Cree automatiquement par OpenClaw (section 11)
-</code></pre></div>
+</code></pre>
 
 <h2 id="conventions">Conventions</h2>
 <table>
@@ -202,8 +202,8 @@ $<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>
 </table>
 <h2 id="etape-2-rendre-les-scripts-executables">Etape 2 : Rendre les scripts executables</h2>
 <p>Pour l'instant le dossier est vide, mais prenez l'habitude :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>~/scripts/*.sh<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/*.sh 2&gt;/dev/null || true
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <ul>
@@ -212,10 +212,10 @@ $<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>
 <li><strong>Oublier le dossier backups</strong> : Les sauvegardes sont configurees dans les sections suivantes. Le dossier doit exister.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/docker/
-$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/scripts/
-$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/backups/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ls -la ~/docker/
+$ ls -la ~/scripts/
+$ ls -la ~/backups/
+</code></pre>
 
 <p>Resultats attendus : les dossiers existent et appartiennent a votre utilisateur (pas a root).</p>
 <h2 id="temps-estime">Temps estime</h2>

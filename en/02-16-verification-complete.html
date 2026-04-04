@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.16 -- Post-installation verification | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.16 -- Post-installation verification | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.16 -- Post-installation verification | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html" class="active">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.16 -- Post-installation verification</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#checklist-of-11-points">Checklist of 11 points</a></li>
+    <li class="toc-h3"><a href="#1-docker-is-working">1. Docker is working</a></li>
+    <li class="toc-h3"><a href="#2-vault-is-unsealed-and-accessible">2. Vault is unsealed and accessible</a></li>
+    <li class="toc-h3"><a href="#3-secrets-are-readable">3. Secrets are readable</a></li>
+    <li class="toc-h3"><a href="#4-postgresql-responds">4. PostgreSQL responds</a></li>
+    <li class="toc-h3"><a href="#5-tailscale-is-connected">5. Tailscale is connected</a></li>
+    <li class="toc-h3"><a href="#6-nodejs-is-the-correct-version">6. Node.js is the correct version</a></li>
+    <li class="toc-h3"><a href="#7-openclaw-is-installed">7. OpenClaw is installed</a></li>
+    <li class="toc-h3"><a href="#8-the-gateway-is-running">8. The gateway is running</a></li>
+    <li class="toc-h3"><a href="#9-the-health-check-passes">9. The health check passes</a></li>
+    <li class="toc-h3"><a href="#10-test-the-ai-model">10. Test the AI model</a></li>
+    <li class="toc-h3"><a href="#11-openclaw-doctor">11. openclaw doctor</a></li>
+    <li><a href="#quick-verification-script">Quick verification script</a></li>
+    <li><a href="#diagnosis-by-symptom">Diagnosis by symptom</a></li>
+    <li><a href="#if-everything-is-green">If everything is green</a></li>
+    <li><a href="#if-any-point-stays-red">If any point stays red</a></li>
+    <li><a href="#estimated-time">Estimated time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 02
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="216-post-installation-verification">2.16 -- Post-installation verification</h1>
+<h2 id="context">Context</h2>
+<p>All the building blocks are in place. Before moving to the next chapter, verify EVERYTHING at once. If any item is red, the symptom-based diagnosis will tell you what to do.</p>
+<h2 id="checklist-of-11-points">Checklist of 11 points</h2>
+<p>Execute each command. Everything must succeed.</p>
+<h3 id="1-docker-is-working">1. Docker is working</h3>
+<pre class="codehilite"><code class="language-bash">$ docker ps
+</code></pre>
+
+<p>Expected: at least 2 containers (vault, postgres) in "Up" state.</p>
+<h3 id="2-vault-is-unsealed-and-accessible">2. Vault is unsealed and accessible</h3>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault status | grep Sealed
+</code></pre>
+
+<p>Expected: <code>Sealed          false</code></p>
+<h3 id="3-secrets-are-readable">3. Secrets are readable</h3>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get secret/openrouter
+$ docker exec vault vault kv get secret/telegram
+$ docker exec vault vault kv get secret/database
+</code></pre>
+
+<p>Expected: each command returns the stored fields.</p>
+<h3 id="4-postgresql-responds">4. PostgreSQL responds</h3>
+<pre class="codehilite"><code class="language-bash">$ docker exec postgres psql -U oa_admin -d oa_system -c &quot;SELECT 'pg_ok';&quot;
+</code></pre>
+
+<p>Expected: <code>pg_ok</code></p>
+<h3 id="5-tailscale-is-connected">5. Tailscale is connected</h3>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+</code></pre>
+
+<p>Expected: your machine appears as connected.</p>
+<h3 id="6-nodejs-is-the-correct-version">6. Node.js is the correct version</h3>
+<pre class="codehilite"><code class="language-bash">$ node --version
+</code></pre>
+
+<p>Expected: v22.x or higher.</p>
+<h3 id="7-openclaw-is-installed">7. OpenClaw is installed</h3>
+<pre class="codehilite"><code class="language-bash">$ openclaw --version
+</code></pre>
+
+<p>Expected: version number displayed.</p>
+<h3 id="8-the-gateway-is-running">8. The gateway is running</h3>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway | grep Active
+</code></pre>
+
+<p>Expected: <code>active (running)</code></p>
+<h3 id="9-the-health-check-passes">9. The health check passes</h3>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/health-check.sh
+</code></pre>
+
+<p>Expected: 0 failures.</p>
+<h3 id="10-test-the-ai-model">10. Test the AI model</h3>
+<p>Verify that the connection to the AI provider works with a simple call:</p>
+<pre class="codehilite"><code class="language-bash">$ openclaw model test
+</code></pre>
+
+<p>If <code>openclaw model test</code> is not available, test directly via OpenRouter:</p>
+<pre class="codehilite"><code class="language-bash">$ OPENROUTER_KEY=$(docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get -field=api_key secret/openrouter)
+$ curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H &quot;Authorization: Bearer ${OPENROUTER_KEY}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;model&quot;:&quot;anthropic/claude-haiku-4-5&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Reponds juste OK&quot;}],&quot;max_tokens&quot;:10}' \
+  | python3 -m json.tool
+</code></pre>
+
+<p>Expected: a JSON response containing the text "OK" (or similar) in <code>choices[0].message.content</code>.</p>
+<h3 id="11-openclaw-doctor">11. openclaw doctor</h3>
+<pre class="codehilite"><code class="language-bash">$ openclaw doctor
+</code></pre>
+
+<p>Expected: all checks green.</p>
+<h2 id="quick-verification-script">Quick verification script</h2>
+<p>To verify everything in one command:</p>
+<pre class="codehilite"><code class="language-bash">$ check() { echo -n &quot;$1: &quot;; if eval &quot;$2&quot; &gt; /dev/null 2&gt;&amp;1; then echo &quot;OK&quot;; else echo &quot;FAILED&quot;; fi; }
+$ echo &quot;=== COMPLETE VERIFICATION ===&quot;
+$ check &quot;1. Docker&quot;      &quot;docker ps&quot;
+$ check &quot;2. Vault unseal&quot; &quot;docker exec vault vault status 2&gt;/dev/null | grep 'Sealed.*false'&quot;
+$ check &quot;3. Vault secret&quot; &quot;docker exec vault vault kv get -field=api_key secret/openrouter&quot;
+$ check &quot;4. PostgreSQL&quot;   &quot;docker exec postgres psql -U oa_admin -d oa_system -c 'SELECT 1;'&quot;
+$ check &quot;5. Tailscale&quot;    &quot;tailscale status&quot;
+$ echo -n &quot;6. Node: &quot;    &amp;&amp; node --version
+$ check &quot;7. OpenClaw&quot;     &quot;openclaw --version&quot;
+$ check &quot;8. Gateway&quot;      &quot;sudo systemctl is-active openclaw-gateway&quot;
+$ echo &quot;=== END ===&quot;
+</code></pre>
+
+<h2 id="diagnosis-by-symptom">Diagnosis by symptom</h2>
+<p>If any point fails, here's what to do:</p>
+<table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Symptom</th>
+<th>Diagnosis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Docker ps error</td>
+<td><code>sudo systemctl start docker</code>. If error persists: <code>journalctl -u docker -n 50</code>.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Vault sealed</td>
+<td>Normal after restart. Unseal with 3 keys (section 07, step 7).</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Secret unreadable</td>
+<td>Token expired? <code>docker exec vault vault token lookup</code>. Recreate if necessary.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>PostgreSQL not responding</td>
+<td><code>docker logs postgres</code> to see the error. Often a permissions issue on <code>data/</code>.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Tailscale disconnected</td>
+<td><code>sudo tailscale up</code>. If error: <code>sudo systemctl restart tailscaled</code>.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Node version too old</td>
+<td><code>nvm install --lts &amp;&amp; nvm alias default lts/*</code>.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>OpenClaw not installed</td>
+<td><code>npm install -g @anthropic-ai/claude-code</code>. Verify the nvm PATH.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Gateway inactive</td>
+<td><code>journalctl -u openclaw-gateway -n 50</code>. Often an incorrect path in the service file.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Health check failed</td>
+<td>The script indicates which point failed. Fix that specific point.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Doctor failed</td>
+<td>Follow the instructions displayed by <code>openclaw doctor</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="if-everything-is-green">If everything is green</h2>
+<p>Congratulations. Your infrastructure is operational. Move on to the following sections (17, 18, 19) to finalize the development workflow, then to chapter 3.</p>
+<h2 id="if-any-point-stays-red">If any point stays red</h2>
+<p>Do not move to the next chapter with a red point. Each building block depends on the previous ones. An unresolved issue here will become a bigger problem later.</p>
+<h2 id="estimated-time">Estimated time</h2>
+<p>10 minutes (verification only, without corrections).</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Checklist of 11 points, Quick verification script, Diagnosis by symptom and 3 more. <a href="02-17-git-init.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/16-verification-complete.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-15-gateway-systemd.html">&larr; 2.15 -- Gateway systemd</a>
+<a href="02-17-git-init.html">2.17 -- Initialize the Git Repo &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.8 -- Dry run before trust | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.8 -- Dry run before trust | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.8 -- Dry run before trust | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html" class="active">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.8 -- Dry run before trust</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-3-levels-of-trust">The 3 levels of trust</a></li>
+    <li class="toc-h3"><a href="#level-1-read-only-show-me">Level 1: read-only ("show me")</a></li>
+    <li class="toc-h3"><a href="#level-2-action-validation-do-and-show">Level 2: action + validation ("do and show")</a></li>
+    <li class="toc-h3"><a href="#level-3-autonomous-do-everything">Level 3: autonomous ("do everything")</a></li>
+    <li><a href="#the-trust-escalation-timeline">The trust escalation timeline</a></li>
+    <li><a href="#test-prompt">Test prompt</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 04
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="48-dry-run-before-trust">4.8 -- Dry run before trust</h1>
+<h2 id="context">Context</h2>
+<p>You've identified an automatable routine (section 4.7). Before letting it run autonomously, you test it. Not because you don't trust the agent — because you don't trust your own instructions.</p>
+<p>The dry run reveals holes in your procedures. Better to discover them in test mode than in production.</p>
+<h2 id="the-3-levels-of-trust">The 3 levels of trust</h2>
+<h3 id="level-1-read-only-show-me">Level 1: read-only ("show me")</h3>
+<p>The agent executes the routine but does nothing. It displays what it would do.</p>
+<pre class="codehilite"><code>Prompt: &quot;Do the health check in dry run mode. 
+Show me each command you would run and what you would verify,
+but don't execute anything.&quot;
+</code></pre>
+
+<p>Expected result:</p>
+<pre class="codehilite"><code>Health check dry run:
+1. I would run: docker ps --format &quot;{{.Names}} {{.Status}}&quot;
+   I would verify: all containers are &quot;Up&quot;
+2. I would run: curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000
+   I would verify: code 200
+3. I would run: df -h /
+   I would verify: usage &lt; 80%
+4. If there's a problem, I would send a Telegram alert.
+
+No action executed. Dry run mode.
+</code></pre>
+
+<p>You validate: are the commands correct? Are the thresholds good? Is something missing?</p>
+<h3 id="level-2-action-validation-do-and-show">Level 2: action + validation ("do and show")</h3>
+<p>The agent executes but asks for validation before each consequential action.</p>
+<pre class="codehilite"><code>Prompt: &quot;Do the health check. Execute the diagnostics.
+If everything is OK, tell me. If something is not OK, show me 
+what you would do but wait for my validation before acting.&quot;
+</code></pre>
+
+<p>This is the training mode. The agent does the diagnostic work (with no risk), but takes no corrective action without your approval.</p>
+<h3 id="level-3-autonomous-do-everything">Level 3: autonomous ("do everything")</h3>
+<p>The agent executes the full routine, takes corrective actions if necessary, and reports afterward.</p>
+<pre class="codehilite"><code>Prompt: &quot;Daily health check. If a service is down, 
+restart it. If disk exceeds 80%, clean up logs older than 30 days. 
+Send me the summary via Telegram.&quot;
+</code></pre>
+
+<p>You only move to level 3 when levels 1 and 2 have worked without issues for at least one week.</p>
+<h2 id="the-trust-escalation-timeline">The trust escalation timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Level</th>
+<th>What you do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Read-only</td>
+<td>Verify each command. Fix procedures.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Action + validation</td>
+<td>Let the agent diagnose. Validate corrections.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Autonomous with report</td>
+<td>Agent acts alone but you read the report daily.</td>
+</tr>
+<tr>
+<td>4+</td>
+<td>Silent autonomous</td>
+<td>Agent acts alone and only reports anomalies.</td>
+</tr>
+</tbody>
+</table>
+<p>This timeline is a minimum. For high-risk routines (deployment, data deletion), double each phase.</p>
+<h2 id="test-prompt">Test prompt</h2>
+<p>To test a routine before automating it:</p>
+<pre class="codehilite"><code>I want to automate this routine: [description].
+Planned steps:
+1. [step 1]
+2. [step 2]
+3. [step 3]
+
+Execute in dry run mode. For each step:
+- Show the exact command.
+- Tell me what you verify.
+- Tell me what you would do if the result is abnormal.
+Don't execute anything.
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Jumping straight to level 3.</strong> "This looks simple, no need to test." Then the agent restarts the wrong container or deletes the wrong logs. Always test.</p>
+<p><strong>Getting stuck at level 1.</strong> You've been doing dry runs for 3 months without ever taking action. Dry run is a transition tool, not a permanent mode.</p>
+<p><strong>Not documenting findings.</strong> The dry run reveals that your procedure is missing a step. You correct it verbally but not in the workflow. Next time, same error. Write corrections into WORKFLOWS.md (section 4.9).</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Choose a routine identified in section 4.7.</li>
+<li>Request a dry run (level 1).</li>
+<li>Verify: correct commands? Good thresholds? Missing steps?</li>
+<li>Fix the procedure if necessary.</li>
+<li>Move to level 2 for one week.</li>
+<li>If all is OK, move to level 3.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Every new routine goes through level 1 before execution.</li>
+<li>[ ] Dry run findings are documented in WORKFLOWS.md.</li>
+<li>[ ] Moving to the next level is based on at least one week without issues.</li>
+<li>[ ] High-risk routines have a doubled trust escalation timeline.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The 3 levels of trust, The trust escalation timeline, Test prompt and 3 more. <a href="04-09-workflows-md.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/08-dry-run.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-07-reconnaitre-routine.html">&larr; 4.7 -- Recognizing a routine</a>
+<a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.17 -- Initialize the Git Repo | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.17 -- Initialize the Git Repo | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.17 -- Initialize the Git Repo | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html" class="active">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.17 -- Initialize the Git Repo</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#step-1-initialize-the-repository">Step 1: Initialize the Repository</a></li>
+    <li><a href="#step-2-configure-git">Step 2: Configure Git</a></li>
+    <li><a href="#step-3-create-the-gitignore">Step 3: Create the .gitignore</a></li>
+    <li><a href="#step-4-copy-files-to-version-control">Step 4: Copy Files to Version Control</a></li>
+    <li><a href="#step-5-create-the-github-remote">Step 5: Create the GitHub Remote</a></li>
+    <li><a href="#step-6-first-commit">Step 6: First Commit</a></li>
+    <li><a href="#step-7-verify-on-github">Step 7: Verify on GitHub</a></li>
+    <li><a href="#common-errors">Common Errors</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#estimated-time">Estimated Time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 02
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="217-initialize-the-git-repo">2.17 -- Initialize the Git Repo</h1>
+<h2 id="context">Context</h2>
+<p>Code, scripts, and configuration (excluding secrets) must be version-controlled in Git. This section creates the repository, configures the GitHub remote, and sets up a solid .gitignore to prevent committing secrets or unnecessary files.</p>
+<h2 id="step-1-initialize-the-repository">Step 1: Initialize the Repository</h2>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init oa-system
+$ cd oa-system
+</code></pre>
+
+<p>Or if you're working directly in your home directory:</p>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init
+</code></pre>
+
+<h2 id="step-2-configure-git">Step 2: Configure Git</h2>
+<pre class="codehilite"><code class="language-bash">$ git config user.name &quot;Your Name&quot;
+$ git config user.email &quot;your-email@example.com&quot;
+$ git config init.defaultBranch main
+</code></pre>
+
+<h2 id="step-3-create-the-gitignore">Step 3: Create the .gitignore</h2>
+<p>Create <code>.gitignore</code> at the root of the repository:</p>
+<pre class="codehilite"><code class="language-gitignore"># === Secrets and credentials ===
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+vault-keys.txt
+unseal-keys.txt
+
+# === Docker data ===
+docker/vault/data/
+docker/postgres/data/
+
+# === Backups ===
+backups/
+
+# === Logs ===
+logs/
+*.log
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+.npm
+
+# === OpenClaw ===
+.openclaw/credentials.json
+.openclaw/logs/
+.openclaw/workspace/sessions/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# === IDE ===
+.vscode/settings.json
+.idea/
+*.sublime-workspace
+</code></pre>
+
+<h2 id="step-4-copy-files-to-version-control">Step 4: Copy Files to Version Control</h2>
+<p>Files that MUST be in Git:</p>
+<pre class="codehilite"><code class="language-bash"># Scripts
+$ cp ~/scripts/*.sh ./scripts/
+
+# Docker compose (without the data)
+$ mkdir -p docker/vault docker/postgres
+$ cp ~/docker/vault/docker-compose.yml ./docker/vault/
+$ cp ~/docker/vault/config/vault.hcl ./docker/vault/config/
+$ cp ~/docker/postgres/docker-compose.yml ./docker/postgres/
+
+# Health check
+$ cp ~/scripts/health-check.sh ./scripts/
+</code></pre>
+
+<p>Files that MUST NOT be in Git:
+- Anything in <code>backups/</code>
+- The <code>data/</code> folders of containers
+- Any <code>.env</code> files or files containing secrets
+- Vault unseal keys</p>
+<h2 id="step-5-create-the-github-remote">Step 5: Create the GitHub Remote</h2>
+<p>Create a repository on GitHub (private is recommended), then:</p>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin git@github.com:YOUR_USER/oa-system.git
+</code></pre>
+
+<p>If you're using HTTPS instead of SSH:</p>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin https://github.com/YOUR_USER/oa-system.git
+</code></pre>
+
+<h2 id="step-6-first-commit">Step 6: First Commit</h2>
+<pre class="codehilite"><code class="language-bash">$ git add .
+$ git status
+</code></pre>
+
+<p>Verify that NO secrets appear in the list of files to commit. If a sensitive file appears, add it to .gitignore and run <code>git reset HEAD &lt;file&gt;</code>.</p>
+<pre class="codehilite"><code class="language-bash">$ git commit -m &quot;feat: initialization of OA system - infrastructure and scripts&quot;
+$ git push -u origin main
+</code></pre>
+
+<h2 id="step-7-verify-on-github">Step 7: Verify on GitHub</h2>
+<p>Go to your GitHub repository and verify:
+- Files are present
+- No secrets are visible
+- The .gitignore works (no <code>data/</code>, no <code>backups/</code>)</p>
+<h2 id="common-errors">Common Errors</h2>
+<ul>
+<li><strong>Committing secrets</strong>: If this happens, the secret is compromised even if you remove it from the next commit (Git history preserves it). Change the secret immediately. Use <code>git-filter-repo</code> to purge the history if necessary.</li>
+<li><strong>"Permission denied (publickey)"</strong>: Your SSH key is not configured on GitHub. Add it in GitHub &gt; Settings &gt; SSH Keys.</li>
+<li><strong>Private vs public repository</strong>: For a production system, use a PRIVATE repository. The docker-compose.yml files can reveal your architecture.</li>
+<li><strong>Forgetting .gitignore before the first commit</strong>: If <code>node_modules/</code> or <code>data/</code> has been committed, run <code>git rm -r --cached node_modules/</code> then re-commit.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ git status
+$ git log --oneline
+$ git remote -v
+</code></pre>
+
+<p>Expected results:
+- Working tree clean (nothing to commit)
+- At least one commit visible
+- Remote points to your GitHub repository</p>
+<h2 id="estimated-time">Estimated Time</h2>
+<p>10 minutes.</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Step 1: Initialize the Repository, Step 2: Configure Git, Step 3: Create the .gitignore and 7 more. <a href="02-18-claude-md.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/17-git-init.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-16-verification-complete.html">&larr; 2.16 -- Post-installation verification</a>
+<a href="02-18-claude-md.html">2.18 -- CLAUDE.md &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

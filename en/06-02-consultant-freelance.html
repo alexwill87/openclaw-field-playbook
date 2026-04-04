@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>02 -- Freelance consultant | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="02 -- Freelance consultant | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="02 -- Freelance consultant | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Digital Agency (2 Partners...</a>
+    <a href="06-02-consultant-freelance.html" class="active">02 -- Freelance consultant</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Technical Team (5-15 people)</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Accounting Firm</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- How to Submit Your Use Case</a>
+    <a href="06-08-artisan-tpe.html">6.8 -- Craftspeople and Small Bu...</a>
+  </div>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <span class="sep">/</span>
+  <span>02 -- Freelance consultant</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#single-agent">Single agent</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li class="toc-h3"><a href="#day-1-installation-and-basic-configuration">Day 1: Installation and basic configuration</a></li>
+    <li class="toc-h3"><a href="#day-2-daily-workflows">Day 2: Daily workflows</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#lessons-learned">Lessons learned</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#template-consultants-system-prompt">Template -- Consultant's system prompt</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 06
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="02-freelance-consultant">02 -- Freelance consultant</h1>
+<p><strong>For whom:</strong> independent consultant working solo, without a technical team
+<strong>Setup time:</strong> 1 to 2 days
+<strong>Difficulty:</strong> Beginner</p>
+<hr />
+<h2 id="context">Context</h2>
+<p>A freelance consultant manages around ten clients in parallel. Their daily routine: meetings, commercial proposals, project tracking, invoicing, and lots of emails. They don't have a VPS, no technical team, and no desire to maintain server infrastructure.</p>
+<p>They want an AI assistant to help structure their day, write faster, and not forget anything.</p>
+<hr />
+<h2 id="problem">Problem</h2>
+<ul>
+<li>Client emails accumulate without prioritization</li>
+<li>Commercial proposals take too long to write</li>
+<li>Client tracking relies on memory and scattered notes</li>
+<li>No consolidated view of time spent per client</li>
+<li>Invoice reminders are forgotten or sent too late</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Choice</th>
+<th>Monthly cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Machine</td>
+<td>Personal laptop (macOS or Linux)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Local installation</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Calendar</td>
+<td>Google Calendar or Nextcloud</td>
+<td>free or existing</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Existing email client (Gmail, ProtonMail)</td>
+<td>existing</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Local folder + existing cloud sync</td>
+<td>existing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No VPS. No database. No Mattermost.</strong> Everything runs locally on the consultant's laptop.</p>
+<h3 id="single-agent">Single agent</h3>
+<p>One OpenClaw agent, configured with:
+- The consultant's system prompt (tone, domain of expertise, list of clients)
+- Read access to local files (proposals, notes, templates)
+- Calendar connection for morning briefings</p>
+<hr />
+<h2 id="setup">Setup</h2>
+<h3 id="day-1-installation-and-basic-configuration">Day 1: Installation and basic configuration</h3>
+<ol>
+<li>Install OpenClaw on the laptop</li>
+<li>Create the system prompt with the consultant's context:</li>
+<li>Domain of expertise</li>
+<li>List of active clients with short context</li>
+<li>Preferred communication tone</li>
+<li>Proposal templates and sample emails</li>
+<li>Configure access to local files (folder <code>~/clients/</code>)</li>
+<li>Test with a first task: "Summarize my notes from the last meeting with [client X]"</li>
+</ol>
+<h3 id="day-2-daily-workflows">Day 2: Daily workflows</h3>
+<ol>
+<li>Configure the morning briefing:</li>
+<li>The agent reads today's calendar</li>
+<li>It lists pending tasks by client</li>
+<li>It flags overdue invoices</li>
+<li>It suggests a priority order for the day</li>
+<li>Configure email triage:</li>
+<li>The agent reads received emails (via export or integration)</li>
+<li>It classifies by urgency: action required / information / can wait</li>
+<li>It proposes draft responses for urgent emails</li>
+<li>Configure client tracking:</li>
+<li>After each interaction, the agent updates the client file</li>
+<li>It generates a weekly summary per client</li>
+</ol>
+<hr />
+<h2 id="results">Results</h2>
+<p>After one week of use:</p>
+<ul>
+<li><strong>Morning briefing in 2 minutes</strong>: the consultant starts each day with a clear view of their priorities, without opening 5 applications</li>
+<li><strong>Email triage</strong>: emails are classified automatically. Draft responses save 30 to 45 minutes per day</li>
+<li><strong>Automated client tracking</strong>: each client has an up-to-date file with interaction history, decisions made, and next steps</li>
+<li><strong>Commercial proposals in 15 minutes instead of 2 hours</strong>: the agent generates a first draft from the template and client context. The consultant adjusts and sends</li>
+<li><strong>Zero forgotten follow-ups</strong>: the agent flags overdue invoices in the morning briefing</li>
+</ul>
+<hr />
+<h2 id="lessons-learned">Lessons learned</h2>
+<ol>
+<li>
+<p><strong>The system prompt is the heart of the system.</strong> A vague prompt produces generic results. The consultant must invest time describing their context, tone, and business rules.</p>
+</li>
+<li>
+<p><strong>One file per client, not a database.</strong> For a freelancer, Markdown files in a <code>~/clients/</code> folder are simpler and more portable than a database.</p>
+</li>
+<li>
+<p><strong>The morning briefing changes everything.</strong> It's the simplest workflow to set up and the one with the most impact. Start there.</p>
+</li>
+<li>
+<p><strong>Don't automate client relationships.</strong> The agent drafts messages. The consultant reviews, adjusts, and sends. The client should never receive an unreviewed email.</p>
+</li>
+<li>
+<p><strong>Back up the agent context.</strong> The system prompt and client files must be in a synchronized folder (cloud or Git). Losing the laptop shouldn't mean losing the agent's memory.</p>
+</li>
+</ol>
+<hr />
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt too generic</td>
+<td>Generic, unusable responses</td>
+<td>Add specific context: clients, domain, tone</td>
+</tr>
+<tr>
+<td>No file structure</td>
+<td>Agent can't find information</td>
+<td>One folder per client, consistent file names</td>
+</tr>
+<tr>
+<td>Trusting the first draft</td>
+<td>Factual errors sent to client</td>
+<td>Always review before sending</td>
+</tr>
+<tr>
+<td>No backup</td>
+<td>Loss of context if device fails</td>
+<td>Cloud sync or Git for the work folder</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-consultants-system-prompt">Template -- Consultant's system prompt</h2>
+<pre class="codehilite"><code>You are the professional assistant for [NAME], a consultant in [DOMAIN].
+
+Context:
+- [NAME] has worked independently since [YEAR]
+- Their clients are primarily [CLIENT TYPE]
+- Their tone is professional but direct, no unnecessary jargon
+
+Active clients:
+- [Client A]: [short context, current project]
+- [Client B]: [short context, current project]
+- [Client C]: [short context, current project]
+
+Rules:
+- You always draft messages, never final communications
+- You flag if information is missing rather than making it up
+- You use formal address in client emails
+- You record decisions and next steps after each interaction
+- You remind about unpaid invoices over 30 days old in the morning briefing
+
+Workflows:
+1. Morning briefing: calendar + tasks + invoices + priorities
+2. Email triage: urgent / info / can wait + drafts
+3. Commercial proposal: template + client context + first draft
+4. Client tracking: update client file after each interaction
+</code></pre>
+
+<hr />
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] OpenClaw is installed and responds on the laptop</li>
+<li>[ ] The system prompt contains the list of active clients</li>
+<li>[ ] The morning briefing displays today's appointments</li>
+<li>[ ] Email triage correctly classifies a sample of 10 emails</li>
+<li>[ ] A test commercial proposal is generated in under 5 minutes</li>
+<li>[ ] Client files are in a synchronized folder</li>
+</ul>
+<hr />
+<p><em>Minimal configuration, zero infrastructure to maintain. Ideal for a first contact with OpenClaw.</em></p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Problem, Configuration, Setup and 5 more. <a href="06-03-ecommerce.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/02-consultant-freelance.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-01-agence-digitale.html">&larr; 01 -- Digital Agency (2 Partners + AI Agents)</a>
+<a href="06-03-ecommerce.html">03 -- E-commerce &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

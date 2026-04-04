@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>06 -- Startup early-stage | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="06 -- Startup early-stage | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="06 -- Startup early-stage | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Digital Agency (2 Partners...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Freelance consultant</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Technical Team (5-15 people)</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Accounting Firm</a>
+    <a href="06-06-startup.html" class="active">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- How to Submit Your Use Case</a>
+    <a href="06-08-artisan-tpe.html">6.8 -- Craftspeople and Small Bu...</a>
+  </div>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <span class="sep">/</span>
+  <span>06 -- Startup early-stage</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#agents">Agents</a></li>
+    <li><a href="#implementation">Implementation</a></li>
+    <li class="toc-h3"><a href="#day-1-2-infrastructure-and-investor-relations-agent">Day 1-2: Infrastructure and Investor Relations Agent</a></li>
+    <li class="toc-h3"><a href="#day-3-intelligence-agent">Day 3: Intelligence Agent</a></li>
+    <li class="toc-h3"><a href="#day-4-5-recruitment-agent-and-stabilization">Day 4-5: Recruitment Agent and stabilization</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#lessons-learned">Lessons learned</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#template-system-prompt-for-the-investor-relations-agent">Template -- System prompt for the Investor Relations Agent</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 06
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="06-startup-early-stage">06 -- Startup early-stage</h1>
+<p><strong>For whom:</strong> startup founders in early stage (pre-seed to seed), team of 2 to 8 people
+<strong>Implementation time:</strong> 3 to 5 days
+<strong>Difficulty:</strong> Intermediate</p>
+<hr />
+<h2 id="context">Context</h2>
+<p>An early-stage startup has limited resources and disproportionate needs. Founders wear every hat: product, sales, technology, finance, HR. They must communicate regularly with investors, monitor the market, hire their first employees, and build the product -- all with a tight budget.</p>
+<p>OpenClaw can become a force multiplier by automating low-value-added tasks, freeing up time for strategic decisions.</p>
+<hr />
+<h2 id="problem">Problem</h2>
+<ul>
+<li>Investor updates are written at the last minute, often incomplete</li>
+<li>Competitive intelligence is done sporadically and unstructured</li>
+<li>Recruiting is slow: manual CV sorting, candidate follow-up scattered across emails</li>
+<li>Key metrics (MRR, churn, runway) are calculated manually in spreadsheets</li>
+<li>Founders spend more time on operations than on strategy</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Choice</th>
+<th>Monthly cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server</td>
+<td>Budget VPS (Hetzner CX22) or local laptop</td>
+<td>0-5 EUR</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>VPS or local installation</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Slack or Mattermost (free plan)</td>
+<td>free</td>
+</tr>
+<tr>
+<td>Tracking</td>
+<td>Notion, Linear, or Markdown files</td>
+<td>existing</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Existing email service</td>
+<td>existing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total budget: less than 50 EUR/month all-in</strong> (VPS + LLM API).</p>
+<h3 id="agents">Agents</h3>
+<p><strong>Investor Relations Agent:</strong>
+- Collects key metrics from the startup's tools (spreadsheet, database, API)
+- Generates a monthly investor update draft in standard format
+- Includes: key metrics, highlights, challenges, needs, next steps
+- Founder reviews, adjusts tone, and sends</p>
+<p><strong>Intelligence Agent:</strong>
+- Monitors defined sources (blogs, newsletters, Product Hunt, social media)
+- Generates a weekly summary of competitive movements
+- Flags critical events in real-time (competitor funding, product launch)
+- Categorizes by relevance: direct impact / monitor / background noise</p>
+<p><strong>Recruitment Agent:</strong>
+- Sorts incoming applications by alignment with job description
+- Generates a summary of each CV with strengths and points of concern
+- Proposes a draft response (acceptance for interview / polite rejection)
+- Tracks ongoing applications and follows up on pending candidates</p>
+<hr />
+<h2 id="implementation">Implementation</h2>
+<h3 id="day-1-2-infrastructure-and-investor-relations-agent">Day 1-2: Infrastructure and Investor Relations Agent</h3>
+<ol>
+<li>Install OpenClaw (VPS or local)</li>
+<li>Configure the Investor Relations Agent with:</li>
+<li>The investor update format used by the startup</li>
+<li>Metric sources (spreadsheet, API, database)</li>
+<li>Communication tone with investors</li>
+<li>Test by generating last month's update</li>
+<li>Compare with the actual update and adjust</li>
+</ol>
+<h3 id="day-3-intelligence-agent">Day 3: Intelligence Agent</h3>
+<ol>
+<li>Define intelligence sources (5 to 10 sources maximum to start)</li>
+<li>Define competitors to monitor</li>
+<li>Configure frequency: weekly summary + real-time alerts</li>
+<li>Test on the previous week</li>
+<li>Adjust relevance filters</li>
+</ol>
+<h3 id="day-4-5-recruitment-agent-and-stabilization">Day 4-5: Recruitment Agent and stabilization</h3>
+<ol>
+<li>Configure the Recruitment Agent with active job descriptions</li>
+<li>Define sorting criteria (required skills, nice-to-have, red flags)</li>
+<li>Test on a batch of 20 CVs (real or anonymized)</li>
+<li>Set up notifications for all agents</li>
+<li>Document workflows for the team</li>
+</ol>
+<hr />
+<h2 id="results">Results</h2>
+<p>After one month of use:</p>
+<ul>
+<li><strong>Investor updates in 30 minutes instead of 3 hours:</strong> the agent collects metrics and generates the first draft. The founder adjusts the narrative and sends. Updates go out on time, every month</li>
+<li><strong>Structured intelligence:</strong> the weekly summary replaces sporadic monitoring. Two critical alerts were detected (competitor launch, regulatory change) that would have been missed otherwise</li>
+<li><strong>Accelerated CV sorting:</strong> 80% of sorting is done by the agent. The founder only spends time on pre-selected applications. Recruitment time reduced by 30%</li>
+<li><strong>Budget controlled:</strong> the entire setup costs less than 50 EUR/month, the price of a single SaaS tool</li>
+</ul>
+<hr />
+<h2 id="lessons-learned">Lessons learned</h2>
+<ol>
+<li>
+<p><strong>The investor update is the workflow to deploy first.</strong> It's regular, structured, and every founder hates doing it. The impact on investor relationships is immediate: updates arrive on time and are more complete.</p>
+</li>
+<li>
+<p><strong>Intelligence must be filtered aggressively.</strong> 10 well-chosen sources are better than 50 sources that generate noise. The agent must be configured to ignore noise, not report everything.</p>
+</li>
+<li>
+<p><strong>AI-based CV sorting has biases.</strong> The agent can eliminate atypical profiles that would be good candidates. The founder must verify a sample of applications rejected by the agent to calibrate.</p>
+</li>
+<li>
+<p><strong>No complex stack in early-stage.</strong> If the team has 3 people, a 5 EUR VPS and Markdown files are enough. PostgreSQL and Mattermost will come when the team exceeds 8 people.</p>
+</li>
+<li>
+<p><strong>Document prompts in Git from the start.</strong> Even in early-stage, prompts are code. Versioning them allows you to revert when a change degrades results.</p>
+</li>
+</ol>
+<hr />
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Investor update sent without review</td>
+<td>Incorrect metrics sent to investors</td>
+<td>Always review and manually validate figures</td>
+</tr>
+<tr>
+<td>Too many intelligence sources</td>
+<td>Weekly summary too long, not read</td>
+<td>Maximum 10 sources to start, add progressively</td>
+</tr>
+<tr>
+<td>Blind trust in CV sorting</td>
+<td>Good candidates eliminated by agent</td>
+<td>Verify a sample of applications rejected</td>
+</tr>
+<tr>
+<td>Over-sized stack</td>
+<td>Time spent maintaining infrastructure instead of building product</td>
+<td>Start minimal, evolve with team</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-system-prompt-for-the-investor-relations-agent">Template -- System prompt for the Investor Relations Agent</h2>
+<pre class="codehilite"><code>You are the Investor Relations assistant for [STARTUP NAME].
+
+Context:
+- [NAME] is a [SECTOR] startup in [PHASE]
+- Last funding: [AMOUNT] in [DATE]
+- Investors: [LIST]
+- Key metrics tracked: MRR, number of users, churn, runway
+
+Format of the monthly investor update:
+
+## [NAME] - Update [MONTH YEAR]
+
+### Key metrics
+| Metric | This month | Last month | Change |
+|--------|-----------|-----------|---------|
+| MRR | | | |
+| Active users | | | |
+| Churn | | | |
+| Runway (months) | | | |
+
+### Highlights
+- [3 to 5 positive points from the month]
+
+### Challenges
+- [2 to 3 friction points or risks]
+
+### How you can help
+- [1 to 2 concrete requests to investors]
+
+### Next steps
+- [3 to 5 objectives for next month]
+
+Rules:
+- You collect metrics from [SOURCE]
+- You generate a draft, never a final document
+- You do not speculate on figures: if data is missing, flag it
+- You maintain a professional and factual tone, neither too optimistic nor alarming
+</code></pre>
+
+<hr />
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The Investor Relations Agent generates a coherent update with available metrics</li>
+<li>[ ] The update format matches the format normally used by the startup</li>
+<li>[ ] The Intelligence Agent produces a relevant weekly summary</li>
+<li>[ ] Critical alerts are detected and notified quickly</li>
+<li>[ ] The Recruitment Agent correctly sorts a batch of 20 test CVs</li>
+<li>[ ] Total monthly cost remains under 50 EUR</li>
+</ul>
+<hr />
+<p><em>An early-stage startup doesn't need an enterprise AI platform. It needs 3 well-configured agents and a controlled budget.</em></p>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Problem, Configuration, Implementation and 5 more. <a href="06-07-contribuer.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/06-startup.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-05-cabinet-comptable.html">&larr; 05 -- Accounting Firm</a>
+<a href="06-07-contribuer.html">07 -- How to Submit Your Use Case &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

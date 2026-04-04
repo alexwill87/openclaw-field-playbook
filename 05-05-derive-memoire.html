@@ -153,28 +153,28 @@
 <h2 id="types-de-derive">Types de derive</h2>
 <h3 id="obsolescence">Obsolescence</h3>
 <p>L'information etait vraie mais ne l'est plus.</p>
-<div class="codehilite"><pre><span></span><code>Memoire : &quot;Le projet cockpit utilise Express.js&quot;
+<pre class="codehilite"><code>Memoire : &quot;Le projet cockpit utilise Express.js&quot;
 Realite : vous avez migre vers Fastify il y a 3 semaines.
-</code></pre></div>
+</code></pre>
 
 <h3 id="contradiction">Contradiction</h3>
 <p>Deux informations se contredisent.</p>
-<div class="codehilite"><pre><span></span><code>Memoire fichier A : &quot;Les backups sont quotidiens&quot;
+<pre class="codehilite"><code>Memoire fichier A : &quot;Les backups sont quotidiens&quot;
 Memoire fichier B : &quot;Les backups sont hebdomadaires&quot;
-</code></pre></div>
+</code></pre>
 
 <h3 id="inflation">Inflation</h3>
 <p>La meme information est stockee sous 5 formes differentes. L'agent ne sait plus laquelle utiliser.</p>
-<div class="codehilite"><pre><span></span><code>Fichier 1 : &quot;L&#39;utilisateur prefere le tutoiement&quot;
+<pre class="codehilite"><code>Fichier 1 : &quot;L'utilisateur prefere le tutoiement&quot;
 Fichier 2 : &quot;Utiliser tu, pas vous&quot;
 Fichier 3 : &quot;Communication informelle, tutoyer&quot;
-</code></pre></div>
+</code></pre>
 
 <h3 id="hallucination-memorisee">Hallucination memorisee</h3>
 <p>L'agent a un jour "invente" une information et l'a stockee comme un fait.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Memoire</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Le serveur a 16 Go de RAM&quot;</span>
-<span class="n">Realite</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">il</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mf">8.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Memoire : &quot;Le serveur a 16 Go de RAM&quot;
+Realite : il en a 8.
+</code></pre>
 
 <h2 id="nettoyage-periodique">Nettoyage periodique</h2>
 <h3 id="frequence">Frequence</h3>
@@ -184,15 +184,15 @@ Fichier 3 : &quot;Communication informelle, tutoyer&quot;
 <li><strong>Apres chaque projet termine</strong> : supprimer le contexte du projet.</li>
 </ul>
 <h3 id="prompt-de-scan">Prompt de scan</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Lis</span><span class="w"> </span><span class="n">tous</span><span class="w"> </span><span class="n">tes</span><span class="w"> </span><span class="n">fichiers</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">contexte</span><span class="p">.</span>
-<span class="n">Pour</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">factuelle</span><span class="p">,</span><span class="w"> </span><span class="n">indique</span><span class="w"> </span><span class="err">:</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">OK</span><span class="o">]</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">toujours</span><span class="w"> </span><span class="n">vraie</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">utile</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">OBSOLETE</span><span class="o">]</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">n</span><span class="s1">&#39;est plus vraie</span>
-<span class="s1">- [DOUTE] : tu n&#39;</span><span class="n">es</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">sur</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">verifier</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">moi</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">REDONDANT</span><span class="o">]</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">dit</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">meme</span><span class="w"> </span><span class="n">chose</span><span class="w"> </span><span class="n">qu</span><span class="err">&#39;</span><span class="n">une</span><span class="w"> </span><span class="n">autre</span><span class="w"> </span><span class="n">entree</span>
+<pre class="codehilite"><code>Lis tous tes fichiers de memoire et de contexte.
+Pour chaque information factuelle, indique :
+- [OK] : toujours vraie et utile
+- [OBSOLETE] : n'est plus vraie
+- [DOUTE] : tu n'es pas sur, a verifier avec moi
+- [REDONDANT] : dit la meme chose qu'une autre entree
 
-<span class="n">Liste</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">resultats</span><span class="p">.</span><span class="w"> </span><span class="k">On</span><span class="w"> </span><span class="n">nettoie</span><span class="w"> </span><span class="n">ensemble</span><span class="p">.</span>
-</code></pre></div>
+Liste les resultats. On nettoie ensemble.
+</code></pre>
 
 <h3 id="processus-de-nettoyage">Processus de nettoyage</h3>
 <ol>
@@ -205,13 +205,13 @@ Fichier 3 : &quot;Communication informelle, tutoyer&quot;
 </ol>
 <h2 id="night-consolidation">Night consolidation</h2>
 <p>Concept de Steinberg : a la fin de chaque journee (ou semaine), l'agent consolide ce qu'il a appris.</p>
-<div class="codehilite"><pre><span></span><code>Resume de la journee :
-- Quelles nouvelles informations as-tu apprises aujourd&#39;hui ?
-- Est-ce qu&#39;elles contredisent quelque chose dans ta memoire ?
+<pre class="codehilite"><code>Resume de la journee :
+- Quelles nouvelles informations as-tu apprises aujourd'hui ?
+- Est-ce qu'elles contredisent quelque chose dans ta memoire ?
 - Quelles informations en memoire sont confirmees par la journee ?
 
 Propose les mises a jour de memoire necessaires.
-</code></pre></div>
+</code></pre>
 
 <p>Ca ne prend pas longtemps. 2 minutes en fin de journee. Mais ca empeche la derive de s'accumuler.</p>
 <h2 id="oubli-volontaire">Oubli volontaire</h2>

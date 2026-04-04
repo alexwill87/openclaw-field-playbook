@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.5 -- Memory Drift | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.5 -- Memory Drift | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.5 -- Memory Drift | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html" class="active">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.5 -- Memory Drift</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#symptoms-of-drift">Symptoms of Drift</a></li>
+    <li><a href="#types-of-drift">Types of Drift</a></li>
+    <li class="toc-h3"><a href="#obsolescence">Obsolescence</a></li>
+    <li class="toc-h3"><a href="#contradiction">Contradiction</a></li>
+    <li class="toc-h3"><a href="#inflation">Inflation</a></li>
+    <li class="toc-h3"><a href="#memorized-hallucination">Memorized Hallucination</a></li>
+    <li><a href="#periodic-cleanup">Periodic Cleanup</a></li>
+    <li class="toc-h3"><a href="#frequency">Frequency</a></li>
+    <li class="toc-h3"><a href="#scan-prompt">Scan Prompt</a></li>
+    <li class="toc-h3"><a href="#cleanup-process">Cleanup Process</a></li>
+    <li><a href="#night-consolidation">Night Consolidation</a></li>
+    <li><a href="#voluntary-forgetting">Voluntary Forgetting</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="55-memory-drift">5.5 -- Memory Drift</h1>
+<h2 id="context">Context</h2>
+<p>Your agent's memory accumulates information over time. Some becomes obsolete, some contradicts itself, some has become false without anyone noticing. This is memory drift.</p>
+<p>Steinberg compares it to a desk: if you never organize, important documents get lost under expired papers.</p>
+<h2 id="symptoms-of-drift">Symptoms of Drift</h2>
+<p>You have a drift problem when:</p>
+<ul>
+<li>The agent mentions a project you finished 2 months ago.</li>
+<li>The agent uses an old workflow that has been replaced.</li>
+<li>The agent gives contradictory information in two close responses.</li>
+<li>The agent "remembers" a decision that was canceled.</li>
+<li>The agent repeats information, phrasing it differently each time (sign of redundancy).</li>
+</ul>
+<h2 id="types-of-drift">Types of Drift</h2>
+<h3 id="obsolescence">Obsolescence</h3>
+<p>The information was true but no longer is.</p>
+<pre class="codehilite"><code>Memory: &quot;The cockpit project uses Express.js&quot;
+Reality: you migrated to Fastify 3 weeks ago.
+</code></pre>
+
+<h3 id="contradiction">Contradiction</h3>
+<p>Two pieces of information contradict each other.</p>
+<pre class="codehilite"><code>Memory file A: &quot;Backups are daily&quot;
+Memory file B: &quot;Backups are weekly&quot;
+</code></pre>
+
+<h3 id="inflation">Inflation</h3>
+<p>The same information is stored in 5 different forms. The agent no longer knows which one to use.</p>
+<pre class="codehilite"><code>File 1: &quot;The user prefers informal speech&quot;
+File 2: &quot;Use informal speech, not formal&quot;
+File 3: &quot;Informal communication, use tu&quot;
+</code></pre>
+
+<h3 id="memorized-hallucination">Memorized Hallucination</h3>
+<p>The agent once "invented" information and stored it as fact.</p>
+<pre class="codehilite"><code>Memory: &quot;The server has 16 GB of RAM&quot;
+Reality: it has 8.
+</code></pre>
+
+<h2 id="periodic-cleanup">Periodic Cleanup</h2>
+<h3 id="frequency">Frequency</h3>
+<ul>
+<li><strong>Monthly</strong>: quick scan (15 minutes).</li>
+<li><strong>Quarterly</strong>: deep cleanup (1 hour).</li>
+<li><strong>After each completed project</strong>: remove project context.</li>
+</ul>
+<h3 id="scan-prompt">Scan Prompt</h3>
+<pre class="codehilite"><code>Read all your memory and context files.
+For each factual piece of information, indicate:
+- [OK]: still true and useful
+- [OBSOLETE]: no longer true
+- [DOUBT]: you're not sure, needs verification with me
+- [REDUNDANT]: says the same thing as another entry
+
+List the results. We'll clean up together.
+</code></pre>
+
+<h3 id="cleanup-process">Cleanup Process</h3>
+<ol>
+<li>Run the scan prompt.</li>
+<li>Review the results with the agent.</li>
+<li>Delete the [OBSOLETE] entries.</li>
+<li>Merge [REDUNDANT] entries into a single one.</li>
+<li>Verify the [DOUBT] entries — correct or delete.</li>
+<li>Save the cleaned version.</li>
+</ol>
+<h2 id="night-consolidation">Night Consolidation</h2>
+<p>Steinberg's concept: at the end of each day (or week), the agent consolidates what it learned.</p>
+<pre class="codehilite"><code>Summary of the day:
+- What new information did you learn today?
+- Does it contradict anything in your memory?
+- What information in memory was confirmed by today?
+
+Propose the necessary memory updates.
+</code></pre>
+
+<p>It doesn't take long. 2 minutes at the end of the day. But it prevents drift from accumulating.</p>
+<h2 id="voluntary-forgetting">Voluntary Forgetting</h2>
+<p>Sometimes the right action is to delete from memory. Not because it's false, but because it's no longer useful.</p>
+<p>Candidates for forgetting:</p>
+<ul>
+<li>Details of a completed project (keep only lessons learned).</li>
+<li>Intermediate decisions that were replaced by the final decision.</li>
+<li>Temporary context ("this week I'm working on X").</li>
+<li>Documented trials and errors that are no longer relevant.</li>
+</ul>
+<p>Voluntary forgetting reduces noise and token cost. Less memory = faster reads = more accurate responses.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<p><strong>Never clean up.</strong> Memory grows, contradictions accumulate, response quality drops. You blame the agent when it's actually polluted memory.</p>
+<p><strong>Delete everything.</strong> Radical cleanup: you erase all memory. The agent starts from scratch and loses all useful context. Clean surgically.</p>
+<p><strong>Trust the scan without verifying.</strong> The agent marks [OK] on obsolete information because it doesn't know it changed. Verify critical facts yourself.</p>
+<p><strong>No memory versioning.</strong> You delete information and need it 2 weeks later. Keep a backup before each cleanup.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Run the scan prompt on your memory.</li>
+<li>Review the results: OBSOLETE, DOUBT, REDUNDANT.</li>
+<li>Save the current version of memory (backup).</li>
+<li>Clean up: delete, merge, correct.</li>
+<li>Test: does the agent give more accurate responses?</li>
+<li>Schedule the next cleanup (monthly).</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] A memory scan has been done in the last month.</li>
+<li>[ ] Obsolete information is deleted.</li>
+<li>[ ] Redundancies are merged into a single entry.</li>
+<li>[ ] A memory backup exists before each cleanup.</li>
+<li>[ ] Night consolidation is practiced (daily or weekly).</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Symptoms of Drift, Types of Drift, Periodic Cleanup and 5 more. <a href="05-06-agent-se-trompe.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/05-derive-memoire.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-04-revoir-system-prompt.html">&larr; 5.4 -- Review the system prompt</a>
+<a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mistake &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

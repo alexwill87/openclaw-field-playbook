@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>07 -- How to Submit Your Use Case | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="07 -- How to Submit Your Use Case | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="07 -- How to Submit Your Use Case | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html">01 -- Digital Agency (2 Partners...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Freelance consultant</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Technical Team (5-15 people)</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Accounting Firm</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html" class="active">07 -- How to Submit Your Use Case</a>
+    <a href="06-08-artisan-tpe.html">6.8 -- Craftspeople and Small Bu...</a>
+  </div>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <span class="sep">/</span>
+  <span>07 -- How to Submit Your Use Case</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#why-contribute">Why contribute</a></li>
+    <li><a href="#standard-format">Standard format</a></li>
+    <li><a href="#option-1-submit-via-github-issue">Option 1: Submit via GitHub Issue</a></li>
+    <li><a href="#option-2-submit-via-pull-request">Option 2: Submit via Pull Request</a></li>
+    <li class="toc-h3"><a href="#pr-rules">PR rules:</a></li>
+    <li><a href="#what-makes-a-use-case-useful">What makes a use case useful</a></li>
+    <li><a href="#what-were-particularly-looking-for">What we're particularly looking for</a></li>
+    <li><a href="#after-submission">After submission</a></li>
+    <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 06
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="07-how-to-submit-your-use-case">07 -- How to Submit Your Use Case</h1>
+<p><strong>For whom:</strong> anyone or team using OpenClaw in a real-world situation
+<strong>Time required:</strong> 30 minutes to 1 hour
+<strong>Difficulty:</strong> Beginner</p>
+<hr />
+<h2 id="why-contribute">Why contribute</h2>
+<p>Use cases are the most useful part of this playbook. Each new case helps other practitioners to:
+- Evaluate whether OpenClaw fits their situation
+- Save time by reusing a tested configuration
+- Avoid mistakes others have already made</p>
+<p>Your experience, even if partial, has value. A use case doesn't need to be perfect to be useful.</p>
+<hr />
+<h2 id="standard-format">Standard format</h2>
+<p>Each use case follows this structure. You can copy this template directly.</p>
+<pre class="codehilite"><code class="language-markdown">---
+status: draft
+audience: both
+chapter: 06
+last_updated: YYYY-MM
+contributors: [your-github-handle]
+lang: fr
+---
+
+# XX -- [Use Case Title]
+
+**For whom:** [one-line profile]
+**Setup time:** [estimate]
+**Difficulty:** Beginner / Intermediate / Advanced
+
+---
+
+## Context
+
+Who you are, what your organization does, team size.
+
+## Problem
+
+What you needed to solve or automate. Be specific.
+
+## Configuration
+
+Your infrastructure (server, OS, tools).
+Your agents (how many, what roles).
+Your approximate budget.
+
+## Setup
+
+The steps you followed, in chronological order.
+
+## Result
+
+What changed concretely. Numbers if possible (time saved, success rate, costs).
+
+## Lessons Learned
+
+What you would do differently. What worked better than expected.
+
+## Common Mistakes
+
+The pitfalls you encountered and how to avoid them.
+
+## Template
+
+A prompt, configuration, or reusable snippet for others.
+
+## Verification
+
+A checklist to validate that the configuration works.
+</code></pre>
+
+<hr />
+<h2 id="option-1-submit-via-github-issue">Option 1: Submit via GitHub Issue</h2>
+<p>This is the simplest method. No Git knowledge required.</p>
+<ol>
+<li>Go to <a href="https://github.com/alexwill87/openclawfieldplaybook/issues">github.com/alexwill87/openclawfieldplaybook/issues</a></li>
+<li>Click <strong>New Issue</strong></li>
+<li>Choose the <strong>suggestion</strong> template</li>
+<li>In the title, write: <code>use-case: [your title]</code></li>
+<li>In the body, paste the standard format above and fill it in</li>
+<li>Add the <code>use-case</code> label</li>
+<li>Submit</li>
+</ol>
+<p>An AI agent will analyze your Issue and post a comment. A human maintainer will validate and integrate the case into the chapter.</p>
+<hr />
+<h2 id="option-2-submit-via-pull-request">Option 2: Submit via Pull Request</h2>
+<p>If you're comfortable with GitHub:</p>
+<ol>
+<li>Fork the repo <a href="https://github.com/alexwill87/openclawfieldplaybook">alexwill87/openclawfieldplaybook</a></li>
+<li>Create your file in <code>sections/06-use-cases/</code></li>
+<li>Name it with the next available number: <code>XX-short-title.md</code></li>
+<li>Use the standard format above</li>
+<li>Add the YAML frontmatter with <code>status: draft</code></li>
+<li>Commit with a clear message: <code>feat: add use case for [your title]</code></li>
+<li>Open a Pull Request to the main repo</li>
+</ol>
+<h3 id="pr-rules">PR rules:</h3>
+<ul>
+<li>One file per use case</li>
+<li>YAML frontmatter is mandatory</li>
+<li>Initial status is always <code>draft</code></li>
+<li>No personal data (clients, employers) without consent</li>
+<li>Amounts and metrics can be approximate; indicate if they are</li>
+</ul>
+<hr />
+<h2 id="what-makes-a-use-case-useful">What makes a use case useful</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Good example</th>
+<th>Bad example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Specificity</td>
+<td>"We reduced triage time from 3h to 45min"</td>
+<td>"It worked well"</td>
+</tr>
+<tr>
+<td>Reproducibility</td>
+<td>Complete configuration with system prompt</td>
+<td>"We set up an agent"</td>
+</tr>
+<tr>
+<td>Honesty</td>
+<td>"The agent makes mistakes on 15% of cases, here's how we handle it"</td>
+<td>"It works perfectly"</td>
+</tr>
+<tr>
+<td>Template</td>
+<td>Copy-paste ready prompt</td>
+<td>Vague prompt description</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="what-were-particularly-looking-for">What we're particularly looking for</h2>
+<p>The following use cases are most requested by the community. If you have experience in any of these areas, your contribution will be especially valued:</p>
+<ul>
+<li>Craft / manual trades (estimates, project tracking, client follow-up)</li>
+<li>Medical profession (appointment scheduling, patient follow-up, compliance)</li>
+<li>Association / NGO (volunteer management, communication, reporting)</li>
+<li>Education (lesson preparation, student tracking, administration)</li>
+<li>Legal profession (case triage, legal research, compliance)</li>
+<li>Real estate (rental management, landlord relations, work tracking)</li>
+</ul>
+<hr />
+<h2 id="after-submission">After submission</h2>
+<ol>
+<li>An AI agent analyzes your contribution and posts a comment</li>
+<li>A human maintainer reviews the use case</li>
+<li>If adjustments are needed, they are requested via comment</li>
+<li>The case is merged with <code>draft</code> status, then moves to <code>review</code>, then <code>complete</code></li>
+<li>The case appears in the chapter 6 table of contents</li>
+</ol>
+<p>Typical processing time: 1 to 2 weeks.</p>
+<hr />
+<h2 id="frequently-asked-questions">Frequently asked questions</h2>
+<p><strong>Is my case too simple to be useful?</strong>
+Yes, it is. Simple cases are often the most useful because they're accessible to more people.</p>
+<p><strong>I can't share the details of my company.</strong>
+Anonymize. Replace names, exact amounts, and sensitive details with generic values. The format and experience are what matter.</p>
+<p><strong>My use case didn't work.</strong>
+Share it anyway. A documented failure is as useful as a success. Explain what didn't work and why.</p>
+<p><strong>I don't speak French.</strong>
+Contributions in English are welcome. A contributor or agent will handle the translation.</p>
+<hr />
+<p><em>Every use case submitted makes this playbook more useful for the next practitioner. Your experience matters.</em></p>
+<p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Submit via Issue</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Why contribute, Standard format, Option 1: Submit via GitHub Issue, Option 2: Submit via Pull Request and 4 more. <a href="06-08-artisan-tpe.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/07-contribuer.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-06-startup.html">&larr; 06 -- Startup early-stage</a>
+<a href="06-08-artisan-tpe.html">6.8 -- Craftspeople and Small Businesses: An AI... &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

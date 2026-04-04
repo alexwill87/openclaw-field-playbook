@@ -144,103 +144,103 @@
 <p>PostgreSQL stocke les donnees persistantes du systeme : sessions, historique des agents, metriques, etats. On le fait tourner dans Docker pour l'isolation et la portabilite. Le mot de passe sera stocke dans Vault (section precedente).</p>
 <h2 id="etape-1-recuperer-le-mot-de-passe-depuis-vault">Etape 1 : Recuperer le mot de passe depuis Vault</h2>
 <p>Si vous avez suivi la section 07, le mot de passe est deja dans Vault :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>password<span class="w"> </span>secret/database
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=password secret/database
+</code></pre>
 
 <p>Notez ce mot de passe pour l'utiliser dans le docker-compose.</p>
 <h2 id="etape-2-creer-le-fichier-docker-compose">Etape 2 : Creer le fichier Docker Compose</h2>
 <p>Creez <code>~/docker/postgres/docker-compose.yml</code> :</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
+<pre class="codehilite"><code class="language-yaml">version: &quot;3.8&quot;
 
-<span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16-alpine</span>
-<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
-<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;127.0.0.1:5432:5432&quot;</span>
-<span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">PGDATA</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/postgresql/data/pgdata</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/var/lib/postgresql/data</span>
-<span class="w">    </span><span class="nt">shm_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256mb</span>
-<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres-net</span>
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - &quot;127.0.0.1:5432:5432&quot;
+    env_file:
+      - .env
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    shm_size: 256mb
+    networks:
+      - postgres-net
 
-<span class="nt">networks</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">postgres-net</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
-</code></pre></div>
+networks:
+  postgres-net:
+    driver: bridge
+</code></pre>
 
 <p>Creez le fichier <code>.env</code> avec les identifiants (ne jamais le committer dans git) :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>~/docker/postgres/.env<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-<span class="s">POSTGRES_USER=oa_admin</span>
-<span class="s">POSTGRES_PASSWORD=VOTRE_MOT_DE_PASSE_FORT</span>
-<span class="s">POSTGRES_DB=oa_system</span>
-<span class="s">EOF</span>
-$<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/docker/postgres/.env
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cat &gt; ~/docker/postgres/.env &lt;&lt; 'EOF'
+POSTGRES_USER=oa_admin
+POSTGRES_PASSWORD=VOTRE_MOT_DE_PASSE_FORT
+POSTGRES_DB=oa_system
+EOF
+$ chmod 600 ~/docker/postgres/.env
+</code></pre>
 
 <blockquote>
 <p><strong>SECURITE :</strong> Le fichier <code>.env</code> contient le mot de passe en clair. Protegez-le (<code>chmod 600</code>) et ajoutez <code>.env</code> a votre <code>.gitignore</code>. Idealement, recuperez le mot de passe depuis Vault : <code>vault kv get -field=password secret/database &gt; ~/docker/postgres/.env</code></p>
 </blockquote>
 <h2 id="etape-3-demarrer-postgresql">Etape 3 : Demarrer PostgreSQL</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/docker/postgres
-$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cd ~/docker/postgres
+$ docker compose up -d
+</code></pre>
 
 <p>Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>postgres
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker ps | grep postgres
+</code></pre>
 
 <h2 id="etape-4-tester-la-connexion">Etape 4 : Tester la connexion</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>-d<span class="w"> </span>oa_system<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT version();&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker exec -it postgres psql -U oa_admin -d oa_system -c &quot;SELECT version();&quot;
+</code></pre>
 
 <p>Resultat attendu : version PostgreSQL 16.x.</p>
 <h2 id="etape-5-creer-les-tables-initiales-si-necessaire">Etape 5 : Creer les tables initiales (si necessaire)</h2>
 <p>OpenClaw creera ses propres tables au premier lancement. Mais vous pouvez verifier que la base est vide et prete :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>-d<span class="w"> </span>oa_system<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;\dt&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker exec -it postgres psql -U oa_admin -d oa_system -c &quot;\dt&quot;
+</code></pre>
 
 <p>Resultat attendu : "Did not find any relations." (normal, la base est vide).</p>
 <h2 id="etape-6-configurer-la-sauvegarde-automatique">Etape 6 : Configurer la sauvegarde automatique</h2>
 <p>Creez le script de backup <code>~/scripts/backup-postgres.sh</code> :</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1"># Sauvegarde quotidienne PostgreSQL</span>
-<span class="c1"># A mettre dans cron : 0 3 * * * /home/deploy/scripts/backup-postgres.sh</span>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# Sauvegarde quotidienne PostgreSQL
+# A mettre dans cron : 0 3 * * * /home/deploy/scripts/backup-postgres.sh
 
-<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/backups/postgres&quot;</span>
-<span class="nv">DATE</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M%S<span class="k">)</span>
-<span class="nv">FILENAME</span><span class="o">=</span><span class="s2">&quot;oa_system_</span><span class="si">${</span><span class="nv">DATE</span><span class="si">}</span><span class="s2">.sql.gz&quot;</span>
+BACKUP_DIR=&quot;$HOME/backups/postgres&quot;
+DATE=$(date +%Y%m%d_%H%M%S)
+FILENAME=&quot;oa_system_${DATE}.sql.gz&quot;
 
-<span class="c1"># Dump compresse</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>oa_system<span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">FILENAME</span><span class="si">}</span><span class="s2">&quot;</span>
+# Dump compresse
+docker exec postgres pg_dump -U oa_admin oa_system | gzip &gt; &quot;${BACKUP_DIR}/${FILENAME}&quot;
 
-<span class="c1"># Garder les 7 derniers jours</span>
-find<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.sql.gz&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+7<span class="w"> </span>-delete
+# Garder les 7 derniers jours
+find &quot;${BACKUP_DIR}&quot; -name &quot;*.sql.gz&quot; -mtime +7 -delete
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="k">)</span><span class="s2">] Backup termine : </span><span class="si">${</span><span class="nv">FILENAME</span><span class="si">}</span><span class="s2">&quot;</span>
-</code></pre></div>
+echo &quot;[$(date)] Backup termine : ${FILENAME}&quot;
+</code></pre>
 
 <p>Rendez-le executable :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>~/scripts/backup-postgres.sh
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/backup-postgres.sh
+</code></pre>
 
 <p>Testez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>~/scripts/backup-postgres.sh
-$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/backups/postgres/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/backup-postgres.sh
+$ ls -la ~/backups/postgres/
+</code></pre>
 
 <h2 id="etape-7-ajouter-au-cron">Etape 7 : Ajouter au cron</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>crontab<span class="w"> </span>-e
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ crontab -e
+</code></pre>
 
 <p>Ajoutez cette ligne (backup tous les jours a 3h du matin) :</p>
-<div class="codehilite"><pre><span></span><code><span class="mf">0</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">deploy</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">backup</span><span class="o">-</span><span class="nb">pos</span><span class="n">tgres</span><span class="mf">.</span><span class="n">sh</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">deploy</span><span class="o">/</span><span class="nb">log</span><span class="n">s</span><span class="o">/</span><span class="n">backup</span><span class="o">-</span><span class="nb">pos</span><span class="n">tgres</span><span class="mf">.</span><span class="nb">log</span><span class="w"> </span><span class="mf">2</span><span class="o">&gt;</span><span class="err">&amp;</span><span class="mf">1</span>
-</code></pre></div>
+<pre class="codehilite"><code>0 3 * * * /home/deploy/scripts/backup-postgres.sh &gt;&gt; /home/deploy/logs/backup-postgres.log 2&gt;&amp;1
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <ul>
@@ -250,10 +250,10 @@ $<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/
 <li><strong>Permissions sur le dossier data</strong> : Si PostgreSQL ne demarre pas, verifiez : <code>ls -la ~/docker/postgres/data/</code>. Le dossier doit etre accessible.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>postgres
-$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>-d<span class="w"> </span>oa_system<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT 1;&quot;</span>
-$<span class="w"> </span>ls<span class="w"> </span>~/backups/postgres/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker ps | grep postgres
+$ docker exec -it postgres psql -U oa_admin -d oa_system -c &quot;SELECT 1;&quot;
+$ ls ~/backups/postgres/
+</code></pre>
 
 <p>Resultats attendus :
 - Conteneur postgres en etat "Up"

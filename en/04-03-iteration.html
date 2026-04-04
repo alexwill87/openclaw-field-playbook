@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.3 -- Iteration: your first version won't be the right one | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.3 -- Iteration: your first version won't be the right one | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.3 -- Iteration: your first version won't be the right one | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html" class="active">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.3 -- Iteration: your first version won't be the right one</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-iteration-process">The iteration process</a></li>
+    <li class="toc-h3"><a href="#round-1-the-rough-version">Round 1: the rough version</a></li>
+    <li class="toc-h3"><a href="#round-2-the-correction-prompt">Round 2: the correction prompt</a></li>
+    <li class="toc-h3"><a href="#round-3-condense">Round 3: condense</a></li>
+    <li><a href="#why-condensing-works">Why condensing works</a></li>
+    <li><a href="#when-to-stop-iterating">When to stop iterating</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="43-iteration-your-first-version-wont-be-the-right-one">4.3 -- Iteration: your first version won't be the right one</h1>
+<h2 id="context">Context</h2>
+<p>Your first system prompt will be bad. Not because you're bad — because nobody knows what they want from an agent until they've used it. That's normal. The prompt reveals itself through use, not through thinking about it.</p>
+<p>Plan for 2-3 rounds of iteration before you have a prompt that feels right. After that, occasional tweaks when your needs change.</p>
+<h2 id="the-iteration-process">The iteration process</h2>
+<h3 id="round-1-the-rough-version">Round 1: the rough version</h3>
+<p>Write your first prompt (see section 4.1). Use it for 2-3 days. Note every friction point:</p>
+<ul>
+<li>"It responds too long"</li>
+<li>"It forgets I want informal speech"</li>
+<li>"It suggests Windows solutions when I'm on Linux"</li>
+<li>"It asks for context every time"</li>
+</ul>
+<h3 id="round-2-the-correction-prompt">Round 2: the correction prompt</h3>
+<p>Use this pattern to fix it:</p>
+<pre class="codehilite"><code>Here's my current system prompt:
+[paste the prompt]
+
+Problems observed:
+1. [friction 1]
+2. [friction 2]
+3. [friction 3]
+
+Rewrite the prompt fixing these issues.
+Keep the structure. Don't exceed 250 words.
+</code></pre>
+
+<p>Review the suggestion. Manually edit whatever doesn't fit. Test for 2-3 more days.</p>
+<h3 id="round-3-condense">Round 3: condense</h3>
+<p>After round 2, your prompt probably runs 400-500 words. That's too much. Every token counts.</p>
+<p>Condensation prompt:</p>
+<pre class="codehilite"><code>Here's my system prompt (480 words).
+Condense it to 150 words maximum.
+Keep ALL the rules and restrictions.
+Remove explanations -- the agent doesn't need to understand why.
+</code></pre>
+
+<p>The rule: 150 words &gt; 500 words. A short, precise prompt beats a long, detailed one. The model doesn't need your justifications — it needs your instructions.</p>
+<h2 id="why-condensing-works">Why condensing works</h2>
+<p>A long prompt creates noise. The model has to sort what matters from what's filler. The shorter it is, the more weight each word carries.</p>
+<p>Comparison:</p>
+<p><strong>Before (68 words):</strong></p>
+<pre class="codehilite"><code>When you suggest technical solutions to me, I'd like you to take into
+account the fact that I work primarily on Linux Ubuntu environments, and
+that I generally don't need solutions specific to Windows or macOS, unless
+you're explicitly asked for them in my question.
+</code></pre>
+
+<p><strong>After (12 words):</strong></p>
+<pre class="codehilite"><code>Environment: Linux Ubuntu. No Windows/macOS solutions unless requested.
+</code></pre>
+
+<p>Same information. 5x fewer tokens.</p>
+<h2 id="when-to-stop-iterating">When to stop iterating</h2>
+<p>Stop when:</p>
+<ul>
+<li>You're no longer correcting the agent on tone or format.</li>
+<li>Responses are useful on the first try in 80%+ of cases.</li>
+<li>Your corrections are about substance (knowledge) not form (behavior).</li>
+</ul>
+<p>If you're still iterating after 5 rounds, the problem probably isn't the prompt. It might be the model, the tool, or your expectations.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Never iterate.</strong> The first draft stays in place for months. The prompt accumulates obsolete instructions and the agent gradually degrades.</p>
+<p><strong>Iterate without noting.</strong> You change the prompt "from memory" without having written down the friction points. You fix one problem and create another.</p>
+<p><strong>Add without removing.</strong> Every iteration adds rules but never removes any. After 5 rounds, the prompt is 800 words and contradicts itself.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Use your current prompt for 2-3 days.</li>
+<li>Note every friction point in a file <code>prompt-feedback.md</code>.</li>
+<li>Apply the correction prompt (round 2).</li>
+<li>Test for 2-3 days.</li>
+<li>Condense to 150 words (round 3).</li>
+<li>Test. If it holds, you're done.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The current prompt has been tested in real conditions (not just reread).</li>
+<li>[ ] Friction points are written down, not from memory.</li>
+<li>[ ] The final prompt is under 200 words.</li>
+<li>[ ] No instruction contradicts another.</li>
+<li>[ ] 80%+ of responses are useful without correction.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The iteration process, Why condensing works, When to stop iterating and 3 more. <a href="04-04-pourquoi-taches.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/03-iteration.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-02-personnalite-ton.html">&larr; 4.2 -- Personality and Tone</a>
+<a href="04-04-pourquoi-taches.html">4.4 -- Why a task system &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

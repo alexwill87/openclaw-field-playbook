@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>1.8 -- What does it really cost? | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="1.8 -- What does it really cost? | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="1.8 -- What does it really cost? | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <div class="nav-sections">
+    <a href="01-01-definition.html">1.1 -- What OpenClaw is (and isn't)</a>
+    <a href="01-02-proactif-reactif.html">1.2 -- The distinction between p...</a>
+    <a href="01-03-comparaison.html">1.3 -- OpenClaw vs other AI assi...</a>
+    <a href="01-04-souverainete.html">1.4 -- Why Sovereignty Matters f...</a>
+    <a href="01-05-architecture-mentale.html">1.5 -- The mental architecture b...</a>
+    <a href="01-06-ce-que-vous-construisez.html">1.6 -- What You Will Build in Th...</a>
+    <a href="01-07-journee-type.html">1.7 -- What does a day with an A...</a>
+    <a href="01-08-combien-ca-coute.html" class="active">1.8 -- What does it really cost?</a>
+    <a href="01-09-est-ce-complique.html">1.9 -- Is this complicated for me?</a>
+    <a href="01-10-si-je-ne-fais-rien.html">1.10 -- What happens if I do not...</a>
+    <a href="01-11-comment-se-lancer.html">1.11 -- How do I get started?</a>
+  </div>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="01-00-sommaire.html">1. Définition</a>
+  <span class="sep">/</span>
+  <span>1.8 -- What does it really cost?</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#monthly-cost">Monthly cost</a></li>
+    <li><a href="#startup-cost">Startup cost</a></li>
+    <li class="toc-h3"><a href="#option-1-you-hire-an-installer">Option 1: You hire an installer</a></li>
+    <li class="toc-h3"><a href="#option-2-you-follow-the-guide-yourself">Option 2: You follow the guide yourself</a></li>
+    <li><a href="#what-it-brings-you-back">What it brings you back</a></li>
+    <li><a href="#hidden-costs-there-arent-any">Hidden costs (there aren't any)</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: human
+chapter: 01
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="18-what-does-it-really-cost">1.8 -- What does it really cost?</h1>
+<blockquote>
+<p>The most important question. Here are the real numbers, no surprises.</p>
+</blockquote>
+<hr />
+<h2 id="monthly-cost">Monthly cost</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>What it is</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server (VPS)</td>
+<td>A small remote computer running your agent</td>
+<td>4-8 EUR/month</td>
+</tr>
+<tr>
+<td>Artificial intelligence</td>
+<td>The "brain" of the agent (via OpenRouter)</td>
+<td>5-15 EUR/month</td>
+</tr>
+<tr>
+<td>Communication channel</td>
+<td>Telegram, email...</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>10-25 EUR/month</strong></td>
+</tr>
+</tbody>
+</table>
+<p>That's cheaper than a Spotify + Netflix subscription.</p>
+<hr />
+<h2 id="startup-cost">Startup cost</h2>
+<p>You have two options:</p>
+<h3 id="option-1-you-hire-an-installer">Option 1: You hire an installer</h3>
+<p>A professional installs and configures everything for you in 3 hours.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Installation and configuration</td>
+<td>300-500 EUR (one-time)</td>
+</tr>
+<tr>
+<td>1-hour training</td>
+<td>Often included</td>
+</tr>
+</tbody>
+</table>
+<p>You don't need any technical skills. It's like calling an electrician to install an electrical panel.</p>
+<h3 id="option-2-you-follow-the-guide-yourself">Option 2: You follow the guide yourself</h3>
+<p>If you're comfortable with a computer (you don't need to be a developer), the guide is free and comprehensive.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The playbook</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Your time</td>
+<td>6-10 hours</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="what-it-brings-you-back">What it brings you back</h2>
+<p>The calculation is straightforward. Take a tradesperson who responds to clients 48 hours late:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evening admin time</td>
+<td>2h/day</td>
+<td>15 min/day</td>
+</tr>
+<tr>
+<td>Response time to prospects</td>
+<td>48 hours</td>
+<td>5 minutes</td>
+</tr>
+<tr>
+<td>Prospects lost per month</td>
+<td>3-5</td>
+<td>0-1</td>
+</tr>
+<tr>
+<td>Quotes sent per week</td>
+<td>3</td>
+<td>7-8</td>
+</tr>
+</tbody>
+</table>
+<p>If one quote in three becomes a job, and an average job brings in 800 EUR, the 2-3 additional quotes per week represents roughly <strong>2,000 EUR of additional revenue per month</strong>.</p>
+<p>For an investment of 15-25 EUR/month.</p>
+<hr />
+<h2 id="hidden-costs-there-arent-any">Hidden costs (there aren't any)</h2>
+<ul>
+<li><strong>No commitment.</strong> You can stop whenever you want.</li>
+<li><strong>No license.</strong> OpenClaw is open source.</li>
+<li><strong>No update fees.</strong> Updates are included.</li>
+<li><strong>No "premium" tier.</strong> Everything is in the free version.</li>
+</ul>
+<p>The only variable cost is AI usage: the more your agent works, the more it costs. But even a very active agent rarely exceeds 15 EUR/month for a tradesperson or small business.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How much per month?</td>
+<td>10-25 EUR</td>
+</tr>
+<tr>
+<td>How much to start?</td>
+<td>0 EUR (on your own) or 300-500 EUR (with an installer)</td>
+</tr>
+<tr>
+<td>Commitment?</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Return on investment?</td>
+<td>From the first month if you have prospects to manage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Monthly cost, Startup cost, What it brings you back, Hidden costs (there aren't any) and 1 more. <a href="01-09-est-ce-complique.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/01-definition/08-combien-ca-coute.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="01-07-journee-type.html">&larr; 1.7 -- What does a day with an AI agent look like?</a>
+<a href="01-09-est-ce-complique.html">1.9 -- Is this complicated for me? &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

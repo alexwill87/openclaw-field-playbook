@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.5 -- Node.js and PM2 | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.5 -- Node.js and PM2 | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.5 -- Node.js and PM2 | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html" class="active">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.5 -- Node.js and PM2</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#step-1-install-nvm">Step 1: Install nvm</a></li>
+    <li><a href="#step-2-install-nodejs">Step 2: Install Node.js</a></li>
+    <li><a href="#step-3-install-pm2">Step 3: Install PM2</a></li>
+    <li><a href="#step-4-configure-pm2-for-automatic-startup">Step 4: Configure PM2 for automatic startup</a></li>
+    <li><a href="#why-pm2-and-not-systemd-directly">Why PM2 and not systemd directly?</a></li>
+    <li><a href="#common-errors">Common errors</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#estimated-time">Estimated time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="25-nodejs-and-pm2">2.5 -- Node.js and PM2</h1>
+<h2 id="context">Context</h2>
+<p>OpenClaw is written in Node.js. PM2 is a process manager that keeps OpenClaw running, manages logs, and automatically restarts on crash.</p>
+<p>Install Node.js via <strong>nvm</strong> (Node Version Manager), not via apt. Why: apt often provides an outdated version, and nvm allows you to switch versions easily.</p>
+<h2 id="step-1-install-nvm">Step 1: Install nvm</h2>
+<pre class="codehilite"><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+</code></pre>
+
+<p>Reload the shell:</p>
+<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
+</code></pre>
+
+<p>Verify:</p>
+<pre class="codehilite"><code class="language-bash">$ nvm --version
+</code></pre>
+
+<h2 id="step-2-install-nodejs">Step 2: Install Node.js</h2>
+<p>Install the LTS (Long Term Support) version:</p>
+<pre class="codehilite"><code class="language-bash">$ nvm install --lts
+$ nvm alias default lts/*
+</code></pre>
+
+<p>Verify:</p>
+<pre class="codehilite"><code class="language-bash">$ node --version
+$ npm --version
+</code></pre>
+
+<p>Expected version: Node.js 22.x or higher (LTS at the time of writing).</p>
+<h2 id="step-3-install-pm2">Step 3: Install PM2</h2>
+<pre class="codehilite"><code class="language-bash">$ npm install -g pm2
+</code></pre>
+
+<p>Verify:</p>
+<pre class="codehilite"><code class="language-bash">$ pm2 --version
+</code></pre>
+
+<h2 id="step-4-configure-pm2-for-automatic-startup">Step 4: Configure PM2 for automatic startup</h2>
+<p>PM2 can restart automatically when the server reboots:</p>
+<pre class="codehilite"><code class="language-bash">$ pm2 startup
+</code></pre>
+
+<p>This command displays a line to copy and paste (it starts with <code>sudo env PATH=...</code>). Execute it.</p>
+<p>Then save the current list of processes (empty for now):</p>
+<pre class="codehilite"><code class="language-bash">$ pm2 save
+</code></pre>
+
+<h2 id="why-pm2-and-not-systemd-directly">Why PM2 and not systemd directly?</h2>
+<p>PM2 provides features specific to Node.js:</p>
+<ul>
+<li>Automatic restart on crash with exponential backoff</li>
+<li>Built-in log management (<code>pm2 logs</code>)</li>
+<li>Memory/CPU monitoring (<code>pm2 monit</code>)</li>
+<li>Cluster mode to use all CPUs</li>
+<li>Zero-downtime reload (<code>pm2 reload</code>)</li>
+<li>Configuration ecosystem via <code>ecosystem.config.js</code></li>
+</ul>
+<p>systemd will be used for the gateway (section 15), but PM2 manages Node.js application processes.</p>
+<h2 id="common-errors">Common errors</h2>
+<ul>
+<li><strong>Installing Node.js via apt</strong>: The version will be too old. Uninstall it (<code>sudo apt remove nodejs</code>) and use nvm.</li>
+<li><strong>"nvm: command not found" after installation</strong>: You didn't reload the shell. Run <code>source ~/.bashrc</code> or open a new terminal.</li>
+<li><strong>PM2 installed locally instead of globally</strong>: Make sure you use <code>npm install -g pm2</code> (with the <code>-g</code>).</li>
+<li><strong>PM2 startup doesn't work</strong>: Make sure to execute the sudo command displayed by <code>pm2 startup</code>, don't just run <code>pm2 startup</code> with sudo.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ node --version
+$ npm --version
+$ pm2 --version
+$ pm2 list
+</code></pre>
+
+<p>Expected results:
+- Node.js v22.x+
+- npm v10.x+
+- PM2 v5.x+
+- PM2 list empty (no processes yet)</p>
+<h2 id="estimated-time">Estimated time</h2>
+<p>10 minutes.</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Step 1: Install nvm, Step 2: Install Node.js, Step 3: Install PM2 and 5 more. <a href="02-06-structure-dossiers.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/05-nodejs-pm2.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-04-docker.html">&larr; 2.4 -- Docker and Docker Compose</a>
+<a href="02-06-structure-dossiers.html">2.6 -- Folder Structure &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

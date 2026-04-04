@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.14 -- Measuring ROI | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.14 -- Measuring ROI | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.14 -- Measuring ROI | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html" class="active">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.14 -- Measuring ROI</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-three-axes-of-roi">The three axes of ROI</a></li>
+    <li class="toc-h3"><a href="#1-time-saved">1. Time saved</a></li>
+    <li class="toc-h3"><a href="#2-improved-decisions">2. Improved decisions</a></li>
+    <li class="toc-h3"><a href="#3-errors-prevented">3. Errors prevented</a></li>
+    <li><a href="#monthly-dashboard">Monthly dashboard</a></li>
+    <li><a href="#when-roi-is-negative">When ROI is negative</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="514-measuring-roi">5.14 -- Measuring ROI</h1>
+<h2 id="context">Context</h2>
+<p>"The agent saves me time." OK, how much? If you don't measure, you don't know. And if you don't know, you can't justify the cost, optimize usage, or decide if it's worth continuing.</p>
+<p>Measuring the ROI of an AI agent is concrete. Not philosophy.</p>
+<h2 id="the-three-axes-of-roi">The three axes of ROI</h2>
+<h3 id="1-time-saved">1. Time saved</h3>
+<p>The most tangible. Compare time with and without the agent.</p>
+<h4 id="how-to-measure">How to measure</h4>
+<p>For 2 weeks, track:</p>
+<pre class="codehilite"><code class="language-markdown"># ROI Journal — Week of [date]
+
+| Task | Without agent (estimated) | With agent (actual) | Saved |
+|---|---|---|---|
+| Daily health check | 10 min | 0 min (automated) | 10 min |
+| Cockpit deployment | 15 min | 5 min | 10 min |
+| Write commit message | 3 min | 30 sec | 2.5 min |
+| Debug Docker error | 30 min | 10 min | 20 min |
+| Generate API docs | 2h | 30 min | 1h30 |
+| Rotate secrets | 20 min | 5 min | 15 min |
+
+**Total week: ~3h30 saved**
+</code></pre>
+
+<h4 id="financial-calculation">Financial calculation</h4>
+<pre class="codehilite"><code>Time saved/week: 3.5 hours
+Hourly rate: [your rate] EUR/h
+
+Monthly value of time saved: 3.5h * 4 weeks * rate = X EUR
+Agent cost/month: Y EUR (API + infra)
+
+ROI = (X - Y) / Y * 100
+</code></pre>
+
+<p>Concrete example:</p>
+<pre class="codehilite"><code>Time saved: 14h/month
+Rate: 80 EUR/h
+Value: 1120 EUR/month
+
+Agent cost: ~50 EUR/month (API ~30 EUR + VPS ~20 EUR)
+
+ROI: (1120 - 50) / 50 = 2140%
+</code></pre>
+
+<p>Even with conservative estimates, ROI is generally massive. The problem isn't ROI, it's measuring it to know where to optimize.</p>
+<h3 id="2-improved-decisions">2. Improved decisions</h3>
+<p>Harder to quantify, but real. The agent helps you make better decisions because it:</p>
+<ul>
+<li>Analyzes data you wouldn't have looked at.</li>
+<li>Detects patterns you wouldn't have seen.</li>
+<li>Proposes alternatives you wouldn't have considered.</li>
+</ul>
+<h4 id="how-to-measure_1">How to measure</h4>
+<p>Track decisions where the agent added value:</p>
+<pre class="codehilite"><code class="language-markdown"># Assisted decisions — [month]
+
+1. The agent detected that the SSL certificate would expire in 15 days.
+   Without agent: I probably would have forgotten. Potential impact: site down.
+
+2. The agent suggested condensing the system prompt (480 -&gt; 150 words).
+   Result: token cost reduced by 40%.
+
+3. The agent identified a pattern of doc tasks piling up.
+   Result: I blocked 2h/Thursday for docs. Doc tasks no longer drag on.
+</code></pre>
+
+<p>No need to quantify each decision. Simply noting them shows the value.</p>
+<h3 id="3-errors-prevented">3. Errors prevented</h3>
+<p>Each error prevented has a hidden cost: correction time, user impact, stress.</p>
+<h4 id="how-to-measure_2">How to measure</h4>
+<p>Track situations where the agent prevented an error:</p>
+<pre class="codehilite"><code class="language-markdown"># Errors prevented — [month]
+
+1. I asked for a push --force on main. The agent refused (boundary prompt).
+   Cost avoided: potentially hours of recovery + lost commits.
+
+2. The health check detected a disk at 85% before it caused an outage.
+   Cost avoided: unplanned downtime.
+
+3. The agent detected an inconsistency in the config before deployment.
+   Cost avoided: deploying a buggy version.
+</code></pre>
+
+<h2 id="monthly-dashboard">Monthly dashboard</h2>
+<p>Each month, compile a summary:</p>
+<pre class="codehilite"><code class="language-markdown"># Agent ROI — [Month YYYY]
+
+## Time
+- Hours saved: XX h
+- Value: XX EUR
+- Top 3 automated tasks:
+  1. [task] — [time saved]
+  2. [task] — [time saved]
+  3. [task] — [time saved]
+
+## Cost
+- API: XX EUR
+- Infra: XX EUR
+- Total: XX EUR
+
+## ROI
+- Net: XX EUR
+- Percentage: XX%
+
+## Decisions
+- X notable assisted decisions
+
+## Errors prevented
+- X errors prevented
+
+## Actions
+- [What we can improve next month]
+</code></pre>
+
+<h2 id="when-roi-is-negative">When ROI is negative</h2>
+<p>It happens. Signs:</p>
+<ul>
+<li>You spend more time fixing the agent than doing the work yourself.</li>
+<li>API cost exceeds the value of time saved.</li>
+<li>The agent introduces errors you have to debug.</li>
+</ul>
+<p>In this case, the problem usually isn't the agent. It's:</p>
+<ol>
+<li><strong>The system prompt</strong>: misconfigured, so the agent doesn't do what you want.</li>
+<li><strong>The workflow</strong>: not adapted, so unnecessary friction.</li>
+<li><strong>Wrong usage</strong>: you're using the agent for tasks where it doesn't add value.</li>
+</ol>
+<p>Before giving up, review these three points. If ROI stays negative after optimization, reduce usage to tasks where the agent is clearly useful.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Never measure.</strong> "It's faster, I can feel it." Feelings aren't enough. Measure at least once to have a baseline.</p>
+<p><strong>Measure time only.</strong> Time saved is most visible but not the only factor. Improved decisions and prevented errors count too.</p>
+<p><strong>Compare with zero.</strong> "Without the agent, I'd do the same thing manually." Not always. Some tasks (pattern analysis, automated monitoring) simply wouldn't be done without the agent.</p>
+<p><strong>Forget the learning curve.</strong> In the first month, ROI is negative because you're learning to configure. That's normal. Measure starting month 2.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Track your usage for 2 weeks (ROI journal).</li>
+<li>Calculate time saved and its value.</li>
+<li>Calculate monthly cost (API + infra).</li>
+<li>Note assisted decisions and prevented errors.</li>
+<li>Compile the monthly dashboard.</li>
+<li>Identify optimizations for next month.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] An ROI journal exists with at least 2 weeks of data.</li>
+<li>[ ] Time saved is quantified in hours and euros.</li>
+<li>[ ] Monthly cost is known (API + infra).</li>
+<li>[ ] ROI is positive (or reasons for negative are identified).</li>
+<li>[ ] A monthly dashboard is compiled.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The three axes of ROI, Monthly dashboard, When ROI is negative and 3 more. <a href="06-00-sommaire.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/14-mesurer-roi.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-13-migrer-modele.html">&larr; 5.13 -- Migrating to Another Model</a>
+<a href="06-00-sommaire.html">6. Use Cases &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.11 -- Trust is a configuration | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.11 -- Trust is a configuration | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.11 -- Trust is a configuration | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html" class="active">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.11 -- Trust is a configuration</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-rights-pyramid">The rights pyramid</a></li>
+    <li class="toc-h3"><a href="#level-0-read-only">Level 0: read-only</a></li>
+    <li class="toc-h3"><a href="#level-1-reversible-actions">Level 1: reversible actions</a></li>
+    <li class="toc-h3"><a href="#level-2-consequential-actions">Level 2: consequential actions</a></li>
+    <li class="toc-h3"><a href="#level-3-forbidden-actions">Level 3: forbidden actions</a></li>
+    <li><a href="#write-the-levels-in-constitutionmd">Write the levels in CONSTITUTION.md</a></li>
+    <li><a href="#evolve-the-levels">Evolve the levels</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 04
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="411-trust-is-a-configuration">4.11 -- Trust is a configuration</h1>
+<h2 id="context">Context</h2>
+<p>Trust in your agent is not a feeling. It's a configuration. Every action has a risk level, and every risk level has rules. If you don't write them down, you'll swing between too much trust ("do everything") and not enough ("show me everything").</p>
+<p>Steinberg proposes a pyramid: the riskier the action, the stricter the control.</p>
+<h2 id="the-rights-pyramid">The rights pyramid</h2>
+<h3 id="level-0-read-only">Level 0: read-only</h3>
+<p>The agent can read but cannot modify anything.</p>
+<p>Actions: consult files, read logs, display statuses, perform calculations.</p>
+<p>Control: none necessary. Zero risk.</p>
+<pre class="codehilite"><code>Examples:
+- cat, ls, docker ps, git log
+- SELECT on the database
+- Read the documentation
+</code></pre>
+
+<h3 id="level-1-reversible-actions">Level 1: reversible actions</h3>
+<p>The agent can act, but the action is easily undoable.</p>
+<p>Actions: create files, write to a temporary file, create a git branch, add a task.</p>
+<p>Control: the agent acts and reports back. You verify afterward.</p>
+<pre class="codehilite"><code>Examples:
+- git checkout -b feature/xxx
+- Create a file in /tmp
+- INSERT in the tasks table
+- Write a draft
+</code></pre>
+
+<h3 id="level-2-consequential-actions">Level 2: consequential actions</h3>
+<p>The agent can act but must request validation before.</p>
+<p>Actions: modify config files, deploy a service, modify the database, send a message.</p>
+<p>Control: the agent proposes the exact action and waits for an explicit "go".</p>
+<pre class="codehilite"><code>Examples:
+- docker compose restart
+- UPDATE/DELETE on the database
+- Modify .env or docker-compose.yml
+- git push
+- Send a Telegram message to a third party
+</code></pre>
+
+<h3 id="level-3-forbidden-actions">Level 3: forbidden actions</h3>
+<p>The agent can NEVER do this, even with validation.</p>
+<p>Actions: delete unrecoverable production data, push --force to main, modify secrets without procedure, expose credentials.</p>
+<p>Control: forbidden in the boundary prompt (section 4.12). The agent must refuse even if you ask.</p>
+<pre class="codehilite"><code>Examples:
+- DROP TABLE in production
+- git push --force origin main
+- Display a password in plain text in logs
+- Modify firewall rules
+- Delete a backup
+</code></pre>
+
+<h2 id="write-the-levels-in-constitutionmd">Write the levels in CONSTITUTION.md</h2>
+<p>Create a <code>CONSTITUTION.md</code> file that defines the levels explicitly:</p>
+<pre class="codehilite"><code class="language-markdown"># CONSTITUTION.md — Trust levels
+
+## Level 0: read-only (free)
+- Read any project file
+- Consult logs
+- SELECT queries on the database
+- Display statuses
+
+## Level 1: reversible (act + report)
+- Create non-critical files
+- Create git branches
+- Add tasks
+- Generate drafts
+
+## Level 2: consequential (ask before)
+- Modify configuration files
+- Deploy a service
+- Modify the database (UPDATE, DELETE)
+- Push to a branch
+- Send communications
+
+## Level 3: forbidden (always refuse)
+- DROP TABLE / DELETE without WHERE
+- Push --force to main
+- Modify secrets outside procedure
+- Expose credentials
+- Delete backups
+- Modify firewall rules
+</code></pre>
+
+<p>Add to the system prompt:</p>
+<pre class="codehilite"><code>Read and respect CONSTITUTION.md for trust levels.
+</code></pre>
+
+<h2 id="evolve-the-levels">Evolve the levels</h2>
+<p>The levels are not fixed. When a workflow has been tested and works well for a month, you can lower its control level:</p>
+<ul>
+<li>Cockpit deployment: level 2 -&gt; level 1 (after 10 successful deployments).</li>
+<li>Secrets rotation: remains level 2 (inherent risk, no shortcuts).</li>
+<li>Health check: level 1 -&gt; level 0 equivalent (automatic cron).</li>
+</ul>
+<p>Document each level change with the date and reason in CONSTITUTION.md.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>No levels defined.</strong> The agent improvises. Sometimes it asks, sometimes it acts. Inconsistent and stressful.</p>
+<p><strong>Everything at level 2.</strong> Every action requires validation. You spend your time validating things with no risk. Decision fatigue.</p>
+<p><strong>Levels exist but are not applied.</strong> CONSTITUTION.md exists but the system prompt doesn't reference it. The agent doesn't read it.</p>
+<p><strong>Lower the level too quickly.</strong> A workflow works 3 times and you make it autonomous. 3 successes don't prove reliability. Minimum 10 executions without problems.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>List the 10 most frequent actions of your agent.</li>
+<li>Classify each one in a level (0, 1, 2, 3).</li>
+<li>Create <code>CONSTITUTION.md</code> with this classification.</li>
+<li>Add the reference in the system prompt.</li>
+<li>Test for 2 weeks: does the agent respect the levels?</li>
+<li>Adjust if necessary.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] CONSTITUTION.md exists with the 4 levels defined.</li>
+<li>[ ] Each frequent action is classified in a level.</li>
+<li>[ ] The system prompt references CONSTITUTION.md.</li>
+<li>[ ] Level 3 contains at least 5 explicit prohibitions.</li>
+<li>[ ] Level changes are dated and justified.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The rights pyramid, Write the levels in CONSTITUTION.md, Evolve the levels and 3 more. <a href="04-12-boundary-prompt.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/11-confiance-configuration.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-10-rythme-hebdo.html">&larr; 4.10 -- The Weekly Rhythm</a>
+<a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

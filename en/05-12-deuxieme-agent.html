@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.12 -- When to add a second agent | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.12 -- When to add a second agent | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.12 -- When to add a second agent | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html" class="active">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.12 -- When to add a second agent</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#signs-its-time">Signs it's time</a></li>
+    <li><a href="#how-to-structure-it">How to structure it</a></li>
+    <li class="toc-h3"><a href="#option-1-by-domain">Option 1: by domain</a></li>
+    <li class="toc-h3"><a href="#option-2-by-project">Option 2: by project</a></li>
+    <li class="toc-h3"><a href="#option-3-by-trust-level">Option 3: by trust level</a></li>
+    <li><a href="#isolation">Isolation</a></li>
+    <li class="toc-h3"><a href="#what-should-be-separated">What should be separated</a></li>
+    <li class="toc-h3"><a href="#what-can-be-shared">What can be shared</a></li>
+    <li class="toc-h3"><a href="#file-structure">File structure</a></li>
+    <li><a href="#communication-between-agents">Communication between agents</a></li>
+    <li class="toc-h3"><a href="#recommended-pattern">Recommended pattern</a></li>
+    <li class="toc-h3"><a href="#what-not-to-do">What NOT to do</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="512-when-to-add-a-second-agent">5.12 -- When to add a second agent</h1>
+<h2 id="context">Context</h2>
+<p>One agent works well for a single context. When the context grows too large — too many projects, too many responsibilities, too much context to maintain — response quality drops. This is the signal that it might be time to add a second agent.</p>
+<h2 id="signs-its-time">Signs it's time</h2>
+<ol>
+<li>
+<p><strong>The system prompt exceeds 500 words</strong> and you can't condense it without losing critical context.</p>
+</li>
+<li>
+<p><strong>The domains are disjoint.</strong> Your agent handles both infrastructure and client communication. These are two different skill sets with different rules.</p>
+</li>
+<li>
+<p><strong>Context errors are increasing.</strong> The agent applies project A rules to project B. It confuses clients. It mixes workflows.</p>
+</li>
+<li>
+<p><strong>Token cost is exploding.</strong> Too much memory, too much context loaded per request.</p>
+</li>
+<li>
+<p><strong>You spend time recalibrating.</strong> "No, this is project X, not Y." If this happens several times a week, the context is too broad.</p>
+</li>
+</ol>
+<h2 id="how-to-structure-it">How to structure it</h2>
+<h3 id="option-1-by-domain">Option 1: by domain</h3>
+<pre class="codehilite"><code>Agent 1: Infrastructure / DevOps
+  - Manages: VPS, Docker, PostgreSQL, Vault, backups, monitoring
+  - System prompt: technical, commands, procedures
+
+Agent 2: Business / Communication
+  - Manages: client emails, documentation, planning, billing
+  - System prompt: professional tone, templates, business rules
+</code></pre>
+
+<h3 id="option-2-by-project">Option 2: by project</h3>
+<pre class="codehilite"><code>Agent 1: Cockpit Project
+  - Manages: everything related to cockpit (code, deploy, tasks)
+  - Context: cockpit stack, cockpit workflows
+
+Agent 2: OpenClaw Project
+  - Manages: writing, structure, review
+  - Context: playbook plan, style guide
+</code></pre>
+
+<h3 id="option-3-by-trust-level">Option 3: by trust level</h3>
+<pre class="codehilite"><code>Agent 1: Operations (level 1-2)
+  - Can act (within limits)
+  - Access to bash, Docker, PostgreSQL
+
+Agent 2: Advisory (level 0)
+  - Read-only
+  - Analysis, recommendations, writing
+  - No infrastructure access
+</code></pre>
+
+<h2 id="isolation">Isolation</h2>
+<p>Each agent has its own scope. Don't share everything.</p>
+<h3 id="what-should-be-separated">What should be separated</h3>
+<ul>
+<li><strong>System prompt</strong>: each agent has its own, tailored to its domain.</li>
+<li><strong>Memory</strong>: each agent has its own memory. The infrastructure agent's memory doesn't contain client context.</li>
+<li><strong>Access</strong>: the business agent doesn't have bash access. The infrastructure agent doesn't have access to emails.</li>
+<li><strong>Boundaries</strong>: adapted to each agent's domain.</li>
+</ul>
+<h3 id="what-can-be-shared">What can be shared</h3>
+<ul>
+<li><strong>Tasks</strong>: if both agents work on the same tasks (shared PostgreSQL table).</li>
+<li><strong>Cross-cutting workflows</strong>: deployments involving both code and infrastructure.</li>
+<li><strong>Reference files</strong>: CONSTITUTION.md, BOUNDARIES.md (with sections per agent).</li>
+</ul>
+<h3 id="file-structure">File structure</h3>
+<pre class="codehilite"><code>~/.claude/
+  agent-infra/
+    system-prompt.md
+    memory/
+    boundaries.md
+  agent-business/
+    system-prompt.md
+    memory/
+    boundaries.md
+  shared/
+    CONSTITUTION.md
+    TASKS (shared PostgreSQL table)
+</code></pre>
+
+<h2 id="communication-between-agents">Communication between agents</h2>
+<p>Agents don't talk directly to each other. You are the link.</p>
+<h3 id="recommended-pattern">Recommended pattern</h3>
+<pre class="codehilite"><code>1. Infrastructure agent detects a problem: &quot;The cockpit container is restarting in a loop.&quot;
+2. You diagnose with Agent Infra.
+3. If the fix involves code, you move to Agent Business/Code.
+4. You return to Agent Infra to deploy the fix.
+</code></pre>
+
+<h3 id="what-not-to-do">What NOT to do</h3>
+<ul>
+<li>Pass messages from one agent to another without reviewing them. ("Agent 1 says X, tell Agent 2.") You lose control.</li>
+<li>Give both agents access to the same communication channel. Confusion guaranteed.</li>
+</ul>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Adding an agent too early.</strong> You have 3 tasks and 1 project. A single agent is more than enough. Only add an agent when the first one is saturated.</p>
+<p><strong>No isolation.</strong> Both agents have the same access and the same memory. They step on each other's toes.</p>
+<p><strong>Too many agents.</strong> 4 specialized agents for a solo setup. Time spent coordinating exceeds time saved. For most setups: 1 is enough, 2 at most.</p>
+<p><strong>No naming convention.</strong> You no longer know which agent does what. Name them clearly: "agent-infra", "agent-content", not "agent-1", "agent-2".</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Identify the disjoint domains in your current usage.</li>
+<li>Evaluate: does the separation solve a real problem?</li>
+<li>If yes, create the second agent with a minimal system prompt.</li>
+<li>Define the isolation (access, memory, boundaries).</li>
+<li>Test for 2 weeks with both agents.</li>
+<li>Evaluate: has response quality improved?</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The need for a second agent is justified (at least 2 signs from the list).</li>
+<li>[ ] Each agent has its own system prompt and its own memory.</li>
+<li>[ ] Access is separated (the business agent doesn't have bash access, etc.).</li>
+<li>[ ] Communication goes through you, not between agents.</li>
+<li>[ ] The total number of agents is less than or equal to 2 (unless demonstrated need).</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Signs it's time, How to structure it, Isolation and 4 more. <a href="05-13-migrer-modele.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/12-deuxieme-agent.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-11-en-cas-de-panne.html">&larr; 5.11 -- In case of outage</a>
+<a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.1 -- Writing your system prompt | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.1 -- Writing your system prompt | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.1 -- Writing your system prompt | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html" class="active">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.1 -- Writing your system prompt</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#recommended-structure">Recommended structure</a></li>
+    <li class="toc-h3"><a href="#1-mission-2-3-sentences">1. Mission (2-3 sentences)</a></li>
+    <li class="toc-h3"><a href="#2-context-what-it-needs-to-know">2. Context (what it needs to know)</a></li>
+    <li class="toc-h3"><a href="#3-tools-and-access">3. Tools and access</a></li>
+    <li class="toc-h3"><a href="#4-rules-of-behavior">4. Rules of behavior</a></li>
+    <li class="toc-h3"><a href="#5-tone-and-format">5. Tone and format</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#complete-template">Complete template</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 04
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="41-writing-your-system-prompt">4.1 -- Writing your system prompt</h1>
+<h2 id="context">Context</h2>
+<p>The system prompt is the most important text in your setup. It's the first thing the agent reads at the start of every conversation. It defines who it is, what it can do, and how it should behave.</p>
+<p>A good system prompt = a useful agent from the first response.
+A bad system prompt = constant corrections.</p>
+<h2 id="recommended-structure">Recommended structure</h2>
+<p>An effective system prompt follows this order:</p>
+<h3 id="1-mission-2-3-sentences">1. Mission (2-3 sentences)</h3>
+<p>Who the agent is, who it works for, what its main role is.</p>
+<pre class="codehilite"><code>You are the technical assistant of [your name], freelance devops.
+You manage VPS infrastructure, deployments, and task tracking.
+You communicate in French, technical terms in English.
+</code></pre>
+
+<h3 id="2-context-what-it-needs-to-know">2. Context (what it needs to know)</h3>
+<p>Permanent facts. Not details that change every week -- those go in memory.</p>
+<pre class="codehilite"><code>Stack: Ubuntu 24.04, Docker, PostgreSQL, Node.js, Vault.
+VPS: Hetzner Paris, static IP.
+Active projects: cockpit, openclaw-playbook.
+</code></pre>
+
+<h3 id="3-tools-and-access">3. Tools and access</h3>
+<p>What the agent can use. Not the complete documentation -- just the list and limitations.</p>
+<pre class="codehilite"><code>You have access to: bash, local files, git, Docker, PostgreSQL, Vault.
+You do NOT have access to: email, Stripe, DNS.
+</code></pre>
+
+<h3 id="4-rules-of-behavior">4. Rules of behavior</h3>
+<p>Non-negotiable constraints.</p>
+<pre class="codehilite"><code>- Never push --force on main.
+- Never modify .env without explicit validation.
+- Always create a separate commit, never amend except on explicit request.
+- No markdown files except on explicit request.
+</code></pre>
+
+<h3 id="5-tone-and-format">5. Tone and format</h3>
+<p>How it speaks. Short and precise. See section 4.2 for details.</p>
+<pre class="codehilite"><code>- French. Technical terms in English.
+- Short responses unless I ask for detail.
+- No emojis.
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Too long.</strong> Every token of the system prompt is sent with every request. 500 words = ~700 tokens. At 1000 requests/month, it adds up. Aim for 150-300 words.</p>
+<p><strong>Too vague.</strong> "Be helpful and professional" says nothing. "Answer in 3 sentences max unless I ask for more" says everything.</p>
+<p><strong>Too much volatile context.</strong> The system prompt is for permanent rules. Current projects, deadlines, statuses -- those go in memory or context files.</p>
+<p><strong>No negative rules.</strong> Saying what the agent should NOT do is as important as saying what it should do. Otherwise it improvises, and improvisation is expensive.</p>
+<h2 id="complete-template">Complete template</h2>
+<pre class="codehilite"><code class="language-markdown"># System Prompt — [Your name / project]
+
+## Mission
+You are [role] of [who]. You [main responsibility].
+
+## Context
+- Stack: [technologies]
+- Infra: [provider, location]
+- Projects: [list]
+
+## Tools
+You have access to: [list].
+You do NOT have access to: [list].
+
+## Rules
+- [Rule 1 — the most critical]
+- [Rule 2]
+- [Rule 3]
+- NEVER [critical prohibition].
+
+## Tone
+- [Language]. Technical terms in English.
+- [Style: short/long, formal/direct]
+- [Preferred format: bullet points, prose, code]
+</code></pre>
+
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Write a first version following the structure above.</li>
+<li>Test with 5 typical requests from your daily usage.</li>
+<li>Note where the agent responds poorly -- that's a gap in the prompt.</li>
+<li>Adjust. See section 4.3 for the iteration process.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The prompt is under 300 words.</li>
+<li>[ ] The mission is clear in 2 sentences.</li>
+<li>[ ] The rules include at least 2 explicit prohibitions.</li>
+<li>[ ] The tone is defined in an actionable way (not "be professional").</li>
+<li>[ ] Tested with 5 real requests -- responses are correct without correction.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Recommended structure, Common mistakes, Complete template and 2 more. <a href="04-02-personnalite-ton.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/01-system-prompt.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-00-sommaire.html">&larr; 4. Personalization</a>
+<a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

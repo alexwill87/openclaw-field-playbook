@@ -117,20 +117,20 @@
 <p>Avant de lancer le moindre <code>docker compose up</code>, vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir.</p>
 <h3 id="les-3-couches">Les 3 couches</h3>
 <p>Toute installation OpenClaw s'organise en trois couches superposees :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">+------------------------------------------+</span>
-<span class="c">|            3</span><span class="nt">.</span><span class="c"> ACTION                      |</span>
-<span class="c">|  Ce que vos agents font concretement     |</span>
-<span class="c">|  (envoyer</span><span class="nt">,</span><span class="c"> creer</span><span class="nt">,</span><span class="c"> modifier</span><span class="nt">,</span><span class="c"> alerter)     |</span>
-<span class="nb">+------------------------------------------+</span>
-<span class="c">|            2</span><span class="nt">.</span><span class="c"> VISIBILITE                  |</span>
-<span class="c">|  Ce que vos agents savent                |</span>
-<span class="c">|  (memoire</span><span class="nt">,</span><span class="c"> contexte</span><span class="nt">,</span><span class="c"> outils</span><span class="nt">,</span><span class="c"> donnees)    |</span>
-<span class="nb">+------------------------------------------+</span>
-<span class="c">|            1</span><span class="nt">.</span><span class="c"> IDENTITE                    |</span>
-<span class="c">|  Qui sont vos agents                     |</span>
-<span class="c">|  (roles</span><span class="nt">,</span><span class="c"> regles</span><span class="nt">,</span><span class="c"> limites</span><span class="nt">,</span><span class="c"> personnalite)  |</span>
-<span class="nb">+------------------------------------------+</span>
-</code></pre></div>
+<pre class="codehilite"><code>+------------------------------------------+
+|            3. ACTION                      |
+|  Ce que vos agents font concretement     |
+|  (envoyer, creer, modifier, alerter)     |
++------------------------------------------+
+|            2. VISIBILITE                  |
+|  Ce que vos agents savent                |
+|  (memoire, contexte, outils, donnees)    |
++------------------------------------------+
+|            1. IDENTITE                    |
+|  Qui sont vos agents                     |
+|  (roles, regles, limites, personnalite)  |
++------------------------------------------+
+</code></pre>
 
 <p><strong>Couche 1 -- Identite.</strong> C'est le socle. Avant de donner des outils a un agent, definissez qui il est. Quel est son role ? Quelles sont ses limites ? Qu'a-t-il le droit de faire et de ne pas faire ? Un agent sans identite claire est un agent dangereux -- pas parce qu'il est malveillant, mais parce qu'il est imprevisible.</p>
 <p><strong>Couche 2 -- Visibilite.</strong> Une fois l'identite posee, definissez ce que l'agent sait. A quelles donnees a-t-il acces ? Quelle est sa memoire ? Quels outils peut-il utiliser ? Un agent qui a une identite claire mais pas de visibilite est un agent impuissant.</p>

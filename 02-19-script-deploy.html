@@ -142,126 +142,126 @@
 <p>Le script <code>deploy.sh</code> automatise le deploiement complet : pull du code, installation des dependances, build et redemarrage des services. Il doit etre <strong>idempotent</strong> : executable plusieurs fois de suite sans effet de bord. Que le systeme soit a jour ou non, le resultat final est le meme.</p>
 <h2 id="le-script-complet">Le script complet</h2>
 <p>Creez <code>~/scripts/deploy.sh</code> :</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+set -euo pipefail
 
-<span class="c1"># === Configuration ===</span>
-<span class="nv">PROJECT_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/oa-system&quot;</span>
-<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/logs/deploy.log&quot;</span>
-<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span>
+# === Configuration ===
+PROJECT_DIR=&quot;$HOME/oa-system&quot;
+LOG_FILE=&quot;$HOME/logs/deploy.log&quot;
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 
-<span class="c1"># === Fonctions ===</span>
-log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="si">${</span><span class="nv">TIMESTAMP</span><span class="si">}</span><span class="s2">] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
-<span class="o">}</span>
+# === Fonctions ===
+log() {
+  echo &quot;[${TIMESTAMP}] $1&quot; | tee -a &quot;$LOG_FILE&quot;
+}
 
-notify<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/scripts/notify-telegram.sh&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/scripts/notify-telegram.sh&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-<span class="w">  </span><span class="k">fi</span>
-<span class="o">}</span>
+notify() {
+  if [ -f &quot;$HOME/scripts/notify-telegram.sh&quot; ]; then
+    &quot;$HOME/scripts/notify-telegram.sh&quot; &quot;$1&quot; 2&gt;/dev/null || true
+  fi
+}
 
-fail<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;ECHEC : </span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="w">  </span>notify<span class="w"> </span><span class="s2">&quot;[OA Deploy] ECHEC : </span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="o">}</span>
+fail() {
+  log &quot;ECHEC : $1&quot;
+  notify &quot;[OA Deploy] ECHEC : $1&quot;
+  exit 1
+}
 
-<span class="c1"># === Pre-checks ===</span>
-log<span class="w"> </span><span class="s2">&quot;=== Debut deploiement ===&quot;</span>
+# === Pre-checks ===
+log &quot;=== Debut deploiement ===&quot;
 
-<span class="c1"># Verifier que le repertoire existe</span>
-<span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>fail<span class="w"> </span><span class="s2">&quot;Repertoire </span><span class="nv">$PROJECT_DIR</span><span class="s2"> introuvable&quot;</span>
+# Verifier que le repertoire existe
+[ -d &quot;$PROJECT_DIR&quot; ] || fail &quot;Repertoire $PROJECT_DIR introuvable&quot;
 
-<span class="c1"># Verifier que Docker tourne</span>
-docker<span class="w"> </span>info<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>fail<span class="w"> </span><span class="s2">&quot;Docker n&#39;est pas demarre&quot;</span>
+# Verifier que Docker tourne
+docker info &gt; /dev/null 2&gt;&amp;1 || fail &quot;Docker n'est pas demarre&quot;
 
-<span class="c1"># Verifier que Vault est unseal</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>status<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;Sealed.*false&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>fail<span class="w"> </span><span class="s2">&quot;Vault est sealed&quot;</span>
+# Verifier que Vault est unseal
+docker exec vault vault status 2&gt;&amp;1 | grep -q &quot;Sealed.*false&quot; || fail &quot;Vault est sealed&quot;
 
-<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_DIR</span><span class="s2">&quot;</span>
+cd &quot;$PROJECT_DIR&quot;
 
-<span class="c1"># === Etape 1 : Git pull ===</span>
-log<span class="w"> </span><span class="s2">&quot;Git pull...&quot;</span>
-<span class="nv">BRANCH</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--abbrev-ref<span class="w"> </span>HEAD<span class="k">)</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BRANCH</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;ATTENTION : branche actuelle = </span><span class="nv">$BRANCH</span><span class="s2"> (pas main)&quot;</span>
-<span class="k">fi</span>
+# === Etape 1 : Git pull ===
+log &quot;Git pull...&quot;
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ &quot;$BRANCH&quot; != &quot;main&quot; ]; then
+  log &quot;ATTENTION : branche actuelle = $BRANCH (pas main)&quot;
+fi
 
-git<span class="w"> </span>fetch<span class="w"> </span>origin
-<span class="nv">LOCAL</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="k">)</span>
-<span class="nv">REMOTE</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>origin/<span class="nv">$BRANCH</span><span class="k">)</span>
+git fetch origin
+LOCAL=$(git rev-parse HEAD)
+REMOTE=$(git rev-parse origin/$BRANCH)
 
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOCAL</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REMOTE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;Deja a jour (commit: </span><span class="si">${</span><span class="nv">LOCAL</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span><span class="s2">). Rien a deployer.&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
-<span class="k">fi</span>
+if [ &quot;$LOCAL&quot; = &quot;$REMOTE&quot; ]; then
+  log &quot;Deja a jour (commit: ${LOCAL:0:8}). Rien a deployer.&quot;
+  exit 0
+fi
 
-git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BRANCH</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>fail<span class="w"> </span><span class="s2">&quot;git pull a echoue&quot;</span>
-<span class="nv">NEW_COMMIT</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--short<span class="w"> </span>HEAD<span class="k">)</span>
-log<span class="w"> </span><span class="s2">&quot;Nouveau commit : </span><span class="nv">$NEW_COMMIT</span><span class="s2">&quot;</span>
+git pull origin &quot;$BRANCH&quot; || fail &quot;git pull a echoue&quot;
+NEW_COMMIT=$(git rev-parse --short HEAD)
+log &quot;Nouveau commit : $NEW_COMMIT&quot;
 
-<span class="c1"># === Etape 2 : Installation des dependances ===</span>
-log<span class="w"> </span><span class="s2">&quot;Installation des dependances npm...&quot;</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;package.json&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span>npm<span class="w"> </span>ci<span class="w"> </span>--production<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
-<span class="k">else</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;Pas de package.json, etape ignoree&quot;</span>
-<span class="k">fi</span>
+# === Etape 2 : Installation des dependances ===
+log &quot;Installation des dependances npm...&quot;
+if [ -f &quot;package.json&quot; ]; then
+  npm ci --production 2&gt;&amp;1 | tail -1 | tee -a &quot;$LOG_FILE&quot;
+else
+  log &quot;Pas de package.json, etape ignoree&quot;
+fi
 
-<span class="c1"># === Etape 3 : Build ===</span>
-log<span class="w"> </span><span class="s2">&quot;Build...&quot;</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;package.json&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;&quot;build&quot;&#39;</span><span class="w"> </span>package.json<span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
-<span class="k">else</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;Pas de script build, etape ignoree&quot;</span>
-<span class="k">fi</span>
+# === Etape 3 : Build ===
+log &quot;Build...&quot;
+if [ -f &quot;package.json&quot; ] &amp;&amp; grep -q '&quot;build&quot;' package.json; then
+  npm run build 2&gt;&amp;1 | tail -5 | tee -a &quot;$LOG_FILE&quot;
+else
+  log &quot;Pas de script build, etape ignoree&quot;
+fi
 
-<span class="c1"># === Etape 4 : Mise a jour Docker Compose (si necessaire) ===</span>
-log<span class="w"> </span><span class="s2">&quot;Verification des conteneurs Docker...&quot;</span>
-<span class="k">for</span><span class="w"> </span>service_dir<span class="w"> </span><span class="k">in</span><span class="w"> </span>docker/vault<span class="w"> </span>docker/postgres<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/</span><span class="nv">$service_dir</span><span class="s2">/docker-compose.yml&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/</span><span class="nv">$service_dir</span><span class="s2">&quot;</span>
-<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>pull<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROJECT_DIR</span><span class="s2">&quot;</span>
-<span class="w">  </span><span class="k">fi</span>
-<span class="k">done</span>
+# === Etape 4 : Mise a jour Docker Compose (si necessaire) ===
+log &quot;Verification des conteneurs Docker...&quot;
+for service_dir in docker/vault docker/postgres; do
+  if [ -f &quot;$HOME/$service_dir/docker-compose.yml&quot; ]; then
+    cd &quot;$HOME/$service_dir&quot;
+    docker compose pull 2&gt;/dev/null || true
+    docker compose up -d 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
+    cd &quot;$PROJECT_DIR&quot;
+  fi
+done
 
-<span class="c1"># === Etape 5 : Redemarrage gateway ===</span>
-<span class="c1"># Le playbook recommande systemd (section 2.15).</span>
-<span class="c1"># Si vous utilisez PM2, remplacez cette section par : pm2 reload all --update-env</span>
-log<span class="w"> </span><span class="s2">&quot;Redemarrage gateway (systemd)...&quot;</span>
-<span class="k">if</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>openclaw-gateway<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;Gateway redemarree&quot;</span>
-<span class="k">else</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;ATTENTION : restart gateway echoue&quot;</span>
-<span class="w">  </span>notify<span class="w"> </span><span class="s2">&quot;[OA Deploy] ECHEC restart gateway sur </span><span class="nv">$NEW_COMMIT</span><span class="s2">&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">fi</span>
+# === Etape 5 : Redemarrage gateway ===
+# Le playbook recommande systemd (section 2.15).
+# Si vous utilisez PM2, remplacez cette section par : pm2 reload all --update-env
+log &quot;Redemarrage gateway (systemd)...&quot;
+if sudo systemctl restart openclaw-gateway 2&gt;&amp;1; then
+  log &quot;Gateway redemarree&quot;
+else
+  log &quot;ATTENTION : restart gateway echoue&quot;
+  notify &quot;[OA Deploy] ECHEC restart gateway sur $NEW_COMMIT&quot;
+  exit 1
+fi
 
-<span class="c1"># === Etape 6 : Health check ===</span>
-log<span class="w"> </span><span class="s2">&quot;Health check post-deploiement...&quot;</span>
-sleep<span class="w"> </span><span class="m">5</span><span class="w">  </span><span class="c1"># Laisser le temps aux services de demarrer</span>
+# === Etape 6 : Health check ===
+log &quot;Health check post-deploiement...&quot;
+sleep 5  # Laisser le temps aux services de demarrer
 
-<span class="k">if</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/scripts/health-check.sh&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;Health check : OK&quot;</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;=== Deploiement termine avec succes (</span><span class="nv">$NEW_COMMIT</span><span class="s2">) ===&quot;</span>
-<span class="w">  </span>notify<span class="w"> </span><span class="s2">&quot;[OA Deploy] Deploiement reussi : </span><span class="nv">$NEW_COMMIT</span><span class="s2"> sur </span><span class="nv">$BRANCH</span><span class="s2">&quot;</span>
-<span class="k">else</span>
-<span class="w">  </span>log<span class="w"> </span><span class="s2">&quot;ATTENTION : health check a des echecs&quot;</span>
-<span class="w">  </span>notify<span class="w"> </span><span class="s2">&quot;[OA Deploy] WARNING : </span><span class="nv">$NEW_COMMIT</span><span class="s2"> deploye mais health check en echec&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">fi</span>
-</code></pre></div>
+if &quot;$HOME/scripts/health-check.sh&quot; &gt;&gt; &quot;$LOG_FILE&quot; 2&gt;&amp;1; then
+  log &quot;Health check : OK&quot;
+  log &quot;=== Deploiement termine avec succes ($NEW_COMMIT) ===&quot;
+  notify &quot;[OA Deploy] Deploiement reussi : $NEW_COMMIT sur $BRANCH&quot;
+else
+  log &quot;ATTENTION : health check a des echecs&quot;
+  notify &quot;[OA Deploy] WARNING : $NEW_COMMIT deploye mais health check en echec&quot;
+  exit 1
+fi
+</code></pre>
 
 <h2 id="installation">Installation</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>~/scripts/deploy.sh
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/deploy.sh
+</code></pre>
 
 <h2 id="utilisation">Utilisation</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>~/scripts/deploy.sh
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/deploy.sh
+</code></pre>
 
 <p>Le script :
 1. Verifie les prerequis (Docker, Vault)
@@ -308,9 +308,9 @@ sleep<span class="w"> </span><span class="m">5</span><span class="w">  </span><s
 <h2 id="deploiement-automatique-via-git-hook-optionnel">Deploiement automatique via Git hook (optionnel)</h2>
 <p>Pour declencher le deploiement automatiquement a chaque push :</p>
 <p>Creez <code>.git/hooks/post-receive</code> sur le VPS (si vous utilisez un bare repo) :</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
 ~/scripts/deploy.sh
-</code></pre></div>
+</code></pre>
 
 <p>Ou utilisez GitHub Actions pour declencher le script via SSH.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -321,9 +321,9 @@ sleep<span class="w"> </span><span class="m">5</span><span class="w">  </span><s
 <li><strong>Permissions</strong> : Le script doit etre execute par l'utilisateur <code>deploy</code>, pas par root. Les commandes sudo internes (restart gateway) fonctionnent grace aux droits sudo du user.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>~/scripts/deploy.sh
-$<span class="w"> </span>cat<span class="w"> </span>~/logs/deploy.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ~/scripts/deploy.sh
+$ cat ~/logs/deploy.log | tail -20
+</code></pre>
 
 <p>Resultats attendus :
 - Script s'execute sans erreur (ou s'arrete avec "Deja a jour")

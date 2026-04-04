@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.6 -- When the agent makes a mistake | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.6 -- When the agent makes a mistake | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.6 -- When the agent makes a mistake | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html" class="active">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.6 -- When the agent makes a mistake</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#types-of-errors">Types of errors</a></li>
+    <li class="toc-h3"><a href="#factual-hallucination">Factual hallucination</a></li>
+    <li class="toc-h3"><a href="#over-interpretation">Over-interpretation</a></li>
+    <li class="toc-h3"><a href="#wrong-context">Wrong context</a></li>
+    <li class="toc-h3"><a href="#incorrect-execution">Incorrect execution</a></li>
+    <li><a href="#correction-protocol">Correction protocol</a></li>
+    <li class="toc-h3"><a href="#1-diagnosis">1. Diagnosis</a></li>
+    <li class="toc-h3"><a href="#2-correction">2. Correction</a></li>
+    <li class="toc-h3"><a href="#3-prevention">3. Prevention</a></li>
+    <li><a href="#steinbergs-correction-prompt">Steinberg's correction prompt</a></li>
+    <li><a href="#when-the-error-is-serious">When the error is serious</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="56-when-the-agent-makes-a-mistake">5.6 -- When the agent makes a mistake</h1>
+<h2 id="context">Context</h2>
+<p>Your agent will make mistakes. Not "maybe" -- will. LLMs hallucinate, over-interpret, apply the wrong context. This isn't a flaw, it's a property. The question isn't "how to prevent all errors" but "how to detect, correct, and prevent them."</p>
+<h2 id="types-of-errors">Types of errors</h2>
+<h3 id="factual-hallucination">Factual hallucination</h3>
+<p>The agent asserts something false with confidence.</p>
+<pre class="codehilite"><code>Agent: &quot;Your SSL certificate expires on May 15.&quot;
+Reality: it expires on June 15.
+</code></pre>
+
+<h3 id="over-interpretation">Over-interpretation</h3>
+<p>The agent interprets more than what you said.</p>
+<pre class="codehilite"><code>You: &quot;The deploy crashed.&quot;
+Agent: &quot;I identified the problem: the database ran out of memory,
+        which caused an OOM kill of the container, probably linked to a memory
+        leak in the latest commit.&quot;
+Reality: it was a typo in the docker-compose.yml.
+</code></pre>
+
+<h3 id="wrong-context">Wrong context</h3>
+<p>The agent applies information from one context to another.</p>
+<pre class="codehilite"><code>You're working on project A.
+The agent applies the rules from project B.
+</code></pre>
+
+<h3 id="incorrect-execution">Incorrect execution</h3>
+<p>The agent does the right thing but wrong.</p>
+<pre class="codehilite"><code>You: &quot;Backup the database.&quot;
+Agent: pg_dump without compression, in the wrong folder.
+</code></pre>
+
+<h2 id="correction-protocol">Correction protocol</h2>
+<h3 id="1-diagnosis">1. Diagnosis</h3>
+<p>Identify the type of error. Use this prompt:</p>
+<pre class="codehilite"><code>You just made a mistake. Before correcting it, answer:
+1. What was the exact error?
+2. What type: hallucination, over-interpretation, wrong context, incorrect execution?
+3. Why did the error happen (in your view)?
+</code></pre>
+
+<h3 id="2-correction">2. Correction</h3>
+<p>Fix the damage first, analyze later.</p>
+<ul>
+<li>If the agent modified a file: <code>git diff</code> to see what changed, <code>git checkout</code> if necessary.</li>
+<li>If the agent executed a command: check the impact (<code>docker ps</code>, <code>psql</code>, logs).</li>
+<li>If the agent gave wrong information: correct the fact in memory.</li>
+</ul>
+<h3 id="3-prevention">3. Prevention</h3>
+<p>After correcting, prevent it from happening again:</p>
+<ul>
+<li><strong>Hallucination</strong>: add to the prompt -- "If you're not sure about a fact, say so. Don't make things up."</li>
+<li><strong>Over-interpretation</strong>: use the Steinberg prompt (see below).</li>
+<li><strong>Wrong context</strong>: clarify which project/context is active.</li>
+<li><strong>Incorrect execution</strong>: update the workflow in WORKFLOWS.md.</li>
+</ul>
+<h2 id="steinbergs-correction-prompt">Steinberg's correction prompt</h2>
+<p>When the agent over-interprets, use this refocusing:</p>
+<pre class="codehilite"><code>You're over-interpreting. Reframe your response with this format:
+1. Signal: what did you observe factually?
+2. Uncertainty: what do you NOT know?
+3. Question for me: what would you need to know to conclude?
+</code></pre>
+
+<p>Example:</p>
+<p><strong>Before (over-interpretation):</strong></p>
+<pre class="codehilite"><code>&quot;The deploy crashed because of an OOM kill linked to a memory leak
+in the latest commit. I recommend profiling the code and
+increasing the container memory.&quot;
+</code></pre>
+
+<p><strong>After (refocused):</strong></p>
+<pre class="codehilite"><code>Signal: the cockpit container went from &quot;Up&quot; to &quot;Exited&quot; at 14:32.
+Uncertainty: I don't know the cause. It could be OOM, config error,
+or runtime issue.
+Question: can you show me `docker logs cockpit --tail 50` and
+`dmesg | tail -20` so I can diagnose?
+</code></pre>
+
+<p>The difference: refocusing separates what the agent knows from what it assumes. It prevents false leads.</p>
+<h2 id="when-the-error-is-serious">When the error is serious</h2>
+<p>If the agent caused damage (deleted data, broken service, sent information by mistake):</p>
+<ol>
+<li><strong>Stop the agent.</strong> Don't ask it to fix itself alone.</li>
+<li><strong>Assess the damage.</strong> Manually.</li>
+<li><strong>Restore if possible.</strong> Backups, git, snapshots.</li>
+<li><strong>Document the incident.</strong> What, when, why, how to prevent.</li>
+<li><strong>Add to the boundary prompt.</strong> The action that caused the problem joins the list of prohibitions.</li>
+</ol>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Blame the agent.</strong> The error often comes from your instructions, not the model. Vague prompt = vague response. No boundary = no limits.</p>
+<p><strong>Ignore the error.</strong> "It's not serious, it basically understood." Small repeated errors become big errors.</p>
+<p><strong>Correct without preventing.</strong> You correct course but don't add a rule. The same error returns next week.</p>
+<p><strong>Over-correct.</strong> After an error, you add 10 restrictive rules. The agent becomes unusable. One targeted rule is enough.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>When the agent makes a mistake, identify the type of error.</li>
+<li>Fix the damage (files, DB, services).</li>
+<li>Use the refocusing prompt if it's over-interpretation.</li>
+<li>Add a prevention rule (prompt, boundary, workflow).</li>
+<li>Document the incident if it's a serious error.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] You can identify the type of error (hallucination, over-interpretation, etc.).</li>
+<li>[ ] Steinberg's refocusing prompt is in your notes/prompt.</li>
+<li>[ ] Serious errors are documented with prevention measures.</li>
+<li>[ ] The boundary prompt is updated after each incident.</li>
+<li>[ ] The agent has the rule "If you're not sure, say so" in its system prompt.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Types of errors, Correction protocol, Steinberg's correction prompt and 4 more. <a href="05-07-maj-integrations.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/06-agent-se-trompe.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-05-derive-memoire.html">&larr; 5.5 -- Memory Drift</a>
+<a href="05-07-maj-integrations.html">5.7 -- Update integrations &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.10 -- Monitoring and Alerts | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.10 -- Monitoring and Alerts | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.10 -- Monitoring and Alerts | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html" class="active">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.10 -- Monitoring and Alerts</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#level-1-simple-cron-telegram">Level 1: Simple (cron + Telegram)</a></li>
+    <li class="toc-h3"><a href="#what-it-covers">What it covers</a></li>
+    <li class="toc-h3"><a href="#what-it-doesnt-cover">What it doesn't cover</a></li>
+    <li class="toc-h3"><a href="#setup">Setup</a></li>
+    <li><a href="#level-2-intermediate-uptime-kuma">Level 2: Intermediate (Uptime Kuma)</a></li>
+    <li class="toc-h3"><a href="#installation">Installation</a></li>
+    <li class="toc-h3"><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#what-it-adds">What it adds</a></li>
+    <li><a href="#level-3-advanced-grafana-prometheus">Level 3: Advanced (Grafana + Prometheus)</a></li>
+    <li class="toc-h3"><a href="#stack">Stack</a></li>
+    <li class="toc-h3"><a href="#installation-docker-compose">Installation (Docker Compose)</a></li>
+    <li class="toc-h3"><a href="#when-its-justified">When it's justified</a></li>
+    <li class="toc-h3"><a href="#when-its-over-engineering">When it's over-engineering</a></li>
+    <li><a href="#recommendation">Recommendation</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="510-monitoring-and-alerts">5.10 -- Monitoring and Alerts</h1>
+<h2 id="context">Context</h2>
+<p>Monitoring answers a simple question: is everything running? And if not, since when and why? Without monitoring, you discover outages when your users write to you. With monitoring, you discover them before they do.</p>
+<p>Three levels. Start with the first one. Move up when the need arises.</p>
+<h2 id="level-1-simple-cron-telegram">Level 1: Simple (cron + Telegram)</h2>
+<p>This is the health check from section 5.1 on a cron, with Telegram alerts. Zero additional infrastructure.</p>
+<h3 id="what-it-covers">What it covers</h3>
+<ul>
+<li>Services up/down.</li>
+<li>Disk space.</li>
+<li>PostgreSQL accessible.</li>
+<li>SSL certificates valid.</li>
+</ul>
+<h3 id="what-it-doesnt-cover">What it doesn't cover</h3>
+<ul>
+<li>Metric history (no graphs).</li>
+<li>Response time.</li>
+<li>Application metrics (requests/second, errors).</li>
+<li>Monitoring from outside (if the server goes down completely, the cron won't run).</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<p>See section 5.1. Summary:</p>
+<pre class="codehilite"><code class="language-bash"># Cron every 4 hours
+0 */4 * * * /opt/scripts/health-check.sh --quiet
+
+# Telegram alert if KO
+</code></pre>
+
+<p>Setup time: 30 minutes.
+Cost: 0 EUR.</p>
+<h2 id="level-2-intermediate-uptime-kuma">Level 2: Intermediate (Uptime Kuma)</h2>
+<p>Uptime Kuma is a self-hosted monitoring tool. Web interface, history, multiple notifications.</p>
+<h3 id="installation">Installation</h3>
+<pre class="codehilite"><code class="language-bash"># Via Docker (the recommended method)
+docker run -d \
+  --name uptime-kuma \
+  --restart unless-stopped \
+  -p 3001:3001 \
+  -v uptime-kuma-data:/app/data \
+  louislam/uptime-kuma:1
+
+# Or in docker-compose.yml
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: unless-stopped
+    ports:
+      - &quot;3001:3001&quot;
+    volumes:
+      - uptime-kuma-data:/app/data
+
+volumes:
+  uptime-kuma-data:
+</code></pre>
+
+<h3 id="configuration">Configuration</h3>
+<ol>
+<li>Open <code>http://your-ip:3001</code>.</li>
+<li>Create an admin account.</li>
+<li>Add monitors:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>URL/Command</th>
+<th>Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td><code>http://localhost:3000</code> (cockpit)</td>
+<td>60s</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td><code>http://localhost:8080</code> (API)</td>
+<td>60s</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td><code>localhost:5432</code> (PostgreSQL)</td>
+<td>120s</td>
+</tr>
+<tr>
+<td>HTTP Keyword</td>
+<td><code>https://your-domain.com</code> + expected keyword</td>
+<td>300s</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Configure notifications: Telegram, email, or Slack.</li>
+</ol>
+<h3 id="what-it-adds">What it adds</h3>
+<ul>
+<li>Uptime history (graphs).</li>
+<li>Average response time.</li>
+<li>Flexible notifications (multi-channel).</li>
+<li>Public status page (optional).</li>
+<li>Monitoring from the same server (limitation: if the server goes down, Uptime Kuma goes down too).</li>
+</ul>
+<p>Setup time: 1 hour.
+Cost: 0 EUR (self-hosted).</p>
+<h2 id="level-3-advanced-grafana-prometheus">Level 3: Advanced (Grafana + Prometheus)</h2>
+<p>For those who need detailed metrics, custom dashboards, and distributed monitoring.</p>
+<h3 id="stack">Stack</h3>
+<pre class="codehilite"><code>Prometheus: collects metrics (CPU, RAM, disk, requests).
+Node Exporter: exposes system metrics for Prometheus.
+Grafana: displays dashboards.
+AlertManager: manages alerts.
+</code></pre>
+
+<h3 id="installation-docker-compose">Installation (Docker Compose)</h3>
+<pre class="codehilite"><code class="language-yaml">services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - &quot;9090:9090&quot;
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - &quot;9100:9100&quot;
+    pid: host
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - &quot;3002:3000&quot;
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=changeme
+
+volumes:
+  prometheus-data:
+  grafana-data:
+</code></pre>
+
+<h3 id="when-its-justified">When it's justified</h3>
+<ul>
+<li>You manage 3+ services with SLAs.</li>
+<li>You need to correlate CPU/memory/network with application performance.</li>
+<li>You have a team that consults the dashboards.</li>
+<li>You charge uptime to your clients.</li>
+</ul>
+<h3 id="when-its-over-engineering">When it's over-engineering</h3>
+<ul>
+<li>You're alone with 2 containers.</li>
+<li>Nobody looks at the dashboards.</li>
+<li>A cron + Telegram is enough for your use case.</li>
+</ul>
+<p>Setup time: 4-8 hours.
+Cost: 0 EUR (self-hosted) + maintenance time.</p>
+<h2 id="recommendation">Recommendation</h2>
+<p><strong>Start with level 1.</strong> Always. It takes 30 minutes and covers 80% of needs.</p>
+<p>Move to level 2 when:
+- You want uptime history.
+- You have 5+ services to monitor.
+- You want a status page.</p>
+<p>Move to level 3 when:
+- You have SLAs to meet.
+- You need fine-grained metrics (p99 latency, throughput).
+- You manage multiple servers.</p>
+<p>Most solo setups will never need level 3.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<p><strong>Installing Grafana + Prometheus for 2 containers.</strong> Over-engineering. You spend more time maintaining the monitoring than maintaining the application.</p>
+<p><strong>No external monitoring.</strong> All your monitoring runs on the same server. If the server goes down, the monitoring goes down too. Level 1 solution: a free external service (UptimeRobot, Hetrixtools) for basic pings.</p>
+<p><strong>Too many alerts.</strong> You receive 20 alerts per day. You ignore them all. You end up ignoring the real outage. Adjust thresholds to alert only on real problems.</p>
+<p><strong>No alerts at all.</strong> Monitoring is running, logs are filling up, but nobody is notified. Monitoring without alerts is monitoring without value.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Install level 1 (section 5.1: health-check.sh + cron + Telegram).</li>
+<li>Use it for 2 weeks.</li>
+<li>Evaluate: is it enough?</li>
+<li>If not, install Uptime Kuma (level 2).</li>
+<li>Add a free external ping to cover complete server failure.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Monitoring is active (minimum level 1).</li>
+<li>[ ] Alerts are working (tested with a simulated outage).</li>
+<li>[ ] Number of alerts per day is reasonable (&lt; 3 in normal times).</li>
+<li>[ ] External monitoring pings your server.</li>
+<li>[ ] You know within 5 minutes if a service is down.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Level 1: Simple (cron + Telegram), Level 2: Intermediate (Uptime Kuma), Level 3: Advanced (Grafana + Prometheus) and 4 more. <a href="05-11-en-cas-de-panne.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/10-monitoring.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-09-rotation-secrets.html">&larr; 5.9 -- Secret Rotation</a>
+<a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

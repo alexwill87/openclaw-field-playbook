@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.12 -- Email and messages | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.12 -- Email and messages | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.12 -- Email and messages | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html" class="active">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.12 -- Email and messages</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#email-connection">Email connection</a></li>
+    <li class="toc-h3"><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#recommended-scope-at-startup">Recommended scope at startup</a></li>
+    <li><a href="#triage-automatic-vs-assisted">Triage: automatic vs assisted</a></li>
+    <li class="toc-h3"><a href="#assisted-triage-recommended-to-start">Assisted triage (recommended to start)</a></li>
+    <li class="toc-h3"><a href="#automatic-triage-for-mature-agents">Automatic triage (for mature agents)</a></li>
+    <li><a href="#response-drafts">Response drafts</a></li>
+    <li><a href="#the-trap-dont-connect-everything">The trap: don't connect everything</a></li>
+    <li><a href="#messages-slack-teams-etc">Messages (Slack, Teams, etc.)</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="312-email-and-messages">3.12 -- Email and messages</h1>
+<h2 id="context">Context</h2>
+<p>Email is the noisiest and most voluminous source. That's why it comes in third place, after calendar and tasks. Connecting email to a poorly configured agent is like giving them a fire hose when they need a glass of water.</p>
+<h2 id="email-connection">Email connection</h2>
+<h3 id="configuration">Configuration</h3>
+<pre class="codehilite"><code>openclaw skill add email
+</code></pre>
+
+<p>The agent will:
+1. Ask for the provider (Gmail, Outlook, generic IMAP)
+2. Set up authentication (OAuth recommended, no plain-text passwords)
+3. Define the initial scope</p>
+<h3 id="recommended-scope-at-startup">Recommended scope at startup</h3>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read received emails</td>
+<td>Yes -- 48h rolling window</td>
+</tr>
+<tr>
+<td>Read sent emails</td>
+<td>Yes -- for conversation context</td>
+</tr>
+<tr>
+<td>Draft responses</td>
+<td>Yes -- agent prepares, you send</td>
+</tr>
+<tr>
+<td>Direct sending</td>
+<td>No -- add after several weeks of trust</td>
+</tr>
+<tr>
+<td>Deletion</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Label/folder management</td>
+<td>No at the start</td>
+</tr>
+</tbody>
+</table>
+<p>The 48-hour rolling window scope is important: the agent doesn't need your emails from 6 months ago. It needs what arrived recently and is waiting for action.</p>
+<h2 id="triage-automatic-vs-assisted">Triage: automatic vs assisted</h2>
+<p>Two modes possible:</p>
+<h3 id="assisted-triage-recommended-to-start">Assisted triage (recommended to start)</h3>
+<p>The agent classifies your emails and presents you with a summary. You decide.</p>
+<pre class="codehilite"><code>EMAIL TRIAGE -- April 2, 2026, 08:15
+
+URGENT (response today):
+- Marc (ClientAlpha): Request for quote modification
+  &gt; Impact: quote expires Friday. Respond by Thursday.
+- Lea Martin: Interview confirmation 2pm
+  &gt; Action: confirm or reschedule
+
+TO HANDLE (this week):
+- Supplier X: New pricing schedule
+  &gt; Not urgent but impacts Q2 budget
+- Accountant: Missing balance sheet documents
+  &gt; Deadline: April 10
+
+INFORMATIONAL (no action required):
+- Industry newsletter [archive]
+- GitHub notification [archive]
+- Advertisement [delete]
+
+3 unclassified emails -- would you like me to display them?
+</code></pre>
+
+<h3 id="automatic-triage-for-mature-agents">Automatic triage (for mature agents)</h3>
+<p>The agent acts according to predefined rules in CONSTITUTION.md:</p>
+<pre class="codehilite"><code class="language-markdown">## Email triage rules
+- Newsletters and notifications: archive automatically
+- Advertisements and spam: delete automatically
+- Email from key contact (see USER.md): high priority
+- Email with deadline mentioned: extract deadline, add to tasks
+- Everything else: classify as &quot;to handle&quot; for next briefing
+</code></pre>
+
+<p>Only enable automatic triage after 2-3 weeks of validated assisted triage.</p>
+<h2 id="response-drafts">Response drafts</h2>
+<p>The agent can prepare drafts. This is often the most useful feature:</p>
+<pre class="codehilite"><code>Prepare a response draft for Marc's email
+about the quote modification. Professional but firm tone:
+we can adjust scope, not price.
+</code></pre>
+
+<p>The agent drafts. You review. You send (or edit and send).</p>
+<p>Rule in CONSTITUTION.md:</p>
+<pre class="codehilite"><code class="language-markdown">## Emails
+- You can draft response emails
+- You can NEVER send an email without my explicit validation
+- Each draft must indicate: recipient, subject, tone used
+</code></pre>
+
+<h2 id="the-trap-dont-connect-everything">The trap: don't connect everything</h2>
+<p>Email is the source where the "connect everything" trap is most dangerous.</p>
+<p>Do NOT connect:
+- Shared mailboxes (too much noise, missing context)
+- Personal accounts (work/personal separation)
+- High-volume mailing lists (technical mailing lists, etc.)</p>
+<p>Connect only your primary professional email inbox.</p>
+<h2 id="messages-slack-teams-etc">Messages (Slack, Teams, etc.)</h2>
+<p>Instant messaging platforms are even noisier than email. If you connect them:</p>
+<ul>
+<li>Limit to 2-3 relevant channels, not the whole workspace</li>
+<li>Read-only mode only</li>
+<li>No automatic replies (never)</li>
+<li>Use them for context, not for action</li>
+</ul>
+<pre class="codehilite"><code class="language-markdown">## Messaging
+- Connected channels: #general, #project-alpha, #urgent
+- Mode: read-only
+- Usage: context for briefing, no direct action
+</code></pre>
+
+<h2 id="step-by-step">Step by step</h2>
+<ol>
+<li>Connect email in read-only mode (48h rolling window)</li>
+<li>Enable assisted triage for 2 weeks</li>
+<li>Verify that classification matches your priorities</li>
+<li>Add response drafts</li>
+<li>If relevant, switch to automatic triage after validation</li>
+<li>Instant messages are optional and come last</li>
+</ol>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Connecting email first</strong>: Without calendar and tasks, the agent can't prioritize your emails. It doesn't know you're in meetings all morning or that you have 5 urgent tasks.</p>
+<p><strong>Giving send permission immediately</strong>: An email sent by mistake to a client can't be undone. Draft mode is mandatory at the start.</p>
+<p><strong>Connecting all mailboxes</strong>: 3 email accounts = 150 emails/day in context. The agent drowns.</p>
+<p><strong>No triage rules</strong>: Without explicit rules in CONSTITUTION.md, the agent sorts by its own judgment. Its judgment doesn't know your implicit priorities.</p>
+<p><strong>Forgetting to disconnect noisy sources</strong>: You connected the technical mailing list "just in case". 40 emails/day of pure noise.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Email connected in read-only mode (48h rolling window)</li>
+<li>[ ] Assisted triage active and validated</li>
+<li>[ ] Triage rules documented in CONSTITUTION.md</li>
+<li>[ ] Response drafts functional</li>
+<li>[ ] Direct sending disabled</li>
+<li>[ ] No shared or personal mailboxes connected</li>
+<li>[ ] If messaging connected: 2-3 channels max, read-only</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Email connection, Triage: automatic vs assisted, Response drafts and 5 more. <a href="03-13-skill-custom.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/12-email-messages.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-11-taches.html">&larr; 3.11 -- Tasks: the invisible pressure</a>
+<a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill (Steinberg Method) &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

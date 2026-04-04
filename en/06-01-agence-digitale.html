@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>01 -- Digital Agency (2 Partners + AI Agents) | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="01 -- Digital Agency (2 Partners + AI Agents) | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="01 -- Digital Agency (2 Partners + AI Agents) | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+  <div class="nav-sections">
+    <a href="06-01-agence-digitale.html" class="active">01 -- Digital Agency (2 Partners...</a>
+    <a href="06-02-consultant-freelance.html">02 -- Freelance consultant</a>
+    <a href="06-03-ecommerce.html">03 -- E-commerce</a>
+    <a href="06-04-equipe-technique.html">04 -- Technical Team (5-15 people)</a>
+    <a href="06-05-cabinet-comptable.html">05 -- Accounting Firm</a>
+    <a href="06-06-startup.html">06 -- Startup early-stage</a>
+    <a href="06-07-contribuer.html">07 -- How to Submit Your Use Case</a>
+    <a href="06-08-artisan-tpe.html">6.8 -- Craftspeople and Small Bu...</a>
+  </div>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <span class="sep">/</span>
+  <span>01 -- Digital Agency (2 Partners + AI Agents)</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#budget-distribution-by-pillar-jd6-schema">Budget distribution by pillar (JD6 schema)</a></li>
+    <li class="toc-h3"><a href="#agent-architecture">Agent Architecture</a></li>
+    <li class="toc-h3"><a href="#jd6-schema-domain-organization">JD6 Schema -- Domain Organization</a></li>
+    <li><a href="#setup-key-steps">Setup -- Key Steps</a></li>
+    <li class="toc-h3"><a href="#week-1-infrastructure">Week 1: Infrastructure</a></li>
+    <li class="toc-h3"><a href="#week-2-agents-and-knowledge">Week 2: Agents and Knowledge</a></li>
+    <li class="toc-h3"><a href="#week-3-communication-and-cockpit">Week 3: Communication and Cockpit</a></li>
+    <li class="toc-h3"><a href="#week-4-stabilization">Week 4: Stabilization</a></li>
+    <li><a href="#result">Result</a></li>
+    <li><a href="#lessons-learned">Lessons Learned</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#template-main-agent-system-prompt">Template -- Main Agent System Prompt</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 06
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="01-digital-agency-2-partners-ai-agents">01 -- Digital Agency (2 Partners + AI Agents)</h1>
+<p><strong>For whom:</strong> duo of entrepreneurs running a digital agency with AI agents as primary workforce
+<strong>Setup time:</strong> 2 to 4 weeks
+<strong>Difficulty:</strong> Intermediate to Advanced</p>
+<hr />
+<h2 id="context">Context</h2>
+<p>Two partners are launching a digital agency. Their particularity: the permanent team is limited to just the two of them. The rest of the workforce relies on AI agents configured to execute operational tasks — writing, research, communication, project management.</p>
+<p>The challenge: create a central nervous system that coordinates humans and agents, without depending on a closed SaaS, and while maintaining complete control over data.</p>
+<hr />
+<h2 id="problem">Problem</h2>
+<ul>
+<li>No centralized visibility over ongoing projects</li>
+<li>AI agents operate in silos (one per task, without shared memory)</li>
+<li>Communication between founders goes through too many different channels</li>
+<li>No system to track AI API usage costs</li>
+<li>Client files scattered between local machines and cloud services</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Choice</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server</td>
+<td>VPS Hetzner (CPX21, Nuremberg or Helsinki)</td>
+<td>10.00 EUR</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04 LTS</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Private network</td>
+<td>Tailscale</td>
+<td>free (personal plan)</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Vault (HashiCorp, dev mode then production)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>PostgreSQL 16</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Mattermost (self-hosted)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>Web cockpit</td>
+<td>Next.js + API Routes</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total infrastructure cost: approximately 10 EUR/month</strong></p>
+<h3 id="budget-distribution-by-pillar-jd6-schema">Budget distribution by pillar (JD6 schema)</h3>
+<p>The JD6 schema organizes operational domains into numbered categories. For this agency, the monthly budget distribution is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Domain</th>
+<th>Monthly Budget</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Infra</td>
+<td>10.00 EUR</td>
+<td>VPS, domain, DNS</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Agents</td>
+<td>30.00 EUR</td>
+<td>Claude API, Mistral, LLM credits</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Knowledge</td>
+<td>40.00 EUR</td>
+<td>Embeddings, vector storage, RAG</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Communication</td>
+<td>50.00 EUR</td>
+<td>Mattermost, transactional email</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Business</td>
+<td>60.00 EUR</td>
+<td>Client tools, light CRM, billing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total operational budget: approximately 190 EUR/month</strong></p>
+<h3 id="agent-architecture">Agent Architecture</h3>
+<p>The agency deploys one main agent and specialized agents:</p>
+<p><strong>Main agent (orchestrator):</strong>
+- Runs on the VPS, accessible via the web cockpit
+- Receives instructions from founders via Mattermost or the cockpit
+- Delegates to specialized agents based on task type
+- Maintains an activity log in PostgreSQL</p>
+<p><strong>Specialized agents:</strong>
+- Writing Agent: business proposals, marketing content, client emails
+- Research Agent: competitive intelligence, market analysis, technical documentation
+- Ops Agent: server monitoring, alerts, cost reports</p>
+<h3 id="jd6-schema-domain-organization">JD6 Schema -- Domain Organization</h3>
+<pre class="codehilite"><code>10-19  Infrastructure    (servers, network, DNS, backups)
+20-29  Security          (Vault, access, audit, GDPR)
+30-39  AI Agents         (configuration, prompts, memory, costs)
+40-49  Knowledge         (knowledge base, embeddings, RAG)
+50-59  Communication     (Mattermost, email, notifications)
+60-69  Business          (clients, projects, billing, CRM)
+70-79  Reporting         (dashboards, metrics, KPIs)
+</code></pre>
+
+<p>Each domain has a corresponding folder in the knowledge base and a dedicated channel in Mattermost.</p>
+<hr />
+<h2 id="setup-key-steps">Setup -- Key Steps</h2>
+<h3 id="week-1-infrastructure">Week 1: Infrastructure</h3>
+<ol>
+<li>Provision the Hetzner VPS</li>
+<li>Install Ubuntu 24.04, harden SSH (keys only, non-standard port)</li>
+<li>Install Tailscale on the VPS and founders' machines</li>
+<li>Deploy PostgreSQL, create <code>openclaw_main</code> and <code>openclaw_knowledge</code> databases</li>
+<li>Install Vault, configure secrets for API keys</li>
+</ol>
+<h3 id="week-2-agents-and-knowledge">Week 2: Agents and Knowledge</h3>
+<ol>
+<li>Install OpenClaw on the VPS</li>
+<li>Configure the main agent with the agency's system prompt</li>
+<li>Connect the knowledge base (founder documents, templates, procedures)</li>
+<li>Deploy specialized agents with their respective prompts</li>
+<li>Test the pipeline: instruction -&gt; agent -&gt; result -&gt; storage</li>
+</ol>
+<h3 id="week-3-communication-and-cockpit">Week 3: Communication and Cockpit</h3>
+<ol>
+<li>Deploy Mattermost, create channels by JD6 domain</li>
+<li>Configure webhooks between OpenClaw and Mattermost</li>
+<li>Deploy the Next.js cockpit with authentication</li>
+<li>Connect the cockpit to PostgreSQL for the dashboard</li>
+<li>Test the complete flow: cockpit -&gt; agent -&gt; Mattermost -&gt; founder</li>
+</ol>
+<h3 id="week-4-stabilization">Week 4: Stabilization</h3>
+<ol>
+<li>Configure automatic backups (PostgreSQL + files)</li>
+<li>Set up API cost monitoring</li>
+<li>Document internal procedures</li>
+<li>Train the two founders on the cockpit</li>
+<li>Move Vault to production mode</li>
+</ol>
+<hr />
+<h2 id="result">Result</h2>
+<p>After one month of setup:</p>
+<ul>
+<li><strong>Operational cockpit</strong>: founders see the status of all projects, real-time API costs, and agent activity from a single interface</li>
+<li><strong>Functional main agent</strong>: it receives instructions in natural language, routes them to the specialized agent, and returns the result with a link to the produced document</li>
+<li><strong>Structured communication</strong>: each JD6 domain has its Mattermost channel. Agents post their results in the corresponding channel. Founders no longer search for information</li>
+<li><strong>Controlled costs</strong>: total monthly budget stays under 200 EUR, with complete visibility on the distribution</li>
+<li><strong>Data sovereignty</strong>: everything runs on a European VPS. No client data passes through uncontrolled third-party services</li>
+</ul>
+<hr />
+<h2 id="lessons-learned">Lessons Learned</h2>
+<ol>
+<li>
+<p><strong>Start with the main agent, not specialized agents.</strong> The orchestrator is the entry point for the entire system. Without it, specialized agents are isolated tools.</p>
+</li>
+<li>
+<p><strong>Vault from the start, not "later".</strong> API keys in environment variables in <code>.env</code> files don't scale. Vault adds initial complexity but prevents secret leaks.</p>
+</li>
+<li>
+<p><strong>One Mattermost channel per domain, not per project.</strong> Projects come and go. Domains are stable. Organizing communication by JD6 domain prevents dead channel proliferation.</p>
+</li>
+<li>
+<p><strong>The cockpit is an investment, not a luxury.</strong> Without a visual interface, founders fall back to terminals and log files. The Next.js cockpit takes time to build but transforms operational quality of life.</p>
+</li>
+<li>
+<p><strong>Document prompts like code.</strong> Each agent prompt is versioned in Git, with a changelog. Changes are traced and reversible.</p>
+</li>
+</ol>
+<hr />
+<h2 id="common-mistakes">Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Consequence</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deploy all agents at once</td>
+<td>Debugging impossible, costs explode</td>
+<td>Deploy one agent at a time, validate, then move to next</td>
+</tr>
+<tr>
+<td>Ignore token limits</td>
+<td>Truncated responses, lost context</td>
+<td>Configure explicit limits and a chunking system</td>
+</tr>
+<tr>
+<td>No PostgreSQL backup</td>
+<td>Loss of knowledge base</td>
+<td>Daily pg_dump cron job, copy off VPS</td>
+</tr>
+<tr>
+<td>Mattermost without strong authentication</td>
+<td>Unauthorized channel access</td>
+<td>SSO or expiring access tokens</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-main-agent-system-prompt">Template -- Main Agent System Prompt</h2>
+<pre class="codehilite"><code>You are the main agent of [AGENCY NAME].
+
+Your role is to coordinate operations between the founders and specialized agents.
+
+Rules:
+- You always respond in French unless explicitly asked for English
+- You post your results in the Mattermost channel corresponding to the JD6 domain
+- You never make financial decisions without human validation
+- You document each action in the PostgreSQL database
+- You report any API cost anomalies immediately
+
+JD6 Domains:
+10-19 Infrastructure | 20-29 Security | 30-39 Agents | 40-49 Knowledge
+50-59 Communication | 60-69 Business | 70-79 Reporting
+
+When you receive an instruction:
+1. Identify the concerned JD6 domain
+2. Check if a specialized agent exists for this domain
+3. If yes, delegate with necessary context
+4. If no, handle directly and signal that a specialized agent would be useful
+5. Post the result in the Mattermost channel of the domain
+</code></pre>
+
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] VPS responds on Tailscale from founders' machines</li>
+<li>[ ] Vault stores at least the LLM API keys</li>
+<li>[ ] Main agent responds to a simple instruction via the cockpit</li>
+<li>[ ] Results appear in the correct Mattermost channel</li>
+<li>[ ] PostgreSQL backup works and has been tested for restoration</li>
+<li>[ ] Month's API costs are visible in the cockpit</li>
+</ul>
+<hr />
+<p><em>This use case is inspired by a real implementation experience. Amounts and configurations are representative of a deployment in Europe in 2026.</em></p>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Problem, Configuration, Setup -- Key Steps and 5 more. <a href="06-02-consultant-freelance.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/01-agence-digitale.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="06-00-sommaire.html">&larr; 6. Use Cases</a>
+<a href="06-02-consultant-freelance.html">02 -- Freelance consultant &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

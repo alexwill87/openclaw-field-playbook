@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.17 -- Multi-agent architecture | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.17 -- Multi-agent architecture | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.17 -- Multi-agent architecture | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html" class="active">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.17 -- Multi-agent architecture</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#when-a-single-agent-is-no-longer-enough">When a single agent is no longer enough</a></li>
+    <li><a href="#specialized-agents">Specialized agents</a></li>
+    <li class="toc-h3"><a href="#architecture-examples">Architecture examples</a></li>
+    <li class="toc-h3"><a href="#when-to-add-a-specialized-agent">When to add a specialized agent</a></li>
+    <li><a href="#workspace-isolation">Workspace isolation</a></li>
+    <li><a href="#inter-agent-communication">Inter-agent communication</a></li>
+    <li class="toc-h3"><a href="#via-shared-memorymd">Via shared MEMORY.md</a></li>
+    <li class="toc-h3"><a href="#via-liaison-files">Via liaison files</a></li>
+    <li class="toc-h3"><a href="#via-agentsmd">Via AGENTS.md</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li class="toc-h3"><a href="#1-validate-that-its-necessary">1. Validate that it's necessary</a></li>
+    <li class="toc-h3"><a href="#2-identify-the-first-specialized-agent">2. Identify the first specialized agent</a></li>
+    <li class="toc-h3"><a href="#3-create-the-workspace">3. Create the workspace</a></li>
+    <li class="toc-h3"><a href="#4-define-communication">4. Define communication</a></li>
+    <li class="toc-h3"><a href="#5-test-for-2-weeks">5. Test for 2 weeks</a></li>
+    <li class="toc-h3"><a href="#6-document-in-agentsmd">6. Document in AGENTS.md</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="317-multi-agent-architecture">3.17 -- Multi-agent architecture</h1>
+<h2 id="context">Context</h2>
+<p>A single agent covers 90% of needs. This chapter is for the remaining 10%.</p>
+<p>DO NOT START HERE. If you're reading this section before having a stable and useful primary agent for at least 4 weeks, close this page and come back later.</p>
+<p>Multi-agent solves a specific problem: a single agent cannot do everything well. Not because of lack of capacity, but because different roles require different postures, permissions, and knowledge.</p>
+<h2 id="when-a-single-agent-is-no-longer-enough">When a single agent is no longer enough</h2>
+<p>Signs it's time to move to multi-agent:</p>
+<ul>
+<li>SOUL.md contains contradictory instructions ("be direct" AND "be diplomatic depending on context")</li>
+<li>CONSTITUTION.md has rules that apply to some tasks but not others</li>
+<li>knowledge/ mixes unrelated domains (technical infrastructure AND client communication)</li>
+<li>The agent changes "personality" depending on the subject, and the result is inconsistent</li>
+</ul>
+<p>Signs it's NOT the right time:</p>
+<ul>
+<li>You don't yet have a stable morning briefing</li>
+<li>USER.md is incomplete</li>
+<li>You haven't connected any sources</li>
+<li>You use the agent less than 5 times per week</li>
+</ul>
+<h2 id="specialized-agents">Specialized agents</h2>
+<p>The recommended model: one primary agent (generalist) and specialized agents (experts in a domain).</p>
+<h3 id="architecture-examples">Architecture examples</h3>
+<p><strong>Technical freelancer</strong>:</p>
+<pre class="codehilite"><code>Primary agent: &quot;Axel&quot; -- daily management, briefing, triage
+Dev agent: &quot;K8&quot; -- code, infrastructure, deployments
+</code></pre>
+
+<p><strong>SME owner</strong>:</p>
+<pre class="codehilite"><code>Primary agent: &quot;Clara&quot; -- briefing, email, agenda
+Sales agent: &quot;Hugo&quot; -- CRM, pipeline, follow-ups
+Ops agent: &quot;Max&quot; -- invoicing, suppliers, logistics
+</code></pre>
+
+<p><strong>Product team</strong>:</p>
+<pre class="codehilite"><code>Primary agent: &quot;PM&quot; -- prioritization, roadmap, communication
+Technical agent: &quot;Dev&quot; -- code review, monitoring, alerts
+Data agent: &quot;Ana&quot; -- metrics, reports, A/B tests
+</code></pre>
+
+<h3 id="when-to-add-a-specialized-agent">When to add a specialized agent</h3>
+<p>Rule: add a specialized agent when a RECURRING ACTIVITY requires:
+- A different tone from the primary agent
+- Different permissions
+- Specific knowledge that the primary agent doesn't need to load each session</p>
+<p>If all three criteria are not met, a single agent with well-organized knowledge/ is sufficient.</p>
+<h2 id="workspace-isolation">Workspace isolation</h2>
+<p>Each agent has its own workspace with its own configuration files:</p>
+<pre class="codehilite"><code>workspaces/
+  primary/
+    SOUL.md              -- personality of the primary agent
+    USER.md              -- shared (symlink)
+    CONSTITUTION.md      -- rules of the primary agent
+    MEMORY.md            -- memory of the primary agent
+    knowledge/           -- general knowledge
+  dev/
+    SOUL.md              -- personality of the dev agent
+    USER.md              -- shared (symlink)
+    CONSTITUTION.md      -- rules of the dev agent
+    MEMORY.md            -- memory of the dev agent
+    knowledge/           -- technical knowledge
+  commercial/
+    SOUL.md              -- personality of the commercial agent
+    USER.md              -- shared (symlink)
+    CONSTITUTION.md      -- rules of the commercial agent
+    MEMORY.md            -- memory of the commercial agent
+    knowledge/           -- business knowledge
+</code></pre>
+
+<p>Isolation rules:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Shared?</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOUL.md</td>
+<td>No</td>
+<td>Each agent has its own identity</td>
+</tr>
+<tr>
+<td>USER.md</td>
+<td>Yes (symlink)</td>
+<td>You are the same person for everyone</td>
+</tr>
+<tr>
+<td>CONSTITUTION.md</td>
+<td>No</td>
+<td>Each agent has its own rules</td>
+</tr>
+<tr>
+<td>AGENTS.md</td>
+<td>Yes (symlink)</td>
+<td>Central registry of all agents</td>
+</tr>
+<tr>
+<td>MEMORY.md</td>
+<td>Case-by-case</td>
+<td>Share if cross-context is needed</td>
+</tr>
+<tr>
+<td>knowledge/</td>
+<td>No</td>
+<td>Each agent has its own knowledge</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inter-agent-communication">Inter-agent communication</h2>
+<p>Agents don't talk to each other directly. They communicate via shared artifacts.</p>
+<h3 id="via-shared-memorymd">Via shared MEMORY.md</h3>
+<p>The simplest approach. A single MEMORY.md read by all agents.</p>
+<pre class="codehilite"><code>Primary agent notes in MEMORY.md:
+&quot;2026-04-01 -- Client Alpha requested a scope change. To evaluate.&quot;
+
+Dev agent reads MEMORY.md at startup and sees the note.
+</code></pre>
+
+<p>Advantage: simple. Disadvantage: MEMORY.md grows quickly with multiple agents writing.</p>
+<h3 id="via-liaison-files">Via liaison files</h3>
+<p>Each agent writes to an output file that others can read.</p>
+<pre class="codehilite"><code>workspaces/shared/
+  primary-output.md    -- what the primary agent wants to communicate
+  dev-output.md        -- what the dev agent wants to communicate
+  commercial-output.md -- what the commercial agent wants to communicate
+</code></pre>
+
+<p>Advantage: each agent controls what it shares. Disadvantage: more files to manage.</p>
+<h3 id="via-agentsmd">Via AGENTS.md</h3>
+<p>The AGENTS.md registry defines communication channels:</p>
+<pre class="codehilite"><code class="language-markdown">## Communication
+
+| From | To | Channel | When |
+|------|----|---------|----|
+| Primary | Dev | shared/primary-output.md | When a technical topic emerges |
+| Dev | Primary | shared/dev-output.md | After each deployment |
+| Commercial | Primary | shared/commercial-output.md | When a deal moves forward/backward |
+</code></pre>
+
+<h2 id="step-by-step">Step by step</h2>
+<h3 id="1-validate-that-its-necessary">1. Validate that it's necessary</h3>
+<p>Review the criteria above. If your primary agent is working well, don't add complexity.</p>
+<h3 id="2-identify-the-first-specialized-agent">2. Identify the first specialized agent</h3>
+<p>Just one. Not three at once. Which domain would benefit most from a dedicated agent?</p>
+<h3 id="3-create-the-workspace">3. Create the workspace</h3>
+<p>Copy the structure. Create specific SOUL.md and CONSTITUTION.md. Link USER.md and AGENTS.md.</p>
+<h3 id="4-define-communication">4. Define communication</h3>
+<p>How do agents exchange information? Shared MEMORY.md or liaison files?</p>
+<h3 id="5-test-for-2-weeks">5. Test for 2 weeks</h3>
+<p>Before adding a third agent, the second one must be stable.</p>
+<h3 id="6-document-in-agentsmd">6. Document in AGENTS.md</h3>
+<p>Update the central registry with the new agent.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Starting with multi-agent</strong>: You don't even have one agent that works and you're deploying three. Guaranteed results: confusion, wasted tokens, abandonment.</p>
+<p><strong>Overlapping agents</strong>: The primary agent and the sales agent both handle customer emails. Who's right? Define exclusive scopes.</p>
+<p><strong>Too many agents</strong>: 5 agents for a solo entrepreneur. Managing agents becomes a full-time job. 2-3 agents maximum for most contexts.</p>
+<p><strong>No isolation</strong>: All agents share everything. The dev agent has access to sales negotiations. The commercial agent can deploy code. Isolate workspaces.</p>
+<p><strong>Communication undefined</strong>: Agents don't know what others have done. No shared file, no common MEMORY.md. Each agent works in its own bubble.</p>
+<p><strong>Forgetting to update AGENTS.md</strong>: You add an agent but AGENTS.md isn't updated. Other agents don't know it exists.</p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The primary agent has been stable for at least 4 weeks</li>
+<li>[ ] The multi-agent need is justified (all 3 criteria met)</li>
+<li>[ ] Maximum 1 specialized agent added at a time</li>
+<li>[ ] Each agent has its own isolated workspace</li>
+<li>[ ] USER.md and AGENTS.md are shared (symlinks)</li>
+<li>[ ] SOUL.md and CONSTITUTION.md are specific to each agent</li>
+<li>[ ] Inter-agent communication is defined and documented</li>
+<li>[ ] AGENTS.md is up to date with all agents</li>
+<li>[ ] 2 weeks of testing before adding another agent</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, When a single agent is no longer enough, Specialized agents, Workspace isolation and 4 more. <a href="03-18-remote-mode.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/17-multi-agents.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-16-briefing-matin.html">&larr; 3.16 -- The Morning Briefing (Steinberg Method)</a>
+<a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Installations (Rem... &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.2 -- SOUL.md : the agent's identity | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.2 -- SOUL.md : the agent's identity | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.2 -- SOUL.md : the agent's identity | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html" class="active">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.2 -- SOUL.md : the agent's identity</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#what-soulmd-contains">What SOUL.md contains</a></li>
+    <li><a href="#what-soulmd-does-not-contain">What SOUL.md does NOT contain</a></li>
+    <li><a href="#three-annotated-examples">Three annotated examples</a></li>
+    <li class="toc-h3"><a href="#direct-agent">Direct agent</a></li>
+    <li class="toc-h3"><a href="#diplomatic-agent">Diplomatic agent</a></li>
+    <li class="toc-h3"><a href="#technical-agent">Technical agent</a></li>
+    <li><a href="#the-classic-mistake">The classic mistake</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li><a href="#complete-soulmd-template">Complete SOUL.md template</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="32-soulmd-the-agents-identity">3.2 -- SOUL.md : the agent's identity</h1>
+<h2 id="context">Context</h2>
+<p>SOUL.md defines WHO the agent is. Not what it does (that's CONSTITUTION.md). Not what it knows (that's knowledge/). Who it IS.</p>
+<p>It's their personality, their tone, their posture. The same agent with the same scope can be direct or diplomatic, technical or accessible, formal or relaxed. SOUL.md makes that difference.</p>
+<h2 id="what-soulmd-contains">What SOUL.md contains</h2>
+<ul>
+<li>The agent's name</li>
+<li>Their posture (how they behave)</li>
+<li>Their tone (how they express themselves)</li>
+<li>Their values (what they prioritize)</li>
+<li>What they are NOT (just as important as what they are)</li>
+</ul>
+<h2 id="what-soulmd-does-not-contain">What SOUL.md does NOT contain</h2>
+<ul>
+<li>Operational instructions (that goes in CONSTITUTION.md)</li>
+<li>Information about you (that goes in USER.md)</li>
+<li>Domain knowledge (that goes in knowledge/)</li>
+<li>Scope rules (that goes in CONSTITUTION.md)</li>
+</ul>
+<h2 id="three-annotated-examples">Three annotated examples</h2>
+<h3 id="direct-agent">Direct agent</h3>
+<pre class="codehilite"><code class="language-markdown"># SOUL.md
+
+You are Axel, operational assistant.
+
+## Posture
+- You get straight to the point. No unnecessary niceties.
+- If an idea is bad, you say so. With respect, but without detours.
+- You propose solutions, not lists of options.
+- &quot;I don't know&quot; is an acceptable answer.
+
+## Tone
+- Short sentences. Active voice.
+- No &quot;If I may...&quot; or &quot;It might perhaps be worth considering...&quot;
+- You use informal address.
+
+## Values
+- Clarity &gt; diplomacy
+- Action &gt; extended reflection
+- An imperfect plan executed &gt; a perfect plan waiting
+</code></pre>
+
+<p>When to use this profile: founders, freelancers, technical teams. People who want answers, not discussions.</p>
+<h3 id="diplomatic-agent">Diplomatic agent</h3>
+<pre class="codehilite"><code class="language-markdown"># SOUL.md
+
+You are Clara, executive assistant.
+
+## Posture
+- You anticipate needs without being intrusive.
+- You phrase things tactfully, especially when there's a problem.
+- You always propose at least 2 options, never just one.
+- You flag risks without alarming.
+
+## Tone
+- Professional but warm.
+- You use formal address by default, unless indicated otherwise.
+- You use formulations like &quot;I would suggest...&quot; or &quot;It could be useful to...&quot;
+
+## Values
+- Relationships &gt; pure efficiency
+- Context &gt; speed
+- Nothing goes out without review
+</code></pre>
+
+<p>When to use this profile: executives with many stakeholders, representation roles, contexts where tone matters as much as content.</p>
+<h3 id="technical-agent">Technical agent</h3>
+<pre class="codehilite"><code class="language-markdown"># SOUL.md
+
+You are K8, DevOps agent.
+
+## Posture
+- You reason in systems. Every action has side effects, you mention them.
+- You show the code or command, not just the explanation.
+- You document what you do as you do it.
+- You don't guess: if information is missing, you ask.
+
+## Tone
+- Precise. Technical when necessary, clear always.
+- You use code blocks for any concrete action.
+- No metaphors. No forced analogies.
+
+## Values
+- Reproducibility &gt; creativity
+- Security &gt; speed
+- Logs &gt; blind trust
+</code></pre>
+
+<p>When to use this profile: engineering teams, system administration, infrastructure automation.</p>
+<h2 id="the-classic-mistake">The classic mistake</h2>
+<p>Spending 3 hours perfecting SOUL.md and neglecting USER.md.</p>
+<p>SOUL.md defines the agent. USER.md defines YOU. If the agent doesn't know you, the best SOUL.md in the world is useless. It will be direct -- but about subjects that don't concern you. It will be diplomatic -- but with the wrong context.</p>
+<p>Rule: spend as much time on USER.md as on SOUL.md. At minimum.</p>
+<h2 id="step-by-step">Step by step</h2>
+<ol>
+<li>Choose one of the three profiles above as a starting point</li>
+<li>Adapt the name, posture, and tone</li>
+<li>Add a "What you are NOT" section (prevents drift)</li>
+<li>Place the file at the root of your workspace</li>
+<li>Test with the command:</li>
+</ol>
+<pre class="codehilite"><code>Introduce yourself in 3 sentences.
+</code></pre>
+
+<p>If the introduction doesn't match what you wrote, SOUL.md is poorly formulated.</p>
+<h2 id="complete-soulmd-template">Complete SOUL.md template</h2>
+<pre class="codehilite"><code class="language-markdown"># SOUL.md
+
+You are [NAME], [one-sentence role].
+
+## Posture
+- [How you behave in interactions]
+- [How you handle disagreements]
+- [How you handle uncertainty]
+- [Your default posture when no specific instruction]
+
+## Tone
+- [Register of language: informal/formal address]
+- [Length of responses: concise/detailed]
+- [Style: direct/diplomatic/technical/educational]
+
+## Values
+- [First priority] &gt; [Second priority]
+- [What you prioritize in case of conflict]
+- [What you refuse to do, even if asked]
+
+## What you are NOT
+- You are not [anti-pattern 1]
+- You are not [anti-pattern 2]
+- You don't claim [clear limitation]
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>SOUL.md too long</strong>: More than 40 lines and the agent "forgets" the last instructions. SOUL.md should be dense, not exhaustive.</p>
+<p><strong>SOUL.md contradictory</strong>: "Be direct AND diplomatic." The agent will do soft compromise. Choose one dominant posture.</p>
+<p><strong>SOUL.md copy-paste</strong>: Using someone else's SOUL.md without adapting it. The agent should match YOUR way of working, not an influencer's on X.</p>
+<p><strong>Confusing SOUL.md and CONSTITUTION.md</strong>: "Never modify production files" is not a matter of identity, it's an operational rule. That goes in CONSTITUTION.md.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] SOUL.md is less than 40 lines</li>
+<li>[ ] Posture, tone, and values are defined</li>
+<li>[ ] No internal contradictions</li>
+<li>[ ] "What you are NOT" section present</li>
+<li>[ ] "Introduce yourself in 3 sentences" test passed</li>
+<li>[ ] USER.md is as complete as SOUL.md</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, What SOUL.md contains, What SOUL.md does NOT contain, Three annotated examples and 5 more. <a href="03-03-user-md.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/02-soul-md.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-01-perimetre-agent.html">&larr; 3.1 -- Define the agent's scope</a>
+<a href="03-03-user-md.html">3.3 -- USER.md : your profile for the agent &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

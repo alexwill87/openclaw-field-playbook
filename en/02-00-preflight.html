@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Pre-flight checklist -- Get everything ready before you start | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="Pre-flight checklist -- Get everything ready before you start | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pre-flight checklist -- Get everything ready before you start | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html" class="active">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>Pre-flight checklist -- Get everything ready before you start</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#1-accounts-to-create">1. Accounts to create</a></li>
+    <li><a href="#2-information-to-collect">2. Information to collect</a></li>
+    <li class="toc-h3"><a href="#your-current-public-ip">Your current public IP</a></li>
+    <li class="toc-h3"><a href="#your-ssh-public-key">Your SSH public key</a></li>
+    <li class="toc-h3"><a href="#a-strong-password-for-postgresql">A strong password for PostgreSQL</a></li>
+    <li class="toc-h3"><a href="#a-name-for-your-agent">A name for your agent</a></li>
+    <li class="toc-h3"><a href="#the-email-address-of-the-primary-user">The email address of the primary user</a></li>
+    <li><a href="#3-decisions-to-make-before-you-start">3. Decisions to make BEFORE you start</a></li>
+    <li><a href="#4-estimated-budget">4. Estimated budget</a></li>
+    <li><a href="#5-estimated-time">5. Estimated time</a></li>
+    <li><a href="#quick-checklist">Quick checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="pre-flight-checklist-get-everything-ready-before-you-start">Pre-flight checklist -- Get everything ready before you start</h1>
+<p>This page exists because we got tired of discovering a prerequisite in section 13 that we could have prepared beforehand. Everything that follows must be ready BEFORE you run the first command in chapter 2.</p>
+<p>Total preparation time: approximately 30 minutes.</p>
+<hr />
+<h2 id="1-accounts-to-create">1. Accounts to create</h2>
+<p>Create these accounts now. Not "later". Now.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Service</th>
+<th>Sign-up URL</th>
+<th>What to note</th>
+<th>Estimated time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Hetzner</strong> or <strong>OVH</strong> (VPS)</td>
+<td><a href="https://www.hetzner.com/cloud">hetzner.com/cloud</a> / <a href="https://www.ovhcloud.com/fr/vps/">ovh.com/vps</a></td>
+<td>Account credentials, server IP once ordered</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Tailscale</strong></td>
+<td><a href="https://login.tailscale.com/start">login.tailscale.com/start</a></td>
+<td>Account created (sign in via Google, GitHub, or Microsoft)</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>OpenRouter</strong></td>
+<td><a href="https://openrouter.ai">openrouter.ai</a></td>
+<td>API key (format <code>sk-or-v1-...</code>). Go to Settings &gt; API Keys after signing up</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Telegram</strong> (bot)</td>
+<td>In the Telegram app, search for <code>@BotFather</code> and send <code>/newbot</code></td>
+<td>Bot token (format <code>123456789:ABCDef...</code>), bot username</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/signup">github.com/signup</a></td>
+<td>Credentials. Also generate a Personal Access Token (Settings &gt; Developer settings &gt; Tokens)</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Telegram tip</strong>: After creating the bot, send it a message in Telegram. You'll need this later to retrieve your <code>chat_id</code>.</p>
+<hr />
+<h2 id="2-information-to-collect">2. Information to collect</h2>
+<p>Before touching the server, gather these items:</p>
+<h3 id="your-current-public-ip">Your current public IP</h3>
+<pre class="codehilite"><code class="language-bash">$ curl -4 ifconfig.me
+</code></pre>
+
+<p>Note it down. You'll need it to configure the VPS firewall.</p>
+<h3 id="your-ssh-public-key">Your SSH public key</h3>
+<p>Check if you already have one:</p>
+<pre class="codehilite"><code class="language-bash">$ cat ~/.ssh/id_ed25519.pub
+</code></pre>
+
+<p>If the file doesn't exist, create a key:</p>
+<pre class="codehilite"><code class="language-bash">$ ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;
+</code></pre>
+
+<p>Accept the default path, set a passphrase. Copy the contents of <code>~/.ssh/id_ed25519.pub</code>.</p>
+<h3 id="a-strong-password-for-postgresql">A strong password for PostgreSQL</h3>
+<p>Generate one with:</p>
+<pre class="codehilite"><code class="language-bash">$ openssl rand -base64 24
+</code></pre>
+
+<p>Note it in a password manager (1Password, Bitwarden, KeePass). You'll store it in Vault in section 07.</p>
+<h3 id="a-name-for-your-agent">A name for your agent</h3>
+<p>This is the name that will appear in <code>SOUL.md</code> -- the identity of your AI agent. Examples: <code>Atlas</code>, <code>Vigil</code>, <code>Sentinel</code>. Choose something short and memorable.</p>
+<h3 id="the-email-address-of-the-primary-user">The email address of the primary user</h3>
+<p>It will be used in <code>USER.md</code> to identify the instance owner. Use an email address you actually check.</p>
+<hr />
+<h2 id="3-decisions-to-make-before-you-start">3. Decisions to make BEFORE you start</h2>
+<p>Don't discover these choices in the middle of installation. Decide now.</p>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Options</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vault or .env files?</td>
+<td>Vault (production) / .env (prototype)</td>
+<td>Vault if multi-user, .env if solo</td>
+</tr>
+<tr>
+<td>PM2 or systemd?</td>
+<td>PM2 (if already using) / systemd (native Ubuntu)</td>
+<td>systemd for newcomers</td>
+</tr>
+<tr>
+<td>Which LLM model by default?</td>
+<td>Claude Sonnet / Haiku / Mistral / Gemini</td>
+<td>Claude Sonnet 4 via OpenRouter</td>
+</tr>
+<tr>
+<td>PostgreSQL or SQLite?</td>
+<td>PostgreSQL (recommended) / SQLite (lightweight)</td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td>Mattermost or not?</td>
+<td>Yes (structured communication) / No (email/Telegram sufficient)</td>
+<td>Not required at the start</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vault vs .env</strong>: If you're alone and this is a prototype, <code>.env</code> is enough to get started. But if other people or agents access the secrets, Vault is the investment that avoids technical debt. The playbook documents both approaches, but the following sections use Vault by default.</p>
+<p><strong>PM2 vs systemd</strong>: PM2 is convenient if you come from the Node.js world. systemd is native to Ubuntu, requires no additional installation, and integrates better with system logs. If you have no preference, use systemd.</p>
+<p><strong>LLM model</strong>: Claude Sonnet 4 offers the best balance of accuracy/cost for complex tasks. Haiku 3.5 is the fast, economical fallback. You can change it anytime via OpenRouter.</p>
+<hr />
+<h2 id="4-estimated-budget">4. Estimated budget</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Monthly cost</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPS (Hetzner CPX21)</td>
+<td>~5-8 EUR/month</td>
+<td>4 CPU, 8 GB RAM, 80 GB SSD</td>
+</tr>
+<tr>
+<td>OpenRouter API key</td>
+<td>~10-30 EUR/month</td>
+<td>Depends on usage. Set an alert at 10 EUR and a limit at 30 EUR</td>
+</tr>
+<tr>
+<td>Domain (optional)</td>
+<td>~10 EUR/year</td>
+<td>If you want a custom domain</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~15-40 EUR/month</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The most variable item is OpenRouter. An active agent using Claude Sonnet consumes more than a dormant agent on Haiku. Monitor your OpenRouter dashboard in the first few weeks.</p>
+<hr />
+<h2 id="5-estimated-time">5. Estimated time</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account creation (this page)</td>
+<td>30 minutes</td>
+</tr>
+<tr>
+<td>Complete installation (chapter 2, sections 01-19)</td>
+<td>3-5 hours</td>
+</tr>
+<tr>
+<td>Configuration (chapter 3)</td>
+<td>2-3 hours</td>
+</tr>
+<tr>
+<td>Customization (chapter 4)</td>
+<td>Ongoing</td>
+</tr>
+</tbody>
+</table>
+<p>Plan a half-day for chapters 2 and 3. Don't start at 11 PM on a Sunday night.</p>
+<hr />
+<h2 id="quick-checklist">Quick checklist</h2>
+<p>Check off each point before moving to section 01:</p>
+<ul>
+<li>[ ] VPS account created and server ordered</li>
+<li>[ ] Tailscale account created</li>
+<li>[ ] OpenRouter account created and API key noted</li>
+<li>[ ] Telegram bot created and token noted</li>
+<li>[ ] GitHub account created</li>
+<li>[ ] SSH key generated (or existing key located)</li>
+<li>[ ] PostgreSQL password generated</li>
+<li>[ ] Vault vs .env decision made</li>
+<li>[ ] PM2 vs systemd decision made</li>
+<li>[ ] Monthly budget estimated and validated</li>
+</ul>
+<p>All checked? Move to <strong><a href="02-01-prerequis.html">2.1 -- Prerequisites</a></strong>.</p>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: 1. Accounts to create, 2. Information to collect, 3. Decisions to make BEFORE you start, 4. Estimated budget and 2 more. <a href="02-01-prerequis.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/00-preflight.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-00-sommaire.html">&larr; 2. Installation</a>
+<a href="02-01-prerequis.html">2.1 -- Hardware and Software Prerequisites &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

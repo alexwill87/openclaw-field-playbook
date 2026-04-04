@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.3 -- Backups | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.3 -- Backups | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.3 -- Backups | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html" class="active">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.3 -- Backups</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#what-to-back-up">What to back up</a></li>
+    <li><a href="#pg_dump-database-backup">pg_dump: database backup</a></li>
+    <li class="toc-h3"><a href="#complete-script-backup-dbsh">Complete script: backup-db.sh</a></li>
+    <li class="toc-h3"><a href="#cron">Cron</a></li>
+    <li><a href="#critical-files">Critical files</a></li>
+    <li class="toc-h3"><a href="#script-backup-filessh">Script: backup-files.sh</a></li>
+    <li><a href="#hetzner-snapshots">Hetzner snapshots</a></li>
+    <li><a href="#restoration-testing">RESTORATION testing</a></li>
+    <li class="toc-h3"><a href="#test-postgresql-restoration">Test PostgreSQL restoration</a></li>
+    <li class="toc-h3"><a href="#test-file-restoration">Test file restoration</a></li>
+    <li class="toc-h3"><a href="#log-the-test">Log the test</a></li>
+    <li><a href="#common-errors">Common errors</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="53-backups">5.3 -- Backups</h1>
+<h2 id="context">Context</h2>
+<p>A backup that has never been tested is not a backup. It's hope. And hope is not a strategy.</p>
+<p>What matters: appropriate frequency, separate storage, and regular restoration testing.</p>
+<h2 id="what-to-back-up">What to back up</h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Method</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL database</td>
+<td>pg_dump</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td>Config files</td>
+<td>tar/rsync</td>
+<td>Weekly</td>
+</tr>
+<tr>
+<td>Docker volumes</td>
+<td>docker cp / tar</td>
+<td>Weekly</td>
+</tr>
+<tr>
+<td>Secrets (Vault)</td>
+<td>vault operator raft snapshot</td>
+<td>Weekly</td>
+</tr>
+<tr>
+<td>Source code</td>
+<td>Git (already backed up if pushed)</td>
+<td>On each push</td>
+</tr>
+<tr>
+<td>Complete VPS</td>
+<td>Hetzner snapshot</td>
+<td>Monthly</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pg_dump-database-backup">pg_dump: database backup</h2>
+<h3 id="complete-script-backup-dbsh">Complete script: backup-db.sh</h3>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# backup-db.sh — Daily PostgreSQL backup
+# Usage: ./backup-db.sh
+
+BACKUP_DIR=&quot;/var/backups/postgresql&quot;
+DB_NAME=&quot;${DB_NAME:-cockpit}&quot;
+DB_USER=&quot;${DB_USER:-oa_admin}&quot;
+RETENTION_DAYS=14
+TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
+BACKUP_FILE=&quot;${BACKUP_DIR}/${DB_NAME}_${TIMESTAMP}.sql.gz&quot;
+LOG_FILE=&quot;/var/log/backup.log&quot;
+
+log() {
+    echo &quot;$(date '+%Y-%m-%d %H:%M:%S') [BACKUP-DB] $1&quot; | tee -a &quot;$LOG_FILE&quot;
+}
+
+# Create directory if necessary
+mkdir -p &quot;$BACKUP_DIR&quot;
+
+# Backup
+log &quot;Starting backup of ${DB_NAME}&quot;
+if pg_dump -U &quot;$DB_USER&quot; &quot;$DB_NAME&quot; | gzip &gt; &quot;$BACKUP_FILE&quot;; then
+    SIZE=$(du -h &quot;$BACKUP_FILE&quot; | cut -f1)
+    log &quot;OK — ${BACKUP_FILE} (${SIZE})&quot;
+else
+    log &quot;ERROR — pg_dump failed&quot;
+    exit 1
+fi
+
+# Verification: file is not empty
+if [ ! -s &quot;$BACKUP_FILE&quot; ]; then
+    log &quot;ERROR — Backup file is empty&quot;
+    exit 1
+fi
+
+# Rotation: delete backups older than N days
+DELETED=$(find &quot;$BACKUP_DIR&quot; -name &quot;${DB_NAME}_*.sql.gz&quot; -mtime +${RETENTION_DAYS} -delete -print | wc -l)
+log &quot;Rotation: ${DELETED} old backup(s) deleted&quot;
+
+log &quot;Backup completed&quot;
+</code></pre>
+
+<h3 id="cron">Cron</h3>
+<pre class="codehilite"><code class="language-bash"># Daily backup at 2 AM
+0 2 * * * /opt/scripts/backup-db.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1
+</code></pre>
+
+<h2 id="critical-files">Critical files</h2>
+<h3 id="script-backup-filessh">Script: backup-files.sh</h3>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# backup-files.sh — Backup of configuration files
+# Usage: ./backup-files.sh
+
+BACKUP_DIR=&quot;/var/backups/files&quot;
+TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
+BACKUP_FILE=&quot;${BACKUP_DIR}/config_${TIMESTAMP}.tar.gz&quot;
+LOG_FILE=&quot;/var/log/backup.log&quot;
+
+mkdir -p &quot;$BACKUP_DIR&quot;
+
+log() {
+    echo &quot;$(date '+%Y-%m-%d %H:%M:%S') [BACKUP-FILES] $1&quot; | tee -a &quot;$LOG_FILE&quot;
+}
+
+log &quot;Starting backup of files&quot;
+
+# List of files/folders to back up
+FILES=(
+    &quot;/opt/cockpit/docker-compose.yml&quot;
+    &quot;/opt/cockpit/.env&quot;
+    &quot;/opt/scripts/&quot;
+    &quot;/etc/nginx/sites-available/&quot;
+    &quot;/etc/docker/daemon.json&quot;
+    &quot;$HOME/.claude/&quot;
+    &quot;$HOME/CONSTITUTION.md&quot;
+    &quot;$HOME/BOUNDARIES.md&quot;
+    &quot;$HOME/WORKFLOWS.md&quot;
+)
+
+# Create archive
+tar -czf &quot;$BACKUP_FILE&quot; &quot;${FILES[@]}&quot; 2&gt;/dev/null
+
+if [ $? -eq 0 ]; then
+    SIZE=$(du -h &quot;$BACKUP_FILE&quot; | cut -f1)
+    log &quot;OK — ${BACKUP_FILE} (${SIZE})&quot;
+else
+    log &quot;ERROR — tar failed&quot;
+    exit 1
+fi
+
+# Rotation: keep 4 weeks
+find &quot;$BACKUP_DIR&quot; -name &quot;config_*.tar.gz&quot; -mtime +28 -delete
+
+log &quot;File backup completed&quot;
+</code></pre>
+
+<h2 id="hetzner-snapshots">Hetzner snapshots</h2>
+<p>Hetzner snapshots back up the complete VPS. It's the last resort.</p>
+<pre class="codehilite"><code class="language-bash"># Via hcloud CLI
+hcloud server create-image --type snapshot --description &quot;Monthly snapshot $(date '+%Y-%m')&quot; &lt;server-id&gt;
+
+# List existing snapshots
+hcloud image list --type snapshot
+
+# Delete an old snapshot
+hcloud image delete &lt;image-id&gt;
+</code></pre>
+
+<p>Frequency: monthly or before a risky operation (migration, major update).</p>
+<p>Cost: Hetzner snapshots are charged per GB/month. A 40 GB VPS costs approximately 0.80 EUR/month per snapshot.</p>
+<h2 id="restoration-testing">RESTORATION testing</h2>
+<p>The most important test. Do it at least once a month.</p>
+<h3 id="test-postgresql-restoration">Test PostgreSQL restoration</h3>
+<pre class="codehilite"><code class="language-bash"># 1. Create a test database
+createdb -U oa_admin cockpit_restore_test
+
+# 2. Restore the latest backup
+gunzip -c /var/backups/postgresql/cockpit_$(ls -t /var/backups/postgresql/ | head -1) | psql -U oa_admin cockpit_restore_test
+
+# 3. Verify: count tables and rows
+psql -U oa_admin cockpit_restore_test -c &quot;\dt&quot;
+psql -U oa_admin cockpit_restore_test -c &quot;SELECT 'tasks' AS tbl, COUNT(*) FROM tasks;&quot;
+
+# 4. Compare with production
+psql -U oa_admin cockpit -c &quot;SELECT 'tasks' AS tbl, COUNT(*) FROM tasks;&quot;
+
+# 5. Clean up
+dropdb -U oa_admin cockpit_restore_test
+</code></pre>
+
+<h3 id="test-file-restoration">Test file restoration</h3>
+<pre class="codehilite"><code class="language-bash"># 1. Extract to a temporary folder
+mkdir -p /tmp/restore_test
+tar -xzf /var/backups/files/config_$(ls -t /var/backups/files/ | head -1) -C /tmp/restore_test
+
+# 2. Verify that critical files are there
+ls -la /tmp/restore_test/opt/cockpit/docker-compose.yml
+ls -la /tmp/restore_test/opt/scripts/
+
+# 3. Compare with current files
+diff /opt/cockpit/docker-compose.yml /tmp/restore_test/opt/cockpit/docker-compose.yml
+
+# 4. Clean up
+rm -rf /tmp/restore_test
+</code></pre>
+
+<h3 id="log-the-test">Log the test</h3>
+<pre class="codehilite"><code class="language-bash">echo &quot;$(date '+%Y-%m-%d') Restoration tested: DB OK, files OK&quot; &gt;&gt; /var/log/backup-test.log
+</code></pre>
+
+<h2 id="common-errors">Common errors</h2>
+<p><strong>Backup without testing.</strong> You have .sql.gz files from 6 months ago. Never tested. When you need them, the file is corrupted or incomplete.</p>
+<p><strong>Backup on the same disk.</strong> The disk fails, and so do the backups. Store on a separate volume at minimum, ideally off the server (S3, another VPS).</p>
+<p><strong>No rotation.</strong> Backups accumulate and fill the disk. Maximum irony: the failure caused by the backups themselves.</p>
+<p><strong>Backup without logging.</strong> The cron runs but you don't know if it works. Log each execution and check the log once a week.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Install <code>backup-db.sh</code> and <code>backup-files.sh</code> in <code>/opt/scripts/</code>.</li>
+<li>Manually test both scripts.</li>
+<li>Configure the crons.</li>
+<li>Test restoration (DB + files).</li>
+<li>Schedule a monthly restoration test.</li>
+<li>Configure a monthly Hetzner snapshot.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] backup-db.sh runs daily and produces non-empty files.</li>
+<li>[ ] backup-files.sh runs weekly.</li>
+<li>[ ] Rotation deletes old backups.</li>
+<li>[ ] A restoration test was performed in the last month.</li>
+<li>[ ] Backups are not on the same disk as the data.</li>
+<li>[ ] A monthly Hetzner snapshot is scheduled.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, What to back up, pg_dump: database backup, Critical files and 5 more. <a href="05-04-revoir-system-prompt.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/03-backups.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-02-logs.html">&larr; 5.2 -- Log Management</a>
+<a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

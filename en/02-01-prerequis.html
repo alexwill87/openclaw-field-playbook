@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.1 -- Hardware and Software Prerequisites | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.1 -- Hardware and Software Prerequisites | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.1 -- Hardware and Software Prerequisites | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html" class="active">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.1 -- Hardware and Software Prerequisites</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#hardware-prerequisites-the-vps">Hardware Prerequisites: The VPS</a></li>
+    <li><a href="#operating-system">Operating System</a></li>
+    <li><a href="#accounts-to-create">Accounts to Create</a></li>
+    <li><a href="#estimated-monthly-budget">Estimated Monthly Budget</a></li>
+    <li><a href="#software-on-your-local-machine">Software on Your Local Machine</a></li>
+    <li><a href="#expected-skills">Expected Skills</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#estimated-time">Estimated Time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 02
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="21-hardware-and-software-prerequisites">2.1 -- Hardware and Software Prerequisites</h1>
+<h2 id="context">Context</h2>
+<p>Before touching the server, you need to know what you're buying, what accounts you're creating, and how much it costs. This section lists everything that is necessary BEFORE you start the installation.</p>
+<h2 id="hardware-prerequisites-the-vps">Hardware Prerequisites: The VPS</h2>
+<p>Tested and validated minimum configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>4 vCPU</td>
+<td>6 vCPU</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>8 GB</td>
+<td>16 GB</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>80 GB SSD</td>
+<td>160 GB NVMe</td>
+</tr>
+<tr>
+<td>Bandwidth</td>
+<td>20 TB/month</td>
+<td>Unlimited</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Europe (GDPR)</td>
+<td>Europe (GDPR)</td>
+</tr>
+</tbody>
+</table>
+<p>Tested providers:</p>
+<ul>
+<li><strong>Hetzner</strong> (recommended): CPX31 at approximately 15 EUR/month. Excellent value for money. Datacenters in Germany and Finland.</li>
+<li><strong>OVH</strong>: VPS Essential at approximately 12 EUR/month. Datacenters in France. Lower latency from France.</li>
+</ul>
+<h2 id="operating-system">Operating System</h2>
+<p><strong>Ubuntu 24.04 LTS</strong> -- this is the only version tested in this playbook. The commands are written for Ubuntu/Debian. If you use something else, adapt accordingly.</p>
+<h2 id="accounts-to-create">Accounts to Create</h2>
+<p>Create these accounts BEFORE you start the installation:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+<th>Why</th>
+<th>Free?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hetzner or OVH</td>
+<td>hetzner.com / ovh.com</td>
+<td>Host the VPS</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Tailscale</td>
+<td>tailscale.com</td>
+<td>Private mesh VPN</td>
+<td>Yes (up to 100 machines)</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>github.com</td>
+<td>Code repository, CI/CD</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td>openrouter.ai</td>
+<td>Multi-model AI access</td>
+<td>Pay-as-you-go credits</td>
+</tr>
+<tr>
+<td>Telegram</td>
+<td>telegram.org</td>
+<td>Notifications and commands</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HashiCorp Cloud (optional)</td>
+<td>cloud.hashicorp.com</td>
+<td>Cloud Vault backup</td>
+<td>Free tier</td>
+</tr>
+</tbody>
+</table>
+<h2 id="estimated-monthly-budget">Estimated Monthly Budget</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPS (Hetzner CPX31)</td>
+<td>15 EUR</td>
+</tr>
+<tr>
+<td>OpenRouter (moderate usage)</td>
+<td>5-20 EUR</td>
+</tr>
+<tr>
+<td>Domain name (optional)</td>
+<td>1 EUR</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>21-36 EUR/month</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The OpenRouter cost depends heavily on the model used and the volume of requests. Claude Sonnet costs approximately 3$/M input tokens. Haiku is 10x cheaper.</p>
+<h2 id="software-on-your-local-machine">Software on Your Local Machine</h2>
+<p>On your workstation (not the VPS), you will need:</p>
+<ul>
+<li>An SSH terminal (native Terminal on Mac/Linux, Windows Terminal + OpenSSH on Windows)</li>
+<li>Git</li>
+<li>A text editor (VS Code recommended, with the Remote-SSH extension)</li>
+<li>Tailscale installed locally</li>
+</ul>
+<h2 id="expected-skills">Expected Skills</h2>
+<p>This playbook assumes you know how to:</p>
+<ul>
+<li>Open a terminal and type commands</li>
+<li>Connect via SSH to a server</li>
+<li>Read an error message in English</li>
+</ul>
+<p>If you don't know how to do these things, start with a basic SSH tutorial before continuing.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<ul>
+<li><strong>Getting a VPS with 2 GB of RAM</strong>: Vault + PostgreSQL + Node.js + Docker saturate quickly. 8 GB is the bare minimum.</li>
+<li><strong>Forgetting to create the OpenRouter account beforehand</strong>: The OpenClaw installation requires an API key from the start.</li>
+<li><strong>Choosing a datacenter outside Europe</strong>: If your data is European, the server location matters (GDPR).</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<p>Before moving to the next section, confirm:</p>
+<ul>
+<li>[ ] VPS ordered and accessible (you have the IP and root password)</li>
+<li>[ ] Tailscale, GitHub, OpenRouter accounts created</li>
+<li>[ ] SSH works from your local machine to the VPS</li>
+<li>[ ] Ubuntu 24.04 LTS installed on the VPS</li>
+</ul>
+<h2 id="estimated-time">Estimated Time</h2>
+<p>15 minutes (excluding account creation and VPS ordering).</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Hardware Prerequisites: The VPS, Operating System, Accounts to Create and 6 more. <a href="02-02-securiser-vps.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/01-prerequis.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-00-preflight.html">&larr; Pre-flight checklist -- Get everything ready be...</a>
+<a href="02-02-securiser-vps.html">2.2 -- Securing the VPS &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

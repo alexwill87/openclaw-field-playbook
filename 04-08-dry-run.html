@@ -138,39 +138,39 @@
 <h2 id="les-3-niveaux-de-confiance">Les 3 niveaux de confiance</h2>
 <h3 id="niveau-1-lecture-seule-montre-moi">Niveau 1 : lecture seule ("montre-moi")</h3>
 <p>L'agent execute la routine mais ne fait rien. Il affiche ce qu'il ferait.</p>
-<div class="codehilite"><pre><span></span><code>Prompt : &quot;Fais le health check en mode dry run. 
+<pre class="codehilite"><code>Prompt : &quot;Fais le health check en mode dry run. 
 Montre-moi chaque commande que tu lancerais et ce que tu verifierais,
-mais n&#39;execute rien.&quot;
-</code></pre></div>
+mais n'execute rien.&quot;
+</code></pre>
 
 <p>Resultat attendu :</p>
-<div class="codehilite"><pre><span></span><code><span class="x">Health check dry run :</span>
-<span class="x">1. Je lancerais : docker ps --format &quot;</span><span class="cp">{{</span><span class="nv">.Names</span><span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span><span class="nv">.Status</span><span class="cp">}}</span><span class="x">&quot;</span>
-<span class="x">   Je verifierais : tous les containers sont &quot;Up&quot;</span>
-<span class="x">2. Je lancerais : curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000</span>
-<span class="x">   Je verifierais : code 200</span>
-<span class="x">3. Je lancerais : df -h /</span>
-<span class="x">   Je verifierais : usage &lt; 80%</span>
-<span class="x">4. En cas de probleme, j&#39;enverrais une alerte Telegram.</span>
+<pre class="codehilite"><code>Health check dry run :
+1. Je lancerais : docker ps --format &quot;{{.Names}} {{.Status}}&quot;
+   Je verifierais : tous les containers sont &quot;Up&quot;
+2. Je lancerais : curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000
+   Je verifierais : code 200
+3. Je lancerais : df -h /
+   Je verifierais : usage &lt; 80%
+4. En cas de probleme, j'enverrais une alerte Telegram.
 
-<span class="x">Aucune action executee. Mode dry run.</span>
-</code></pre></div>
+Aucune action executee. Mode dry run.
+</code></pre>
 
 <p>Vous validez : les commandes sont correctes ? Les seuils sont bons ? Il manque quelque chose ?</p>
 <h3 id="niveau-2-action-validation-fais-et-montre">Niveau 2 : action + validation ("fais et montre")</h3>
 <p>L'agent execute mais demande validation avant chaque action consequente.</p>
-<div class="codehilite"><pre><span></span><code>Prompt : &quot;Fais le health check. Execute les diagnostics.
+<pre class="codehilite"><code>Prompt : &quot;Fais le health check. Execute les diagnostics.
 Si tout est OK, dis-le. Si quelque chose est KO, montre-moi 
-ce que tu ferais mais attends ma validation avant d&#39;agir.&quot;
-</code></pre></div>
+ce que tu ferais mais attends ma validation avant d'agir.&quot;
+</code></pre>
 
 <p>C'est le mode entrainement. L'agent fait le travail de diagnostic (sans risque), mais ne prend aucune action corrective sans votre feu vert.</p>
 <h3 id="niveau-3-autonome-fais-tout">Niveau 3 : autonome ("fais tout")</h3>
 <p>L'agent execute la routine complete, prend les actions correctives si necessaire, et rend compte apres.</p>
-<div class="codehilite"><pre><span></span><code>Prompt : &quot;Health check quotidien. Si un service est down, 
+<pre class="codehilite"><code>Prompt : &quot;Health check quotidien. Si un service est down, 
 redemarre-le. Si le disque depasse 80%, nettoie les logs &gt; 30j. 
 Envoie-moi le resume par Telegram.&quot;
-</code></pre></div>
+</code></pre>
 
 <p>Vous ne passez au niveau 3 que quand les niveaux 1 et 2 ont fonctionne sans probleme pendant au moins une semaine.</p>
 <h2 id="le-calendrier-de-montee-en-confiance">Le calendrier de montee en confiance</h2>
@@ -208,18 +208,18 @@ Envoie-moi le resume par Telegram.&quot;
 <p>Ce calendrier est un minimum. Pour les routines a risque (deploiement, suppression de donnees), doublez chaque phase.</p>
 <h2 id="prompt-de-test">Prompt de test</h2>
 <p>Pour tester une routine avant de l'automatiser :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Je</span><span class="w"> </span><span class="n">veux</span><span class="w"> </span><span class="n">automatiser</span><span class="w"> </span><span class="n">cette</span><span class="w"> </span><span class="k">routine</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">description</span><span class="o">]</span><span class="p">.</span>
-<span class="n">Etapes</span><span class="w"> </span><span class="n">prevues</span><span class="w"> </span><span class="err">:</span>
-<span class="mf">1.</span><span class="w"> </span><span class="o">[</span><span class="n">etape 1</span><span class="o">]</span>
-<span class="mf">2.</span><span class="w"> </span><span class="o">[</span><span class="n">etape 2</span><span class="o">]</span>
-<span class="mf">3.</span><span class="w"> </span><span class="o">[</span><span class="n">etape 3</span><span class="o">]</span>
+<pre class="codehilite"><code>Je veux automatiser cette routine : [description].
+Etapes prevues :
+1. [etape 1]
+2. [etape 2]
+3. [etape 3]
 
-<span class="k">Execute</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="n">dry</span><span class="w"> </span><span class="n">run</span><span class="p">.</span><span class="w"> </span><span class="n">Pour</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">etape</span><span class="w"> </span><span class="err">:</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Montre</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">commande</span><span class="w"> </span><span class="n">exacte</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Dis</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">verifies</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Dis</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">ferais</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">resultat</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">anormal</span><span class="p">.</span>
-<span class="n">N</span><span class="err">&#39;</span><span class="k">execute</span><span class="w"> </span><span class="n">rien</span><span class="p">.</span>
-</code></pre></div>
+Execute en mode dry run. Pour chaque etape :
+- Montre la commande exacte.
+- Dis ce que tu verifies.
+- Dis ce que tu ferais si le resultat est anormal.
+N'execute rien.
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Sauter directement au niveau 3.</strong> "Ca a l'air simple, pas besoin de tester." Puis l'agent redemarre le mauvais container ou supprime les mauvais logs. Toujours tester.</p>

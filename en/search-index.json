@@ -1,0 +1,578 @@
+[
+  {
+    "slug": "00-guide",
+    "title": "Chapter 0 -- Reading Guide",
+    "url": "00-guide.html",
+    "body": "status: complete audience: both chapter: 00 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en Chapter 0 -- Reading Guide **Who this guide is for:** Anyone (or agent) opening th"
+  },
+  {
+    "slug": "01-00-sommaire",
+    "title": "Chapter 1 -- Definition",
+    "url": "01-00-sommaire.html",
+    "body": "status: complete audience: both chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en Chapter 1 -- Definition > What is OpenClaw, concretely? What does it do, what does"
+  },
+  {
+    "slug": "01-01-definition",
+    "title": "1.1 -- What OpenClaw is (and isn't)",
+    "url": "01-01-definition.html",
+    "body": "status: complete audience: both chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 1.1 -- What OpenClaw is (and isn't) **Who this section is for:** Anyone discoverin"
+  },
+  {
+    "slug": "01-02-proactif-reactif",
+    "title": "1.2 -- The distinction between proactive vs reactive",
+    "url": "01-02-proactif-reactif.html",
+    "body": "1.2 -- The distinction between proactive vs reactive **Who this section is for:** Any user who wants to understand what makes the difference between an assistant that waits and an assistant that moves"
+  },
+  {
+    "slug": "01-03-comparaison",
+    "title": "1.3 -- OpenClaw vs other AI assistants",
+    "url": "01-03-comparaison.html",
+    "body": "1.3 -- OpenClaw vs other AI assistants **This section is for:** Anyone asking themselves \"why not just use ChatGPT / Claude.ai / Copilot?\" **Reading time:** 10 minutes. **Difficulty:** Beginner. Conte"
+  },
+  {
+    "slug": "01-04-souverainete",
+    "title": "1.4 -- Why Sovereignty Matters for Entrepreneurs",
+    "url": "01-04-souverainete.html",
+    "body": "status: complete audience: both chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 1.4 -- Why Sovereignty Matters for Entrepreneurs **Who this section is for:** Entr"
+  },
+  {
+    "slug": "01-05-architecture-mentale",
+    "title": "1.5 -- The mental architecture before you start",
+    "url": "01-05-architecture-mentale.html",
+    "body": "1.5 -- The mental architecture before you start **This section is for:** Anyone who will install and configure OpenClaw. Read this before touching the terminal. **Reading time:** 12 minutes. **Difficu"
+  },
+  {
+    "slug": "01-06-ce-que-vous-construisez",
+    "title": "1.6 -- What You Will Build in This Guide",
+    "url": "01-06-ce-que-vous-construisez.html",
+    "body": "1.6 -- What You Will Build in This Guide **Who this section is for:** Any reader who wants to see the destination before starting the journey. **Reading time:** 8 minutes. **Difficulty:** Beginner. Co"
+  },
+  {
+    "slug": "01-07-journee-type",
+    "title": "1.7 -- What does a day with an AI agent look like?",
+    "url": "01-07-journee-type.html",
+    "body": "1.7 -- What does a day with an AI agent look like? > You're wondering what actually changes in your daily routine. Here's a typical day, hour by hour, for someone like you. The morning: you arrive, th"
+  },
+  {
+    "slug": "01-08-combien-ca-coute",
+    "title": "1.8 -- What does it really cost?",
+    "url": "01-08-combien-ca-coute.html",
+    "body": "status: complete audience: human chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 1.8 -- What does it really cost? > The most important question. Here are the real"
+  },
+  {
+    "slug": "01-09-est-ce-complique",
+    "title": "1.9 -- Is this complicated for me?",
+    "url": "01-09-est-ce-complique.html",
+    "body": "status: complete audience: human chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 1.9 -- Is this complicated for me? > You are not a developer. You know nothing ab"
+  },
+  {
+    "slug": "01-10-si-je-ne-fais-rien",
+    "title": "1.10 -- What happens if I do nothing?",
+    "url": "01-10-si-je-ne-fais-rien.html",
+    "body": "status: complete audience: human chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 1.10 -- What happens if I do nothing? > No one is forcing you to use AI. But here"
+  },
+  {
+    "slug": "01-11-comment-se-lancer",
+    "title": "1.11 -- How do I get started?",
+    "url": "01-11-comment-se-lancer.html",
+    "body": "status: complete audience: human chapter: 01 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 1.11 -- How do I get started? > You've read the previous sections. You're convinc"
+  },
+  {
+    "slug": "02-00-sommaire",
+    "title": "2. Installation",
+    "url": "02-00-sommaire.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2. Installation > From a bare VPS to a working OpenClaw instance. Step by step, as"
+  },
+  {
+    "slug": "02-00-preflight",
+    "title": "Pre-flight checklist -- Get everything ready before you start",
+    "url": "02-00-preflight.html",
+    "body": "Pre-flight checklist -- Get everything ready before you start This page exists because we got tired of discovering a prerequisite in section 13 that we could have prepared beforehand. Everything that "
+  },
+  {
+    "slug": "02-01-prerequis",
+    "title": "2.1 -- Hardware and Software Prerequisites",
+    "url": "02-01-prerequis.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.1 -- Hardware and Software Prerequisites Context Before touching the server, you"
+  },
+  {
+    "slug": "02-02-securiser-vps",
+    "title": "2.2 -- Securing the VPS",
+    "url": "02-02-securiser-vps.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.2 -- Securing the VPS Context A new VPS is exposed to the Internet with root acc"
+  },
+  {
+    "slug": "02-03-tailscale",
+    "title": "2.3 -- Tailscale Private Network",
+    "url": "02-03-tailscale.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.3 -- Tailscale Private Network Context Tailscale creates a private network (VPN "
+  },
+  {
+    "slug": "02-04-docker",
+    "title": "2.4 -- Docker and Docker Compose",
+    "url": "02-04-docker.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.4 -- Docker and Docker Compose Context Docker runs Vault, PostgreSQL, and potent"
+  },
+  {
+    "slug": "02-05-nodejs-pm2",
+    "title": "2.5 -- Node.js and PM2",
+    "url": "02-05-nodejs-pm2.html",
+    "body": "2.5 -- Node.js and PM2 Context OpenClaw is written in Node.js. PM2 is a process manager that keeps OpenClaw running, manages logs, and automatically restarts on crash. Install Node.js via **nvm** (Nod"
+  },
+  {
+    "slug": "02-06-structure-dossiers",
+    "title": "2.6 -- Folder Structure",
+    "url": "02-06-structure-dossiers.html",
+    "body": "2.6 -- Folder Structure Context Before installing services, create a consistent folder hierarchy. This prevents the \"files everywhere\" effect that makes maintenance impossible. This convention is used"
+  },
+  {
+    "slug": "02-07-vault",
+    "title": "2.7 -- HashiCorp Vault",
+    "url": "02-07-vault.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.7 -- HashiCorp Vault Context This is the most important section of the entire ch"
+  },
+  {
+    "slug": "02-08-postgresql",
+    "title": "2.8 -- PostgreSQL",
+    "url": "02-08-postgresql.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.8 -- PostgreSQL Context PostgreSQL stores the system's persistent data: sessions"
+  },
+  {
+    "slug": "02-09-health-check",
+    "title": "2.9 -- First health check",
+    "url": "02-09-health-check.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.9 -- First health check Context Before moving forward, we verify that all basic "
+  },
+  {
+    "slug": "02-10-openclaw-install",
+    "title": "2.10 -- OpenClaw Installation",
+    "url": "02-10-openclaw-install.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.10 -- OpenClaw Installation Context OpenClaw is the central tool of the system. "
+  },
+  {
+    "slug": "02-11-workspace",
+    "title": "2.11 -- Workspace Structure",
+    "url": "02-11-workspace.html",
+    "body": "2.11 -- Workspace Structure Context OpenClaw organizes its data in a workspace ( ). This folder is created automatically on first launch. Understanding its structure is essential for debugging, backup"
+  },
+  {
+    "slug": "02-12-config-openclaw",
+    "title": "2.12 -- OpenClaw Initial Configuration",
+    "url": "02-12-config-openclaw.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.12 -- OpenClaw Initial Configuration Context The file is the control center of O"
+  },
+  {
+    "slug": "02-13-openrouter",
+    "title": "2.13 -- OpenRouter Connection",
+    "url": "02-13-openrouter.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.13 -- OpenRouter Connection Context OpenRouter is an API gateway that provides a"
+  },
+  {
+    "slug": "02-14-telegram",
+    "title": "2.14 -- Telegram Connection",
+    "url": "02-14-telegram.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.14 -- Telegram Connection Context Telegram serves as a notification and command "
+  },
+  {
+    "slug": "02-15-gateway-systemd",
+    "title": "2.15 -- Gateway systemd",
+    "url": "02-15-gateway-systemd.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.15 -- Gateway systemd Context The OpenClaw gateway is the HTTP entry point of th"
+  },
+  {
+    "slug": "02-16-verification-complete",
+    "title": "2.16 -- Post-installation verification",
+    "url": "02-16-verification-complete.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.16 -- Post-installation verification Context All the building blocks are in plac"
+  },
+  {
+    "slug": "02-17-git-init",
+    "title": "2.17 -- Initialize the Git Repo",
+    "url": "02-17-git-init.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.17 -- Initialize the Git Repo Context Code, scripts, and configuration (excludin"
+  },
+  {
+    "slug": "02-18-claude-md",
+    "title": "2.18 -- CLAUDE.md",
+    "url": "02-18-claude-md.html",
+    "body": "2.18 -- CLAUDE.md Context is the file that every AI agent reads first when working on your repository. It's the contract between you and the agent: conventions, stack, authorized commands, rules. With"
+  },
+  {
+    "slug": "02-19-script-deploy",
+    "title": "2.19 -- Deployment Script",
+    "url": "02-19-script-deploy.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 2.19 -- Deployment Script Context The script automates the complete deployment: co"
+  },
+  {
+    "slug": "02-20-adapter-existant",
+    "title": "Adapting the playbook to an existing VPS",
+    "url": "02-20-adapter-existant.html",
+    "body": "status: complete audience: both chapter: 02 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit, claude-aurel] lang: en Adapting the playbook to an existing VPS > You already have a server"
+  },
+  {
+    "slug": "03-00-sommaire",
+    "title": "3. Configuration",
+    "url": "03-00-sommaire.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3. Configuration > Configure OpenClaw for your specific context: your industry, yo"
+  },
+  {
+    "slug": "03-01-perimetre-agent",
+    "title": "3.1 -- Define the agent's scope",
+    "url": "03-01-perimetre-agent.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.1 -- Define the agent's scope Context An agent without clear scope is a dangerou"
+  },
+  {
+    "slug": "03-02-soul-md",
+    "title": "3.2 -- SOUL.md : the agent's identity",
+    "url": "03-02-soul-md.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.2 -- SOUL.md : the agent's identity Context SOUL.md defines WHO the agent is. No"
+  },
+  {
+    "slug": "03-03-user-md",
+    "title": "3.3 -- USER.md : your profile for the agent",
+    "url": "03-03-user-md.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.3 -- USER.md : your profile for the agent Context SOUL.md defines who the agent "
+  },
+  {
+    "slug": "03-04-agents-md",
+    "title": "3.4 -- AGENTS.md: the agent registry",
+    "url": "03-04-agents-md.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.4 -- AGENTS.md: the agent registry Context When you have only one agent, AGENTS."
+  },
+  {
+    "slug": "03-05-constitution-md",
+    "title": "3.5 -- CONSTITUTION.md : the rules of the game",
+    "url": "03-05-constitution-md.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.5 -- CONSTITUTION.md : the rules of the game Context SOUL.md says who the agent "
+  },
+  {
+    "slug": "03-06-trois-zones-memoire",
+    "title": "3.6 -- The three memory zones",
+    "url": "03-06-trois-zones-memoire.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.6 -- The three memory zones Context An agent without memory is an amnesiac agent"
+  },
+  {
+    "slug": "03-07-memory-md",
+    "title": "3.7 -- MEMORY.md : the collective memory",
+    "url": "03-07-memory-md.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.7 -- MEMORY.md : the collective memory Context MEMORY.md is the most living file"
+  },
+  {
+    "slug": "03-08-knowledge",
+    "title": "3.8 -- The knowledge/ folder",
+    "url": "03-08-knowledge.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.8 -- The knowledge/ folder Context knowledge/ is the cold memory of the agent. T"
+  },
+  {
+    "slug": "03-09-principe-une-source",
+    "title": "3.9 -- One source at a time (Steinberg principle)",
+    "url": "03-09-principe-une-source.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.9 -- One source at a time (Steinberg principle) Context You've configured the ag"
+  },
+  {
+    "slug": "03-10-calendrier",
+    "title": "3.10 -- Calendar First, Always (Steinberg Principle)",
+    "url": "03-10-calendrier.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.10 -- Calendar First, Always (Steinberg Principle) Context If you only connect o"
+  },
+  {
+    "slug": "03-11-taches",
+    "title": "3.11 -- Tasks: the invisible pressure",
+    "url": "03-11-taches.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.11 -- Tasks: the invisible pressure Context The calendar shows what is PLANNED. "
+  },
+  {
+    "slug": "03-12-email-messages",
+    "title": "3.12 -- Email and messages",
+    "url": "03-12-email-messages.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.12 -- Email and messages Context Email is the noisiest and most voluminous sourc"
+  },
+  {
+    "slug": "03-13-skill-custom",
+    "title": "3.13 -- Building a Custom Skill (Steinberg Method)",
+    "url": "03-13-skill-custom.html",
+    "body": "3.13 -- Building a Custom Skill (Steinberg Method) Context Built-in skills (calendar, email, tasks) cover generic needs. But your business has specific requirements. A consultant wants to query their "
+  },
+  {
+    "slug": "03-14-souverainete-donnees",
+    "title": "3.14 -- Data Sovereignty",
+    "url": "03-14-souverainete-donnees.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.14 -- Data Sovereignty Context Your agent handles your emails, calendar, tasks, "
+  },
+  {
+    "slug": "03-15-crons",
+    "title": "3.15 -- Crons: scheduled automations",
+    "url": "03-15-crons.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.15 -- Crons: scheduled automations Context A reactive agent responds when you ta"
+  },
+  {
+    "slug": "03-16-briefing-matin",
+    "title": "3.16 -- The Morning Briefing (Steinberg Method)",
+    "url": "03-16-briefing-matin.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.16 -- The Morning Briefing (Steinberg Method) Context The morning briefing is th"
+  },
+  {
+    "slug": "03-17-multi-agents",
+    "title": "3.17 -- Multi-agent architecture",
+    "url": "03-17-multi-agents.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 3.17 -- Multi-agent architecture Context A single agent covers 90% of needs. This "
+  },
+  {
+    "slug": "03-18-remote-mode",
+    "title": "3.18 -- Connect Two OpenClaw Installations (Remote Mode)",
+    "url": "03-18-remote-mode.html",
+    "body": "status: complete audience: both chapter: 03 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit, claude-aurel] lang: en 3.18 -- Connect Two OpenClaw Installations (Remote Mode) > You have "
+  },
+  {
+    "slug": "04-00-sommaire",
+    "title": "4. Personalization",
+    "url": "04-00-sommaire.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4. Personalization > Make your agent truly YOURS -- your voice, your rules, your w"
+  },
+  {
+    "slug": "04-01-system-prompt",
+    "title": "4.1 -- Writing your system prompt",
+    "url": "04-01-system-prompt.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.1 -- Writing your system prompt Context The system prompt is the most important "
+  },
+  {
+    "slug": "04-02-personnalite-ton",
+    "title": "4.2 -- Personality and Tone",
+    "url": "04-02-personnalite-ton.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.2 -- Personality and Tone Context Your agent's tone is not a cosmetic detail. It"
+  },
+  {
+    "slug": "04-03-iteration",
+    "title": "4.3 -- Iteration: your first version won't be the right one",
+    "url": "04-03-iteration.html",
+    "body": "4.3 -- Iteration: your first version won't be the right one Context Your first system prompt will be bad. Not because you're bad — because nobody knows what they want from an agent until they've used "
+  },
+  {
+    "slug": "04-04-pourquoi-taches",
+    "title": "4.4 -- Why a task system",
+    "url": "04-04-pourquoi-taches.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.4 -- Why a task system Context An agent without a task system is an advisor. You"
+  },
+  {
+    "slug": "04-05-comment-taches",
+    "title": "4.5 -- How Tasks Get Done",
+    "url": "04-05-comment-taches.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.5 -- How Tasks Get Done Context Having a task system isn't enough. What matters "
+  },
+  {
+    "slug": "04-06-db-source-verite",
+    "title": "4.6 -- Database as source of truth",
+    "url": "04-06-db-source-verite.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.6 -- Database as source of truth Context A TASKS.md file works for 10-20 tasks. "
+  },
+  {
+    "slug": "04-07-reconnaitre-routine",
+    "title": "4.7 -- Recognizing a routine",
+    "url": "04-07-reconnaitre-routine.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.7 -- Recognizing a routine Context A routine is an action you repeat with the sa"
+  },
+  {
+    "slug": "04-08-dry-run",
+    "title": "4.8 -- Dry run before trust",
+    "url": "04-08-dry-run.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.8 -- Dry run before trust Context You've identified an automatable routine (sect"
+  },
+  {
+    "slug": "04-09-workflows-md",
+    "title": "4.9 -- WORKFLOWS.md",
+    "url": "04-09-workflows-md.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.9 -- WORKFLOWS.md Context A documented workflow is a routine that anyone (you, a"
+  },
+  {
+    "slug": "04-10-rythme-hebdo",
+    "title": "4.10 -- The Weekly Rhythm",
+    "url": "04-10-rythme-hebdo.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.10 -- The Weekly Rhythm Context An agent without rhythm is reactive: it responds"
+  },
+  {
+    "slug": "04-11-confiance-configuration",
+    "title": "4.11 -- Trust is a configuration",
+    "url": "04-11-confiance-configuration.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.11 -- Trust is a configuration Context Trust in your agent is not a feeling. It'"
+  },
+  {
+    "slug": "04-12-boundary-prompt",
+    "title": "4.12 -- The boundary prompt",
+    "url": "04-12-boundary-prompt.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.12 -- The boundary prompt Context The boundary prompt is the list of things your"
+  },
+  {
+    "slug": "04-13-audit-acces",
+    "title": "4.13 -- Audit: what can your agent access?",
+    "url": "04-13-audit-acces.html",
+    "body": "status: complete audience: both chapter: 04 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 4.13 -- Audit: what can your agent access? Context You've configured your agent, d"
+  },
+  {
+    "slug": "04-14-config-bilingue",
+    "title": "4.14 -- Bilingual Configuration",
+    "url": "04-14-config-bilingue.html",
+    "body": "4.14 -- Bilingual Configuration Context If you work in French and English -- French-speaking clients, English documentation, English code, French communications -- your agent needs to know when to use"
+  },
+  {
+    "slug": "05-00-sommaire",
+    "title": "5. Maintenance",
+    "url": "05-00-sommaire.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5. Maintenance > Keep your OpenClaw setup performant, reliable, and trustworthy ov"
+  },
+  {
+    "slug": "05-01-health-check",
+    "title": "5.1 -- Daily Health Check",
+    "url": "05-01-health-check.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.1 -- Daily Health Check Context A health check is 30 seconds of diagnosis that p"
+  },
+  {
+    "slug": "05-02-logs",
+    "title": "5.2 -- Log Management",
+    "url": "05-02-logs.html",
+    "body": "5.2 -- Log Management Context Logs are your black box. When everything works, nobody looks at them. When something breaks, it's the first thing you open. If you don't know where they are and how to re"
+  },
+  {
+    "slug": "05-03-backups",
+    "title": "5.3 -- Backups",
+    "url": "05-03-backups.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.3 -- Backups Context A backup that has never been tested is not a backup. It's h"
+  },
+  {
+    "slug": "05-04-revoir-system-prompt",
+    "title": "5.4 -- Review the system prompt",
+    "url": "05-04-revoir-system-prompt.html",
+    "body": "5.4 -- Review the system prompt Context A system prompt is not sacred text. Your context changes, your projects evolve, your needs become clearer. A prompt written 3 months ago no longer reflects your"
+  },
+  {
+    "slug": "05-05-derive-memoire",
+    "title": "5.5 -- Memory Drift",
+    "url": "05-05-derive-memoire.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.5 -- Memory Drift Context Your agent's memory accumulates information over time."
+  },
+  {
+    "slug": "05-06-agent-se-trompe",
+    "title": "5.6 -- When the agent makes a mistake",
+    "url": "05-06-agent-se-trompe.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.6 -- When the agent makes a mistake Context Your agent will make mistakes. Not \""
+  },
+  {
+    "slug": "05-07-maj-integrations",
+    "title": "5.7 -- Update integrations",
+    "url": "05-07-maj-integrations.html",
+    "body": "5.7 -- Update integrations Context APIs change. Tools evolve. An endpoint that worked yesterday returns a 404 error tomorrow. Your agent uses integrations (Telegram, Vault, PostgreSQL, Docker, GitHub)"
+  },
+  {
+    "slug": "05-08-maj-systeme",
+    "title": "5.8 -- System Updates",
+    "url": "05-08-maj-systeme.html",
+    "body": "5.8 -- System Updates Context System updates are basic hygiene. Not doing them = accumulation of security vulnerabilities. Doing them carelessly = breaking production. The balance: regular, tested, do"
+  },
+  {
+    "slug": "05-09-rotation-secrets",
+    "title": "5.9 -- Secret Rotation",
+    "url": "05-09-rotation-secrets.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.9 -- Secret Rotation Context A secret that never changes is a secret waiting to "
+  },
+  {
+    "slug": "05-10-monitoring",
+    "title": "5.10 -- Monitoring and Alerts",
+    "url": "05-10-monitoring.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.10 -- Monitoring and Alerts Context Monitoring answers a simple question: is eve"
+  },
+  {
+    "slug": "05-11-en-cas-de-panne",
+    "title": "5.11 -- In case of outage",
+    "url": "05-11-en-cas-de-panne.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.11 -- In case of outage Context An outage happens. The reflex: don't panic, diag"
+  },
+  {
+    "slug": "05-12-deuxieme-agent",
+    "title": "5.12 -- When to add a second agent",
+    "url": "05-12-deuxieme-agent.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.12 -- When to add a second agent Context One agent works well for a single conte"
+  },
+  {
+    "slug": "05-13-migrer-modele",
+    "title": "5.13 -- Migrating to Another Model",
+    "url": "05-13-migrer-modele.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.13 -- Migrating to Another Model Context The LLM world moves fast. A new model l"
+  },
+  {
+    "slug": "05-14-mesurer-roi",
+    "title": "5.14 -- Measuring ROI",
+    "url": "05-14-mesurer-roi.html",
+    "body": "status: complete audience: both chapter: 05 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 5.14 -- Measuring ROI Context \"The agent saves me time.\" OK, how much? If you don'"
+  },
+  {
+    "slug": "06-00-sommaire",
+    "title": "6. Use Cases",
+    "url": "06-00-sommaire.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 6. Use Cases > Real cases, documented by practitioners. How they use OpenClaw, wha"
+  },
+  {
+    "slug": "06-01-agence-digitale",
+    "title": "01 -- Digital Agency (2 Partners + AI Agents)",
+    "url": "06-01-agence-digitale.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 01 -- Digital Agency (2 Partners + AI Agents) **For whom:** duo of entrepreneurs r"
+  },
+  {
+    "slug": "06-02-consultant-freelance",
+    "title": "02 -- Freelance consultant",
+    "url": "06-02-consultant-freelance.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 02 -- Freelance consultant **For whom:** independent consultant working solo, with"
+  },
+  {
+    "slug": "06-03-ecommerce",
+    "title": "03 -- E-commerce",
+    "url": "06-03-ecommerce.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 03 -- E-commerce **For:** Online seller managing a shop (Shopify, WooCommerce, Pre"
+  },
+  {
+    "slug": "06-04-equipe-technique",
+    "title": "04 -- Technical Team (5-15 people)",
+    "url": "06-04-equipe-technique.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 04 -- Technical Team (5-15 people) **For whom:** mid-sized development or operatio"
+  },
+  {
+    "slug": "06-05-cabinet-comptable",
+    "title": "05 -- Accounting Firm",
+    "url": "06-05-cabinet-comptable.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 05 -- Accounting Firm **For whom:** accounting or management consulting firm, 3 to"
+  },
+  {
+    "slug": "06-06-startup",
+    "title": "06 -- Startup early-stage",
+    "url": "06-06-startup.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 06 -- Startup early-stage **For whom:** startup founders in early stage (pre-seed "
+  },
+  {
+    "slug": "06-07-contribuer",
+    "title": "07 -- How to Submit Your Use Case",
+    "url": "06-07-contribuer.html",
+    "body": "status: complete audience: both chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 07 -- How to Submit Your Use Case **For whom:** anyone or team using OpenClaw in a"
+  },
+  {
+    "slug": "06-08-artisan-tpe",
+    "title": "6.8 -- Craftspeople and Small Businesses: An AI Assistant for Solo Operators",
+    "url": "06-08-artisan-tpe.html",
+    "body": "status: complete audience: human chapter: 06 last_updated: 2026-04 contributors: [alexwill87, claude-cockpit] lang: en 6.8 -- Craftspeople and Small Businesses: An AI Assistant for Solo Operators > Yo"
+  },
+  {
+    "slug": "07-00-sommaire",
+    "title": "7. Localization",
+    "url": "07-00-sommaire.html",
+    "body": "7. Localization > The playbook content is universal. This chapter documents what changes based on local context -- legislation, ecosystem, tools, cultural practices. Chapters 0 through 6 apply everywh"
+  },
+  {
+    "slug": "07-00-en-US",
+    "title": "Locale: en-US — United States (baseline)",
+    "url": "07-00-en-US.html",
+    "body": "status: draft locale: en-US last_updated: 2026-03 contributors: [alexwill87] Locale: en-US — United States (baseline) > This is the reference locale. All other locales document differences from this b"
+  },
+  {
+    "slug": "07-00-fr-FR",
+    "title": "Locale: fr-FR — France",
+    "url": "07-00-fr-FR.html",
+    "body": "status: draft locale: fr-FR last_updated: 2026-03 contributors: [alexwill87] Locale: fr-FR — France > This file documents what is specific to France when using OpenClaw in a business context. > Univer"
+  }
+]

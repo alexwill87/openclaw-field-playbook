@@ -141,82 +141,82 @@
 <p>L'agent peut lire mais ne peut rien modifier.</p>
 <p>Actions : consulter des fichiers, lire des logs, afficher des statuts, faire des calculs.</p>
 <p>Controle : aucun necessaire. Risque zero.</p>
-<div class="codehilite"><pre><span></span><code>Exemples :
+<pre class="codehilite"><code>Exemples :
 - cat, ls, docker ps, git log
 - SELECT sur la base de donnees
 - Lire la documentation
-</code></pre></div>
+</code></pre>
 
 <h3 id="niveau-1-actions-reversibles">Niveau 1 : actions reversibles</h3>
 <p>L'agent peut agir, mais l'action est facilement annulable.</p>
 <p>Actions : creer des fichiers, ecrire dans un fichier temporaire, creer une branche git, ajouter une tache.</p>
 <p>Controle : l'agent agit et rend compte. Vous verifiez apres.</p>
-<div class="codehilite"><pre><span></span><code>Exemples :
+<pre class="codehilite"><code>Exemples :
 - git checkout -b feature/xxx
 - Creer un fichier dans /tmp
 - INSERT dans la table tasks
 - Ecrire un brouillon
-</code></pre></div>
+</code></pre>
 
 <h3 id="niveau-2-actions-consequentes">Niveau 2 : actions consequentes</h3>
 <p>L'agent peut agir mais demande validation avant.</p>
 <p>Actions : modifier des fichiers de config, deployer un service, modifier la base de donnees, envoyer un message.</p>
 <p>Controle : l'agent propose l'action exacte et attend un "go" explicite.</p>
-<div class="codehilite"><pre><span></span><code>Exemples :
+<pre class="codehilite"><code>Exemples :
 - docker compose restart
 - UPDATE/DELETE sur la base de donnees
 - Modifier .env ou docker-compose.yml
 - git push
 - Envoyer un message Telegram a un tiers
-</code></pre></div>
+</code></pre>
 
 <h3 id="niveau-3-actions-interdites">Niveau 3 : actions interdites</h3>
 <p>L'agent ne peut JAMAIS faire ca, meme avec validation.</p>
 <p>Actions : supprimer des donnees de production irrecuperable, push --force sur main, modifier les secrets sans procedure, exposer des credentials.</p>
 <p>Controle : interdit dans le boundary prompt (section 4.12). L'agent doit refuser meme si vous le demandez.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Exemples</span><span class="w"> </span><span class="o">:</span>
-<span class="o">-</span><span class="w"> </span><span class="n">DROP</span><span class="w"> </span><span class="n">TABLE</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">production</span>
-<span class="o">-</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="o">--</span><span class="k">force</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">main</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Afficher</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">mot</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">passe</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">clair</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">logs</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">firewall</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Supprimer</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">backup</span>
-</code></pre></div>
+<pre class="codehilite"><code>Exemples :
+- DROP TABLE en production
+- git push --force origin main
+- Afficher un mot de passe en clair dans les logs
+- Modifier les regles de firewall
+- Supprimer un backup
+</code></pre>
 
 <h2 id="ecrire-les-niveaux-dans-constitutionmd">Ecrire les niveaux dans CONSTITUTION.md</h2>
 <p>Creez un fichier <code>CONSTITUTION.md</code> qui definit les niveaux de facon explicite :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># CONSTITUTION.md — Niveaux de confiance</span>
+<pre class="codehilite"><code class="language-markdown"># CONSTITUTION.md — Niveaux de confiance
 
-<span class="gu">## Niveau 0 : lecture seule (libre)</span>
-<span class="k">-</span><span class="w"> </span>Lire tout fichier du projet
-<span class="k">-</span><span class="w"> </span>Consulter les logs
-<span class="k">-</span><span class="w"> </span>Requetes SELECT sur la base
-<span class="k">-</span><span class="w"> </span>Afficher les statuts
+## Niveau 0 : lecture seule (libre)
+- Lire tout fichier du projet
+- Consulter les logs
+- Requetes SELECT sur la base
+- Afficher les statuts
 
-<span class="gu">## Niveau 1 : reversible (agir + rendre compte)</span>
-<span class="k">-</span><span class="w"> </span>Creer des fichiers non-critiques
-<span class="k">-</span><span class="w"> </span>Creer des branches git
-<span class="k">-</span><span class="w"> </span>Ajouter des taches
-<span class="k">-</span><span class="w"> </span>Generer des brouillons
+## Niveau 1 : reversible (agir + rendre compte)
+- Creer des fichiers non-critiques
+- Creer des branches git
+- Ajouter des taches
+- Generer des brouillons
 
-<span class="gu">## Niveau 2 : consequent (demander avant)</span>
-<span class="k">-</span><span class="w"> </span>Modifier des fichiers de configuration
-<span class="k">-</span><span class="w"> </span>Deployer un service
-<span class="k">-</span><span class="w"> </span>Modifier la base de donnees (UPDATE, DELETE)
-<span class="k">-</span><span class="w"> </span>Push sur une branche
-<span class="k">-</span><span class="w"> </span>Envoyer des communications
+## Niveau 2 : consequent (demander avant)
+- Modifier des fichiers de configuration
+- Deployer un service
+- Modifier la base de donnees (UPDATE, DELETE)
+- Push sur une branche
+- Envoyer des communications
 
-<span class="gu">## Niveau 3 : interdit (refuser toujours)</span>
-<span class="k">-</span><span class="w"> </span>DROP TABLE / DELETE sans WHERE
-<span class="k">-</span><span class="w"> </span>Push --force sur main
-<span class="k">-</span><span class="w"> </span>Modifier les secrets hors procedure
-<span class="k">-</span><span class="w"> </span>Exposer des credentials
-<span class="k">-</span><span class="w"> </span>Supprimer des backups
-<span class="k">-</span><span class="w"> </span>Modifier le firewall
-</code></pre></div>
+## Niveau 3 : interdit (refuser toujours)
+- DROP TABLE / DELETE sans WHERE
+- Push --force sur main
+- Modifier les secrets hors procedure
+- Exposer des credentials
+- Supprimer des backups
+- Modifier le firewall
+</code></pre>
 
 <p>Ajoutez dans le system prompt :</p>
-<div class="codehilite"><pre><span></span><code>Lis et respecte CONSTITUTION.md pour les niveaux de confiance.
-</code></pre></div>
+<pre class="codehilite"><code>Lis et respecte CONSTITUTION.md pour les niveaux de confiance.
+</code></pre>
 
 <h2 id="faire-evoluer-les-niveaux">Faire evoluer les niveaux</h2>
 <p>Les niveaux ne sont pas figes. Quand un workflow a ete teste et fonctionne bien pendant un mois, vous pouvez baisser son niveau de controle :</p>

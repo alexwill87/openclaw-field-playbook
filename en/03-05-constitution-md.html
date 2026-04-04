@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.5 -- CONSTITUTION.md : the rules of the game | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.5 -- CONSTITUTION.md : the rules of the game | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.5 -- CONSTITUTION.md : the rules of the game | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html" class="active">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.5 -- CONSTITUTION.md : the rules of the game</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-3-levels-of-autonomy">The 3 levels of autonomy</a></li>
+    <li class="toc-h3"><a href="#level-1-autonomous-execution">Level 1 -- Autonomous execution</a></li>
+    <li class="toc-h3"><a href="#level-2-execution-with-notification">Level 2 -- Execution with notification</a></li>
+    <li class="toc-h3"><a href="#level-3-prior-validation">Level 3 -- Prior validation</a></li>
+    <li><a href="#explicit-prohibitions">Explicit prohibitions</a></li>
+    <li><a href="#validation-conditions">Validation conditions</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li class="toc-h3"><a href="#1-start-with-the-3-levels">1. Start with the 3 levels</a></li>
+    <li class="toc-h3"><a href="#2-add-prohibitions">2. Add prohibitions</a></li>
+    <li class="toc-h3"><a href="#3-define-the-validation-format">3. Define the validation format</a></li>
+    <li class="toc-h3"><a href="#4-add-clauses-specific-to-your-profession">4. Add clauses specific to your profession</a></li>
+    <li class="toc-h3"><a href="#5-test-the-constitution">5. Test the constitution</a></li>
+    <li><a href="#complete-constitutionmd-template">Complete CONSTITUTION.md template</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="35-constitutionmd-the-rules-of-the-game">3.5 -- CONSTITUTION.md : the rules of the game</h1>
+<h2 id="context">Context</h2>
+<p>SOUL.md says who the agent is. CONSTITUTION.md says what it is ALLOWED to do.</p>
+<p>This is the contract between you and the agent. Not a suggestion, not a preference: a contract. The agent must comply with it for every action.</p>
+<p>CONSTITUTION.md is the file you will reread most often, because your rules evolve with trust. A freshly configured agent has strict rules. An agent that has proven itself over 3 months gets more autonomy.</p>
+<h2 id="the-3-levels-of-autonomy">The 3 levels of autonomy</h2>
+<h3 id="level-1-autonomous-execution">Level 1 -- Autonomous execution</h3>
+<p>The agent acts without notifying you. Use this level for low-risk, high-frequency actions.</p>
+<pre class="codehilite"><code class="language-markdown">## Full autonomy
+You can without validation :
+- Read all configuration files and knowledge/
+- Update MEMORY.md (additions, compression)
+- Create drafts in drafts/
+- Generate summaries and reports
+- Rephrase and correct existing texts
+- Answer factual questions in session
+</code></pre>
+
+<h3 id="level-2-execution-with-notification">Level 2 -- Execution with notification</h3>
+<p>The agent acts, then notifies you. For moderate-risk actions you want to monitor without blocking.</p>
+<pre class="codehilite"><code class="language-markdown">## Autonomy with notification
+You can act then notify me :
+- Modify a file in knowledge/ (tell me which one and why)
+- Reorganize the structure of MEMORY.md (show me the diff)
+- Create a new file in the workspace (alert me)
+- Update an existing draft (flag the changes)
+</code></pre>
+
+<h3 id="level-3-prior-validation">Level 3 -- Prior validation</h3>
+<p>The agent proposes, you validate. For any action with external impact or that is irreversible.</p>
+<pre class="codehilite"><code class="language-markdown">## Validation required
+You must ask me BEFORE :
+- Send an email or message to anyone
+- Publish content (blog, social media, public documentation)
+- Modify a database
+- Delete a file or data
+- Make a commitment (date, price, deliverable)
+- Contact a third party on my behalf
+</code></pre>
+
+<h2 id="explicit-prohibitions">Explicit prohibitions</h2>
+<p>Prohibitions are not levels of autonomy. They are absolute red lines.</p>
+<pre class="codehilite"><code class="language-markdown">## Prohibitions
+NEVER, even if I explicitly ask you to :
+- Invent facts or figures
+- Pretend you did something you didn't do
+- Ignore an error to move faster
+- Store passwords in plain text
+- Send personal data to an unapproved third-party service
+- Modify CONSTITUTION.md without discussing it first
+</code></pre>
+
+<p>The "even if I ask you to" clause is intentional. It protects against poor judgment under pressure. You can always modify CONSTITUTION.md thoughtfully, but the agent should not simply obey a contradictory instruction given in urgency.</p>
+<h2 id="validation-conditions">Validation conditions</h2>
+<p>When the agent requests validation, the request must be structured :</p>
+<pre class="codehilite"><code class="language-markdown">## Validation format
+When you request validation, use this format :
+
+[ACTION] : What you want to do
+[CONTENT] : Summary of the content or change
+[REASON] : Why this action
+[IMPACT] : Foreseeable consequences
+[RISK] : What could go wrong
+
+Wait for my explicit response (yes/no/modify) before acting.
+</code></pre>
+
+<h2 id="step-by-step">Step by step</h2>
+<h3 id="1-start-with-the-3-levels">1. Start with the 3 levels</h3>
+<p>Copy the structure above. Adapt the lists to your context.</p>
+<h3 id="2-add-prohibitions">2. Add prohibitions</h3>
+<p>List 5-10 things the agent should never do. Be specific.</p>
+<h3 id="3-define-the-validation-format">3. Define the validation format</h3>
+<p>Adapt the format above if needed. The essential thing is that each validation request contains : action, reason, impact.</p>
+<h3 id="4-add-clauses-specific-to-your-profession">4. Add clauses specific to your profession</h3>
+<p>Examples by context :</p>
+<p><strong>Consultant</strong> :</p>
+<pre class="codehilite"><code>- Never share one client's data with another client
+- Always anonymize examples taken from previous projects
+</code></pre>
+
+<p><strong>E-commerce</strong> :</p>
+<pre class="codehilite"><code>- Never modify a price without validation
+- Always check stock before confirming an order
+</code></pre>
+
+<p><strong>Developer</strong> :</p>
+<pre class="codehilite"><code>- Never push to main without validation
+- Always run tests before proposing a merge
+</code></pre>
+
+<h3 id="5-test-the-constitution">5. Test the constitution</h3>
+<pre class="codehilite"><code>I want you to send an email to my main client
+to cancel our meeting tomorrow.
+</code></pre>
+
+<p>The agent must :
+1. Identify that this is an external action (level 3)
+2. Request validation with the defined format
+3. Wait for your response</p>
+<p>If it acts directly, CONSTITUTION.md is not clear enough.</p>
+<h2 id="complete-constitutionmd-template">Complete CONSTITUTION.md template</h2>
+<pre class="codehilite"><code class="language-markdown"># CONSTITUTION.md
+
+Version : 1.0
+Last updated : [date]
+Next review : [date + 1 month]
+
+---
+
+## Full autonomy
+You can without validation :
+- [List of low-risk actions]
+
+## Autonomy with notification
+You can act then notify me :
+- [List of moderate-risk actions]
+
+## Validation required
+You must ask me BEFORE :
+- [List of actions with external impact or irreversible]
+
+## Prohibitions
+NEVER, even if I explicitly ask you to :
+- [List of absolute red lines]
+
+## Validation format
+When you request validation :
+- [ACTION] : what you want to do
+- [CONTENT] : summary
+- [REASON] : why
+- [IMPACT] : consequences
+- [RISK] : what could go wrong
+Wait for my explicit response before acting.
+
+## Business rules
+- [Rule specific to your context 1]
+- [Rule specific to your context 2]
+- [Rule specific to your context 3]
+
+## Evolution of this constitution
+- Modifications are made through discussion, never through direct instruction in session
+- Each modification is dated and justified
+- Scheduled monthly review
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Constitution too permissive</strong> : "Do whatever you want as long as it's reasonable." The definition of "reasonable" differs between you and the agent.</p>
+<p><strong>Constitution too restrictive</strong> : Everything at level 3. You spend your day validating. Start strict, then gradually increase the level of autonomy.</p>
+<p><strong>No explicit prohibitions</strong> : Implicit prohibitions don't exist for an agent. If you don't write it, it doesn't know it.</p>
+<p><strong>Constitution never reviewed</strong> : You trust the agent after 2 months, but its constitution is still the one from day 1. Review every month.</p>
+<p><strong>Confusing CONSTITUTION.md and SOUL.md</strong> : "Be careful" is a personality trait (SOUL.md). "Never modify production database without validation" is a rule (CONSTITUTION.md).</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] The 3 levels of autonomy are defined with concrete actions</li>
+<li>[ ] Prohibitions are listed explicitly</li>
+<li>[ ] The validation format is documented</li>
+<li>[ ] Profession-specific rules are added</li>
+<li>[ ] The external action test works (the agent properly requests validation)</li>
+<li>[ ] The date of next review is noted</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The 3 levels of autonomy, Explicit prohibitions, Validation conditions and 4 more. <a href="03-06-trois-zones-memoire.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/05-constitution-md.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-04-agents-md.html">&larr; 3.4 -- AGENTS.md: the agent registry</a>
+<a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

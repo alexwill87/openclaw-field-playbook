@@ -159,8 +159,8 @@
 <p>Contrairement aux emails (50/jour) ou aux messages (200/jour), le calendrier genere 5 a 15 evenements par jour. Peu de volume, forte pertinence.</p>
 <h2 id="configuration">Configuration</h2>
 <h3 id="via-skill">Via skill</h3>
-<div class="codehilite"><pre><span></span><code>openclaw skill add calendar
-</code></pre></div>
+<pre class="codehilite"><code>openclaw skill add calendar
+</code></pre>
 
 <p>L'agent va :
 1. Vous demander le fournisseur (Google Calendar, Outlook, CalDAV)
@@ -205,8 +205,8 @@
 <p>Commencez en lecture seule. Ajoutez les droits d'ecriture apres 2 semaines d'utilisation si necessaire.</p>
 <h2 id="validation">Validation</h2>
 <p>Le test de validation est simple :</p>
-<div class="codehilite"><pre><span></span><code>Montre-moi mes prochaines 48h.
-</code></pre></div>
+<pre class="codehilite"><code>Montre-moi mes prochaines 48h.
+</code></pre>
 
 <p>L'agent doit afficher :
 - Les evenements dans l'ordre chronologique
@@ -215,14 +215,14 @@
 - Les evenements qui meritent une preparation</p>
 <p>Si l'affichage est correct et les croisements pertinents (lien avec les interlocuteurs de USER.md), la connexion est validee.</p>
 <h3 id="ce-qui-rend-un-briefing-calendrier-utile">Ce qui rend un briefing calendrier UTILE</h3>
-<div class="codehilite"><pre><span></span><code>MERCREDI 2 AVRIL
+<pre class="codehilite"><code>MERCREDI 2 AVRIL
 
 09:00-09:30  Standup equipe
   &gt; RAS -- routine hebdomadaire
 
 10:00-11:00  Point projet Alpha avec Marc (ClientAlpha)
   &gt; Preparation : la proposition tarifaire envoyee le 25/03
-    n&#39;a pas encore recu de retour. Sujet probable.
+    n'a pas encore recu de retour. Sujet probable.
 
 11:00-14:00  Bloc libre
   &gt; Suggestion : traiter les 3 emails en attente de reponse
@@ -233,12 +233,12 @@
 15:30-16:00  Call investisseur -- Fonds Epsilon
   &gt; Contexte : second call. Le premier etait le 18/03.
     Notes dans MEMORY.md.
-</code></pre></div>
+</code></pre>
 
 <h3 id="ce-qui-rend-un-briefing-calendrier-inutile">Ce qui rend un briefing calendrier INUTILE</h3>
-<div class="codehilite"><pre><span></span><code>Vous avez 4 reunions demain : standup, point projet,
+<pre class="codehilite"><code>Vous avez 4 reunions demain : standup, point projet,
 entretien, call. Bonne journee !
-</code></pre></div>
+</code></pre>
 
 <p>Si votre briefing ressemble au deuxieme exemple, le probleme n'est pas le calendrier. C'est que USER.md et knowledge/ sont trop vides pour que l'agent fasse des croisements.</p>
 <h2 id="etape-par-etape">Etape par etape</h2>

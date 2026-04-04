@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.6 -- The three memory zones | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.6 -- The three memory zones | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.6 -- The three memory zones | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html" class="active">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.6 -- The three memory zones</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-three-zones">The three zones</a></li>
+    <li><a href="#hot-memory-the-session">Hot memory: the session</a></li>
+    <li><a href="#warm-memory-memorymd">Warm memory: MEMORY.md</a></li>
+    <li><a href="#cold-memory-knowledge">Cold memory: knowledge/</a></li>
+    <li><a href="#why-separate">Why separate</a></li>
+    <li><a href="#decision-diagram">Decision diagram</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="36-the-three-memory-zones">3.6 -- The three memory zones</h1>
+<h2 id="context">Context</h2>
+<p>An agent without memory is an amnesiac agent. Each session starts from scratch. You repeat the same things. It asks the same questions.</p>
+<p>An agent with too much memory is a drowning agent. It mixes context from 6 months ago with today's. It cites obsolete decisions. It treats what is no longer current as if it were.</p>
+<p>Steinberg's solution: three memory zones, each with its own scope and rules.</p>
+<h2 id="the-three-zones">The three zones</h2>
+<pre class="codehilite"><code>+--------------------------------------------------+
+|                                                  |
+|  HOT MEMORY (session)                            |
+|  Duration: this conversation                     |
+|  Size: unlimited (within context window)         |
+|  Content: everything being said right now        |
+|  Disappears: at end of session                   |
+|                                                  |
++--------------------------------------------------+
+          |
+          | What deserves to be retained
+          v
++--------------------------------------------------+
+|                                                  |
+|  WARM MEMORY (MEMORY.md)                         |
+|  Duration: days to weeks                         |
+|  Size: 80 lines max                              |
+|  Content: recent facts, decisions, context       |
+|  Cleanup: regular compression                    |
+|                                                  |
++--------------------------------------------------+
+          |
+          | What is lasting and structured
+          v
++--------------------------------------------------+
+|                                                  |
+|  COLD MEMORY (knowledge/)                        |
+|  Duration: months to indefinite                  |
+|  Size: unlimited (one file per topic)            |
+|  Content: stable knowledge, references, guides   |
+|  Cleanup: quarterly review                       |
+|                                                  |
++--------------------------------------------------+
+</code></pre>
+
+<h2 id="hot-memory-the-session">Hot memory: the session</h2>
+<p>This is the ongoing conversation. Everything you say, everything the agent responds with, remains accessible during the session.</p>
+<p><strong>What goes in</strong>: everything. Questions, answers, reflections, attempts, errors.</p>
+<p><strong>What comes out</strong>: nothing automatically. At the end of the session, everything disappears EXCEPT what you or the agent decide to save in MEMORY.md or knowledge/.</p>
+<p><strong>Pitfall</strong>: thinking that the agent will "remember" tomorrow what you said today. Without explicit save, hot memory is volatile.</p>
+<p>Good practice at end of session:</p>
+<pre class="codehilite"><code>What deserves to be retained from this session?
+Update MEMORY.md.
+</code></pre>
+
+<h2 id="warm-memory-memorymd">Warm memory: MEMORY.md</h2>
+<p>The buffer between the present and the lasting. 80 lines maximum (Steinberg's rule). Contains the recent context necessary for the agent to be relevant when opening the next session.</p>
+<p><strong>What goes in</strong>:
+- Decisions made this week
+- Important recent facts
+- Current context (project, negotiation, event)
+- Temporary notes not to forget</p>
+<p><strong>What does NOT go in</strong>:
+- Stable knowledge (goes in knowledge/)
+- Permanent personal information (goes in USER.md)
+- Agent operating rules (goes in CONSTITUTION.md)
+- Tasks (goes in the task system)</p>
+<p>Details in section 3.7.</p>
+<h2 id="cold-memory-knowledge">Cold memory: knowledge/</h2>
+<p>Lasting knowledge. Structured by domain. One file per topic. No global size limit, but each file should remain readable (200 lines max per file recommended).</p>
+<p><strong>What goes in</strong>:
+- Documented processes
+- Stable business information
+- Technical references
+- Guides and procedures
+- Profiles of durable clients or partners</p>
+<p><strong>What does NOT go in</strong>:
+- Temporary context (goes in MEMORY.md)
+- Opinions or preferences (goes in USER.md)
+- Agent rules (goes in CONSTITUTION.md)</p>
+<p>Details in section 3.8.</p>
+<h2 id="why-separate">Why separate</h2>
+<p><strong>Reason 1: token cost.</strong> Everything the agent reads at startup consumes tokens. MEMORY.md (80 lines) is read every session. knowledge/ is read on demand or according to boot sequence. Mixing the two = loading 500 lines of stable knowledge every session, even when not relevant.</p>
+<p><strong>Reason 2: noise.</strong> An agent reading 200 lines of context at startup will lose the signal. Recent information (MEMORY.md) must be separated from background knowledge (knowledge/) so the agent knows what is CURRENT.</p>
+<p><strong>Reason 3: maintenance.</strong> MEMORY.md compresses every week. knowledge/ is reviewed every quarter. Two different rhythms for two different types of information.</p>
+<p><strong>Reason 4: relevance.</strong> When the agent reads "Decision 03/28: launching postponed to April" in MEMORY.md, it knows it's recent and actionable. When it reads "Product launch process" in knowledge/, it knows it's a stable reference.</p>
+<h2 id="decision-diagram">Decision diagram</h2>
+<pre class="codehilite"><code>Information arrives. Where to store it?
+
+Does it concern ONLY this session?
+  YES --&gt; Do nothing. Hot memory.
+  NO --&gt; continue
+
+Will it change in the next 2 weeks?
+  YES --&gt; MEMORY.md (warm memory)
+  NO --&gt; continue
+
+Is it stable, reusable knowledge?
+  YES --&gt; knowledge/ (cold memory)
+  NO --&gt; continue
+
+Is it information about ME that doesn't change often?
+  YES --&gt; USER.md
+  NO --&gt; continue
+
+Is it an agent operating rule?
+  YES --&gt; CONSTITUTION.md
+  NO --&gt; Probably not necessary to store it.
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Everything in MEMORY.md</strong>: The file grows, exceeds 80 lines, the agent loses the signal. MEMORY.md is a buffer, not a database.</p>
+<p><strong>Nothing in knowledge/</strong>: You repeat the same explanations every session because the agent has no lasting reference.</p>
+<p><strong>No cleanup</strong>: MEMORY.md contains notes from 3 months ago. knowledge/ contains obsolete files. Unmaintained memory is worse than no memory.</p>
+<p><strong>Confusing hot and warm memory</strong>: "I told you that earlier" -- yes, in session. But without saving in MEMORY.md, tomorrow it's forgotten.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] You understand the difference between the 3 zones</li>
+<li>[ ] MEMORY.md exists and is under 80 lines</li>
+<li>[ ] The knowledge/ folder is created with at least one file</li>
+<li>[ ] You have an end-of-session routine ("Update MEMORY.md")</li>
+<li>[ ] Information is in the right zone (no tasks in USER.md, no stable knowledge in MEMORY.md)</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The three zones, Hot memory: the session, Warm memory: MEMORY.md and 5 more. <a href="03-07-memory-md.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/06-trois-zones-memoire.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-05-constitution-md.html">&larr; 3.5 -- CONSTITUTION.md : the rules of the game</a>
+<a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collective memory &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -144,26 +144,26 @@
 <p>Si vous travaillez en francais et en anglais -- clients francophones, documentation en anglais, code en anglais, communications en francais -- votre agent doit savoir quand utiliser quelle langue. Sans instruction claire, il va basculer de facon impredictible.</p>
 <h2 id="les-trois-modes">Les trois modes</h2>
 <h3 id="mode-1-francais-uniquement">Mode 1 : francais uniquement</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Langue</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">francais</span><span class="o">.</span><span class="w"> </span><span class="n">Toujours</span><span class="o">.</span>
-<span class="n">Termes</span><span class="w"> </span><span class="n">techniques</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="w"> </span><span class="n">quand</span><span class="w"> </span><span class="n">il</span><span class="w"> </span><span class="n">n</span><span class="s1">&#39;existe pas d&#39;</span><span class="n">equivalent</span><span class="w"> </span>
-<span class="n">courant</span><span class="w"> </span><span class="o">(</span><span class="n">deploy</span><span class="o">,</span><span class="w"> </span><span class="n">commit</span><span class="o">,</span><span class="w"> </span><span class="n">merge</span><span class="o">,</span><span class="w"> </span><span class="n">container</span><span class="o">,</span><span class="w"> </span><span class="n">endpoint</span><span class="o">).</span>
-<span class="n">Noms</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">commandes</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="w"> </span><span class="o">(</span><span class="n">c</span><span class="err">&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">code</span><span class="o">,</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">traduction</span><span class="o">).</span>
-</code></pre></div>
+<pre class="codehilite"><code>Langue : francais. Toujours.
+Termes techniques en anglais quand il n'existe pas d'equivalent 
+courant (deploy, commit, merge, container, endpoint).
+Noms de commandes et de code en anglais (c'est du code, pas de la traduction).
+</code></pre>
 
 <p>Quand l'utiliser : usage personnel, equipe francophone, pas de clients anglophones.</p>
 <h3 id="mode-2-anglais-uniquement">Mode 2 : anglais uniquement</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Language</span><span class="o">:</span><span class="w"> </span><span class="n">English</span><span class="o">.</span><span class="w"> </span><span class="n">Always</span><span class="o">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Language: English. Always.
+</code></pre>
 
 <p>Quand l'utiliser : equipe internationale, documentation open source, clients anglophones.</p>
 <h3 id="mode-3-bilingue-contextuel">Mode 3 : bilingue contextuel</h3>
-<div class="codehilite"><pre><span></span><code>Langue par defaut : francais.
+<pre class="codehilite"><code>Langue par defaut : francais.
 Bascule en anglais quand :
 - Je redige de la documentation technique (README, API docs)
 - Je prepare un message pour un client anglophone
 - Je te dis &quot;in English&quot;
 Retour au francais automatique a la conversation suivante.
-</code></pre></div>
+</code></pre>
 
 <p>Quand l'utiliser : contexte mixte, freelance international, projet open source avec equipe locale.</p>
 <h2 id="regles-de-basculement">Regles de basculement</h2>
@@ -211,13 +211,13 @@ Retour au francais automatique a la conversation suivante.
 </tbody>
 </table>
 <h3 id="prompt-de-basculement">Prompt de basculement</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Pour</span><span class="w"> </span><span class="n">basculer</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">langue</span><span class="w"> </span><span class="o">:</span>
-<span class="o">-</span><span class="w"> </span><span class="s">&quot;En anglais&quot;</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="s">&quot;in English&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">bascule</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">cette</span><span class="w"> </span><span class="n">tache</span>
-<span class="o">-</span><span class="w"> </span><span class="s">&quot;En francais&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">retour</span><span class="w"> </span><span class="n">au</span><span class="w"> </span><span class="n">francais</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Quand</span><span class="w"> </span><span class="n">j</span><span class="s">&#39;ecris en anglais, reponds en anglais</span>
-<span class="s">- Quand j&#39;</span><span class="n">ecris</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">francais</span><span class="p">,</span><span class="w"> </span><span class="n">reponds</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">francais</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Par</span><span class="w"> </span><span class="n">defaut</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">francais</span>
-</code></pre></div>
+<pre class="codehilite"><code>Pour basculer la langue :
+- &quot;En anglais&quot; ou &quot;in English&quot; -&gt; bascule en anglais pour cette tache
+- &quot;En francais&quot; -&gt; retour au francais
+- Quand j'ecris en anglais, reponds en anglais
+- Quand j'ecris en francais, reponds en francais
+- Par defaut : francais
+</code></pre>
 
 <h2 id="modeles-recommandes-par-langue">Modeles recommandes par langue</h2>
 <p>Tous les grands modeles (Claude, GPT-4, Gemini) gèrent bien le francais et l'anglais. Quelques nuances :</p>
@@ -234,20 +234,20 @@ Retour au francais automatique a la conversation suivante.
 <h2 id="les-pieges-du-bilingue">Les pieges du bilingue</h2>
 <h3 id="le-melange-involontaire">Le melange involontaire</h3>
 <p>L'agent commence en francais, met un terme anglais, puis continue en anglais. Ou l'inverse. Solution : regle explicite dans le system prompt.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Si</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">bascules</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">langue</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">cours</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">reponse</span><span class="p">,</span><span class="w"> </span><span class="n">signale</span><span class="o">-</span><span class="n">le</span><span class="o">.</span>
-<span class="n">Une</span><span class="w"> </span><span class="n">reponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">langue</span><span class="w"> </span><span class="p">(</span><span class="n">sauf</span><span class="w"> </span><span class="n">termes</span><span class="w"> </span><span class="n">techniques</span><span class="p">)</span><span class="o">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Si tu bascules de langue en cours de reponse, signale-le.
+Une reponse = une langue (sauf termes techniques).
+</code></pre>
 
 <h3 id="la-traduction-non-demandee">La traduction non demandee</h3>
 <p>Vous ecrivez en francais, l'agent traduit en anglais "pour etre plus precis". Solution :</p>
-<div class="codehilite"><pre><span></span><code>Ne traduis jamais ma requete. Reponds dans la langue que j&#39;utilise.
-</code></pre></div>
+<pre class="codehilite"><code>Ne traduis jamais ma requete. Reponds dans la langue que j'utilise.
+</code></pre>
 
 <h3 id="les-termes-techniques-forces">Les termes techniques forces</h3>
 <p>L'agent traduit "container" en "conteneur", "deploy" en "deployer" (au lieu de "deployer", qui est acceptable en franglais technique). Solution :</p>
-<div class="codehilite"><pre><span></span><code>Termes techniques gardes en anglais : deploy, commit, merge, push, pull, 
+<pre class="codehilite"><code>Termes techniques gardes en anglais : deploy, commit, merge, push, pull, 
 container, endpoint, token, API, CLI, pipeline, build, runtime.
-</code></pre></div>
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Pas de regle de langue.</strong> L'agent choisit selon l'humeur du modele. Inconsistant.</p>

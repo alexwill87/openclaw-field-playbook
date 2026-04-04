@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Home | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="Home | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Home | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home" class="active">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    
+<div class="landing-hero">
+  <h1>OpenClaw Field Playbook</h1>
+  <p class="lead">The open-source guide to installing OpenClaw properly.<br>
+  Written by a practitioner. Field-tested. Shared with everyone.</p>
+  <p style="font-size:0.82rem;color:var(--text-muted);max-width:520px;margin:0.5rem auto 1rem;">
+    I failed 3 installations before I figured it out. This playbook is the result:
+    <strong style="color:var(--accent);">96</strong> sections, <strong style="color:var(--accent);">7</strong> chapters,
+    <strong style="color:var(--accent);">20</strong> bugs fixed by a field agent.
+    Everything is here so you don't have to struggle like I did.
+    <span style="display:block;margin-top:0.3rem;"><a href="https://github.com/alexwill87/openclaw-field-playbook" style="color:var(--accent);">— Alex Willemetz</a></span>
+  </p>
+  <div class="hero-actions">
+    <a href="decouverte.html" class="btn-primary">What is OpenClaw?</a>
+    <a href="02-00-sommaire.html" class="btn-secondary">Start installing</a>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-secondary" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<div class="landing-section">
+  <h2>Who are you?</h2>
+  <p>This guide adapts to your profile. Choose yours.</p>
+  <div class="audience-grid">
+    <a class="audience-card" href="persona-entrepreneur.html" style="text-decoration:none;color:var(--text);">
+      <strong>Entrepreneur / Artisan</strong>
+      <p>You run a business and want to understand what AI can do for you — no jargon.</p>
+    </a>
+    <a class="audience-card" href="persona-cto.html" style="text-decoration:none;color:var(--text);">
+      <strong>CTO / Tech Team</strong>
+      <p>You want to deploy an AI agent for your team, on your infra, with your constraints.</p>
+    </a>
+    <a class="audience-card" href="persona-dev.html" style="text-decoration:none;color:var(--text);">
+      <strong>Independent Developer</strong>
+      <p>You know what Docker is. You want the commands, not the fluff.</p>
+    </a>
+    <a class="audience-card" href="persona-agent.html" style="text-decoration:none;color:var(--text);">
+      <strong>AI Agent</strong>
+      <p>You are an agent. You clone this repo and follow the sections as a runbook.</p>
+    </a>
+  </div>
+</div>
+
+<div class="landing-section">
+  <h2>Where to start</h2>
+  <ul class="path-list">
+    <li>
+      <strong>I'm discovering</strong>
+      <span><a href="decouverte.html">What is OpenClaw?</a> &rarr; <a href="01-00-sommaire.html">Definition</a> &rarr; <a href="02-00-sommaire.html">Installation</a></span>
+    </li>
+    <li>
+      <strong>I'm installing</strong>
+      <span><a href="02-00-sommaire.html">Installation</a> &rarr; <a href="03-00-sommaire.html">Configuration</a> &rarr; <a href="04-00-sommaire.html">Customization</a></span>
+    </li>
+    <li>
+      <strong>I want examples</strong>
+      <span><a href="06-00-sommaire.html">Use Cases</a> &rarr; then work back to the technical chapters</span>
+    </li>
+    <li>
+      <strong>I'm an AI agent</strong>
+      <span>Read <a href="https://github.com/alexwill87/openclaw-field-playbook/blob/main/CLAUDE.md">CLAUDE.md</a> &rarr; <a href="02-01-prerequis.html">Section 2.1</a> and follow in order</span>
+    </li>
+  </ul>
+</div>
+
+<div class="landing-section">
+  <h2>Chapters</h2>
+  <div class="chapter-grid">
+    <a class="chapter-card" href="00-guide.html"><div class="num">0</div><div class="card-title">Reading Guide</div><div class="card-desc">How to read this guide and where to start</div></a>
+    <a class="chapter-card" href="01-00-sommaire.html"><div class="num">1</div><div class="card-title">Definition</div><div class="card-desc">What OpenClaw is and what it isn't</div></a>
+    <a class="chapter-card" href="02-00-sommaire.html"><div class="num">2</div><div class="card-title">Installation</div><div class="card-desc">Install OpenClaw from scratch on a VPS</div></a>
+    <a class="chapter-card" href="03-00-sommaire.html"><div class="num">3</div><div class="card-title">Configuration</div><div class="card-desc">Configure the agent for your context</div></a>
+    <a class="chapter-card" href="04-00-sommaire.html"><div class="num">4</div><div class="card-title">Customization</div><div class="card-desc">Adapt behavior, tone, and workflows</div></a>
+    <a class="chapter-card" href="05-00-sommaire.html"><div class="num">5</div><div class="card-title">Maintenance</div><div class="card-desc">Keep the agent reliable over time</div></a>
+    <a class="chapter-card" href="06-00-sommaire.html"><div class="num">6</div><div class="card-title">Use Cases</div><div class="card-desc">Real examples by organization type</div></a>
+    <a class="chapter-card" href="07-00-sommaire.html"><div class="num">7</div><div class="card-title">Localization</div><div class="card-desc">Adapt OpenClaw to other languages and contexts</div></a>
+  </div>
+</div>
+
+<div class="landing-section">
+  <h2>Tools</h2>
+  <div class="audience-grid">
+    <a class="audience-card" href="checklist.html" style="text-decoration:none;color:var(--text);">
+      <strong>Interactive Checklist</strong>
+      <p>Track your progress step by step. Auto-saved.</p>
+    </a>
+    <a class="audience-card" href="contribuer.html" style="text-decoration:none;color:var(--text);">
+      <strong>Contribute</strong>
+      <p>Fix an error, add a use case, suggest a section.</p>
+    </a>
+    <a class="audience-card" href="decouverte.html" style="text-decoration:none;color:var(--text);">
+      <strong>What is OpenClaw?</strong>
+      <p>For those starting from zero. No jargon.</p>
+    </a>
+    <a class="audience-card" href="https://github.com/alexwill87/openclaw-field-playbook/issues" style="text-decoration:none;color:var(--text);" target="_blank">
+      <strong>Report a problem</strong>
+      <p>A command that doesn't work? A broken link? Let us know.</p>
+    </a>
+  </div>
+</div>
+
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -180,103 +180,103 @@
 </table>
 <hr />
 <h2 id="architecture">Architecture</h2>
-<div class="codehilite"><pre><span></span><code>VPS A (gateway maitre)              VPS B (client remote)
+<pre class="codehilite"><code>VPS A (gateway maitre)              VPS B (client remote)
    gateway.mode: &quot;server&quot;              gateway.mode: &quot;remote&quot;
    port 18789 (WebSocket)              gateway.remote.url
           ^                                    |
           |_________ Tailscale / SSH __________|
-</code></pre></div>
+</code></pre>
 
 <p>Le client remote ne lance PAS sa propre gateway. Il se connecte a la gateway du maitre et utilise ses commandes CLI a distance.</p>
 <hr />
 <h2 id="etapes">Etapes</h2>
 <h3 id="1-cote-gateway-maitre-vps-a">1. Cote gateway maitre (VPS A)</h3>
 <p>Creez un token d'authentification dedie pour la connexion remote. Ne reutilisez <strong>jamais</strong> le root token.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Generer un token dedie</span>
-openclaw<span class="w"> </span>gateway<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;remote-vps-b&quot;</span><span class="w"> </span>--scope<span class="w"> </span><span class="nb">read</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Generer un token dedie
+openclaw gateway token create --name &quot;remote-vps-b&quot; --scope read
+</code></pre>
 
 <p>Notez le token genere. Verifiez que la gateway ecoute sur le bon port :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Verifier la configuration</span>
-cat<span class="w"> </span>~/.openclaw/gateway.json
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Verifier la configuration
+cat ~/.openclaw/gateway.json
+</code></pre>
 
 <p>La configuration doit inclure :</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;server&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18789</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;auth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote-vps-b&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ocgw_xxxxxxxxxxxxxxxxxx&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;server&quot;,
+  &quot;port&quot;: 18789,
+  &quot;auth&quot;: {
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;remote-vps-b&quot;,
+        &quot;token&quot;: &quot;ocgw_xxxxxxxxxxxxxxxxxx&quot;,
+        &quot;scope&quot;: &quot;read&quot;
+      }
+    ]
+  }
+}
+</code></pre>
 
 <h3 id="2-configuration-du-transport">2. Configuration du transport</h3>
 <p>Trois options, de la plus simple a la plus complexe :</p>
 <h4 id="option-a-tailscale-direct-recommande">Option A : Tailscale direct (recommande)</h4>
 <p>Si les deux VPS sont sur le meme reseau Tailscale, c'est le plus simple. Le trafic est deja chiffre point-a-point.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Sur VPS B, verifier la connectivite</span>
-tailscale<span class="w"> </span>ping<span class="w"> </span>vps-a
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Sur VPS B, verifier la connectivite
+tailscale ping vps-a
+</code></pre>
 
 <p>L'URL remote sera : <code>ws://100.x.x.x:18789</code> (IP Tailscale du VPS A).</p>
 <h4 id="option-b-tunnel-ssh">Option B : Tunnel SSH</h4>
 <p>Si vous n'avez pas Tailscale, un tunnel SSH fait le travail :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Sur VPS B, creer le tunnel</span>
-ssh<span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span><span class="m">18789</span>:localhost:18789<span class="w"> </span>user@vps-a-ip
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Sur VPS B, creer le tunnel
+ssh -N -L 18789:localhost:18789 user@vps-a-ip
+</code></pre>
 
 <p>L'URL remote sera : <code>ws://localhost:18789</code>.</p>
 <p>Pour rendre le tunnel persistant, ajoutez-le dans un service systemd ou utilisez <code>autossh</code> :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Installation d&#39;autossh</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>autossh
+<pre class="codehilite"><code class="language-bash"># Installation d'autossh
+sudo apt install autossh
 
-<span class="c1"># Tunnel persistant</span>
-autossh<span class="w"> </span>-M<span class="w"> </span><span class="m">0</span><span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span><span class="m">18789</span>:localhost:18789<span class="w"> </span>user@vps-a-ip<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-o<span class="w"> </span><span class="s2">&quot;ServerAliveInterval 30&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;ServerAliveCountMax 3&quot;</span>
-</code></pre></div>
+# Tunnel persistant
+autossh -M 0 -N -L 18789:localhost:18789 user@vps-a-ip \
+  -o &quot;ServerAliveInterval 30&quot; -o &quot;ServerAliveCountMax 3&quot;
+</code></pre>
 
 <h4 id="option-c-websocket-sur-internet-avance">Option C : WebSocket sur Internet (avance)</h4>
 <p>Si vous devez passer par Internet sans tunnel, utilisez <strong>obligatoirement</strong> TLS :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Derriere un reverse proxy (Caddy, Nginx) avec certificat TLS</span>
-<span class="c1"># L&#39;URL sera : wss://gateway.votre-domaine.com</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Derriere un reverse proxy (Caddy, Nginx) avec certificat TLS
+# L'URL sera : wss://gateway.votre-domaine.com
+</code></pre>
 
 <p>Ne jamais exposer <code>ws://</code> sur une IP publique sans TLS.</p>
 <h3 id="3-cote-client-remote-vps-b">3. Cote client remote (VPS B)</h3>
 <p>Configurez le client pour se connecter a la gateway distante :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Editer la configuration</span>
-nano<span class="w"> </span>~/.openclaw/gateway.json
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Editer la configuration
+nano ~/.openclaw/gateway.json
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;remote&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ws://100.x.x.x:18789&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ocgw_xxxxxxxxxxxxxxxxxx&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;remote&quot;,
+  &quot;remote&quot;: {
+    &quot;url&quot;: &quot;ws://100.x.x.x:18789&quot;,
+    &quot;token&quot;: &quot;ocgw_xxxxxxxxxxxxxxxxxx&quot;
+  }
+}
+</code></pre>
 
 <p>Remplacez l'URL et le token par les valeurs de votre installation.</p>
 <h3 id="4-verification">4. Verification</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Sur VPS B -- tester la connexion</span>
-openclaw<span class="w"> </span>gateway<span class="w"> </span>status
+<pre class="codehilite"><code class="language-bash"># Sur VPS B -- tester la connexion
+openclaw gateway status
 
-<span class="c1"># Doit afficher : Connected to remote gateway at ws://100.x.x.x:18789</span>
+# Doit afficher : Connected to remote gateway at ws://100.x.x.x:18789
 
-<span class="c1"># Verifier la sante de l&#39;installation distante</span>
-openclaw<span class="w"> </span>health
+# Verifier la sante de l'installation distante
+openclaw health
 
-<span class="c1"># Voir le statut detaille</span>
-openclaw<span class="w"> </span>status<span class="w"> </span>--deep
-</code></pre></div>
+# Voir le statut detaille
+openclaw status --deep
+</code></pre>
 
 <hr />
 <h2 id="securite">Securite</h2>
@@ -351,42 +351,42 @@ openclaw<span class="w"> </span>status<span class="w"> </span>--deep
 <hr />
 <h2 id="template-reutilisable">Template reutilisable</h2>
 <h3 id="configuration-maitre-vps-a">Configuration maitre (VPS A)</h3>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;server&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18789</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;auth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote-vps-b&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REMPLACER_PAR_VOTRE_TOKEN&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;server&quot;,
+  &quot;port&quot;: 18789,
+  &quot;auth&quot;: {
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;remote-vps-b&quot;,
+        &quot;token&quot;: &quot;REMPLACER_PAR_VOTRE_TOKEN&quot;,
+        &quot;scope&quot;: &quot;read&quot;
+      }
+    ]
+  }
+}
+</code></pre>
 
 <h3 id="configuration-client-vps-b">Configuration client (VPS B)</h3>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;remote&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ws://TAILSCALE_IP_VPS_A:18789&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REMPLACER_PAR_VOTRE_TOKEN&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;remote&quot;,
+  &quot;remote&quot;: {
+    &quot;url&quot;: &quot;ws://TAILSCALE_IP_VPS_A:18789&quot;,
+    &quot;token&quot;: &quot;REMPLACER_PAR_VOTRE_TOKEN&quot;
+  }
+}
+</code></pre>
 
 <h3 id="commande-tunnel-ssh-si-pas-tailscale">Commande tunnel SSH (si pas Tailscale)</h3>
-<div class="codehilite"><pre><span></span><code>autossh<span class="w"> </span>-M<span class="w"> </span><span class="m">0</span><span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span><span class="m">18789</span>:localhost:18789<span class="w"> </span>user@VPS_A_IP<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-o<span class="w"> </span><span class="s2">&quot;ServerAliveInterval 30&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;ServerAliveCountMax 3&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">autossh -M 0 -N -L 18789:localhost:18789 user@VPS_A_IP \
+  -o &quot;ServerAliveInterval 30&quot; -o &quot;ServerAliveCountMax 3&quot;
+</code></pre>
 
 <h3 id="commandes-de-verification">Commandes de verification</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Depuis VPS B</span>
-openclaw<span class="w"> </span>gateway<span class="w"> </span>status<span class="w">         </span><span class="c1"># Etat de la connexion</span>
-openclaw<span class="w"> </span>health<span class="w">                 </span><span class="c1"># Sante de l&#39;installation distante</span>
-openclaw<span class="w"> </span>status<span class="w"> </span>--deep<span class="w">          </span><span class="c1"># Statut detaille</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Depuis VPS B
+openclaw gateway status         # Etat de la connexion
+openclaw health                 # Sante de l'installation distante
+openclaw status --deep          # Statut detaille
+</code></pre>
 
 <hr />
 <h2 id="verification">Verification</h2>

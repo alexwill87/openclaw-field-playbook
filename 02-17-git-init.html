@@ -143,81 +143,81 @@
 <h2 id="contexte">Contexte</h2>
 <p>Le code, les scripts et la configuration (hors secrets) doivent etre versionnes dans Git. Cette section cree le depot, configure le remote GitHub et met en place un .gitignore solide pour eviter de committer des secrets ou des fichiers inutiles.</p>
 <h2 id="etape-1-initialiser-le-depot">Etape 1 : Initialiser le depot</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/
-$<span class="w"> </span>git<span class="w"> </span>init<span class="w"> </span>oa-system
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>oa-system
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init oa-system
+$ cd oa-system
+</code></pre>
 
 <p>Ou si vous travaillez directement dans votre home :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/
-$<span class="w"> </span>git<span class="w"> </span>init
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cd ~/
+$ git init
+</code></pre>
 
 <h2 id="etape-2-configurer-git">Etape 2 : Configurer Git</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Votre Nom&quot;</span>
-$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;votre-email@example.com&quot;</span>
-$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ git config user.name &quot;Votre Nom&quot;
+$ git config user.email &quot;votre-email@example.com&quot;
+$ git config init.defaultBranch main
+</code></pre>
 
 <h2 id="etape-3-creer-le-gitignore">Etape 3 : Creer le .gitignore</h2>
 <p>Creez <code>.gitignore</code> a la racine du depot :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># === Secrets et credentials ===</span>
-<span class="na">.env</span>
-<span class="na">.env.</span><span class="p">*</span>
-<span class="err">*</span><span class="na">.key</span>
-<span class="err">*</span><span class="na">.pem</span>
-<span class="nf">credentials.json</span>
-<span class="nf">vault-keys.txt</span>
-<span class="nf">unseal-keys.txt</span>
+<pre class="codehilite"><code class="language-gitignore"># === Secrets et credentials ===
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+vault-keys.txt
+unseal-keys.txt
 
-<span class="c1"># === Donnees Docker ===</span>
-<span class="nf">docker</span><span class="err">/</span><span class="no">vault</span><span class="err">/</span><span class="no">data</span><span class="err">/</span>
-<span class="nf">docker</span><span class="err">/</span><span class="no">postgres</span><span class="err">/</span><span class="no">data</span><span class="err">/</span>
+# === Donnees Docker ===
+docker/vault/data/
+docker/postgres/data/
 
-<span class="c1"># === Sauvegardes ===</span>
-<span class="nf">backups</span><span class="err">/</span>
+# === Sauvegardes ===
+backups/
 
-<span class="c1"># === Logs ===</span>
-<span class="nf">logs</span><span class="err">/</span>
-<span class="err">*</span><span class="na">.log</span>
+# === Logs ===
+logs/
+*.log
 
-<span class="c1"># === Node.js ===</span>
-<span class="nf">node_modules</span><span class="err">/</span>
-<span class="nf">npm-debug.log</span><span class="p">*</span>
-<span class="na">.npm</span>
+# === Node.js ===
+node_modules/
+npm-debug.log*
+.npm
 
-<span class="c1"># === OpenClaw ===</span>
-<span class="na">.openclaw</span><span class="err">/</span><span class="no">credentials.json</span>
-<span class="na">.openclaw</span><span class="err">/</span><span class="no">logs</span><span class="err">/</span>
-<span class="na">.openclaw</span><span class="err">/</span><span class="no">workspace</span><span class="err">/</span><span class="no">sessions</span><span class="err">/</span>
+# === OpenClaw ===
+.openclaw/credentials.json
+.openclaw/logs/
+.openclaw/workspace/sessions/
 
-<span class="c1"># === OS ===</span>
-<span class="na">.DS_Store</span>
-<span class="nf">Thumbs.db</span>
-<span class="err">*~</span>
-<span class="err">*</span><span class="na">.swp</span>
-<span class="err">*</span><span class="na">.swo</span>
+# === OS ===
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
 
-<span class="c1"># === IDE ===</span>
-<span class="na">.vscode</span><span class="err">/</span><span class="no">settings.json</span>
-<span class="na">.idea</span><span class="err">/</span>
-<span class="err">*</span><span class="na">.sublime-workspace</span>
-</code></pre></div>
+# === IDE ===
+.vscode/settings.json
+.idea/
+*.sublime-workspace
+</code></pre>
 
 <h2 id="etape-4-copier-les-fichiers-a-versionner">Etape 4 : Copier les fichiers a versionner</h2>
 <p>Les fichiers qui DOIVENT etre dans Git :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Scripts</span>
-$<span class="w"> </span>cp<span class="w"> </span>~/scripts/*.sh<span class="w"> </span>./scripts/
+<pre class="codehilite"><code class="language-bash"># Scripts
+$ cp ~/scripts/*.sh ./scripts/
 
-<span class="c1"># Docker compose (sans les donnees)</span>
-$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>docker/vault<span class="w"> </span>docker/postgres
-$<span class="w"> </span>cp<span class="w"> </span>~/docker/vault/docker-compose.yml<span class="w"> </span>./docker/vault/
-$<span class="w"> </span>cp<span class="w"> </span>~/docker/vault/config/vault.hcl<span class="w"> </span>./docker/vault/config/
-$<span class="w"> </span>cp<span class="w"> </span>~/docker/postgres/docker-compose.yml<span class="w"> </span>./docker/postgres/
+# Docker compose (sans les donnees)
+$ mkdir -p docker/vault docker/postgres
+$ cp ~/docker/vault/docker-compose.yml ./docker/vault/
+$ cp ~/docker/vault/config/vault.hcl ./docker/vault/config/
+$ cp ~/docker/postgres/docker-compose.yml ./docker/postgres/
 
-<span class="c1"># Health check</span>
-$<span class="w"> </span>cp<span class="w"> </span>~/scripts/health-check.sh<span class="w"> </span>./scripts/
-</code></pre></div>
+# Health check
+$ cp ~/scripts/health-check.sh ./scripts/
+</code></pre>
 
 <p>Les fichiers qui NE DOIVENT PAS etre dans Git :
 - Tout ce qui est dans <code>backups/</code>
@@ -226,22 +226,22 @@ $<span class="w"> </span>cp<span class="w"> </span>~/scripts/health-check.sh<spa
 - Les unseal keys de Vault</p>
 <h2 id="etape-5-creer-le-remote-github">Etape 5 : Creer le remote GitHub</h2>
 <p>Creez un depot sur GitHub (prive recommande), puis :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:VOTRE_USER/oa-system.git
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin git@github.com:VOTRE_USER/oa-system.git
+</code></pre>
 
 <p>Si vous utilisez HTTPS au lieu de SSH :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/VOTRE_USER/oa-system.git
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ git remote add origin https://github.com/VOTRE_USER/oa-system.git
+</code></pre>
 
 <h2 id="etape-6-premier-commit">Etape 6 : Premier commit</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>.
-$<span class="w"> </span>git<span class="w"> </span>status
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ git add .
+$ git status
+</code></pre>
 
 <p>Verifiez que AUCUN secret n'apparait dans la liste des fichiers a committer. Si un fichier sensible apparait, ajoutez-le au .gitignore et faites <code>git reset HEAD &lt;fichier&gt;</code>.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: initialisation du systeme OA - infrastructure et scripts&quot;</span>
-$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ git commit -m &quot;feat: initialisation du systeme OA - infrastructure et scripts&quot;
+$ git push -u origin main
+</code></pre>
 
 <h2 id="etape-7-verifier-sur-github">Etape 7 : Verifier sur GitHub</h2>
 <p>Allez sur votre depot GitHub et verifiez :
@@ -256,10 +256,10 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 <li><strong>Oublier le .gitignore avant le premier commit</strong> : Si <code>node_modules/</code> ou <code>data/</code> a ete committe, faites <code>git rm -r --cached node_modules/</code> puis re-committez.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>status
-$<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--oneline
-$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ git status
+$ git log --oneline
+$ git remote -v
+</code></pre>
 
 <p>Resultats attendus :
 - Working tree clean (rien a committer)

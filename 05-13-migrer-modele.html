@@ -156,18 +156,18 @@
 <h2 id="comment-tester-sans-casser">Comment tester sans casser</h2>
 <h3 id="phase-1-test-en-parallele">Phase 1 : test en parallele</h3>
 <p>Gardez votre modele actuel en production. Testez le nouveau sur le cote.</p>
-<div class="codehilite"><pre><span></span><code>Semaine 1-2 : envoyez les memes requetes aux deux modeles.
+<pre class="codehilite"><code>Semaine 1-2 : envoyez les memes requetes aux deux modeles.
 Comparez :
 - Qualite des reponses
 - Respect du system prompt
 - Ton et format
 - Temps de reponse
 - Cout
-</code></pre></div>
+</code></pre>
 
 <h3 id="grille-de-comparaison">Grille de comparaison</h3>
 <p>Creez un fichier <code>model-comparison.md</code> :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># Comparaison : [Modele A] vs [Modele B]</span>
+<pre class="codehilite"><code class="language-markdown"># Comparaison : [Modele A] vs [Modele B]
 
 Date : YYYY-MM-DD
 Requetes testees : 20
@@ -185,7 +185,7 @@ Requetes testees : 20
 
 Verdict : [decision]
 Raison : [justification]
-</code></pre></div>
+</code></pre>
 
 <h3 id="phase-2-migration-progressive">Phase 2 : migration progressive</h3>
 <p>Si le nouveau modele est meilleur, migrez progressivement :</p>
@@ -252,16 +252,16 @@ Raison : [justification]
 </ol>
 <h2 id="garder-le-fallback">Garder le fallback</h2>
 <p>Toujours avoir un plan B.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Configuration avec fallback</span>
-<span class="nv">PRIMARY_MODEL</span><span class="o">=</span><span class="s2">&quot;claude-sonnet-4-20250514&quot;</span>
-<span class="nv">FALLBACK_MODEL</span><span class="o">=</span><span class="s2">&quot;claude-3-5-sonnet-20241022&quot;</span>
+<pre class="codehilite"><code class="language-bash"># Configuration avec fallback
+PRIMARY_MODEL=&quot;claude-sonnet-4-20250514&quot;
+FALLBACK_MODEL=&quot;claude-3-5-sonnet-20241022&quot;
 
-<span class="c1"># Si le modele principal echoue, basculer</span>
-<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>call_model<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PRIMARY_MODEL</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROMPT</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Fallback sur </span><span class="nv">$FALLBACK_MODEL</span><span class="s2">&quot;</span>
-<span class="w">    </span>call_model<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FALLBACK_MODEL</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PROMPT</span><span class="s2">&quot;</span>
-<span class="k">fi</span>
-</code></pre></div>
+# Si le modele principal echoue, basculer
+if ! call_model &quot;$PRIMARY_MODEL&quot; &quot;$PROMPT&quot;; then
+    echo &quot;Fallback sur $FALLBACK_MODEL&quot;
+    call_model &quot;$FALLBACK_MODEL&quot; &quot;$PROMPT&quot;
+fi
+</code></pre>
 
 <h3 id="ce-quil-faut-sauvegarder">Ce qu'il faut sauvegarder</h3>
 <ul>

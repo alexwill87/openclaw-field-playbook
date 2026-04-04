@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.8 -- System Updates | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.8 -- System Updates | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.8 -- System Updates | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html" class="active">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.8 -- System Updates</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#ubuntu">Ubuntu</a></li>
+    <li class="toc-h3"><a href="#security-updates-weekly">Security updates (weekly)</a></li>
+    <li class="toc-h3"><a href="#major-update-annual">Major update (annual)</a></li>
+    <li class="toc-h3"><a href="#configure-automatic-updates">Configure automatic updates</a></li>
+    <li><a href="#docker">Docker</a></li>
+    <li class="toc-h3"><a href="#docker-images">Docker images</a></li>
+    <li class="toc-h3"><a href="#docker-engine">Docker Engine</a></li>
+    <li><a href="#nodejs">Node.js</a></li>
+    <li class="toc-h3"><a href="#with-nvm-recommended">With nvm (recommended)</a></li>
+    <li class="toc-h3"><a href="#with-apt-if-no-nvm">With apt (if no nvm)</a></li>
+    <li><a href="#vault">Vault</a></li>
+    <li><a href="#when-not-to-update">When NOT to update</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="58-system-updates">5.8 -- System Updates</h1>
+<h2 id="context">Context</h2>
+<p>System updates are basic hygiene. Not doing them = accumulation of security vulnerabilities. Doing them carelessly = breaking production. The balance: regular, tested, documented.</p>
+<h2 id="ubuntu">Ubuntu</h2>
+<h3 id="security-updates-weekly">Security updates (weekly)</h3>
+<pre class="codehilite"><code class="language-bash"># See available updates
+sudo apt update &amp;&amp; apt list --upgradable
+
+# Apply only security updates
+sudo apt upgrade -y --only-upgrade
+
+# Or for security only
+sudo unattended-upgrade --dry-run  # see what would be done
+sudo unattended-upgrade             # apply
+</code></pre>
+
+<h3 id="major-update-annual">Major update (annual)</h3>
+<p>Ubuntu 24.04 LTS -&gt; 26.04 LTS: do NOT do this on a Friday night.</p>
+<ol>
+<li>Full Hetzner snapshot first.</li>
+<li>Read the release notes.</li>
+<li>Test on a test VPS if possible.</li>
+<li><code>do-release-upgrade</code> in screen/tmux (to survive an SSH disconnect).</li>
+<li>Test all services after.</li>
+</ol>
+<h3 id="configure-automatic-updates">Configure automatic updates</h3>
+<pre class="codehilite"><code class="language-bash"># Install
+sudo apt install unattended-upgrades
+
+# Configure: /etc/apt/apt.conf.d/50unattended-upgrades
+# Keep only security updates
+Unattended-Upgrade::Allowed-Origins {
+    &quot;${distro_id}:${distro_codename}-security&quot;;
+};
+
+# Enable email notifications (optional)
+Unattended-Upgrade::Mail &quot;your@email.com&quot;;
+
+# Automatic reboot if needed (at 3 AM)
+Unattended-Upgrade::Automatic-Reboot &quot;true&quot;;
+Unattended-Upgrade::Automatic-Reboot-Time &quot;03:00&quot;;
+</code></pre>
+
+<h2 id="docker">Docker</h2>
+<h3 id="docker-images">Docker images</h3>
+<pre class="codehilite"><code class="language-bash"># See images and their dates
+docker images --format &quot;{{.Repository}}:{{.Tag}} {{.CreatedSince}}&quot;
+
+# Pull latest versions
+docker compose pull
+
+# Rebuild and restart
+docker compose up -d --build
+
+# Clean up old images
+docker image prune -a --filter &quot;until=720h&quot;  # &gt; 30 days
+</code></pre>
+
+<h3 id="docker-engine">Docker Engine</h3>
+<pre class="codehilite"><code class="language-bash"># Current version
+docker version
+
+# Update
+sudo apt update &amp;&amp; sudo apt install docker-ce docker-ce-cli containerd.io
+
+# Verify after update
+docker version
+docker ps  # are containers still running?
+</code></pre>
+
+<p>Warning: a Docker Engine update can restart the daemon and thus stop all containers. Plan a maintenance window.</p>
+<h2 id="nodejs">Node.js</h2>
+<h3 id="with-nvm-recommended">With nvm (recommended)</h3>
+<pre class="codehilite"><code class="language-bash"># Current version
+node -v
+
+# List available versions
+nvm ls-remote --lts
+
+# Install a new version
+nvm install 22  # for example
+
+# Use the new version
+nvm use 22
+
+# Test your applications
+cd /opt/cockpit &amp;&amp; npm test
+
+# If all is OK, set as default
+nvm alias default 22
+</code></pre>
+
+<h3 id="with-apt-if-no-nvm">With apt (if no nvm)</h3>
+<pre class="codehilite"><code class="language-bash"># Update via NodeSource
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install nodejs
+</code></pre>
+
+<h2 id="vault">Vault</h2>
+<pre class="codehilite"><code class="language-bash"># Current version
+vault version
+
+# Update
+# Download the new version from releases.hashicorp.com
+wget https://releases.hashicorp.com/vault/X.Y.Z/vault_X.Y.Z_linux_amd64.zip
+unzip vault_X.Y.Z_linux_amd64.zip
+sudo mv vault /usr/local/bin/vault
+
+# Restart
+sudo systemctl restart vault
+
+# Verify
+vault status
+vault kv list secret/  # are secrets accessible?
+</code></pre>
+
+<p>Warning: ALWAYS read Vault's upgrade notes before updating. Some versions have breaking changes to the storage backend.</p>
+<h2 id="when-not-to-update">When NOT to update</h2>
+<p>Do not update when:</p>
+<ol>
+<li>
+<p><strong>You are in critical production.</strong> A client is waiting for a delivery in 2 hours. This is not the time.</p>
+</li>
+<li>
+<p><strong>It's a Friday.</strong> The Friday night outage gets fixed Monday morning. Update only Monday through Thursday.</p>
+</li>
+<li>
+<p><strong>You don't have a recent backup.</strong> No snapshot, no today's pg_dump = no update.</p>
+</li>
+<li>
+<p><strong>The version is fresh.</strong> Version X.0.0 just came out. Wait for X.0.1 or X.0.2. Let others break it in.</p>
+</li>
+<li>
+<p><strong>Multiple updates at once.</strong> Do not update Ubuntu, Docker, and Node.js on the same day. One change at a time.</p>
+</li>
+<li>
+<p><strong>You don't understand the changelog.</strong> If the breaking changes aren't clear, research before.</p>
+</li>
+</ol>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Never update.</strong> The server runs a 2-year-old version with known vulnerabilities. Security is debt that accumulates.</p>
+<p><strong>Update everything at once.</strong> If it breaks, you don't know what.</p>
+<p><strong>No snapshot first.</strong> The update breaks something. No rollback possible. 3 hours of debugging instead of 5 minutes of restore.</p>
+<p><strong>Update without testing.</strong> <code>apt upgrade -y</code> and move on. You discover the problem 2 days later.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Plan a maintenance window (Tuesday or Wednesday, not Friday).</li>
+<li>Take a Hetzner snapshot and pg_dump.</li>
+<li>Update one component at a time.</li>
+<li>Test each service after the update.</li>
+<li>Document what was updated and when.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Ubuntu security updates are automatic (unattended-upgrades).</li>
+<li>[ ] Docker images are up to date (less than 30 days old).</li>
+<li>[ ] A snapshot exists before each major update.</li>
+<li>[ ] Updates are never done on Friday.</li>
+<li>[ ] Each update is followed by a service test.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Ubuntu, Docker, Node.js and 5 more. <a href="05-09-rotation-secrets.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/08-maj-systeme.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-07-maj-integrations.html">&larr; 5.7 -- Update integrations</a>
+<a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

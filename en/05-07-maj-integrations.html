@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.7 -- Update integrations | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.7 -- Update integrations | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.7 -- Update integrations | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html" class="active">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.7 -- Update integrations</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#when-an-api-changes">When an API changes</a></li>
+    <li class="toc-h3"><a href="#warning-signals">Warning signals</a></li>
+    <li class="toc-h3"><a href="#update-process">Update process</a></li>
+    <li class="toc-h3"><a href="#update-template">Update template</a></li>
+    <li><a href="#adapt-without-breaking">Adapt without breaking</a></li>
+    <li class="toc-h3"><a href="#rule-1-never-in-production-first">Rule 1: never in production first</a></li>
+    <li class="toc-h3"><a href="#rule-2-keep-the-old-one-as-fallback">Rule 2: keep the old one as fallback</a></li>
+    <li class="toc-h3"><a href="#rule-3-one-change-at-a-time">Rule 3: one change at a time</a></li>
+    <li><a href="#skills-up-to-date">Skills up to date</a></li>
+    <li class="toc-h3"><a href="#check-available-skills">Check available skills</a></li>
+    <li class="toc-h3"><a href="#update-a-skill">Update a skill</a></li>
+    <li class="toc-h3"><a href="#remove-unused-skills">Remove unused skills</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="57-update-integrations">5.7 -- Update integrations</h1>
+<h2 id="context">Context</h2>
+<p>APIs change. Tools evolve. An endpoint that worked yesterday returns a 404 error tomorrow. Your agent uses integrations (Telegram, Vault, PostgreSQL, Docker, GitHub) and each one can break independently.</p>
+<p>The challenge: adapt without breaking everything.</p>
+<h2 id="when-an-api-changes">When an API changes</h2>
+<h3 id="warning-signals">Warning signals</h3>
+<ul>
+<li>The agent receives 4xx/5xx errors on an endpoint it was using.</li>
+<li>An email from the vendor announces a change (deprecation notice).</li>
+<li>A CLI command no longer works after an update.</li>
+<li>Results have changed format (JSON with different fields).</li>
+</ul>
+<h3 id="update-process">Update process</h3>
+<ol>
+<li><strong>Identify</strong>: which endpoint/command has changed.</li>
+<li><strong>Read the docs</strong>: changelog, migration guide, new API.</li>
+<li><strong>Test in isolation</strong>: call the new version manually before integrating it.</li>
+<li><strong>Update the workflow</strong>: modify WORKFLOWS.md with the new command/endpoint.</li>
+<li><strong>Test the complete workflow</strong>: dry run with the agent.</li>
+<li><strong>Deploy</strong>: update in production.</li>
+</ol>
+<h3 id="update-template">Update template</h3>
+<pre class="codehilite"><code class="language-markdown">## Update integration: [name]
+
+Date: YYYY-MM-DD
+Reason: [deprecation / bug / new feature]
+
+### Before
+- Endpoint: [old]
+- Command: [old]
+- Format: [old]
+
+### After
+- Endpoint: [new]
+- Command: [new]
+- Format: [new]
+
+### Impact
+- Affected workflows: [list]
+- Scripts to modify: [list]
+
+### Test
+- [ ] Manual call OK
+- [ ] Agent dry run OK
+- [ ] Production OK
+</code></pre>
+
+<h2 id="adapt-without-breaking">Adapt without breaking</h2>
+<h3 id="rule-1-never-in-production-first">Rule 1: never in production first</h3>
+<p>Always test in isolation. A manual <code>curl</code>, a test script, a staging environment. Never directly in the production workflow.</p>
+<h3 id="rule-2-keep-the-old-one-as-fallback">Rule 2: keep the old one as fallback</h3>
+<p>Don't remove the old integration until the new one is validated in production for at least one week.</p>
+<pre class="codehilite"><code class="language-bash"># Example: new Telegram endpoint
+NEW_URL=&quot;https://api.telegram.org/bot${TOKEN}/sendMessage&quot;
+OLD_URL=&quot;https://api.telegram.org/bot${TOKEN}/sendMessage&quot;  # same in this case
+
+# Test the new one
+if ! curl -s -f &quot;$NEW_URL&quot; -d &quot;chat_id=$CHAT_ID&amp;text=test&quot; &gt; /dev/null; then
+    echo &quot;New endpoint failed, falling back to old one&quot;
+    curl -s &quot;$OLD_URL&quot; -d &quot;chat_id=$CHAT_ID&amp;text=test&quot;
+fi
+</code></pre>
+
+<h3 id="rule-3-one-change-at-a-time">Rule 3: one change at a time</h3>
+<p>Don't update Telegram, Docker, and the GitHub API on the same day. If something breaks, you won't know what. One change, one test, one validation.</p>
+<h2 id="skills-up-to-date">Skills up to date</h2>
+<p>If your agent uses skills (MCP, plugins, extensions):</p>
+<h3 id="check-available-skills">Check available skills</h3>
+<pre class="codehilite"><code>List all your skills/tools available.
+For each one, tell me:
+- Name
+- Last used
+- Is it still working? (test it)
+</code></pre>
+
+<h3 id="update-a-skill">Update a skill</h3>
+<ol>
+<li>Check the current version.</li>
+<li>Read the changelog for the new version.</li>
+<li>Update in a test environment.</li>
+<li>Test the features you use.</li>
+<li>Deploy in production.</li>
+</ol>
+<h3 id="remove-unused-skills">Remove unused skills</h3>
+<p>Each skill is a maintenance point. If you haven't used it for 2 months, disable it. This reduces the attack surface and simplifies debugging.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Ignoring deprecation notices.</strong> "It still works, I'll see later." Then the API cuts off the old endpoint on a Sunday evening.</p>
+<p><strong>Updating blindly.</strong> <code>pip install --upgrade</code> or <code>npm update</code> without reading the changelog. Breaking change surprise.</p>
+<p><strong>No fallback.</strong> The old one is removed, the new one doesn't work. You're stuck.</p>
+<p><strong>Forgetting to update workflows.</strong> The integration is updated but WORKFLOWS.md still references the old command. The agent uses the old workflow and it crashes.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>List all integrations of your agent.</li>
+<li>For each one, note the current version and date of last verification.</li>
+<li>Subscribe to changelogs/release notes for critical tools.</li>
+<li>When an update is necessary, follow the process above.</li>
+<li>Update WORKFLOWS.md after each integration change.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] The list of integrations is documented with versions.</li>
+<li>[ ] Each integration has been tested in the last month.</li>
+<li>[ ] Deprecation notices are being tracked.</li>
+<li>[ ] WORKFLOWS.md is up to date after each integration change.</li>
+<li>[ ] A fallback exists for critical integrations.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, When an API changes, Adapt without breaking, Skills up to date and 3 more. <a href="05-08-maj-systeme.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/07-maj-integrations.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-06-agent-se-trompe.html">&larr; 5.6 -- When the agent makes a mistake</a>
+<a href="05-08-maj-systeme.html">5.8 -- System Updates &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

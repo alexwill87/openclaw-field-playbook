@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.7 -- Recognizing a routine | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.7 -- Recognizing a routine | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.7 -- Recognizing a routine | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html" class="active">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.7 -- Recognizing a routine</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#criteria-for-an-automatable-routine">Criteria for an automatable routine</a></li>
+    <li class="toc-h3"><a href="#examples-of-good-candidates">Examples of good candidates</a></li>
+    <li class="toc-h3"><a href="#examples-of-poor-candidates">Examples of poor candidates</a></li>
+    <li><a href="#how-to-detect-your-routines">How to detect your routines</a></li>
+    <li class="toc-h3"><a href="#method-1-the-logbook">Method 1: the logbook</a></li>
+    <li class="toc-h3"><a href="#method-2-ask-the-agent">Method 2: ask the agent</a></li>
+    <li><a href="#the-gray-zone-routines-with-judgment">The gray zone: routines with judgment</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 04
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="47-recognizing-a-routine">4.7 -- Recognizing a routine</h1>
+<h2 id="context">Context</h2>
+<p>A routine is an action you repeat with the same pattern. Deploying a service, creating a backup, checking the morning logs. When you do the same thing for the 3rd time, that's a signal: it could be automated or delegated to the agent.</p>
+<p>But not everything. Some routines need your human judgment. The art is distinguishing between the two.</p>
+<h2 id="criteria-for-an-automatable-routine">Criteria for an automatable routine</h2>
+<p>A task is a candidate for automation if it meets these 3 conditions:</p>
+<ol>
+<li><strong>Repetition.</strong> It occurs 3+ times with the same pattern.</li>
+<li><strong>Predictability.</strong> The steps are the same each time, or variations are known in advance.</li>
+<li><strong>Low risk.</strong> If the agent makes a mistake, the consequences are reversible or minor.</li>
+</ol>
+<h3 id="examples-of-good-candidates">Examples of good candidates</h3>
+<ul>
+<li>Daily health check: same commands, same interpretation, alert if down.</li>
+<li>Generate a weekly summary of tasks: read-only, no action.</li>
+<li>Log rotation: delete files &gt; 30 days old, same rule each time.</li>
+<li>Create a commit with standardized format: same structure, same convention.</li>
+</ul>
+<h3 id="examples-of-poor-candidates">Examples of poor candidates</h3>
+<ul>
+<li>Responding to a client email: each situation is different, tone matters.</li>
+<li>Deciding to postpone a deadline: human context required (fatigue, business priorities, relationships).</li>
+<li>Choosing between two architectures: subtle trade-offs, no universal right answer.</li>
+<li>Deleting production data: irreversible, high risk.</li>
+</ul>
+<h2 id="how-to-detect-your-routines">How to detect your routines</h2>
+<h3 id="method-1-the-logbook">Method 1: the logbook</h3>
+<p>For one week, note every action you take with your agent. Format:</p>
+<pre class="codehilite"><code>Monday:
+- VPS health check (5 min)
+- Cockpit deployment (10 min)
+- Reply to client email X (15 min)
+- Update TASKS.md (3 min)
+
+Tuesday:
+- VPS health check (5 min)
+- Debug API error (30 min)
+- Update TASKS.md (3 min)
+</code></pre>
+
+<p>After a week, the repetitions jump out at you. Health check and TASKS.md come back every day = routines.</p>
+<h3 id="method-2-ask-the-agent">Method 2: ask the agent</h3>
+<pre class="codehilite"><code>Analyze my 20 most recent conversations with you.
+Which actions come up 3+ times?
+For each one, tell me if it follows a predictable pattern.
+</code></pre>
+
+<p>The agent sees patterns you don't see because you're in the middle of them.</p>
+<h2 id="the-gray-zone-routines-with-judgment">The gray zone: routines with judgment</h2>
+<p>Some tasks are repetitive but require judgment at one stage:</p>
+<ul>
+<li><strong>Task triage</strong>: repetitive, but prioritization requires human context.</li>
+<li><strong>Code review</strong>: the format is predictable, but quality evaluation is subjective.</li>
+<li><strong>Reporting</strong>: data collection is automatable, interpretation is not.</li>
+</ul>
+<p>For these, the right approach is to break it down: automate the mechanical part, keep the human judgment.</p>
+<pre class="codehilite"><code>Routine &quot;morning triage&quot;:
+- [AGENT] List active tasks, sort by deadline.
+- [AGENT] Flag delays and blockers.
+- [HUMAN] Decide today's priorities.
+- [AGENT] Update statuses according to the decision.
+</code></pre>
+
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Automate everything.</strong> Just because it's possible doesn't mean it's desirable. Some routines keep you connected to the reality of your project.</p>
+<p><strong>Automate nothing.</strong> Out of fear of losing control. Start with zero-risk tasks (read-only, reporting) to build confidence.</p>
+<p><strong>Automate without documenting.</strong> The agent does the routine but no one knows exactly what it does. If the agent changes or you switch tools, the routine is lost. See section 4.9.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Keep a logbook for 5 days.</li>
+<li>Identify actions that come up 3+ times.</li>
+<li>For each one, evaluate: predictable? low risk?</li>
+<li>Classify: automatable / semi-automatable / human only.</li>
+<li>Start with the simplest and least risky routine.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] At least 3 routines identified.</li>
+<li>[ ] Each routine evaluated on the 3 criteria (repetition, predictability, risk).</li>
+<li>[ ] Routines with judgment are broken down (agent part / human part).</li>
+<li>[ ] The first automated routine is zero-risk.</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Criteria for an automatable routine, How to detect your routines, The gray zone: routines with judgment and 3 more. <a href="04-08-dry-run.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/07-reconnaitre-routine.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-06-db-source-verite.html">&larr; 4.6 -- Database as source of truth</a>
+<a href="04-08-dry-run.html">4.8 -- Dry run before trust &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

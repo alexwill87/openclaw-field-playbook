@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.10 -- The Weekly Rhythm | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.10 -- The Weekly Rhythm | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.10 -- The Weekly Rhythm | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html" class="active">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.10 -- The Weekly Rhythm</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#monday-preview">Monday Preview</a></li>
+    <li class="toc-h3"><a href="#what-the-agent-prepares">What the agent prepares</a></li>
+    <li class="toc-h3"><a href="#what-you-do">What you do</a></li>
+    <li class="toc-h3"><a href="#prompt-to-configure">Prompt to configure</a></li>
+    <li><a href="#friday-review">Friday Review</a></li>
+    <li class="toc-h3"><a href="#what-the-agent-prepares_1">What the agent prepares</a></li>
+    <li class="toc-h3"><a href="#what-you-do_1">What you do</a></li>
+    <li><a href="#keep-it-light-and-reviewable">Keep It Light and Reviewable</a></li>
+    <li><a href="#adapt-the-rhythm">Adapt the Rhythm</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 04
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="410-the-weekly-rhythm">4.10 -- The Weekly Rhythm</h1>
+<h2 id="context">Context</h2>
+<p>An agent without rhythm is reactive: it responds when you ask. An agent with rhythm is proactive: it prepares what you need before you ask for it.</p>
+<p>The basic rhythm according to Steinberg: preview on Monday, review on Friday. The agent prepares both. You decide and validate.</p>
+<h2 id="monday-preview">Monday Preview</h2>
+<p>Monday morning, the agent presents the coming week to you.</p>
+<h3 id="what-the-agent-prepares">What the agent prepares</h3>
+<pre class="codehilite"><code>=== Preview week of March 31, 2026 ===
+
+Tasks in progress: 4
+Overdue tasks: 1 (S3 migration, 3 days late)
+Deadlines this week: 2
+  - Wednesday: API doc delivery
+  - Friday: SSL certificate renewal
+
+Suggested plan:
+- Monday: finish S3 migration (catch up on delay)
+- Tuesday-Wednesday: API doc
+- Thursday: monthly secret rotation
+- Friday: SSL certificate + review
+
+Blockers detected: none.
+Questions for you: has client X confirmed the spec?
+</code></pre>
+
+<h3 id="what-you-do">What you do</h3>
+<p>You read, you adjust. "Swap Tuesday and Monday." "Add the team's PR review." "Client hasn't confirmed, defer the doc."</p>
+<p>5 minutes. Your week is framed.</p>
+<h3 id="prompt-to-configure">Prompt to configure</h3>
+<p>Add to the system prompt:</p>
+<pre class="codehilite"><code>Every Monday morning, when I say &quot;preview&quot;, generate:
+- Tasks in progress and overdue
+- Deadlines for the week
+- Suggested plan day by day
+- Blockers detected
+- Questions for me
+Format: bullet points, brief.
+</code></pre>
+
+<h2 id="friday-review">Friday Review</h2>
+<p>On Friday, the agent does a recap of the week that has passed.</p>
+<h3 id="what-the-agent-prepares_1">What the agent prepares</h3>
+<pre class="codehilite"><code>=== Review week of March 31, 2026 ===
+
+Completed: 5/7 planned tasks
+  - S3 migration [DONE]
+  - API /users doc [DONE]
+  - Secret rotation [DONE]
+  - Auto health check [DONE]
+  - Team PR review [DONE]
+
+Not completed: 2
+  - SSL certificate: deferred (expires in 42 days, not urgent)
+  - Auth refactoring: blocked (waiting for client spec)
+
+Time saved by the agent: ~3h
+  - Auto health checks: 5x10min = 50min
+  - API doc generation: ~1h30
+  - Automated secret rotation: ~40min
+
+Points of attention for next week:
+  - SSL certificate must be done next week.
+  - 2 tasks dependent on client spec: follow up?
+</code></pre>
+
+<h3 id="what-you-do_1">What you do</h3>
+<p>You validate the recap. You note what went well and what got stuck. It's also the right time to adjust workflows or the system prompt if something didn't go smoothly during the week.</p>
+<h2 id="keep-it-light-and-reviewable">Keep It Light and Reviewable</h2>
+<p>The trap of the weekly rhythm: it becomes heavy reporting that nobody reads.</p>
+<p>Rules:</p>
+<ul>
+<li><strong>Monday preview</strong>: maximum 15 lines. If it's longer, you have too many active tasks.</li>
+<li><strong>Friday review</strong>: maximum 20 lines. Numbers and facts, no prose.</li>
+<li><strong>Reading time</strong>: less than 2 minutes for each.</li>
+<li><strong>Decision time</strong>: less than 5 minutes to adjust the plan.</li>
+</ul>
+<p>If you spend more than 10 minutes on the Friday review, that's a signal the system is too complex.</p>
+<h2 id="adapt-the-rhythm">Adapt the Rhythm</h2>
+<p>Monday/Friday is a starting point. Adapt to your reality:</p>
+<ul>
+<li><strong>Solo freelancer</strong>: Monday/Friday is enough.</li>
+<li><strong>Small team</strong>: add a Wednesday check (mid-week check).</li>
+<li><strong>Intense project</strong>: 5-line daily morning briefing.</li>
+<li><strong>Pure maintenance</strong>: a review every two weeks may suffice.</li>
+</ul>
+<p>What matters isn't the frequency, it's the regularity. A rhythm kept at 80% is better than an ideal rhythm kept at 20%.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<p><strong>Too much detail.</strong> The preview is 50 lines with sub-tasks and hourly estimates. Nobody reads it. Stay macro.</p>
+<p><strong>No decision.</strong> You read the preview but decide nothing. The agent doesn't know what to prioritize. A preview without decision is noise.</p>
+<p><strong>Abandoning after 2 weeks.</strong> "It's redundant, I know what I have to do." You know it because the preview reminded you. Stop the preview and you'll forget within the week.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Add the preview/review prompts to the system prompt.</li>
+<li>Next Monday: say "preview" to your agent.</li>
+<li>Spend 5 minutes adjusting the plan.</li>
+<li>Friday: say "review".</li>
+<li>Note if the format is useful or if it needs adjusting.</li>
+<li>Keep the rhythm for 4 weeks before evaluating.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] The preview and review prompts are in the system prompt.</li>
+<li>[ ] The preview fits in 15 lines max.</li>
+<li>[ ] The review fits in 20 lines max.</li>
+<li>[ ] You actually decide after each preview (not just read).</li>
+<li>[ ] The rhythm has been kept for at least 2 consecutive weeks.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Monday Preview, Friday Review, Keep It Light and Reviewable and 4 more. <a href="04-11-confiance-configuration.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/10-rythme-hebdo.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-09-workflows-md.html">&larr; 4.9 -- WORKFLOWS.md</a>
+<a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

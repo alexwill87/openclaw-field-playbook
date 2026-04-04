@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.18 -- Connect Two OpenClaw Installations (Remote Mode) | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.18 -- Connect Two OpenClaw Installations (Remote Mode) | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.18 -- Connect Two OpenClaw Installations (Remote Mode) | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html" class="active">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.18 -- Connect Two OpenClaw Installations (Remote Mode)</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li class="toc-h3"><a href="#when-to-connect-two-installations">When to Connect Two Installations</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li class="toc-h3"><a href="#1-master-gateway-side-vps-a">1. Master Gateway Side (VPS A)</a></li>
+    <li class="toc-h3"><a href="#2-transport-configuration">2. Transport Configuration</a></li>
+    <li class="toc-h3"><a href="#3-remote-client-side-vps-b">3. Remote Client Side (VPS B)</a></li>
+    <li class="toc-h3"><a href="#4-verification">4. Verification</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#common-errors">Common Errors</a></li>
+    <li><a href="#reusable-template">Reusable Template</a></li>
+    <li class="toc-h3"><a href="#master-configuration-vps-a">Master Configuration (VPS A)</a></li>
+    <li class="toc-h3"><a href="#client-configuration-vps-b">Client Configuration (VPS B)</a></li>
+    <li class="toc-h3"><a href="#ssh-tunnel-command-if-no-tailscale">SSH Tunnel Command (if no Tailscale)</a></li>
+    <li class="toc-h3"><a href="#verification-commands">Verification Commands</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit, claude-aurel]
+lang: en</p>
+<hr />
+<h1 id="318-connect-two-openclaw-installations-remote-mode">3.18 -- Connect Two OpenClaw Installations (Remote Mode)</h1>
+<blockquote>
+<p>You have two VPS with OpenClaw, or you manage a client's installation. Here's how to connect them to monitor, debug, or collaborate remotely.</p>
+</blockquote>
+<p><strong>For whom:</strong> integrator, multi-site teams, or agent supervising another agent
+<strong>Prerequisites:</strong> two functional OpenClaw installations, ideally on the same Tailscale network
+<strong>Difficulty:</strong> Intermediate</p>
+<hr />
+<h2 id="context">Context</h2>
+<p>OpenClaw supports a <code>gateway.mode: "remote"</code> mode that allows a client to connect to a remote gateway via WebSocket. It's a client-server architecture, not a federation: one VPS is the master (it hosts the gateway), the other is the client (it connects remotely).</p>
+<h3 id="when-to-connect-two-installations">When to Connect Two Installations</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Learning</strong></td>
+<td>Observe how a more mature agent works on another VPS</td>
+</tr>
+<tr>
+<td><strong>Debugging</strong></td>
+<td>Diagnose a problem remotely without SSH access</td>
+</tr>
+<tr>
+<td><strong>Supervision</strong></td>
+<td>A central VPS monitors the health of multiple installations</td>
+</tr>
+<tr>
+<td><strong>Inter-agent Collaboration</strong></td>
+<td>Two agents on separate VPS share a communication channel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="architecture">Architecture</h2>
+<pre class="codehilite"><code>VPS A (master gateway)              VPS B (remote client)
+   gateway.mode: &quot;server&quot;              gateway.mode: &quot;remote&quot;
+   port 18789 (WebSocket)              gateway.remote.url
+          ^                                    |
+          |_________ Tailscale / SSH __________|
+</code></pre>
+
+<p>The remote client does NOT launch its own gateway. It connects to the master's gateway and uses its CLI commands remotely.</p>
+<hr />
+<h2 id="steps">Steps</h2>
+<h3 id="1-master-gateway-side-vps-a">1. Master Gateway Side (VPS A)</h3>
+<p>Create a dedicated authentication token for the remote connection. <strong>Never</strong> reuse the root token.</p>
+<pre class="codehilite"><code class="language-bash"># Generate a dedicated token
+openclaw gateway token create --name &quot;remote-vps-b&quot; --scope read
+</code></pre>
+
+<p>Note the generated token. Verify that the gateway is listening on the correct port:</p>
+<pre class="codehilite"><code class="language-bash"># Verify the configuration
+cat ~/.openclaw/gateway.json
+</code></pre>
+
+<p>The configuration should include:</p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;server&quot;,
+  &quot;port&quot;: 18789,
+  &quot;auth&quot;: {
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;remote-vps-b&quot;,
+        &quot;token&quot;: &quot;ocgw_xxxxxxxxxxxxxxxxxx&quot;,
+        &quot;scope&quot;: &quot;read&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h3 id="2-transport-configuration">2. Transport Configuration</h3>
+<p>Three options, from simplest to most complex:</p>
+<h4 id="option-a-direct-tailscale-recommended">Option A: Direct Tailscale (Recommended)</h4>
+<p>If both VPS are on the same Tailscale network, this is the simplest. Traffic is already encrypted point-to-point.</p>
+<pre class="codehilite"><code class="language-bash"># On VPS B, verify connectivity
+tailscale ping vps-a
+</code></pre>
+
+<p>The remote URL will be: <code>ws://100.x.x.x:18789</code> (Tailscale IP of VPS A).</p>
+<h4 id="option-b-ssh-tunnel">Option B: SSH Tunnel</h4>
+<p>If you don't have Tailscale, an SSH tunnel does the job:</p>
+<pre class="codehilite"><code class="language-bash"># On VPS B, create the tunnel
+ssh -N -L 18789:localhost:18789 user@vps-a-ip
+</code></pre>
+
+<p>The remote URL will be: <code>ws://localhost:18789</code>.</p>
+<p>To make the tunnel persistent, add it to a systemd service or use <code>autossh</code>:</p>
+<pre class="codehilite"><code class="language-bash"># Install autossh
+sudo apt install autossh
+
+# Persistent tunnel
+autossh -M 0 -N -L 18789:localhost:18789 user@vps-a-ip \
+  -o &quot;ServerAliveInterval 30&quot; -o &quot;ServerAliveCountMax 3&quot;
+</code></pre>
+
+<h4 id="option-c-websocket-over-internet-advanced">Option C: WebSocket over Internet (Advanced)</h4>
+<p>If you need to pass through the Internet without a tunnel, <strong>always</strong> use TLS:</p>
+<pre class="codehilite"><code class="language-bash"># Behind a reverse proxy (Caddy, Nginx) with TLS certificate
+# The URL will be: wss://gateway.your-domain.com
+</code></pre>
+
+<p>Never expose <code>ws://</code> on a public IP without TLS.</p>
+<h3 id="3-remote-client-side-vps-b">3. Remote Client Side (VPS B)</h3>
+<p>Configure the client to connect to the remote gateway:</p>
+<pre class="codehilite"><code class="language-bash"># Edit the configuration
+nano ~/.openclaw/gateway.json
+</code></pre>
+
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;remote&quot;,
+  &quot;remote&quot;: {
+    &quot;url&quot;: &quot;ws://100.x.x.x:18789&quot;,
+    &quot;token&quot;: &quot;ocgw_xxxxxxxxxxxxxxxxxx&quot;
+  }
+}
+</code></pre>
+
+<p>Replace the URL and token with the values from your installation.</p>
+<h3 id="4-verification">4. Verification</h3>
+<pre class="codehilite"><code class="language-bash"># On VPS B -- test the connection
+openclaw gateway status
+
+# Should display: Connected to remote gateway at ws://100.x.x.x:18789
+
+# Verify the health of the remote installation
+openclaw health
+
+# See detailed status
+openclaw status --deep
+</code></pre>
+
+<hr />
+<h2 id="security">Security</h2>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dedicated token</strong> (not the root token)</td>
+<td>Limit damage in case of leak</td>
+</tr>
+<tr>
+<td><strong><code>read</code> scope by default</strong></td>
+<td>Client observes but does not modify</td>
+</tr>
+<tr>
+<td><strong>Tailscale or SSH tunnel</strong></td>
+<td>Transport encryption is mandatory</td>
+</tr>
+<tr>
+<td><strong>Never <code>ws://</code> on public IP</strong></td>
+<td>Plain WebSocket = credentials in plain text</td>
+</tr>
+<tr>
+<td><strong>Regular token rotation</strong></td>
+<td>Best practice, especially for client installations</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="common-errors">Common Errors</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Connection refused</code></td>
+<td>Master gateway not listening on the correct port or IP</td>
+<td>Check <code>gateway.json</code> on master side and network connectivity</td>
+</tr>
+<tr>
+<td><code>Authentication failed</code></td>
+<td>Incorrect or expired token</td>
+<td>Regenerate token on master side, update on client side</td>
+</tr>
+<tr>
+<td><code>ws:// blocked on non-loopback</code></td>
+<td>OpenClaw refuses non-TLS WebSocket to a remote IP</td>
+<td>Use Tailscale (considered loopback) or SSH tunnel</td>
+</tr>
+<tr>
+<td>Client launches its own gateway</td>
+<td><code>mode</code> is still on <code>server</code> instead of <code>remote</code></td>
+<td>Check <code>gateway.json</code> on client side: <code>"mode": "remote"</code></td>
+</tr>
+<tr>
+<td><code>gateway.auth</code> vs <code>gateway.remote</code></td>
+<td>Confusion between server and client config</td>
+<td><code>auth</code> = master side (receiving), <code>remote</code> = client side (connecting)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="reusable-template">Reusable Template</h2>
+<h3 id="master-configuration-vps-a">Master Configuration (VPS A)</h3>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;server&quot;,
+  &quot;port&quot;: 18789,
+  &quot;auth&quot;: {
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;remote-vps-b&quot;,
+        &quot;token&quot;: &quot;REPLACE_WITH_YOUR_TOKEN&quot;,
+        &quot;scope&quot;: &quot;read&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h3 id="client-configuration-vps-b">Client Configuration (VPS B)</h3>
+<pre class="codehilite"><code class="language-json">{
+  &quot;mode&quot;: &quot;remote&quot;,
+  &quot;remote&quot;: {
+    &quot;url&quot;: &quot;ws://TAILSCALE_IP_VPS_A:18789&quot;,
+    &quot;token&quot;: &quot;REPLACE_WITH_YOUR_TOKEN&quot;
+  }
+}
+</code></pre>
+
+<h3 id="ssh-tunnel-command-if-no-tailscale">SSH Tunnel Command (if no Tailscale)</h3>
+<pre class="codehilite"><code class="language-bash">autossh -M 0 -N -L 18789:localhost:18789 user@VPS_A_IP \
+  -o &quot;ServerAliveInterval 30&quot; -o &quot;ServerAliveCountMax 3&quot;
+</code></pre>
+
+<h3 id="verification-commands">Verification Commands</h3>
+<pre class="codehilite"><code class="language-bash"># From VPS B
+openclaw gateway status         # Connection state
+openclaw health                 # Health of remote installation
+openclaw status --deep          # Detailed status
+</code></pre>
+
+<hr />
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] Dedicated token created on master VPS (not the root token)</li>
+<li>[ ] Transport is encrypted (Tailscale, SSH tunnel, or TLS)</li>
+<li>[ ] <code>openclaw gateway status</code> displays "Connected" on client</li>
+<li>[ ] <code>openclaw health</code> returns a result from client</li>
+<li>[ ] <code>ws://</code> is NOT exposed on a public IP</li>
+</ul>
+<hr />
+<p><em>This section was written based on the experience of connecting VPS-Omar and VPS-Aurel (Pantheos). Issue <a href="https://github.com/alexwill87/openclaw-field-playbook/issues/31">#31</a>.</em></p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Architecture, Steps, Security and 3 more. <a href="04-00-sommaire.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/18-remote-mode.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-17-multi-agents.html">&larr; 3.17 -- Multi-agent architecture</a>
+<a href="04-00-sommaire.html">4. Personalization &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

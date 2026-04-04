@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.16 -- The Morning Briefing (Steinberg Method) | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.16 -- The Morning Briefing (Steinberg Method) | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.16 -- The Morning Briefing (Steinberg Method) | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html" class="active">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.16 -- The Morning Briefing (Steinberg Method)</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-exact-prompt">The Exact Prompt</a></li>
+    <li><a href="#if-its-generic-the-problem-is-upstream">If It's Generic, the Problem Is Upstream</a></li>
+    <li><a href="#examples-of-good-briefings">Examples of GOOD Briefings</a></li>
+    <li class="toc-h3"><a href="#alex-independent-consultant">Alex -- Independent Consultant</a></li>
+    <li class="toc-h3"><a href="#sam-cto-startup">Sam -- CTO Startup</a></li>
+    <li class="toc-h3"><a href="#mira-sme-ceo">Mira -- SME CEO</a></li>
+    <li class="toc-h3"><a href="#jordan-freelance-developer">Jordan -- Freelance Developer</a></li>
+    <li><a href="#examples-of-bad-briefings">Examples of BAD Briefings</a></li>
+    <li class="toc-h3"><a href="#too-generic">Too Generic</a></li>
+    <li class="toc-h3"><a href="#too-long">Too Long</a></li>
+    <li class="toc-h3"><a href="#false-context">False Context</a></li>
+    <li><a href="#step-by-step">Step by Step</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="316-the-morning-briefing-steinberg-method">3.16 -- The Morning Briefing (Steinberg Method)</h1>
+<h2 id="context">Context</h2>
+<p>The morning briefing is the ultimate test of your configuration. If the briefing is good, your configuration is good. If it's generic, flat, or off-topic, the problem is upstream: incomplete USER.md, disconnected calendar, empty MEMORY.md.</p>
+<p>Steinberg uses the briefing as a diagnostic tool: "Show me your briefing, and I'll tell you what's missing from your config."</p>
+<h2 id="the-exact-prompt">The Exact Prompt</h2>
+<pre class="codehilite"><code>Morning briefing.
+
+Sources:
+- Calendar: next 24 hours
+- Tasks: this week, not completed
+- Email: received since last evening
+- MEMORY.md: current context
+
+Format:
+1. TODAY'S FOCUS: the most important thing today (1 sentence)
+2. AGENDA: events of the day with context
+3. TO HANDLE: what awaits action from me
+4. SIGNALS: what I might have missed
+5. SUGGESTION: a concrete action you recommend
+
+Maximum 30 lines. No pleasantries.
+</code></pre>
+
+<h2 id="if-its-generic-the-problem-is-upstream">If It's Generic, the Problem Is Upstream</h2>
+<p>A generic briefing looks like this:</p>
+<pre class="codehilite"><code>Hello! Here's your briefing.
+You have 4 meetings and 8 tasks. Have a great day!
+</code></pre>
+
+<p>That's not a briefing. That's a counter. Possible causes:</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No context on meetings</td>
+<td>USER.md without key contacts</td>
+<td>Complete USER.md</td>
+</tr>
+<tr>
+<td>Tasks listed without priority</td>
+<td>Non-prioritized task system</td>
+<td>Prioritize tasks</td>
+</tr>
+<tr>
+<td>Emails mentioned without sorting</td>
+<td>No triage rules</td>
+<td>Define rules in CONSTITUTION.md</td>
+</tr>
+<tr>
+<td>No relevant suggestions</td>
+<td>Empty knowledge/</td>
+<td>Document recurring topics</td>
+</tr>
+<tr>
+<td>No context reminders</td>
+<td>Empty MEMORY.md</td>
+<td>End-of-session routine</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples-of-good-briefings">Examples of GOOD Briefings</h2>
+<h3 id="alex-independent-consultant">Alex -- Independent Consultant</h3>
+<pre class="codehilite"><code>TODAY'S FOCUS
+Preparation for ClientAlpha steering committee at 2 PM.
+
+AGENDA
+09:00  Team standup (routine, 15 min)
+10:00-12:00  Free block
+  &gt; Suggestion: finalize steering committee slides
+14:00-15:30  Steering Committee ClientAlpha -- Marc, Sophie, Technical Director
+  &gt; Context: phase 2 of project approved 03/18.
+    Budget remaining: 45%. Sophie flagged a scheduling risk
+    in her 03/30 email. Needs to be addressed.
+16:00  Quick call with accountant -- financial statements
+
+TO HANDLE
+- Reply to Sophie (03/30 email): she's waiting for clarifications
+  on phase 2 scheduling BEFORE the steering committee
+- March invoice ClientBeta: send before Friday
+
+SIGNALS
+- Marc hasn't replied to last email (sent 5 days ago).
+  Unusual. Worth monitoring at the steering committee.
+
+SUGGESTION
+Reply to Sophie this morning. Her scheduling point will
+likely come up at the steering committee. Better to have
+the answer ready.
+</code></pre>
+
+<p>Why it's good: the focus is clear, the steering committee context is complete (with budget and risk reminders), actions are concrete and prioritized, the signal about Marc is relevant.</p>
+<h3 id="sam-cto-startup">Sam -- CTO Startup</h3>
+<pre class="codehilite"><code>TODAY'S FOCUS
+Release v2.4 scheduled for 4 PM. Last window before the weekend.
+
+AGENDA
+09:00  Dev standup (routine)
+09:30-12:00  Code block -- finish fix #847
+  &gt; Fix is 80% done (yesterday's session note). Remaining: integration tests.
+12:30  Lunch with investor (informal, no prep required)
+14:00  Code review PR #312 with Lea
+  &gt; PR open for 3 days. Lea waiting for feedback.
+16:00  Release window v2.4
+  &gt; Checklist: fix #847 merge, tests green, staging OK
+
+TO HANDLE
+- Validate PR #312 (blocking Lea for 3 days)
+- Reply to backend candidate (response deadline: tomorrow)
+
+SIGNALS
+- CI pipeline had 2 flaky tests last night (monitoring).
+  Not blocking but worth monitoring before release.
+
+SUGGESTION
+Do code review #312 first this morning.
+Lea is blocked and it only takes 30 min.
+Fix #847 can wait until 10 AM.
+</code></pre>
+
+<h3 id="mira-sme-ceo">Mira -- SME CEO</h3>
+<pre class="codehilite"><code>TODAY'S FOCUS
+Sign SupplierY contract. Last day offer is valid.
+
+AGENDA
+08:30  HR meeting with Julie -- hiring commercial role
+  &gt; 3 candidates shortlisted. Julie waiting for your approval
+    to move to final interviews.
+10:00  Weekly commercial team meeting
+  &gt; Pipeline: 2 hot prospects (see knowledge/business/pipeline.md)
+11:30-14:00  Free
+14:00  Sign SupplierY contract (video call)
+  &gt; Amount: 24,000 EUR/year. Negotiated 03/20.
+    Terms validated by legal 03/27.
+15:30  Bank call -- monthly cash position update
+
+TO HANDLE
+- Review SupplierY contract one last time before signing
+- Validate 3 HR candidates (Julie waiting for 2 days)
+
+SIGNALS
+- Prospect Gamma hasn't followed up since proposal sent 03/22 (10 days).
+  Consider a follow-up.
+
+SUGGESTION
+Review the contract this morning during the free block.
+Validate the HR candidates before Julie's meeting at 08:30
+(5-minute email, she'll have the info in hand for the meeting).
+</code></pre>
+
+<h3 id="jordan-freelance-developer">Jordan -- Freelance Developer</h3>
+<pre class="codehilite"><code>TODAY'S FOCUS
+Deliver authentication module for ClientDelta (deadline tomorrow).
+
+AGENDA
+09:00-12:00  Dev -- ClientDelta auth module
+  &gt; Progress: 70%. Remaining: unit tests + API documentation.
+  &gt; Session note yesterday: OAuth flow working, tests in progress.
+14:00  Call with ClientDelta -- progress update
+  &gt; Lea (project manager) wants status. Have tests passing
+    BEFORE the call if possible.
+15:00-18:00  Dev -- continue if necessary
+
+TO HANDLE
+- ClientEpsilon invoice: 45 days overdue.
+  Follow-up sent 03/25, no response.
+- ClientZeta quote: request received yesterday, respond by Friday.
+
+SIGNALS
+- ClientDelta repo has a dependency (auth-lib) with a CVE
+  published yesterday. Medium severity. Needs evaluation.
+
+SUGGESTION
+Run unit tests first thing this morning.
+If they pass, you'll have concrete updates for the 2 PM call.
+Documentation can be done after.
+</code></pre>
+
+<h2 id="examples-of-bad-briefings">Examples of BAD Briefings</h2>
+<h3 id="too-generic">Too Generic</h3>
+<pre class="codehilite"><code>Hello! You have a busy day with 5 meetings
+and 12 pending tasks. Have a productive day!
+</code></pre>
+
+<p>Problem: no context, no prioritization, no concrete action. The agent doesn't know the context well enough (USER.md, knowledge/, MEMORY.md empty or insufficient).</p>
+<h3 id="too-long">Too Long</h3>
+<pre class="codehilite"><code>[45 lines detailing every email received, every task,
+every event with 5 lines of context each]
+</code></pre>
+
+<p>Problem: the briefing is a report, not a briefing. If it takes 5 minutes to read, it's too long. Maximum 30 lines.</p>
+<h3 id="false-context">False Context</h3>
+<pre class="codehilite"><code>FOCUS: Prepare presentation for the board.
+[You don't have a board. The agent invented it.]
+</code></pre>
+
+<p>Problem: the agent "fills the gaps" by inventing facts. CONSTITUTION.md must explicitly forbid inventing facts.</p>
+<h2 id="step-by-step">Step by Step</h2>
+<ol>
+<li>Configure the morning-briefing cron (section 3.15)</li>
+<li>Use the exact prompt above</li>
+<li>Read the first briefing and evaluate:</li>
+<li>Is the focus correct?</li>
+<li>Is the meeting context relevant?</li>
+<li>Are the actions concrete?</li>
+<li>Is the suggestion useful?</li>
+<li>If not, identify the upstream cause (USER.md? MEMORY.md? sources?)</li>
+<li>Adjust the config, not the prompt</li>
+<li>Iterate for 5 days before considering the briefing stable</li>
+</ol>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<p><strong>Adjusting the prompt instead of the config</strong>: The briefing is flat so you rewrite the prompt 10 times. The problem isn't the prompt. It's that the sources are empty.</p>
+<p><strong>Briefing on weekends</strong>: If you don't work weekends, disable the cron. An empty Saturday briefing creates noise.</p>
+<p><strong>No SIGNALS section</strong>: Signals are the agent's added value. What YOU would have missed because it's buried in an email or calendar. Without this section, the agent is just a schedule reader.</p>
+<p><strong>Pleasantries</strong>: "Hello, I hope you're doing well." Wasted space. The briefing is a tool, not a conversation.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Morning-briefing cron active</li>
+<li>[ ] Precise prompt with 5 sections (focus, agenda, to handle, signals, suggestion)</li>
+<li>[ ] Maximum 30 lines</li>
+<li>[ ] Focus is specific (not generic)</li>
+<li>[ ] Meeting context crosses USER.md and knowledge/</li>
+<li>[ ] Suggestions are concrete and actionable</li>
+<li>[ ] No pleasantries</li>
+<li>[ ] If briefing is flat: upstream diagnosis (USER.md, MEMORY.md, sources)</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The Exact Prompt, If It's Generic, the Problem Is Upstream, Examples of GOOD Briefings and 4 more. <a href="03-17-multi-agents.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/16-briefing-matin.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-15-crons.html">&larr; 3.15 -- Crons: scheduled automations</a>
+<a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

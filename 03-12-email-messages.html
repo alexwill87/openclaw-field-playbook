@@ -143,8 +143,8 @@
 <p>L'email est la source la plus volumineuse et la plus bruitee. C'est pour ca qu'elle vient en troisieme position, apres le calendrier et les taches. Connecter l'email a un agent mal configure, c'est lui donner un tuyau d'incendie quand il a besoin d'un verre d'eau.</p>
 <h2 id="connexion-email">Connexion email</h2>
 <h3 id="configuration">Configuration</h3>
-<div class="codehilite"><pre><span></span><code>openclaw skill add email
-</code></pre></div>
+<pre class="codehilite"><code>openclaw skill add email
+</code></pre>
 
 <p>L'agent va :
 1. Demander le fournisseur (Gmail, Outlook, IMAP generique)
@@ -190,53 +190,53 @@
 <p>Deux modes possibles :</p>
 <h3 id="triage-assiste-recommande-pour-debuter">Triage assiste (recommande pour debuter)</h3>
 <p>L'agent classe vos emails et vous presente un resume. Vous decidez.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">TRIAGE</span><span class="w"> </span><span class="n">EMAIL</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">avril</span><span class="w"> </span><span class="mi">2026</span><span class="p">,</span><span class="w"> </span><span class="mi">08</span><span class="err">:</span><span class="mi">15</span>
+<pre class="codehilite"><code>TRIAGE EMAIL -- 2 avril 2026, 08:15
 
-<span class="n">URGENT</span><span class="w"> </span><span class="p">(</span><span class="n">reponse</span><span class="w"> </span><span class="n">aujourd</span><span class="s1">&#39;hui) :</span>
-<span class="s1">- Marc (ClientAlpha) : Demande de modification du devis</span>
-<span class="s1">  &gt; Impact : le devis expire vendredi. Repondre avant jeudi.</span>
-<span class="s1">- Lea Martin : Confirmation entretien 14h</span>
-<span class="s1">  &gt; Action : confirmer ou reporter</span>
+URGENT (reponse aujourd'hui) :
+- Marc (ClientAlpha) : Demande de modification du devis
+  &gt; Impact : le devis expire vendredi. Repondre avant jeudi.
+- Lea Martin : Confirmation entretien 14h
+  &gt; Action : confirmer ou reporter
 
-<span class="s1">A TRAITER (cette semaine) :</span>
-<span class="s1">- Fournisseur X : Nouvelle grille tarifaire</span>
-<span class="s1">  &gt; Pas urgent mais impacte le budget Q2</span>
-<span class="s1">- Comptable : Documents manquants bilan</span>
-<span class="s1">  &gt; Deadline : 10 avril</span>
+A TRAITER (cette semaine) :
+- Fournisseur X : Nouvelle grille tarifaire
+  &gt; Pas urgent mais impacte le budget Q2
+- Comptable : Documents manquants bilan
+  &gt; Deadline : 10 avril
 
-<span class="s1">INFORMATIF (pas d&#39;</span><span class="k">action</span><span class="w"> </span><span class="n">requise</span><span class="p">)</span><span class="w"> </span><span class="err">:</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Newsletter</span><span class="w"> </span><span class="n">secteur</span><span class="w"> </span><span class="o">[</span><span class="n">archiver</span><span class="o">]</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Notification</span><span class="w"> </span><span class="n">GitHub</span><span class="w"> </span><span class="o">[</span><span class="n">archiver</span><span class="o">]</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Publicite</span><span class="w"> </span><span class="o">[</span><span class="n">supprimer</span><span class="o">]</span>
+INFORMATIF (pas d'action requise) :
+- Newsletter secteur [archiver]
+- Notification GitHub [archiver]
+- Publicite [supprimer]
 
-<span class="mi">3</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="n">non</span><span class="w"> </span><span class="n">classes</span><span class="w"> </span><span class="c1">-- voulez-vous que je les affiche ?</span>
-</code></pre></div>
+3 emails non classes -- voulez-vous que je les affiche ?
+</code></pre>
 
 <h3 id="triage-automatique-pour-les-agents-matures">Triage automatique (pour les agents matures)</h3>
 <p>L'agent agit selon des regles predefinies dans CONSTITUTION.md :</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Regles de triage email</span>
-<span class="k">-</span><span class="w"> </span>Newsletter et notifications : archiver automatiquement
-<span class="k">-</span><span class="w"> </span>Publicite et spam : supprimer automatiquement
-<span class="k">-</span><span class="w"> </span>Email d&#39;un interlocuteur cle (voir USER.md) : priorite haute
-<span class="k">-</span><span class="w"> </span>Email avec deadline mentionnee : extraire la deadline, ajouter aux taches
-<span class="k">-</span><span class="w"> </span>Tout le reste : classer en &quot;a traiter&quot; pour le prochain briefing
-</code></pre></div>
+<pre class="codehilite"><code class="language-markdown">## Regles de triage email
+- Newsletter et notifications : archiver automatiquement
+- Publicite et spam : supprimer automatiquement
+- Email d'un interlocuteur cle (voir USER.md) : priorite haute
+- Email avec deadline mentionnee : extraire la deadline, ajouter aux taches
+- Tout le reste : classer en &quot;a traiter&quot; pour le prochain briefing
+</code></pre>
 
 <p>N'activez le triage automatique qu'apres 2-3 semaines de triage assiste valide.</p>
 <h2 id="brouillons-de-reponse">Brouillons de reponse</h2>
 <p>L'agent peut preparer des brouillons. C'est souvent la fonctionnalite la plus utile :</p>
-<div class="codehilite"><pre><span></span><code>Prepare un brouillon de reponse pour l&#39;email de Marc
+<pre class="codehilite"><code>Prepare un brouillon de reponse pour l'email de Marc
 sur la modification du devis. Ton professionnel mais ferme :
 on peut ajuster la portee, pas le prix.
-</code></pre></div>
+</code></pre>
 
 <p>L'agent redige. Vous relisez. Vous envoyez (ou vous modifiez et envoyez).</p>
 <p>Regle dans CONSTITUTION.md :</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Emails</span>
-<span class="k">-</span><span class="w"> </span>Tu peux rediger des brouillons de reponse
-<span class="k">-</span><span class="w"> </span>Tu ne peux JAMAIS envoyer un email sans ma validation explicite
-<span class="k">-</span><span class="w"> </span>Chaque brouillon doit indiquer : destinataire, objet, ton utilise
-</code></pre></div>
+<pre class="codehilite"><code class="language-markdown">## Emails
+- Tu peux rediger des brouillons de reponse
+- Tu ne peux JAMAIS envoyer un email sans ma validation explicite
+- Chaque brouillon doit indiquer : destinataire, objet, ton utilise
+</code></pre>
 
 <h2 id="le-piege-ne-pas-tout-connecter">Le piege : ne pas tout connecter</h2>
 <p>L'email est la source ou le piege du "tout connecter" est le plus dangereux.</p>
@@ -253,11 +253,11 @@ on peut ajuster la portee, pas le prix.
 <li>Pas de reponse automatique (jamais)</li>
 <li>Utilisez-les pour le contexte, pas pour l'action</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Messaging</span>
-<span class="k">-</span><span class="w"> </span>Channels connectes : <span class="ni">#general</span>, <span class="ni">#projet</span>-alpha, <span class="ni">#urgent</span>
-<span class="k">-</span><span class="w"> </span>Mode : lecture seule
-<span class="k">-</span><span class="w"> </span>Usage : contexte pour le briefing, pas d&#39;action directe
-</code></pre></div>
+<pre class="codehilite"><code class="language-markdown">## Messaging
+- Channels connectes : #general, #projet-alpha, #urgent
+- Mode : lecture seule
+- Usage : contexte pour le briefing, pas d'action directe
+</code></pre>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <ol>

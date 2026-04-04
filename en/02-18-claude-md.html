@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.18 -- CLAUDE.md | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.18 -- CLAUDE.md | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.18 -- CLAUDE.md | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html" class="active">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.18 -- CLAUDE.md</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#the-complete-claudemd-file">The complete CLAUDE.md file</a></li>
+    <li><a href="#code-rules">Code rules</a></li>
+    <li><a href="#commit-rules">Commit rules</a></li>
+    <li><a href="#what-an-agent-must-not-do">What an agent MUST NOT do</a></li>
+    <li><a href="#what-an-agent-can-do-freely">What an agent CAN do freely</a></li>
+    <li><a href="#environment-variables">Environment variables</a></li>
+    <li><a href="#estimated-time">Estimated time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="218-claudemd">2.18 -- CLAUDE.md</h1>
+<h2 id="context">Context</h2>
+<p><code>CLAUDE.md</code> is the file that every AI agent reads first when working on your repository. It's the contract between you and the agent: conventions, stack, authorized commands, rules. Without this file, the agent improvises. With this file, it follows YOUR rules.</p>
+<p>This file goes in the root of your Git repository.</p>
+<h2 id="the-complete-claudemd-file">The complete CLAUDE.md file</h2>
+<p>Create <code>CLAUDE.md</code> at the root of your repository:</p>
+<pre class="codehilite"><code class="language-markdown"># CLAUDE.md -- Instructions for AI agents
+
+## Project identity
+
+- Name: OA System
+- Description: Infrastructure for autonomous AI agents on VPS
+- Maintainers: [your name], OpenClaw agents
+- Code language: English
+- Documentation language: French
+- Repository: private
+
+## Technical stack
+
+| Component | Technology | Version |
+|-----------|-------------|---------|
+| Runtime | Node.js | 22.x LTS |
+| Database | PostgreSQL | 16 (Docker) |
+| Secrets | HashiCorp Vault | 1.17 (Docker) |
+| Process manager | PM2 | 5.x |
+| Containerization | Docker + Docker Compose v2 | 28.x |
+| VPN | Tailscale | latest |
+| OS | Ubuntu | 24.04 LTS |
+
+## Repository structure
+</code></pre>
+
+<p>.
+├── docker/           # Docker Compose files (no data)
+├── scripts/          # Utility bash scripts
+├── CLAUDE.md         # This file
+├── .gitignore        # Files excluded from versioning
+└── README.md         # Project documentation</p>
+<pre class="codehilite"><code>## Common commands
+
+```bash
+# Deployment
+./scripts/deploy.sh
+
+# Health check
+./scripts/health-check.sh
+
+# Database backup
+./scripts/backup-postgres.sh
+
+# Telegram notification
+./scripts/notify-telegram.sh &quot;message&quot;
+
+# Gateway logs
+journalctl -u openclaw-gateway -f
+
+# Restart gateway
+sudo systemctl restart openclaw-gateway
+</code></pre>
+
+<h2 id="code-rules">Code rules</h2>
+<ol>
+<li>No hardcoded secrets in code. Everything goes through Vault.</li>
+<li>Each script must be idempotent (executable multiple times without side effects).</li>
+<li>Docker commands use <code>docker compose</code> (with space, not hyphen).</li>
+<li>Paths are absolute in scripts, relative in application code.</li>
+<li>Logs go in ~/logs/ or journalctl, never in the Git repository.</li>
+</ol>
+<h2 id="commit-rules">Commit rules</h2>
+<ul>
+<li>Format: <code>type: brief description</code></li>
+<li>Types: feat, fix, docs, refactor, test, chore</li>
+<li>In English</li>
+<li>Single responsibility per commit</li>
+</ul>
+<h2 id="what-an-agent-must-not-do">What an agent MUST NOT do</h2>
+<ul>
+<li>Modify files in /etc/ without asking for confirmation</li>
+<li>Delete files without listing what will be deleted</li>
+<li>Execute <code>rm -rf</code> on anything</li>
+<li>Touch Vault unseal keys</li>
+<li>Commit .env files or credentials</li>
+<li>Do <code>git push --force</code> on main</li>
+<li>Modify this file (CLAUDE.md) without human approval</li>
+</ul>
+<h2 id="what-an-agent-can-do-freely">What an agent CAN do freely</h2>
+<ul>
+<li>Read any file in the repository</li>
+<li>Execute scripts in ~/scripts/</li>
+<li>Read secrets from Vault (read-only)</li>
+<li>Create Git branches</li>
+<li>Make commits on branches (not main directly)</li>
+<li>Check logs</li>
+<li>Run health checks</li>
+</ul>
+<h2 id="environment-variables">Environment variables</h2>
+<p>Variables are injected via systemd or Vault. Never put them in .bashrc for production.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VAULT_ADDR</td>
+<td>systemd</td>
+<td>Vault URL</td>
+</tr>
+<tr>
+<td>VAULT_TOKEN</td>
+<td>systemd</td>
+<td>Vault application token</td>
+</tr>
+<tr>
+<td>NODE_ENV</td>
+<td>systemd</td>
+<td>production</td>
+</tr>
+</tbody>
+</table>
+<pre class="codehilite"><code>## Why this file is important
+
+Without CLAUDE.md:
+- The agent may attempt to install packages via `sudo apt install` when you use Docker
+- The agent may create .env files instead of using Vault
+- The agent may use `docker-compose` (hyphen) instead of `docker compose` (space)
+- The agent may commit to main without a branch
+
+With CLAUDE.md:
+- The agent knows your exact stack
+- The agent respects your conventions
+- The agent knows what it can and cannot do
+- Fewer manual corrections
+
+## Updates
+
+This file evolves with the project. Every time you add a service, a script, or a rule, update CLAUDE.md. It's the source of truth for agents.
+
+## Common mistakes
+
+- **Not creating the file**: The agent works, but makes arbitrary choices. Time lost in corrections far exceeds the time to write it.
+- **File too long**: Keep it concise. Agents have limited context. The essentials are enough.
+- **Obsolete file**: A CLAUDE.md that describes a stack that has changed is worse than no file at all. Maintain it.
+- **Putting secrets in CLAUDE.md**: This file is in Git. No tokens, no passwords.
+
+## Verification
+
+```bash
+$ cat CLAUDE.md | head -5
+$ git log --oneline CLAUDE.md
+</code></pre>
+
+<p>Expected results:
+- The file exists and is readable
+- It is versioned in Git</p>
+<h2 id="estimated-time">Estimated time</h2>
+<p>10 minutes.</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, The complete CLAUDE.md file, Code rules, Commit rules and 4 more. <a href="02-19-script-deploy.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/18-claude-md.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-17-git-init.html">&larr; 2.17 -- Initialize the Git Repo</a>
+<a href="02-19-script-deploy.html">2.19 -- Deployment Script &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

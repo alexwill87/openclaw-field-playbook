@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.11 -- Tasks: the invisible pressure | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.11 -- Tasks: the invisible pressure | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.11 -- Tasks: the invisible pressure | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html" class="active">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.11 -- Tasks: the invisible pressure</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#calendar-tasks-complete-picture">Calendar + tasks = complete picture</a></li>
+    <li><a href="#connection">Connection</a></li>
+    <li class="toc-h3"><a href="#via-database">Via database</a></li>
+    <li class="toc-h3"><a href="#via-external-tool">Via external tool</a></li>
+    <li class="toc-h3"><a href="#scope-this-week-not-the-wishlist">Scope: this week, not the wishlist</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li class="toc-h3"><a href="#1-identify-your-task-source">1. Identify your task source</a></li>
+    <li class="toc-h3"><a href="#2-connect-in-read-only">2. Connect in read-only</a></li>
+    <li class="toc-h3"><a href="#3-define-the-scope">3. Define the scope</a></li>
+    <li class="toc-h3"><a href="#4-validate-the-calendar-tasks-integration">4. Validate the calendar + tasks integration</a></li>
+    <li class="toc-h3"><a href="#5-add-write-permissions-optional">5. Add write permissions (optional)</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="311-tasks-the-invisible-pressure">3.11 -- Tasks: the invisible pressure</h1>
+<h2 id="context">Context</h2>
+<p>The calendar shows what is PLANNED. Tasks show what is REAL but not yet planned.</p>
+<p>This is the invisible pressure: the things you need to do but that have no time slot. The report to finish. The follow-up to send. The bug to fix. These items are not in the calendar, but they weigh on every prioritization decision.</p>
+<p>An agent who sees your calendar but not your tasks believes your free slots are truly free. They are not.</p>
+<h2 id="calendar-tasks-complete-picture">Calendar + tasks = complete picture</h2>
+<table>
+<thead>
+<tr>
+<th>Calendar</th>
+<th>Tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What has a date and time</td>
+<td>What has a deadline (or not)</td>
+</tr>
+<tr>
+<td>Commitments with others</td>
+<td>Commitments with yourself</td>
+</tr>
+<tr>
+<td>Planned</td>
+<td>Unplanned but real</td>
+</tr>
+<tr>
+<td>Visible to others</td>
+<td>Often private</td>
+</tr>
+</tbody>
+</table>
+<p>The agent needs both to produce a useful briefing. "You have 2 hours free this afternoon" is incomplete if you have 5 urgent tasks overdue.</p>
+<h2 id="connection">Connection</h2>
+<h3 id="via-database">Via database</h3>
+<pre class="codehilite"><code>openclaw skill add tasks --source db
+</code></pre>
+
+<p>The agent connects to your task database (Supabase, PostgreSQL, SQLite). Advantage: full control, no dependency on a third-party service.</p>
+<h3 id="via-external-tool">Via external tool</h3>
+<pre class="codehilite"><code>openclaw skill add tasks --source todoist
+openclaw skill add tasks --source notion
+openclaw skill add tasks --source linear
+</code></pre>
+
+<p>The agent connects to your existing task tool. Advantage: no need to migrate.</p>
+<h3 id="scope-this-week-not-the-wishlist">Scope: this week, not the wishlist</h3>
+<p>Critical rule: the agent must only see tasks from THIS WEEK. Not the backlog of 200 items. Not the wishlist. Not the "maybe someday".</p>
+<p>Why: an agent who sees 200 tasks treats them all as potentially relevant. It mentions low-priority tasks in the briefing. It suggests working on items that are 3 months old. Noise drowns out the signal.</p>
+<p>Recommended configuration:</p>
+<pre class="codehilite"><code class="language-markdown">## Task scope
+- Tasks with deadline this week
+- Tasks marked &quot;urgent&quot; or &quot;high priority&quot;
+- Tasks assigned to me (not ones I've delegated)
+- Maximum: 15 visible tasks at once
+</code></pre>
+
+<h2 id="step-by-step">Step by step</h2>
+<h3 id="1-identify-your-task-source">1. Identify your task source</h3>
+<p>Where are your tasks today? In a tool? Multiple places? On sticky notes? In a text file?</p>
+<p>If they're scattered, consolidate them in a single place first before connecting the agent.</p>
+<h3 id="2-connect-in-read-only">2. Connect in read-only</h3>
+<p>Like the calendar, start in read mode. The agent sees the tasks, mentions them in the briefing, but does not modify them.</p>
+<h3 id="3-define-the-scope">3. Define the scope</h3>
+<p>Set the filter: this week + urgent only.</p>
+<h3 id="4-validate-the-calendar-tasks-integration">4. Validate the calendar + tasks integration</h3>
+<pre class="codehilite"><code>Show me my day with my pending tasks.
+</code></pre>
+
+<p>The agent must:
+- Display the calendar (meetings, blocks)
+- List relevant tasks
+- Suggest when to handle tasks in free slots</p>
+<h3 id="5-add-write-permissions-optional">5. Add write permissions (optional)</h3>
+<p>After validation, you can authorize the agent to:
+- Mark a task as complete (after your confirmation)
+- Add a task (from an email or meeting)
+- Change priority (with notification)</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Connecting all tasks</strong>: 200 tasks in context = useless briefing. Filter to this week.</p>
+<p><strong>No priority</strong>: If all tasks have the same priority, the agent can't sort them. Prioritize your tasks in your tool BEFORE connecting the agent.</p>
+<p><strong>Tasks in MEMORY.md</strong>: "Finish the report by Friday" in MEMORY.md instead of the task system. MEMORY.md is not a todo list. Tasks go in the task system.</p>
+<p><strong>Duplicate tasks</strong>: The same task in Notion AND in MEMORY.md. The agent counts it twice.</p>
+<p><strong>Connecting tasks before calendar</strong>: Tasks without calendar are a floating list. Connect the calendar first (section 3.10).</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Task source identified and consolidated</li>
+<li>[ ] Read-only connection established</li>
+<li>[ ] Scope defined (this week + urgent)</li>
+<li>[ ] Maximum 15 visible tasks</li>
+<li>[ ] "My day with my tasks" test passed</li>
+<li>[ ] Calendar + tasks integration validated</li>
+<li>[ ] No tasks in MEMORY.md (they are in the task system)</li>
+</ul>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Calendar + tasks = complete picture, Connection, Step by step and 2 more. <a href="03-12-email-messages.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/11-taches.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-10-calendrier.html">&larr; 3.10 -- Calendar First, Always (Steinberg Princ...</a>
+<a href="03-12-email-messages.html">3.12 -- Email and messages &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

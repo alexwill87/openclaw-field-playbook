@@ -142,18 +142,18 @@
 <p>Ce fichier va a la racine du depot Git.</p>
 <h2 id="le-fichier-claudemd-complet">Le fichier CLAUDE.md complet</h2>
 <p>Creez <code>CLAUDE.md</code> a la racine de votre depot :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># CLAUDE.md -- Instructions pour les agents IA</span>
+<pre class="codehilite"><code class="language-markdown"># CLAUDE.md -- Instructions pour les agents IA
 
-<span class="gu">## Identite du projet</span>
+## Identite du projet
 
-<span class="k">-</span><span class="w"> </span>Nom : OA System
-<span class="k">-</span><span class="w"> </span>Description : Infrastructure d&#39;agents IA autonomes sur VPS
-<span class="k">-</span><span class="w"> </span>Mainteneurs : [votre nom], agents OpenClaw
-<span class="k">-</span><span class="w"> </span>Langue du code : anglais
-<span class="k">-</span><span class="w"> </span>Langue de la documentation : francais
-<span class="k">-</span><span class="w"> </span>Depot : prive
+- Nom : OA System
+- Description : Infrastructure d'agents IA autonomes sur VPS
+- Mainteneurs : [votre nom], agents OpenClaw
+- Langue du code : anglais
+- Langue de la documentation : francais
+- Depot : prive
 
-<span class="gu">## Stack technique</span>
+## Stack technique
 
 | Composant | Technologie | Version |
 |-----------|-------------|---------|
@@ -165,8 +165,8 @@
 | VPN | Tailscale | derniere |
 | OS | Ubuntu | 24.04 LTS |
 
-<span class="gu">## Structure du depot</span>
-</code></pre></div>
+## Structure du depot
+</code></pre>
 
 <p>.
 ├── docker/           # Fichiers Docker Compose (pas de donnees)
@@ -174,7 +174,7 @@
 ├── CLAUDE.md         # Ce fichier
 ├── .gitignore        # Fichiers exclus du versionnement
 └── README.md         # Documentation du projet</p>
-<div class="codehilite"><pre><span></span><code>## Commandes courantes
+<pre class="codehilite"><code>## Commandes courantes
 
 ```bash
 # Deploiement
@@ -194,7 +194,7 @@ journalctl -u openclaw-gateway -f
 
 # Restart gateway
 sudo systemctl restart openclaw-gateway
-</code></pre></div>
+</code></pre>
 
 <h2 id="regles-de-code">Regles de code</h2>
 <ol>
@@ -259,37 +259,37 @@ sudo systemctl restart openclaw-gateway
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span></span><code><span class="p">##</span><span class="w"> </span><span class="n">Pourquoi</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="n">fichier</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">important</span>
+<pre class="codehilite"><code>## Pourquoi ce fichier est important
 
-<span class="n">Sans</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="o">:</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">tenter</span><span class="w"> </span><span class="n">d</span><span class="p">&#39;</span><span class="n">installer</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">paquets</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="no">`sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">install</span><span class="err">`</span><span class="w"> </span><span class="n">alors</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">vous</span><span class="w"> </span><span class="n">utilisez</span><span class="w"> </span><span class="n">Docker</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">creer</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">fichiers</span><span class="w"> </span><span class="p">.</span><span class="n">env</span><span class="w"> </span><span class="n">au</span><span class="w"> </span><span class="n">lieu</span><span class="w"> </span><span class="n">d</span><span class="p">&#39;</span><span class="n">utiliser</span><span class="w"> </span><span class="n">Vault</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">faire</span><span class="w"> </span><span class="no">`docker</span><span class="o">-</span><span class="n">compose</span><span class="err">`</span><span class="w"> </span><span class="p">(</span><span class="n">tiret</span><span class="p">)</span><span class="w"> </span><span class="n">au</span><span class="w"> </span><span class="n">lieu</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="no">`docker</span><span class="w"> </span><span class="n">compose</span><span class="err">`</span><span class="w"> </span><span class="p">(</span><span class="n">espace</span><span class="p">)</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">committer</span><span class="w"> </span><span class="n">sur</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="n">sans</span><span class="w"> </span><span class="n">branche</span>
+Sans CLAUDE.md :
+- L'agent peut tenter d'installer des paquets via `sudo apt install` alors que vous utilisez Docker
+- L'agent peut creer des fichiers .env au lieu d'utiliser Vault
+- L'agent peut faire `docker-compose` (tiret) au lieu de `docker compose` (espace)
+- L'agent peut committer sur main sans branche
 
-<span class="n">Avec</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="o">:</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">connait</span><span class="w"> </span><span class="n">votre</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">exacte</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">respecte</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">conventions</span>
-<span class="o">-</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">sait</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="n">qu</span><span class="p">&#39;</span><span class="n">il</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">faire</span>
-<span class="o">-</span><span class="w"> </span><span class="n">Moins</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">corrections</span><span class="w"> </span><span class="n">manuelles</span>
+Avec CLAUDE.md :
+- L'agent connait votre stack exacte
+- L'agent respecte vos conventions
+- L'agent sait ce qu'il peut et ne peut pas faire
+- Moins de corrections manuelles
 
-<span class="p">##</span><span class="w"> </span><span class="n">Mise</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span>
+## Mise a jour
 
-<span class="n">Ce</span><span class="w"> </span><span class="n">fichier</span><span class="w"> </span><span class="n">evolue</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">projet</span><span class="p">.</span><span class="w"> </span><span class="n">Chaque</span><span class="w"> </span><span class="n">fois</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">vous</span><span class="w"> </span><span class="n">ajoutez</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">service</span><span class="p">,</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">regle</span><span class="p">,</span><span class="w"> </span><span class="n">mettez</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span><span class="p">.</span><span class="w"> </span><span class="n">C</span><span class="p">&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">verite</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">agents</span><span class="p">.</span>
+Ce fichier evolue avec le projet. Chaque fois que vous ajoutez un service, un script ou une regle, mettez CLAUDE.md a jour. C'est la source de verite pour les agents.
 
-<span class="p">##</span><span class="w"> </span><span class="n">Erreurs</span><span class="w"> </span><span class="n">courantes</span>
+## Erreurs courantes
 
-<span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Ne</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">creer</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">fichier</span><span class="o">**</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">fonctionne</span><span class="p">,</span><span class="w"> </span><span class="n">mais</span><span class="w"> </span><span class="n">fait</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">choix</span><span class="w"> </span><span class="n">arbitraires</span><span class="p">.</span><span class="w"> </span><span class="n">Le</span><span class="w"> </span><span class="n">temps</span><span class="w"> </span><span class="n">perdu</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">corrections</span><span class="w"> </span><span class="n">depasse</span><span class="w"> </span><span class="n">largement</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">temps</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">redaction</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Fichier</span><span class="w"> </span><span class="n">trop</span><span class="w"> </span><span class="n">long</span><span class="o">**</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Gardez</span><span class="o">-</span><span class="n">le</span><span class="w"> </span><span class="n">concis</span><span class="p">.</span><span class="w"> </span><span class="n">Les</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">ont</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">contexte</span><span class="w"> </span><span class="n">limite</span><span class="p">.</span><span class="w"> </span><span class="n">L</span><span class="p">&#39;</span><span class="n">essentiel</span><span class="w"> </span><span class="n">suffit</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Fichier</span><span class="w"> </span><span class="n">obsolete</span><span class="o">**</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Un</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">decrit</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">pire</span><span class="w"> </span><span class="n">qu</span><span class="p">&#39;</span><span class="n">aucun</span><span class="w"> </span><span class="n">fichier</span><span class="p">.</span><span class="w"> </span><span class="n">Maintenez</span><span class="o">-</span><span class="n">le</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Mettre</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">secrets</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span><span class="o">**</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Ce</span><span class="w"> </span><span class="n">fichier</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">Git</span><span class="p">.</span><span class="w"> </span><span class="n">Pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">tokens</span><span class="p">,</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">mots</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">passe</span><span class="p">.</span>
+- **Ne pas creer le fichier** : L'agent fonctionne, mais fait des choix arbitraires. Le temps perdu en corrections depasse largement le temps de redaction.
+- **Fichier trop long** : Gardez-le concis. Les agents ont un contexte limite. L'essentiel suffit.
+- **Fichier obsolete** : Un CLAUDE.md qui decrit une stack qui a change est pire qu'aucun fichier. Maintenez-le.
+- **Mettre des secrets dans CLAUDE.md** : Ce fichier est dans Git. Pas de tokens, pas de mots de passe.
 
-<span class="p">##</span><span class="w"> </span><span class="n">Verification</span>
+## Verification
 
-<span class="err">``</span><span class="no">`bash</span>
-<span class="err">$</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">head</span><span class="w"> </span><span class="o">-</span><span class="mh">5</span>
-<span class="err">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">--</span><span class="n">oneline</span><span class="w"> </span><span class="n">CLAUDE</span><span class="p">.</span><span class="n">md</span>
-</code></pre></div>
+```bash
+$ cat CLAUDE.md | head -5
+$ git log --oneline CLAUDE.md
+</code></pre>
 
 <p>Resultats attendus :
 - Le fichier existe et est lisible

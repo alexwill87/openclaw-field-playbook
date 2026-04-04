@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3. Configuration | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3. Configuration | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3. Configuration | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title" class="active">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <span>3. Configuration</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li class="toc-h3"><a href="#part-a-the-agent">Part A -- The Agent</a></li>
+    <li class="toc-h3"><a href="#part-b-memory">Part B -- Memory</a></li>
+    <li class="toc-h3"><a href="#part-c-connections">Part C -- Connections</a></li>
+    <li class="toc-h3"><a href="#part-d-triggers-and-automations">Part D -- Triggers and Automations</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="3-configuration">3. Configuration</h1>
+<blockquote>
+<p>Configure OpenClaw for your specific context: your industry, your tools, your constraints.</p>
+</blockquote>
+<p>The installation (chapter 2) gives you a generic agent. Configuration makes it YOUR agent. This chapter covers four axes: defining the agent's identity and rules, organizing its memory, connecting it to your data sources, and automating its triggers. By the end, you'll have an agent that knows your industry, respects your limits, and wakes itself up in the morning.</p>
+<p><strong>Beginner</strong>: start with 3.1, 3.2, 3.3, 3.5, 3.6, 3.10, 3.16. The rest will come later. <strong>Pressed for time</strong>: 3.1 (5 min), 3.5 (5 min), 3.16 (5 min) -- a functional agent in 15 minutes. <strong>Practitioner</strong>: read in order, each section builds on the previous one.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="part-a-the-agent">Part A -- The Agent</h3>
+<ul>
+<li>
+<p><strong>3.1 -- <a href="03-01-perimetre-agent.html">Agent Scope</a></strong>
+  Explicitly define what the agent must do, can do, and must never do</p>
+</li>
+<li>
+<p><strong>3.2 -- <a href="03-02-soul-md.html">SOUL.md</a></strong>
+  Write the document that gives the agent its identity, values, and posture</p>
+</li>
+<li>
+<p><strong>3.3 -- <a href="03-03-user-md.html">USER.md</a></strong>
+  Describe your profile, preferences, and context so the agent adapts to you</p>
+</li>
+<li>
+<p><strong>3.4 -- <a href="03-04-agents-md.html">AGENTS.md</a></strong>
+  Keep a registry of all active agents, their role, and permissions</p>
+</li>
+<li>
+<p><strong>3.5 -- <a href="03-05-constitution-md.html">CONSTITUTION.md</a></strong>
+  Set the rules of the game: what is negotiable, what is not</p>
+</li>
+</ul>
+<h3 id="part-b-memory">Part B -- Memory</h3>
+<ul>
+<li>
+<p><strong>3.6 -- <a href="03-06-trois-zones-memoire.html">Three Memory Zones</a></strong>
+  Understand the hot/warm/cold architecture and where to store each type of information</p>
+</li>
+<li>
+<p><strong>3.7 -- <a href="03-07-memory-md.html">MEMORY.md</a></strong>
+  Feed the collective memory that all agents share between sessions</p>
+</li>
+<li>
+<p><strong>3.8 -- <a href="03-08-knowledge.html">knowledge/</a></strong>
+  Organize the industry knowledge folder that the agent consults in context</p>
+</li>
+</ul>
+<h3 id="part-c-connections">Part C -- Connections</h3>
+<ul>
+<li>
+<p><strong>3.9 -- <a href="03-09-principe-une-source.html">One Source at a Time</a></strong>
+  Why connect progressively rather than plugging everything in at once</p>
+</li>
+<li>
+<p><strong>3.10 -- <a href="03-10-calendrier.html">Calendar</a></strong>
+  Connect the calendar first -- the simplest and most useful connection</p>
+</li>
+<li>
+<p><strong>3.11 -- <a href="03-11-taches.html">Tasks</a></strong>
+  Connect the task manager and manage the invisible pressure of to-do lists</p>
+</li>
+<li>
+<p><strong>3.12 -- <a href="03-12-email-messages.html">Email and Messages</a></strong>
+  Configure automatic triage of incoming emails and messages</p>
+</li>
+<li>
+<p><strong>3.13 -- <a href="03-13-skill-custom.html">Custom Skill</a></strong>
+  Build your own skills to extend the agent's capabilities to your industry</p>
+</li>
+<li>
+<p><strong>3.14 -- <a href="03-14-souverainete-donnees.html">Data Sovereignty</a></strong>
+  Know exactly where your data lives and who has access to it</p>
+</li>
+</ul>
+<h3 id="part-d-triggers-and-automations">Part D -- Triggers and Automations</h3>
+<ul>
+<li>
+<p><strong>3.15 -- <a href="03-15-crons.html">Crons</a></strong>
+  Schedule automatic triggers at fixed times or on events</p>
+</li>
+<li>
+<p><strong>3.16 -- <a href="03-16-briefing-matin.html">Morning Briefing</a></strong>
+  Configure the ultimate test: the agent that prepares you a summary each morning</p>
+</li>
+<li>
+<p><strong>3.17 -- <a href="03-17-multi-agents.html">Multi-Agents</a></strong>
+  Orchestrate multiple specialized agents that collaborate on complex tasks</p>
+</li>
+<li>
+<p><strong>3.18 -- <a href="03-18-remote-mode.html">Connecting Two Installations (Remote Mode)</a></strong>
+  Link two OpenClaw VPS for supervision, debugging, or inter-agent collaboration</p>
+</li>
+</ul>
+<hr />
+<p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribute to this chapter</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Table of Contents. <a href="03-01-perimetre-agent.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/README.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-20-adapter-existant.html">&larr; Adapting the playbook to an existing VPS</a>
+<a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

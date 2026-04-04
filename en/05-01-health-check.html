@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>5.1 -- Daily Health Check | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="5.1 -- Daily Health Check | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5.1 -- Daily Health Check | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter  open">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <div class="nav-sections">
+    <a href="05-01-health-check.html" class="active">5.1 -- Daily Health Check</a>
+    <a href="05-02-logs.html">5.2 -- Log Management</a>
+    <a href="05-03-backups.html">5.3 -- Backups</a>
+    <a href="05-04-revoir-system-prompt.html">5.4 -- Review the system prompt</a>
+    <a href="05-05-derive-memoire.html">5.5 -- Memory Drift</a>
+    <a href="05-06-agent-se-trompe.html">5.6 -- When the agent makes a mi...</a>
+    <a href="05-07-maj-integrations.html">5.7 -- Update integrations</a>
+    <a href="05-08-maj-systeme.html">5.8 -- System Updates</a>
+    <a href="05-09-rotation-secrets.html">5.9 -- Secret Rotation</a>
+    <a href="05-10-monitoring.html">5.10 -- Monitoring and Alerts</a>
+    <a href="05-11-en-cas-de-panne.html">5.11 -- In case of outage</a>
+    <a href="05-12-deuxieme-agent.html">5.12 -- When to add a second agent</a>
+    <a href="05-13-migrer-modele.html">5.13 -- Migrating to Another Model</a>
+    <a href="05-14-mesurer-roi.html">5.14 -- Measuring ROI</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="05-00-sommaire.html">5. Maintenance</a>
+  <span class="sep">/</span>
+  <span>5.1 -- Daily Health Check</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#what-to-check">What to Check</a></li>
+    <li><a href="#complete-script-health-checksh">Complete Script: health-check.sh</a></li>
+    <li><a href="#automate-with-cron">Automate with Cron</a></li>
+    <li><a href="#configure-telegram-alerts">Configure Telegram Alerts</a></li>
+    <li class="toc-h3"><a href="#1-create-a-telegram-bot">1. Create a Telegram Bot</a></li>
+    <li class="toc-h3"><a href="#2-get-your-chat-id">2. Get Your Chat ID</a></li>
+    <li class="toc-h3"><a href="#3-store-credentials">3. Store Credentials</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 05
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="51-daily-health-check">5.1 -- Daily Health Check</h1>
+<h2 id="context">Context</h2>
+<p>A health check is 30 seconds of diagnosis that prevents 3 hours of downtime. You verify that everything is running, every day, automatically. If something goes down, you know about it before your users do.</p>
+<h2 id="what-to-check">What to Check</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Command</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Containers</td>
+<td><code>docker ps --format "{{.Names}} {{.Status}}"</code></td>
+<td>All "Up"</td>
+</tr>
+<tr>
+<td>Web Services</td>
+<td><code>curl -s -o /dev/null -w "%{http_code}" http://localhost:PORT</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>Disk Space</td>
+<td><code>df -h / --output=pcent</code></td>
+<td>&lt; 80%</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><code>pg_isready</code></td>
+<td>Accepting connections</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td><code>free -m</code></td>
+<td>Free memory &gt; 20%</td>
+</tr>
+<tr>
+<td>SSL Certificates</td>
+<td><code>openssl s_client -connect domain:443 2&gt;/dev/null \| openssl x509 -noout -enddate</code></td>
+<td>&gt; 30 days</td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><code>vault status</code></td>
+<td>Sealed: false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="complete-script-health-checksh">Complete Script: health-check.sh</h2>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# health-check.sh — Daily diagnostic
+# Usage : ./health-check.sh [--quiet]
+# --quiet : only display errors (for cron)
+
+TELEGRAM_BOT_TOKEN=&quot;${TELEGRAM_BOT_TOKEN:-}&quot;
+TELEGRAM_CHAT_ID=&quot;${TELEGRAM_CHAT_ID:-}&quot;
+QUIET=&quot;${1:-}&quot;
+ERRORS=&quot;&quot;
+
+log() {
+    if [ &quot;$QUIET&quot; != &quot;--quiet&quot; ]; then
+        echo &quot;$1&quot;
+    fi
+}
+
+error() {
+    ERRORS=&quot;${ERRORS}\n[KO] $1&quot;
+    echo &quot;[KO] $1&quot; &gt;&amp;2
+}
+
+ok() {
+    log &quot;[OK] $1&quot;
+}
+
+send_telegram() {
+    if [ -n &quot;$TELEGRAM_BOT_TOKEN&quot; ] &amp;&amp; [ -n &quot;$TELEGRAM_CHAT_ID&quot; ]; then
+        local message=&quot;$1&quot;
+        curl -s -X POST &quot;https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage&quot; \
+            -d chat_id=&quot;$TELEGRAM_CHAT_ID&quot; \
+            -d text=&quot;$message&quot; \
+            -d parse_mode=&quot;Markdown&quot; &gt; /dev/null
+    fi
+}
+
+# === Docker Containers ===
+log &quot;--- Docker ---&quot;
+if command -v docker &amp;&gt; /dev/null; then
+    DOWN_CONTAINERS=$(docker ps -a --filter &quot;status=exited&quot; --format &quot;{{.Names}}&quot; 2&gt;/dev/null)
+    if [ -n &quot;$DOWN_CONTAINERS&quot; ]; then
+        error &quot;Containers down : $DOWN_CONTAINERS&quot;
+    else
+        ok &quot;All containers are up&quot;
+    fi
+else
+    error &quot;Docker not installed&quot;
+fi
+
+# === Web Services ===
+log &quot;--- Web Services ---&quot;
+SERVICES=(&quot;http://localhost:3000&quot; &quot;http://localhost:8080&quot;)
+SERVICE_NAMES=(&quot;cockpit&quot; &quot;api&quot;)
+
+for i in &quot;${!SERVICES[@]}&quot;; do
+    HTTP_CODE=$(curl -s -o /dev/null -w &quot;%{http_code}&quot; --max-time 5 &quot;${SERVICES[$i]}&quot; 2&gt;/dev/null)
+    if [ &quot;$HTTP_CODE&quot; = &quot;200&quot; ]; then
+        ok &quot;${SERVICE_NAMES[$i]} responding (HTTP $HTTP_CODE)&quot;
+    else
+        error &quot;${SERVICE_NAMES[$i]} not responding (HTTP $HTTP_CODE)&quot;
+    fi
+done
+
+# === Disk Space ===
+log &quot;--- Disk ---&quot;
+DISK_USAGE=$(df / --output=pcent | tail -1 | tr -d ' %')
+if [ &quot;$DISK_USAGE&quot; -lt 80 ]; then
+    ok &quot;Disk : ${DISK_USAGE}% used&quot;
+elif [ &quot;$DISK_USAGE&quot; -lt 90 ]; then
+    error &quot;Disk : ${DISK_USAGE}% used (threshold 80%)&quot;
+else
+    error &quot;CRITICAL — Disk : ${DISK_USAGE}% used&quot;
+fi
+
+# === PostgreSQL ===
+log &quot;--- PostgreSQL ---&quot;
+if pg_isready -q 2&gt;/dev/null; then
+    ok &quot;PostgreSQL OK&quot;
+else
+    error &quot;PostgreSQL not responding&quot;
+fi
+
+# === Memory ===
+log &quot;--- Memory ---&quot;
+MEM_TOTAL=$(free -m | awk '/Mem:/ {print $2}')
+MEM_AVAIL=$(free -m | awk '/Mem:/ {print $7}')
+MEM_PERCENT=$((MEM_AVAIL * 100 / MEM_TOTAL))
+if [ &quot;$MEM_PERCENT&quot; -gt 20 ]; then
+    ok &quot;Memory : ${MEM_PERCENT}% available (${MEM_AVAIL}M/${MEM_TOTAL}M)&quot;
+else
+    error &quot;Low memory : ${MEM_PERCENT}% available (${MEM_AVAIL}M/${MEM_TOTAL}M)&quot;
+fi
+
+# === Vault ===
+log &quot;--- Vault ---&quot;
+if command -v vault &amp;&gt; /dev/null; then
+    VAULT_STATUS=$(vault status -format=json 2&gt;/dev/null | jq -r '.sealed' 2&gt;/dev/null)
+    if [ &quot;$VAULT_STATUS&quot; = &quot;false&quot; ]; then
+        ok &quot;Vault unsealed&quot;
+    else
+        error &quot;Vault sealed or inaccessible&quot;
+    fi
+else
+    log &quot;[SKIP] Vault not installed&quot;
+fi
+
+# === Summary and Alert ===
+log &quot;&quot;
+if [ -n &quot;$ERRORS&quot; ]; then
+    log &quot;=== PROBLEMS DETECTED ===&quot;
+    echo -e &quot;$ERRORS&quot;
+
+    # Telegram Alert
+    ALERT_MSG=&quot;*Health Check KO* — $(hostname) — $(date '+%Y-%m-%d %H:%M')&quot;
+    ALERT_MSG=&quot;${ALERT_MSG}$(echo -e &quot;$ERRORS&quot;)&quot;
+    send_telegram &quot;$ALERT_MSG&quot;
+
+    exit 1
+else
+    log &quot;=== EVERYTHING OK ===&quot;
+    exit 0
+fi
+</code></pre>
+
+<h2 id="automate-with-cron">Automate with Cron</h2>
+<pre class="codehilite"><code class="language-bash"># Edit crontab
+crontab -e
+
+# Health check every day at 7:00 AM
+0 7 * * * /opt/scripts/health-check.sh --quiet &gt;&gt; /var/log/health-check.log 2&gt;&amp;1
+
+# Health check every 4 hours (for critical services)
+0 */4 * * * /opt/scripts/health-check.sh --quiet &gt;&gt; /var/log/health-check.log 2&gt;&amp;1
+</code></pre>
+
+<h2 id="configure-telegram-alerts">Configure Telegram Alerts</h2>
+<h3 id="1-create-a-telegram-bot">1. Create a Telegram Bot</h3>
+<ol>
+<li>Open Telegram, search for <code>@BotFather</code>.</li>
+<li>Send <code>/newbot</code>.</li>
+<li>Give it a name and username.</li>
+<li>Copy the token.</li>
+</ol>
+<h3 id="2-get-your-chat-id">2. Get Your Chat ID</h3>
+<ol>
+<li>Send a message to your bot.</li>
+<li>Open <code>https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</code>.</li>
+<li>Find <code>chat.id</code> in the response.</li>
+</ol>
+<h3 id="3-store-credentials">3. Store Credentials</h3>
+<pre class="codehilite"><code class="language-bash"># In Vault (recommended)
+vault kv put secret/telegram bot_token=&quot;123456:ABC...&quot; chat_id=&quot;987654321&quot;
+
+# Or as environment variables in /etc/environment
+TELEGRAM_BOT_TOKEN=&quot;123456:ABC...&quot;
+TELEGRAM_CHAT_ID=&quot;987654321&quot;
+</code></pre>
+
+<h2 id="common-mistakes">Common Mistakes</h2>
+<p><strong>No health check.</strong> You discover the outage when a user contacts you. Always too late.</p>
+<p><strong>Health check without alerts.</strong> The script runs, the log fills up, but nobody reads it. Without alerts, it's useless.</p>
+<p><strong>Too many checks.</strong> 50 verifications with overly sensitive thresholds. You receive 10 alerts per day and ignore everything. Start with 5-7 essential checks.</p>
+<p><strong>Script not tested.</strong> The script has a bug, cron runs it, but it detects nothing. Test manually by simulating a failure (stop a container, fill the disk).</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Copy the <code>health-check.sh</code> script to <code>/opt/scripts/</code>.</li>
+<li>Adapt the services and ports to your setup.</li>
+<li>Make executable: <code>chmod +x /opt/scripts/health-check.sh</code>.</li>
+<li>Test manually: <code>./health-check.sh</code>.</li>
+<li>Configure the Telegram bot and variables.</li>
+<li>Test the alert: stop a container, run the script.</li>
+<li>Add to crontab.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>[ ] The script runs without error in normal and --quiet mode.</li>
+<li>[ ] Each critical component is checked.</li>
+<li>[ ] Telegram alert works (tested with a simulated failure).</li>
+<li>[ ] Cron is configured and running.</li>
+<li>[ ] Log is written to /var/log/health-check.log.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, What to Check, Complete Script: health-check.sh, Automate with Cron and 4 more. <a href="05-02-logs.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/01-health-check.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="05-00-sommaire.html">&larr; 5. Maintenance</a>
+<a href="05-02-logs.html">5.2 -- Log Management &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

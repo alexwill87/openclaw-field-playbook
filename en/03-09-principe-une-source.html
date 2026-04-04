@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.9 -- One source at a time (Steinberg principle) | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.9 -- One source at a time (Steinberg principle) | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.9 -- One source at a time (Steinberg principle) | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Define the agent's scope</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : the agent's ide...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : your profile fo...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md: the agent regi...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : the rul...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- The three memory zones</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : the collectiv...</a>
+    <a href="03-08-knowledge.html">3.8 -- The knowledge/ folder</a>
+    <a href="03-09-principe-une-source.html" class="active">3.9 -- One source at a time (Ste...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendar First, Always (...</a>
+    <a href="03-11-taches.html">3.11 -- Tasks: the invisible pre...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email and messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Building a Custom Skill...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Data Sovereignty</a>
+    <a href="03-15-crons.html">3.15 -- Crons: scheduled automat...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- The Morning Briefing (St...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Multi-agent architecture</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connect Two OpenClaw Ins...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.9 -- One source at a time (Steinberg principle)</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#why-only-one-source-at-a-time">Why only one source at a time</a></li>
+    <li><a href="#the-method">The method</a></li>
+    <li class="toc-h3"><a href="#connect">Connect</a></li>
+    <li class="toc-h3"><a href="#validate">Validate</a></li>
+    <li class="toc-h3"><a href="#keep-or-remove">Keep or remove</a></li>
+    <li><a href="#the-anti-pattern-the-connection-weekend">The anti-pattern: the connection weekend</a></li>
+    <li><a href="#recommended-connection-order">Recommended connection order</a></li>
+    <li><a href="#step-by-step">Step by step</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 03
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="39-one-source-at-a-time-steinberg-principle">3.9 -- One source at a time (Steinberg principle)</h1>
+<h2 id="context">Context</h2>
+<p>You've configured the agent. SOUL.md, USER.md, CONSTITUTION.md, MEMORY.md, knowledge/ -- everything is in place. Now you want to connect your tools: calendar, email, CRM, Notion, Slack, database, business API...</p>
+<p>Stop. One source at a time.</p>
+<p>This is the most counter-intuitive principle of Steinberg. Instinct says "connect everything so the agent has a complete view." Experience says "each source added increases noise faster than signal."</p>
+<h2 id="why-only-one-source-at-a-time">Why only one source at a time</h2>
+<p>Each new connection increases three things:</p>
+<p><strong>1. Token cost.</strong> Each source injected into the context consumes window space. Calendar + emails + tasks + CRM = a context that explodes before you even ask your question.</p>
+<p><strong>2. Interpretation risk.</strong> The more sources the agent has, the more connections it makes. Some are relevant. Others are phantom correlations. "You have a meeting with X and an unread email from X, so I deduce that..." -- not necessarily.</p>
+<p><strong>3. Noise.</strong> 50 unread emails, 30 tasks, 15 calendar events. The agent drowns important information in the mass.</p>
+<h2 id="the-method">The method</h2>
+<h3 id="connect">Connect</h3>
+<p>Add ONE source. Calendar first (see section 3.10).</p>
+<h3 id="validate">Validate</h3>
+<p>Live with this source for 3 to 5 days. Ask the question:</p>
+<pre class="codehilite"><code>What has changed since yesterday in [source] ?
+</code></pre>
+
+<p>If the answer is useful and precise, the source adds value. If the answer is vague or noisy, the source configuration needs refinement before adding another.</p>
+<h3 id="keep-or-remove">Keep or remove</h3>
+<p>Decision rule: <strong>does this source improve a decision I need to make THIS WEEK?</strong></p>
+<ul>
+<li>Yes: keep</li>
+<li>"It could be useful someday": remove</li>
+<li>"It's interesting": remove</li>
+</ul>
+<p>Interesting is the enemy of relevant.</p>
+<h2 id="the-anti-pattern-the-connection-weekend">The anti-pattern: the connection weekend</h2>
+<p>Classic scenario:</p>
+<pre class="codehilite"><code>Friday evening: &quot;This weekend, I'll connect everything!&quot;
+Saturday: calendar, email, Notion, CRM, Slack, database
+Sunday: &quot;It's amazing, the agent sees everything!&quot;
+Monday morning: 45-line briefing, 3 false connections,
+  2 suggested actions completely off base
+Monday noon: &quot;This tool doesn't work.&quot;
+</code></pre>
+
+<p>The problem isn't the tool. It's that 6 sources connected in 48 hours weren't validated individually. Impossible to know which one is causing the noise.</p>
+<h2 id="recommended-connection-order">Recommended connection order</h2>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Source</th>
+<th>Why now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Calendar</td>
+<td>Most reliable signal (section 3.10)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tasks</td>
+<td>Completes calendar with unplanned items (section 3.11)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Email</td>
+<td>Most voluminous source, add after mastering first 2 (section 3.12)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Business tools</td>
+<td>CRM, Notion, database -- based on your specific need</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Messaging</td>
+<td>Slack, Teams -- last, most noisy</td>
+</tr>
+</tbody>
+</table>
+<p>Delay between each addition: minimum 3 days, ideally 1 week.</p>
+<h2 id="step-by-step">Step by step</h2>
+<ol>
+<li>Identify the source that would have the most impact on your week</li>
+<li>Connect it (see following sections for each type)</li>
+<li>Use it for 3-5 days</li>
+<li>Evaluate with the question "What has changed?"</li>
+<li>If valid, move to the next one. Otherwise, refine first.</li>
+</ol>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>Connecting everything at once</strong>: See the anti-pattern above. Noise drowns signal.</p>
+<p><strong>Keeping a useless source</strong>: "I connected Slack but I never use it in my briefings." Disconnect. Each useless source consumes tokens and adds noise.</p>
+<p><strong>Connecting before configuring</strong>: Adding email before having solid USER.md and CONSTITUTION.md. The agent will process your emails without understanding your priorities or knowing your rules.</p>
+<p><strong>Confusing "possible" and "useful"</strong>: The agent CAN connect to 15 sources. That doesn't mean it SHOULD.</p>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] You've identified your first source to connect</li>
+<li>[ ] You have a plan for progressive addition (one source at a time)</li>
+<li>[ ] You know the validation question ("What has changed?")</li>
+<li>[ ] You have the decision criterion (improves a decision THIS WEEK)</li>
+<li>[ ] The base files (SOUL.md, USER.md, CONSTITUTION.md) are in place BEFORE the first connection</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Why only one source at a time, The method, The anti-pattern: the connection weekend and 4 more. <a href="03-10-calendrier.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/09-principe-une-source.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-08-knowledge.html">&larr; 3.8 -- The knowledge/ folder</a>
+<a href="03-10-calendrier.html">3.10 -- Calendar First, Always (Steinberg Princ... &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

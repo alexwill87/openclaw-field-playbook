@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.3 -- Tailscale Private Network | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.3 -- Tailscale Private Network | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.3 -- Tailscale Private Network | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Pre-flight checklist -- Get ever...</a>
+    <a href="02-01-prerequis.html">2.1 -- Hardware and Software Pre...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securing the VPS</a>
+    <a href="02-03-tailscale.html" class="active">2.3 -- Tailscale Private Network</a>
+    <a href="02-04-docker.html">2.4 -- Docker and Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js and PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Folder Structure</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- First health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- OpenClaw Installation</a>
+    <a href="02-11-workspace.html">2.11 -- Workspace Structure</a>
+    <a href="02-12-config-openclaw.html">2.12 -- OpenClaw Initial Configu...</a>
+    <a href="02-13-openrouter.html">2.13 -- OpenRouter Connection</a>
+    <a href="02-14-telegram.html">2.14 -- Telegram Connection</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Post-installation verifi...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialize the Git Repo</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Deployment Script</a>
+    <a href="02-20-adapter-existant.html">Adapting the playbook to an exis...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.3 -- Tailscale Private Network</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#step-1-install-tailscale-on-the-vps">Step 1: Install Tailscale on the VPS</a></li>
+    <li><a href="#step-2-start-and-authenticate">Step 2: Start and Authenticate</a></li>
+    <li><a href="#step-3-get-your-tailscale-ip">Step 3: Get Your Tailscale IP</a></li>
+    <li><a href="#step-4-verify-the-connection">Step 4: Verify the Connection</a></li>
+    <li><a href="#step-5-install-tailscale-on-your-local-machine">Step 5: Install Tailscale on Your Local Machine</a></li>
+    <li><a href="#step-6-test-connectivity">Step 6: Test Connectivity</a></li>
+    <li><a href="#step-7-optional-disable-ssh-on-the-public-ip">Step 7 (Optional): Disable SSH on the Public IP</a></li>
+    <li><a href="#architecture-principle">Architecture Principle</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#estimated-time">Estimated Time</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 02
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="23-tailscale-private-network">2.3 -- Tailscale Private Network</h1>
+<h2 id="context">Context</h2>
+<p>Tailscale creates a private network (VPN mesh) between your machines. Each machine receives a private IP (in the 100.x.x.x range). The fundamental principle: <strong>no service is exposed on the VPS's public IP</strong>. Vault, PostgreSQL, OpenClaw -- everything goes through Tailscale.</p>
+<p>Advantages:
+- Zero complex network configuration
+- End-to-end encryption (WireGuard)
+- Works even behind NAT
+- Free up to 100 machines</p>
+<h2 id="step-1-install-tailscale-on-the-vps">Step 1: Install Tailscale on the VPS</h2>
+<pre class="codehilite"><code class="language-bash">$ curl -fsSL https://tailscale.com/install.sh | sh
+</code></pre>
+
+<h2 id="step-2-start-and-authenticate">Step 2: Start and Authenticate</h2>
+<pre class="codehilite"><code class="language-bash">$ sudo tailscale up
+</code></pre>
+
+<p>This command displays an authentication link. Open this link in your browser and sign in with your Tailscale account.</p>
+<h2 id="step-3-get-your-tailscale-ip">Step 3: Get Your Tailscale IP</h2>
+<pre class="codehilite"><code class="language-bash">$ tailscale ip -4
+</code></pre>
+
+<p>Note this IP (format 100.x.x.x). This is the address you'll use for all services.</p>
+<h2 id="step-4-verify-the-connection">Step 4: Verify the Connection</h2>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+</code></pre>
+
+<p>You should see your VPS in the list of connected machines.</p>
+<h2 id="step-5-install-tailscale-on-your-local-machine">Step 5: Install Tailscale on Your Local Machine</h2>
+<p>Install Tailscale on your workstation as well:
+- <strong>Mac</strong>: <code>brew install tailscale</code> or from the Mac App Store
+- <strong>Linux</strong>: <code>curl -fsSL https://tailscale.com/install.sh | sh</code>
+- <strong>Windows</strong>: Download from tailscale.com</p>
+<p>Then <code>tailscale up</code> and authenticate.</p>
+<h2 id="step-6-test-connectivity">Step 6: Test Connectivity</h2>
+<p>From your local machine:</p>
+<pre class="codehilite"><code class="language-bash">$ ping YOUR_VPS_TAILSCALE_IP
+$ ssh deploy@YOUR_VPS_TAILSCALE_IP
+</code></pre>
+
+<p>From now on, always use the Tailscale IP to connect to the VPS, not the public IP.</p>
+<h2 id="step-7-optional-disable-ssh-on-the-public-ip">Step 7 (Optional): Disable SSH on the Public IP</h2>
+<p>If you're confident that Tailscale is working, you can restrict SSH to Tailscale only:</p>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw delete allow ssh
+$ sudo ufw allow in on tailscale0 to any port 22
+</code></pre>
+
+<p><strong>IMPORTANT</strong>: Only do this if you've confirmed that SSH via Tailscale works. Keep your provider's VNC console as a backup plan.</p>
+<h2 id="architecture-principle">Architecture Principle</h2>
+<p>From this step forward, the rule is:</p>
+<pre class="codehilite"><code>Public IP: NOTHING exposed (except SSH if necessary)
+Tailscale IP: EVERYTHING goes through here
+</code></pre>
+
+<p>PostgreSQL listens on 100.x.x.x:5432, not on 0.0.0.0.
+Vault listens on 100.x.x.x:8200, not on 0.0.0.0.
+The OpenClaw gateway listens on 100.x.x.x:3000, not on 0.0.0.0.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<ul>
+<li><strong>Forgetting to install Tailscale on your local machine</strong>: Without Tailscale on both sides, there's no private network.</li>
+<li><strong>Using the public IP for services</strong>: The whole point of Tailscale is to avoid this. If a service listens on 0.0.0.0, fix it to listen on the Tailscale IP only.</li>
+<li><strong>Tailscale disconnecting</strong>: Add <code>--ssh</code> to <code>tailscale up</code> to maintain the connection, and enable autostart: <code>sudo systemctl enable tailscaled</code>.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+$ tailscale ip -4
+$ ping -c 3 $(tailscale ip -4)
+</code></pre>
+
+<p>Expected results:
+- Status shows the machine as "active"
+- IP in the 100.x.x.x range
+- Ping responds without packet loss</p>
+<h2 id="estimated-time">Estimated Time</h2>
+<p>10 minutes.</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Step 1: Install Tailscale on the VPS, Step 2: Start and Authenticate, Step 3: Get Your Tailscale IP and 8 more. <a href="02-04-docker.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/03-tailscale.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-02-securiser-vps.html">&larr; 2.2 -- Securing the VPS</a>
+<a href="02-04-docker.html">2.4 -- Docker and Docker Compose &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

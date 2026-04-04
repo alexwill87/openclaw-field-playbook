@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>1.7 -- What does a day with an AI agent look like? | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="1.7 -- What does a day with an AI agent look like? | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="1.7 -- What does a day with an AI agent look like? | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+  <div class="nav-sections">
+    <a href="01-01-definition.html">1.1 -- What OpenClaw is (and isn't)</a>
+    <a href="01-02-proactif-reactif.html">1.2 -- The distinction between p...</a>
+    <a href="01-03-comparaison.html">1.3 -- OpenClaw vs other AI assi...</a>
+    <a href="01-04-souverainete.html">1.4 -- Why Sovereignty Matters f...</a>
+    <a href="01-05-architecture-mentale.html">1.5 -- The mental architecture b...</a>
+    <a href="01-06-ce-que-vous-construisez.html">1.6 -- What You Will Build in Th...</a>
+    <a href="01-07-journee-type.html" class="active">1.7 -- What does a day with an A...</a>
+    <a href="01-08-combien-ca-coute.html">1.8 -- What does it really cost?</a>
+    <a href="01-09-est-ce-complique.html">1.9 -- Is this complicated for me?</a>
+    <a href="01-10-si-je-ne-fais-rien.html">1.10 -- What happens if I do not...</a>
+    <a href="01-11-comment-se-lancer.html">1.11 -- How do I get started?</a>
+  </div>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="01-00-sommaire.html">1. Définition</a>
+  <span class="sep">/</span>
+  <span>1.7 -- What does a day with an AI agent look like?</span>
+</nav>
+<div class="last-updated">Last updated: April 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#the-morning-you-arrive-the-briefing-is-already-ready">The morning: you arrive, the briefing is already ready</a></li>
+    <li><a href="#during-the-day-the-agent-handles-what-you-dont-have-time-for">During the day: the agent handles what you don't have time for</a></li>
+    <li><a href="#the-evening-you-validate-instead-of-doing-everything">The evening: you validate instead of doing everything</a></li>
+    <li><a href="#friday-the-weekly-summary">Friday: the weekly summary</a></li>
+    <li><a href="#what-it-does-not-do">What it does NOT do</a></li>
+    <li><a href="#the-change-in-one-sentence">The change in one sentence</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="17-what-does-a-day-with-an-ai-agent-look-like">1.7 -- What does a day with an AI agent look like?</h1>
+<blockquote>
+<p>You're wondering what actually changes in your daily routine. Here's a typical day, hour by hour, for someone like you.</p>
+</blockquote>
+<hr />
+<h2 id="the-morning-you-arrive-the-briefing-is-already-ready">The morning: you arrive, the briefing is already ready</h2>
+<p>You open Telegram on your phone. A message is waiting for you, sent at 7am by your agent:</p>
+<blockquote>
+<p>Good morning Marc. Last night, 2 quote requests came in by email. I've prepared the drafts. One invoice has been unpaid for 12 days — would you like me to send a reminder? Weather: nice all day.</p>
+</blockquote>
+<p>You reply "ok for the reminder" from your phone in 10 seconds. The agent sends the reminder. You head to your job site.</p>
+<hr />
+<h2 id="during-the-day-the-agent-handles-what-you-dont-have-time-for">During the day: the agent handles what you don't have time for</h2>
+<p>A potential client sends an email at 11am: "Hi, how much would it cost to redo my bathroom?"</p>
+<p>You're on a job site, hands in the plaster. The agent:
+1. Classifies the message as a "quote request"
+2. Politely replies that you'll get back to the client within 24 hours
+3. Sends you a Telegram message: "New prospect — bathroom. I've confirmed receipt. Quote draft ready this evening."</p>
+<p>You didn't do anything. The client got a response in 5 minutes instead of 48 hours.</p>
+<hr />
+<h2 id="the-evening-you-validate-instead-of-doing-everything">The evening: you validate instead of doing everything</h2>
+<p>You get home. On Telegram, the agent has prepared:
+- 2 quote drafts to validate (you reply "ok" or "change the price to 3500")
+- A recap of messages received during the day
+- A reminder: "Client Durand hasn't confirmed the quote sent Monday"</p>
+<p>You spend 15 minutes instead of 2 hours. The rest of the evening is yours.</p>
+<hr />
+<h2 id="friday-the-weekly-summary">Friday: the weekly summary</h2>
+<p>The agent sends you a recap:</p>
+<blockquote>
+<p>This week: 4 prospects, 3 quotes sent, 1 job completed. Estimated revenue: 3,200 EUR. 2 invoices to follow up on.</p>
+</blockquote>
+<p>You have a clear view of your activity without opening a single spreadsheet.</p>
+<hr />
+<h2 id="what-it-does-not-do">What it does NOT do</h2>
+<ul>
+<li>The agent <strong>never sends anything without your approval.</strong> It prepares, you validate.</li>
+<li>It <strong>doesn't replace your expertise.</strong> It doesn't know how to price a job. It knows how to format a quote based on what you've taught it.</li>
+<li>It <strong>doesn't talk to your clients on your behalf</strong> (except to confirm receipt).</li>
+</ul>
+<hr />
+<h2 id="the-change-in-one-sentence">The change in one sentence</h2>
+<p>Before: you did everything in the evening when you got home, tired, with things falling through the cracks.
+After: you validate what the agent has prepared, in 15 minutes, from your phone.</p>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: The morning: you arrive, the briefing is already ready, During the day: the agent handles what you don't have time for, The evening: you validate instead of doing everything, Friday: the weekly summary and 2 more. <a href="01-08-combien-ca-coute.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/01-definition/07-journee-type.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="01-06-ce-que-vous-construisez.html">&larr; 1.6 -- What You Will Build in This Guide</a>
+<a href="01-08-combien-ca-coute.html">1.8 -- What does it really cost? &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

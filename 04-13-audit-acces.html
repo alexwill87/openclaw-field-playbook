@@ -139,7 +139,7 @@
 <p>L'audit repond a cette question. C'est un inventaire : ce que l'agent peut lire, ecrire, executer, et ce que ca coute.</p>
 <h2 id="le-prompt-auto-audit">Le prompt auto-audit</h2>
 <p>Demandez a votre agent de s'auditer :</p>
-<div class="codehilite"><pre><span></span><code>Fais un audit complet de tes acces. Pour chaque categorie,
+<pre class="codehilite"><code>Fais un audit complet de tes acces. Pour chaque categorie,
 liste ce que tu PEUX faire et ce que tu NE PEUX PAS faire.
 
 Categories :
@@ -150,8 +150,8 @@ Categories :
 5. Git : quelles operations ? sur quelles branches ?
 6. Secrets : quels secrets peux-tu lire ? via Vault ? en clair ?
 
-Pour chaque acces, dis-moi si c&#39;est intentionnel ou si ca devrait etre restreint.
-</code></pre></div>
+Pour chaque acces, dis-moi si c'est intentionnel ou si ca devrait etre restreint.
+</code></pre>
 
 <h2 id="verifier-realite-vs-intention">Verifier realite vs intention</h2>
 <p>L'audit revele souvent des surprises :</p>
@@ -188,32 +188,32 @@ Pour chaque acces, dis-moi si c&#39;est intentionnel ou si ca devrait etre restr
 </table>
 <h3 id="verifications-manuelles">Verifications manuelles</h3>
 <p>Ne vous fiez pas uniquement a l'auto-audit. L'agent peut ne pas connaitre toutes ses permissions. Verifiez :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Quels fichiers l&#39;agent peut lire (testez avec l&#39;utilisateur qui execute l&#39;agent)</span>
-find<span class="w"> </span>/opt<span class="w"> </span>/home<span class="w"> </span>/var<span class="w"> </span>-readable<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-50
+<pre class="codehilite"><code class="language-bash"># Quels fichiers l'agent peut lire (testez avec l'utilisateur qui execute l'agent)
+find /opt /home /var -readable -type f 2&gt;/dev/null | head -50
 
-<span class="c1"># Droits PostgreSQL</span>
-psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;\du&quot;</span><span class="w"> </span>
-psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;\dp&quot;</span><span class="w"> </span><span class="c1"># permissions sur les tables</span>
+# Droits PostgreSQL
+psql -c &quot;\du&quot; 
+psql -c &quot;\dp&quot; # permissions sur les tables
 
-<span class="c1"># Ports ouverts accessibles</span>
-ss<span class="w"> </span>-tlnp
+# Ports ouverts accessibles
+ss -tlnp
 
-<span class="c1"># Variables d&#39;environnement (secrets potentiels)</span>
-env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;key\|secret\|token\|pass\|api&quot;</span>
-</code></pre></div>
+# Variables d'environnement (secrets potentiels)
+env | grep -i &quot;key\|secret\|token\|pass\|api&quot;
+</code></pre>
 
 <h2 id="budget-tokens-et-couts">Budget tokens et couts</h2>
 <p>L'audit, c'est aussi le cout. Chaque requete a un cout en tokens. Tracez-le.</p>
 <h3 id="calculer-le-cout">Calculer le cout</h3>
-<div class="codehilite"><pre><span></span><code>Cout par requete = tokens input + tokens output
+<pre class="codehilite"><code>Cout par requete = tokens input + tokens output
 
 Tokens input = system prompt + contexte + memoire + votre message
-Tokens output = reponse de l&#39;agent
+Tokens output = reponse de l'agent
 
 Prix (Claude Sonnet, avril 2026) :
 - Input : ~3$ / million de tokens
 - Output : ~15$ / million de tokens
-</code></pre></div>
+</code></pre>
 
 <h3 id="ce-qui-coute-cher">Ce qui coute cher</h3>
 <table>
@@ -266,15 +266,15 @@ Prix (Claude Sonnet, avril 2026) :
 </ul>
 <h3 id="suivi-mensuel">Suivi mensuel</h3>
 <p>Tracez vos couts chaque mois :</p>
-<div class="codehilite"><pre><span></span><code>Mars 2026 :
+<pre class="codehilite"><code>Mars 2026 :
 - Requetes : ~850
 - Cout total : ~$12
 - Cout moyen/requete : ~$0.014
 - Plus gros poste : lectures de fichiers longs
 
 Actions : condenser le system prompt, utiliser tasks.sh au lieu 
-de demander a l&#39;agent de requeter la DB.
-</code></pre></div>
+de demander a l'agent de requeter la DB.
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Ne jamais auditer.</strong> L'agent a des acces que vous avez oublie avoir donne. Un jour ca pose probleme.</p>

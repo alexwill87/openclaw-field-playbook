@@ -146,24 +146,24 @@
 - 80 lignes = environ 2 minutes de lecture pour l'agent au demarrage</p>
 <p>Ce n'est pas une suggestion. C'est une contrainte dure. Si MEMORY.md depasse 80 lignes, il faut compresser ou deplacer du contenu vers knowledge/.</p>
 <h2 id="structure-recommandee">Structure recommandee</h2>
-<div class="codehilite"><pre><span></span><code><span class="gh"># MEMORY.md</span>
+<pre class="codehilite"><code class="language-markdown"># MEMORY.md
 
-<span class="gu">## Contexte actuel</span>
-<span class="k">-</span><span class="w"> </span>[Fait important 1 -- date]
-<span class="k">-</span><span class="w"> </span>[Fait important 2 -- date]
-<span class="k">-</span><span class="w"> </span>[Situation en cours]
+## Contexte actuel
+- [Fait important 1 -- date]
+- [Fait important 2 -- date]
+- [Situation en cours]
 
-<span class="gu">## Decisions recentes</span>
-<span class="k">-</span><span class="w"> </span>[Decision 1 -- date -- raison]
-<span class="k">-</span><span class="w"> </span>[Decision 2 -- date -- raison]
+## Decisions recentes
+- [Decision 1 -- date -- raison]
+- [Decision 2 -- date -- raison]
 
-<span class="gu">## En attente</span>
-<span class="k">-</span><span class="w"> </span>[Ce qui attend une reponse ou action]
-<span class="k">-</span><span class="w"> </span>[Ce qui est bloque et pourquoi]
+## En attente
+- [Ce qui attend une reponse ou action]
+- [Ce qui est bloque et pourquoi]
 
-<span class="gu">## Notes de session</span>
-<span class="k">-</span><span class="w"> </span>[Dernier fait marquant de la derniere session]
-</code></pre></div>
+## Notes de session
+- [Dernier fait marquant de la derniere session]
+</code></pre>
 
 <p>Quatre sections. Pas plus. Si vous avez besoin de plus de sections, c'est que du contenu devrait migrer vers knowledge/.</p>
 <h2 id="night-consolidation-methode-steinberg">Night consolidation (methode Steinberg)</h2>
@@ -175,13 +175,13 @@
 <li><strong>Ajouter</strong> ce qui a emerge pendant la journee</li>
 </ol>
 <p>Prompt de consolidation :</p>
-<div class="codehilite"><pre><span></span><code>Consolide MEMORY.md :
-1. Supprime ce qui n&#39;est plus pertinent (plus de 2 semaines, deja traite)
+<pre class="codehilite"><code>Consolide MEMORY.md :
+1. Supprime ce qui n'est plus pertinent (plus de 2 semaines, deja traite)
 2. Compresse les entrees liees en une seule ligne
 3. Si une information est devenue stable, migre-la vers knowledge/
 4. Verifie que le total ne depasse pas 80 lignes
 Montre-moi le diff avant de sauvegarder.
-</code></pre></div>
+</code></pre>
 
 <h2 id="loubli-volontaire">L'oubli volontaire</h2>
 <p>L'oubli est une fonctionnalite, pas un bug. Un agent qui se souvient de tout est un agent qui ne sait pas ce qui compte.</p>
@@ -200,22 +200,22 @@ Montre-moi le diff avant de sauvegarder.
 - <strong>Separe</strong> : chaque agent a son MEMORY.md. Plus propre. Risque de desynchronisation.</p>
 <p>Recommendation : commencez partage. Separéz quand le bruit devient un probleme.</p>
 <h2 id="template-memorymd">Template MEMORY.md</h2>
-<div class="codehilite"><pre><span></span><code><span class="gh"># MEMORY.md</span>
+<pre class="codehilite"><code class="language-markdown"># MEMORY.md
 Derniere consolidation : [date]
 
-<span class="gu">## Contexte actuel</span>
-<span class="k">-</span><span class="w"> </span>[3-5 lignes max sur la situation generale]
+## Contexte actuel
+- [3-5 lignes max sur la situation generale]
 
-<span class="gu">## Decisions recentes</span>
-<span class="k">-</span><span class="w"> </span>[AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
-<span class="k">-</span><span class="w"> </span>[AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
+## Decisions recentes
+- [AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
+- [AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
 
-<span class="gu">## En attente</span>
-<span class="k">-</span><span class="w"> </span>[Quoi] -- en attente de [qui/quoi] -- depuis [date]
+## En attente
+- [Quoi] -- en attente de [qui/quoi] -- depuis [date]
 
-<span class="gu">## Notes</span>
-<span class="k">-</span><span class="w"> </span>[Fait marquant de la derniere session]
-</code></pre></div>
+## Notes
+- [Fait marquant de la derniere session]
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>MEMORY.md jamais nettoye</strong> : Le fichier grossit jusqu'a 300 lignes. L'agent perd le signal. Consolidez au moins une fois par semaine.</p>

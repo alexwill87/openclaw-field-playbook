@@ -145,7 +145,7 @@
 <h2 id="contexte">Contexte</h2>
 <p>OpenClaw organise ses donnees dans un workspace (<code>~/.openclaw/</code>). Ce dossier est cree automatiquement au premier lancement. Comprendre sa structure est essentiel pour le debug, la sauvegarde et l'extension du systeme.</p>
 <h2 id="arborescence-commentee">Arborescence commentee</h2>
-<div class="codehilite"><pre><span></span><code>~/.openclaw/
+<pre class="codehilite"><code>~/.openclaw/
 ├── workspace/                  # Repertoire de travail principal
 │   ├── knowledge/              # Base de connaissances injectee dans le contexte
 │   │   ├── domain/             # Connaissances specifiques au domaine
@@ -159,25 +159,25 @@
 │   ├── skills/                 # Competences chargees dynamiquement
 │   │   ├── builtin/            # Skills integrées (non modifiables)
 │   │   └── custom/             # Vos skills personnalisees
-│   └── agents/                 # Definitions d&#39;agents
+│   └── agents/                 # Definitions d'agents
 │       ├── default.json        # Agent par defaut
 │       └── custom/             # Vos agents personnalises
 ├── config.json                 # Configuration principale (section 12)
 ├── credentials.json            # Tokens et acces (chiffre)
 └── logs/                       # Logs internes OpenClaw
     └── openclaw.log
-</code></pre></div>
+</code></pre>
 
 <h2 id="role-de-chaque-dossier">Role de chaque dossier</h2>
 <h3 id="knowledge">knowledge/</h3>
 <p>Contient les documents que l'agent peut consulter pour repondre. Le sous-dossier <code>domain/</code> est le votre : mettez-y vos documents metier, specifications, guides internes.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>~/.openclaw/workspace/knowledge/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ls ~/.openclaw/workspace/knowledge/
+</code></pre>
 
 <h3 id="memory">memory/</h3>
 <p>Memoire persistante. Le fichier <code>MEMORY.md</code> est lu automatiquement a chaque session. Les agents y stockent ce qu'ils doivent retenir entre les conversations.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>~/.openclaw/workspace/memory/MEMORY.md
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cat ~/.openclaw/workspace/memory/MEMORY.md
+</code></pre>
 
 <h3 id="sessions">sessions/</h3>
 <p>Historique complet de chaque conversation. Utile pour le debug et l'audit. Les vieilles sessions peuvent etre archivees.</p>
@@ -187,17 +187,17 @@
 <p>Definitions d'agents avec leurs instructions systeme, skills autorisees et parametres. Le fichier <code>default.json</code> est utilise quand aucun agent n'est specifie.</p>
 <h2 id="droits-et-propriete">Droits et propriete</h2>
 <p>Tout le dossier <code>~/.openclaw/</code> doit appartenir a votre utilisateur :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/.openclaw/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
+</code></pre>
 
 <p>Si ce n'est pas le cas :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span>:<span class="nv">$USER</span><span class="w"> </span>~/.openclaw/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo chown -R $USER:$USER ~/.openclaw/
+</code></pre>
 
 <h2 id="sauvegarder-le-workspace">Sauvegarder le workspace</h2>
 <p>Le workspace contient des donnees precieuses (memoire, knowledge, sessions). Incluez-le dans vos sauvegardes :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-czf<span class="w"> </span>~/backups/openclaw-workspace-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>~/.openclaw/workspace/
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ tar -czf ~/backups/openclaw-workspace-$(date +%Y%m%d).tar.gz ~/.openclaw/workspace/
+</code></pre>
 
 <p>Ne sauvegardez PAS <code>credentials.json</code> dans un backup non chiffre.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -208,10 +208,10 @@
 <li><strong>Sessions qui prennent trop de place</strong> : Apres quelques mois, le dossier <code>sessions/</code> peut peser lourd. Archivez les vieilles sessions.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/.openclaw/
-$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/.openclaw/workspace/
-$<span class="w"> </span>cat<span class="w"> </span>~/.openclaw/workspace/memory/MEMORY.md
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
+$ ls -la ~/.openclaw/workspace/
+$ cat ~/.openclaw/workspace/memory/MEMORY.md
+</code></pre>
 
 <p>Resultats attendus :
 - Le dossier existe et appartient a votre utilisateur

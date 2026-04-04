@@ -156,13 +156,13 @@
 <h2 id="boot-sequence-lordre-de-lecture">Boot sequence : l'ordre de lecture</h2>
 <p>Quand l'agent demarre une session, il lit ses fichiers de configuration dans un ordre precis. Cet ordre compte : les fichiers lus en premier ont plus de poids.</p>
 <p>Sequence recommandee :</p>
-<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">SOUL</span><span class="mf">.</span><span class="n">md</span><span class="w">        </span><span class="o">--</span><span class="w"> </span><span class="n">Qui</span><span class="w"> </span><span class="n">suis</span><span class="o">-</span><span class="n">je</span><span class="w"> </span><span class="err">?</span>
-<span class="mf">2.</span><span class="w"> </span><span class="n">USER</span><span class="mf">.</span><span class="n">md</span><span class="w">        </span><span class="o">--</span><span class="w"> </span><span class="n">Pour</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">je</span><span class="w"> </span><span class="n">travaille</span><span class="w"> </span><span class="err">?</span>
-<span class="mf">3.</span><span class="w"> </span><span class="n">CONSTITUTION</span><span class="mf">.</span><span class="n">md</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="n">Quelles</span><span class="w"> </span><span class="n">sont</span><span class="w"> </span><span class="n">mes</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="err">?</span>
-<span class="mf">4.</span><span class="w"> </span><span class="n">AGENTS</span><span class="mf">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">Qui</span><span class="w"> </span><span class="n">d</span><span class="err">&#39;</span><span class="n">autre</span><span class="w"> </span><span class="n">existe</span><span class="w"> </span><span class="err">?</span><span class="w"> </span><span class="n">Quel</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">mon</span><span class="w"> </span><span class="n">role</span><span class="w"> </span><span class="n">specifique</span><span class="w"> </span><span class="err">?</span>
-<span class="mf">5.</span><span class="w"> </span><span class="n">MEMORY</span><span class="mf">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">Que</span><span class="w"> </span><span class="n">s</span><span class="err">&#39;</span><span class="n">est</span><span class="o">-</span><span class="n">il</span><span class="w"> </span><span class="n">passe</span><span class="w"> </span><span class="n">recemment</span><span class="w"> </span><span class="err">?</span>
-<span class="mf">6.</span><span class="w"> </span><span class="n">knowledge</span><span class="o">/</span><span class="w">     </span><span class="o">--</span><span class="w"> </span><span class="n">Que</span><span class="w"> </span><span class="n">dois</span><span class="o">-</span><span class="n">je</span><span class="w"> </span><span class="n">savoir</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">plus</span><span class="w"> </span><span class="err">?</span>
-</code></pre></div>
+<pre class="codehilite"><code>1. SOUL.md        -- Qui suis-je ?
+2. USER.md        -- Pour qui je travaille ?
+3. CONSTITUTION.md -- Quelles sont mes regles ?
+4. AGENTS.md      -- Qui d'autre existe ? Quel est mon role specifique ?
+5. MEMORY.md      -- Que s'est-il passe recemment ?
+6. knowledge/     -- Que dois-je savoir de plus ?
+</code></pre>
 
 <p>Pourquoi cet ordre :
 - L'identite (SOUL.md) cadre tout le reste
@@ -183,9 +183,9 @@
 <h3 id="5-definir-les-canaux-de-communication-inter-agents">5. Definir les canaux de communication inter-agents</h3>
 <p>Si vous avez plusieurs agents, comment communiquent-ils ? Via des fichiers partages ? Via MEMORY.md ? Via un bus de messages ?</p>
 <h2 id="template-agentsmd">Template AGENTS.md</h2>
-<div class="codehilite"><pre><span></span><code><span class="gh"># AGENTS.md</span>
+<pre class="codehilite"><code class="language-markdown"># AGENTS.md
 
-<span class="gu">## Agent principal</span>
+## Agent principal
 
 | Champ | Valeur |
 |-------|--------|
@@ -195,22 +195,22 @@
 | Workspace | [chemin du workspace] |
 | Statut | actif |
 
-<span class="gu">### Permissions</span>
-<span class="k">-</span><span class="w"> </span>Lecture : tout
-<span class="k">-</span><span class="w"> </span>Ecriture : MEMORY.md, knowledge/, brouillons
-<span class="k">-</span><span class="w"> </span>Action externe : validation requise
+### Permissions
+- Lecture : tout
+- Ecriture : MEMORY.md, knowledge/, brouillons
+- Action externe : validation requise
 
-<span class="gu">### Boot sequence</span>
-<span class="k">1.</span> SOUL.md
-<span class="k">2.</span> USER.md
-<span class="k">3.</span> CONSTITUTION.md
-<span class="k">4.</span> AGENTS.md
-<span class="k">5.</span> MEMORY.md
-<span class="k">6.</span> knowledge/*.md
+### Boot sequence
+1. SOUL.md
+2. USER.md
+3. CONSTITUTION.md
+4. AGENTS.md
+5. MEMORY.md
+6. knowledge/*.md
 
 ---
 
-<span class="gu">## Agent secondaire (si applicable)</span>
+## Agent secondaire (si applicable)
 
 | Champ | Valeur |
 |-------|--------|
@@ -220,29 +220,29 @@
 | Workspace | [chemin du workspace] |
 | Statut | actif / inactif |
 
-<span class="gu">### Permissions</span>
-<span class="k">-</span><span class="w"> </span>Lecture : [scope restreint]
-<span class="k">-</span><span class="w"> </span>Ecriture : [scope restreint]
-<span class="k">-</span><span class="w"> </span>Action externe : [regles specifiques]
+### Permissions
+- Lecture : [scope restreint]
+- Ecriture : [scope restreint]
+- Action externe : [regles specifiques]
 
-<span class="gu">### Boot sequence</span>
-<span class="k">1.</span> SOUL.md (propre a cet agent)
-<span class="k">2.</span> USER.md (partage)
-<span class="k">3.</span> CONSTITUTION.md (propre a cet agent)
-<span class="k">4.</span> AGENTS.md (partage)
-<span class="k">5.</span> MEMORY.md (partage ou propre)
+### Boot sequence
+1. SOUL.md (propre a cet agent)
+2. USER.md (partage)
+3. CONSTITUTION.md (propre a cet agent)
+4. AGENTS.md (partage)
+5. MEMORY.md (partage ou propre)
 
 ---
 
-<span class="gu">## Communication inter-agents</span>
+## Communication inter-agents
 
 | De | Vers | Canal | Contenu |
 |----|------|-------|---------|
-| [Agent 1] | [Agent 2] | [MEMORY.md / fichier / API] | [Type d&#39;information] |
+| [Agent 1] | [Agent 2] | [MEMORY.md / fichier / API] | [Type d'information] |
 
-<span class="gu">## Notes</span>
-<span class="k">-</span><span class="w"> </span>[Regles supplementaires, contraintes, historique des changements]
-</code></pre></div>
+## Notes
+- [Regles supplementaires, contraintes, historique des changements]
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Pas de AGENTS.md avec un seul agent</strong> : Vous pensez que c'est inutile. Puis vous ajoutez un deuxieme agent 3 mois plus tard et vous ne savez plus quelle est la boot sequence du premier.</p>

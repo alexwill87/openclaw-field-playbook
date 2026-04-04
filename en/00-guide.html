@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Chapter 0 -- Reading Guide | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="Chapter 0 -- Reading Guide | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Chapter 0 -- Reading Guide | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title" class="active">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <span>Chapter 0 -- Reading Guide</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#01-if-you-are-human">0.1 -- If you are human</a></li>
+    <li class="toc-h3"><a href="#what-kind-of-reader-are-you">What kind of reader are you?</a></li>
+    <li class="toc-h3"><a href="#how-to-read-a-section">How to read a section</a></li>
+    <li><a href="#02-if-you-are-an-ai-agent">0.2 -- If you are an AI agent</a></li>
+    <li class="toc-h3"><a href="#file-hierarchy">File hierarchy</a></li>
+    <li class="toc-h3"><a href="#yaml-metadata">YAML metadata</a></li>
+    <li class="toc-h3"><a href="#rules-for-agents">Rules for agents</a></li>
+    <li><a href="#03-the-7-chapters-at-a-glance">0.3 -- The 7 chapters at a glance</a></li>
+    <li><a href="#04-conventions-used">0.4 -- Conventions used</a></li>
+    <li class="toc-h3"><a href="#principle">Principle</a></li>
+    <li class="toc-h3"><a href="#prompt">Prompt</a></li>
+    <li class="toc-h3"><a href="#common-mistake">Common mistake</a></li>
+    <li class="toc-h3"><a href="#field-note">Field note</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 00
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="chapter-0-reading-guide">Chapter 0 -- Reading Guide</h1>
+<p><strong>Who this guide is for:</strong> Anyone (or agent) opening this document for the first time.
+<strong>Reading time:</strong> 5 minutes.
+<strong>Difficulty:</strong> None.</p>
+<hr />
+<h2 id="01-if-you-are-human">0.1 -- If you are human</h2>
+<p>This playbook is a practitioner's manual. Not a dictionary, not API documentation, not a lecture course. It is organized so you can progress at your own pace, according to your profile.</p>
+<h3 id="what-kind-of-reader-are-you">What kind of reader are you?</h3>
+<p><strong>Profile "I'm discovering":</strong>
+Read Chapter 1 in its entirety. It is your foundation. Without it, everything else will be noise. Next, move to Chapter 2 (Installation) and follow the steps in order. Skip nothing.</p>
+<p><strong>Profile "I've already installed, I want to configure":</strong>
+Go directly to Chapter 3 (Configuration) or Chapter 4 (Customization). Each section is self-contained and refers to others when necessary.</p>
+<p><strong>Profile "I have a specific problem":</strong>
+Use the table of contents of the relevant chapter. Each section begins with a "Context" block that tells you if you're in the right place.</p>
+<p><strong>Profile "I want concrete examples":</strong>
+Chapter 6 (Use cases) contains real stories. Start there, then go back to the technical chapters when you want to reproduce what you've read.</p>
+<h3 id="how-to-read-a-section">How to read a section</h3>
+<p>Each section follows the same structure:</p>
+<ul>
+<li><strong>Context</strong> -- why this section exists, what problem it solves.</li>
+<li><strong>Actionable content</strong> -- the steps, explanations, diagrams.</li>
+<li><strong>Common mistake</strong> -- the pitfalls others have fallen into before you. Read them, even if you think they don't apply to you.</li>
+<li><strong>Field note</strong> -- real-world feedback from actual deployments.</li>
+<li><strong>Template</strong> -- a block to copy-paste and adapt immediately.</li>
+</ul>
+<p>If a section displays <code>[To be written]</code>, it doesn't exist yet. It will come.</p>
+<hr />
+<h2 id="02-if-you-are-an-ai-agent">0.2 -- If you are an AI agent</h2>
+<p>This section is for you. Read it in its entirety before processing the rest of the document.</p>
+<h3 id="file-hierarchy">File hierarchy</h3>
+<p>By order of priority:</p>
+<ol>
+<li><code>MANIFESTE.md</code> -- project constitution. Has authority over intention, governance, and principles. In case of conflict with any other file, the Manifesto takes precedence.</li>
+<li><code>sections/</code> -- canonical content. Each file is a self-contained section. This is the source of truth for playbook content.</li>
+<li><code>PLAYBOOK.md</code> -- assembled document. Generated from sections. Never edit directly.</li>
+</ol>
+<h3 id="yaml-metadata">YAML metadata</h3>
+<p>Each section file begins with a YAML front matter block. The relevant fields for you:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td><code>complete</code> = stable, usable. <code>draft</code> = may change.</td>
+</tr>
+<tr>
+<td><code>audience</code></td>
+<td><code>human</code>, <code>agent</code>, or <code>both</code>. Filter according to your context.</td>
+</tr>
+<tr>
+<td><code>chapter</code></td>
+<td>Chapter number. Use it for ordering.</td>
+</tr>
+<tr>
+<td><code>lang</code></td>
+<td>Content language (<code>fr</code> or <code>en</code>).</td>
+</tr>
+<tr>
+<td><code>last_updated</code></td>
+<td>Date of last update (YYYY-MM).</td>
+</tr>
+<tr>
+<td><code>contributors</code></td>
+<td>List of contributors.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rules-for-agents">Rules for agents</h3>
+<ol>
+<li><strong>Do not resolve issues labeled <code>governance</code></strong> -- they require human decision.</li>
+<li><strong>Prioritize <code>sections/</code> files</strong> over <code>PLAYBOOK.md</code> for any content extraction.</li>
+<li><strong>Respect the language of the file.</strong> If <code>lang: fr</code>, respond in French. If <code>lang: en</code>, respond in English.</li>
+<li><strong>Template blocks are designed to be parsed and applied directly.</strong> Use them.</li>
+<li><strong>For bootstrapping a new installation</strong>, read chapters 1 through 5 in order. Chapters 3 and 4 contain the most directly actionable content.</li>
+<li><strong>To contribute</strong>, follow the rules in <code>CONTRIBUTING.md</code>. Label contributions clearly.</li>
+</ol>
+<hr />
+<h2 id="03-the-7-chapters-at-a-glance">0.3 -- The 7 chapters at a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>Title</th>
+<th>Central question</th>
+<th>Priority audience</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Reading guide</td>
+<td>How do I use this document?</td>
+<td>Everyone</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Definition</td>
+<td>What is OpenClaw, concretely?</td>
+<td>Beginners, decision makers</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Installation</td>
+<td>How do I go from zero to a running instance?</td>
+<td>Technicians, independent entrepreneurs</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Configuration</td>
+<td>How do I adapt the installation to my context?</td>
+<td>Technicians</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Customization</td>
+<td>How do I give it my voice, my rules, my memory?</td>
+<td>Entrepreneurs, operational staff</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Maintenance</td>
+<td>How do I keep the system performing over time?</td>
+<td>Operational staff, technicians</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Use cases</td>
+<td>What does this look like in practice?</td>
+<td>Everyone</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Localization</td>
+<td>How do I adapt to a linguistic or regulatory context?</td>
+<td>French-speaking teams, EU context</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommended path for a first-time reader:</strong> 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5. Chapters 6 and 7 can be read anytime.</p>
+<hr />
+<h2 id="04-conventions-used">0.4 -- Conventions used</h2>
+<p>This playbook uses four types of boxes. Learn to recognize them; they structure the entire reading.</p>
+<h3 id="principle">Principle</h3>
+<blockquote>
+<p><strong>Principle:</strong> A conceptual foundation or design rule. This is not an opinion -- it is an invariant on which the rest of the architecture rests.</p>
+</blockquote>
+<p>Principles are rare. When you encounter one, stop and make sure you understand it before continuing.</p>
+<h3 id="prompt">Prompt</h3>
+<blockquote>
+<p><strong>Prompt:</strong> A block of text to copy, adapt, and use in your configuration. It may be a system prompt, a memory rule, or an instruction for an agent.</p>
+</blockquote>
+<p>Prompts are always in code blocks. They are designed to be functional as-is, but you will need to adapt the parts in brackets <code>[...]</code> to your context.</p>
+<h3 id="common-mistake">Common mistake</h3>
+<blockquote>
+<p><strong>Common mistake:</strong> A pitfall identified in the field. Someone has fallen into it, probably several people. The description includes why it's tempting to make the mistake and what happens when you do.</p>
+</blockquote>
+<p>Don't skip the common mistakes. They will save you hours.</p>
+<h3 id="field-note">Field note</h3>
+<blockquote>
+<p><strong>Field note:</strong> Real-world feedback from an actual deployment. Not theory -- an observation. May confirm, nuance, or contradict what you just read.</p>
+</blockquote>
+<p>Field notes are where the added value of this playbook lies compared to standard technical documentation.</p>
+<hr />
+<p><em>To contribute to this chapter, see <a href="../CONTRIBUTING.md">CONTRIBUTING.md</a>.</em></p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: 0.1 -- If you are human, 0.2 -- If you are an AI agent, 0.3 -- The 7 chapters at a glance, 0.4 -- Conventions used. <a href="01-00-sommaire.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/00-reading-guide.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<span></span>
+<a href="01-00-sommaire.html">Chapter 1 -- Definition &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

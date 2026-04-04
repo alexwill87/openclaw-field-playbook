@@ -140,7 +140,7 @@
 <p>Le plus tangible. Comparez le temps avec et sans agent.</p>
 <h4 id="comment-mesurer">Comment mesurer</h4>
 <p>Pendant 2 semaines, tracez :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># Journal ROI — Semaine du [date]</span>
+<pre class="codehilite"><code class="language-markdown"># Journal ROI — Semaine du [date]
 
 | Tache | Sans agent (estime) | Avec agent (reel) | Gagne |
 |---|---|---|---|
@@ -151,28 +151,28 @@
 | Generer doc API | 2h | 30 min | 1h30 |
 | Rotation secrets | 20 min | 5 min | 15 min |
 
-<span class="gs">**Total semaine : ~3h30 gagnees**</span>
-</code></pre></div>
+**Total semaine : ~3h30 gagnees**
+</code></pre>
 
 <h4 id="calcul-financier">Calcul financier</h4>
-<div class="codehilite"><pre><span></span><code><span class="n">Temps</span><span class="w"> </span><span class="n">gagne</span><span class="o">/</span><span class="n">semaine</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">3.5</span><span class="w"> </span><span class="n">heures</span>
-<span class="n">Taux</span><span class="w"> </span><span class="n">horaire</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">votre</span><span class="w"> </span><span class="n">taux</span><span class="p">]</span><span class="w"> </span><span class="n">EUR</span><span class="o">/</span><span class="n">h</span>
+<pre class="codehilite"><code>Temps gagne/semaine : 3.5 heures
+Taux horaire : [votre taux] EUR/h
 
-<span class="n">Valeur</span><span class="w"> </span><span class="n">mensuelle</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">temps</span><span class="w"> </span><span class="n">gagne</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">3.5</span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">semaines</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">taux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">EUR</span>
-<span class="n">Cout</span><span class="w"> </span><span class="n">agent</span><span class="o">/</span><span class="n">mois</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">EUR</span><span class="w"> </span><span class="p">(</span><span class="n">API</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">infra</span><span class="p">)</span>
+Valeur mensuelle du temps gagne : 3.5h * 4 semaines * taux = X EUR
+Cout agent/mois : Y EUR (API + infra)
 
-<span class="n">ROI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span>
-</code></pre></div>
+ROI = (X - Y) / Y * 100
+</code></pre>
 
 <p>Exemple concret :</p>
-<div class="codehilite"><pre><span></span><code>Temps gagne : 14h/mois
+<pre class="codehilite"><code>Temps gagne : 14h/mois
 Taux : 80 EUR/h
 Valeur : 1120 EUR/mois
 
 Cout agent : ~50 EUR/mois (API ~30 EUR + VPS ~20 EUR)
 
 ROI : (1120 - 50) / 50 = 2140%
-</code></pre></div>
+</code></pre>
 
 <p>Meme avec des estimations conservatrices, le ROI est generalement massif. Le probleme n'est pas le ROI, c'est de le mesurer pour savoir ou optimiser.</p>
 <h3 id="2-decisions-ameliorees">2. Decisions ameliorees</h3>
@@ -184,65 +184,65 @@ ROI : (1120 - 50) / 50 = 2140%
 </ul>
 <h4 id="comment-mesurer_1">Comment mesurer</h4>
 <p>Tracez les decisions ou l'agent a apporte une valeur :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># Decisions assistees — [mois]</span>
+<pre class="codehilite"><code class="language-markdown"># Decisions assistees — [mois]
 
-<span class="k">1.</span> L&#39;agent a detecte que le certificat SSL expirait dans 15 jours.
-   Sans agent : j&#39;aurais probablement oublie. Impact potentiel : site down.
+1. L'agent a detecte que le certificat SSL expirait dans 15 jours.
+   Sans agent : j'aurais probablement oublie. Impact potentiel : site down.
 
-<span class="k">2.</span> L&#39;agent a suggere de condenser le system prompt (480 -&gt; 150 mots).
+2. L'agent a suggere de condenser le system prompt (480 -&gt; 150 mots).
    Resultat : cout tokens reduit de 40%.
 
-<span class="k">3.</span> L&#39;agent a identifie un pattern de deplacement de taches doc.
-   Resultat : j&#39;ai bloque 2h/jeudi pour la doc. Les taches doc ne trainent plus.
-</code></pre></div>
+3. L'agent a identifie un pattern de deplacement de taches doc.
+   Resultat : j'ai bloque 2h/jeudi pour la doc. Les taches doc ne trainent plus.
+</code></pre>
 
 <p>Pas besoin de chiffrer chaque decision. Le simple fait de les noter montre la valeur.</p>
 <h3 id="3-erreurs-evitees">3. Erreurs evitees</h3>
 <p>Chaque erreur evitee a un cout fantome : le temps de correction, l'impact sur les utilisateurs, le stress.</p>
 <h4 id="comment-mesurer_2">Comment mesurer</h4>
 <p>Tracez les situations ou l'agent a empeche une erreur :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># Erreurs evitees — [mois]</span>
+<pre class="codehilite"><code class="language-markdown"># Erreurs evitees — [mois]
 
-<span class="k">1.</span> J&#39;ai demande un push --force sur main. L&#39;agent a refuse (boundary prompt).
+1. J'ai demande un push --force sur main. L'agent a refuse (boundary prompt).
    Cout evite : potentiellement des heures de recovery + perte de commits.
 
-<span class="k">2.</span> Le health check a detecte un disque a 85% avant que ca cause une panne.
+2. Le health check a detecte un disque a 85% avant que ca cause une panne.
    Cout evite : downtime non planifie.
 
-<span class="k">3.</span> L&#39;agent a detecte une incoherence dans la config avant deploiement.
-   Cout evite : deploiement d&#39;une version buggee.
-</code></pre></div>
+3. L'agent a detecte une incoherence dans la config avant deploiement.
+   Cout evite : deploiement d'une version buggee.
+</code></pre>
 
 <h2 id="dashboard-mensuel">Dashboard mensuel</h2>
 <p>Chaque mois, compilez un resume :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># ROI Agent — [Mois YYYY]</span>
+<pre class="codehilite"><code class="language-markdown"># ROI Agent — [Mois YYYY]
 
-<span class="gu">## Temps</span>
-<span class="k">-</span><span class="w"> </span>Heures gagnees : XX h
-<span class="k">-</span><span class="w"> </span>Valeur : XX EUR
-<span class="k">-</span><span class="w"> </span>Top 3 taches automatisees :
-<span class="w">  </span><span class="k">1.</span> [tache] — [temps gagne]
-<span class="w">  </span><span class="k">2.</span> [tache] — [temps gagne]
-<span class="w">  </span><span class="k">3.</span> [tache] — [temps gagne]
+## Temps
+- Heures gagnees : XX h
+- Valeur : XX EUR
+- Top 3 taches automatisees :
+  1. [tache] — [temps gagne]
+  2. [tache] — [temps gagne]
+  3. [tache] — [temps gagne]
 
-<span class="gu">## Cout</span>
-<span class="k">-</span><span class="w"> </span>API : XX EUR
-<span class="k">-</span><span class="w"> </span>Infra : XX EUR
-<span class="k">-</span><span class="w"> </span>Total : XX EUR
+## Cout
+- API : XX EUR
+- Infra : XX EUR
+- Total : XX EUR
 
-<span class="gu">## ROI</span>
-<span class="k">-</span><span class="w"> </span>Net : XX EUR
-<span class="k">-</span><span class="w"> </span>Pourcentage : XX%
+## ROI
+- Net : XX EUR
+- Pourcentage : XX%
 
-<span class="gu">## Decisions</span>
-<span class="k">-</span><span class="w"> </span>X decisions assistees notables
+## Decisions
+- X decisions assistees notables
 
-<span class="gu">## Erreurs evitees</span>
-<span class="k">-</span><span class="w"> </span>X erreurs evitees
+## Erreurs evitees
+- X erreurs evitees
 
-<span class="gu">## Actions</span>
-<span class="k">-</span><span class="w"> </span>[Ce qu&#39;on peut ameliorer le mois prochain]
-</code></pre></div>
+## Actions
+- [Ce qu'on peut ameliorer le mois prochain]
+</code></pre>
 
 <h2 id="quand-le-roi-est-negatif">Quand le ROI est negatif</h2>
 <p>Ca arrive. Signes :</p>

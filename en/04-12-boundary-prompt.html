@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>4.12 -- The boundary prompt | OpenClaw Field Playbook</title>
+  <meta name="description" content="Open-source field guide to install, configure and operate OpenClaw in production. 96 sections, 7 chapters: VPS installation, AI agent configuration, customization, maintenance. By practitioners, for practitioners.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="4.12 -- The boundary prompt | OpenClaw Field Playbook">
+  <meta property="og:description" content="Open-source field guide to install and operate OpenClaw in production. 96 sections, 7 chapters.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/en/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="4.12 -- The boundary prompt | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Passer en français" data-lang="en">FR</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Home</a>
+<div class="nav-group-label">Introduction</div>
+<a href="decouverte.html">What is OpenClaw?</a>
+<a href="persona-entrepreneur.html">For Entrepreneurs</a>
+<a href="persona-cto.html">For Tech Teams</a>
+<a href="persona-dev.html">For Developers</a>
+<a href="persona-agent.html">For AI Agents</a>
+<div class="nav-group-label">Discover</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Reading Guide</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Definition</a>
+</div>
+<div class="nav-group-label">Deploy</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Customization</a>
+  <div class="nav-sections">
+    <a href="04-01-system-prompt.html">4.1 -- Writing your system prompt</a>
+    <a href="04-02-personnalite-ton.html">4.2 -- Personality and Tone</a>
+    <a href="04-03-iteration.html">4.3 -- Iteration: your first ver...</a>
+    <a href="04-04-pourquoi-taches.html">4.4 -- Why a task system</a>
+    <a href="04-05-comment-taches.html">4.5 -- How Tasks Get Done</a>
+    <a href="04-06-db-source-verite.html">4.6 -- Database as source of truth</a>
+    <a href="04-07-reconnaitre-routine.html">4.7 -- Recognizing a routine</a>
+    <a href="04-08-dry-run.html">4.8 -- Dry run before trust</a>
+    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">4.10 -- The Weekly Rhythm</a>
+    <a href="04-11-confiance-configuration.html">4.11 -- Trust is a configuration</a>
+    <a href="04-12-boundary-prompt.html" class="active">4.12 -- The boundary prompt</a>
+    <a href="04-13-audit-acces.html">4.13 -- Audit: what can your age...</a>
+    <a href="04-14-config-bilingue.html">4.14 -- Bilingual Configuration</a>
+  </div>
+</div>
+<div class="nav-group-label">Operate</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Use Cases</a>
+</div>
+<div class="nav-group-label">Resources</div>
+<a href="ecosystem.html">Ecosystem</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localization</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribute</a>
+<a href="privacy.html">Privacy</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="04-00-sommaire.html">4. Personnalisation</a>
+  <span class="sep">/</span>
+  <span>4.12 -- The boundary prompt</span>
+</nav>
+
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    What you will learn
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#why-its-necessary">Why it's necessary</a></li>
+    <li><a href="#structure-of-the-boundary-prompt">Structure of the boundary prompt</a></li>
+    <li><a href="#where-to-place-it">Where to place it</a></li>
+    <li class="toc-h3"><a href="#option-1-in-the-system-prompt">Option 1: in the system prompt</a></li>
+    <li class="toc-h3"><a href="#option-2-in-a-boundariesmd-file">Option 2: in a BOUNDARIES.md file</a></li>
+    <li><a href="#concrete-examples-by-domain">Concrete examples by domain</a></li>
+    <li class="toc-h3"><a href="#for-a-devops-engineer">For a DevOps engineer</a></li>
+    <li class="toc-h3"><a href="#for-a-consultant">For a consultant</a></li>
+    <li class="toc-h3"><a href="#for-a-developer">For a developer</a></li>
+    <li><a href="#after-an-incident">After an incident</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<p>status: complete
+audience: both
+chapter: 04
+last_updated: 2026-04
+contributors: [alexwill87, claude-cockpit]
+lang: en</p>
+<hr />
+<h1 id="412-the-boundary-prompt">4.12 -- The boundary prompt</h1>
+<h2 id="context">Context</h2>
+<p>The boundary prompt is the list of things your agent must NEVER do. Not "avoid", not "except if necessary" -- NEVER. It's the safety net. You write it once, you put it in the system prompt or in a dedicated file, and you don't touch it again except to add a rule after an incident.</p>
+<p>Steinberg compares it to a constitution: you don't rewrite it every week, but you can amend it.</p>
+<h2 id="why-its-necessary">Why it's necessary</h2>
+<p>LLM agents are cooperative by default. If you ask them to do something risky, the agent will try to help you. That's their strength and their danger.</p>
+<p>Without a boundary prompt:
+- "Show me the contents of .env" -&gt; the agent displays the secrets.
+- "Push --force on main" -&gt; the agent executes it.
+- "Delete old backups to make space" -&gt; the agent deletes them.</p>
+<p>With a boundary prompt:
+- "Show me the contents of .env" -&gt; "I cannot display files containing secrets. Use <code>vault kv get</code> to access secrets securely."</p>
+<h2 id="structure-of-the-boundary-prompt">Structure of the boundary prompt</h2>
+<pre class="codehilite"><code class="language-markdown"># BOUNDARIES — Forbidden actions
+
+You must NEVER, even if I ask you explicitly:
+
+## Security
+- Display passwords, tokens, or API keys in plain text.
+- Modify .env, .env.production, or any file containing secrets.
+- Disable the firewall or open ports.
+- Store secrets in unencrypted files.
+- Commit files containing credentials.
+
+## Git
+- Execute git push --force on main or master.
+- Execute git reset --hard without prior backup.
+- Modify git history on a shared branch.
+- Amend a commit that has already been pushed.
+
+## Infrastructure
+- Delete backups.
+- DROP TABLE or DELETE without WHERE in production.
+- Stop a service in production without a rollback procedure.
+- Modify DNS rules without validation.
+
+## Communication
+- Send a message to a client without validation.
+- Share internal information externally.
+- Reply on behalf of the user on a public channel.
+
+## If asked to violate these rules
+Refuse politely. Explain why it's forbidden.
+Propose a secure alternative if one exists.
+</code></pre>
+
+<h2 id="where-to-place-it">Where to place it</h2>
+<p>Two options:</p>
+<h3 id="option-1-in-the-system-prompt">Option 1: in the system prompt</h3>
+<p>Advantage: always read first. No risk of being forgotten.
+Disadvantage: consumes tokens with every request.</p>
+<h3 id="option-2-in-a-boundariesmd-file">Option 2: in a BOUNDARIES.md file</h3>
+<p>Advantage: the system prompt stays short. The file is versioned.
+Disadvantage: the agent needs to know it should read it. Add to the system prompt: "Read and respect BOUNDARIES.md before any action."</p>
+<p>Recommendation: the 3-5 most critical rules in the system prompt. The rest in BOUNDARIES.md.</p>
+<h2 id="concrete-examples-by-domain">Concrete examples by domain</h2>
+<h3 id="for-a-devops-engineer">For a DevOps engineer</h3>
+<pre class="codehilite"><code>NEVER:
+- rm -rf on / or /home or /opt without confirmation of the exact path
+- Modify iptables/ufw without a documented procedure
+- Restart PostgreSQL in production without checking active connections
+- Deploy on Friday after 4pm
+</code></pre>
+
+<h3 id="for-a-consultant">For a consultant</h3>
+<pre class="codehilite"><code>NEVER:
+- Send a client email without review
+- Share pricing or terms without validation
+- Write on behalf of the firm on social media
+- Promise a deadline without verification
+</code></pre>
+
+<h3 id="for-a-developer">For a developer</h3>
+<pre class="codehilite"><code>NEVER:
+- Merge on main without CI green
+- Modify a migration already applied in production
+- Hardcode credentials
+- Disable tests to make CI pass
+</code></pre>
+
+<h2 id="after-an-incident">After an incident</h2>
+<p>When the agent does something it shouldn't have:</p>
+<ol>
+<li>Fix the damage.</li>
+<li>Identify the missing rule.</li>
+<li>Add it to the boundary prompt.</li>
+<li>Test that the agent now refuses this action.</li>
+</ol>
+<p>The boundary prompt grows with experience. That's normal. Each rule added is an error that won't happen again.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<p><strong>No boundary prompt.</strong> "It's smart enough to know." No. The agent does what you ask. If you don't say no, it says yes.</p>
+<p><strong>Too vague.</strong> "Don't do anything dangerous." The agent doesn't know what you consider dangerous. Be specific: which command, which file, which action.</p>
+<p><strong>Too permissive.</strong> "Except if it's really necessary." That cancels the rule. NEVER means NEVER. If you need an exception, handle it yourself manually.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>List the 5 most dangerous actions your agent could do.</li>
+<li>Write them in BOUNDARIES.md.</li>
+<li>Add the 3 most critical ones to the system prompt.</li>
+<li>Test: ask the agent to do something forbidden. It must refuse.</li>
+<li>After each incident, add a rule.</li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] BOUNDARIES.md exists with at least 10 rules.</li>
+<li>[ ] The 3 most critical rules are in the system prompt.</li>
+<li>[ ] The agent refuses when asked to violate a rule (tested).</li>
+<li>[ ] The agent proposes an alternative when refusing.</li>
+<li>[ ] The boundary prompt is updated after each incident.</li>
+</ul>
+<hr />
+</section><div class="bravo-box">
+  <div class="bravo-header">Well done, you completed this section!</div>
+  <div class="bravo-body">You covered: Context, Why it's necessary, Structure of the boundary prompt, Where to place it and 5 more. <a href="04-13-audit-acces.html">Continue &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/12-boundary-prompt.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="04-11-confiance-configuration.html">&larr; 4.11 -- Trust is a configuration</a>
+<a href="04-13-audit-acces.html">4.13 -- Audit: what can your agent access? &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Published under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        by <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Source code</a>
+        &middot; <a href="contribuer.html">Contribute</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Report an issue</a>
+        &middot; <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

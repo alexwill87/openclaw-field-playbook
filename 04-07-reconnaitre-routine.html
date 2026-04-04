@@ -160,7 +160,7 @@
 <h2 id="comment-detecter-vos-routines">Comment detecter vos routines</h2>
 <h3 id="methode-1-le-journal-de-bord">Methode 1 : le journal de bord</h3>
 <p>Pendant une semaine, notez chaque action que vous faites avec votre agent. Format :</p>
-<div class="codehilite"><pre><span></span><code>Lundi :
+<pre class="codehilite"><code>Lundi :
 - Health check VPS (5 min)
 - Deploiement cockpit (10 min)
 - Reponse email client X (15 min)
@@ -170,14 +170,14 @@ Mardi :
 - Health check VPS (5 min)
 - Debug erreur API (30 min)
 - Mise a jour TASKS.md (3 min)
-</code></pre></div>
+</code></pre>
 
 <p>Apres une semaine, les repetitions sautent aux yeux. Health check et TASKS.md reviennent chaque jour = routines.</p>
 <h3 id="methode-2-demander-a-lagent">Methode 2 : demander a l'agent</h3>
-<div class="codehilite"><pre><span></span><code>Analyse mes 20 dernieres conversations avec toi.
+<pre class="codehilite"><code>Analyse mes 20 dernieres conversations avec toi.
 Quelles actions reviennent 3+ fois ?
 Pour chacune, dis-moi si elle suit un schema previsible.
-</code></pre></div>
+</code></pre>
 
 <p>L'agent voit des patterns que vous ne voyez pas parce que vous etes dedans.</p>
 <h2 id="la-zone-grise-routines-avec-jugement">La zone grise : routines avec jugement</h2>
@@ -188,12 +188,12 @@ Pour chacune, dis-moi si elle suit un schema previsible.
 <li><strong>Reporting</strong> : la collecte de donnees est automatisable, l'interpretation non.</li>
 </ul>
 <p>Pour celles-la, la bonne approche est de decouper : automatiser la partie mecanique, garder le jugement humain.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">Routine</span><span class="w"> </span><span class="ss">&quot;triage du matin&quot;</span><span class="w"> </span><span class="err">:</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">AGENT</span><span class="o">]</span><span class="w"> </span><span class="n">Lister</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="n">actives</span><span class="p">,</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">trier</span><span class="w"> </span><span class="n">par</span><span class="w"> </span><span class="n">deadline</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">AGENT</span><span class="o">]</span><span class="w"> </span><span class="n">Signaler</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">retards</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">blocages</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">HUMAIN</span><span class="o">]</span><span class="w"> </span><span class="n">Decider</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">priorites</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">jour</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">AGENT</span><span class="o">]</span><span class="w"> </span><span class="n">Mettre</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">statuts</span><span class="w"> </span><span class="n">selon</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">decision</span><span class="p">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Routine &quot;triage du matin&quot; :
+- [AGENT] Lister les taches actives, les trier par deadline.
+- [AGENT] Signaler les retards et les blocages.
+- [HUMAIN] Decider des priorites du jour.
+- [AGENT] Mettre a jour les statuts selon la decision.
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Tout automatiser.</strong> Parce que c'est possible ne veut pas dire que c'est souhaitable. Certaines routines vous gardent connecte a la realite de votre projet.</p>

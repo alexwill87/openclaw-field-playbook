@@ -1,0 +1,578 @@
+{
+  "00-reading-guide.md": {
+    "hash": "b2dcb552ef13182d5dbf52181508921ccf70b6914c3e180a9c3eaa93b6d0fa38",
+    "translated_hash": "0655fce8a24a7d20589d0b9c961f4e147569f3893bbdc6bba2c5587581dc37cc",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:49:29Z"
+  },
+  "04-personalisation/01-system-prompt.md": {
+    "hash": "44dcb7f4bd9a02ed530bcfcc41714e67da4c9b1086430799cc17e35c89177749",
+    "translated_hash": "6d58aef8bcd6c2ed05af594d4ea22a8b7673b30b296d3dc5a1bcb9180d3488eb",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:49:36Z"
+  },
+  "04-personalisation/02-personnalite-ton.md": {
+    "hash": "f41c1249e68cc60e726dd214101f877d8f906d82893d1341be670101c7141fba",
+    "translated_hash": "7e788b0d49febe7f792efb6cea0e091ce445c5f304a51c5835cd151df6b48c55",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:49:48Z"
+  },
+  "04-personalisation/03-iteration.md": {
+    "hash": "f2b0b33fd3607f325f333507136841ed19896b1ba6b1d02b2f1134c5ce8f5c59",
+    "translated_hash": "07321f8a369b76a57a9ca72d0416ce54c8faec532cf990dc92f03df15f4007a8",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:49:56Z"
+  },
+  "04-personalisation/04-pourquoi-taches.md": {
+    "hash": "abcf267c4d1b2ed0310f5d12235f8564bd16eaa23921b2300c147e9b6a61a661",
+    "translated_hash": "54790c9b3e12404e3a6d675d5674096a3dfb9b4ab6cda921c17652d8085c1db8",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:50:03Z"
+  },
+  "04-personalisation/05-comment-taches.md": {
+    "hash": "c5d3d983191789ef2919b677ec2d0e20424faf49427ec23377398b46512b7cf0",
+    "translated_hash": "b027aeb40a40eef5d459bef3b06332f98f71cf4ac5d65d24ae096f85e5e6cab5",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:50:11Z"
+  },
+  "04-personalisation/06-db-source-verite.md": {
+    "hash": "437e62ce36d0c5a98fcc5d00dd3c30389f1c9a1f4bcc571b58eef7b1d7707b1e",
+    "translated_hash": "fceba21aad873fe168e013a64be1dc1436157c147546732752db1cd96918e788",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:50:26Z"
+  },
+  "04-personalisation/07-reconnaitre-routine.md": {
+    "hash": "af7781dc4d37b6205d086b8588cd8ed3f706668b4ba70324f09d37c78961b282",
+    "translated_hash": "ec94b66d3e817badd68fbcd1a3e48b60f0fc2d5e2e040d56b2d4d79e0be5ae15",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:50:34Z"
+  },
+  "04-personalisation/08-dry-run.md": {
+    "hash": "76a12a1017ebf6f70ce52c0d750dfa000730979a0392f34521812a75b0ce7f68",
+    "translated_hash": "7421c4c25daccaddf04295ed83773cb2cc45a0025c5a4bc9709670dbc750cff9",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:50:42Z"
+  },
+  "04-personalisation/09-workflows-md.md": {
+    "hash": "287e3e29413c83fc37e1f8357eb11260418db6c85594891d4ced7d9af0fcb505",
+    "translated_hash": "a0be28364e9d494597780ce9374bb2810fff02a1a5765d895f073c9ef66b0498",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:50:53Z"
+  },
+  "04-personalisation/10-rythme-hebdo.md": {
+    "hash": "ce7c4cdd3e7730ac2cbdf0b4f654ba6e8b2ab777904b42e5eb86d7a1b9dc240a",
+    "translated_hash": "ce5a53e374235ebde5d320134df85e7484de0a9412f7feed8f074312849d8bc3",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:04Z"
+  },
+  "04-personalisation/11-confiance-configuration.md": {
+    "hash": "a1cfe65c7eeb720fb24cf6883212b12126a118a96b7647acbda42a71466f1e9c",
+    "translated_hash": "3f9bf3eae5690831ab0dcb4af3e7a606054da2663e0710a9725382423b71d550",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:13Z"
+  },
+  "04-personalisation/12-boundary-prompt.md": {
+    "hash": "33abaca74994caaa68cab7f9489160cb3293f62e1b38a945faaa7486f6a41e2d",
+    "translated_hash": "47dd9fe28b9a4867612687627e429a9f11c9f3dd48c638ce7c667dea482db1ae",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:23Z"
+  },
+  "04-personalisation/13-audit-acces.md": {
+    "hash": "e0aa4d915ff2781d01c143e29d99633176841a16f4513132151d47a1e6eea06d",
+    "translated_hash": "5dd376db036753f87814d32a0b5c2b8f5a06b1c0172c6d86fcf2d0e615fad3c9",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:33Z"
+  },
+  "04-personalisation/14-config-bilingue.md": {
+    "hash": "c12e879aaf9d04987317a07f1fc5947267e450ba72dd278d104c1e12bc038a22",
+    "translated_hash": "55f4189da7473f2860c361c4fc44ab46da717244fa75c4f22f3ff16007608742",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:42Z"
+  },
+  "04-personalisation/README.md": {
+    "hash": "8090c231ab1756700af8786b9f8fe423ac2ade94870e9ed9803f7ca1b568cd14",
+    "translated_hash": "be3a94b5b51c0acc024e1069a14b76f47c490e09bb77d43b4ec5c79b66d7637c",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:47Z"
+  },
+  "01-definition/01-definition.md": {
+    "hash": "790cd60383040178120c1e324f6292ca5182c6764add06461478e3130c3bdba0",
+    "translated_hash": "4c16f6ac77c8acc2e32191965146e1fee55d8bd4fdc4766da6683c4cc6212e78",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:50Z"
+  },
+  "01-definition/02-proactif-reactif.md": {
+    "hash": "b0079c433ba8d6415dc6551aab0a62c97f6c5c7bdead22dc8d92f30dce7f033e",
+    "translated_hash": "f2dc77c07deece539bc6a8de649b6fec4f677ff447349f3f9da99b91218af823",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:51:54Z"
+  },
+  "01-definition/03-comparaison.md": {
+    "hash": "659a039df0030f99c7bbd1b5ec2bbf25cf72fb0461cbd8c93533a4164b540ae5",
+    "translated_hash": "e096b66512c5ee337a34e9d2001fd4097eb31541e92ded638c1fd07ae7bb3bfc",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:01Z"
+  },
+  "01-definition/04-souverainete.md": {
+    "hash": "1ead1ef16b7fac41295e3a90cb538f9666525ef21d2561ba2806c5a425f88b5a",
+    "translated_hash": "c04f29fb88e3c91a9821631249075f89342b5743e3615a601db098fd35501ee9",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:06Z"
+  },
+  "01-definition/05-architecture-mentale.md": {
+    "hash": "5285cd16a26e25eeb586d91ab9a325fecc7e42166326f91ecc4ce8d13f9e32a2",
+    "translated_hash": "e7d0d591a034c9edb1be8b3d1c2abaf2e508deb362133f86c62ed3b4622a2889",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:12Z"
+  },
+  "01-definition/06-ce-que-vous-construisez.md": {
+    "hash": "9b4fd77c1067e97f3eba02d1588b2946f47509805b1ea152f70c79266eb6028f",
+    "translated_hash": "14c157b49084f332be20c742b294adfa015eb637a52b9a74b309d71d0246e78a",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:21Z"
+  },
+  "01-definition/07-journee-type.md": {
+    "hash": "b3361cffdfaa0709658dce505148866fe15959c8b1a3c048e771aa2d342e716d",
+    "translated_hash": "4e393d7f978d7d4bc10288bde05621b11ea1ab0326c9e0c7253cf2f2b21d5482",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:25Z"
+  },
+  "01-definition/08-combien-ca-coute.md": {
+    "hash": "066a20b595e0ede0f17c790361ed85dc25ce4cd3ef3263d747f078b16c708329",
+    "translated_hash": "641d4bd92f1222663da5d76e8bccd5742d259a963bf7b46fa885c3133b662e1d",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:29Z"
+  },
+  "01-definition/09-est-ce-complique.md": {
+    "hash": "135a6c18faf11990279461ca8e7637e849e4cb654140998178af7268b2ec5135",
+    "translated_hash": "0960d565863222648d1cd28f19bde1059fb51f90a1d9694250a4411479b7ee69",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:35Z"
+  },
+  "01-definition/10-si-je-ne-fais-rien.md": {
+    "hash": "71ed8fe29dd38c2d2cc23317ed417a4b680d54c74b1f9212a4ed2b148af65ee0",
+    "translated_hash": "dfb65b120ae2e889c631b03ac3f18719994d2e1080fe256ac235342868edeb9f",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:39Z"
+  },
+  "01-definition/11-comment-se-lancer.md": {
+    "hash": "04d44eed60c2af900a5d28000b82a9d27713fc4e0c5fbfb51d235c2f7b4d728d",
+    "translated_hash": "14e4dc1b1860e3a724a6ca57012a9d320ba61b2cd9bba1f6c3ad840594b62f8f",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:45Z"
+  },
+  "01-definition/README.md": {
+    "hash": "fa6eca4f540e20340473d6362f2ba4a545d76cad3467a2cf7f4eca2ba844e92f",
+    "translated_hash": "626aeae3753f6c5322334af2247a2b8e4b179893ba97ea75c89c9339c5e1ab87",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:49Z"
+  },
+  "03-configuration/01-perimetre-agent.md": {
+    "hash": "6ff7d910c7a3d778328b56e2adf9d92ac7ad66585a6e9d9b06bebbbdfb883a23",
+    "translated_hash": "1175631bff37bc2815e5d1644c76eaa28e43a49df8e7aa2212f50c2ba9640f53",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:52:58Z"
+  },
+  "03-configuration/02-soul-md.md": {
+    "hash": "7f4de57ff141805eca98dfb301598724fad8dd21015228c9a08ab53debf3c10a",
+    "translated_hash": "aa76823fa630b6e3da17ea2851e66981f6ba55b7b6d3d1e35dc067060a77e5fd",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:53:10Z"
+  },
+  "03-configuration/03-user-md.md": {
+    "hash": "02f0928bde650de2eb031fa4873b4c4b382845467d589f31db6d9a83d1bfa1d2",
+    "translated_hash": "d8c1b479131a1e921d621dc6b4f7d4c7271bd8737f232be683cd74dad185bfd0",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:53:25Z"
+  },
+  "03-configuration/04-agents-md.md": {
+    "hash": "361d1a07531ef85b044e608b05fd974b3a043ecc13c27b481afd34215f91deb0",
+    "translated_hash": "03a9fa5534c9e6bc4cd7e00637805485eb6ee62fe14152d7a414772c8c7a78f2",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:53:33Z"
+  },
+  "03-configuration/05-constitution-md.md": {
+    "hash": "551294f9dbe120d628e7c99652157745d140045390ba82b3cbb2b745a216717d",
+    "translated_hash": "6c252090157210fc24696730246ca4c4277afe6b8d70396525a0f95c5f1a5b3f",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:53:47Z"
+  },
+  "03-configuration/06-trois-zones-memoire.md": {
+    "hash": "dcec8b83f2637d7256019af7309f3bd8156f5d000bb907a0ffa56960e9a33c8d",
+    "translated_hash": "3a7b03049a3897b40ced6fcc472346cf31eea3742ec051f5d83df56407f75a5b",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:54:00Z"
+  },
+  "03-configuration/07-memory-md.md": {
+    "hash": "12288438e3f88f2fd8132145e015d16a993ef3536e80815e137ef69dca0ff3ee",
+    "translated_hash": "1a8cc59b75c32c7ec96100ca72b79e80d81f2af3c85ddd2e4980e3f6ce3cf3bd",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:54:09Z"
+  },
+  "03-configuration/08-knowledge.md": {
+    "hash": "9143bb6c4c1a7940d9afe445a15b0482ee48a231f587a091ad47f38be94c35b9",
+    "translated_hash": "7bf00254f7d81b1a747352d2779d0e5c96b082bab7822dbbd570095ee5374d4a",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:54:20Z"
+  },
+  "03-configuration/09-principe-une-source.md": {
+    "hash": "c789123e583099b0e04d0cceea4c0d428574c0128c327dcf587a10818c2302d4",
+    "translated_hash": "a41b5020401a6c6c1a5999e6b979b32ad552aa2a89880eaae3857ca7078b51fc",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:54:29Z"
+  },
+  "03-configuration/10-calendrier.md": {
+    "hash": "ec1633d4049a132f526c058547cd615c2f62a57fa7c8c27da139bf50c30eaccc",
+    "translated_hash": "fb5f0ad7be22ea7b78c8d556756576173ff245f36d12d2ea83be341df289d82a",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:54:40Z"
+  },
+  "03-configuration/11-taches.md": {
+    "hash": "93797314b9850879ec93d874afcd88559c142d948127fc131985de9a94adf1de",
+    "translated_hash": "f995a2f19e8360b460519dde1e4690d545c9b41b7e352923283051b17ae075ab",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:54:48Z"
+  },
+  "03-configuration/12-email-messages.md": {
+    "hash": "1374ad201efe4badf9ffd5ccf210b43242c8c42076ee1abe21f74b6aee9ce811",
+    "translated_hash": "390ddfed0f79e4d4caf261cf8f2a270aed56bf6d1ed29db4dc20cec5dcc933b6",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:55:00Z"
+  },
+  "03-configuration/13-skill-custom.md": {
+    "hash": "df4cc045ae3b63d90f4319779b1a65ae09b5c10d9a928a47074bf33f1f8d09be",
+    "translated_hash": "ad4accb46061b0c8581f0a27705a5af9eadc1165a78249eef142698c3e40884e",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:55:17Z"
+  },
+  "03-configuration/14-souverainete-donnees.md": {
+    "hash": "92c9f2776f79b5498a42d4f37880c2635589c1f3d17ffa64a178f99052a96abd",
+    "translated_hash": "870546db8c18fc88d73b3aaab600116b0d010c3f5c57055d5144bb5274f706e5",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:55:28Z"
+  },
+  "03-configuration/15-crons.md": {
+    "hash": "1e8d079f8495e470a5c550f0a2a4dbc5fa47a9e28a65f778e0655b68b6791d34",
+    "translated_hash": "1dbd9c79a367d7d96d6ab28de18a29f9d4cf10f5da4d1bde7e61c9fea416bee6",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:55:40Z"
+  },
+  "03-configuration/16-briefing-matin.md": {
+    "hash": "779691228994c517eb11e0db2e920524aeca3424b4a8f0d8b873d0d406ea4aff",
+    "translated_hash": "10470154584aa102e28a0cbd1986116bec75d7cf4385d37e3ab308bf38c8e135",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:05Z"
+  },
+  "03-configuration/17-multi-agents.md": {
+    "hash": "be56e7b5ddc518e8afdeafcfb70be9dba00e004a8f3b4802602d31dbc9a0e48b",
+    "translated_hash": "9087cea1310f724c798f64684b083e9154f1c71c242472adcb8d0639e0816463",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:19Z"
+  },
+  "03-configuration/18-remote-mode.md": {
+    "hash": "25d63b36bcfe84c239247c5ac89a32b4075e6d560f7c6ade6af969d9bb8006b1",
+    "translated_hash": "e426d92c358d24fc2f36d25ec29d43fd8e5e677c5eb79642ba0d45a3178463af",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:35Z"
+  },
+  "03-configuration/README.md": {
+    "hash": "e5a32773cdbd8c1179ce57550fb9884df34f1210e06e32969ed7661ac7e73492",
+    "translated_hash": "118994074102e3e3b73d92980d9cb3aee95bcf1ac894ac68904aac36ab250539",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:42Z"
+  },
+  "07-localisation/README.md": {
+    "hash": "3eacaaebfd82673ac293264388133da0e3ae890c4cc63a86e58e50e2f06d039f",
+    "translated_hash": "83bd461f62e9bd6554863ae09f2d3b26c6271d341de513ba8516bbcfd6135109",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:44Z"
+  },
+  "07-localisation/en-US.md": {
+    "hash": "ccf2b2cbe9908186a32d7cda3e32b2b0ca661cf28a043fa7017e0e9dafba5f33",
+    "translated_hash": "09d0cbf9c8db813e214f25ec62a4f012ef140f8ab3186571e2651b2073790609",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:46Z"
+  },
+  "07-localisation/fr-FR.md": {
+    "hash": "fa535e9189d365fba734cd8c716a8da6f4cd63ceca52c0b218fd04d61afd9221",
+    "translated_hash": "454f6dea309e3b5bec49dda1110d630d0a359b9824f1772e92c78c3b028814bc",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:56:53Z"
+  },
+  "02-installation/00-preflight.md": {
+    "hash": "7093328987595b1b4326214a62d04015bd0de6818f506670bbab09b0c6e279bc",
+    "translated_hash": "8c7f47f51cbe96008561bc39416d6460327214c56a56d47fbc8dec465e41c811",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:05Z"
+  },
+  "02-installation/01-prerequis.md": {
+    "hash": "d3b6495cc2ffb6bacd0b3cb038bdb14518cc1a17e787faf3730731845783cbea",
+    "translated_hash": "3a8aac227169b452200a46a5b77ba62576d5be0b781abdd293fc898eeeebd1db",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:12Z"
+  },
+  "02-installation/02-securiser-vps.md": {
+    "hash": "7514f4bd347c4f8ceb575f24c0fbf89714834e661ed57e012fcf7b571bb231fc",
+    "translated_hash": "0f58e5d0d8822cce0ae37b1b3fffa08914527abe064db8c30a58db4ba68af06d",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:20Z"
+  },
+  "02-installation/03-tailscale.md": {
+    "hash": "6f0d99764f635d1447113f5d4add838ff64674b60c32d6ddf054ea639a60b2cd",
+    "translated_hash": "53e70cda31381c0c9d6f34254ba87d2811eac01095d5b6cd7ae1cf216328277c",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:27Z"
+  },
+  "02-installation/04-docker.md": {
+    "hash": "b3496b77f4f349baa394a6b6c4e173c0209bd35267158b28bd489ddfc3376051",
+    "translated_hash": "95e294f10f186edd8c0fce80e8c635eb1135aabd34da39cf17193f3b8d16b937",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:31Z"
+  },
+  "02-installation/05-nodejs-pm2.md": {
+    "hash": "052c0b9c21c1800d5c671d7d7039723752dab68722b14d151b5a453eaa8ce792",
+    "translated_hash": "f7927a71bd1d304ad3babe3c79824f1dfa4e585e5e197b3670c20adff412f567",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:35Z"
+  },
+  "02-installation/06-structure-dossiers.md": {
+    "hash": "31f73c480a0b2703033a0032dc0119076fb62df4060307a8a65b233cef58fec8",
+    "translated_hash": "d00f56eb0dd6e76c2548bfcb0d732f66d3a97ab7d99b6b29a418d597dd0d00ac",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:57:38Z"
+  },
+  "02-installation/07-vault.md": {
+    "hash": "d4f1e966d6661fbc35af38eeefae981cfcd1def07cb451dc2cb0669b29135586",
+    "translated_hash": "cb23c2ec2ddc23e14874a9883dd637f9e552c36da4e4a721e50c6483f2a4d123",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:02Z"
+  },
+  "02-installation/08-postgresql.md": {
+    "hash": "a3b42c7955d5b5d4b00c01de66911463228c510e7f0b0ddccc352449c818be55",
+    "translated_hash": "a119a22aa7e144cca1b79c6b0e8716babe805683cc7fa57bcdd315ae74cf1515",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:09Z"
+  },
+  "02-installation/09-health-check.md": {
+    "hash": "44f5b589e4080964cc894e305c5f48f980482e466fc8c4fbcfd786e8678b9b65",
+    "translated_hash": "a2385c2ebd0f853a5e2e2666c63276f782cf3b9a004a038c4a2fff1e5dfa39f4",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:19Z"
+  },
+  "02-installation/10-openclaw-install.md": {
+    "hash": "e8374424ec7a840ac60ee4af7340e1151bee68b4d4ae3fab46b70555d6ac3d26",
+    "translated_hash": "75dc99ec351bea30fff9379dbbe61e2f7b671875d321daa2c0bdbbf250831cf8",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:22Z"
+  },
+  "02-installation/11-workspace.md": {
+    "hash": "e1714f094d95bf7381252abed65d2ac6376b4a555827f4d1a751f81ca9037dbc",
+    "translated_hash": "2bca46d0197705c5391a1ecb0dac1b90528b39f8a4e2bd460598b3534fe432ca",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:29Z"
+  },
+  "02-installation/12-config-openclaw.md": {
+    "hash": "1ad69a4cfbe72366188e760b59011620dd0e5da43b7416e4e33957bbc926a19a",
+    "translated_hash": "917da6e5f0fe8f240a20e4f6364dea28664a172699ea251205c456c6b54b0ca1",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:45Z"
+  },
+  "02-installation/13-openrouter.md": {
+    "hash": "a69c7ff924db1b37f9ee423168fc8e8f7ae12d3809bf282becf240aadac1cebe",
+    "translated_hash": "15b0e66e8e239a64680ef0b96d5d210836d992e8ee81e9f2ba7ac69d4b7fc038",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:58:52Z"
+  },
+  "02-installation/14-telegram.md": {
+    "hash": "5d1316d1108a5795a1bffe2f9757762115828a292685d4a8e925fb0b9fce083c",
+    "translated_hash": "42e5bedf552455e7e938f0ba0d2c89980c339f6b8b0a0242bad62998e92083fe",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:00Z"
+  },
+  "02-installation/15-gateway-systemd.md": {
+    "hash": "aa219496d674456894f48150ded9eb9a0f2f0fb4329034fbe78ac494d006e511",
+    "translated_hash": "0aecb4a96cfbc5a62c056768eec29a43eedf7cc5b34179b2f506fd2559ef210b",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:16Z"
+  },
+  "02-installation/16-verification-complete.md": {
+    "hash": "8d3d9315a9951548569b1424f7bdf06983812a89e477191aa9d87570436d1460",
+    "translated_hash": "339cdb72a1c9f5af2680dacbecd11623356b10a58aa83f7e3616ac9a5485da84",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:25Z"
+  },
+  "02-installation/17-git-init.md": {
+    "hash": "c29d013fd5f9ffb7d9b1eaa68c17c8d638c7c51de9eecb113820e9ed4462b9cf",
+    "translated_hash": "374273b1475218a9f3ac3011b8c97e98a54aec468c9dcbd18be765da2cf10a22",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:31Z"
+  },
+  "02-installation/18-claude-md.md": {
+    "hash": "574c7e9ca74f05e1936b76ee3bddf73405e6b3466cc13db0ad7f0ee5c0b00fd2",
+    "translated_hash": "26f4e3aa5cc00625957f742b2365c202d437e48d7b148aaa8a70de28286c2068",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:40Z"
+  },
+  "02-installation/19-script-deploy.md": {
+    "hash": "bb4e0df196ef0c6d2a4e62011a417e32f6a423c1eff59890d801e7307fabf312",
+    "translated_hash": "183c10b5d6976579f1087f1144326d595eea0e15cf70948ede6523d4c99035ad",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:52Z"
+  },
+  "02-installation/20-adapter-existant.md": {
+    "hash": "cb65e1edbcfe542307fadec7a56cd4068158e8648a8d97133c87c04a37bb586f",
+    "translated_hash": "a22553ced7cf73250b10d97ed6c504783454a4f26883f5e9de8a30b05e5faef8",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T02:59:59Z"
+  },
+  "02-installation/README.md": {
+    "hash": "668e0ddb51d3a327cd3df44931f1acc74949c197442301d7a77ed4533f0ce742",
+    "translated_hash": "293ab0d91423f2c9eed49a8040279979d44e44f4d5811fd4e732e00e5d100b15",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:00:09Z"
+  },
+  "06-use-cases/01-agence-digitale.md": {
+    "hash": "67abffeb7cd915b17728192d0a211bdc0fdfca6e840ea2e89590142b58feab0f",
+    "translated_hash": "c7b213d1ac3a44a94fba83f633b6ed3719e46f68c2cfc48255d40dc49e8b0790",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:00:31Z"
+  },
+  "06-use-cases/02-consultant-freelance.md": {
+    "hash": "6f702b523e220bf6d3fc9ddfdc2ad3c86104dc8e887f86024259d8435e388174",
+    "translated_hash": "bc3b240eb04f82db0b64e5cdc8453964015500c19d6d41d260880802a7454b95",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:00:46Z"
+  },
+  "06-use-cases/03-ecommerce.md": {
+    "hash": "ed7fa0701088aa015402449af0075abdabdac437e8bd6b937ad0b10716af2293",
+    "translated_hash": "7caff5cb36bd734c8f506e19c0e8514a1ec68c99bb05c8af76fb28442f2fe56f",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:01:03Z"
+  },
+  "06-use-cases/04-equipe-technique.md": {
+    "hash": "1b661a8b6c20e1ce9e66ceec9dec3b1a10405ee304aef82a5aba46761fd9ea10",
+    "translated_hash": "d525e23be5ddfe7baf0037e16d0105359db67136f27b3f1104e60b7af873100f",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:01:20Z"
+  },
+  "06-use-cases/05-cabinet-comptable.md": {
+    "hash": "7df75252434a4ec6894720f141c31698f84c02b02865e57cbc3d57caac2a82e0",
+    "translated_hash": "cfa486f62afb56bd6a218ce3881aecee0d8edf7deadf2b43afeb164fbad09522",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:01:42Z"
+  },
+  "06-use-cases/06-startup.md": {
+    "hash": "865758dfec2c4fefdedb622c08ec8d135a4909849a83d240edf2a727c3e5054c",
+    "translated_hash": "129db8b7ccc42970ba7f0b594b84013046f966de14cd8d3c6501f7798dff6f89",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:02:02Z"
+  },
+  "06-use-cases/07-contribuer.md": {
+    "hash": "1362b44fd34a7899cda131df429a6275ffd3bb8a1d362a60e301bafb3b18fd96",
+    "translated_hash": "877f8ccb5efc297c392fe55d9ee8e91f2eae80ec32c56fb2e93a2da41103efb7",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:02:14Z"
+  },
+  "06-use-cases/08-artisan-tpe.md": {
+    "hash": "eb4ce3428caaec8f071cd1f20a91879ef854f20bb275d1cab98741310519d2c1",
+    "translated_hash": "b03a3793143f261ba15438c45cb2f898537fdb628d35fb39132ffda12dc0a3b9",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:02:27Z"
+  },
+  "06-use-cases/README.md": {
+    "hash": "f7d75d1e2f05186893aecaab80369b7f862c4085f99487dfbb0f67a41b62d0d1",
+    "translated_hash": "87958e95a386d1c5f297ef97e700dfe92f211411f8d39d068ec3d012e653d0ae",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:02:30Z"
+  },
+  "05-maintenance/01-health-check.md": {
+    "hash": "386f770c93301077e96a0637ec1a6d5b873a85bea489a942e098e65954186bc6",
+    "translated_hash": "fd2656801de50ce63db80adeb4c9ab484dc040756c41e83e2a0152913e10d579",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:02:44Z"
+  },
+  "05-maintenance/02-logs.md": {
+    "hash": "4d76280d5715a79c2cacb016e36770c4baded892bbaa54a6f60dcd07b4672f2a",
+    "translated_hash": "deade697a146606d24eb793a737f75b39c0baa959abfbe2b6ebf880fb9482ae8",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:02:56Z"
+  },
+  "05-maintenance/03-backups.md": {
+    "hash": "4d5751d6560dc4b67dfbc498e6356c0731d50cb136d77a4f310368920fb7c736",
+    "translated_hash": "a9bacaaa778f750b05ff4da894aa6c1e2ccf29b4351e64a5d4ba62c4f21e8fbb",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:03:10Z"
+  },
+  "05-maintenance/04-revoir-system-prompt.md": {
+    "hash": "d076deac0ae3a687bada5e0c588836380013a7dae2fc6dda074710cf54a6915b",
+    "translated_hash": "637c42b3b80bd69168cbdc16d51007641baed0cb3782bf67ac3b9b5a31256d04",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:03:18Z"
+  },
+  "05-maintenance/05-derive-memoire.md": {
+    "hash": "6e3d786ab447efea21e130878a3d0c5783d24f2709b1c0de79099b2719702958",
+    "translated_hash": "52e9f2aa7f62a7aeb060297151688590717d772772ac9962b8817c02174e2324",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:03:28Z"
+  },
+  "05-maintenance/06-agent-se-trompe.md": {
+    "hash": "e0dc5d82c777ceedc17ffcf8a714452ccc52ca4df4875f7404ef56f67bc8883e",
+    "translated_hash": "b409b2ae9945a04b4fb8400deefc5f728231c2d7f0698006603043de89199edf",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:03:38Z"
+  },
+  "05-maintenance/07-maj-integrations.md": {
+    "hash": "b9252ff9aef498de43a804799fb0713d1eeafb2d935ae376cdfca9fb3c9c25d0",
+    "translated_hash": "9755f9efd1666971b2087d03d6ad0bcb6bcfe2d721bd279af658576ec9ec8349",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:03:47Z"
+  },
+  "05-maintenance/08-maj-systeme.md": {
+    "hash": "89a1a8d2b51a2141dc8e09b13e1d407df323c8ea7767cdc46cc403859fde772a",
+    "translated_hash": "1ba47eedf00df03f53a8648426f40dd250487b0af9759f70150993d045fd6bfd",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:03:57Z"
+  },
+  "05-maintenance/09-rotation-secrets.md": {
+    "hash": "b57dc7fef32c26be3592cc268620fc68f28d5c3bb51cc1af6b3e8fb76b932011",
+    "translated_hash": "68757c798d066698a80125a058f553596035ee615bce6fd389e04df3ae7bc6b1",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:04:09Z"
+  },
+  "05-maintenance/10-monitoring.md": {
+    "hash": "378bb1e862c79e8ccdc980a4daf473739cdaba38a5a006b8e743e661fb2b14f0",
+    "translated_hash": "d2d6b26c33bdc81226ad2e2397c9ea167950dc1a82d8a73d62ca254627b0ecc4",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:04:21Z"
+  },
+  "05-maintenance/11-en-cas-de-panne.md": {
+    "hash": "546a2d28505bfa9e2b8f7296831fd246bf97e76abcfc500ee82555d2cc1c70ee",
+    "translated_hash": "acdfa724c35fb84fc5baa74b9e808ffb342078941474efe4b12caa4fab145e79",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:04:33Z"
+  },
+  "05-maintenance/12-deuxieme-agent.md": {
+    "hash": "c044334e1f471d57846cede6bb4c7f5d268547419c79adf52ee9e8110d4c82ce",
+    "translated_hash": "25a257f2a6f6539d0dc80538e9d17f9986fe81a91db6a88d968705778a308266",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:04:44Z"
+  },
+  "05-maintenance/13-migrer-modele.md": {
+    "hash": "3f88184d9dd251ef5254f1955f26eae860d1af35d2405f4d23d53063b846a14a",
+    "translated_hash": "7541c5cb4cc1469e0a69de4e55ba3a9052a68931def5293ad2423828fc3a587a",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:04:54Z"
+  },
+  "05-maintenance/14-mesurer-roi.md": {
+    "hash": "4178f878c18a2604a831c2ed2a1e694699b743febe5af097aa753b09a1d65efd",
+    "translated_hash": "7d24791fe7aa3b5644cbf59ea29b03cef95ed1d2548719fda07b6426353f951d",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:05:08Z"
+  },
+  "05-maintenance/README.md": {
+    "hash": "014d300cca79079800d89fa273d2c185faf293367dae1a60a1b0916e3ff96bfa",
+    "translated_hash": "f8eaa5532875b7ccb91fd9990196f343a2146a199ad455bc8bd4ec8512760d6d",
+    "model": "claude-haiku-4-5-20251001",
+    "timestamp": "2026-04-04T03:05:12Z"
+  }
+}

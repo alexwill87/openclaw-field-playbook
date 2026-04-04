@@ -161,39 +161,39 @@
 </ul>
 <h3 id="mise-en-place">Mise en place</h3>
 <p>Voir section 5.1. Resume :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Cron toutes les 4 heures</span>
-<span class="m">0</span><span class="w"> </span>*/4<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/scripts/health-check.sh<span class="w"> </span>--quiet
+<pre class="codehilite"><code class="language-bash"># Cron toutes les 4 heures
+0 */4 * * * /opt/scripts/health-check.sh --quiet
 
-<span class="c1"># Alerte Telegram si KO</span>
-</code></pre></div>
+# Alerte Telegram si KO
+</code></pre>
 
 <p>Temps de mise en place : 30 minutes.
 Cout : 0 EUR.</p>
 <h2 id="niveau-2-intermediaire-uptime-kuma">Niveau 2 : intermediaire (Uptime Kuma)</h2>
 <p>Uptime Kuma est un outil de monitoring self-hosted. Interface web, historique, notifications multiples.</p>
 <h3 id="installation">Installation</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Via Docker (la methode recommandee)</span>
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="w"> </span>uptime-kuma<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-p<span class="w"> </span><span class="m">3001</span>:3001<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span>uptime-kuma-data:/app/data<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>louislam/uptime-kuma:1
+<pre class="codehilite"><code class="language-bash"># Via Docker (la methode recommandee)
+docker run -d \
+  --name uptime-kuma \
+  --restart unless-stopped \
+  -p 3001:3001 \
+  -v uptime-kuma-data:/app/data \
+  louislam/uptime-kuma:1
 
-<span class="c1"># Ou dans docker-compose.yml</span>
+# Ou dans docker-compose.yml
 services:
-<span class="w">  </span>uptime-kuma:
-<span class="w">    </span>image:<span class="w"> </span>louislam/uptime-kuma:1
-<span class="w">    </span>container_name:<span class="w"> </span>uptime-kuma
-<span class="w">    </span>restart:<span class="w"> </span>unless-stopped
-<span class="w">    </span>ports:
-<span class="w">      </span>-<span class="w"> </span><span class="s2">&quot;3001:3001&quot;</span>
-<span class="w">    </span>volumes:
-<span class="w">      </span>-<span class="w"> </span>uptime-kuma-data:/app/data
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: unless-stopped
+    ports:
+      - &quot;3001:3001&quot;
+    volumes:
+      - uptime-kuma-data:/app/data
 
 volumes:
-<span class="w">  </span>uptime-kuma-data:
-</code></pre></div>
+  uptime-kuma-data:
+</code></pre>
 
 <h3 id="configuration">Configuration</h3>
 <ol>
@@ -248,44 +248,44 @@ Cout : 0 EUR (self-hosted).</p>
 <h2 id="niveau-3-avance-grafana-prometheus">Niveau 3 : avance (Grafana + Prometheus)</h2>
 <p>Pour ceux qui ont besoin de metriques detaillees, de dashboards personnalises, et de monitoring distribue.</p>
 <h3 id="stack">Stack</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Prometheus</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">collecte</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">metriques</span><span class="w"> </span><span class="o">(</span><span class="n">CPU</span><span class="o">,</span><span class="w"> </span><span class="n">RAM</span><span class="o">,</span><span class="w"> </span><span class="n">disque</span><span class="o">,</span><span class="w"> </span><span class="n">requetes</span><span class="o">).</span>
-<span class="n">Node</span><span class="w"> </span><span class="n">Exporter</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">expose</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">metriques</span><span class="w"> </span><span class="n">systeme</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">Prometheus</span><span class="o">.</span>
-<span class="n">Grafana</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">affiche</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">dashboards</span><span class="o">.</span>
-<span class="n">AlertManager</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">gere</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">alertes</span><span class="o">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Prometheus : collecte les metriques (CPU, RAM, disque, requetes).
+Node Exporter : expose les metriques systeme pour Prometheus.
+Grafana : affiche les dashboards.
+AlertManager : gere les alertes.
+</code></pre>
 
 <h3 id="installation-docker-compose">Installation (Docker Compose)</h3>
-<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">prometheus</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prom/prometheus</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prometheus-data:/prometheus</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9090:9090&quot;</span>
+<pre class="codehilite"><code class="language-yaml">services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - &quot;9090:9090&quot;
 
-<span class="w">  </span><span class="nt">node-exporter</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prom/node-exporter</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9100:9100&quot;</span>
-<span class="w">    </span><span class="nt">pid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/proc:/host/proc:ro</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/sys:/host/sys:ro</span>
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - &quot;9100:9100&quot;
+    pid: host
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
 
-<span class="w">  </span><span class="nt">grafana</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana/grafana</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3002:3000&quot;</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana-data:/var/lib/grafana</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GF_SECURITY_ADMIN_PASSWORD=changeme</span>
+  grafana:
+    image: grafana/grafana
+    ports:
+      - &quot;3002:3000&quot;
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=changeme
 
-<span class="nt">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">prometheus-data</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">grafana-data</span><span class="p">:</span>
-</code></pre></div>
+volumes:
+  prometheus-data:
+  grafana-data:
+</code></pre>
 
 <h3 id="quand-cest-justifie">Quand c'est justifie</h3>
 <ul>
