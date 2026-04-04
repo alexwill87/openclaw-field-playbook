@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -63,6 +64,11 @@
     <a href="01-04-souverainete.html">1.4 -- Pourquoi la souverainete...</a>
     <a href="01-05-architecture-mentale.html" class="active">1.5 -- L'architecture mentale av...</a>
     <a href="01-06-ce-que-vous-construisez.html">1.6 -- Ce que vous allez constru...</a>
+    <a href="01-07-journee-type.html">1.7 -- A quoi ressemble une jour...</a>
+    <a href="01-08-combien-ca-coute.html">1.8 -- Combien ca coute vraiment ?</a>
+    <a href="01-09-est-ce-complique.html">1.9 -- Est-ce que c'est compliqu...</a>
+    <a href="01-10-si-je-ne-fais-rien.html">1.10 -- Qu'est-ce qui se passe s...</a>
+    <a href="01-11-comment-se-lancer.html">1.11 -- Comment je me lance ?</a>
   </div>
 </div>
 <div class="nav-group-label">Déployer</div>
@@ -111,20 +117,20 @@
 <p>Avant de lancer le moindre <code>docker compose up</code>, vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir.</p>
 <h3 id="les-3-couches">Les 3 couches</h3>
 <p>Toute installation OpenClaw s'organise en trois couches superposees :</p>
-<pre class="codehilite"><code>+------------------------------------------+
-|            3. ACTION                      |
-|  Ce que vos agents font concretement     |
-|  (envoyer, creer, modifier, alerter)     |
-+------------------------------------------+
-|            2. VISIBILITE                  |
-|  Ce que vos agents savent                |
-|  (memoire, contexte, outils, donnees)    |
-+------------------------------------------+
-|            1. IDENTITE                    |
-|  Qui sont vos agents                     |
-|  (roles, regles, limites, personnalite)  |
-+------------------------------------------+
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nb">+------------------------------------------+</span>
+<span class="c">|            3</span><span class="nt">.</span><span class="c"> ACTION                      |</span>
+<span class="c">|  Ce que vos agents font concretement     |</span>
+<span class="c">|  (envoyer</span><span class="nt">,</span><span class="c"> creer</span><span class="nt">,</span><span class="c"> modifier</span><span class="nt">,</span><span class="c"> alerter)     |</span>
+<span class="nb">+------------------------------------------+</span>
+<span class="c">|            2</span><span class="nt">.</span><span class="c"> VISIBILITE                  |</span>
+<span class="c">|  Ce que vos agents savent                |</span>
+<span class="c">|  (memoire</span><span class="nt">,</span><span class="c"> contexte</span><span class="nt">,</span><span class="c"> outils</span><span class="nt">,</span><span class="c"> donnees)    |</span>
+<span class="nb">+------------------------------------------+</span>
+<span class="c">|            1</span><span class="nt">.</span><span class="c"> IDENTITE                    |</span>
+<span class="c">|  Qui sont vos agents                     |</span>
+<span class="c">|  (roles</span><span class="nt">,</span><span class="c"> regles</span><span class="nt">,</span><span class="c"> limites</span><span class="nt">,</span><span class="c"> personnalite)  |</span>
+<span class="nb">+------------------------------------------+</span>
+</code></pre></div>
 
 <p><strong>Couche 1 -- Identite.</strong> C'est le socle. Avant de donner des outils a un agent, definissez qui il est. Quel est son role ? Quelles sont ses limites ? Qu'a-t-il le droit de faire et de ne pas faire ? Un agent sans identite claire est un agent dangereux -- pas parce qu'il est malveillant, mais parce qu'il est imprevisible.</p>
 <p><strong>Couche 2 -- Visibilite.</strong> Une fois l'identite posee, definissez ce que l'agent sait. A quelles donnees a-t-il acces ? Quelle est sa memoire ? Quels outils peut-il utiliser ? Un agent qui a une identite claire mais pas de visibilite est un agent impuissant.</p>

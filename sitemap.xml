@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.openclawfieldplaybook.com/</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/index.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/decouverte.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/checklist.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/contribuer.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/ecosystem.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/privacy.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/persona-entrepreneur.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/persona-cto.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/persona-dev.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/persona-agent.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/00-guide.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/01-00-sommaire.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/01-01-definition.html</loc></url>
@@ -10,7 +18,13 @@
   <url><loc>https://www.openclawfieldplaybook.com/01-04-souverainete.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/01-05-architecture-mentale.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/01-06-ce-que-vous-construisez.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/01-07-journee-type.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/01-08-combien-ca-coute.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/01-09-est-ce-complique.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/01-10-si-je-ne-fais-rien.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/01-11-comment-se-lancer.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/02-00-sommaire.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/02-00-preflight.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/02-01-prerequis.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/02-02-securiser-vps.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/02-03-tailscale.html</loc></url>
@@ -30,6 +44,7 @@
   <url><loc>https://www.openclawfieldplaybook.com/02-17-git-init.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/02-18-claude-md.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/02-19-script-deploy.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/02-20-adapter-existant.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/03-00-sommaire.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/03-01-perimetre-agent.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/03-02-soul-md.html</loc></url>
@@ -48,6 +63,7 @@
   <url><loc>https://www.openclawfieldplaybook.com/03-15-crons.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/03-16-briefing-matin.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/03-17-multi-agents.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/03-18-remote-mode.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/04-00-sommaire.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/04-01-system-prompt.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/04-02-personnalite-ton.html</loc></url>
@@ -86,11 +102,8 @@
   <url><loc>https://www.openclawfieldplaybook.com/06-05-cabinet-comptable.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/06-06-startup.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/06-07-contribuer.html</loc></url>
+  <url><loc>https://www.openclawfieldplaybook.com/06-08-artisan-tpe.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/07-00-sommaire.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/07-00-en-US.html</loc></url>
   <url><loc>https://www.openclawfieldplaybook.com/07-00-fr-FR.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/checklist.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/contribuer.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/ecosystem.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/privacy.html</loc></url>
 </urlset>

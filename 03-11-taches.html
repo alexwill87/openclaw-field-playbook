@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,25 +115,29 @@
   <span>3.11 -- Taches : la pression invisible</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#calendrier-taches-vision-complete" class="">Calendrier + taches = vision complete</a></li>
-<li><a href="#connexion" class="">Connexion</a></li>
-<li><a href="#via-base-de-donnees" class="toc-h3">Via base de donnees</a></li>
-<li><a href="#via-outil-externe" class="toc-h3">Via outil externe</a></li>
-<li><a href="#portee-cette-semaine-pas-la-wishlist" class="toc-h3">Portee : cette semaine, pas la wishlist</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#1-identifier-votre-source-de-taches" class="toc-h3">1. Identifier votre source de taches</a></li>
-<li><a href="#2-connecter-en-lecture-seule" class="toc-h3">2. Connecter en lecture seule</a></li>
-<li><a href="#3-definir-la-portee" class="toc-h3">3. Definir la portee</a></li>
-<li><a href="#4-valider-lintegration-calendrier-taches" class="toc-h3">4. Valider l'integration calendrier + taches</a></li>
-<li><a href="#5-ajouter-les-droits-decriture-optionnel" class="toc-h3">5. Ajouter les droits d'ecriture (optionnel)</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#calendrier-taches-vision-complete">Calendrier + taches = vision complete</a></li>
+    <li><a href="#connexion">Connexion</a></li>
+    <li class="toc-h3"><a href="#via-base-de-donnees">Via base de donnees</a></li>
+    <li class="toc-h3"><a href="#via-outil-externe">Via outil externe</a></li>
+    <li class="toc-h3"><a href="#portee-cette-semaine-pas-la-wishlist">Portee : cette semaine, pas la wishlist</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li class="toc-h3"><a href="#1-identifier-votre-source-de-taches">1. Identifier votre source de taches</a></li>
+    <li class="toc-h3"><a href="#2-connecter-en-lecture-seule">2. Connecter en lecture seule</a></li>
+    <li class="toc-h3"><a href="#3-definir-la-portee">3. Definir la portee</a></li>
+    <li class="toc-h3"><a href="#4-valider-lintegration-calendrier-taches">4. Valider l'integration calendrier + taches</a></li>
+    <li class="toc-h3"><a href="#5-ajouter-les-droits-decriture-optionnel">5. Ajouter les droits d'ecriture (optionnel)</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="311-taches-la-pression-invisible">3.11 -- Taches : la pression invisible</h1>
 <h2 id="contexte">Contexte</h2>
@@ -168,27 +174,27 @@
 <p>L'agent a besoin des deux pour produire un briefing utile. "Vous avez 2h libres cet apres-midi" est incomplet si vous avez 5 taches urgentes en retard.</p>
 <h2 id="connexion">Connexion</h2>
 <h3 id="via-base-de-donnees">Via base de donnees</h3>
-<pre class="codehilite"><code>openclaw skill add tasks --source db
-</code></pre>
+<div class="codehilite"><pre><span></span><code>openclaw skill add tasks --source db
+</code></pre></div>
 
 <p>L'agent se connecte a votre base de donnees de taches (Supabase, PostgreSQL, SQLite). Avantage : controle total, pas de dependance a un service tiers.</p>
 <h3 id="via-outil-externe">Via outil externe</h3>
-<pre class="codehilite"><code>openclaw skill add tasks --source todoist
+<div class="codehilite"><pre><span></span><code>openclaw skill add tasks --source todoist
 openclaw skill add tasks --source notion
 openclaw skill add tasks --source linear
-</code></pre>
+</code></pre></div>
 
 <p>L'agent se connecte a votre outil de taches existant. Avantage : pas besoin de migrer.</p>
 <h3 id="portee-cette-semaine-pas-la-wishlist">Portee : cette semaine, pas la wishlist</h3>
 <p>Regle critique : l'agent ne doit voir que les taches de CETTE SEMAINE. Pas le backlog de 200 items. Pas la wishlist. Pas les "un jour peut-etre".</p>
 <p>Pourquoi : un agent qui voit 200 taches les traite toutes comme potentiellement pertinentes. Il mentionne des taches de basse priorite dans le briefing. Il suggere de traiter des items vieux de 3 mois. Le bruit noie le signal.</p>
 <p>Configuration recommandee :</p>
-<pre class="codehilite"><code class="language-markdown">## Portee des taches
-- Taches avec deadline cette semaine
-- Taches marquees &quot;urgent&quot; ou &quot;haute priorite&quot;
-- Taches assignees a moi (pas celles que j'ai deleguees)
-- Maximum : 15 taches visibles a la fois
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gu">## Portee des taches</span>
+<span class="k">-</span><span class="w"> </span>Taches avec deadline cette semaine
+<span class="k">-</span><span class="w"> </span>Taches marquees &quot;urgent&quot; ou &quot;haute priorite&quot;
+<span class="k">-</span><span class="w"> </span>Taches assignees a moi (pas celles que j&#39;ai deleguees)
+<span class="k">-</span><span class="w"> </span>Maximum : 15 taches visibles a la fois
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-identifier-votre-source-de-taches">1. Identifier votre source de taches</h3>
@@ -199,8 +205,8 @@ openclaw skill add tasks --source linear
 <h3 id="3-definir-la-portee">3. Definir la portee</h3>
 <p>Configurez le filtre : cette semaine + urgentes uniquement.</p>
 <h3 id="4-valider-lintegration-calendrier-taches">4. Valider l'integration calendrier + taches</h3>
-<pre class="codehilite"><code>Montre-moi ma journee avec mes taches en attente.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Montre-moi ma journee avec mes taches en attente.
+</code></pre></div>
 
 <p>L'agent doit :
 - Afficher le calendrier (reunions, blocs)
@@ -227,7 +233,11 @@ openclaw skill add tasks --source linear
 <li>[ ] Integration calendrier + taches validee</li>
 <li>[ ] Pas de taches dans MEMORY.md (elles sont dans le systeme de taches)</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Calendrier + taches = vision complete, Connexion, Etape par etape et 2 autres. <a href="03-12-email-messages.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/11-taches.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

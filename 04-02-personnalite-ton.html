@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,25 +111,29 @@
   <span>4.2 -- Personnalite et ton</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-axes-de-personnalite" class="">Les axes de personnalite</a></li>
-<li><a href="#direct-vs-diplomatique" class="toc-h3">Direct vs diplomatique</a></li>
-<li><a href="#humoristique-vs-professionnel" class="toc-h3">Humoristique vs professionnel</a></li>
-<li><a href="#court-vs-detaille" class="toc-h3">Court vs detaille</a></li>
-<li><a href="#tutoiement-vs-vouvoiement" class="toc-h3">Tutoiement vs vouvoiement</a></li>
-<li><a href="#formuler-de-facon-actionnable" class="">Formuler de facon actionnable</a></li>
-<li><a href="#exemples-concrets-de-configuration" class="">Exemples concrets de configuration</a></li>
-<li><a href="#profil-tech-devops" class="toc-h3">Profil tech / devops</a></li>
-<li><a href="#profil-consultant-client-facing" class="toc-h3">Profil consultant / client-facing</a></li>
-<li><a href="#profil-creatif" class="toc-h3">Profil creatif</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-axes-de-personnalite">Les axes de personnalite</a></li>
+    <li class="toc-h3"><a href="#direct-vs-diplomatique">Direct vs diplomatique</a></li>
+    <li class="toc-h3"><a href="#humoristique-vs-professionnel">Humoristique vs professionnel</a></li>
+    <li class="toc-h3"><a href="#court-vs-detaille">Court vs detaille</a></li>
+    <li class="toc-h3"><a href="#tutoiement-vs-vouvoiement">Tutoiement vs vouvoiement</a></li>
+    <li><a href="#formuler-de-facon-actionnable">Formuler de facon actionnable</a></li>
+    <li><a href="#exemples-concrets-de-configuration">Exemples concrets de configuration</a></li>
+    <li class="toc-h3"><a href="#profil-tech-devops">Profil tech / devops</a></li>
+    <li class="toc-h3"><a href="#profil-consultant-client-facing">Profil consultant / client-facing</a></li>
+    <li class="toc-h3"><a href="#profil-creatif">Profil creatif</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="42-personnalite-et-ton">4.2 -- Personnalite et ton</h1>
 <h2 id="contexte">Contexte</h2>
@@ -148,12 +153,12 @@ Bon : <code>"3 phrases max sauf si je demande plus"</code>
 Encore mieux : <code>"1 ligne pour la reponse, bloc code si necessaire, explication uniquement si je dis 'explique'"</code></p>
 <h3 id="tutoiement-vs-vouvoiement">Tutoiement vs vouvoiement</h3>
 <p>Votre agent, votre choix. Mais soyez explicite :</p>
-<pre class="codehilite"><code>Tutoie-moi. Pas de &quot;vous&quot;, pas de formules de politesse.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Tutoie-moi. Pas de &quot;vous&quot;, pas de formules de politesse.
+</code></pre></div>
 
 <p>ou</p>
-<pre class="codehilite"><code>Vouvoiement. Ton professionnel mais pas distant.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Vouvoiement. Ton professionnel mais pas distant.
+</code></pre></div>
 
 <p>Si vous ne precisez pas, l'agent va alterner et ca sonne inconsistant.</p>
 <h2 id="formuler-de-facon-actionnable">Formuler de facon actionnable</h2>
@@ -190,24 +195,24 @@ Encore mieux : <code>"1 ligne pour la reponse, bloc code si necessaire, explicat
 </table>
 <h2 id="exemples-concrets-de-configuration">Exemples concrets de configuration</h2>
 <h3 id="profil-tech-devops">Profil tech / devops</h3>
-<pre class="codehilite"><code>Ton : direct, technique. Pas de formules de politesse.
-Reponse courte par defaut (1-3 phrases + code si applicable).
-Si je pose une question oui/non, reponds oui ou non d'abord, puis justifie.
-Tutoie-moi.
-Pas d'emojis.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Ton</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">direct</span><span class="o">,</span><span class="w"> </span><span class="n">technique</span><span class="o">.</span><span class="w"> </span><span class="n">Pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">formules</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">politesse</span><span class="o">.</span>
+<span class="n">Reponse</span><span class="w"> </span><span class="n">courte</span><span class="w"> </span><span class="n">par</span><span class="w"> </span><span class="n">defaut</span><span class="w"> </span><span class="o">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="n">phrases</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">applicable</span><span class="o">).</span>
+<span class="n">Si</span><span class="w"> </span><span class="n">je</span><span class="w"> </span><span class="n">pose</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">question</span><span class="w"> </span><span class="n">oui</span><span class="o">/</span><span class="n">non</span><span class="o">,</span><span class="w"> </span><span class="n">reponds</span><span class="w"> </span><span class="n">oui</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="n">non</span><span class="w"> </span><span class="n">d</span><span class="s1">&#39;abord, puis justifie.</span>
+<span class="s1">Tutoie-moi.</span>
+<span class="s1">Pas d&#39;</span><span class="n">emojis</span><span class="o">.</span>
+</code></pre></div>
 
 <h3 id="profil-consultant-client-facing">Profil consultant / client-facing</h3>
-<pre class="codehilite"><code>Vouvoiement. Ton professionnel mais accessible.
+<div class="codehilite"><pre><span></span><code>Vouvoiement. Ton professionnel mais accessible.
 Quand je prepare un email client, propose une version diplomate.
 Pour le travail interne, reponse directe et courte.
-</code></pre>
+</code></pre></div>
 
 <h3 id="profil-creatif">Profil creatif</h3>
-<pre class="codehilite"><code>Tutoie-moi. Ton decontracte.
+<div class="codehilite"><pre><span></span><code>Tutoie-moi. Ton decontracte.
 Propose des alternatives quand je demande un avis.
 Si une idee est mauvaise, dis-le franchement avec une meilleure suggestion.
-</code></pre>
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Empiler les adjectifs.</strong> "Sois professionnel, chaleureux, concis, detaille quand il faut, humoristique mais pas trop." Le modele ne sait pas prioriser. Choisissez 2-3 traits, pas 7.</p>
@@ -229,7 +234,11 @@ Si une idee est mauvaise, dis-le franchement avec une meilleure suggestion.
 <li>[ ] Le format (bullets, prose, code) est precise.</li>
 <li>[ ] Teste sur 5 requetes -- le ton est consistant.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les axes de personnalite, Formuler de facon actionnable, Exemples concrets de configuration et 3 autres. <a href="04-03-iteration.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/02-personnalite-ton.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -104,24 +105,28 @@
   <span>02 -- Consultant freelance</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#probleme" class="">Probleme</a></li>
-<li><a href="#configuration" class="">Configuration</a></li>
-<li><a href="#infrastructure" class="toc-h3">Infrastructure</a></li>
-<li><a href="#agent-unique" class="toc-h3">Agent unique</a></li>
-<li><a href="#mise-en-place" class="">Mise en place</a></li>
-<li><a href="#jour-1-installation-et-configuration-de-base" class="toc-h3">Jour 1 : Installation et configuration de base</a></li>
-<li><a href="#jour-2-workflows-quotidiens" class="toc-h3">Jour 2 : Workflows quotidiens</a></li>
-<li><a href="#resultat" class="">Resultat</a></li>
-<li><a href="#lecons-apprises" class="">Lecons apprises</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#template-system-prompt-du-consultant" class="">Template -- System prompt du consultant</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#probleme">Probleme</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#agent-unique">Agent unique</a></li>
+    <li><a href="#mise-en-place">Mise en place</a></li>
+    <li class="toc-h3"><a href="#jour-1-installation-et-configuration-de-base">Jour 1 : Installation et configuration de base</a></li>
+    <li class="toc-h3"><a href="#jour-2-workflows-quotidiens">Jour 2 : Workflows quotidiens</a></li>
+    <li><a href="#resultat">Resultat</a></li>
+    <li><a href="#lecons-apprises">Lecons apprises</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#template-system-prompt-du-consultant">Template -- System prompt du consultant</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="02-consultant-freelance">02 -- Consultant freelance</h1>
 <p><strong>Pour qui :</strong> consultant independant travaillant seul, sans equipe technique
@@ -277,31 +282,31 @@
 </table>
 <hr />
 <h2 id="template-system-prompt-du-consultant">Template -- System prompt du consultant</h2>
-<pre class="codehilite"><code>Tu es l'assistant professionnel de [NOM], consultant en [DOMAINE].
+<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">assistant</span><span class="w"> </span><span class="n">professionnel</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="p">[</span><span class="n">NOM</span><span class="p">],</span><span class="w"> </span><span class="n">consultant</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="p">[</span><span class="n">DOMAINE</span><span class="p">].</span>
 
-Contexte :
-- [NOM] travaille en independant depuis [ANNEE]
-- Ses clients sont principalement des [TYPE DE CLIENTS]
-- Son ton est professionnel mais direct, pas de jargon inutile
+<span class="nl">Contexte</span><span class="w"> </span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="n">NOM</span><span class="p">]</span><span class="w"> </span><span class="n">travaille</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">independant</span><span class="w"> </span><span class="n">depuis</span><span class="w"> </span><span class="p">[</span><span class="n">ANNEE</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Ses</span><span class="w"> </span><span class="n">clients</span><span class="w"> </span><span class="n">sont</span><span class="w"> </span><span class="n">principalement</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="p">[</span><span class="n">TYPE</span><span class="w"> </span><span class="n">DE</span><span class="w"> </span><span class="n">CLIENTS</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Son</span><span class="w"> </span><span class="n">ton</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">professionnel</span><span class="w"> </span><span class="n">mais</span><span class="w"> </span><span class="n">direct</span><span class="p">,</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">jargon</span><span class="w"> </span><span class="n">inutile</span>
 
-Clients actifs :
-- [Client A] : [contexte court, projet en cours]
-- [Client B] : [contexte court, projet en cours]
-- [Client C] : [contexte court, projet en cours]
+<span class="n">Clients</span><span class="w"> </span><span class="n">actifs</span><span class="w"> </span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="n">Client</span><span class="w"> </span><span class="n">A</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">contexte</span><span class="w"> </span><span class="n">court</span><span class="p">,</span><span class="w"> </span><span class="n">projet</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">cours</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="n">Client</span><span class="w"> </span><span class="n">B</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">contexte</span><span class="w"> </span><span class="n">court</span><span class="p">,</span><span class="w"> </span><span class="n">projet</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">cours</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="n">Client</span><span class="w"> </span><span class="n">C</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">contexte</span><span class="w"> </span><span class="n">court</span><span class="p">,</span><span class="w"> </span><span class="n">projet</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">cours</span><span class="p">]</span>
 
-Regles :
-- Tu rediges toujours des brouillons, jamais des messages finaux
-- Tu signales si une information te manque plutot que d'inventer
-- Tu utilises le vouvoiement dans les emails clients
-- Tu notes les decisions et les prochaines etapes apres chaque interaction
-- Tu rappelles les factures impayees de plus de 30 jours dans le briefing du matin
+<span class="nl">Regles</span><span class="w"> </span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">rediges</span><span class="w"> </span><span class="n">toujours</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">brouillons</span><span class="p">,</span><span class="w"> </span><span class="n">jamais</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">messages</span><span class="w"> </span><span class="n">finaux</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">signales</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">te</span><span class="w"> </span><span class="n">manque</span><span class="w"> </span><span class="n">plutot</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">d</span><span class="err">&#39;</span><span class="n">inventer</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">utilises</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">vouvoiement</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="n">clients</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">decisions</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">prochaines</span><span class="w"> </span><span class="n">etapes</span><span class="w"> </span><span class="n">apres</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">interaction</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">rappelles</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">factures</span><span class="w"> </span><span class="n">impayees</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">plus</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="n">jours</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">briefing</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">matin</span>
 
-Workflows :
-1. Morning briefing : calendrier + taches + factures + priorites
-2. Triage email : urgent / info / peut attendre + brouillons
-3. Proposition commerciale : template + contexte client + premier jet
-4. Suivi client : mise a jour du fichier client apres chaque interaction
-</code></pre>
+<span class="nl">Workflows</span><span class="w"> </span><span class="p">:</span>
+<span class="mf">1.</span><span class="w"> </span><span class="n">Morning</span><span class="w"> </span><span class="n">briefing</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">calendrier</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">factures</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">priorites</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Triage</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">urgent</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">attendre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">brouillons</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Proposition</span><span class="w"> </span><span class="n">commerciale</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">template</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contexte</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">premier</span><span class="w"> </span><span class="n">jet</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">Suivi</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">mise</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">fichier</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">apres</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">interaction</span>
+</code></pre></div>
 
 <hr />
 <h2 id="verification">Verification</h2>
@@ -315,7 +320,11 @@ Workflows :
 </ul>
 <hr />
 <p><em>Configuration minimaliste, zero infrastructure a maintenir. Ideal pour un premier contact avec OpenClaw.</em></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Probleme, Configuration, Mise en place et 5 autres. <a href="06-03-ecommerce.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/02-consultant-freelance.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,20 +115,24 @@
   <span>3.6 -- Les trois zones de memoire</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-trois-zones" class="">Les trois zones</a></li>
-<li><a href="#memoire-chaude-la-session" class="">Memoire chaude : la session</a></li>
-<li><a href="#memoire-tiede-memorymd" class="">Memoire tiede : MEMORY.md</a></li>
-<li><a href="#memoire-froide-knowledge" class="">Memoire froide : knowledge/</a></li>
-<li><a href="#pourquoi-separer" class="">Pourquoi separer</a></li>
-<li><a href="#diagramme-de-decision" class="">Diagramme de decision</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-trois-zones">Les trois zones</a></li>
+    <li><a href="#memoire-chaude-la-session">Memoire chaude : la session</a></li>
+    <li><a href="#memoire-tiede-memorymd">Memoire tiede : MEMORY.md</a></li>
+    <li><a href="#memoire-froide-knowledge">Memoire froide : knowledge/</a></li>
+    <li><a href="#pourquoi-separer">Pourquoi separer</a></li>
+    <li><a href="#diagramme-de-decision">Diagramme de decision</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="36-les-trois-zones-de-memoire">3.6 -- Les trois zones de memoire</h1>
 <h2 id="contexte">Contexte</h2>
@@ -134,40 +140,40 @@
 <p>Un agent avec trop de memoire est un agent noye. Il melange le contexte d'il y a 6 mois avec celui d'aujourd'hui. Il cite des decisions obsoletes. Il traite comme actuel ce qui ne l'est plus.</p>
 <p>La solution de Steinberg : trois zones de memoire, chacune avec sa portee et ses regles.</p>
 <h2 id="les-trois-zones">Les trois zones</h2>
-<pre class="codehilite"><code>+--------------------------------------------------+
-|                                                  |
-|  MEMOIRE CHAUDE (session)                        |
-|  Duree : cette conversation                      |
-|  Taille : illimitee (dans la fenetre de contexte)|
-|  Contenu : tout ce qui se dit maintenant         |
-|  Disparait : a la fin de la session              |
-|                                                  |
-+--------------------------------------------------+
-          |
-          | Ce qui merite d'etre retenu
-          v
-+--------------------------------------------------+
-|                                                  |
-|  MEMOIRE TIEDE (MEMORY.md)                       |
-|  Duree : jours a semaines                        |
-|  Taille : 80 lignes max                          |
-|  Contenu : faits recents, decisions, contexte    |
-|  Nettoyage : compression reguliere               |
-|                                                  |
-+--------------------------------------------------+
-          |
-          | Ce qui est durable et structure
-          v
-+--------------------------------------------------+
-|                                                  |
-|  MEMOIRE FROIDE (knowledge/)                     |
-|  Duree : mois a indefini                         |
-|  Taille : illimitee (un fichier par sujet)       |
-|  Contenu : savoirs stables, references, guides   |
-|  Nettoyage : revision trimestrielle              |
-|                                                  |
-+--------------------------------------------------+
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="o">+--------------------------------------------------+</span>
+<span class="o">|</span><span class="w">                                                  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">MEMOIRE</span><span class="w"> </span><span class="n">CHAUDE</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="p">)</span><span class="w">                        </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Duree</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">cette</span><span class="w"> </span><span class="n">conversation</span><span class="w">                      </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Taille</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">illimitee</span><span class="w"> </span><span class="p">(</span><span class="n">dans</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">fenetre</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">contexte</span><span class="p">)</span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Contenu</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tout</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="n">dit</span><span class="w"> </span><span class="n">maintenant</span><span class="w">         </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Disparait</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">fin</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">session</span><span class="w">              </span><span class="o">|</span>
+<span class="o">|</span><span class="w">                                                  </span><span class="o">|</span>
+<span class="o">+--------------------------------------------------+</span>
+<span class="w">          </span><span class="o">|</span>
+<span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Ce</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">merite</span><span class="w"> </span><span class="n">d</span><span class="p">&#39;</span><span class="n">etre</span><span class="w"> </span><span class="n">retenu</span>
+<span class="w">          </span><span class="n">v</span>
+<span class="o">+--------------------------------------------------+</span>
+<span class="o">|</span><span class="w">                                                  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">MEMOIRE</span><span class="w"> </span><span class="n">TIEDE</span><span class="w"> </span><span class="p">(</span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="p">)</span><span class="w">                       </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Duree</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">jours</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">semaines</span><span class="w">                        </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Taille</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mh">80</span><span class="w"> </span><span class="n">lignes</span><span class="w"> </span><span class="n">max</span><span class="w">                          </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Contenu</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">faits</span><span class="w"> </span><span class="n">recents</span><span class="p">,</span><span class="w"> </span><span class="n">decisions</span><span class="p">,</span><span class="w"> </span><span class="n">contexte</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Nettoyage</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">compression</span><span class="w"> </span><span class="n">reguliere</span><span class="w">               </span><span class="o">|</span>
+<span class="o">|</span><span class="w">                                                  </span><span class="o">|</span>
+<span class="o">+--------------------------------------------------+</span>
+<span class="w">          </span><span class="o">|</span>
+<span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Ce</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">durable</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">structure</span>
+<span class="w">          </span><span class="n">v</span>
+<span class="o">+--------------------------------------------------+</span>
+<span class="o">|</span><span class="w">                                                  </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">MEMOIRE</span><span class="w"> </span><span class="n">FROIDE</span><span class="w"> </span><span class="p">(</span><span class="n">knowledge</span><span class="o">/</span><span class="p">)</span><span class="w">                     </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Duree</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">mois</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">indefini</span><span class="w">                         </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Taille</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">illimitee</span><span class="w"> </span><span class="p">(</span><span class="n">un</span><span class="w"> </span><span class="n">fichier</span><span class="w"> </span><span class="n">par</span><span class="w"> </span><span class="n">sujet</span><span class="p">)</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Contenu</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">savoirs</span><span class="w"> </span><span class="n">stables</span><span class="p">,</span><span class="w"> </span><span class="n">references</span><span class="p">,</span><span class="w"> </span><span class="n">guides</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w">  </span><span class="n">Nettoyage</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">revision</span><span class="w"> </span><span class="n">trimestrielle</span><span class="w">              </span><span class="o">|</span>
+<span class="o">|</span><span class="w">                                                  </span><span class="o">|</span>
+<span class="o">+--------------------------------------------------+</span>
+</code></pre></div>
 
 <h2 id="memoire-chaude-la-session">Memoire chaude : la session</h2>
 <p>C'est la conversation en cours. Tout ce que vous dites, tout ce que l'agent repond, reste accessible pendant la session.</p>
@@ -175,9 +181,9 @@
 <p><strong>Ce qui en sort</strong> : rien automatiquement. A la fin de la session, tout disparait SAUF ce que vous ou l'agent decidez de sauvegarder dans MEMORY.md ou knowledge/.</p>
 <p><strong>Piege</strong> : croire que l'agent "se souviendra" demain de ce que vous avez dit aujourd'hui. Sans sauvegarde explicite, la memoire chaude est volatile.</p>
 <p>Bonne pratique en fin de session :</p>
-<pre class="codehilite"><code>Qu'est-ce qui merite d'etre retenu de cette session ?
+<div class="codehilite"><pre><span></span><code>Qu&#39;est-ce qui merite d&#39;etre retenu de cette session ?
 Mets a jour MEMORY.md.
-</code></pre>
+</code></pre></div>
 
 <h2 id="memoire-tiede-memorymd">Memoire tiede : MEMORY.md</h2>
 <p>Le tampon entre le present et le durable. 80 lignes maximum (regle de Steinberg). Contient le contexte recent necessaire pour que l'agent soit pertinent des l'ouverture de la prochaine session.</p>
@@ -211,28 +217,28 @@ Mets a jour MEMORY.md.
 <p><strong>Raison 3 : la maintenance.</strong> MEMORY.md se compresse chaque semaine. knowledge/ se revise chaque trimestre. Deux rythmes differents pour deux types d'information differents.</p>
 <p><strong>Raison 4 : la pertinence.</strong> Quand l'agent lit "Decision du 28/03 : on reporte le lancement a avril" dans MEMORY.md, il sait que c'est recent et actionnable. Quand il lit "Processus de lancement produit" dans knowledge/, il sait que c'est une reference stable.</p>
 <h2 id="diagramme-de-decision">Diagramme de decision</h2>
-<pre class="codehilite"><code>Une information arrive. Ou la stocker ?
+<div class="codehilite"><pre><span></span><code><span class="n">Une</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">arrive</span><span class="p">.</span><span class="w"> </span><span class="n">Ou</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stocker</span><span class="w"> </span><span class="o">?</span>
 
-Est-ce que ca concerne UNIQUEMENT cette session ?
-  OUI --&gt; Ne rien faire. Memoire chaude.
-  NON --&gt; continuer
+<span class="n">Est</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">ca</span><span class="w"> </span><span class="n">concerne</span><span class="w"> </span><span class="n">UNIQUEMENT</span><span class="w"> </span><span class="n">cette</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">?</span>
+<span class="w">  </span><span class="n">OUI</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">Ne</span><span class="w"> </span><span class="n">rien</span><span class="w"> </span><span class="n">faire</span><span class="p">.</span><span class="w"> </span><span class="n">Memoire</span><span class="w"> </span><span class="n">chaude</span><span class="p">.</span>
+<span class="w">  </span><span class="n">NON</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">continuer</span>
 
-Est-ce que ca va changer dans les 2 prochaines semaines ?
-  OUI --&gt; MEMORY.md (memoire tiede)
-  NON --&gt; continuer
+<span class="n">Est</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">ca</span><span class="w"> </span><span class="n">va</span><span class="w"> </span><span class="n">changer</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="mh">2</span><span class="w"> </span><span class="n">prochaines</span><span class="w"> </span><span class="n">semaines</span><span class="w"> </span><span class="o">?</span>
+<span class="w">  </span><span class="n">OUI</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="p">(</span><span class="n">memoire</span><span class="w"> </span><span class="n">tiede</span><span class="p">)</span>
+<span class="w">  </span><span class="n">NON</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">continuer</span>
 
-Est-ce que c'est un savoir stable et reutilisable ?
-  OUI --&gt; knowledge/ (memoire froide)
-  NON --&gt; continuer
+<span class="n">Est</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">c</span><span class="p">&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">savoir</span><span class="w"> </span><span class="n">stable</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">reutilisable</span><span class="w"> </span><span class="o">?</span>
+<span class="w">  </span><span class="n">OUI</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">knowledge</span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">memoire</span><span class="w"> </span><span class="n">froide</span><span class="p">)</span>
+<span class="w">  </span><span class="n">NON</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">continuer</span>
 
-Est-ce que c'est une information sur MOI qui ne change pas souvent ?
-  OUI --&gt; USER.md
-  NON --&gt; continuer
+<span class="n">Est</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">c</span><span class="p">&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">sur</span><span class="w"> </span><span class="n">MOI</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">souvent</span><span class="w"> </span><span class="o">?</span>
+<span class="w">  </span><span class="n">OUI</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span>
+<span class="w">  </span><span class="n">NON</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">continuer</span>
 
-Est-ce que c'est une regle de fonctionnement de l'agent ?
-  OUI --&gt; CONSTITUTION.md
-  NON --&gt; Probablement pas necessaire de le stocker.
-</code></pre>
+<span class="n">Est</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">c</span><span class="p">&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">regle</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">fonctionnement</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="o">?</span>
+<span class="w">  </span><span class="n">OUI</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span>
+<span class="w">  </span><span class="n">NON</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">Probablement</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">necessaire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">stocker</span><span class="p">.</span>
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Tout dans MEMORY.md</strong> : Le fichier grossit, depasse 80 lignes, l'agent perd le signal. MEMORY.md est un tampon, pas une base de donnees.</p>
@@ -247,7 +253,11 @@ Est-ce que c'est une regle de fonctionnement de l'agent ?
 <li>[ ] Vous avez une routine de fin de session ("Mets a jour MEMORY.md")</li>
 <li>[ ] Les informations sont dans la bonne zone (pas de taches dans USER.md, pas de connaissances stables dans MEMORY.md)</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les trois zones, Memoire chaude : la session, Memoire tiede : MEMORY.md et 5 autres. <a href="03-07-memory-md.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/06-trois-zones-memoire.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

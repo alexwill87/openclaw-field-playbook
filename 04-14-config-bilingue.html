@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,55 +111,59 @@
   <span>4.14 -- Configuration bilingue</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-trois-modes" class="">Les trois modes</a></li>
-<li><a href="#mode-1-francais-uniquement" class="toc-h3">Mode 1 : francais uniquement</a></li>
-<li><a href="#mode-2-anglais-uniquement" class="toc-h3">Mode 2 : anglais uniquement</a></li>
-<li><a href="#mode-3-bilingue-contextuel" class="toc-h3">Mode 3 : bilingue contextuel</a></li>
-<li><a href="#regles-de-basculement" class="">Regles de basculement</a></li>
-<li><a href="#prompt-de-basculement" class="toc-h3">Prompt de basculement</a></li>
-<li><a href="#modeles-recommandes-par-langue" class="">Modeles recommandes par langue</a></li>
-<li><a href="#francais" class="toc-h3">Francais</a></li>
-<li><a href="#anglais" class="toc-h3">Anglais</a></li>
-<li><a href="#bilingue" class="toc-h3">Bilingue</a></li>
-<li><a href="#les-pieges-du-bilingue" class="">Les pieges du bilingue</a></li>
-<li><a href="#le-melange-involontaire" class="toc-h3">Le melange involontaire</a></li>
-<li><a href="#la-traduction-non-demandee" class="toc-h3">La traduction non demandee</a></li>
-<li><a href="#les-termes-techniques-forces" class="toc-h3">Les termes techniques forces</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-trois-modes">Les trois modes</a></li>
+    <li class="toc-h3"><a href="#mode-1-francais-uniquement">Mode 1 : francais uniquement</a></li>
+    <li class="toc-h3"><a href="#mode-2-anglais-uniquement">Mode 2 : anglais uniquement</a></li>
+    <li class="toc-h3"><a href="#mode-3-bilingue-contextuel">Mode 3 : bilingue contextuel</a></li>
+    <li><a href="#regles-de-basculement">Regles de basculement</a></li>
+    <li class="toc-h3"><a href="#prompt-de-basculement">Prompt de basculement</a></li>
+    <li><a href="#modeles-recommandes-par-langue">Modeles recommandes par langue</a></li>
+    <li class="toc-h3"><a href="#francais">Francais</a></li>
+    <li class="toc-h3"><a href="#anglais">Anglais</a></li>
+    <li class="toc-h3"><a href="#bilingue">Bilingue</a></li>
+    <li><a href="#les-pieges-du-bilingue">Les pieges du bilingue</a></li>
+    <li class="toc-h3"><a href="#le-melange-involontaire">Le melange involontaire</a></li>
+    <li class="toc-h3"><a href="#la-traduction-non-demandee">La traduction non demandee</a></li>
+    <li class="toc-h3"><a href="#les-termes-techniques-forces">Les termes techniques forces</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="414-configuration-bilingue">4.14 -- Configuration bilingue</h1>
 <h2 id="contexte">Contexte</h2>
 <p>Si vous travaillez en francais et en anglais -- clients francophones, documentation en anglais, code en anglais, communications en francais -- votre agent doit savoir quand utiliser quelle langue. Sans instruction claire, il va basculer de facon impredictible.</p>
 <h2 id="les-trois-modes">Les trois modes</h2>
 <h3 id="mode-1-francais-uniquement">Mode 1 : francais uniquement</h3>
-<pre class="codehilite"><code>Langue : francais. Toujours.
-Termes techniques en anglais quand il n'existe pas d'equivalent 
-courant (deploy, commit, merge, container, endpoint).
-Noms de commandes et de code en anglais (c'est du code, pas de la traduction).
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Langue</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">francais</span><span class="o">.</span><span class="w"> </span><span class="n">Toujours</span><span class="o">.</span>
+<span class="n">Termes</span><span class="w"> </span><span class="n">techniques</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="w"> </span><span class="n">quand</span><span class="w"> </span><span class="n">il</span><span class="w"> </span><span class="n">n</span><span class="s1">&#39;existe pas d&#39;</span><span class="n">equivalent</span><span class="w"> </span>
+<span class="n">courant</span><span class="w"> </span><span class="o">(</span><span class="n">deploy</span><span class="o">,</span><span class="w"> </span><span class="n">commit</span><span class="o">,</span><span class="w"> </span><span class="n">merge</span><span class="o">,</span><span class="w"> </span><span class="n">container</span><span class="o">,</span><span class="w"> </span><span class="n">endpoint</span><span class="o">).</span>
+<span class="n">Noms</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">commandes</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="w"> </span><span class="o">(</span><span class="n">c</span><span class="err">&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">code</span><span class="o">,</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">traduction</span><span class="o">).</span>
+</code></pre></div>
 
 <p>Quand l'utiliser : usage personnel, equipe francophone, pas de clients anglophones.</p>
 <h3 id="mode-2-anglais-uniquement">Mode 2 : anglais uniquement</h3>
-<pre class="codehilite"><code>Language: English. Always.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Language</span><span class="o">:</span><span class="w"> </span><span class="n">English</span><span class="o">.</span><span class="w"> </span><span class="n">Always</span><span class="o">.</span>
+</code></pre></div>
 
 <p>Quand l'utiliser : equipe internationale, documentation open source, clients anglophones.</p>
 <h3 id="mode-3-bilingue-contextuel">Mode 3 : bilingue contextuel</h3>
-<pre class="codehilite"><code>Langue par defaut : francais.
+<div class="codehilite"><pre><span></span><code>Langue par defaut : francais.
 Bascule en anglais quand :
 - Je redige de la documentation technique (README, API docs)
 - Je prepare un message pour un client anglophone
 - Je te dis &quot;in English&quot;
 Retour au francais automatique a la conversation suivante.
-</code></pre>
+</code></pre></div>
 
 <p>Quand l'utiliser : contexte mixte, freelance international, projet open source avec equipe locale.</p>
 <h2 id="regles-de-basculement">Regles de basculement</h2>
@@ -206,13 +211,13 @@ Retour au francais automatique a la conversation suivante.
 </tbody>
 </table>
 <h3 id="prompt-de-basculement">Prompt de basculement</h3>
-<pre class="codehilite"><code>Pour basculer la langue :
-- &quot;En anglais&quot; ou &quot;in English&quot; -&gt; bascule en anglais pour cette tache
-- &quot;En francais&quot; -&gt; retour au francais
-- Quand j'ecris en anglais, reponds en anglais
-- Quand j'ecris en francais, reponds en francais
-- Par defaut : francais
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Pour</span><span class="w"> </span><span class="n">basculer</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">langue</span><span class="w"> </span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="s">&quot;En anglais&quot;</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="s">&quot;in English&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">bascule</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">cette</span><span class="w"> </span><span class="n">tache</span>
+<span class="o">-</span><span class="w"> </span><span class="s">&quot;En francais&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">retour</span><span class="w"> </span><span class="n">au</span><span class="w"> </span><span class="n">francais</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Quand</span><span class="w"> </span><span class="n">j</span><span class="s">&#39;ecris en anglais, reponds en anglais</span>
+<span class="s">- Quand j&#39;</span><span class="n">ecris</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">francais</span><span class="p">,</span><span class="w"> </span><span class="n">reponds</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">francais</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Par</span><span class="w"> </span><span class="n">defaut</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">francais</span>
+</code></pre></div>
 
 <h2 id="modeles-recommandes-par-langue">Modeles recommandes par langue</h2>
 <p>Tous les grands modeles (Claude, GPT-4, Gemini) gèrent bien le francais et l'anglais. Quelques nuances :</p>
@@ -229,20 +234,20 @@ Retour au francais automatique a la conversation suivante.
 <h2 id="les-pieges-du-bilingue">Les pieges du bilingue</h2>
 <h3 id="le-melange-involontaire">Le melange involontaire</h3>
 <p>L'agent commence en francais, met un terme anglais, puis continue en anglais. Ou l'inverse. Solution : regle explicite dans le system prompt.</p>
-<pre class="codehilite"><code>Si tu bascules de langue en cours de reponse, signale-le.
-Une reponse = une langue (sauf termes techniques).
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Si</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">bascules</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">langue</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">cours</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">reponse</span><span class="p">,</span><span class="w"> </span><span class="n">signale</span><span class="o">-</span><span class="n">le</span><span class="o">.</span>
+<span class="n">Une</span><span class="w"> </span><span class="n">reponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">langue</span><span class="w"> </span><span class="p">(</span><span class="n">sauf</span><span class="w"> </span><span class="n">termes</span><span class="w"> </span><span class="n">techniques</span><span class="p">)</span><span class="o">.</span>
+</code></pre></div>
 
 <h3 id="la-traduction-non-demandee">La traduction non demandee</h3>
 <p>Vous ecrivez en francais, l'agent traduit en anglais "pour etre plus precis". Solution :</p>
-<pre class="codehilite"><code>Ne traduis jamais ma requete. Reponds dans la langue que j'utilise.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Ne traduis jamais ma requete. Reponds dans la langue que j&#39;utilise.
+</code></pre></div>
 
 <h3 id="les-termes-techniques-forces">Les termes techniques forces</h3>
 <p>L'agent traduit "container" en "conteneur", "deploy" en "deployer" (au lieu de "deployer", qui est acceptable en franglais technique). Solution :</p>
-<pre class="codehilite"><code>Termes techniques gardes en anglais : deploy, commit, merge, push, pull, 
+<div class="codehilite"><pre><span></span><code>Termes techniques gardes en anglais : deploy, commit, merge, push, pull, 
 container, endpoint, token, API, CLI, pipeline, build, runtime.
-</code></pre>
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Pas de regle de langue.</strong> L'agent choisit selon l'humeur du modele. Inconsistant.</p>
@@ -264,7 +269,11 @@ container, endpoint, token, API, CLI, pipeline, build, runtime.
 <li>[ ] L'agent respecte la langue attendue (teste dans les deux langues).</li>
 <li>[ ] Pas de melange involontaire dans les reponses.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les trois modes, Regles de basculement, Modeles recommandes par langue et 4 autres. <a href="05-00-sommaire.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/14-config-bilingue.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

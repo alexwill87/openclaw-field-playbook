@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,22 +111,26 @@
   <span>4.7 -- Reconnaitre une routine</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-criteres-dune-routine-automatisable" class="">Les criteres d'une routine automatisable</a></li>
-<li><a href="#exemples-de-bonnes-candidates" class="toc-h3">Exemples de bonnes candidates</a></li>
-<li><a href="#exemples-de-mauvaises-candidates" class="toc-h3">Exemples de mauvaises candidates</a></li>
-<li><a href="#comment-detecter-vos-routines" class="">Comment detecter vos routines</a></li>
-<li><a href="#methode-1-le-journal-de-bord" class="toc-h3">Methode 1 : le journal de bord</a></li>
-<li><a href="#methode-2-demander-a-lagent" class="toc-h3">Methode 2 : demander a l'agent</a></li>
-<li><a href="#la-zone-grise-routines-avec-jugement" class="">La zone grise : routines avec jugement</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-criteres-dune-routine-automatisable">Les criteres d'une routine automatisable</a></li>
+    <li class="toc-h3"><a href="#exemples-de-bonnes-candidates">Exemples de bonnes candidates</a></li>
+    <li class="toc-h3"><a href="#exemples-de-mauvaises-candidates">Exemples de mauvaises candidates</a></li>
+    <li><a href="#comment-detecter-vos-routines">Comment detecter vos routines</a></li>
+    <li class="toc-h3"><a href="#methode-1-le-journal-de-bord">Methode 1 : le journal de bord</a></li>
+    <li class="toc-h3"><a href="#methode-2-demander-a-lagent">Methode 2 : demander a l'agent</a></li>
+    <li><a href="#la-zone-grise-routines-avec-jugement">La zone grise : routines avec jugement</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="47-reconnaitre-une-routine">4.7 -- Reconnaitre une routine</h1>
 <h2 id="contexte">Contexte</h2>
@@ -155,7 +160,7 @@
 <h2 id="comment-detecter-vos-routines">Comment detecter vos routines</h2>
 <h3 id="methode-1-le-journal-de-bord">Methode 1 : le journal de bord</h3>
 <p>Pendant une semaine, notez chaque action que vous faites avec votre agent. Format :</p>
-<pre class="codehilite"><code>Lundi :
+<div class="codehilite"><pre><span></span><code>Lundi :
 - Health check VPS (5 min)
 - Deploiement cockpit (10 min)
 - Reponse email client X (15 min)
@@ -165,14 +170,14 @@ Mardi :
 - Health check VPS (5 min)
 - Debug erreur API (30 min)
 - Mise a jour TASKS.md (3 min)
-</code></pre>
+</code></pre></div>
 
 <p>Apres une semaine, les repetitions sautent aux yeux. Health check et TASKS.md reviennent chaque jour = routines.</p>
 <h3 id="methode-2-demander-a-lagent">Methode 2 : demander a l'agent</h3>
-<pre class="codehilite"><code>Analyse mes 20 dernieres conversations avec toi.
+<div class="codehilite"><pre><span></span><code>Analyse mes 20 dernieres conversations avec toi.
 Quelles actions reviennent 3+ fois ?
 Pour chacune, dis-moi si elle suit un schema previsible.
-</code></pre>
+</code></pre></div>
 
 <p>L'agent voit des patterns que vous ne voyez pas parce que vous etes dedans.</p>
 <h2 id="la-zone-grise-routines-avec-jugement">La zone grise : routines avec jugement</h2>
@@ -183,12 +188,12 @@ Pour chacune, dis-moi si elle suit un schema previsible.
 <li><strong>Reporting</strong> : la collecte de donnees est automatisable, l'interpretation non.</li>
 </ul>
 <p>Pour celles-la, la bonne approche est de decouper : automatiser la partie mecanique, garder le jugement humain.</p>
-<pre class="codehilite"><code>Routine &quot;triage du matin&quot; :
-- [AGENT] Lister les taches actives, les trier par deadline.
-- [AGENT] Signaler les retards et les blocages.
-- [HUMAIN] Decider des priorites du jour.
-- [AGENT] Mettre a jour les statuts selon la decision.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">Routine</span><span class="w"> </span><span class="ss">&quot;triage du matin&quot;</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">AGENT</span><span class="o">]</span><span class="w"> </span><span class="n">Lister</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="n">actives</span><span class="p">,</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">trier</span><span class="w"> </span><span class="n">par</span><span class="w"> </span><span class="n">deadline</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">AGENT</span><span class="o">]</span><span class="w"> </span><span class="n">Signaler</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">retards</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">blocages</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">HUMAIN</span><span class="o">]</span><span class="w"> </span><span class="n">Decider</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">priorites</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">jour</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">AGENT</span><span class="o">]</span><span class="w"> </span><span class="n">Mettre</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">statuts</span><span class="w"> </span><span class="n">selon</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">decision</span><span class="p">.</span>
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Tout automatiser.</strong> Parce que c'est possible ne veut pas dire que c'est souhaitable. Certaines routines vous gardent connecte a la realite de votre projet.</p>
@@ -209,7 +214,11 @@ Pour chacune, dis-moi si elle suit un schema previsible.
 <li>[ ] Les routines avec jugement sont decoupees (partie agent / partie humain).</li>
 <li>[ ] La premiere routine automatisee est a risque zero.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les criteres d'une routine automatisable, Comment detecter vos routines, La zone grise : routines avec jugement et 3 autres. <a href="04-08-dry-run.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/07-reconnaitre-routine.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

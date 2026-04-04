@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,24 +111,28 @@
   <span>5.11 -- En cas de panne</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#reflexe-en-cas-de-panne" class="">Reflexe en cas de panne</a></li>
-<li><a href="#tableau-diagnostic" class="">Tableau diagnostic</a></li>
-<li><a href="#le-siteservice-ne-repond-pas" class="toc-h3">Le site/service ne repond pas</a></li>
-<li><a href="#le-serveur-est-inaccessible-en-ssh" class="toc-h3">Le serveur est inaccessible en SSH</a></li>
-<li><a href="#la-base-de-donnees-ne-repond-pas" class="toc-h3">La base de donnees ne repond pas</a></li>
-<li><a href="#le-disque-est-plein" class="toc-h3">Le disque est plein</a></li>
-<li><a href="#un-container-redemarrerait-en-boucle" class="toc-h3">Un container redemarrerait en boucle</a></li>
-<li><a href="#lagent-ne-fonctionne-plus" class="toc-h3">L'agent ne fonctionne plus</a></li>
-<li><a href="#apres-la-panne" class="">Apres la panne</a></li>
-<li><a href="#template-post-mortem" class="toc-h3">Template post-mortem</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#reflexe-en-cas-de-panne">Reflexe en cas de panne</a></li>
+    <li><a href="#tableau-diagnostic">Tableau diagnostic</a></li>
+    <li class="toc-h3"><a href="#le-siteservice-ne-repond-pas">Le site/service ne repond pas</a></li>
+    <li class="toc-h3"><a href="#le-serveur-est-inaccessible-en-ssh">Le serveur est inaccessible en SSH</a></li>
+    <li class="toc-h3"><a href="#la-base-de-donnees-ne-repond-pas">La base de donnees ne repond pas</a></li>
+    <li class="toc-h3"><a href="#le-disque-est-plein">Le disque est plein</a></li>
+    <li class="toc-h3"><a href="#un-container-redemarrerait-en-boucle">Un container redemarrerait en boucle</a></li>
+    <li class="toc-h3"><a href="#lagent-ne-fonctionne-plus">L'agent ne fonctionne plus</a></li>
+    <li><a href="#apres-la-panne">Apres la panne</a></li>
+    <li class="toc-h3"><a href="#template-post-mortem">Template post-mortem</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="511-en-cas-de-panne">5.11 -- En cas de panne</h1>
 <h2 id="contexte">Contexte</h2>
@@ -374,15 +379,15 @@
 <li><strong>Tester la prevention.</strong> Simuler la panne a nouveau et verifier que le monitoring la detecte.</li>
 </ol>
 <h3 id="template-post-mortem">Template post-mortem</h3>
-<pre class="codehilite"><code class="language-markdown">## Incident — YYYY-MM-DD
+<div class="codehilite"><pre><span></span><code><span class="gu">## Incident — YYYY-MM-DD</span>
 
-**Symptome :** [ce qui a ete observe]
-**Debut :** HH:MM — **Fin :** HH:MM — **Duree :** X min
-**Cause :** [cause racine]
-**Fix :** [ce qui a ete fait]
-**Impact :** [qui/quoi a ete affecte]
-**Prevention :** [mesure ajoutee pour eviter la recidive]
-</code></pre>
+<span class="gs">**Symptome :**</span> [ce qui a ete observe]
+<span class="gs">**Debut :**</span> HH:MM — <span class="gs">**Fin :**</span> HH:MM — <span class="gs">**Duree :**</span> X min
+<span class="gs">**Cause :**</span> [cause racine]
+<span class="gs">**Fix :**</span> [ce qui a ete fait]
+<span class="gs">**Impact :**</span> [qui/quoi a ete affecte]
+<span class="gs">**Prevention :**</span> [mesure ajoutee pour eviter la recidive]
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Paniquer et toucher a tout.</strong> Vous changez 3 configs en meme temps. Maintenant vous avez 4 problemes au lieu d'un.</p>
@@ -397,7 +402,11 @@
 <li>[ ] Les pannes passees sont documentees.</li>
 <li>[ ] Chaque panne a genere une mesure de prevention.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Reflexe en cas de panne, Tableau diagnostic, Apres la panne et 2 autres. <a href="05-12-deuxieme-agent.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/11-en-cas-de-panne.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

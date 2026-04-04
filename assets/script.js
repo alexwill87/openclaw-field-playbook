@@ -229,6 +229,31 @@ if (chapters.length > 0) {
     });
 })();
 
+// ========== LANGUAGE SWITCH ==========
+function switchLang() {
+  var toggle = document.querySelector('.lang-toggle');
+  if (!toggle) return;
+  var currentLang = toggle.getAttribute('data-lang') || 'fr';
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+
+  if (currentLang === 'fr') {
+    // Switch to English: go to /en/samepage.html
+    var basePath = window.location.pathname.replace(/\/[^/]*$/, '');
+    window.location.href = basePath + '/en/' + page;
+  } else {
+    // Switch to French: go to ../samepage.html
+    window.location.href = '../' + page;
+  }
+}
+
+// Remember language preference
+(function() {
+  var toggle = document.querySelector('.lang-toggle');
+  if (!toggle) return;
+  var lang = toggle.getAttribute('data-lang');
+  if (lang) localStorage.setItem('preferred-lang', lang);
+})();
+
 // ========== FULL-TEXT SEARCH ==========
 (function() {
   var searchInput = document.getElementById('search-input');
@@ -237,8 +262,9 @@ if (chapters.length > 0) {
   var searchResults = document.getElementById('search-results');
   var searchIndex = null;
 
-  // Fetch search index
-  fetch('search-index.json')
+  // Fetch search index (use local search-index.json, works for both FR and EN)
+  var searchIndexUrl = 'search-index.json';
+  fetch(searchIndexUrl)
     .then(function(res) {
       if (!res.ok) throw new Error('Search index not found');
       return res.json();

@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,23 +118,27 @@
   <span>2.13 -- Connexion OpenRouter</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#etape-1-obtenir-la-cle-api" class="">Etape 1 : Obtenir la cle API</a></li>
-<li><a href="#etape-2-stocker-la-cle-dans-vault" class="">Etape 2 : Stocker la cle dans Vault</a></li>
-<li><a href="#etape-3-tester-un-appel-api" class="">Etape 3 : Tester un appel API</a></li>
-<li><a href="#etape-4-verifier-le-credit" class="">Etape 4 : Verifier le credit</a></li>
-<li><a href="#comparaison-des-modeles-disponibles" class="">Comparaison des modeles disponibles</a></li>
-<li><a href="#strategie-recommandee" class="toc-h3">Strategie recommandee</a></li>
-<li><a href="#configuration-dans-openclaw" class="">Configuration dans OpenClaw</a></li>
-<li><a href="#alertes-budget" class="">Alertes budget</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-<li><a href="#temps-estime" class="">Temps estime</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#etape-1-obtenir-la-cle-api">Etape 1 : Obtenir la cle API</a></li>
+    <li><a href="#etape-2-stocker-la-cle-dans-vault">Etape 2 : Stocker la cle dans Vault</a></li>
+    <li><a href="#etape-3-tester-un-appel-api">Etape 3 : Tester un appel API</a></li>
+    <li><a href="#etape-4-verifier-le-credit">Etape 4 : Verifier le credit</a></li>
+    <li><a href="#comparaison-des-modeles-disponibles">Comparaison des modeles disponibles</a></li>
+    <li class="toc-h3"><a href="#strategie-recommandee">Strategie recommandee</a></li>
+    <li><a href="#configuration-dans-openclaw">Configuration dans OpenClaw</a></li>
+    <li><a href="#alertes-budget">Alertes budget</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="213-connexion-openrouter">2.13 -- Connexion OpenRouter</h1>
 <h2 id="contexte">Contexte</h2>
@@ -147,31 +152,31 @@
 </ol>
 <h2 id="etape-2-stocker-la-cle-dans-vault">Etape 2 : Stocker la cle dans Vault</h2>
 <p>Si ce n'est pas deja fait (section 07) :</p>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/openrouter api_key=&quot;sk-or-v1-VOTRE_CLE_ICI&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/openrouter<span class="w"> </span><span class="nv">api_key</span><span class="o">=</span><span class="s2">&quot;sk-or-v1-VOTRE_CLE_ICI&quot;</span>
+</code></pre></div>
 
 <p>Verifiez :</p>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter
+</code></pre></div>
 
 <h2 id="etape-3-tester-un-appel-api">Etape 3 : Tester un appel API</h2>
 <p>Test rapide avec curl pour verifier que la cle fonctionne :</p>
-<pre class="codehilite"><code class="language-bash">$ API_KEY=$(docker exec vault vault kv get -field=api_key secret/openrouter)
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nv">API_KEY</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter<span class="k">)</span>
 
-$ curl -s https://openrouter.ai/api/v1/chat/completions \
-  -H &quot;Authorization: Bearer $API_KEY&quot; \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{
-    &quot;model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,
-    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Reponds juste OK&quot;}]
-  }' | python3 -m json.tool
-</code></pre>
+$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/chat/completions<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,</span>
+<span class="s1">    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Reponds juste OK&quot;}]</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+</code></pre></div>
 
 <p>Resultat attendu : une reponse JSON contenant "OK" (ou equivalent) dans <code>choices[0].message.content</code>.</p>
 <h2 id="etape-4-verifier-le-credit">Etape 4 : Verifier le credit</h2>
-<pre class="codehilite"><code class="language-bash">$ curl -s https://openrouter.ai/api/v1/auth/key \
-  -H &quot;Authorization: Bearer $API_KEY&quot; | python3 -m json.tool
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/auth/key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+</code></pre></div>
 
 <p>Ce endpoint retourne votre solde et vos limites.</p>
 <h2 id="comparaison-des-modeles-disponibles">Comparaison des modeles disponibles</h2>
@@ -244,18 +249,22 @@ $ curl -s https://openrouter.ai/api/v1/chat/completions \
 <li><strong>Timeout sur les appels</strong> : Certains modeles sont lents en charge. Le fallback (Haiku) prend le relais automatiquement si configure.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
-$ curl -s https://openrouter.ai/api/v1/auth/key \
-  -H &quot;Authorization: Bearer $(docker exec vault vault kv get -field=api_key secret/openrouter)&quot; \
-  | python3 -m json.tool
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter
+$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/auth/key<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+</code></pre></div>
 
 <p>Resultats attendus :
 - La cle est lisible depuis Vault
 - L'API retourne les infos du compte (solde, limites)</p>
 <h2 id="temps-estime">Temps estime</h2>
 <p>10 minutes.</p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Etape 1 : Obtenir la cle API, Etape 2 : Stocker la cle dans Vault, Etape 3 : Tester un appel API et 7 autres. <a href="02-14-telegram.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/13-openrouter.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

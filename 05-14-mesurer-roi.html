@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,21 +111,25 @@
   <span>5.14 -- Mesurer le ROI</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-trois-axes-du-roi" class="">Les trois axes du ROI</a></li>
-<li><a href="#1-temps-gagne" class="toc-h3">1. Temps gagne</a></li>
-<li><a href="#2-decisions-ameliorees" class="toc-h3">2. Decisions ameliorees</a></li>
-<li><a href="#3-erreurs-evitees" class="toc-h3">3. Erreurs evitees</a></li>
-<li><a href="#dashboard-mensuel" class="">Dashboard mensuel</a></li>
-<li><a href="#quand-le-roi-est-negatif" class="">Quand le ROI est negatif</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-trois-axes-du-roi">Les trois axes du ROI</a></li>
+    <li class="toc-h3"><a href="#1-temps-gagne">1. Temps gagne</a></li>
+    <li class="toc-h3"><a href="#2-decisions-ameliorees">2. Decisions ameliorees</a></li>
+    <li class="toc-h3"><a href="#3-erreurs-evitees">3. Erreurs evitees</a></li>
+    <li><a href="#dashboard-mensuel">Dashboard mensuel</a></li>
+    <li><a href="#quand-le-roi-est-negatif">Quand le ROI est negatif</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="514-mesurer-le-roi">5.14 -- Mesurer le ROI</h1>
 <h2 id="contexte">Contexte</h2>
@@ -135,7 +140,7 @@
 <p>Le plus tangible. Comparez le temps avec et sans agent.</p>
 <h4 id="comment-mesurer">Comment mesurer</h4>
 <p>Pendant 2 semaines, tracez :</p>
-<pre class="codehilite"><code class="language-markdown"># Journal ROI — Semaine du [date]
+<div class="codehilite"><pre><span></span><code><span class="gh"># Journal ROI — Semaine du [date]</span>
 
 | Tache | Sans agent (estime) | Avec agent (reel) | Gagne |
 |---|---|---|---|
@@ -146,28 +151,28 @@
 | Generer doc API | 2h | 30 min | 1h30 |
 | Rotation secrets | 20 min | 5 min | 15 min |
 
-**Total semaine : ~3h30 gagnees**
-</code></pre>
+<span class="gs">**Total semaine : ~3h30 gagnees**</span>
+</code></pre></div>
 
 <h4 id="calcul-financier">Calcul financier</h4>
-<pre class="codehilite"><code>Temps gagne/semaine : 3.5 heures
-Taux horaire : [votre taux] EUR/h
+<div class="codehilite"><pre><span></span><code><span class="n">Temps</span><span class="w"> </span><span class="n">gagne</span><span class="o">/</span><span class="n">semaine</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">3.5</span><span class="w"> </span><span class="n">heures</span>
+<span class="n">Taux</span><span class="w"> </span><span class="n">horaire</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">votre</span><span class="w"> </span><span class="n">taux</span><span class="p">]</span><span class="w"> </span><span class="n">EUR</span><span class="o">/</span><span class="n">h</span>
 
-Valeur mensuelle du temps gagne : 3.5h * 4 semaines * taux = X EUR
-Cout agent/mois : Y EUR (API + infra)
+<span class="n">Valeur</span><span class="w"> </span><span class="n">mensuelle</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">temps</span><span class="w"> </span><span class="n">gagne</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">3.5</span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">semaines</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">taux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">EUR</span>
+<span class="n">Cout</span><span class="w"> </span><span class="n">agent</span><span class="o">/</span><span class="n">mois</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">EUR</span><span class="w"> </span><span class="p">(</span><span class="n">API</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">infra</span><span class="p">)</span>
 
-ROI = (X - Y) / Y * 100
-</code></pre>
+<span class="n">ROI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span>
+</code></pre></div>
 
 <p>Exemple concret :</p>
-<pre class="codehilite"><code>Temps gagne : 14h/mois
+<div class="codehilite"><pre><span></span><code>Temps gagne : 14h/mois
 Taux : 80 EUR/h
 Valeur : 1120 EUR/mois
 
 Cout agent : ~50 EUR/mois (API ~30 EUR + VPS ~20 EUR)
 
 ROI : (1120 - 50) / 50 = 2140%
-</code></pre>
+</code></pre></div>
 
 <p>Meme avec des estimations conservatrices, le ROI est generalement massif. Le probleme n'est pas le ROI, c'est de le mesurer pour savoir ou optimiser.</p>
 <h3 id="2-decisions-ameliorees">2. Decisions ameliorees</h3>
@@ -179,65 +184,65 @@ ROI : (1120 - 50) / 50 = 2140%
 </ul>
 <h4 id="comment-mesurer_1">Comment mesurer</h4>
 <p>Tracez les decisions ou l'agent a apporte une valeur :</p>
-<pre class="codehilite"><code class="language-markdown"># Decisions assistees — [mois]
+<div class="codehilite"><pre><span></span><code><span class="gh"># Decisions assistees — [mois]</span>
 
-1. L'agent a detecte que le certificat SSL expirait dans 15 jours.
-   Sans agent : j'aurais probablement oublie. Impact potentiel : site down.
+<span class="k">1.</span> L&#39;agent a detecte que le certificat SSL expirait dans 15 jours.
+   Sans agent : j&#39;aurais probablement oublie. Impact potentiel : site down.
 
-2. L'agent a suggere de condenser le system prompt (480 -&gt; 150 mots).
+<span class="k">2.</span> L&#39;agent a suggere de condenser le system prompt (480 -&gt; 150 mots).
    Resultat : cout tokens reduit de 40%.
 
-3. L'agent a identifie un pattern de deplacement de taches doc.
-   Resultat : j'ai bloque 2h/jeudi pour la doc. Les taches doc ne trainent plus.
-</code></pre>
+<span class="k">3.</span> L&#39;agent a identifie un pattern de deplacement de taches doc.
+   Resultat : j&#39;ai bloque 2h/jeudi pour la doc. Les taches doc ne trainent plus.
+</code></pre></div>
 
 <p>Pas besoin de chiffrer chaque decision. Le simple fait de les noter montre la valeur.</p>
 <h3 id="3-erreurs-evitees">3. Erreurs evitees</h3>
 <p>Chaque erreur evitee a un cout fantome : le temps de correction, l'impact sur les utilisateurs, le stress.</p>
 <h4 id="comment-mesurer_2">Comment mesurer</h4>
 <p>Tracez les situations ou l'agent a empeche une erreur :</p>
-<pre class="codehilite"><code class="language-markdown"># Erreurs evitees — [mois]
+<div class="codehilite"><pre><span></span><code><span class="gh"># Erreurs evitees — [mois]</span>
 
-1. J'ai demande un push --force sur main. L'agent a refuse (boundary prompt).
+<span class="k">1.</span> J&#39;ai demande un push --force sur main. L&#39;agent a refuse (boundary prompt).
    Cout evite : potentiellement des heures de recovery + perte de commits.
 
-2. Le health check a detecte un disque a 85% avant que ca cause une panne.
+<span class="k">2.</span> Le health check a detecte un disque a 85% avant que ca cause une panne.
    Cout evite : downtime non planifie.
 
-3. L'agent a detecte une incoherence dans la config avant deploiement.
-   Cout evite : deploiement d'une version buggee.
-</code></pre>
+<span class="k">3.</span> L&#39;agent a detecte une incoherence dans la config avant deploiement.
+   Cout evite : deploiement d&#39;une version buggee.
+</code></pre></div>
 
 <h2 id="dashboard-mensuel">Dashboard mensuel</h2>
 <p>Chaque mois, compilez un resume :</p>
-<pre class="codehilite"><code class="language-markdown"># ROI Agent — [Mois YYYY]
+<div class="codehilite"><pre><span></span><code><span class="gh"># ROI Agent — [Mois YYYY]</span>
 
-## Temps
-- Heures gagnees : XX h
-- Valeur : XX EUR
-- Top 3 taches automatisees :
-  1. [tache] — [temps gagne]
-  2. [tache] — [temps gagne]
-  3. [tache] — [temps gagne]
+<span class="gu">## Temps</span>
+<span class="k">-</span><span class="w"> </span>Heures gagnees : XX h
+<span class="k">-</span><span class="w"> </span>Valeur : XX EUR
+<span class="k">-</span><span class="w"> </span>Top 3 taches automatisees :
+<span class="w">  </span><span class="k">1.</span> [tache] — [temps gagne]
+<span class="w">  </span><span class="k">2.</span> [tache] — [temps gagne]
+<span class="w">  </span><span class="k">3.</span> [tache] — [temps gagne]
 
-## Cout
-- API : XX EUR
-- Infra : XX EUR
-- Total : XX EUR
+<span class="gu">## Cout</span>
+<span class="k">-</span><span class="w"> </span>API : XX EUR
+<span class="k">-</span><span class="w"> </span>Infra : XX EUR
+<span class="k">-</span><span class="w"> </span>Total : XX EUR
 
-## ROI
-- Net : XX EUR
-- Pourcentage : XX%
+<span class="gu">## ROI</span>
+<span class="k">-</span><span class="w"> </span>Net : XX EUR
+<span class="k">-</span><span class="w"> </span>Pourcentage : XX%
 
-## Decisions
-- X decisions assistees notables
+<span class="gu">## Decisions</span>
+<span class="k">-</span><span class="w"> </span>X decisions assistees notables
 
-## Erreurs evitees
-- X erreurs evitees
+<span class="gu">## Erreurs evitees</span>
+<span class="k">-</span><span class="w"> </span>X erreurs evitees
 
-## Actions
-- [Ce qu'on peut ameliorer le mois prochain]
-</code></pre>
+<span class="gu">## Actions</span>
+<span class="k">-</span><span class="w"> </span>[Ce qu&#39;on peut ameliorer le mois prochain]
+</code></pre></div>
 
 <h2 id="quand-le-roi-est-negatif">Quand le ROI est negatif</h2>
 <p>Ca arrive. Signes :</p>
@@ -275,7 +280,11 @@ ROI : (1120 - 50) / 50 = 2140%
 <li>[ ] Le ROI est positif (ou les raisons du negatif sont identifiees).</li>
 <li>[ ] Un dashboard mensuel est compile.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les trois axes du ROI, Dashboard mensuel, Quand le ROI est negatif et 3 autres. <a href="06-00-sommaire.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/14-mesurer-roi.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

@@ -895,6 +895,31 @@ footer a:hover { color: var(--text); }
   align-items: center;
 }
 
+/* ========== LANGUAGE TOGGLE ========== */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.lang-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
 .theme-toggle:hover {
   border-color: var(--text);
 }
@@ -965,7 +990,166 @@ footer a:hover { color: var(--text); }
   }
 }
 
-/* ========== TABLE OF CONTENTS ========== */
+/* ========== LEARNING OBJECTIVES (replaces old TOC) ========== */
+.learning-objectives {
+  margin: 0 0 2rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--lo-bg-start), var(--lo-bg-end));
+  border: 1px solid var(--lo-border);
+  border-radius: 12px;
+  border-left: 4px solid var(--lo-accent);
+}
+
+:root {
+  --lo-bg-start: #eff6ff;
+  --lo-bg-end: #f0fdf4;
+  --lo-border: #bfdbfe;
+  --lo-accent: #3b82f6;
+  --lo-check: #22c55e;
+  --lo-text: #1e3a5f;
+  --lo-link: #2563eb;
+  --bravo-bg-start: #f0fdf4;
+  --bravo-bg-end: #fefce8;
+  --bravo-border: #86efac;
+  --bravo-accent: #22c55e;
+  --bravo-text: #14532d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --lo-bg-start: #0c1929;
+    --lo-bg-end: #0a1f12;
+    --lo-border: #1e3a5f;
+    --lo-accent: #60a5fa;
+    --lo-check: #4ade80;
+    --lo-text: #bfdbfe;
+    --lo-link: #93c5fd;
+    --bravo-bg-start: #0a1f12;
+    --bravo-bg-end: #1a1c0a;
+    --bravo-border: #166534;
+    --bravo-accent: #4ade80;
+    --bravo-text: #bbf7d0;
+  }
+}
+
+:root.dark {
+  --lo-bg-start: #0c1929;
+  --lo-bg-end: #0a1f12;
+  --lo-border: #1e3a5f;
+  --lo-accent: #60a5fa;
+  --lo-check: #4ade80;
+  --lo-text: #bfdbfe;
+  --lo-link: #93c5fd;
+  --bravo-bg-start: #0a1f12;
+  --bravo-bg-end: #1a1c0a;
+  --bravo-border: #166534;
+  --bravo-accent: #4ade80;
+  --bravo-text: #bbf7d0;
+}
+
+.learning-objectives .lo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--lo-text);
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.learning-objectives .lo-header .lo-icon {
+  font-size: 1.1rem;
+}
+
+.learning-objectives .lo-header .lo-arrow {
+  margin-left: auto;
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.learning-objectives.collapsed .lo-arrow {
+  transform: rotate(-90deg);
+}
+
+.learning-objectives.collapsed .lo-list {
+  display: none;
+}
+
+.learning-objectives .lo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.learning-objectives .lo-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.learning-objectives .lo-list li::before {
+  content: "\2713";
+  color: var(--lo-check);
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.learning-objectives .lo-list a {
+  color: var(--lo-link);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.learning-objectives .lo-list a:hover {
+  text-decoration: underline;
+}
+
+.learning-objectives .lo-list .toc-h3 {
+  padding-left: 1.25rem;
+}
+
+/* Bravo box at bottom */
+.bravo-box {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--bravo-bg-start), var(--bravo-bg-end));
+  border: 1px solid var(--bravo-border);
+  border-radius: 12px;
+  border-left: 4px solid var(--bravo-accent);
+  text-align: center;
+}
+
+.bravo-box .bravo-header {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bravo-text);
+  margin-bottom: 0.4rem;
+}
+
+.bravo-box .bravo-body {
+  font-size: 0.82rem;
+  color: var(--bravo-text);
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.bravo-box .bravo-body a {
+  color: var(--bravo-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.bravo-box .bravo-body a:hover {
+  text-decoration: underline;
+}
+
+/* Keep old class for backwards compat with cached pages */
 .page-toc {
   margin: 0 0 2rem;
   padding: 1rem 1.25rem;
@@ -1095,7 +1279,7 @@ footer a:hover { color: var(--text); }
 
 /* ========== PRINT ========== */
 @media print {
-  .sidebar, #topnav, .menu-toggle, .nav-actions, .chapter-nav, .theme-toggle, .github-badges, .edit-link, .giscus-wrapper, #back-to-top, .page-toc { display: none !important; }
+  .sidebar, #topnav, .menu-toggle, .nav-actions, .chapter-nav, .theme-toggle, .github-badges, .edit-link, .giscus-wrapper, #back-to-top, .page-toc, .learning-objectives, .bravo-box { display: none !important; }
   main#content, .landing { max-width: 100%; padding: 0; }
   .chapter { page-break-inside: avoid; }
   .chapter pre { white-space: pre-wrap; }

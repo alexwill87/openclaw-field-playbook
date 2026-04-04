@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -104,26 +105,30 @@
   <span>03 -- E-commerce</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#probleme" class="">Probleme</a></li>
-<li><a href="#configuration" class="">Configuration</a></li>
-<li><a href="#infrastructure" class="toc-h3">Infrastructure</a></li>
-<li><a href="#agents" class="toc-h3">Agents</a></li>
-<li><a href="#mise-en-place" class="">Mise en place</a></li>
-<li><a href="#jour-1-2-infrastructure-et-connexion-boutique" class="toc-h3">Jour 1-2 : Infrastructure et connexion boutique</a></li>
-<li><a href="#jour-3-agent-support-client" class="toc-h3">Jour 3 : Agent Support Client</a></li>
-<li><a href="#jour-4-agent-stock-et-reporting" class="toc-h3">Jour 4 : Agent Stock et Reporting</a></li>
-<li><a href="#jour-5-stabilisation" class="toc-h3">Jour 5 : Stabilisation</a></li>
-<li><a href="#resultat" class="">Resultat</a></li>
-<li><a href="#lecons-apprises" class="">Lecons apprises</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#template-system-prompt-de-lagent-support-client" class="">Template -- System prompt de l'agent support client</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#probleme">Probleme</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#agents">Agents</a></li>
+    <li><a href="#mise-en-place">Mise en place</a></li>
+    <li class="toc-h3"><a href="#jour-1-2-infrastructure-et-connexion-boutique">Jour 1-2 : Infrastructure et connexion boutique</a></li>
+    <li class="toc-h3"><a href="#jour-3-agent-support-client">Jour 3 : Agent Support Client</a></li>
+    <li class="toc-h3"><a href="#jour-4-agent-stock-et-reporting">Jour 4 : Agent Stock et Reporting</a></li>
+    <li class="toc-h3"><a href="#jour-5-stabilisation">Jour 5 : Stabilisation</a></li>
+    <li><a href="#resultat">Resultat</a></li>
+    <li><a href="#lecons-apprises">Lecons apprises</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#template-system-prompt-de-lagent-support-client">Template -- System prompt de l'agent support client</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="03-e-commerce">03 -- E-commerce</h1>
 <p><strong>Pour qui :</strong> vendeur en ligne gerant une boutique (Shopify, WooCommerce, PrestaShop ou equivalent)
@@ -286,31 +291,31 @@
 </table>
 <hr />
 <h2 id="template-system-prompt-de-lagent-support-client">Template -- System prompt de l'agent support client</h2>
-<pre class="codehilite"><code>Tu es l'assistant support de [NOM DE LA BOUTIQUE].
+<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">assistant</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="o">[</span><span class="n">NOM DE LA BOUTIQUE</span><span class="o">]</span><span class="p">.</span>
 
-Contexte :
-- Boutique en ligne vendant [TYPE DE PRODUITS]
-- Clientele principalement [PAYS/REGION]
-- Ton : professionnel, chaleureux, concis
+<span class="n">Contexte</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Boutique</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">ligne</span><span class="w"> </span><span class="n">vendant</span><span class="w"> </span><span class="o">[</span><span class="n">TYPE DE PRODUITS</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Clientele</span><span class="w"> </span><span class="n">principalement</span><span class="w"> </span><span class="o">[</span><span class="n">PAYS/REGION</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Ton</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">professionnel</span><span class="p">,</span><span class="w"> </span><span class="n">chaleureux</span><span class="p">,</span><span class="w"> </span><span class="n">concis</span>
 
-Regles :
-- Tu generes des brouillons de reponse, jamais des reponses finales
-- Tu vouvoies toujours le client
-- Tu ne promets jamais de remboursement ou de geste commercial sans validation du vendeur
-- Tu escalades toute reclamation avec un resume factuel
-- Tu inclus le numero de commande dans chaque reponse
+<span class="n">Regles</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">generes</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">brouillons</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">reponse</span><span class="p">,</span><span class="w"> </span><span class="n">jamais</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">reponses</span><span class="w"> </span><span class="n">finales</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">vouvoies</span><span class="w"> </span><span class="n">toujours</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">client</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">promets</span><span class="w"> </span><span class="n">jamais</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">remboursement</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">geste</span><span class="w"> </span><span class="n">commercial</span><span class="w"> </span><span class="n">sans</span><span class="w"> </span><span class="n">validation</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">vendeur</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">escalades</span><span class="w"> </span><span class="n">toute</span><span class="w"> </span><span class="n">reclamation</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">resume</span><span class="w"> </span><span class="n">factuel</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">inclus</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">commande</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">reponse</span>
 
-Classification des messages :
-1. Suivi de commande -&gt; verifier le statut, repondre avec le tracking
-2. Question produit -&gt; repondre a partir de la fiche produit et des FAQ
-3. Reclamation -&gt; resumer le probleme, escalader au vendeur
-4. Autre -&gt; classer et signaler
+<span class="n">Classification</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">messages</span><span class="w"> </span><span class="err">:</span>
+<span class="mf">1.</span><span class="w"> </span><span class="n">Suivi</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">commande</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">verifier</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">statut</span><span class="p">,</span><span class="w"> </span><span class="n">repondre</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">tracking</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Question</span><span class="w"> </span><span class="n">produit</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">repondre</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">partir</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">fiche</span><span class="w"> </span><span class="n">produit</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">FAQ</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Reclamation</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">resumer</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">probleme</span><span class="p">,</span><span class="w"> </span><span class="n">escalader</span><span class="w"> </span><span class="n">au</span><span class="w"> </span><span class="n">vendeur</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">Autre</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">classer</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">signaler</span>
 
-FAQ :
-- Delai de livraison : [X jours ouvrables]
-- Politique de retour : [conditions]
-- Modes de paiement : [liste]
-</code></pre>
+<span class="n">FAQ</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Delai</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">livraison</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">X jours ouvrables</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Politique</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">retour</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">conditions</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Modes</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">paiement</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">liste</span><span class="o">]</span>
+</code></pre></div>
 
 <hr />
 <h2 id="verification">Verification</h2>
@@ -324,7 +329,11 @@ FAQ :
 </ul>
 <hr />
 <p><em>Un vendeur en ligne n'a pas besoin d'une equipe support. Il a besoin d'un agent bien configure et d'une relecture humaine.</em></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Probleme, Configuration, Mise en place et 5 autres. <a href="06-04-equipe-technique.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/03-ecommerce.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

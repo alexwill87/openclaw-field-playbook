@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,23 +115,27 @@
   <span>3.1 -- Definir le perimetre de l'agent</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#la-pyramide-des-droits" class="">La pyramide des droits</a></li>
-<li><a href="#niveau-1-lecture-toujours-autorise" class="toc-h3">Niveau 1 -- Lecture (toujours autorise)</a></li>
-<li><a href="#niveau-2-ecriture-autonome-dans-un-cadre" class="toc-h3">Niveau 2 -- Ecriture (autonome, dans un cadre)</a></li>
-<li><a href="#niveau-3-action-externe-validation-requise" class="toc-h3">Niveau 3 -- Action externe (validation requise)</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#1-lister-les-actions-de-votre-semaine-type" class="toc-h3">1. Lister les actions de votre semaine type</a></li>
-<li><a href="#2-definir-les-interdictions-explicites" class="toc-h3">2. Definir les interdictions explicites</a></li>
-<li><a href="#3-ecrire-le-perimetre-dans-constitutionmd" class="toc-h3">3. Ecrire le perimetre dans CONSTITUTION.md</a></li>
-<li><a href="#4-tester-le-perimetre" class="toc-h3">4. Tester le perimetre</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#la-pyramide-des-droits">La pyramide des droits</a></li>
+    <li class="toc-h3"><a href="#niveau-1-lecture-toujours-autorise">Niveau 1 -- Lecture (toujours autorise)</a></li>
+    <li class="toc-h3"><a href="#niveau-2-ecriture-autonome-dans-un-cadre">Niveau 2 -- Ecriture (autonome, dans un cadre)</a></li>
+    <li class="toc-h3"><a href="#niveau-3-action-externe-validation-requise">Niveau 3 -- Action externe (validation requise)</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li class="toc-h3"><a href="#1-lister-les-actions-de-votre-semaine-type">1. Lister les actions de votre semaine type</a></li>
+    <li class="toc-h3"><a href="#2-definir-les-interdictions-explicites">2. Definir les interdictions explicites</a></li>
+    <li class="toc-h3"><a href="#3-ecrire-le-perimetre-dans-constitutionmd">3. Ecrire le perimetre dans CONSTITUTION.md</a></li>
+    <li class="toc-h3"><a href="#4-tester-le-perimetre">4. Tester le perimetre</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="31-definir-le-perimetre-de-lagent">3.1 -- Definir le perimetre de l'agent</h1>
 <h2 id="contexte">Contexte</h2>
@@ -137,18 +143,18 @@
 <p>Le perimetre n'est pas une liste de fonctionnalites. C'est un contrat de confiance entre vous et l'agent.</p>
 <h2 id="la-pyramide-des-droits">La pyramide des droits</h2>
 <p>Trois niveaux, du plus permissif au plus restrictif :</p>
-<pre class="codehilite"><code>        /\
+<div class="codehilite"><pre><span></span><code>        /\
        /  \
       / 3  \    ACTION EXTERNE
      / val. \   Validation requise a chaque fois
     /--------\
    /    2     \  ECRITURE
-  /  autonome  \ L'agent agit seul dans un cadre defini
+  /  autonome  \ L&#39;agent agit seul dans un cadre defini
  /--------------\
 /       1        \ LECTURE
-/ toujours autorise\ L'agent lit tout ce qu'il a besoin
+/ toujours autorise\ L&#39;agent lit tout ce qu&#39;il a besoin
 ---------------------|
-</code></pre>
+</code></pre></div>
 
 <h3 id="niveau-1-lecture-toujours-autorise">Niveau 1 -- Lecture (toujours autorise)</h3>
 <p>L'agent peut lire sans restriction :
@@ -205,35 +211,35 @@
 - Contacter un tiers
 - Supprimer des donnees</p>
 <p>Formulation de la demande de validation :</p>
-<pre class="codehilite"><code>[VALIDATION REQUISE]
-Action : Envoyer un email a dupont@client.fr
-Contenu : [resume du contenu]
-Raison : Reponse a sa demande de devis du 28/03
-Impact : Le client recevra votre proposition tarifaire
+<div class="codehilite"><pre><span></span><code><span class="k">[VALIDATION REQUISE]</span>
+<span class="na">Action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">Envoyer un email a dupont@client.fr</span>
+<span class="na">Contenu</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">[resume du contenu]</span>
+<span class="na">Raison</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">Reponse a sa demande de devis du 28/03</span>
+<span class="na">Impact</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">Le client recevra votre proposition tarifaire</span>
 
-Valider ? (oui / non / modifier)
-</code></pre>
+<span class="na">Valider ? (oui / non / modifier)</span>
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-lister-les-actions-de-votre-semaine-type">1. Lister les actions de votre semaine type</h3>
 <p>Passez en revue votre derniere semaine. Notez chaque action que vous aimeriez deleguer. Classez-la dans la pyramide.</p>
 <h3 id="2-definir-les-interdictions-explicites">2. Definir les interdictions explicites</h3>
 <p>Ce qui n'est PAS dans le perimetre est aussi important que ce qui y est. Exemples :</p>
-<pre class="codehilite"><code>INTERDIT :
+<div class="codehilite"><pre><span></span><code>INTERDIT :
 - Prendre des engagements financiers
 - Repondre aux RH en mon nom
 - Modifier les contrats clients
 - Acceder aux donnees medicales
 - Partager des informations confidentielles hors contexte
-</code></pre>
+</code></pre></div>
 
 <h3 id="3-ecrire-le-perimetre-dans-constitutionmd">3. Ecrire le perimetre dans CONSTITUTION.md</h3>
 <p>Le perimetre se traduit directement dans votre fichier CONSTITUTION.md (voir section 3.5).</p>
 <h3 id="4-tester-le-perimetre">4. Tester le perimetre</h3>
 <p>Demandez a l'agent :</p>
-<pre class="codehilite"><code>Montre-moi 3 situations ou tu me demanderais une validation
+<div class="codehilite"><pre><span></span><code>Montre-moi 3 situations ou tu me demanderais une validation
 et 3 situations ou tu agirais seul.
-</code></pre>
+</code></pre></div>
 
 <p>Si ses exemples ne correspondent pas a votre intention, ajustez le perimetre.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -249,7 +255,11 @@ et 3 situations ou tu agirais seul.
 <li>[ ] Le perimetre est documente dans CONSTITUTION.md</li>
 <li>[ ] L'agent decrit correctement ses limites quand vous le testez</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, La pyramide des droits, Etape par etape, Erreurs courantes et 1 autre. <a href="03-02-soul-md.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/01-perimetre-agent.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

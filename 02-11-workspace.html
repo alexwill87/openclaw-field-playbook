@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,30 +118,34 @@
   <span>2.11 -- Structure du workspace</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#arborescence-commentee" class="">Arborescence commentee</a></li>
-<li><a href="#role-de-chaque-dossier" class="">Role de chaque dossier</a></li>
-<li><a href="#knowledge" class="toc-h3">knowledge/</a></li>
-<li><a href="#memory" class="toc-h3">memory/</a></li>
-<li><a href="#sessions" class="toc-h3">sessions/</a></li>
-<li><a href="#skills" class="toc-h3">skills/</a></li>
-<li><a href="#agents" class="toc-h3">agents/</a></li>
-<li><a href="#droits-et-propriete" class="">Droits et propriete</a></li>
-<li><a href="#sauvegarder-le-workspace" class="">Sauvegarder le workspace</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-<li><a href="#temps-estime" class="">Temps estime</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#arborescence-commentee">Arborescence commentee</a></li>
+    <li><a href="#role-de-chaque-dossier">Role de chaque dossier</a></li>
+    <li class="toc-h3"><a href="#knowledge">knowledge/</a></li>
+    <li class="toc-h3"><a href="#memory">memory/</a></li>
+    <li class="toc-h3"><a href="#sessions">sessions/</a></li>
+    <li class="toc-h3"><a href="#skills">skills/</a></li>
+    <li class="toc-h3"><a href="#agents">agents/</a></li>
+    <li><a href="#droits-et-propriete">Droits et propriete</a></li>
+    <li><a href="#sauvegarder-le-workspace">Sauvegarder le workspace</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="211-structure-du-workspace">2.11 -- Structure du workspace</h1>
 <h2 id="contexte">Contexte</h2>
 <p>OpenClaw organise ses donnees dans un workspace (<code>~/.openclaw/</code>). Ce dossier est cree automatiquement au premier lancement. Comprendre sa structure est essentiel pour le debug, la sauvegarde et l'extension du systeme.</p>
 <h2 id="arborescence-commentee">Arborescence commentee</h2>
-<pre class="codehilite"><code>~/.openclaw/
+<div class="codehilite"><pre><span></span><code>~/.openclaw/
 ├── workspace/                  # Repertoire de travail principal
 │   ├── knowledge/              # Base de connaissances injectee dans le contexte
 │   │   ├── domain/             # Connaissances specifiques au domaine
@@ -154,25 +159,25 @@
 │   ├── skills/                 # Competences chargees dynamiquement
 │   │   ├── builtin/            # Skills integrées (non modifiables)
 │   │   └── custom/             # Vos skills personnalisees
-│   └── agents/                 # Definitions d'agents
+│   └── agents/                 # Definitions d&#39;agents
 │       ├── default.json        # Agent par defaut
 │       └── custom/             # Vos agents personnalises
 ├── config.json                 # Configuration principale (section 12)
 ├── credentials.json            # Tokens et acces (chiffre)
 └── logs/                       # Logs internes OpenClaw
     └── openclaw.log
-</code></pre>
+</code></pre></div>
 
 <h2 id="role-de-chaque-dossier">Role de chaque dossier</h2>
 <h3 id="knowledge">knowledge/</h3>
 <p>Contient les documents que l'agent peut consulter pour repondre. Le sous-dossier <code>domain/</code> est le votre : mettez-y vos documents metier, specifications, guides internes.</p>
-<pre class="codehilite"><code class="language-bash">$ ls ~/.openclaw/workspace/knowledge/
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>~/.openclaw/workspace/knowledge/
+</code></pre></div>
 
 <h3 id="memory">memory/</h3>
 <p>Memoire persistante. Le fichier <code>MEMORY.md</code> est lu automatiquement a chaque session. Les agents y stockent ce qu'ils doivent retenir entre les conversations.</p>
-<pre class="codehilite"><code class="language-bash">$ cat ~/.openclaw/workspace/memory/MEMORY.md
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>~/.openclaw/workspace/memory/MEMORY.md
+</code></pre></div>
 
 <h3 id="sessions">sessions/</h3>
 <p>Historique complet de chaque conversation. Utile pour le debug et l'audit. Les vieilles sessions peuvent etre archivees.</p>
@@ -182,17 +187,17 @@
 <p>Definitions d'agents avec leurs instructions systeme, skills autorisees et parametres. Le fichier <code>default.json</code> est utilise quand aucun agent n'est specifie.</p>
 <h2 id="droits-et-propriete">Droits et propriete</h2>
 <p>Tout le dossier <code>~/.openclaw/</code> doit appartenir a votre utilisateur :</p>
-<pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/.openclaw/
+</code></pre></div>
 
 <p>Si ce n'est pas le cas :</p>
-<pre class="codehilite"><code class="language-bash">$ sudo chown -R $USER:$USER ~/.openclaw/
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span>:<span class="nv">$USER</span><span class="w"> </span>~/.openclaw/
+</code></pre></div>
 
 <h2 id="sauvegarder-le-workspace">Sauvegarder le workspace</h2>
 <p>Le workspace contient des donnees precieuses (memoire, knowledge, sessions). Incluez-le dans vos sauvegardes :</p>
-<pre class="codehilite"><code class="language-bash">$ tar -czf ~/backups/openclaw-workspace-$(date +%Y%m%d).tar.gz ~/.openclaw/workspace/
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-czf<span class="w"> </span>~/backups/openclaw-workspace-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>~/.openclaw/workspace/
+</code></pre></div>
 
 <p>Ne sauvegardez PAS <code>credentials.json</code> dans un backup non chiffre.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -203,10 +208,10 @@
 <li><strong>Sessions qui prennent trop de place</strong> : Apres quelques mois, le dossier <code>sessions/</code> peut peser lourd. Archivez les vieilles sessions.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<pre class="codehilite"><code class="language-bash">$ ls -la ~/.openclaw/
-$ ls -la ~/.openclaw/workspace/
-$ cat ~/.openclaw/workspace/memory/MEMORY.md
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/.openclaw/
+$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~/.openclaw/workspace/
+$<span class="w"> </span>cat<span class="w"> </span>~/.openclaw/workspace/memory/MEMORY.md
+</code></pre></div>
 
 <p>Resultats attendus :
 - Le dossier existe et appartient a votre utilisateur
@@ -214,7 +219,11 @@ $ cat ~/.openclaw/workspace/memory/MEMORY.md
 - MEMORY.md est lisible</p>
 <h2 id="temps-estime">Temps estime</h2>
 <p>10 minutes (exploration et comprehension).</p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Arborescence commentee, Role de chaque dossier, Droits et propriete et 4 autres. <a href="02-12-config-openclaw.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/11-workspace.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

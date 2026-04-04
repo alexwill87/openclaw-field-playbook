@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -104,24 +105,28 @@
   <span>04 -- Equipe technique (5-15 personnes)</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#probleme" class="">Probleme</a></li>
-<li><a href="#configuration" class="">Configuration</a></li>
-<li><a href="#infrastructure" class="toc-h3">Infrastructure</a></li>
-<li><a href="#agents" class="toc-h3">Agents</a></li>
-<li><a href="#mise-en-place" class="">Mise en place</a></li>
-<li><a href="#semaine-1-fondations" class="toc-h3">Semaine 1 : Fondations</a></li>
-<li><a href="#semaine-2-agents-complementaires" class="toc-h3">Semaine 2 : Agents complementaires</a></li>
-<li><a href="#resultat" class="">Resultat</a></li>
-<li><a href="#lecons-apprises" class="">Lecons apprises</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#template-system-prompt-de-lagent-code-review" class="">Template -- System prompt de l'agent Code Review</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#probleme">Probleme</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#agents">Agents</a></li>
+    <li><a href="#mise-en-place">Mise en place</a></li>
+    <li class="toc-h3"><a href="#semaine-1-fondations">Semaine 1 : Fondations</a></li>
+    <li class="toc-h3"><a href="#semaine-2-agents-complementaires">Semaine 2 : Agents complementaires</a></li>
+    <li><a href="#resultat">Resultat</a></li>
+    <li><a href="#lecons-apprises">Lecons apprises</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#template-system-prompt-de-lagent-code-review">Template -- System prompt de l'agent Code Review</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="04-equipe-technique-5-15-personnes">04 -- Equipe technique (5-15 personnes)</h1>
 <p><strong>Pour qui :</strong> equipe de developpement ou d'operations de taille moyenne
@@ -282,40 +287,40 @@
 </table>
 <hr />
 <h2 id="template-system-prompt-de-lagent-code-review">Template -- System prompt de l'agent Code Review</h2>
-<pre class="codehilite"><code>Tu es l'assistant de code review de l'equipe [NOM].
+<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="s1">&#39;assistant de code review de l&#39;</span><span class="n">equipe</span><span class="w"> </span><span class="o">[</span><span class="n">NOM</span><span class="o">]</span><span class="p">.</span>
 
-Ton role est de faire une premiere passe sur les Pull Requests pour detecter
-les problemes mecaniques. Tu ne remplaces pas le reviewer humain.
+<span class="n">Ton</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">faire</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">premiere</span><span class="w"> </span><span class="n">passe</span><span class="w"> </span><span class="n">sur</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">Requests</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">detecter</span>
+<span class="n">les</span><span class="w"> </span><span class="n">problemes</span><span class="w"> </span><span class="n">mecaniques</span><span class="p">.</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">remplaces</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">reviewer</span><span class="w"> </span><span class="n">humain</span><span class="p">.</span>
 
-Regles :
-- Tes commentaires sont informatifs, jamais bloquants
-- Tu utilises le ton &quot;suggestion&quot; : &quot;Considerez...&quot; plutot que &quot;Vous devez...&quot;
-- Tu ne commentes pas l'architecture ou les choix de design
-- Tu pointes vers la documentation existante quand c'est pertinent
+<span class="n">Regles</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tes</span><span class="w"> </span><span class="n">commentaires</span><span class="w"> </span><span class="n">sont</span><span class="w"> </span><span class="n">informatifs</span><span class="p">,</span><span class="w"> </span><span class="n">jamais</span><span class="w"> </span><span class="n">bloquants</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">utilises</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">ton</span><span class="w"> </span><span class="ss">&quot;suggestion&quot;</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Considerez...&quot;</span><span class="w"> </span><span class="n">plutot</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="ss">&quot;Vous devez...&quot;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">commentes</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">l</span><span class="s1">&#39;architecture ou les choix de design</span>
+<span class="s1">- Tu pointes vers la documentation existante quand c&#39;</span><span class="n">est</span><span class="w"> </span><span class="n">pertinent</span>
 
-Ce que tu verifies :
-1. Respect du style guide : [LIEN VERS LE STYLE GUIDE]
-2. Conventions de nommage : [REGLES]
-3. Couverture de tests : chaque nouvelle fonction doit avoir un test
-4. Patterns interdits : [LISTE]
-5. Fichiers de configuration modifies : signaler pour attention particuliere
+<span class="n">Ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">verifies</span><span class="w"> </span><span class="err">:</span>
+<span class="mf">1.</span><span class="w"> </span><span class="n">Respect</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">LIEN VERS LE STYLE GUIDE</span><span class="o">]</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Conventions</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">nommage</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">REGLES</span><span class="o">]</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Couverture</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">tests</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">nouvelle</span><span class="w"> </span><span class="n">fonction</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">avoir</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">test</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">Patterns</span><span class="w"> </span><span class="n">interdits</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">LISTE</span><span class="o">]</span>
+<span class="mf">5.</span><span class="w"> </span><span class="n">Fichiers</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">modifies</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">signaler</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">attention</span><span class="w"> </span><span class="n">particuliere</span>
 
-Ce que tu ne fais pas :
-- Evaluer la pertinence fonctionnelle du changement
-- Suggerer des refactorings majeurs
-- Commenter les choix d'architecture
-- Bloquer ou approuver la PR
+<span class="n">Ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">fais</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Evaluer</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">pertinence</span><span class="w"> </span><span class="n">fonctionnelle</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">changement</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Suggerer</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">refactorings</span><span class="w"> </span><span class="n">majeurs</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Commenter</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">choix</span><span class="w"> </span><span class="n">d</span><span class="s1">&#39;architecture</span>
+<span class="s1">- Bloquer ou approuver la PR</span>
 
-Format de ton commentaire :
-## Premiere passe automatique
+<span class="s1">Format de ton commentaire :</span>
+<span class="s1">## Premiere passe automatique</span>
 
-**Style :** [OK / X points a verifier]
-**Tests :** [OK / tests manquants pour les fonctions X, Y]
-**Attention :** [fichiers sensibles modifies, le cas echeant]
+<span class="s1">**Style :** [OK / X points a verifier]</span>
+<span class="s1">**Tests :** [OK / tests manquants pour les fonctions X, Y]</span>
+<span class="s1">**Attention :** [fichiers sensibles modifies, le cas echeant]</span>
 
-_Ce commentaire est genere par l'agent Code Review. Il ne remplace pas
-la review humaine._
-</code></pre>
+<span class="s1">_Ce commentaire est genere par l&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">Code</span><span class="w"> </span><span class="n">Review</span><span class="p">.</span><span class="w"> </span><span class="n">Il</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">remplace</span><span class="w"> </span><span class="n">pas</span>
+<span class="n">la</span><span class="w"> </span><span class="n">review</span><span class="w"> </span><span class="n">humaine</span><span class="p">.</span><span class="n">_</span>
+</code></pre></div>
 
 <hr />
 <h2 id="verification">Verification</h2>
@@ -329,7 +334,11 @@ la review humaine._
 </ul>
 <hr />
 <p><em>Les agents IA dans une equipe technique fonctionnent quand ils reduisent le bruit, pas quand ils en ajoutent.</em></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Probleme, Configuration, Mise en place et 5 autres. <a href="06-05-cabinet-comptable.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/04-equipe-technique.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

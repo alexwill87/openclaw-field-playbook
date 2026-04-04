@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,27 +111,31 @@
   <span>5.12 -- Quand ajouter un deuxieme agent</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#signes-quil-est-temps" class="">Signes qu'il est temps</a></li>
-<li><a href="#comment-structurer" class="">Comment structurer</a></li>
-<li><a href="#option-1-par-domaine" class="toc-h3">Option 1 : par domaine</a></li>
-<li><a href="#option-2-par-projet" class="toc-h3">Option 2 : par projet</a></li>
-<li><a href="#option-3-par-niveau-de-confiance" class="toc-h3">Option 3 : par niveau de confiance</a></li>
-<li><a href="#isolation" class="">Isolation</a></li>
-<li><a href="#ce-quil-faut-separer" class="toc-h3">Ce qu'il faut separer</a></li>
-<li><a href="#ce-qui-peut-etre-partage" class="toc-h3">Ce qui peut etre partage</a></li>
-<li><a href="#structure-de-fichiers" class="toc-h3">Structure de fichiers</a></li>
-<li><a href="#communication-entre-agents" class="">Communication entre agents</a></li>
-<li><a href="#pattern-recommande" class="toc-h3">Pattern recommande</a></li>
-<li><a href="#ce-quil-ne-faut-pas-faire" class="toc-h3">Ce qu'il ne faut PAS faire</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#signes-quil-est-temps">Signes qu'il est temps</a></li>
+    <li><a href="#comment-structurer">Comment structurer</a></li>
+    <li class="toc-h3"><a href="#option-1-par-domaine">Option 1 : par domaine</a></li>
+    <li class="toc-h3"><a href="#option-2-par-projet">Option 2 : par projet</a></li>
+    <li class="toc-h3"><a href="#option-3-par-niveau-de-confiance">Option 3 : par niveau de confiance</a></li>
+    <li><a href="#isolation">Isolation</a></li>
+    <li class="toc-h3"><a href="#ce-quil-faut-separer">Ce qu'il faut separer</a></li>
+    <li class="toc-h3"><a href="#ce-qui-peut-etre-partage">Ce qui peut etre partage</a></li>
+    <li class="toc-h3"><a href="#structure-de-fichiers">Structure de fichiers</a></li>
+    <li><a href="#communication-entre-agents">Communication entre agents</a></li>
+    <li class="toc-h3"><a href="#pattern-recommande">Pattern recommande</a></li>
+    <li class="toc-h3"><a href="#ce-quil-ne-faut-pas-faire">Ce qu'il ne faut PAS faire</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="512-quand-ajouter-un-deuxieme-agent">5.12 -- Quand ajouter un deuxieme agent</h1>
 <h2 id="contexte">Contexte</h2>
@@ -155,35 +160,35 @@
 </ol>
 <h2 id="comment-structurer">Comment structurer</h2>
 <h3 id="option-1-par-domaine">Option 1 : par domaine</h3>
-<pre class="codehilite"><code>Agent 1 : Infrastructure / DevOps
-  - Gere : VPS, Docker, PostgreSQL, Vault, backups, monitoring
-  - System prompt : technique, commandes, procedures
+<div class="codehilite"><pre><span></span><code><span class="n">Agent</span><span class="w"> </span><span class="mh">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Infrastructure</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DevOps</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Gere</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">VPS</span><span class="p">,</span><span class="w"> </span><span class="n">Docker</span><span class="p">,</span><span class="w"> </span><span class="n">PostgreSQL</span><span class="p">,</span><span class="w"> </span><span class="n">Vault</span><span class="p">,</span><span class="w"> </span><span class="n">backups</span><span class="p">,</span><span class="w"> </span><span class="n">monitoring</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">technique</span><span class="p">,</span><span class="w"> </span><span class="n">commandes</span><span class="p">,</span><span class="w"> </span><span class="n">procedures</span>
 
-Agent 2 : Business / Communication
-  - Gere : emails clients, documentation, planning, facturation
-  - System prompt : ton professionnel, templates, regles business
-</code></pre>
+<span class="n">Agent</span><span class="w"> </span><span class="mh">2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Business</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Communication</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Gere</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="n">clients</span><span class="p">,</span><span class="w"> </span><span class="n">documentation</span><span class="p">,</span><span class="w"> </span><span class="n">planning</span><span class="p">,</span><span class="w"> </span><span class="n">facturation</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ton</span><span class="w"> </span><span class="n">professionnel</span><span class="p">,</span><span class="w"> </span><span class="n">templates</span><span class="p">,</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">business</span>
+</code></pre></div>
 
 <h3 id="option-2-par-projet">Option 2 : par projet</h3>
-<pre class="codehilite"><code>Agent 1 : Projet Cockpit
+<div class="codehilite"><pre><span></span><code>Agent 1 : Projet Cockpit
   - Gere : tout ce qui concerne cockpit (code, deploy, taches)
   - Contexte : stack cockpit, workflows cockpit
 
 Agent 2 : Projet OpenClaw
   - Gere : redaction, structure, review
   - Contexte : plan du playbook, style guide
-</code></pre>
+</code></pre></div>
 
 <h3 id="option-3-par-niveau-de-confiance">Option 3 : par niveau de confiance</h3>
-<pre class="codehilite"><code>Agent 1 : Operations (niveau 1-2)
+<div class="codehilite"><pre><span></span><code>Agent 1 : Operations (niveau 1-2)
   - Peut agir (dans les limites)
   - Acces bash, Docker, PostgreSQL
 
 Agent 2 : Conseil (niveau 0)
   - Lecture seule
   - Analyse, recommandations, redaction
-  - Pas d'acces infrastructure
-</code></pre>
+  - Pas d&#39;acces infrastructure
+</code></pre></div>
 
 <h2 id="isolation">Isolation</h2>
 <p>Chaque agent a son propre perimetre. Ne partagez pas tout.</p>
@@ -201,7 +206,7 @@ Agent 2 : Conseil (niveau 0)
 <li><strong>Fichiers de reference</strong> : CONSTITUTION.md, BOUNDARIES.md (avec des sections par agent).</li>
 </ul>
 <h3 id="structure-de-fichiers">Structure de fichiers</h3>
-<pre class="codehilite"><code>~/.claude/
+<div class="codehilite"><pre><span></span><code>~/.claude/
   agent-infra/
     system-prompt.md
     memory/
@@ -213,16 +218,16 @@ Agent 2 : Conseil (niveau 0)
   shared/
     CONSTITUTION.md
     TASKS (table PostgreSQL commune)
-</code></pre>
+</code></pre></div>
 
 <h2 id="communication-entre-agents">Communication entre agents</h2>
 <p>Les agents ne se parlent pas directement. Vous etes le lien.</p>
 <h3 id="pattern-recommande">Pattern recommande</h3>
-<pre class="codehilite"><code>1. Agent Infra detecte un probleme : &quot;Le container cockpit redemarre en boucle.&quot;
-2. Vous diagnostiquez avec Agent Infra.
-3. Si le fix implique du code, vous passez a Agent Business/Code.
-4. Vous revenez a Agent Infra pour deployer le fix.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Infra</span><span class="w"> </span><span class="n">detecte</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">probleme</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Le container cockpit redemarre en boucle.&quot;</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Vous</span><span class="w"> </span><span class="n">diagnostiquez</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Infra</span><span class="mf">.</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">fix</span><span class="w"> </span><span class="n">implique</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">vous</span><span class="w"> </span><span class="n">passez</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Business</span><span class="o">/</span><span class="n">Code</span><span class="mf">.</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">Vous</span><span class="w"> </span><span class="n">revenez</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Infra</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">deployer</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">fix</span><span class="mf">.</span>
+</code></pre></div>
 
 <h3 id="ce-quil-ne-faut-pas-faire">Ce qu'il ne faut PAS faire</h3>
 <ul>
@@ -251,7 +256,11 @@ Agent 2 : Conseil (niveau 0)
 <li>[ ] La communication passe par vous, pas entre agents.</li>
 <li>[ ] Le nombre total d'agents est inferieur ou egal a 2 (sauf besoin demontre).</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Signes qu'il est temps, Comment structurer, Isolation et 4 autres. <a href="05-13-migrer-modele.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/12-deuxieme-agent.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

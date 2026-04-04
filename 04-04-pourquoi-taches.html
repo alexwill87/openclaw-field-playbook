@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,22 +111,26 @@
   <span>4.4 -- Pourquoi un systeme de taches</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#agent-conseiller-vs-agent-partenaire" class="">Agent conseiller vs agent partenaire</a></li>
-<li><a href="#commencer-simple" class="">Commencer simple</a></li>
-<li><a href="#niveau-1-un-fichier-texte" class="toc-h3">Niveau 1 : un fichier texte</a></li>
-<li><a href="#niveau-2-un-fichier-jsonyaml-structure" class="toc-h3">Niveau 2 : un fichier JSON/YAML structure</a></li>
-<li><a href="#niveau-3-base-de-donnees" class="toc-h3">Niveau 3 : base de donnees</a></li>
-<li><a href="#ce-que-le-systeme-de-taches-change-concretement" class="">Ce que le systeme de taches change concretement</a></li>
-<li><a href="#quand-passer-au-niveau-suivant" class="">Quand passer au niveau suivant</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#agent-conseiller-vs-agent-partenaire">Agent conseiller vs agent partenaire</a></li>
+    <li><a href="#commencer-simple">Commencer simple</a></li>
+    <li class="toc-h3"><a href="#niveau-1-un-fichier-texte">Niveau 1 : un fichier texte</a></li>
+    <li class="toc-h3"><a href="#niveau-2-un-fichier-jsonyaml-structure">Niveau 2 : un fichier JSON/YAML structure</a></li>
+    <li class="toc-h3"><a href="#niveau-3-base-de-donnees">Niveau 3 : base de donnees</a></li>
+    <li><a href="#ce-que-le-systeme-de-taches-change-concretement">Ce que le systeme de taches change concretement</a></li>
+    <li><a href="#quand-passer-au-niveau-suivant">Quand passer au niveau suivant</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="44-pourquoi-un-systeme-de-taches">4.4 -- Pourquoi un systeme de taches</h1>
 <h2 id="contexte">Contexte</h2>
@@ -173,33 +178,33 @@
 <h2 id="commencer-simple">Commencer simple</h2>
 <p>N'installez pas PostgreSQL, un ORM, et un dashboard le premier jour. Commencez par une checklist.</p>
 <h3 id="niveau-1-un-fichier-texte">Niveau 1 : un fichier texte</h3>
-<pre class="codehilite"><code class="language-markdown"># TASKS.md
+<div class="codehilite"><pre><span></span><code><span class="gh"># TASKS.md</span>
 
-## En cours
-- [ ] Migrer le backup vers S3 — deadline: 2026-04-05
-- [ ] Ecrire la doc API endpoint /users
+<span class="gu">## En cours</span>
+<span class="k">- [ ]</span> Migrer le backup vers S3 — deadline: 2026-04-05
+<span class="k">- [ ]</span> Ecrire la doc API endpoint /users
 
-## En attente
-- [ ] Renouveler le certificat SSL (expire 2026-05-15)
+<span class="gu">## En attente</span>
+<span class="k">- [ ]</span> Renouveler le certificat SSL (expire 2026-05-15)
 
-## Fait
-- [x] Configurer le monitoring Telegram — 2026-03-28
-</code></pre>
+<span class="gu">## Fait</span>
+<span class="k">- [x]</span> Configurer le monitoring Telegram — 2026-03-28
+</code></pre></div>
 
 <p>Votre agent peut lire ce fichier, proposer des mises a jour, et vous rappeler les deadlines. Zero infrastructure.</p>
 <h3 id="niveau-2-un-fichier-jsonyaml-structure">Niveau 2 : un fichier JSON/YAML structure</h3>
-<pre class="codehilite"><code class="language-yaml">tasks:
-  - id: 1
-    title: &quot;Migrer backup S3&quot;
-    status: in_progress
-    priority: high
-    deadline: &quot;2026-04-05&quot;
-    notes: &quot;Tester restauration apres migration&quot;
-  - id: 2
-    title: &quot;Doc API /users&quot;
-    status: todo
-    priority: medium
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Migrer</span><span class="nv"> </span><span class="s">backup</span><span class="nv"> </span><span class="s">S3&quot;</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_progress</span>
+<span class="w">    </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">    </span><span class="nt">deadline</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2026-04-05&quot;</span>
+<span class="w">    </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tester</span><span class="nv"> </span><span class="s">restauration</span><span class="nv"> </span><span class="s">apres</span><span class="nv"> </span><span class="s">migration&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Doc</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">/users&quot;</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">todo</span>
+<span class="w">    </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
+</code></pre></div>
 
 <p>Plus facile a parser pour l'agent. Permet des requetes ("quelles taches high priority ?").</p>
 <h3 id="niveau-3-base-de-donnees">Niveau 3 : base de donnees</h3>
@@ -235,7 +240,11 @@ Agent : "3 taches prioritaires. La migration S3 est en retard de 2 jours. Le cer
 <li>[ ] L'agent sait ou trouver et lire ce fichier.</li>
 <li>[ ] Vous relisez les taches au moins une fois par semaine.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Agent conseiller vs agent partenaire, Commencer simple, Ce que le systeme de taches change concretement et 4 autres. <a href="04-05-comment-taches.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/04-pourquoi-taches.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

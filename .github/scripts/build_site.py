@@ -458,22 +458,49 @@ def build_section_pages(all_sections):
             if formatted:
                 last_updated_html = f'<div class="last-updated">Dernière mise à jour : {formatted}</div>'
 
-        # Build TOC from h2/h3 tags in the HTML
+        # Build learning objectives box from h2/h3 tags in the HTML
         import re as _re
         toc_items = []
+        toc_texts = []
         heading_pattern = _re.compile(r'<(h[23])\s+id="([^"]+)"[^>]*>(.*?)</\1>', _re.IGNORECASE)
         for match in heading_pattern.finditer(html_content):
             tag = match.group(1).lower()
             anchor = match.group(2)
             text = _re.sub(r'<[^>]+>', '', match.group(3)).strip()
-            css_class = 'toc-h3' if tag == 'h3' else ''
-            toc_items.append(f'<li><a href="#{anchor}" class="{css_class}">{text}</a></li>')
+            css_class = ' class="toc-h3"' if tag == 'h3' else ''
+            toc_items.append(f'<li{css_class}><a href="#{anchor}">{text}</a></li>')
+            if tag == 'h2':
+                toc_texts.append(text)
 
         toc_html = ''
-        if len(toc_items) > 3:  # Only show TOC if there are enough headings
-            toc_html = '<details class="page-toc" open>\n<summary>Sur cette page</summary>\n<ul>\n'
-            toc_html += '\n'.join(toc_items)
-            toc_html += '\n</ul>\n</details>\n'
+        bravo_html = ''
+        if len(toc_items) > 3:  # Only show if there are enough headings
+            toc_html = (
+                '<div class="learning-objectives">\n'
+                '  <div class="lo-header" onclick="this.parentElement.classList.toggle(\'collapsed\')">\n'
+                '    <span class="lo-icon">&#127891;</span>\n'
+                '    Ce que vous allez apprendre\n'
+                '    <span class="lo-arrow">&#9660;</span>\n'
+                '  </div>\n'
+                '  <ul class="lo-list">\n'
+            )
+            toc_html += '\n'.join(f'    {item}' for item in toc_items)
+            toc_html += '\n  </ul>\n</div>\n'
+
+            # Build bravo box for bottom of page
+            count = len(toc_texts)
+            topics = ', '.join(toc_texts[:4])
+            if count > 4:
+                topics += f' et {count - 4} autre{"s" if count - 4 > 1 else ""}'
+            bravo_html = (
+                '<div class="bravo-box">\n'
+                '  <div class="bravo-header">Bravo, vous avez termin\u00e9 cette section !</div>\n'
+                f'  <div class="bravo-body">Vous avez couvert : {topics}.'
+            )
+            if i < len(all_sections) - 1:
+                next_s = all_sections[i + 1]
+                bravo_html += f' <a href="{next_s.html_file}">Continuer &rarr;</a>'
+            bravo_html += '</div>\n</div>\n'
 
         # Wrap in section div
         wrapped = f'<section class="chapter">\n{html_content}\n</section>'
@@ -505,8 +532,8 @@ def build_section_pages(all_sections):
         # Issues widget
         issues = build_issues_widget()
 
-        # Assemble: breadcrumb + last-updated BEFORE the section content
-        full_content = breadcrumb_html + '\n' + last_updated_html + '\n' + toc_html + wrapped + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
+        # Assemble: breadcrumb + last-updated + learning objectives BEFORE content, bravo AFTER
+        full_content = breadcrumb_html + '\n' + last_updated_html + '\n' + toc_html + wrapped + bravo_html + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
         sidebar_html = build_sidebar(all_sections, sec.slug, sec.chapter_num)
         page_html = render_page(sec.title, full_content, sidebar_html)
         write_page(sec.html_file, page_html)
@@ -1423,6 +1450,17 @@ function submitContactForm(){
 }
 </script>
 
+<h2>Votre parcours de découverte</h2>
+<p>Ces pages ont été écrites spécialement pour vous, sans jargon technique :</p>
+<ol>
+  <li><a href="01-07-journee-type.html">À quoi ressemble une journée avec un agent IA ?</a> — Le quotidien, heure par heure.</li>
+  <li><a href="01-08-combien-ca-coute.html">Combien ça coûte vraiment ?</a> — Les vrais chiffres, sans surprise.</li>
+  <li><a href="01-09-est-ce-complique.html">Est-ce que c'est compliqué pour moi ?</a> — Deux chemins, les deux sont accessibles.</li>
+  <li><a href="01-10-si-je-ne-fais-rien.html">Qu'est-ce qui se passe si je ne fais rien ?</a> — Ce que l'inaction coûte vraiment.</li>
+  <li><a href="01-11-comment-se-lancer.html">Comment je me lance ?</a> — Les étapes concrètes pour démarrer.</li>
+</ol>
+<p>Et pour voir un exemple complet d'un artisan qui utilise OpenClaw : <a href="06-08-artisan-tpe.html">Section 6.8 — Artisan et TPE</a>.</p>
+
 <h2>Qui a écrit ce guide ?</h2>
 <p>Alex Willemetz, entrepreneur à Paris. Pas développeur de formation. Il a galéré avec OpenClaw pendant des mois, a fait trois installations ratées avant de comprendre comment ça marche, et a fini par maîtriser le sujet.</p>
 <p>Ce guide est le résultat de cette expérience. Il est écrit pour que vous n'ayez pas à galérer comme lui.</p>
@@ -1674,6 +1712,56 @@ def build_search_index(all_sections):
     print(f'  -> search-index.json ({len(index)} entries)')
 
 
+def build_sitemap(all_sections):
+    """Generate sitemap.xml with hreflang annotations for FR and EN."""
+    base = 'https://www.openclawfieldplaybook.com'
+
+    # Collect all page URLs (sections + utility pages)
+    pages = ['index.html', 'decouverte.html', 'checklist.html', 'contribuer.html',
+             'ecosystem.html', 'privacy.html',
+             'persona-entrepreneur.html', 'persona-cto.html',
+             'persona-dev.html', 'persona-agent.html']
+    for sec in all_sections:
+        pages.append(sec.html_file)
+
+    # Check if EN version exists
+    en_dir = os.path.join(REPO_ROOT, 'sections-en')
+    has_en = os.path.isdir(en_dir)
+
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    if has_en:
+        lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+                     ' xmlns:xhtml="http://www.w3.org/1999/xhtml">')
+    else:
+        lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+    for page in pages:
+        fr_url = f'{base}/{page}'
+        en_url = f'{base}/en/{page}'
+
+        if has_en:
+            lines.append('  <url>')
+            lines.append(f'    <loc>{fr_url}</loc>')
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="fr" href="{fr_url}"/>')
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="en" href="{en_url}"/>')
+            lines.append('  </url>')
+            lines.append('  <url>')
+            lines.append(f'    <loc>{en_url}</loc>')
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="fr" href="{fr_url}"/>')
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="en" href="{en_url}"/>')
+            lines.append('  </url>')
+        else:
+            lines.append(f'  <url><loc>{fr_url}</loc></url>')
+
+    lines.append('</urlset>')
+
+    sitemap_path = os.path.join(REPO_ROOT, 'sitemap.xml')
+    with open(sitemap_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines) + '\n')
+    page_count = len(pages) * (2 if has_en else 1)
+    print(f'  -> sitemap.xml ({page_count} URLs)')
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -1715,6 +1803,11 @@ if __name__ == '__main__':
     # Build search index
     print('Building search index...')
     build_search_index(all_sections)
+    print()
+
+    # Build sitemap
+    print('Building sitemap...')
+    build_sitemap(all_sections)
     print()
 
     # Summary

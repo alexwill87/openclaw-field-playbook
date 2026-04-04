@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -104,20 +105,24 @@
   <span>07 -- Comment soumettre votre cas d'usage</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#pourquoi-contribuer" class="">Pourquoi contribuer</a></li>
-<li><a href="#format-standard" class="">Format standard</a></li>
-<li><a href="#option-1-soumettre-via-issue-github" class="">Option 1 : Soumettre via Issue GitHub</a></li>
-<li><a href="#option-2-soumettre-via-pull-request" class="">Option 2 : Soumettre via Pull Request</a></li>
-<li><a href="#regles-pour-la-pr" class="toc-h3">Regles pour la PR :</a></li>
-<li><a href="#ce-qui-rend-un-cas-dusage-utile" class="">Ce qui rend un cas d'usage utile</a></li>
-<li><a href="#ce-que-nous-recherchons-particulierement" class="">Ce que nous recherchons particulierement</a></li>
-<li><a href="#apres-la-soumission" class="">Apres la soumission</a></li>
-<li><a href="#questions-frequentes" class="">Questions frequentes</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#pourquoi-contribuer">Pourquoi contribuer</a></li>
+    <li><a href="#format-standard">Format standard</a></li>
+    <li><a href="#option-1-soumettre-via-issue-github">Option 1 : Soumettre via Issue GitHub</a></li>
+    <li><a href="#option-2-soumettre-via-pull-request">Option 2 : Soumettre via Pull Request</a></li>
+    <li class="toc-h3"><a href="#regles-pour-la-pr">Regles pour la PR :</a></li>
+    <li><a href="#ce-qui-rend-un-cas-dusage-utile">Ce qui rend un cas d'usage utile</a></li>
+    <li><a href="#ce-que-nous-recherchons-particulierement">Ce que nous recherchons particulierement</a></li>
+    <li><a href="#apres-la-soumission">Apres la soumission</a></li>
+    <li><a href="#questions-frequentes">Questions frequentes</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="07-comment-soumettre-votre-cas-dusage">07 -- Comment soumettre votre cas d'usage</h1>
 <p><strong>Pour qui :</strong> toute personne ou equipe utilisant OpenClaw en situation reelle
@@ -133,61 +138,61 @@
 <hr />
 <h2 id="format-standard">Format standard</h2>
 <p>Chaque cas d'usage suit cette structure. Vous pouvez copier ce template directement.</p>
-<pre class="codehilite"><code class="language-markdown">---
+<div class="codehilite"><pre><span></span><code>---
 status: draft
 audience: both
 chapter: 06
 last_updated: YYYY-MM
 contributors: [votre-github-handle]
-lang: fr
+<span class="gu">lang: fr</span>
+<span class="gu">---</span>
+
+<span class="gh"># XX -- [Titre du cas d&#39;usage]</span>
+
+<span class="gs">**Pour qui :**</span> [profil en une ligne]
+<span class="gs">**Temps de mise en place :**</span> [estimation]
+<span class="gs">**Difficulte :**</span> Debutant / Intermediaire / Avance
+
 ---
 
-# XX -- [Titre du cas d'usage]
+<span class="gu">## Contexte</span>
 
-**Pour qui :** [profil en une ligne]
-**Temps de mise en place :** [estimation]
-**Difficulte :** Debutant / Intermediaire / Avance
+Qui vous etes, ce que fait votre organisation, la taille de l&#39;equipe.
 
----
-
-## Contexte
-
-Qui vous etes, ce que fait votre organisation, la taille de l'equipe.
-
-## Probleme
+<span class="gu">## Probleme</span>
 
 Ce que vous deviez resoudre ou automatiser. Soyez specifique.
 
-## Configuration
+<span class="gu">## Configuration</span>
 
 Votre infrastructure (serveur, OS, outils).
 Vos agents (combien, quels roles).
 Votre budget approximatif.
 
-## Mise en place
+<span class="gu">## Mise en place</span>
 
-Les etapes que vous avez suivies, dans l'ordre chronologique.
+Les etapes que vous avez suivies, dans l&#39;ordre chronologique.
 
-## Resultat
+<span class="gu">## Resultat</span>
 
 Ce qui a change concretement. Chiffres si possible (temps gagne, taux de reussite, couts).
 
-## Lecons apprises
+<span class="gu">## Lecons apprises</span>
 
 Ce que vous referiez differemment. Ce qui a mieux marche que prevu.
 
-## Erreurs courantes
+<span class="gu">## Erreurs courantes</span>
 
 Les pieges que vous avez rencontres et comment les eviter.
 
-## Template
+<span class="gu">## Template</span>
 
-Un prompt, une configuration, ou un snippet reutilisable par d'autres.
+Un prompt, une configuration, ou un snippet reutilisable par d&#39;autres.
 
-## Verification
+<span class="gu">## Verification</span>
 
 Une checklist pour valider que la configuration fonctionne.
-</code></pre>
+</code></pre></div>
 
 <hr />
 <h2 id="option-1-soumettre-via-issue-github">Option 1 : Soumettre via Issue GitHub</h2>
@@ -289,7 +294,11 @@ Les contributions en anglais sont bienvenues. Un contributeur ou un agent se cha
 <hr />
 <p><em>Chaque cas d'usage soumis rend ce playbook plus utile pour le prochain praticien. Votre experience compte.</em></p>
 <p><em><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Soumettre via Issue</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></em></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Pourquoi contribuer, Format standard, Option 1 : Soumettre via Issue GitHub, Option 2 : Soumettre via Pull Request et 4 autres. <a href="06-08-artisan-tpe.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/07-contribuer.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

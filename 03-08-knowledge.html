@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,29 +115,33 @@
   <span>3.8 -- Le dossier knowledge/</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#organisation-par-domaine" class="">Organisation par domaine</a></li>
-<li><a href="#regles-dorganisation" class="">Regles d'organisation</a></li>
-<li><a href="#un-fichier-par-sujet" class="toc-h3">Un fichier par sujet</a></li>
-<li><a href="#cross-reference-plutot-que-duplication" class="toc-h3">Cross-reference plutot que duplication</a></li>
-<li><a href="#200-lignes-max-par-fichier" class="toc-h3">200 lignes max par fichier</a></li>
-<li><a href="#noms-de-fichiers-explicites" class="toc-h3">Noms de fichiers explicites</a></li>
-<li><a href="#exemples-de-bonne-organisation" class="">Exemples de bonne organisation</a></li>
-<li><a href="#freelance-consultant" class="toc-h3">Freelance / consultant</a></li>
-<li><a href="#startup-technique" class="toc-h3">Startup technique</a></li>
-<li><a href="#dirigeant-pme" class="toc-h3">Dirigeant PME</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#1-creer-la-structure-de-dossiers" class="toc-h3">1. Creer la structure de dossiers</a></li>
-<li><a href="#2-migrer-depuis-memorymd" class="toc-h3">2. Migrer depuis MEMORY.md</a></li>
-<li><a href="#3-documenter-vos-5-sujets-les-plus-frequents" class="toc-h3">3. Documenter vos 5 sujets les plus frequents</a></li>
-<li><a href="#4-mettre-en-place-la-revision-trimestrielle" class="toc-h3">4. Mettre en place la revision trimestrielle</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#organisation-par-domaine">Organisation par domaine</a></li>
+    <li><a href="#regles-dorganisation">Regles d'organisation</a></li>
+    <li class="toc-h3"><a href="#un-fichier-par-sujet">Un fichier par sujet</a></li>
+    <li class="toc-h3"><a href="#cross-reference-plutot-que-duplication">Cross-reference plutot que duplication</a></li>
+    <li class="toc-h3"><a href="#200-lignes-max-par-fichier">200 lignes max par fichier</a></li>
+    <li class="toc-h3"><a href="#noms-de-fichiers-explicites">Noms de fichiers explicites</a></li>
+    <li><a href="#exemples-de-bonne-organisation">Exemples de bonne organisation</a></li>
+    <li class="toc-h3"><a href="#freelance-consultant">Freelance / consultant</a></li>
+    <li class="toc-h3"><a href="#startup-technique">Startup technique</a></li>
+    <li class="toc-h3"><a href="#dirigeant-pme">Dirigeant PME</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li class="toc-h3"><a href="#1-creer-la-structure-de-dossiers">1. Creer la structure de dossiers</a></li>
+    <li class="toc-h3"><a href="#2-migrer-depuis-memorymd">2. Migrer depuis MEMORY.md</a></li>
+    <li class="toc-h3"><a href="#3-documenter-vos-5-sujets-les-plus-frequents">3. Documenter vos 5 sujets les plus frequents</a></li>
+    <li class="toc-h3"><a href="#4-mettre-en-place-la-revision-trimestrielle">4. Mettre en place la revision trimestrielle</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="38-le-dossier-knowledge">3.8 -- Le dossier knowledge/</h1>
 <h2 id="contexte">Contexte</h2>
@@ -143,7 +149,7 @@
 <p>Contrairement a MEMORY.md (80 lignes, volatile), knowledge/ n'a pas de limite de taille globale. Mais chaque fichier doit rester lisible et cible : un fichier par sujet, 200 lignes max par fichier.</p>
 <h2 id="organisation-par-domaine">Organisation par domaine</h2>
 <p>Structure recommandee :</p>
-<pre class="codehilite"><code>knowledge/
+<div class="codehilite"><pre><span></span><code>knowledge/
   infra/
     stack-technique.md
     deploiement.md
@@ -159,27 +165,27 @@
   contacts/
     equipe.md
     partenaires.md
-</code></pre>
+</code></pre></div>
 
 <p>Trois a quatre dossiers de premier niveau. Pas plus. Si vous avez besoin de plus, vous essayez probablement de documenter trop de choses.</p>
 <h2 id="regles-dorganisation">Regles d'organisation</h2>
 <h3 id="un-fichier-par-sujet">Un fichier par sujet</h3>
 <p>Mauvais :</p>
-<pre class="codehilite"><code>knowledge/tout-sur-le-business.md  (300 lignes, 15 sujets)
-</code></pre>
+<div class="codehilite"><pre><span></span><code>knowledge/tout-sur-le-business.md  (300 lignes, 15 sujets)
+</code></pre></div>
 
 <p>Bon :</p>
-<pre class="codehilite"><code>knowledge/business/tarification.md     (60 lignes)
+<div class="codehilite"><pre><span></span><code>knowledge/business/tarification.md     (60 lignes)
 knowledge/business/clients-principaux.md  (80 lignes)
 knowledge/business/processus-vente.md     (70 lignes)
-</code></pre>
+</code></pre></div>
 
 <h3 id="cross-reference-plutot-que-duplication">Cross-reference plutot que duplication</h3>
 <p>Si le processus de deploiement mentionne le monitoring, ne recopiez pas la section monitoring. Faites une reference :</p>
-<pre class="codehilite"><code class="language-markdown">## Deploiement
+<div class="codehilite"><pre><span></span><code><span class="gu">## Deploiement</span>
 [...]
-Pour le monitoring post-deploiement, voir [monitoring.md](../infra/monitoring.md).
-</code></pre>
+Pour le monitoring post-deploiement, voir [<span class="nt">monitoring.md</span>](<span class="na">../infra/monitoring.md</span>).
+</code></pre></div>
 
 <p>La duplication cree des informations contradictoires des la premiere mise a jour oubliee.</p>
 <h3 id="200-lignes-max-par-fichier">200 lignes max par fichier</h3>
@@ -188,7 +194,7 @@ Pour le monitoring post-deploiement, voir [monitoring.md](../infra/monitoring.md
 <p>Le nom du fichier doit suffire a comprendre son contenu. Pas de <code>notes.md</code>, <code>divers.md</code>, <code>temp.md</code>.</p>
 <h2 id="exemples-de-bonne-organisation">Exemples de bonne organisation</h2>
 <h3 id="freelance-consultant">Freelance / consultant</h3>
-<pre class="codehilite"><code>knowledge/
+<div class="codehilite"><pre><span></span><code>knowledge/
   clients/
     client-alpha.md        -- contexte, contacts, historique
     client-beta.md
@@ -198,47 +204,47 @@ Pour le monitoring post-deploiement, voir [monitoring.md](../infra/monitoring.md
   guides/
     onboarding-client.md    -- checklist premier contact a livraison
     facturation.md          -- processus de facturation
-</code></pre>
+</code></pre></div>
 
 <h3 id="startup-technique">Startup technique</h3>
-<pre class="codehilite"><code>knowledge/
+<div class="codehilite"><pre><span></span><code>knowledge/
   infra/
-    architecture.md         -- schema de l'infra
-    runbooks.md             -- procedures d'urgence
+    architecture.md         -- schema de l&#39;infra
+    runbooks.md             -- procedures d&#39;urgence
     secrets-management.md   -- ou sont les secrets, comment y acceder
   produit/
     roadmap-q2-2026.md      -- priorites produit du trimestre
-    metriques.md            -- KPIs suivis, seuils d'alerte
+    metriques.md            -- KPIs suivis, seuils d&#39;alerte
   equipe/
     roles.md                -- qui fait quoi
     rituels.md              -- reunions, standups, retros
-</code></pre>
+</code></pre></div>
 
 <h3 id="dirigeant-pme">Dirigeant PME</h3>
-<pre class="codehilite"><code>knowledge/
-  business/
-    offre-services.md       -- description de l'offre
-    clients-top-10.md       -- 10 plus gros clients, contexte
-    pipeline-commercial.md  -- opportunites en cours
-  operations/
-    processus-recrutement.md
-    processus-achat.md
-  legal/
-    contrats-types.md       -- clauses standard, points d'attention
-    rgpd.md                 -- obligations, registre des traitements
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nx">knowledge</span><span class="o">/</span>
+<span class="w">  </span><span class="nx">business</span><span class="o">/</span>
+<span class="w">    </span><span class="nx">offre</span><span class="o">-</span><span class="nx">services</span><span class="p">.</span><span class="nx">md</span><span class="w">       </span><span class="o">--</span><span class="w"> </span><span class="nx">description</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">l</span><span class="err">&#39;</span><span class="nx">offre</span>
+<span class="w">    </span><span class="nx">clients</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="mi">10</span><span class="p">.</span><span class="nx">md</span><span class="w">       </span><span class="o">--</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="nx">plus</span><span class="w"> </span><span class="nx">gros</span><span class="w"> </span><span class="nx">clients</span><span class="p">,</span><span class="w"> </span><span class="nx">contexte</span>
+<span class="w">    </span><span class="nx">pipeline</span><span class="o">-</span><span class="nx">commercial</span><span class="p">.</span><span class="nx">md</span><span class="w">  </span><span class="o">--</span><span class="w"> </span><span class="nx">opportunites</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">cours</span>
+<span class="w">  </span><span class="nx">operations</span><span class="o">/</span>
+<span class="w">    </span><span class="nx">processus</span><span class="o">-</span><span class="nx">recrutement</span><span class="p">.</span><span class="nx">md</span>
+<span class="w">    </span><span class="nx">processus</span><span class="o">-</span><span class="nx">achat</span><span class="p">.</span><span class="nx">md</span>
+<span class="w">  </span><span class="nx">legal</span><span class="o">/</span>
+<span class="w">    </span><span class="nx">contrats</span><span class="o">-</span><span class="nx">types</span><span class="p">.</span><span class="nx">md</span><span class="w">       </span><span class="o">--</span><span class="w"> </span><span class="nx">clauses</span><span class="w"> </span><span class="nx">standard</span><span class="p">,</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="nx">d</span><span class="err">&#39;</span><span class="nx">attention</span>
+<span class="w">    </span><span class="nx">rgpd</span><span class="p">.</span><span class="nx">md</span><span class="w">                 </span><span class="o">--</span><span class="w"> </span><span class="nx">obligations</span><span class="p">,</span><span class="w"> </span><span class="nx">registre</span><span class="w"> </span><span class="nx">des</span><span class="w"> </span><span class="nx">traitements</span>
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-creer-la-structure-de-dossiers">1. Creer la structure de dossiers</h3>
 <p>Commencez avec 3 dossiers maximum. Vous pourrez toujours en ajouter.</p>
 <h3 id="2-migrer-depuis-memorymd">2. Migrer depuis MEMORY.md</h3>
 <p>Relisez MEMORY.md. Tout ce qui est stable depuis plus de 2 semaines devrait migrer dans knowledge/. Remplacez l'entree dans MEMORY.md par une reference :</p>
-<pre class="codehilite"><code>Avant (MEMORY.md) :
+<div class="codehilite"><pre><span></span><code>Avant (MEMORY.md) :
 - Processus de deploiement : build &gt; test &gt; staging &gt; validation &gt; prod
 
 Apres (MEMORY.md) :
 - Processus de deploiement documente dans knowledge/infra/deploiement.md
-</code></pre>
+</code></pre></div>
 
 <h3 id="3-documenter-vos-5-sujets-les-plus-frequents">3. Documenter vos 5 sujets les plus frequents</h3>
 <p>Quels sont les 5 sujets sur lesquels vous expliquez les memes choses a chaque session ? Documentez-les dans knowledge/.</p>
@@ -263,7 +269,11 @@ Apres (MEMORY.md) :
 <li>[ ] Les 5 sujets les plus frequents sont documentes</li>
 <li>[ ] Une date de revision trimestrielle est planifiee</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Organisation par domaine, Regles d'organisation, Exemples de bonne organisation et 3 autres. <a href="03-09-principe-une-source.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/08-knowledge.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

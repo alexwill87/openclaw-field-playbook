@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,22 +118,26 @@
   <span>2.14 -- Connexion Telegram</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#etape-1-creer-le-bot-avec-botfather" class="">Etape 1 : Creer le bot avec @BotFather</a></li>
-<li><a href="#etape-2-stocker-le-token-dans-vault" class="">Etape 2 : Stocker le token dans Vault</a></li>
-<li><a href="#etape-3-obtenir-votre-chat_id" class="">Etape 3 : Obtenir votre chat_id</a></li>
-<li><a href="#etape-4-stocker-le-chat_id-dans-vault" class="">Etape 4 : Stocker le chat_id dans Vault</a></li>
-<li><a href="#etape-5-tester-lenvoi-de-message" class="">Etape 5 : Tester l'envoi de message</a></li>
-<li><a href="#etape-6-configuration-dans-openclaw" class="">Etape 6 : Configuration dans OpenClaw</a></li>
-<li><a href="#script-utilitaire-denvoi" class="">Script utilitaire d'envoi</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-<li><a href="#temps-estime" class="">Temps estime</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#etape-1-creer-le-bot-avec-botfather">Etape 1 : Creer le bot avec @BotFather</a></li>
+    <li><a href="#etape-2-stocker-le-token-dans-vault">Etape 2 : Stocker le token dans Vault</a></li>
+    <li><a href="#etape-3-obtenir-votre-chat_id">Etape 3 : Obtenir votre chat_id</a></li>
+    <li><a href="#etape-4-stocker-le-chat_id-dans-vault">Etape 4 : Stocker le chat_id dans Vault</a></li>
+    <li><a href="#etape-5-tester-lenvoi-de-message">Etape 5 : Tester l'envoi de message</a></li>
+    <li><a href="#etape-6-configuration-dans-openclaw">Etape 6 : Configuration dans OpenClaw</a></li>
+    <li><a href="#script-utilitaire-denvoi">Script utilitaire d'envoi</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="214-connexion-telegram">2.14 -- Connexion Telegram</h1>
 <h2 id="contexte">Contexte</h2>
@@ -147,8 +152,8 @@
 </ol>
 <p>Copiez ce token.</p>
 <h2 id="etape-2-stocker-le-token-dans-vault">Etape 2 : Stocker le token dans Vault</h2>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/telegram bot_token=&quot;123456789:ABCDefGhIJKlmnoPQRSTuvwxyz&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/telegram<span class="w"> </span><span class="nv">bot_token</span><span class="o">=</span><span class="s2">&quot;123456789:ABCDefGhIJKlmnoPQRSTuvwxyz&quot;</span>
+</code></pre></div>
 
 <h2 id="etape-3-obtenir-votre-chat_id">Etape 3 : Obtenir votre chat_id</h2>
 <p>Le chat_id identifie la conversation ou le bot enverra les messages. Pour le trouver :</p>
@@ -156,39 +161,39 @@
 <li>Envoyez un message quelconque a votre bot dans Telegram</li>
 <li>Appelez l'API Telegram :</li>
 </ol>
-<pre class="codehilite"><code class="language-bash">$ BOT_TOKEN=$(docker exec vault vault kv get -field=bot_token secret/telegram)
-$ curl -s &quot;https://api.telegram.org/bot${BOT_TOKEN}/getUpdates&quot; | python3 -m json.tool
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nv">BOT_TOKEN</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>bot_token<span class="w"> </span>secret/telegram<span class="k">)</span>
+$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">BOT_TOKEN</span><span class="si">}</span><span class="s2">/getUpdates&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+</code></pre></div>
 
 <ol>
 <li>Dans la reponse, cherchez <code>"chat": {"id": 123456789}</code>. Ce nombre est votre chat_id.</li>
 </ol>
 <h2 id="etape-4-stocker-le-chat_id-dans-vault">Etape 4 : Stocker le chat_id dans Vault</h2>
 <p>Mettez a jour le secret Telegram avec le chat_id :</p>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/telegram \
-  bot_token=&quot;123456789:ABCDefGhIJKlmnoPQRSTuvwxyz&quot; \
-  chat_id=&quot;VOTRE_CHAT_ID&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/telegram<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">bot_token</span><span class="o">=</span><span class="s2">&quot;123456789:ABCDefGhIJKlmnoPQRSTuvwxyz&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">chat_id</span><span class="o">=</span><span class="s2">&quot;VOTRE_CHAT_ID&quot;</span>
+</code></pre></div>
 
 <h2 id="etape-5-tester-lenvoi-de-message">Etape 5 : Tester l'envoi de message</h2>
-<pre class="codehilite"><code class="language-bash">$ BOT_TOKEN=$(docker exec vault vault kv get -field=bot_token secret/telegram)
-$ CHAT_ID=$(docker exec vault vault kv get -field=chat_id secret/telegram)
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nv">BOT_TOKEN</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>bot_token<span class="w"> </span>secret/telegram<span class="k">)</span>
+$<span class="w"> </span><span class="nv">CHAT_ID</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>chat_id<span class="w"> </span>secret/telegram<span class="k">)</span>
 
-$ curl -s -X POST &quot;https://api.telegram.org/bot${BOT_TOKEN}/sendMessage&quot; \
-  -H &quot;Content-Type: application/json&quot; \
-  -d &quot;{\&quot;chat_id\&quot;: \&quot;${CHAT_ID}\&quot;, \&quot;text\&quot;: \&quot;[OA System] Test de notification -- installation reussie.\&quot;}&quot;
-</code></pre>
+$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">BOT_TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;chat_id\&quot;: \&quot;</span><span class="si">${</span><span class="nv">CHAT_ID</span><span class="si">}</span><span class="s2">\&quot;, \&quot;text\&quot;: \&quot;[OA System] Test de notification -- installation reussie.\&quot;}&quot;</span>
+</code></pre></div>
 
 <p>Verifiez que le message arrive dans Telegram.</p>
 <h2 id="etape-6-configuration-dans-openclaw">Etape 6 : Configuration dans OpenClaw</h2>
 <p>La section <code>notifications.telegram</code> dans <code>~/.openclaw/config.json</code> (section 12) doit etre :</p>
-<pre class="codehilite"><code class="language-json">&quot;notifications&quot;: {
-  &quot;telegram&quot;: {
-    &quot;enabled&quot;: true,
-    &quot;vault_path&quot;: &quot;secret/telegram&quot;
-  }
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nt">&quot;notifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;telegram&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vault_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;secret/telegram&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 <p>OpenClaw lira automatiquement <code>bot_token</code> et <code>chat_id</code> depuis Vault.</p>
 <blockquote>
@@ -196,28 +201,28 @@ $ curl -s -X POST &quot;https://api.telegram.org/bot${BOT_TOKEN}/sendMessage&quo
 </blockquote>
 <h2 id="script-utilitaire-denvoi">Script utilitaire d'envoi</h2>
 <p>Creez <code>~/scripts/notify-telegram.sh</code> pour envoyer des notifications depuis n'importe quel script :</p>
-<pre class="codehilite"><code class="language-bash">#!/bin/bash
-# Usage : ./notify-telegram.sh &quot;Votre message ici&quot;
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Usage : ./notify-telegram.sh &quot;Votre message ici&quot;</span>
 
-MESSAGE=&quot;${1:-Test}&quot;
-BOT_TOKEN=$(docker exec vault vault kv get -field=bot_token secret/telegram 2&gt;/dev/null)
-CHAT_ID=$(docker exec vault vault kv get -field=chat_id secret/telegram 2&gt;/dev/null)
+<span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">Test</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">BOT_TOKEN</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>bot_token<span class="w"> </span>secret/telegram<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+<span class="nv">CHAT_ID</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>chat_id<span class="w"> </span>secret/telegram<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
 
-if [ -z &quot;$BOT_TOKEN&quot; ] || [ -z &quot;$CHAT_ID&quot; ]; then
-  echo &quot;Erreur : impossible de lire les credentials Telegram depuis Vault&quot;
-  exit 1
-fi
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BOT_TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CHAT_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Erreur : impossible de lire les credentials Telegram depuis Vault&quot;</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
-curl -s -X POST &quot;https://api.telegram.org/bot${BOT_TOKEN}/sendMessage&quot; \
-  -H &quot;Content-Type: application/json&quot; \
-  -d &quot;{\&quot;chat_id\&quot;: \&quot;${CHAT_ID}\&quot;, \&quot;text\&quot;: \&quot;${MESSAGE}\&quot;, \&quot;parse_mode\&quot;: \&quot;Markdown\&quot;}&quot; &gt; /dev/null
+curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">BOT_TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;chat_id\&quot;: \&quot;</span><span class="si">${</span><span class="nv">CHAT_ID</span><span class="si">}</span><span class="s2">\&quot;, \&quot;text\&quot;: \&quot;</span><span class="si">${</span><span class="nv">MESSAGE</span><span class="si">}</span><span class="s2">\&quot;, \&quot;parse_mode\&quot;: \&quot;Markdown\&quot;}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 
-echo &quot;Notification envoyee.&quot;
-</code></pre>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Notification envoyee.&quot;</span>
+</code></pre></div>
 
-<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/notify-telegram.sh
-$ ~/scripts/notify-telegram.sh &quot;Hello depuis le VPS&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>~/scripts/notify-telegram.sh
+$<span class="w"> </span>~/scripts/notify-telegram.sh<span class="w"> </span><span class="s2">&quot;Hello depuis le VPS&quot;</span>
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <ul>
@@ -227,13 +232,17 @@ $ ~/scripts/notify-telegram.sh &quot;Hello depuis le VPS&quot;
 <li><strong>getUpdates retourne un tableau vide</strong> : Envoyez un message au bot et reessayez immediatement. Les updates expirent apres 24h.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<pre class="codehilite"><code class="language-bash">$ ~/scripts/notify-telegram.sh &quot;[OA] Verification Telegram OK&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>~/scripts/notify-telegram.sh<span class="w"> </span><span class="s2">&quot;[OA] Verification Telegram OK&quot;</span>
+</code></pre></div>
 
 <p>Resultat attendu : message recu dans Telegram.</p>
 <h2 id="temps-estime">Temps estime</h2>
 <p>10 minutes.</p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Etape 1 : Creer le bot avec @BotFather, Etape 2 : Stocker le token dans Vault, Etape 3 : Obtenir votre chat_id et 7 autres. <a href="02-15-gateway-systemd.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/14-telegram.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

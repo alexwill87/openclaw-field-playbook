@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,22 +111,26 @@
   <span>4.5 -- Comment les taches se font</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#le-workflow-proposedecide" class="">Le workflow propose/decide</a></li>
-<li><a href="#1-lagent-propose" class="toc-h3">1. L'agent propose</a></li>
-<li><a href="#2-vous-decidez" class="toc-h3">2. Vous decidez</a></li>
-<li><a href="#3-lagent-execute-et-rend-compte" class="toc-h3">3. L'agent execute et rend compte</a></li>
-<li><a href="#triage-sans-deleguer-le-jugement" class="">Triage sans deleguer le jugement</a></li>
-<li><a href="#les-taches-nourrissent-le-briefing" class="">Les taches nourrissent le briefing</a></li>
-<li><a href="#format-minimal-dune-tache" class="">Format minimal d'une tache</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#le-workflow-proposedecide">Le workflow propose/decide</a></li>
+    <li class="toc-h3"><a href="#1-lagent-propose">1. L'agent propose</a></li>
+    <li class="toc-h3"><a href="#2-vous-decidez">2. Vous decidez</a></li>
+    <li class="toc-h3"><a href="#3-lagent-execute-et-rend-compte">3. L'agent execute et rend compte</a></li>
+    <li><a href="#triage-sans-deleguer-le-jugement">Triage sans deleguer le jugement</a></li>
+    <li><a href="#les-taches-nourrissent-le-briefing">Les taches nourrissent le briefing</a></li>
+    <li><a href="#format-minimal-dune-tache">Format minimal d'une tache</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="45-comment-les-taches-se-font">4.5 -- Comment les taches se font</h1>
 <h2 id="contexte">Contexte</h2>
@@ -134,19 +139,19 @@
 <h2 id="le-workflow-proposedecide">Le workflow propose/decide</h2>
 <h3 id="1-lagent-propose">1. L'agent propose</h3>
 <p>L'agent analyse les taches en cours, les deadlines, le contexte. Il propose :</p>
-<pre class="codehilite"><code>Bonjour. 3 taches prioritaires aujourd'hui :
+<div class="codehilite"><pre><span></span><code><span class="n">Bonjour</span><span class="p">.</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="n">prioritaires</span><span class="w"> </span><span class="n">aujourd</span><span class="s1">&#39;hui :</span>
 
-1. [URGENT] Migration S3 — en retard de 2 jours. 
-   Proposition : finir le script de transfert, tester, deployer.
+<span class="s1">1. [URGENT] Migration S3 — en retard de 2 jours. </span>
+<span class="s1">   Proposition : finir le script de transfert, tester, deployer.</span>
 
-2. [NORMAL] Doc API /users — pas de deadline, mais bloque l'onboarding dev.
-   Proposition : generer le squelette depuis le code, vous completez.
+<span class="s1">2. [NORMAL] Doc API /users — pas de deadline, mais bloque l&#39;</span><span class="n">onboarding</span><span class="w"> </span><span class="n">dev</span><span class="p">.</span>
+<span class="w">   </span><span class="n">Proposition</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">generer</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">squelette</span><span class="w"> </span><span class="n">depuis</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">vous</span><span class="w"> </span><span class="n">completez</span><span class="p">.</span>
 
-3. [INFO] Certificat SSL expire dans 43 jours.
-   Proposition : planifier le renouvellement pour semaine prochaine.
+<span class="mf">3.</span><span class="w"> </span><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="w"> </span><span class="n">Certificat</span><span class="w"> </span><span class="n">SSL</span><span class="w"> </span><span class="n">expire</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="mi">43</span><span class="w"> </span><span class="n">jours</span><span class="p">.</span>
+<span class="w">   </span><span class="n">Proposition</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">planifier</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">renouvellement</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">semaine</span><span class="w"> </span><span class="n">prochaine</span><span class="p">.</span>
 
-Quoi en premier ?
-</code></pre>
+<span class="n">Quoi</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">premier</span><span class="w"> </span><span class="vm">?</span>
+</code></pre></div>
 
 <h3 id="2-vous-decidez">2. Vous decidez</h3>
 <p>Vous ne validez pas tout en bloc. Vous triez :</p>
@@ -158,12 +163,12 @@ Quoi en premier ?
 <p>C'est du triage. L'agent fait le travail de preparation (analyser, prioriser, formuler). Vous gardez le jugement (decider, prioriser selon vos contraintes reelles).</p>
 <h3 id="3-lagent-execute-et-rend-compte">3. L'agent execute et rend compte</h3>
 <p>Apres validation, l'agent execute et met a jour le statut :</p>
-<pre class="codehilite"><code>Migration S3 : script de transfert termine. 
-Test de restauration : OK (3 fichiers, 12s).
-Statut mis a jour : in_progress -&gt; done.
+<div class="codehilite"><pre><span></span><code><span class="n">Migration</span><span class="w"> </span><span class="n">S3</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">transfert</span><span class="w"> </span><span class="n">termine</span><span class="p">.</span><span class="w"> </span>
+<span class="n">Test</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">restauration</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">OK</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="n">fichiers</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="n">s</span><span class="p">).</span>
+<span class="n">Statut</span><span class="w"> </span><span class="n">mis</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">in_progress</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">done</span><span class="p">.</span>
 
-Prochaine tache ?
-</code></pre>
+<span class="n">Prochaine</span><span class="w"> </span><span class="n">tache</span><span class="w"> </span><span class="o">?</span>
+</code></pre></div>
 
 <h2 id="triage-sans-deleguer-le-jugement">Triage sans deleguer le jugement</h2>
 <p>Le piege : laisser l'agent decider de la priorite. Il n'a pas votre contexte complet. Il ne sait pas que le client X appelle demain, que vous etes fatigue, que le budget est serre.</p>
@@ -178,21 +183,21 @@ Prochaine tache ?
 - Juger de l'urgence reelle (pas la deadline theorique).</p>
 <h2 id="les-taches-nourrissent-le-briefing">Les taches nourrissent le briefing</h2>
 <p>Chaque tache terminee enrichit le contexte. Apres une semaine, votre agent peut dire :</p>
-<pre class="codehilite"><code>Cette semaine : 8 taches terminees, 2 reportees, 1 bloquee.
+<div class="codehilite"><pre><span></span><code>Cette semaine : 8 taches terminees, 2 reportees, 1 bloquee.
 Le pattern : les taches infra se terminent vite, les taches doc trainent.
 Suggestion : bloquer 2h doc le jeudi.
-</code></pre>
+</code></pre></div>
 
 <p>Ce feedback n'est possible que si les taches sont tracees avec leur statut et leurs dates. Un fichier texte sans dates ne permet pas ca.</p>
 <h2 id="format-minimal-dune-tache">Format minimal d'une tache</h2>
 <p>Pour que le workflow fonctionne, chaque tache a besoin de :</p>
-<pre class="codehilite"><code>- Titre (quoi)
-- Statut (todo / in_progress / done / blocked)
-- Priorite (high / medium / low)
-- Date de creation
-- Date de deadline (optionnel)
-- Notes (optionnel — contexte, blocages, decisions)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">-</span> Titre (quoi)
+<span class="k">-</span> Statut (todo / in_progress / done / blocked)
+<span class="k">-</span> Priorite (high / medium / low)
+<span class="k">-</span> Date de creation
+<span class="k">-</span> Date de deadline (optionnel)
+<span class="k">-</span> Notes (optionnel — contexte, blocages, decisions)
+</code></pre></div>
 
 <p>Pas besoin de plus au debut. Ajoutez des champs quand le besoin se manifeste, pas avant.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -215,7 +220,11 @@ Suggestion : bloquer 2h doc le jeudi.
 <li>[ ] Un resume hebdomadaire est possible a partir des donnees.</li>
 <li>[ ] L'agent ne change jamais une priorite sans votre accord.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Le workflow propose/decide, Triage sans deleguer le jugement, Les taches nourrissent le briefing et 4 autres. <a href="04-06-db-source-verite.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/05-comment-taches.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

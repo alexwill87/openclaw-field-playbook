@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,20 +115,24 @@
   <span>3.7 -- MEMORY.md : la memoire collective</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#la-regle-des-80-lignes" class="">La regle des 80 lignes</a></li>
-<li><a href="#structure-recommandee" class="">Structure recommandee</a></li>
-<li><a href="#night-consolidation-methode-steinberg" class="">Night consolidation (methode Steinberg)</a></li>
-<li><a href="#loubli-volontaire" class="">L'oubli volontaire</a></li>
-<li><a href="#memoire-collective-vs-individuelle" class="">Memoire collective vs individuelle</a></li>
-<li><a href="#template-memorymd" class="">Template MEMORY.md</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#la-regle-des-80-lignes">La regle des 80 lignes</a></li>
+    <li><a href="#structure-recommandee">Structure recommandee</a></li>
+    <li><a href="#night-consolidation-methode-steinberg">Night consolidation (methode Steinberg)</a></li>
+    <li><a href="#loubli-volontaire">L'oubli volontaire</a></li>
+    <li><a href="#memoire-collective-vs-individuelle">Memoire collective vs individuelle</a></li>
+    <li><a href="#template-memorymd">Template MEMORY.md</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="37-memorymd-la-memoire-collective">3.7 -- MEMORY.md : la memoire collective</h1>
 <h2 id="contexte">Contexte</h2>
@@ -140,24 +146,24 @@
 - 80 lignes = environ 2 minutes de lecture pour l'agent au demarrage</p>
 <p>Ce n'est pas une suggestion. C'est une contrainte dure. Si MEMORY.md depasse 80 lignes, il faut compresser ou deplacer du contenu vers knowledge/.</p>
 <h2 id="structure-recommandee">Structure recommandee</h2>
-<pre class="codehilite"><code class="language-markdown"># MEMORY.md
+<div class="codehilite"><pre><span></span><code><span class="gh"># MEMORY.md</span>
 
-## Contexte actuel
-- [Fait important 1 -- date]
-- [Fait important 2 -- date]
-- [Situation en cours]
+<span class="gu">## Contexte actuel</span>
+<span class="k">-</span><span class="w"> </span>[Fait important 1 -- date]
+<span class="k">-</span><span class="w"> </span>[Fait important 2 -- date]
+<span class="k">-</span><span class="w"> </span>[Situation en cours]
 
-## Decisions recentes
-- [Decision 1 -- date -- raison]
-- [Decision 2 -- date -- raison]
+<span class="gu">## Decisions recentes</span>
+<span class="k">-</span><span class="w"> </span>[Decision 1 -- date -- raison]
+<span class="k">-</span><span class="w"> </span>[Decision 2 -- date -- raison]
 
-## En attente
-- [Ce qui attend une reponse ou action]
-- [Ce qui est bloque et pourquoi]
+<span class="gu">## En attente</span>
+<span class="k">-</span><span class="w"> </span>[Ce qui attend une reponse ou action]
+<span class="k">-</span><span class="w"> </span>[Ce qui est bloque et pourquoi]
 
-## Notes de session
-- [Dernier fait marquant de la derniere session]
-</code></pre>
+<span class="gu">## Notes de session</span>
+<span class="k">-</span><span class="w"> </span>[Dernier fait marquant de la derniere session]
+</code></pre></div>
 
 <p>Quatre sections. Pas plus. Si vous avez besoin de plus de sections, c'est que du contenu devrait migrer vers knowledge/.</p>
 <h2 id="night-consolidation-methode-steinberg">Night consolidation (methode Steinberg)</h2>
@@ -169,13 +175,13 @@
 <li><strong>Ajouter</strong> ce qui a emerge pendant la journee</li>
 </ol>
 <p>Prompt de consolidation :</p>
-<pre class="codehilite"><code>Consolide MEMORY.md :
-1. Supprime ce qui n'est plus pertinent (plus de 2 semaines, deja traite)
+<div class="codehilite"><pre><span></span><code>Consolide MEMORY.md :
+1. Supprime ce qui n&#39;est plus pertinent (plus de 2 semaines, deja traite)
 2. Compresse les entrees liees en une seule ligne
 3. Si une information est devenue stable, migre-la vers knowledge/
 4. Verifie que le total ne depasse pas 80 lignes
 Montre-moi le diff avant de sauvegarder.
-</code></pre>
+</code></pre></div>
 
 <h2 id="loubli-volontaire">L'oubli volontaire</h2>
 <p>L'oubli est une fonctionnalite, pas un bug. Un agent qui se souvient de tout est un agent qui ne sait pas ce qui compte.</p>
@@ -194,22 +200,22 @@ Montre-moi le diff avant de sauvegarder.
 - <strong>Separe</strong> : chaque agent a son MEMORY.md. Plus propre. Risque de desynchronisation.</p>
 <p>Recommendation : commencez partage. Separéz quand le bruit devient un probleme.</p>
 <h2 id="template-memorymd">Template MEMORY.md</h2>
-<pre class="codehilite"><code class="language-markdown"># MEMORY.md
+<div class="codehilite"><pre><span></span><code><span class="gh"># MEMORY.md</span>
 Derniere consolidation : [date]
 
-## Contexte actuel
-- [3-5 lignes max sur la situation generale]
+<span class="gu">## Contexte actuel</span>
+<span class="k">-</span><span class="w"> </span>[3-5 lignes max sur la situation generale]
 
-## Decisions recentes
-- [AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
-- [AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
+<span class="gu">## Decisions recentes</span>
+<span class="k">-</span><span class="w"> </span>[AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
+<span class="k">-</span><span class="w"> </span>[AAAA-MM-JJ] [Decision] -- [Raison en 5 mots]
 
-## En attente
-- [Quoi] -- en attente de [qui/quoi] -- depuis [date]
+<span class="gu">## En attente</span>
+<span class="k">-</span><span class="w"> </span>[Quoi] -- en attente de [qui/quoi] -- depuis [date]
 
-## Notes
-- [Fait marquant de la derniere session]
-</code></pre>
+<span class="gu">## Notes</span>
+<span class="k">-</span><span class="w"> </span>[Fait marquant de la derniere session]
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>MEMORY.md jamais nettoye</strong> : Le fichier grossit jusqu'a 300 lignes. L'agent perd le signal. Consolidez au moins une fois par semaine.</p>
@@ -226,7 +232,11 @@ Derniere consolidation : [date]
 <li>[ ] Le prompt de consolidation est pret (ou automatise via cron)</li>
 <li>[ ] Vous savez ce qui doit etre supprime et ce qui doit etre garde</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, La regle des 80 lignes, Structure recommandee, Night consolidation (methode Steinberg) et 5 autres. <a href="03-08-knowledge.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/07-memory-md.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

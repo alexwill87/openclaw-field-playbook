@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,21 +111,25 @@
   <span>4.3 -- Iteration : la premiere version ne sera pas la bonne</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#le-processus-diteration" class="">Le processus d'iteration</a></li>
-<li><a href="#round-1-la-version-brute" class="toc-h3">Round 1 : la version brute</a></li>
-<li><a href="#round-2-le-prompt-de-correction" class="toc-h3">Round 2 : le prompt de correction</a></li>
-<li><a href="#round-3-condenser" class="toc-h3">Round 3 : condenser</a></li>
-<li><a href="#pourquoi-condenser-marche" class="">Pourquoi condenser marche</a></li>
-<li><a href="#quand-arreter-diterer" class="">Quand arreter d'iterer</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#le-processus-diteration">Le processus d'iteration</a></li>
+    <li class="toc-h3"><a href="#round-1-la-version-brute">Round 1 : la version brute</a></li>
+    <li class="toc-h3"><a href="#round-2-le-prompt-de-correction">Round 2 : le prompt de correction</a></li>
+    <li class="toc-h3"><a href="#round-3-condenser">Round 3 : condenser</a></li>
+    <li><a href="#pourquoi-condenser-marche">Pourquoi condenser marche</a></li>
+    <li><a href="#quand-arreter-diterer">Quand arreter d'iterer</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="43-iteration-la-premiere-version-ne-sera-pas-la-bonne">4.3 -- Iteration : la premiere version ne sera pas la bonne</h1>
 <h2 id="contexte">Contexte</h2>
@@ -141,43 +146,43 @@
 </ul>
 <h3 id="round-2-le-prompt-de-correction">Round 2 : le prompt de correction</h3>
 <p>Utilisez ce pattern pour corriger :</p>
-<pre class="codehilite"><code>Voici mon system prompt actuel :
-[coller le prompt]
+<div class="codehilite"><pre><span></span><code><span class="n">Voici</span><span class="w"> </span><span class="n">mon</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="n">actuel</span><span class="w"> </span><span class="p">:</span>
+<span class="p">[</span><span class="n">coller</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">prompt</span><span class="p">]</span>
 
-Problemes constates :
-1. [friction 1]
-2. [friction 2]
-3. [friction 3]
+<span class="n">Problemes</span><span class="w"> </span><span class="n">constates</span><span class="w"> </span><span class="p">:</span>
+<span class="mf">1.</span><span class="w"> </span><span class="p">[</span><span class="n">friction</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">2.</span><span class="w"> </span><span class="p">[</span><span class="n">friction</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span>
+<span class="mf">3.</span><span class="w"> </span><span class="p">[</span><span class="n">friction</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
 
-Reecris le prompt en corrigeant ces problemes.
-Garde la structure. Ne depasse pas 250 mots.
-</code></pre>
+<span class="n">Reecris</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">corrigeant</span><span class="w"> </span><span class="n">ces</span><span class="w"> </span><span class="n">problemes</span><span class="o">.</span>
+<span class="n">Garde</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">structure</span><span class="o">.</span><span class="w"> </span><span class="n">Ne</span><span class="w"> </span><span class="n">depasse</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="mi">250</span><span class="w"> </span><span class="n">mots</span><span class="o">.</span>
+</code></pre></div>
 
 <p>Relisez la proposition. Modifiez a la main ce qui ne colle pas. Testez 2-3 jours de plus.</p>
 <h3 id="round-3-condenser">Round 3 : condenser</h3>
 <p>Apres le round 2, votre prompt fait probablement 400-500 mots. C'est trop. Chaque token compte.</p>
 <p>Prompt de condensation :</p>
-<pre class="codehilite"><code>Voici mon system prompt (480 mots).
-Condense-le a 150 mots maximum.
-Garde TOUTES les regles et interdictions.
-Supprime les explications -- l'agent n'a pas besoin de comprendre pourquoi.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Voici</span><span class="w"> </span><span class="n">mon</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="p">(</span><span class="mh">480</span><span class="w"> </span><span class="n">mots</span><span class="p">).</span>
+<span class="n">Condense</span><span class="o">-</span><span class="n">le</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mh">150</span><span class="w"> </span><span class="n">mots</span><span class="w"> </span><span class="n">maximum</span><span class="p">.</span>
+<span class="n">Garde</span><span class="w"> </span><span class="n">TOUTES</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">interdictions</span><span class="p">.</span>
+<span class="n">Supprime</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">explications</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">n</span><span class="p">&#39;</span><span class="n">a</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">besoin</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">comprendre</span><span class="w"> </span><span class="n">pourquoi</span><span class="p">.</span>
+</code></pre></div>
 
 <p>La regle : 150 mots &gt; 500 mots. Un prompt court et precis bat un prompt long et detaille. Le modele n'a pas besoin de vos justifications -- il a besoin de vos instructions.</p>
 <h2 id="pourquoi-condenser-marche">Pourquoi condenser marche</h2>
 <p>Un prompt long cree du bruit. Le modele doit trier ce qui est important de ce qui est du remplissage. Plus c'est court, plus chaque mot pese.</p>
 <p>Comparaison :</p>
 <p><strong>Avant (68 mots) :</strong></p>
-<pre class="codehilite"><code>Quand tu me proposes des solutions techniques, j'aimerais que tu prennes
+<div class="codehilite"><pre><span></span><code>Quand tu me proposes des solutions techniques, j&#39;aimerais que tu prennes
 en compte le fait que je travaille principalement sur des environnements
-Linux Ubuntu, et que je n'ai generalement pas besoin de solutions qui
+Linux Ubuntu, et que je n&#39;ai generalement pas besoin de solutions qui
 seraient specifiques a Windows ou macOS, sauf si je te le demande
 explicitement dans ma question.
-</code></pre>
+</code></pre></div>
 
 <p><strong>Apres (12 mots) :</strong></p>
-<pre class="codehilite"><code>Environnement : Linux Ubuntu. Pas de solutions Windows/macOS sauf demande.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Environnement</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Ubuntu</span><span class="o">.</span><span class="w"> </span><span class="n">Pas</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">solutions</span><span class="w"> </span><span class="n">Windows</span><span class="o">/</span><span class="n">macOS</span><span class="w"> </span><span class="n">sauf</span><span class="w"> </span><span class="n">demande</span><span class="o">.</span>
+</code></pre></div>
 
 <p>Meme information. 5x moins de tokens.</p>
 <h2 id="quand-arreter-diterer">Quand arreter d'iterer</h2>
@@ -209,7 +214,11 @@ explicitement dans ma question.
 <li>[ ] Aucune instruction ne contredit une autre.</li>
 <li>[ ] 80%+ des reponses sont utiles sans correction.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Le processus d'iteration, Pourquoi condenser marche, Quand arreter d'iterer et 3 autres. <a href="04-04-pourquoi-taches.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/03-iteration.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

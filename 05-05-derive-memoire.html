@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,27 +111,31 @@
   <span>5.5 -- Derive de la memoire</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#symptomes-de-la-derive" class="">Symptomes de la derive</a></li>
-<li><a href="#types-de-derive" class="">Types de derive</a></li>
-<li><a href="#obsolescence" class="toc-h3">Obsolescence</a></li>
-<li><a href="#contradiction" class="toc-h3">Contradiction</a></li>
-<li><a href="#inflation" class="toc-h3">Inflation</a></li>
-<li><a href="#hallucination-memorisee" class="toc-h3">Hallucination memorisee</a></li>
-<li><a href="#nettoyage-periodique" class="">Nettoyage periodique</a></li>
-<li><a href="#frequence" class="toc-h3">Frequence</a></li>
-<li><a href="#prompt-de-scan" class="toc-h3">Prompt de scan</a></li>
-<li><a href="#processus-de-nettoyage" class="toc-h3">Processus de nettoyage</a></li>
-<li><a href="#night-consolidation" class="">Night consolidation</a></li>
-<li><a href="#oubli-volontaire" class="">Oubli volontaire</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#symptomes-de-la-derive">Symptomes de la derive</a></li>
+    <li><a href="#types-de-derive">Types de derive</a></li>
+    <li class="toc-h3"><a href="#obsolescence">Obsolescence</a></li>
+    <li class="toc-h3"><a href="#contradiction">Contradiction</a></li>
+    <li class="toc-h3"><a href="#inflation">Inflation</a></li>
+    <li class="toc-h3"><a href="#hallucination-memorisee">Hallucination memorisee</a></li>
+    <li><a href="#nettoyage-periodique">Nettoyage periodique</a></li>
+    <li class="toc-h3"><a href="#frequence">Frequence</a></li>
+    <li class="toc-h3"><a href="#prompt-de-scan">Prompt de scan</a></li>
+    <li class="toc-h3"><a href="#processus-de-nettoyage">Processus de nettoyage</a></li>
+    <li><a href="#night-consolidation">Night consolidation</a></li>
+    <li><a href="#oubli-volontaire">Oubli volontaire</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="55-derive-de-la-memoire">5.5 -- Derive de la memoire</h1>
 <h2 id="contexte">Contexte</h2>
@@ -148,28 +153,28 @@
 <h2 id="types-de-derive">Types de derive</h2>
 <h3 id="obsolescence">Obsolescence</h3>
 <p>L'information etait vraie mais ne l'est plus.</p>
-<pre class="codehilite"><code>Memoire : &quot;Le projet cockpit utilise Express.js&quot;
+<div class="codehilite"><pre><span></span><code>Memoire : &quot;Le projet cockpit utilise Express.js&quot;
 Realite : vous avez migre vers Fastify il y a 3 semaines.
-</code></pre>
+</code></pre></div>
 
 <h3 id="contradiction">Contradiction</h3>
 <p>Deux informations se contredisent.</p>
-<pre class="codehilite"><code>Memoire fichier A : &quot;Les backups sont quotidiens&quot;
+<div class="codehilite"><pre><span></span><code>Memoire fichier A : &quot;Les backups sont quotidiens&quot;
 Memoire fichier B : &quot;Les backups sont hebdomadaires&quot;
-</code></pre>
+</code></pre></div>
 
 <h3 id="inflation">Inflation</h3>
 <p>La meme information est stockee sous 5 formes differentes. L'agent ne sait plus laquelle utiliser.</p>
-<pre class="codehilite"><code>Fichier 1 : &quot;L'utilisateur prefere le tutoiement&quot;
+<div class="codehilite"><pre><span></span><code>Fichier 1 : &quot;L&#39;utilisateur prefere le tutoiement&quot;
 Fichier 2 : &quot;Utiliser tu, pas vous&quot;
 Fichier 3 : &quot;Communication informelle, tutoyer&quot;
-</code></pre>
+</code></pre></div>
 
 <h3 id="hallucination-memorisee">Hallucination memorisee</h3>
 <p>L'agent a un jour "invente" une information et l'a stockee comme un fait.</p>
-<pre class="codehilite"><code>Memoire : &quot;Le serveur a 16 Go de RAM&quot;
-Realite : il en a 8.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Memoire</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Le serveur a 16 Go de RAM&quot;</span>
+<span class="n">Realite</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">il</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mf">8.</span>
+</code></pre></div>
 
 <h2 id="nettoyage-periodique">Nettoyage periodique</h2>
 <h3 id="frequence">Frequence</h3>
@@ -179,15 +184,15 @@ Realite : il en a 8.
 <li><strong>Apres chaque projet termine</strong> : supprimer le contexte du projet.</li>
 </ul>
 <h3 id="prompt-de-scan">Prompt de scan</h3>
-<pre class="codehilite"><code>Lis tous tes fichiers de memoire et de contexte.
-Pour chaque information factuelle, indique :
-- [OK] : toujours vraie et utile
-- [OBSOLETE] : n'est plus vraie
-- [DOUTE] : tu n'es pas sur, a verifier avec moi
-- [REDONDANT] : dit la meme chose qu'une autre entree
+<div class="codehilite"><pre><span></span><code><span class="n">Lis</span><span class="w"> </span><span class="n">tous</span><span class="w"> </span><span class="n">tes</span><span class="w"> </span><span class="n">fichiers</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">contexte</span><span class="p">.</span>
+<span class="n">Pour</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">factuelle</span><span class="p">,</span><span class="w"> </span><span class="n">indique</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">OK</span><span class="o">]</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">toujours</span><span class="w"> </span><span class="n">vraie</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">utile</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">OBSOLETE</span><span class="o">]</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">n</span><span class="s1">&#39;est plus vraie</span>
+<span class="s1">- [DOUTE] : tu n&#39;</span><span class="n">es</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">sur</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">verifier</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">moi</span>
+<span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">REDONDANT</span><span class="o">]</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">dit</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">meme</span><span class="w"> </span><span class="n">chose</span><span class="w"> </span><span class="n">qu</span><span class="err">&#39;</span><span class="n">une</span><span class="w"> </span><span class="n">autre</span><span class="w"> </span><span class="n">entree</span>
 
-Liste les resultats. On nettoie ensemble.
-</code></pre>
+<span class="n">Liste</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">resultats</span><span class="p">.</span><span class="w"> </span><span class="k">On</span><span class="w"> </span><span class="n">nettoie</span><span class="w"> </span><span class="n">ensemble</span><span class="p">.</span>
+</code></pre></div>
 
 <h3 id="processus-de-nettoyage">Processus de nettoyage</h3>
 <ol>
@@ -200,13 +205,13 @@ Liste les resultats. On nettoie ensemble.
 </ol>
 <h2 id="night-consolidation">Night consolidation</h2>
 <p>Concept de Steinberg : a la fin de chaque journee (ou semaine), l'agent consolide ce qu'il a appris.</p>
-<pre class="codehilite"><code>Resume de la journee :
-- Quelles nouvelles informations as-tu apprises aujourd'hui ?
-- Est-ce qu'elles contredisent quelque chose dans ta memoire ?
+<div class="codehilite"><pre><span></span><code>Resume de la journee :
+- Quelles nouvelles informations as-tu apprises aujourd&#39;hui ?
+- Est-ce qu&#39;elles contredisent quelque chose dans ta memoire ?
 - Quelles informations en memoire sont confirmees par la journee ?
 
 Propose les mises a jour de memoire necessaires.
-</code></pre>
+</code></pre></div>
 
 <p>Ca ne prend pas longtemps. 2 minutes en fin de journee. Mais ca empeche la derive de s'accumuler.</p>
 <h2 id="oubli-volontaire">Oubli volontaire</h2>
@@ -241,7 +246,11 @@ Propose les mises a jour de memoire necessaires.
 <li>[ ] Un backup de la memoire existe avant chaque nettoyage.</li>
 <li>[ ] La night consolidation est pratiquee (quotidienne ou hebdomadaire).</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Symptomes de la derive, Types de derive, Nettoyage periodique et 5 autres. <a href="05-06-agent-se-trompe.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/05-derive-memoire.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,23 +115,27 @@
   <span>3.14 -- Souverainete des donnees</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#ou-vivent-vos-donnees" class="">Ou vivent vos donnees</a></li>
-<li><a href="#local" class="toc-h3">Local</a></li>
-<li><a href="#cloud" class="toc-h3">Cloud</a></li>
-<li><a href="#hybride-recommande" class="toc-h3">Hybride (recommande)</a></li>
-<li><a href="#rgpd-ce-que-vous-devez-savoir" class="">RGPD : ce que vous devez savoir</a></li>
-<li><a href="#points-cles-pour-votre-agent" class="toc-h3">Points cles pour votre agent</a></li>
-<li><a href="#checklist-rgpd-minimale" class="toc-h3">Checklist RGPD minimale</a></li>
-<li><a href="#hebergement-europeen-recommande" class="">Hebergement europeen recommande</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#ou-vivent-vos-donnees">Ou vivent vos donnees</a></li>
+    <li class="toc-h3"><a href="#local">Local</a></li>
+    <li class="toc-h3"><a href="#cloud">Cloud</a></li>
+    <li class="toc-h3"><a href="#hybride-recommande">Hybride (recommande)</a></li>
+    <li><a href="#rgpd-ce-que-vous-devez-savoir">RGPD : ce que vous devez savoir</a></li>
+    <li class="toc-h3"><a href="#points-cles-pour-votre-agent">Points cles pour votre agent</a></li>
+    <li class="toc-h3"><a href="#checklist-rgpd-minimale">Checklist RGPD minimale</a></li>
+    <li><a href="#hebergement-europeen-recommande">Hebergement europeen recommande</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="314-souverainete-des-donnees">3.14 -- Souverainete des donnees</h1>
 <h2 id="contexte">Contexte</h2>
@@ -139,7 +145,7 @@
 <p>Trois modeles :</p>
 <h3 id="local">Local</h3>
 <p>Toutes les donnees restent sur votre machine ou votre serveur.</p>
-<pre class="codehilite"><code>+----------------------------+
+<div class="codehilite"><pre><span></span><code>+----------------------------+
 |  VOTRE MACHINE / VPS       |
 |                            |
 |  SOUL.md                   |
@@ -159,7 +165,7 @@
 |  (les prompts transitent,  |
 |   pas les fichiers)        |
 +----------------------------+
-</code></pre>
+</code></pre></div>
 
 <p>Avantages :
 - Controle total
@@ -180,7 +186,7 @@
 - Conformite RGPD plus complexe (selon la localisation des serveurs)</p>
 <h3 id="hybride-recommande">Hybride (recommande)</h3>
 <p>Configuration et memoire en local. Services externes pour ce qui le necessite.</p>
-<pre class="codehilite"><code>+----------------------------+    +---------------------------+
+<div class="codehilite"><pre><span></span><code>+----------------------------+    +---------------------------+
 |  LOCAL                     |    |  CLOUD                    |
 |                            |    |                           |
 |  SOUL.md                   |    |  Calendrier (Google/O365) |
@@ -193,7 +199,7 @@
 |  logs                      |
 |                            |
 +----------------------------+
-</code></pre>
+</code></pre></div>
 
 <p>La regle : vos fichiers de configuration, votre memoire et vos secrets restent locaux. Les services externes sont accedes via API avec les droits minimaux necessaires.</p>
 <h2 id="rgpd-ce-que-vous-devez-savoir">RGPD : ce que vous devez savoir</h2>
@@ -205,7 +211,7 @@
 <p><strong>Droit a l'effacement</strong> : Si un client demande la suppression de ses donnees, elles doivent aussi disparaitre de knowledge/, MEMORY.md, et de tout fichier de l'agent.</p>
 <p><strong>Registre des traitements</strong> : Documentez quelles donnees l'agent traite, pourquoi, et ou elles sont stockees. Un fichier knowledge/legal/rgpd.md est un bon endroit.</p>
 <h3 id="checklist-rgpd-minimale">Checklist RGPD minimale</h3>
-<pre class="codehilite"><code class="language-markdown">## Registre des traitements -- Agent OpenClaw
+<div class="codehilite"><pre><span></span><code><span class="gu">## Registre des traitements -- Agent OpenClaw</span>
 
 | Donnee | Finalite | Base legale | Stockage | Duree |
 |--------|----------|-------------|----------|-------|
@@ -213,7 +219,7 @@
 | Calendrier | Briefing quotidien | Interet legitime | API (pas de copie) | Session |
 | Contacts clients | Contexte relation | Execution contrat | knowledge/ | Duree contrat |
 | Notes de reunion | Memoire agent | Interet legitime | MEMORY.md | 2 semaines |
-</code></pre>
+</code></pre></div>
 
 <h2 id="hebergement-europeen-recommande">Hebergement europeen recommande</h2>
 <p>Pour le VPS ou serveur local :
@@ -251,7 +257,11 @@
 <li>[ ] Procedure de suppression des donnees documentee</li>
 <li>[ ] Backup en place pour la configuration et knowledge/</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Ou vivent vos donnees, RGPD : ce que vous devez savoir, Hebergement europeen recommande et 3 autres. <a href="03-15-crons.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/14-souverainete-donnees.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

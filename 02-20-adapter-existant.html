@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,17 +118,21 @@
   <span>Adapter le playbook a un VPS existant</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#diagnostic-de-lexistant" class="">Diagnostic de l'existant</a></li>
-<li><a href="#tableau-de-correspondance" class="">Tableau de correspondance</a></li>
-<li><a href="#conflits-de-ports" class="">Conflits de ports</a></li>
-<li><a href="#services-systemd-existants-critique" class="">Services systemd existants (CRITIQUE)</a></li>
-<li><a href="#note-sur-nginx" class="">Note sur nginx</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#diagnostic-de-lexistant">Diagnostic de l'existant</a></li>
+    <li><a href="#tableau-de-correspondance">Tableau de correspondance</a></li>
+    <li><a href="#conflits-de-ports">Conflits de ports</a></li>
+    <li><a href="#services-systemd-existants-critique">Services systemd existants (CRITIQUE)</a></li>
+    <li><a href="#note-sur-nginx">Note sur nginx</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="adapter-le-playbook-a-un-vps-existant">Adapter le playbook a un VPS existant</h1>
 <blockquote>
@@ -136,37 +141,37 @@
 <hr />
 <h2 id="diagnostic-de-lexistant">Diagnostic de l'existant</h2>
 <p>Copiez et executez ces commandes pour obtenir un etat des lieux rapide :</p>
-<pre class="codehilite"><code class="language-bash"># Docker
-docker --version
+<div class="codehilite"><pre><span></span><code><span class="c1"># Docker</span>
+docker<span class="w"> </span>--version
 
-# Docker Compose
-docker compose version
+<span class="c1"># Docker Compose</span>
+docker<span class="w"> </span>compose<span class="w"> </span>version
 
-# Node.js (et methode d'installation)
-node --version
-command -v nvm &amp;&amp; echo &quot;installe via nvm&quot; || echo &quot;installation globale&quot;
+<span class="c1"># Node.js (et methode d&#39;installation)</span>
+node<span class="w"> </span>--version
+<span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>nvm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;installe via nvm&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;installation globale&quot;</span>
 
-# Tailscale
-tailscale status
+<span class="c1"># Tailscale</span>
+tailscale<span class="w"> </span>status
 
-# PostgreSQL (conteneur ou natif)
-docker ps | grep postgres
-psql --version
+<span class="c1"># PostgreSQL (conteneur ou natif)</span>
+docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>postgres
+psql<span class="w"> </span>--version
 
-# Vault
-vault status
-docker ps | grep vault
+<span class="c1"># Vault</span>
+vault<span class="w"> </span>status
+docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>vault
 
-# nginx
-nginx -v
+<span class="c1"># nginx</span>
+nginx<span class="w"> </span>-v
 
-# Ports deja occupes par les services du playbook
-ss -ltnp | grep -E ':(3007|5432|8065|8200|18789)'
+<span class="c1"># Ports deja occupes par les services du playbook</span>
+ss<span class="w"> </span>-ltnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;:(3007|5432|8065|8200|18789)&#39;</span>
 
-# Services systemd OpenClaw existants
-systemctl --user list-units --all | grep openclaw
-sudo systemctl list-units --all | grep openclaw
-</code></pre>
+<span class="c1"># Services systemd OpenClaw existants</span>
+systemctl<span class="w"> </span>--user<span class="w"> </span>list-units<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>openclaw
+sudo<span class="w"> </span>systemctl<span class="w"> </span>list-units<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>openclaw
+</code></pre></div>
 
 <p>Notez les resultats. Ils determinent quelles sections vous pouvez sauter et lesquelles vous devez adapter.</p>
 <hr />
@@ -260,19 +265,19 @@ sudo systemctl list-units --all | grep openclaw
 <hr />
 <h2 id="services-systemd-existants-critique">Services systemd existants (CRITIQUE)</h2>
 <p>Si vous avez deja eu une installation OpenClaw sur ce VPS, verifiez imperativement :</p>
-<pre class="codehilite"><code class="language-bash"># Services systeme
-sudo systemctl list-units --all | grep -i openclaw
-sudo systemctl list-units --all | grep -i claw
+<div class="codehilite"><pre><span></span><code><span class="c1"># Services systeme</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>list-units<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>openclaw
+sudo<span class="w"> </span>systemctl<span class="w"> </span>list-units<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>claw
 
-# Services utilisateur
-systemctl --user list-units --all | grep -i openclaw
+<span class="c1"># Services utilisateur</span>
+systemctl<span class="w"> </span>--user<span class="w"> </span>list-units<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>openclaw
 
-# Si trouve, desactivez AVANT de continuer :
-sudo systemctl stop openclaw-gateway
-sudo systemctl disable openclaw-gateway
-systemctl --user stop openclaw-gateway
-systemctl --user disable openclaw-gateway
-</code></pre>
+<span class="c1"># Si trouve, desactivez AVANT de continuer :</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>openclaw-gateway
+sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>openclaw-gateway
+systemctl<span class="w"> </span>--user<span class="w"> </span>stop<span class="w"> </span>openclaw-gateway
+systemctl<span class="w"> </span>--user<span class="w"> </span>disable<span class="w"> </span>openclaw-gateway
+</code></pre></div>
 
 <blockquote>
 <p><strong>IMPORTANT</strong> : ne pas desactiver les anciens services systemd avant de reinstaller est une source de bugs silencieux. Le nouveau service demarre, l'ancien aussi, et les deux se battent pour le meme port. (Reference : issue #30 -- ce probleme a coute 45 minutes de debug a Claude-Aurel.)</p>
@@ -280,16 +285,16 @@ systemctl --user disable openclaw-gateway
 <hr />
 <h2 id="note-sur-nginx">Note sur nginx</h2>
 <p>Si vous utilisez deja nginx comme reverse proxy, vous pouvez proxifier le gateway OpenClaw :</p>
-<pre class="codehilite"><code class="language-nginx">server {
-    server_name openclaw.votre-domaine.com;
-    location / {
-        proxy_pass http://127.0.0.1:18789;
-        proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection &quot;upgrade&quot;;
-    }
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">openclaw.votre-domaine.com</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://127.0.0.1:18789</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Upgrade</span><span class="w"> </span><span class="nv">$http_upgrade</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Connection</span><span class="w"> </span><span class="s">&quot;upgrade&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 <hr />
 <h2 id="verification">Verification</h2>
@@ -300,7 +305,11 @@ systemctl --user disable openclaw-gateway
 - Version Docker trop ancienne (&lt; 24)</p>
 <hr />
 <p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Diagnostic de l'existant, Tableau de correspondance, Conflits de ports, Services systemd existants (CRITIQUE) et 2 autres. <a href="03-00-sommaire.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/20-adapter-existant.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

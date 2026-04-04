@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -115,20 +116,24 @@
   <span>2. Installation</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#sommaire" class="">Sommaire</a></li>
-<li><a href="#avant-de-commencer" class="toc-h3">Avant de commencer</a></li>
-<li><a href="#partie-a-preparation-du-serveur" class="toc-h3">Partie A -- Preparation du serveur</a></li>
-<li><a href="#partie-b-infrastructure-et-secrets" class="toc-h3">Partie B -- Infrastructure et secrets</a></li>
-<li><a href="#partie-c-openclaw" class="toc-h3">Partie C -- OpenClaw</a></li>
-<li><a href="#partie-d-verification-et-deploiement" class="toc-h3">Partie D -- Verification et deploiement</a></li>
-<li><a href="#annexe" class="toc-h3">Annexe</a></li>
-<li><a href="#outil-optionnel-install-tracker" class="">Outil optionnel : Install Tracker</a></li>
-<li><a href="#conventions-dans-ce-chapitre" class="">Conventions dans ce chapitre</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#sommaire">Sommaire</a></li>
+    <li class="toc-h3"><a href="#avant-de-commencer">Avant de commencer</a></li>
+    <li class="toc-h3"><a href="#partie-a-preparation-du-serveur">Partie A -- Preparation du serveur</a></li>
+    <li class="toc-h3"><a href="#partie-b-infrastructure-et-secrets">Partie B -- Infrastructure et secrets</a></li>
+    <li class="toc-h3"><a href="#partie-c-openclaw">Partie C -- OpenClaw</a></li>
+    <li class="toc-h3"><a href="#partie-d-verification-et-deploiement">Partie D -- Verification et deploiement</a></li>
+    <li class="toc-h3"><a href="#annexe">Annexe</a></li>
+    <li><a href="#outil-optionnel-install-tracker">Outil optionnel : Install Tracker</a></li>
+    <li><a href="#conventions-dans-ce-chapitre">Conventions dans ce chapitre</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="2-installation">2. Installation</h1>
 <blockquote>
@@ -239,10 +244,10 @@
 <hr />
 <h2 id="outil-optionnel-install-tracker">Outil optionnel : Install Tracker</h2>
 <p>Pour suivre votre progression en temps reel, vous pouvez deployer le <strong>Install Tracker</strong> -- un cockpit minimal qui trace les phases, les decisions, les services et les actions.</p>
-<pre class="codehilite"><code class="language-bash">cd tools/install-tracker
-docker compose up -d
-# Accessible sur http://localhost:3007
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tools/install-tracker
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<span class="c1"># Accessible sur http://localhost:3007</span>
+</code></pre></div>
 
 <p>C'est optionnel. Le playbook fonctionne sans. Mais si vous voulez un tableau de bord visuel de votre installation, c'est pret en une commande. Details dans <a href="07-00-sommaire.html">tools/install-tracker/README.md</a>.</p>
 <hr />
@@ -255,7 +260,11 @@ docker compose up -d
 </ul>
 <hr />
 <p><a href="https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml">Contribuer a ce chapitre</a> -- <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Sommaire, Outil optionnel : Install Tracker, Conventions dans ce chapitre. <a href="02-00-preflight.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/README.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
@@ -279,7 +288,7 @@ docker compose up -d
 </div>
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="01-06-ce-que-vous-construisez.html">&larr; 1.6 -- Ce que vous allez construire dans ce guide</a>
+<a href="01-11-comment-se-lancer.html">&larr; 1.11 -- Comment je me lance ?</a>
 <a href="02-00-preflight.html">Checklist pre-vol -- Tout preparer avant de com... &rarr;</a>
 </div>
 

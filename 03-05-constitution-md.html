@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,27 +115,31 @@
   <span>3.5 -- CONSTITUTION.md : les regles du jeu</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-3-niveaux-dautonomie" class="">Les 3 niveaux d'autonomie</a></li>
-<li><a href="#niveau-1-execution-autonome" class="toc-h3">Niveau 1 -- Execution autonome</a></li>
-<li><a href="#niveau-2-execution-avec-notification" class="toc-h3">Niveau 2 -- Execution avec notification</a></li>
-<li><a href="#niveau-3-validation-prealable" class="toc-h3">Niveau 3 -- Validation prealable</a></li>
-<li><a href="#interdictions-explicites" class="">Interdictions explicites</a></li>
-<li><a href="#conditions-de-validation" class="">Conditions de validation</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#1-partir-des-3-niveaux" class="toc-h3">1. Partir des 3 niveaux</a></li>
-<li><a href="#2-ajouter-les-interdictions" class="toc-h3">2. Ajouter les interdictions</a></li>
-<li><a href="#3-definir-le-format-de-validation" class="toc-h3">3. Definir le format de validation</a></li>
-<li><a href="#4-ajouter-les-clauses-specifiques-a-votre-metier" class="toc-h3">4. Ajouter les clauses specifiques a votre metier</a></li>
-<li><a href="#5-tester-la-constitution" class="toc-h3">5. Tester la constitution</a></li>
-<li><a href="#template-constitutionmd-complet" class="">Template CONSTITUTION.md complet</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-3-niveaux-dautonomie">Les 3 niveaux d'autonomie</a></li>
+    <li class="toc-h3"><a href="#niveau-1-execution-autonome">Niveau 1 -- Execution autonome</a></li>
+    <li class="toc-h3"><a href="#niveau-2-execution-avec-notification">Niveau 2 -- Execution avec notification</a></li>
+    <li class="toc-h3"><a href="#niveau-3-validation-prealable">Niveau 3 -- Validation prealable</a></li>
+    <li><a href="#interdictions-explicites">Interdictions explicites</a></li>
+    <li><a href="#conditions-de-validation">Conditions de validation</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li class="toc-h3"><a href="#1-partir-des-3-niveaux">1. Partir des 3 niveaux</a></li>
+    <li class="toc-h3"><a href="#2-ajouter-les-interdictions">2. Ajouter les interdictions</a></li>
+    <li class="toc-h3"><a href="#3-definir-le-format-de-validation">3. Definir le format de validation</a></li>
+    <li class="toc-h3"><a href="#4-ajouter-les-clauses-specifiques-a-votre-metier">4. Ajouter les clauses specifiques a votre metier</a></li>
+    <li class="toc-h3"><a href="#5-tester-la-constitution">5. Tester la constitution</a></li>
+    <li><a href="#template-constitutionmd-complet">Template CONSTITUTION.md complet</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="35-constitutionmd-les-regles-du-jeu">3.5 -- CONSTITUTION.md : les regles du jeu</h1>
 <h2 id="contexte">Contexte</h2>
@@ -143,54 +149,54 @@
 <h2 id="les-3-niveaux-dautonomie">Les 3 niveaux d'autonomie</h2>
 <h3 id="niveau-1-execution-autonome">Niveau 1 -- Execution autonome</h3>
 <p>L'agent agit sans vous prevenir. Utilisez ce niveau pour les actions a faible risque et haute frequence.</p>
-<pre class="codehilite"><code class="language-markdown">## Autonomie totale
+<div class="codehilite"><pre><span></span><code><span class="gu">## Autonomie totale</span>
 Tu peux sans validation :
-- Lire tous les fichiers de configuration et knowledge/
-- Mettre a jour MEMORY.md (ajout, compression)
-- Creer des brouillons dans drafts/
-- Generer des syntheses et rapports
-- Reformuler et corriger des textes existants
-- Repondre aux questions factuelles en session
-</code></pre>
+<span class="k">-</span><span class="w"> </span>Lire tous les fichiers de configuration et knowledge/
+<span class="k">-</span><span class="w"> </span>Mettre a jour MEMORY.md (ajout, compression)
+<span class="k">-</span><span class="w"> </span>Creer des brouillons dans drafts/
+<span class="k">-</span><span class="w"> </span>Generer des syntheses et rapports
+<span class="k">-</span><span class="w"> </span>Reformuler et corriger des textes existants
+<span class="k">-</span><span class="w"> </span>Repondre aux questions factuelles en session
+</code></pre></div>
 
 <h3 id="niveau-2-execution-avec-notification">Niveau 2 -- Execution avec notification</h3>
 <p>L'agent agit, puis vous previent. Pour les actions a risque modere que vous voulez surveiller sans bloquer.</p>
-<pre class="codehilite"><code class="language-markdown">## Autonomie avec notification
+<div class="codehilite"><pre><span></span><code><span class="gu">## Autonomie avec notification</span>
 Tu peux agir puis me notifier :
-- Modifier un fichier dans knowledge/ (me dire lequel et pourquoi)
-- Reorganiser la structure de MEMORY.md (me montrer le diff)
-- Creer un nouveau fichier dans le workspace (me prevenir)
-- Mettre a jour un brouillon existant (me signaler les changements)
-</code></pre>
+<span class="k">-</span><span class="w"> </span>Modifier un fichier dans knowledge/ (me dire lequel et pourquoi)
+<span class="k">-</span><span class="w"> </span>Reorganiser la structure de MEMORY.md (me montrer le diff)
+<span class="k">-</span><span class="w"> </span>Creer un nouveau fichier dans le workspace (me prevenir)
+<span class="k">-</span><span class="w"> </span>Mettre a jour un brouillon existant (me signaler les changements)
+</code></pre></div>
 
 <h3 id="niveau-3-validation-prealable">Niveau 3 -- Validation prealable</h3>
 <p>L'agent propose, vous validez. Pour toute action a impact externe ou irreversible.</p>
-<pre class="codehilite"><code class="language-markdown">## Validation requise
+<div class="codehilite"><pre><span></span><code><span class="gu">## Validation requise</span>
 Tu dois me demander AVANT :
-- Envoyer un email ou message a quiconque
-- Publier du contenu (blog, reseaux, documentation publique)
-- Modifier une base de donnees
-- Supprimer un fichier ou des donnees
-- Prendre un engagement (date, prix, livrable)
-- Contacter un tiers en mon nom
-</code></pre>
+<span class="k">-</span><span class="w"> </span>Envoyer un email ou message a quiconque
+<span class="k">-</span><span class="w"> </span>Publier du contenu (blog, reseaux, documentation publique)
+<span class="k">-</span><span class="w"> </span>Modifier une base de donnees
+<span class="k">-</span><span class="w"> </span>Supprimer un fichier ou des donnees
+<span class="k">-</span><span class="w"> </span>Prendre un engagement (date, prix, livrable)
+<span class="k">-</span><span class="w"> </span>Contacter un tiers en mon nom
+</code></pre></div>
 
 <h2 id="interdictions-explicites">Interdictions explicites</h2>
 <p>Les interdictions ne sont pas des niveaux d'autonomie. Ce sont des lignes rouges absolues.</p>
-<pre class="codehilite"><code class="language-markdown">## Interdictions
+<div class="codehilite"><pre><span></span><code><span class="gu">## Interdictions</span>
 JAMAIS, meme si je te le demande explicitement :
-- Inventer des faits ou des chiffres
-- Pretendre avoir fait quelque chose que tu n'as pas fait
-- Ignorer une erreur pour aller plus vite
-- Stocker des mots de passe en clair
-- Envoyer des donnees personnelles a un service tiers non approuve
-- Modifier CONSTITUTION.md sans en discuter d'abord
-</code></pre>
+<span class="k">-</span><span class="w"> </span>Inventer des faits ou des chiffres
+<span class="k">-</span><span class="w"> </span>Pretendre avoir fait quelque chose que tu n&#39;as pas fait
+<span class="k">-</span><span class="w"> </span>Ignorer une erreur pour aller plus vite
+<span class="k">-</span><span class="w"> </span>Stocker des mots de passe en clair
+<span class="k">-</span><span class="w"> </span>Envoyer des donnees personnelles a un service tiers non approuve
+<span class="k">-</span><span class="w"> </span>Modifier CONSTITUTION.md sans en discuter d&#39;abord
+</code></pre></div>
 
 <p>La clause "meme si je te le demande" est volontaire. Elle protege contre les erreurs de jugement sous pression. Vous pouvez toujours modifier CONSTITUTION.md de maniere reflechie, mais l'agent ne doit pas simplement obeir a une instruction contradictoire lancee dans l'urgence.</p>
 <h2 id="conditions-de-validation">Conditions de validation</h2>
 <p>Quand l'agent demande une validation, la demande doit etre structuree :</p>
-<pre class="codehilite"><code class="language-markdown">## Format de validation
+<div class="codehilite"><pre><span></span><code><span class="gu">## Format de validation</span>
 Quand tu demandes une validation, utilise ce format :
 
 [ACTION] : Ce que tu veux faire
@@ -199,8 +205,8 @@ Quand tu demandes une validation, utilise ce format :
 [IMPACT] : Consequences previsibles
 [RISQUE] : Ce qui pourrait mal se passer
 
-Attends ma reponse explicite (oui/non/modifier) avant d'agir.
-</code></pre>
+Attends ma reponse explicite (oui/non/modifier) avant d&#39;agir.
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-partir-des-3-niveaux">1. Partir des 3 niveaux</h3>
@@ -212,24 +218,24 @@ Attends ma reponse explicite (oui/non/modifier) avant d'agir.
 <h3 id="4-ajouter-les-clauses-specifiques-a-votre-metier">4. Ajouter les clauses specifiques a votre metier</h3>
 <p>Exemples par contexte :</p>
 <p><strong>Consultant</strong> :</p>
-<pre class="codehilite"><code>- Ne jamais partager les donnees d'un client avec un autre client
+<div class="codehilite"><pre><span></span><code>- Ne jamais partager les donnees d&#39;un client avec un autre client
 - Toujours anonymiser les exemples tires de missions precedentes
-</code></pre>
+</code></pre></div>
 
 <p><strong>E-commerce</strong> :</p>
-<pre class="codehilite"><code>- Ne jamais modifier un prix sans validation
+<div class="codehilite"><pre><span></span><code>- Ne jamais modifier un prix sans validation
 - Toujours verifier le stock avant de confirmer une commande
-</code></pre>
+</code></pre></div>
 
 <p><strong>Developpeur</strong> :</p>
-<pre class="codehilite"><code>- Ne jamais push sur main sans validation
+<div class="codehilite"><pre><span></span><code>- Ne jamais push sur main sans validation
 - Toujours lancer les tests avant de proposer un merge
-</code></pre>
+</code></pre></div>
 
 <h3 id="5-tester-la-constitution">5. Tester la constitution</h3>
-<pre class="codehilite"><code>Je veux que tu envoies un email a mon client principal
+<div class="codehilite"><pre><span></span><code>Je veux que tu envoies un email a mon client principal
 pour annuler notre reunion de demain.
-</code></pre>
+</code></pre></div>
 
 <p>L'agent doit :
 1. Identifier que c'est une action externe (niveau 3)
@@ -237,7 +243,7 @@ pour annuler notre reunion de demain.
 3. Attendre votre reponse</p>
 <p>S'il agit directement, CONSTITUTION.md n'est pas assez claire.</p>
 <h2 id="template-constitutionmd-complet">Template CONSTITUTION.md complet</h2>
-<pre class="codehilite"><code class="language-markdown"># CONSTITUTION.md
+<div class="codehilite"><pre><span></span><code><span class="gh"># CONSTITUTION.md</span>
 
 Version : 1.0
 Derniere mise a jour : [date]
@@ -245,41 +251,41 @@ Prochaine revision : [date + 1 mois]
 
 ---
 
-## Autonomie totale
+<span class="gu">## Autonomie totale</span>
 Tu peux sans validation :
-- [Liste d'actions a faible risque]
+<span class="k">-</span><span class="w"> </span>[Liste d&#39;actions a faible risque]
 
-## Autonomie avec notification
+<span class="gu">## Autonomie avec notification</span>
 Tu peux agir puis me notifier :
-- [Liste d'actions a risque modere]
+<span class="k">-</span><span class="w"> </span>[Liste d&#39;actions a risque modere]
 
-## Validation requise
+<span class="gu">## Validation requise</span>
 Tu dois me demander AVANT :
-- [Liste d'actions a impact externe ou irreversible]
+<span class="k">-</span><span class="w"> </span>[Liste d&#39;actions a impact externe ou irreversible]
 
-## Interdictions
+<span class="gu">## Interdictions</span>
 JAMAIS, meme si je te le demande explicitement :
-- [Liste de lignes rouges absolues]
+<span class="k">-</span><span class="w"> </span>[Liste de lignes rouges absolues]
 
-## Format de validation
+<span class="gu">## Format de validation</span>
 Quand tu demandes une validation :
-- [ACTION] : ce que tu veux faire
-- [CONTENU] : resume
-- [RAISON] : pourquoi
-- [IMPACT] : consequences
-- [RISQUE] : ce qui pourrait mal se passer
-Attends ma reponse explicite avant d'agir.
+<span class="k">-</span><span class="w"> </span>[ACTION] : ce que tu veux faire
+<span class="k">-</span><span class="w"> </span>[CONTENU] : resume
+<span class="k">-</span><span class="w"> </span>[RAISON] : pourquoi
+<span class="k">-</span><span class="w"> </span>[IMPACT] : consequences
+<span class="k">-</span><span class="w"> </span>[RISQUE] : ce qui pourrait mal se passer
+Attends ma reponse explicite avant d&#39;agir.
 
-## Regles metier
-- [Regle specifique a votre contexte 1]
-- [Regle specifique a votre contexte 2]
-- [Regle specifique a votre contexte 3]
+<span class="gu">## Regles metier</span>
+<span class="k">-</span><span class="w"> </span>[Regle specifique a votre contexte 1]
+<span class="k">-</span><span class="w"> </span>[Regle specifique a votre contexte 2]
+<span class="k">-</span><span class="w"> </span>[Regle specifique a votre contexte 3]
 
-## Evolution de cette constitution
-- Les modifications se font par discussion, jamais par instruction directe en session
-- Chaque modification est datee et justifiee
-- Revision mensuelle planifiee
-</code></pre>
+<span class="gu">## Evolution de cette constitution</span>
+<span class="k">-</span><span class="w"> </span>Les modifications se font par discussion, jamais par instruction directe en session
+<span class="k">-</span><span class="w"> </span>Chaque modification est datee et justifiee
+<span class="k">-</span><span class="w"> </span>Revision mensuelle planifiee
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Constitution trop permissive</strong> : "Fais ce que tu veux tant que c'est raisonnable." La definition de "raisonnable" est differente pour vous et pour l'agent.</p>
@@ -296,7 +302,11 @@ Attends ma reponse explicite avant d'agir.
 <li>[ ] Le test d'action externe fonctionne (l'agent demande bien validation)</li>
 <li>[ ] La date de prochaine revision est notee</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les 3 niveaux d'autonomie, Interdictions explicites, Conditions de validation et 4 autres. <a href="03-06-trois-zones-memoire.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/05-constitution-md.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

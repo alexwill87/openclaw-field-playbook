@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,26 +111,30 @@
   <span>5.3 -- Backups</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#quoi-sauvegarder" class="">Quoi sauvegarder</a></li>
-<li><a href="#pg_dump-backup-de-la-base" class="">pg_dump : backup de la base</a></li>
-<li><a href="#script-complet-backup-dbsh" class="toc-h3">Script complet : backup-db.sh</a></li>
-<li><a href="#cron" class="toc-h3">Cron</a></li>
-<li><a href="#fichiers-critiques" class="">Fichiers critiques</a></li>
-<li><a href="#script-backup-filessh" class="toc-h3">Script : backup-files.sh</a></li>
-<li><a href="#snapshots-hetzner" class="">Snapshots Hetzner</a></li>
-<li><a href="#test-de-restauration" class="">TEST de restauration</a></li>
-<li><a href="#tester-la-restauration-postgresql" class="toc-h3">Tester la restauration PostgreSQL</a></li>
-<li><a href="#tester-la-restauration-des-fichiers" class="toc-h3">Tester la restauration des fichiers</a></li>
-<li><a href="#logger-le-test" class="toc-h3">Logger le test</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#quoi-sauvegarder">Quoi sauvegarder</a></li>
+    <li><a href="#pg_dump-backup-de-la-base">pg_dump : backup de la base</a></li>
+    <li class="toc-h3"><a href="#script-complet-backup-dbsh">Script complet : backup-db.sh</a></li>
+    <li class="toc-h3"><a href="#cron">Cron</a></li>
+    <li><a href="#fichiers-critiques">Fichiers critiques</a></li>
+    <li class="toc-h3"><a href="#script-backup-filessh">Script : backup-files.sh</a></li>
+    <li><a href="#snapshots-hetzner">Snapshots Hetzner</a></li>
+    <li><a href="#test-de-restauration">TEST de restauration</a></li>
+    <li class="toc-h3"><a href="#tester-la-restauration-postgresql">Tester la restauration PostgreSQL</a></li>
+    <li class="toc-h3"><a href="#tester-la-restauration-des-fichiers">Tester la restauration des fichiers</a></li>
+    <li class="toc-h3"><a href="#logger-le-test">Logger le test</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="53-backups">5.3 -- Backups</h1>
 <h2 id="contexte">Contexte</h2>
@@ -179,155 +184,155 @@
 </table>
 <h2 id="pg_dump-backup-de-la-base">pg_dump : backup de la base</h2>
 <h3 id="script-complet-backup-dbsh">Script complet : backup-db.sh</h3>
-<pre class="codehilite"><code class="language-bash">#!/bin/bash
-# backup-db.sh — Backup PostgreSQL quotidien
-# Usage : ./backup-db.sh
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># backup-db.sh — Backup PostgreSQL quotidien</span>
+<span class="c1"># Usage : ./backup-db.sh</span>
 
-BACKUP_DIR=&quot;/var/backups/postgresql&quot;
-DB_NAME=&quot;${DB_NAME:-cockpit}&quot;
-DB_USER=&quot;${DB_USER:-oa_admin}&quot;
-RETENTION_DAYS=14
-TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
-BACKUP_FILE=&quot;${BACKUP_DIR}/${DB_NAME}_${TIMESTAMP}.sql.gz&quot;
-LOG_FILE=&quot;/var/log/backup.log&quot;
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/var/backups/postgresql&quot;</span>
+<span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DB_NAME</span><span class="k">:-</span><span class="nv">cockpit</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">DB_USER</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DB_USER</span><span class="k">:-</span><span class="nv">oa_admin</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">RETENTION_DAYS</span><span class="o">=</span><span class="m">14</span>
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y%m%d_%H%M%S&#39;</span><span class="k">)</span>
+<span class="nv">BACKUP_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB_NAME</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">TIMESTAMP</span><span class="si">}</span><span class="s2">.sql.gz&quot;</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/backup.log&quot;</span>
 
-log() {
-    echo &quot;$(date '+%Y-%m-%d %H:%M:%S') [BACKUP-DB] $1&quot; | tee -a &quot;$LOG_FILE&quot;
-}
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2"> [BACKUP-DB] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
 
-# Creer le dossier si necessaire
-mkdir -p &quot;$BACKUP_DIR&quot;
+<span class="c1"># Creer le dossier si necessaire</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
 
-# Backup
-log &quot;Debut backup ${DB_NAME}&quot;
-if pg_dump -U &quot;$DB_USER&quot; &quot;$DB_NAME&quot; | gzip &gt; &quot;$BACKUP_FILE&quot;; then
-    SIZE=$(du -h &quot;$BACKUP_FILE&quot; | cut -f1)
-    log &quot;OK — ${BACKUP_FILE} (${SIZE})&quot;
-else
-    log &quot;ERREUR — pg_dump a echoue&quot;
-    exit 1
-fi
+<span class="c1"># Backup</span>
+log<span class="w"> </span><span class="s2">&quot;Debut backup </span><span class="si">${</span><span class="nv">DB_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">if</span><span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_FILE</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">SIZE</span><span class="o">=</span><span class="k">$(</span>du<span class="w"> </span>-h<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="k">)</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;OK — </span><span class="si">${</span><span class="nv">BACKUP_FILE</span><span class="si">}</span><span class="s2"> (</span><span class="si">${</span><span class="nv">SIZE</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ERREUR — pg_dump a echoue&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
-# Verification : le fichier n'est pas vide
-if [ ! -s &quot;$BACKUP_FILE&quot; ]; then
-    log &quot;ERREUR — Le fichier backup est vide&quot;
-    exit 1
-fi
+<span class="c1"># Verification : le fichier n&#39;est pas vide</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ERREUR — Le fichier backup est vide&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
-# Rotation : supprimer les backups de plus de N jours
-DELETED=$(find &quot;$BACKUP_DIR&quot; -name &quot;${DB_NAME}_*.sql.gz&quot; -mtime +${RETENTION_DAYS} -delete -print | wc -l)
-log &quot;Rotation : ${DELETED} ancien(s) backup(s) supprime(s)&quot;
+<span class="c1"># Rotation : supprimer les backups de plus de N jours</span>
+<span class="nv">DELETED</span><span class="o">=</span><span class="k">$(</span>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span><span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DB_NAME</span><span class="si">}</span><span class="s2">_*.sql.gz&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+<span class="si">${</span><span class="nv">RETENTION_DAYS</span><span class="si">}</span><span class="w"> </span>-delete<span class="w"> </span>-print<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+log<span class="w"> </span><span class="s2">&quot;Rotation : </span><span class="si">${</span><span class="nv">DELETED</span><span class="si">}</span><span class="s2"> ancien(s) backup(s) supprime(s)&quot;</span>
 
-log &quot;Backup termine&quot;
-</code></pre>
+log<span class="w"> </span><span class="s2">&quot;Backup termine&quot;</span>
+</code></pre></div>
 
 <h3 id="cron">Cron</h3>
-<pre class="codehilite"><code class="language-bash"># Backup quotidien a 2h du matin
-0 2 * * * /opt/scripts/backup-db.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Backup quotidien a 2h du matin</span>
+<span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/scripts/backup-db.sh<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/backup.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
 
 <h2 id="fichiers-critiques">Fichiers critiques</h2>
 <h3 id="script-backup-filessh">Script : backup-files.sh</h3>
-<pre class="codehilite"><code class="language-bash">#!/bin/bash
-# backup-files.sh — Backup des fichiers de configuration
-# Usage : ./backup-files.sh
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># backup-files.sh — Backup des fichiers de configuration</span>
+<span class="c1"># Usage : ./backup-files.sh</span>
 
-BACKUP_DIR=&quot;/var/backups/files&quot;
-TIMESTAMP=$(date '+%Y%m%d_%H%M%S')
-BACKUP_FILE=&quot;${BACKUP_DIR}/config_${TIMESTAMP}.tar.gz&quot;
-LOG_FILE=&quot;/var/log/backup.log&quot;
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/var/backups/files&quot;</span>
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y%m%d_%H%M%S&#39;</span><span class="k">)</span>
+<span class="nv">BACKUP_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/config_</span><span class="si">${</span><span class="nv">TIMESTAMP</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&quot;/var/log/backup.log&quot;</span>
 
-mkdir -p &quot;$BACKUP_DIR&quot;
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
 
-log() {
-    echo &quot;$(date '+%Y-%m-%d %H:%M:%S') [BACKUP-FILES] $1&quot; | tee -a &quot;$LOG_FILE&quot;
-}
+log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="s2"> [BACKUP-FILES] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOG_FILE</span><span class="s2">&quot;</span>
+<span class="o">}</span>
 
-log &quot;Debut backup fichiers&quot;
+log<span class="w"> </span><span class="s2">&quot;Debut backup fichiers&quot;</span>
 
-# Liste des fichiers/dossiers a sauvegarder
-FILES=(
-    &quot;/opt/cockpit/docker-compose.yml&quot;
-    &quot;/opt/cockpit/.env&quot;
-    &quot;/opt/scripts/&quot;
-    &quot;/etc/nginx/sites-available/&quot;
-    &quot;/etc/docker/daemon.json&quot;
-    &quot;$HOME/.claude/&quot;
-    &quot;$HOME/CONSTITUTION.md&quot;
-    &quot;$HOME/BOUNDARIES.md&quot;
-    &quot;$HOME/WORKFLOWS.md&quot;
-)
+<span class="c1"># Liste des fichiers/dossiers a sauvegarder</span>
+<span class="nv">FILES</span><span class="o">=(</span>
+<span class="w">    </span><span class="s2">&quot;/opt/cockpit/docker-compose.yml&quot;</span>
+<span class="w">    </span><span class="s2">&quot;/opt/cockpit/.env&quot;</span>
+<span class="w">    </span><span class="s2">&quot;/opt/scripts/&quot;</span>
+<span class="w">    </span><span class="s2">&quot;/etc/nginx/sites-available/&quot;</span>
+<span class="w">    </span><span class="s2">&quot;/etc/docker/daemon.json&quot;</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.claude/&quot;</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/CONSTITUTION.md&quot;</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/BOUNDARIES.md&quot;</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/WORKFLOWS.md&quot;</span>
+<span class="o">)</span>
 
-# Creer l'archive
-tar -czf &quot;$BACKUP_FILE&quot; &quot;${FILES[@]}&quot; 2&gt;/dev/null
+<span class="c1"># Creer l&#39;archive</span>
+tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FILES</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
 
-if [ $? -eq 0 ]; then
-    SIZE=$(du -h &quot;$BACKUP_FILE&quot; | cut -f1)
-    log &quot;OK — ${BACKUP_FILE} (${SIZE})&quot;
-else
-    log &quot;ERREUR — tar a echoue&quot;
-    exit 1
-fi
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">SIZE</span><span class="o">=</span><span class="k">$(</span>du<span class="w"> </span>-h<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="k">)</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;OK — </span><span class="si">${</span><span class="nv">BACKUP_FILE</span><span class="si">}</span><span class="s2"> (</span><span class="si">${</span><span class="nv">SIZE</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;ERREUR — tar a echoue&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
-# Rotation : garder 4 semaines
-find &quot;$BACKUP_DIR&quot; -name &quot;config_*.tar.gz&quot; -mtime +28 -delete
+<span class="c1"># Rotation : garder 4 semaines</span>
+find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span><span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;config_*.tar.gz&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+28<span class="w"> </span>-delete
 
-log &quot;Backup fichiers termine&quot;
-</code></pre>
+log<span class="w"> </span><span class="s2">&quot;Backup fichiers termine&quot;</span>
+</code></pre></div>
 
 <h2 id="snapshots-hetzner">Snapshots Hetzner</h2>
 <p>Les snapshots Hetzner sauvegardent le VPS complet. C'est le dernier recours.</p>
-<pre class="codehilite"><code class="language-bash"># Via hcloud CLI
-hcloud server create-image --type snapshot --description &quot;Snapshot mensuel $(date '+%Y-%m')&quot; &lt;server-id&gt;
+<div class="codehilite"><pre><span></span><code><span class="c1"># Via hcloud CLI</span>
+hcloud<span class="w"> </span>server<span class="w"> </span>create-image<span class="w"> </span>--type<span class="w"> </span>snapshot<span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;Snapshot mensuel </span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&lt;server-id&gt;
 
-# Lister les snapshots existants
-hcloud image list --type snapshot
+<span class="c1"># Lister les snapshots existants</span>
+hcloud<span class="w"> </span>image<span class="w"> </span>list<span class="w"> </span>--type<span class="w"> </span>snapshot
 
-# Supprimer un vieux snapshot
-hcloud image delete &lt;image-id&gt;
-</code></pre>
+<span class="c1"># Supprimer un vieux snapshot</span>
+hcloud<span class="w"> </span>image<span class="w"> </span>delete<span class="w"> </span>&lt;image-id&gt;
+</code></pre></div>
 
 <p>Frequence : mensuelle ou avant une operation risquee (migration, mise a jour majeure).</p>
 <p>Cout : les snapshots Hetzner sont factures au Go/mois. Un VPS de 40 Go = environ 0.80 EUR/mois par snapshot.</p>
 <h2 id="test-de-restauration">TEST de restauration</h2>
 <p>Le test le plus important. Faites-le au moins une fois par mois.</p>
 <h3 id="tester-la-restauration-postgresql">Tester la restauration PostgreSQL</h3>
-<pre class="codehilite"><code class="language-bash"># 1. Creer une base de test
-createdb -U oa_admin cockpit_restore_test
+<div class="codehilite"><pre><span></span><code><span class="c1"># 1. Creer une base de test</span>
+createdb<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>cockpit_restore_test
 
-# 2. Restaurer le dernier backup
-gunzip -c /var/backups/postgresql/cockpit_$(ls -t /var/backups/postgresql/ | head -1) | psql -U oa_admin cockpit_restore_test
+<span class="c1"># 2. Restaurer le dernier backup</span>
+gunzip<span class="w"> </span>-c<span class="w"> </span>/var/backups/postgresql/cockpit_<span class="k">$(</span>ls<span class="w"> </span>-t<span class="w"> </span>/var/backups/postgresql/<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>cockpit_restore_test
 
-# 3. Verifier : compter les tables et les lignes
-psql -U oa_admin cockpit_restore_test -c &quot;\dt&quot;
-psql -U oa_admin cockpit_restore_test -c &quot;SELECT 'tasks' AS tbl, COUNT(*) FROM tasks;&quot;
+<span class="c1"># 3. Verifier : compter les tables et les lignes</span>
+psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>cockpit_restore_test<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;\dt&quot;</span>
+psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>cockpit_restore_test<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT &#39;tasks&#39; AS tbl, COUNT(*) FROM tasks;&quot;</span>
 
-# 4. Comparer avec la production
-psql -U oa_admin cockpit -c &quot;SELECT 'tasks' AS tbl, COUNT(*) FROM tasks;&quot;
+<span class="c1"># 4. Comparer avec la production</span>
+psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>cockpit<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT &#39;tasks&#39; AS tbl, COUNT(*) FROM tasks;&quot;</span>
 
-# 5. Nettoyer
-dropdb -U oa_admin cockpit_restore_test
-</code></pre>
+<span class="c1"># 5. Nettoyer</span>
+dropdb<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>cockpit_restore_test
+</code></pre></div>
 
 <h3 id="tester-la-restauration-des-fichiers">Tester la restauration des fichiers</h3>
-<pre class="codehilite"><code class="language-bash"># 1. Extraire dans un dossier temporaire
-mkdir -p /tmp/restore_test
-tar -xzf /var/backups/files/config_$(ls -t /var/backups/files/ | head -1) -C /tmp/restore_test
+<div class="codehilite"><pre><span></span><code><span class="c1"># 1. Extraire dans un dossier temporaire</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>/tmp/restore_test
+tar<span class="w"> </span>-xzf<span class="w"> </span>/var/backups/files/config_<span class="k">$(</span>ls<span class="w"> </span>-t<span class="w"> </span>/var/backups/files/<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span><span class="w"> </span>-C<span class="w"> </span>/tmp/restore_test
 
-# 2. Verifier que les fichiers critiques sont la
-ls -la /tmp/restore_test/opt/cockpit/docker-compose.yml
-ls -la /tmp/restore_test/opt/scripts/
+<span class="c1"># 2. Verifier que les fichiers critiques sont la</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/tmp/restore_test/opt/cockpit/docker-compose.yml
+ls<span class="w"> </span>-la<span class="w"> </span>/tmp/restore_test/opt/scripts/
 
-# 3. Comparer avec les fichiers actuels
-diff /opt/cockpit/docker-compose.yml /tmp/restore_test/opt/cockpit/docker-compose.yml
+<span class="c1"># 3. Comparer avec les fichiers actuels</span>
+diff<span class="w"> </span>/opt/cockpit/docker-compose.yml<span class="w"> </span>/tmp/restore_test/opt/cockpit/docker-compose.yml
 
-# 4. Nettoyer
-rm -rf /tmp/restore_test
-</code></pre>
+<span class="c1"># 4. Nettoyer</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/restore_test
+</code></pre></div>
 
 <h3 id="logger-le-test">Logger le test</h3>
-<pre class="codehilite"><code class="language-bash">echo &quot;$(date '+%Y-%m-%d') Restauration testee : DB OK, fichiers OK&quot; &gt;&gt; /var/log/backup-test.log
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d&#39;</span><span class="k">)</span><span class="s2"> Restauration testee : DB OK, fichiers OK&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/backup-test.log
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Backup sans test.</strong> Vous avez des fichiers .sql.gz depuis 6 mois. Jamais testes. Le jour ou vous en avez besoin, le fichier est corrompu ou incomplet.</p>
@@ -352,7 +357,11 @@ rm -rf /tmp/restore_test
 <li>[ ] Les backups ne sont pas sur le meme disque que les donnees.</li>
 <li>[ ] Un snapshot Hetzner mensuel est planifie.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Quoi sauvegarder, pg_dump : backup de la base, Fichiers critiques et 5 autres. <a href="05-04-revoir-system-prompt.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/03-backups.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

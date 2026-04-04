@@ -1,4 +1,4 @@
-name: Deploy Playbook
+name: Deploy Playbook (FR + EN)
 
 on:
   push:
@@ -7,9 +7,21 @@ on:
     paths:
       - 'sections/**'
       - 'index_template.html'
+      - 'index_template_en.html'
       - 'assets/**'
       - '.github/scripts/build_site.py'
+      - '.github/scripts/build_en.py'
+      - '.github/scripts/translate.py'
   workflow_dispatch:
+    inputs:
+      force_translate:
+        description: 'Force re-translate all files'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
 
 jobs:
   build-and-deploy:
@@ -27,19 +39,52 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install markdown
+        run: pip install markdown anthropic
 
-      - name: Build index.html from sections
+      # --- STEP 1: Build French site ---
+      - name: Build French site
         run: python .github/scripts/build_site.py
 
-      - name: Commit and push generated index.html
+      # --- STEP 2: Translate to English ---
+      - name: Translate FR → EN
+        if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          FORCE_FLAG=""
+          if [ "${{ github.event.inputs.force_translate }}" = "true" ]; then
+            FORCE_FLAG="--force"
+          fi
+          python .github/scripts/translate.py $FORCE_FLAG
+
+      # --- STEP 3: Build English site ---
+      - name: Build English site
+        if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        run: |
+          if [ -d "sections-en" ]; then
+            python .github/scripts/build_en.py
+          else
+            echo "sections-en/ not found — skipping English build"
+          fi
+
+      # --- STEP 4: Commit and push ---
+      - name: Commit and push all generated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
+
+          # Add FR build outputs
+          git add *.html search-index.json sitemap.xml 2>/dev/null || true
+
+          # Add EN build outputs
+          git add en/ 2>/dev/null || true
+
+          # Add translation cache and translated sources
+          git add sections-en/ .translations/ 2>/dev/null || true
+
           if git diff --cached --quiet; then
-            echo "No changes to index.html"
+            echo "No changes to commit"
           else
-            git commit -m "build: regenerate index.html from sections"
+            git commit -m "build: regenerate FR + EN site from sections"
             git push
           fi

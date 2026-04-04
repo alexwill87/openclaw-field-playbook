@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,29 +118,33 @@
   <span>2.16 -- Verification post-installation</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#checklist-des-11-points" class="">Checklist des 11 points</a></li>
-<li><a href="#1-docker-fonctionne" class="toc-h3">1. Docker fonctionne</a></li>
-<li><a href="#2-vault-est-unseal-et-accessible" class="toc-h3">2. Vault est unseal et accessible</a></li>
-<li><a href="#3-les-secrets-sont-lisibles" class="toc-h3">3. Les secrets sont lisibles</a></li>
-<li><a href="#4-postgresql-repond" class="toc-h3">4. PostgreSQL repond</a></li>
-<li><a href="#5-tailscale-est-connecte" class="toc-h3">5. Tailscale est connecte</a></li>
-<li><a href="#6-nodejs-est-la-bonne-version" class="toc-h3">6. Node.js est la bonne version</a></li>
-<li><a href="#7-openclaw-est-installe" class="toc-h3">7. OpenClaw est installe</a></li>
-<li><a href="#8-la-gateway-tourne" class="toc-h3">8. La gateway tourne</a></li>
-<li><a href="#9-le-health-check-passe" class="toc-h3">9. Le health check passe</a></li>
-<li><a href="#10-tester-le-modele-ia" class="toc-h3">10. Tester le modele IA</a></li>
-<li><a href="#11-openclaw-doctor" class="toc-h3">11. openclaw doctor</a></li>
-<li><a href="#script-de-verification-rapide" class="">Script de verification rapide</a></li>
-<li><a href="#diagnostic-par-symptome" class="">Diagnostic par symptome</a></li>
-<li><a href="#si-tout-est-vert" class="">Si tout est vert</a></li>
-<li><a href="#si-un-point-reste-rouge" class="">Si un point reste rouge</a></li>
-<li><a href="#temps-estime" class="">Temps estime</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#checklist-des-11-points">Checklist des 11 points</a></li>
+    <li class="toc-h3"><a href="#1-docker-fonctionne">1. Docker fonctionne</a></li>
+    <li class="toc-h3"><a href="#2-vault-est-unseal-et-accessible">2. Vault est unseal et accessible</a></li>
+    <li class="toc-h3"><a href="#3-les-secrets-sont-lisibles">3. Les secrets sont lisibles</a></li>
+    <li class="toc-h3"><a href="#4-postgresql-repond">4. PostgreSQL repond</a></li>
+    <li class="toc-h3"><a href="#5-tailscale-est-connecte">5. Tailscale est connecte</a></li>
+    <li class="toc-h3"><a href="#6-nodejs-est-la-bonne-version">6. Node.js est la bonne version</a></li>
+    <li class="toc-h3"><a href="#7-openclaw-est-installe">7. OpenClaw est installe</a></li>
+    <li class="toc-h3"><a href="#8-la-gateway-tourne">8. La gateway tourne</a></li>
+    <li class="toc-h3"><a href="#9-le-health-check-passe">9. Le health check passe</a></li>
+    <li class="toc-h3"><a href="#10-tester-le-modele-ia">10. Tester le modele IA</a></li>
+    <li class="toc-h3"><a href="#11-openclaw-doctor">11. openclaw doctor</a></li>
+    <li><a href="#script-de-verification-rapide">Script de verification rapide</a></li>
+    <li><a href="#diagnostic-par-symptome">Diagnostic par symptome</a></li>
+    <li><a href="#si-tout-est-vert">Si tout est vert</a></li>
+    <li><a href="#si-un-point-reste-rouge">Si un point reste rouge</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="216-verification-post-installation">2.16 -- Verification post-installation</h1>
 <h2 id="contexte">Contexte</h2>
@@ -147,86 +152,86 @@
 <h2 id="checklist-des-11-points">Checklist des 11 points</h2>
 <p>Executez chaque commande. Tout doit reussir.</p>
 <h3 id="1-docker-fonctionne">1. Docker fonctionne</h3>
-<pre class="codehilite"><code class="language-bash">$ docker ps
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>ps
+</code></pre></div>
 
 <p>Attendu : au moins 2 conteneurs (vault, postgres) en etat "Up".</p>
 <h3 id="2-vault-est-unseal-et-accessible">2. Vault est unseal et accessible</h3>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault status | grep Sealed
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>status<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Sealed
+</code></pre></div>
 
 <p>Attendu : <code>Sealed          false</code></p>
 <h3 id="3-les-secrets-sont-lisibles">3. Les secrets sont lisibles</h3>
-<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get secret/openrouter
-$ docker exec vault vault kv get secret/telegram
-$ docker exec vault vault kv get secret/database
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>secret/openrouter
+$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>secret/telegram
+$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>secret/database
+</code></pre></div>
 
 <p>Attendu : chaque commande retourne les champs stockes.</p>
 <h3 id="4-postgresql-repond">4. PostgreSQL repond</h3>
-<pre class="codehilite"><code class="language-bash">$ docker exec postgres psql -U oa_admin -d oa_system -c &quot;SELECT 'pg_ok';&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>-d<span class="w"> </span>oa_system<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT &#39;pg_ok&#39;;&quot;</span>
+</code></pre></div>
 
 <p>Attendu : <code>pg_ok</code></p>
 <h3 id="5-tailscale-est-connecte">5. Tailscale est connecte</h3>
-<pre class="codehilite"><code class="language-bash">$ tailscale status
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tailscale<span class="w"> </span>status
+</code></pre></div>
 
 <p>Attendu : votre machine apparait comme connectee.</p>
 <h3 id="6-nodejs-est-la-bonne-version">6. Node.js est la bonne version</h3>
-<pre class="codehilite"><code class="language-bash">$ node --version
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version
+</code></pre></div>
 
 <p>Attendu : v22.x ou superieur.</p>
 <h3 id="7-openclaw-est-installe">7. OpenClaw est installe</h3>
-<pre class="codehilite"><code class="language-bash">$ openclaw --version
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>--version
+</code></pre></div>
 
 <p>Attendu : numero de version affiche.</p>
 <h3 id="8-la-gateway-tourne">8. La gateway tourne</h3>
-<pre class="codehilite"><code class="language-bash">$ sudo systemctl status openclaw-gateway | grep Active
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>openclaw-gateway<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Active
+</code></pre></div>
 
 <p>Attendu : <code>active (running)</code></p>
 <h3 id="9-le-health-check-passe">9. Le health check passe</h3>
-<pre class="codehilite"><code class="language-bash">$ ~/scripts/health-check.sh
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>~/scripts/health-check.sh
+</code></pre></div>
 
 <p>Attendu : 0 echec.</p>
 <h3 id="10-tester-le-modele-ia">10. Tester le modele IA</h3>
 <p>Verifiez que la connexion au provider IA fonctionne avec un appel simple :</p>
-<pre class="codehilite"><code class="language-bash">$ openclaw model test
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>model<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
 
 <p>Si <code>openclaw model test</code> n'est pas disponible, testez directement via OpenRouter :</p>
-<pre class="codehilite"><code class="language-bash">$ OPENROUTER_KEY=$(docker exec -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv get -field=api_key secret/openrouter)
-$ curl -s https://openrouter.ai/api/v1/chat/completions \
-  -H &quot;Authorization: Bearer ${OPENROUTER_KEY}&quot; \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;model&quot;:&quot;anthropic/claude-haiku-4-5&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Reponds juste OK&quot;}],&quot;max_tokens&quot;:10}' \
-  | python3 -m json.tool
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nv">OPENROUTER_KEY</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">VAULT_ADDR</span><span class="o">=</span>http://127.0.0.1:8200<span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter<span class="k">)</span>
+$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/chat/completions<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">OPENROUTER_KEY</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;model&quot;:&quot;anthropic/claude-haiku-4-5&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Reponds juste OK&quot;}],&quot;max_tokens&quot;:10}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+</code></pre></div>
 
 <p>Attendu : une reponse JSON contenant le texte "OK" (ou similaire) dans <code>choices[0].message.content</code>.</p>
 <h3 id="11-openclaw-doctor">11. openclaw doctor</h3>
-<pre class="codehilite"><code class="language-bash">$ openclaw doctor
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>doctor
+</code></pre></div>
 
 <p>Attendu : tous les checks verts.</p>
 <h2 id="script-de-verification-rapide">Script de verification rapide</h2>
 <p>Pour tout verifier en une commande :</p>
-<pre class="codehilite"><code class="language-bash">$ check() { echo -n &quot;$1: &quot;; if eval &quot;$2&quot; &gt; /dev/null 2&gt;&amp;1; then echo &quot;OK&quot;; else echo &quot;ECHEC&quot;; fi; }
-$ echo &quot;=== VERIFICATION COMPLETE ===&quot;
-$ check &quot;1. Docker&quot;      &quot;docker ps&quot;
-$ check &quot;2. Vault unseal&quot; &quot;docker exec vault vault status 2&gt;/dev/null | grep 'Sealed.*false'&quot;
-$ check &quot;3. Vault secret&quot; &quot;docker exec vault vault kv get -field=api_key secret/openrouter&quot;
-$ check &quot;4. PostgreSQL&quot;   &quot;docker exec postgres psql -U oa_admin -d oa_system -c 'SELECT 1;'&quot;
-$ check &quot;5. Tailscale&quot;    &quot;tailscale status&quot;
-$ echo -n &quot;6. Node: &quot;    &amp;&amp; node --version
-$ check &quot;7. OpenClaw&quot;     &quot;openclaw --version&quot;
-$ check &quot;8. Gateway&quot;      &quot;sudo systemctl is-active openclaw-gateway&quot;
-$ echo &quot;=== FIN ===&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>check<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">: &quot;</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ECHEC&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== VERIFICATION COMPLETE ===&quot;</span>
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;1. Docker&quot;</span><span class="w">      </span><span class="s2">&quot;docker ps&quot;</span>
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;2. Vault unseal&quot;</span><span class="w"> </span><span class="s2">&quot;docker exec vault vault status 2&gt;/dev/null | grep &#39;Sealed.*false&#39;&quot;</span>
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;3. Vault secret&quot;</span><span class="w"> </span><span class="s2">&quot;docker exec vault vault kv get -field=api_key secret/openrouter&quot;</span>
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;4. PostgreSQL&quot;</span><span class="w">   </span><span class="s2">&quot;docker exec postgres psql -U oa_admin -d oa_system -c &#39;SELECT 1;&#39;&quot;</span>
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;5. Tailscale&quot;</span><span class="w">    </span><span class="s2">&quot;tailscale status&quot;</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;6. Node: &quot;</span><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>node<span class="w"> </span>--version
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;7. OpenClaw&quot;</span><span class="w">     </span><span class="s2">&quot;openclaw --version&quot;</span>
+$<span class="w"> </span>check<span class="w"> </span><span class="s2">&quot;8. Gateway&quot;</span><span class="w">      </span><span class="s2">&quot;sudo systemctl is-active openclaw-gateway&quot;</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== FIN ===&quot;</span>
+</code></pre></div>
 
 <h2 id="diagnostic-par-symptome">Diagnostic par symptome</h2>
 <p>Si un point echoue, voici quoi faire :</p>
@@ -297,7 +302,11 @@ $ echo &quot;=== FIN ===&quot;
 <p>Ne passez pas au chapitre suivant avec un point rouge. Chaque brique depend des precedentes. Un probleme non resolu ici deviendra un probleme plus gros plus tard.</p>
 <h2 id="temps-estime">Temps estime</h2>
 <p>10 minutes (verification seule, sans correction).</p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Checklist des 11 points, Script de verification rapide, Diagnostic par symptome et 3 autres. <a href="02-17-git-init.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/16-verification-complete.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

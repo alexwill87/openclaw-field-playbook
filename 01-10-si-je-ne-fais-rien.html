@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>1.10 -- Qu'est-ce qui se passe si je ne fais rien ? | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="1.10 -- Qu'est-ce qui se passe si je ne fais rien ? | OpenClaw Field Playbook">
+  <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="1.10 -- Qu'est-ce qui se passe si je ne fais rien ? | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-group-label">Avant-propos</div>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+  <div class="nav-sections">
+    <a href="01-01-definition.html">1.1 -- Ce qu'OpenClaw est (et n'...</a>
+    <a href="01-02-proactif-reactif.html">1.2 -- La distinction proactif v...</a>
+    <a href="01-03-comparaison.html">1.3 -- OpenClaw vs les autres as...</a>
+    <a href="01-04-souverainete.html">1.4 -- Pourquoi la souverainete...</a>
+    <a href="01-05-architecture-mentale.html">1.5 -- L'architecture mentale av...</a>
+    <a href="01-06-ce-que-vous-construisez.html">1.6 -- Ce que vous allez constru...</a>
+    <a href="01-07-journee-type.html">1.7 -- A quoi ressemble une jour...</a>
+    <a href="01-08-combien-ca-coute.html">1.8 -- Combien ca coute vraiment ?</a>
+    <a href="01-09-est-ce-complique.html">1.9 -- Est-ce que c'est compliqu...</a>
+    <a href="01-10-si-je-ne-fais-rien.html" class="active">1.10 -- Qu'est-ce qui se passe s...</a>
+    <a href="01-11-comment-se-lancer.html">1.11 -- Comment je me lance ?</a>
+  </div>
+</div>
+<div class="nav-group-label">Déployer</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-group-label">Opérer</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-group-label">Ressources</div>
+<a href="ecosystem.html">Écosystème</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribuer</a>
+<a href="privacy.html">Confidentialité</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <a href="01-00-sommaire.html">1. Définition</a>
+  <span class="sep">/</span>
+  <span>1.10 -- Qu'est-ce qui se passe si je ne fais rien ?</span>
+</nav>
+<div class="last-updated">Dernière mise à jour : avril 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#votre-situation-aujourdhui">Votre situation aujourd'hui</a></li>
+    <li><a href="#ce-qui-change-autour-de-vous">Ce qui change autour de vous</a></li>
+    <li><a href="#les-3-risques-concrets">Les 3 risques concrets</a></li>
+    <li class="toc-h3"><a href="#1-perdre-des-prospects-par-lenteur">1. Perdre des prospects par lenteur</a></li>
+    <li class="toc-h3"><a href="#2-sepuiser-sur-ladministratif">2. S'epuiser sur l'administratif</a></li>
+    <li class="toc-h3"><a href="#3-stagner-pendant-que-les-autres-accelerent">3. Stagner pendant que les autres accelerent</a></li>
+    <li><a href="#ce-que-ne-rien-faire-coute-vraiment">Ce que "ne rien faire" coute vraiment</a></li>
+    <li><a href="#la-bonne-nouvelle">La bonne nouvelle</a></li>
+    <li><a href="#en-resume">En resume</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="110-quest-ce-qui-se-passe-si-je-ne-fais-rien">1.10 -- Qu'est-ce qui se passe si je ne fais rien ?</h1>
+<blockquote>
+<p>Personne ne vous oblige a utiliser l'IA. Mais voici ce que ca signifie concretement de ne rien changer.</p>
+</blockquote>
+<hr />
+<h2 id="votre-situation-aujourdhui">Votre situation aujourd'hui</h2>
+<p>Vous etes entrepreneur, artisan, ou vous gerez une petite structure. Votre journee :</p>
+<ul>
+<li>8-10h sur votre coeur de metier (chantiers, clients, production)</li>
+<li>2-3h le soir sur l'administratif (emails, devis, relances, compta)</li>
+<li>Des prospects qui attendent 24-48h avant d'avoir une reponse</li>
+<li>Des factures impayees que vous relancez "quand vous y pensez"</li>
+<li>Aucune vision claire de votre semaine sans ouvrir 4 outils differents</li>
+</ul>
+<p>Ca fonctionne. Mais ca tient sur votre energie personnelle.</p>
+<hr />
+<h2 id="ce-qui-change-autour-de-vous">Ce qui change autour de vous</h2>
+<ul>
+<li>Vos concurrents qui utilisent l'IA repondent aux prospects en 5 minutes. Vous repondez en 48h. Le client choisit celui qui repond en premier.</li>
+<li>Les plateformes (Google, reseaux sociaux) favorisent les entreprises qui publient regulierement. Vous n'avez pas le temps de publier.</li>
+<li>Les clients attendent de plus en plus de reactivite. "Je vous rappelle demain" ne suffit plus.</li>
+</ul>
+<p>Ce n'est pas une question de technologie. C'est une question de temps de reponse et de regularite.</p>
+<hr />
+<h2 id="les-3-risques-concrets">Les 3 risques concrets</h2>
+<h3 id="1-perdre-des-prospects-par-lenteur">1. Perdre des prospects par lenteur</h3>
+<p>Un prospect contacte 3 artisans en meme temps. Celui qui repond en premier a 50% de chances de decrocher le contrat. Si vous repondez le lendemain soir, il a deja signe ailleurs.</p>
+<h3 id="2-sepuiser-sur-ladministratif">2. S'epuiser sur l'administratif</h3>
+<p>2 heures d'admin par soir, c'est 60 heures par mois. 60 heures que vous ne passez pas avec votre famille, a vous reposer, ou a developper votre activite. A long terme, c'est le chemin vers l'epuisement.</p>
+<h3 id="3-stagner-pendant-que-les-autres-accelerent">3. Stagner pendant que les autres accelerent</h3>
+<p>L'IA n'est pas une mode. C'est un outil qui divise par 4 le temps administratif. Les entrepreneurs qui l'adoptent maintenant prennent de l'avance. Pas parce qu'ils sont meilleurs — parce qu'ils ont plus de temps.</p>
+<hr />
+<h2 id="ce-que-ne-rien-faire-coute-vraiment">Ce que "ne rien faire" coute vraiment</h2>
+<p>Faisons le calcul sur un an :</p>
+<table>
+<thead>
+<tr>
+<th>Poste</th>
+<th>Cout de l'inaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prospects perdus (3/mois x 800 EUR)</td>
+<td>~28 800 EUR/an de CA manque</td>
+</tr>
+<tr>
+<td>Temps admin (2h/jour x 250 jours)</td>
+<td>500 heures/an</td>
+</tr>
+<tr>
+<td>Relances oubliees (2 factures/mois)</td>
+<td>~4 800 EUR de tresorerie bloquee</td>
+</tr>
+</tbody>
+</table>
+<p>Contre un investissement de 15-25 EUR/mois et 3h d'installation.</p>
+<hr />
+<h2 id="la-bonne-nouvelle">La bonne nouvelle</h2>
+<p>Vous n'avez pas besoin de tout changer d'un coup. La plupart des entrepreneurs commencent par <strong>un seul cas d'usage</strong> :</p>
+<ul>
+<li>Le triage des emails (le plus courant)</li>
+<li>Les brouillons de devis</li>
+<li>Les relances de factures</li>
+</ul>
+<p>Un seul de ces trois suffit pour voir la difference en une semaine.</p>
+<hr />
+<h2 id="en-resume">En resume</h2>
+<p>Ne rien faire n'est pas gratuit. Ca coute du temps, des prospects, et de l'energie. La question n'est pas "est-ce que l'IA est pour moi ?" mais "est-ce que je peux me permettre de continuer comme avant ?".</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Votre situation aujourd'hui, Ce qui change autour de vous, Les 3 risques concrets, Ce que "ne rien faire" coute vraiment et 2 autres. <a href="01-11-comment-se-lancer.html">Continuer &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/01-definition/10-si-je-ne-fais-rien.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="01-09-est-ce-complique.html">&larr; 1.9 -- Est-ce que c'est complique pour moi ?</a>
+<a href="01-11-comment-se-lancer.html">1.11 -- Comment je me lance ? &rarr;</a>
+</div>
+
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+        &middot; <a href="privacy.html">Confidentialite</a>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

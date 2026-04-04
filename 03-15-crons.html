@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html" class="active">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,24 +115,28 @@
   <span>3.15 -- Les crons : automatisations planifiees</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#les-4-crons-essentiels" class="">Les 4 crons essentiels</a></li>
-<li><a href="#1-briefing-matin" class="toc-h3">1. Briefing matin</a></li>
-<li><a href="#2-recap-soir" class="toc-h3">2. Recap soir</a></li>
-<li><a href="#3-triage-email" class="toc-h3">3. Triage email</a></li>
-<li><a href="#4-heartbeat" class="toc-h3">4. Heartbeat</a></li>
-<li><a href="#configuration" class="">Configuration</a></li>
-<li><a href="#syntaxe-cron" class="toc-h3">Syntaxe cron</a></li>
-<li><a href="#gestion-des-crons" class="toc-h3">Gestion des crons</a></li>
-<li><a href="#commencer-par-un-seul-cron" class="">Commencer par UN seul cron</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-4-crons-essentiels">Les 4 crons essentiels</a></li>
+    <li class="toc-h3"><a href="#1-briefing-matin">1. Briefing matin</a></li>
+    <li class="toc-h3"><a href="#2-recap-soir">2. Recap soir</a></li>
+    <li class="toc-h3"><a href="#3-triage-email">3. Triage email</a></li>
+    <li class="toc-h3"><a href="#4-heartbeat">4. Heartbeat</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#syntaxe-cron">Syntaxe cron</a></li>
+    <li class="toc-h3"><a href="#gestion-des-crons">Gestion des crons</a></li>
+    <li><a href="#commencer-par-un-seul-cron">Commencer par UN seul cron</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="315-les-crons-automatisations-planifiees">3.15 -- Les crons : automatisations planifiees</h1>
 <h2 id="contexte">Contexte</h2>
@@ -139,49 +145,49 @@
 <h2 id="les-4-crons-essentiels">Les 4 crons essentiels</h2>
 <h3 id="1-briefing-matin">1. Briefing matin</h3>
 <p>Le plus important. Detail complet dans la section 3.16.</p>
-<pre class="codehilite"><code>openclaw cron add --name &quot;briefing-matin&quot; \
-  --schedule &quot;0 7 * * 1-5&quot; \
+<div class="codehilite"><pre><span></span><code>openclaw cron add --name &quot;briefing-matin&quot; \
+  --schedule &quot;0 7 <span class="gs">* *</span> 1-5&quot; \
   --prompt &quot;Genere mon briefing du matin selon le format defini dans CONSTITUTION.md&quot;
-</code></pre>
+</code></pre></div>
 
 <p>Declenchement : lundi au vendredi, 7h00.</p>
 <h3 id="2-recap-soir">2. Recap soir</h3>
 <p>Resume de la journee. Ce qui a ete fait, ce qui reste, ce qui a change.</p>
-<pre class="codehilite"><code>openclaw cron add --name &quot;recap-soir&quot; \
-  --schedule &quot;0 18 * * 1-5&quot; \
+<div class="codehilite"><pre><span></span><code>openclaw cron add --name &quot;recap-soir&quot; \
+  --schedule &quot;0 18 <span class="gs">* *</span> 1-5&quot; \
   --prompt &quot;Resume de la journee : decisions prises, taches completees, 
   points en attente. Mets a jour MEMORY.md avec ce qui doit etre retenu.&quot;
-</code></pre>
+</code></pre></div>
 
 <p>Declenchement : lundi au vendredi, 18h00.</p>
 <p>Le recap soir fait le lien avec le briefing du lendemain. Ce que le recap capture le soir, le briefing le presente le matin.</p>
 <h3 id="3-triage-email">3. Triage email</h3>
 <p>Classement periodique des emails entrants.</p>
-<pre class="codehilite"><code>openclaw cron add --name &quot;triage-email&quot; \
-  --schedule &quot;0 9,13,17 * * 1-5&quot; \
+<div class="codehilite"><pre><span></span><code>openclaw cron add --name &quot;triage-email&quot; \
+  --schedule &quot;0 9,13,17 <span class="gs">* *</span> 1-5&quot; \
   --prompt &quot;Trie les emails recus depuis le dernier triage. 
   Classe en urgent/a-traiter/informatif. 
-  Notifie-moi uniquement s'il y a des urgents.&quot;
-</code></pre>
+  Notifie-moi uniquement s&#39;il y a des urgents.&quot;
+</code></pre></div>
 
 <p>Declenchement : 3 fois par jour (9h, 13h, 17h).</p>
 <p>Note : ne triez pas toutes les 30 minutes. L'email n'est pas un chat. 3 fois par jour suffit pour la grande majorite des contextes.</p>
 <h3 id="4-heartbeat">4. Heartbeat</h3>
 <p>Verification que l'agent et ses connexions fonctionnent.</p>
-<pre class="codehilite"><code>openclaw cron add --name &quot;heartbeat&quot; \
-  --schedule &quot;0 6 * * *&quot; \
+<div class="codehilite"><pre><span></span><code>openclaw cron add --name &quot;heartbeat&quot; \
+  --schedule &quot;0 6 <span class="gs">* *</span> *&quot; \
   --prompt &quot;Verifie que toutes les connexions sont actives 
   (calendrier, email, taches). Signale uniquement les problemes.&quot;
-</code></pre>
+</code></pre></div>
 
 <p>Declenchement : tous les jours, 6h00 (avant le briefing).</p>
 <p>Le heartbeat est silencieux quand tout va bien. Il ne vous notifie que si quelque chose est casse.</p>
 <h2 id="configuration">Configuration</h2>
 <h3 id="syntaxe-cron">Syntaxe cron</h3>
-<pre class="codehilite"><code>openclaw cron add --name &quot;[nom]&quot; \
-  --schedule &quot;[expression cron]&quot; \
-  --prompt &quot;[instruction pour l'agent]&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">openclaw</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="s">&quot;[nom]&quot;</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">--</span><span class="n">schedule</span><span class="w"> </span><span class="s">&quot;[expression cron]&quot;</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">--</span><span class="n">prompt</span><span class="w"> </span><span class="s">&quot;[instruction pour l&#39;agent]&quot;</span>
+</code></pre></div>
 
 <p>Expressions cron courantes :</p>
 <table>
@@ -215,12 +221,12 @@
 </tbody>
 </table>
 <h3 id="gestion-des-crons">Gestion des crons</h3>
-<pre class="codehilite"><code>openclaw cron list              # Voir tous les crons actifs
-openclaw cron pause [nom]       # Mettre en pause
-openclaw cron resume [nom]      # Reactiver
-openclaw cron remove [nom]      # Supprimer
-openclaw cron logs [nom]        # Voir les logs d'execution
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">openclaw</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="n">list</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="n">Voir</span><span class="w"> </span><span class="n">tous</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">crons</span><span class="w"> </span><span class="n">actifs</span>
+<span class="n">openclaw</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="n">pause</span><span class="w"> </span><span class="o">[</span><span class="n">nom</span><span class="o">]</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">Mettre</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">pause</span>
+<span class="n">openclaw</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="n">resume</span><span class="w"> </span><span class="o">[</span><span class="n">nom</span><span class="o">]</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="n">Reactiver</span>
+<span class="n">openclaw</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="o">[</span><span class="n">nom</span><span class="o">]</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="n">Supprimer</span>
+<span class="n">openclaw</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="o">[</span><span class="n">nom</span><span class="o">]</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">Voir</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="n">d</span><span class="err">&#39;</span><span class="n">execution</span>
+</code></pre></div>
 
 <h2 id="commencer-par-un-seul-cron">Commencer par UN seul cron</h2>
 <p>Regle de Steinberg appliquee aux crons : commencez par un seul. Le briefing matin.</p>
@@ -230,11 +236,11 @@ openclaw cron logs [nom]        # Voir les logs d'execution
 - Vous ajustez l'heure et le contenu avant d'en ajouter d'autres
 - Un cron mal configure qui tourne 3 fois par jour, c'est 3 fois plus de bruit qu'un seul</p>
 <p>Ordre d'ajout recommande :</p>
-<pre class="codehilite"><code>Semaine 1 : briefing matin
+<div class="codehilite"><pre><span></span><code>Semaine 1 : briefing matin
 Semaine 2 : recap soir (si le briefing est valide)
-Semaine 3 : triage email (si l'email est connecte)
+Semaine 3 : triage email (si l&#39;email est connecte)
 Semaine 4 : heartbeat
-</code></pre>
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <ol>
@@ -259,7 +265,11 @@ Semaine 4 : heartbeat
 <li>[ ] Pas plus de 2 crons actifs la premiere semaine</li>
 <li>[ ] Heartbeat prevu (meme s'il est ajoute plus tard)</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les 4 crons essentiels, Configuration, Commencer par UN seul cron et 3 autres. <a href="03-16-briefing-matin.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/15-crons.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

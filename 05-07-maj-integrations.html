@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,27 +111,31 @@
   <span>5.7 -- Mettre a jour les integrations</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#quand-une-api-change" class="">Quand une API change</a></li>
-<li><a href="#signaux-dalerte" class="toc-h3">Signaux d'alerte</a></li>
-<li><a href="#processus-de-mise-a-jour" class="toc-h3">Processus de mise a jour</a></li>
-<li><a href="#template-de-mise-a-jour" class="toc-h3">Template de mise a jour</a></li>
-<li><a href="#adapter-sans-casser" class="">Adapter sans casser</a></li>
-<li><a href="#regle-1-jamais-en-production-dabord" class="toc-h3">Regle 1 : jamais en production d'abord</a></li>
-<li><a href="#regle-2-garder-lancien-en-fallback" class="toc-h3">Regle 2 : garder l'ancien en fallback</a></li>
-<li><a href="#regle-3-un-changement-a-la-fois" class="toc-h3">Regle 3 : un changement a la fois</a></li>
-<li><a href="#skills-a-jour" class="">Skills a jour</a></li>
-<li><a href="#verifier-les-skills-disponibles" class="toc-h3">Verifier les skills disponibles</a></li>
-<li><a href="#mettre-a-jour-une-skill" class="toc-h3">Mettre a jour une skill</a></li>
-<li><a href="#supprimer-les-skills-inutilisees" class="toc-h3">Supprimer les skills inutilisees</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#quand-une-api-change">Quand une API change</a></li>
+    <li class="toc-h3"><a href="#signaux-dalerte">Signaux d'alerte</a></li>
+    <li class="toc-h3"><a href="#processus-de-mise-a-jour">Processus de mise a jour</a></li>
+    <li class="toc-h3"><a href="#template-de-mise-a-jour">Template de mise a jour</a></li>
+    <li><a href="#adapter-sans-casser">Adapter sans casser</a></li>
+    <li class="toc-h3"><a href="#regle-1-jamais-en-production-dabord">Regle 1 : jamais en production d'abord</a></li>
+    <li class="toc-h3"><a href="#regle-2-garder-lancien-en-fallback">Regle 2 : garder l'ancien en fallback</a></li>
+    <li class="toc-h3"><a href="#regle-3-un-changement-a-la-fois">Regle 3 : un changement a la fois</a></li>
+    <li><a href="#skills-a-jour">Skills a jour</a></li>
+    <li class="toc-h3"><a href="#verifier-les-skills-disponibles">Verifier les skills disponibles</a></li>
+    <li class="toc-h3"><a href="#mettre-a-jour-une-skill">Mettre a jour une skill</a></li>
+    <li class="toc-h3"><a href="#supprimer-les-skills-inutilisees">Supprimer les skills inutilisees</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="57-mettre-a-jour-les-integrations">5.7 -- Mettre a jour les integrations</h1>
 <h2 id="contexte">Contexte</h2>
@@ -154,58 +159,58 @@
 <li><strong>Deployer</strong> : mettre a jour en production.</li>
 </ol>
 <h3 id="template-de-mise-a-jour">Template de mise a jour</h3>
-<pre class="codehilite"><code class="language-markdown">## Mise a jour integration : [nom]
+<div class="codehilite"><pre><span></span><code><span class="gu">## Mise a jour integration : [nom]</span>
 
 Date : YYYY-MM-DD
 Raison : [deprecation / bug / nouvelle feature]
 
-### Avant
-- Endpoint : [ancien]
-- Commande : [ancienne]
-- Format : [ancien]
+<span class="gu">### Avant</span>
+<span class="k">-</span><span class="w"> </span>Endpoint : [ancien]
+<span class="k">-</span><span class="w"> </span>Commande : [ancienne]
+<span class="k">-</span><span class="w"> </span>Format : [ancien]
 
-### Apres
-- Endpoint : [nouveau]
-- Commande : [nouvelle]
-- Format : [nouveau]
+<span class="gu">### Apres</span>
+<span class="k">-</span><span class="w"> </span>Endpoint : [nouveau]
+<span class="k">-</span><span class="w"> </span>Commande : [nouvelle]
+<span class="k">-</span><span class="w"> </span>Format : [nouveau]
 
-### Impact
-- Workflows affectes : [liste]
-- Scripts a modifier : [liste]
+<span class="gu">### Impact</span>
+<span class="k">-</span><span class="w"> </span>Workflows affectes : [liste]
+<span class="k">-</span><span class="w"> </span>Scripts a modifier : [liste]
 
-### Test
-- [ ] Appel manuel OK
-- [ ] Dry run agent OK
-- [ ] Production OK
-</code></pre>
+<span class="gu">### Test</span>
+<span class="k">- [ ]</span> Appel manuel OK
+<span class="k">- [ ]</span> Dry run agent OK
+<span class="k">- [ ]</span> Production OK
+</code></pre></div>
 
 <h2 id="adapter-sans-casser">Adapter sans casser</h2>
 <h3 id="regle-1-jamais-en-production-dabord">Regle 1 : jamais en production d'abord</h3>
 <p>Testez toujours en isolation. Un <code>curl</code> manuel, un script de test, un environnement de staging. Jamais directement dans le workflow de production.</p>
 <h3 id="regle-2-garder-lancien-en-fallback">Regle 2 : garder l'ancien en fallback</h3>
 <p>Ne supprimez pas l'ancienne integration tant que la nouvelle n'est pas validee en production pendant au moins une semaine.</p>
-<pre class="codehilite"><code class="language-bash"># Exemple : nouveau endpoint Telegram
-NEW_URL=&quot;https://api.telegram.org/bot${TOKEN}/sendMessage&quot;
-OLD_URL=&quot;https://api.telegram.org/bot${TOKEN}/sendMessage&quot;  # meme dans ce cas
+<div class="codehilite"><pre><span></span><code><span class="c1"># Exemple : nouveau endpoint Telegram</span>
+<span class="nv">NEW_URL</span><span class="o">=</span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span>
+<span class="nv">OLD_URL</span><span class="o">=</span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span><span class="w">  </span><span class="c1"># meme dans ce cas</span>
 
-# Tester le nouveau
-if ! curl -s -f &quot;$NEW_URL&quot; -d &quot;chat_id=$CHAT_ID&amp;text=test&quot; &gt; /dev/null; then
-    echo &quot;Nouveau endpoint KO, fallback sur l'ancien&quot;
-    curl -s &quot;$OLD_URL&quot; -d &quot;chat_id=$CHAT_ID&amp;text=test&quot;
-fi
-</code></pre>
+<span class="c1"># Tester le nouveau</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NEW_URL</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;chat_id=</span><span class="nv">$CHAT_ID</span><span class="s2">&amp;text=test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Nouveau endpoint KO, fallback sur l&#39;ancien&quot;</span>
+<span class="w">    </span>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OLD_URL</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;chat_id=</span><span class="nv">$CHAT_ID</span><span class="s2">&amp;text=test&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
 
 <h3 id="regle-3-un-changement-a-la-fois">Regle 3 : un changement a la fois</h3>
 <p>Ne mettez pas a jour Telegram, Docker, et l'API GitHub le meme jour. Si quelque chose casse, vous ne saurez pas quoi. Un changement, un test, une validation.</p>
 <h2 id="skills-a-jour">Skills a jour</h2>
 <p>Si votre agent utilise des skills (MCP, plugins, extensions) :</p>
 <h3 id="verifier-les-skills-disponibles">Verifier les skills disponibles</h3>
-<pre class="codehilite"><code>Liste toutes tes skills/outils disponibles.
+<div class="codehilite"><pre><span></span><code>Liste toutes tes skills/outils disponibles.
 Pour chacun, dis-moi :
 - Nom
 - Derniere utilisation
-- Est-ce qu'il fonctionne encore ? (teste)
-</code></pre>
+- Est-ce qu&#39;il fonctionne encore ? (teste)
+</code></pre></div>
 
 <h3 id="mettre-a-jour-une-skill">Mettre a jour une skill</h3>
 <ol>
@@ -238,7 +243,11 @@ Pour chacun, dis-moi :
 <li>[ ] WORKFLOWS.md est a jour apres chaque changement d'integration.</li>
 <li>[ ] Un fallback existe pour les integrations critiques.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Quand une API change, Adapter sans casser, Skills a jour et 3 autres. <a href="05-08-maj-systeme.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/07-maj-integrations.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

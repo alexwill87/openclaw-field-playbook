@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,23 +111,27 @@
   <span>4.6 -- Base de donnees comme source de verite</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#pourquoi-db-fichiers-md" class="">Pourquoi DB &gt; fichiers .md</a></li>
-<li><a href="#schema-postgresql" class="">Schema PostgreSQL</a></li>
-<li><a href="#requetes-utiles" class="">Requetes utiles</a></li>
-<li><a href="#taches-prioritaires-du-jour" class="toc-h3">Taches prioritaires du jour</a></li>
-<li><a href="#taches-en-retard" class="toc-h3">Taches en retard</a></li>
-<li><a href="#resume-de-la-semaine" class="toc-h3">Resume de la semaine</a></li>
-<li><a href="#taches-par-projet" class="toc-h3">Taches par projet</a></li>
-<li><a href="#script-cli-taskssh" class="">Script CLI : tasks.sh</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#pourquoi-db-fichiers-md">Pourquoi DB &gt; fichiers .md</a></li>
+    <li><a href="#schema-postgresql">Schema PostgreSQL</a></li>
+    <li><a href="#requetes-utiles">Requetes utiles</a></li>
+    <li class="toc-h3"><a href="#taches-prioritaires-du-jour">Taches prioritaires du jour</a></li>
+    <li class="toc-h3"><a href="#taches-en-retard">Taches en retard</a></li>
+    <li class="toc-h3"><a href="#resume-de-la-semaine">Resume de la semaine</a></li>
+    <li class="toc-h3"><a href="#taches-par-projet">Taches par projet</a></li>
+    <li><a href="#script-cli-taskssh">Script CLI : tasks.sh</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="46-base-de-donnees-comme-source-de-verite">4.6 -- Base de donnees comme source de verite</h1>
 <h2 id="contexte">Contexte</h2>
@@ -176,168 +181,168 @@
 </table>
 <p>Le fichier .md reste utile comme vue (genere depuis la DB). Mais la source de verite est la base.</p>
 <h2 id="schema-postgresql">Schema PostgreSQL</h2>
-<pre class="codehilite"><code class="language-sql">CREATE TABLE tasks (
-    id          SERIAL PRIMARY KEY,
-    title       VARCHAR(255) NOT NULL,
-    description TEXT,
-    status      VARCHAR(20) DEFAULT 'todo' 
-                CHECK (status IN ('todo', 'in_progress', 'done', 'blocked', 'cancelled')),
-    priority    VARCHAR(10) DEFAULT 'medium'
-                CHECK (priority IN ('high', 'medium', 'low')),
-    project     VARCHAR(100),
-    assigned_to VARCHAR(100),
-    created_at  TIMESTAMPTZ DEFAULT NOW(),
-    updated_at  TIMESTAMPTZ DEFAULT NOW(),
-    deadline    DATE,
-    notes       TEXT
-);
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tasks</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">          </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">title</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">status</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;todo&#39;</span><span class="w"> </span>
+<span class="w">                </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;todo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;in_progress&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;done&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blocked&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cancelled&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">priority</span><span class="w">    </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;medium&#39;</span>
+<span class="w">                </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">priority</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;high&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;medium&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;low&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">project</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">assigned_to</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">  </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">  </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">deadline</span><span class="w">    </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">notes</span><span class="w">       </span><span class="nb">TEXT</span>
+<span class="p">);</span>
 
--- Index pour les requetes frequentes
-CREATE INDEX idx_tasks_status ON tasks(status);
-CREATE INDEX idx_tasks_priority ON tasks(priority);
-CREATE INDEX idx_tasks_project ON tasks(project);
+<span class="c1">-- Index pour les requetes frequentes</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_tasks_status</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">tasks</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_tasks_priority</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">tasks</span><span class="p">(</span><span class="n">priority</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_tasks_project</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">tasks</span><span class="p">(</span><span class="n">project</span><span class="p">);</span>
 
--- Mise a jour automatique du updated_at
-CREATE OR REPLACE FUNCTION update_updated_at()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = NOW();
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
+<span class="c1">-- Mise a jour automatique du updated_at</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">update_updated_at</span><span class="p">()</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="k">NEW</span><span class="p">.</span><span class="n">updated_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NOW</span><span class="p">();</span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="k">NEW</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
 
-CREATE TRIGGER tasks_updated_at
-    BEFORE UPDATE ON tasks
-    FOR EACH ROW
-    EXECUTE FUNCTION update_updated_at();
-</code></pre>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">tasks_updated_at</span>
+<span class="w">    </span><span class="k">BEFORE</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">tasks</span>
+<span class="w">    </span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
+<span class="w">    </span><span class="k">EXECUTE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">update_updated_at</span><span class="p">();</span>
+</code></pre></div>
 
 <h2 id="requetes-utiles">Requetes utiles</h2>
 <h3 id="taches-prioritaires-du-jour">Taches prioritaires du jour</h3>
-<pre class="codehilite"><code class="language-sql">SELECT id, title, priority, deadline
-FROM tasks
-WHERE status IN ('todo', 'in_progress')
-ORDER BY 
-    CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 ELSE 3 END,
-    deadline NULLS LAST;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="n">deadline</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tasks</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;todo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;in_progress&#39;</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span>
+<span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="n">priority</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;high&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;medium&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">END</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deadline</span><span class="w"> </span><span class="n">NULLS</span><span class="w"> </span><span class="k">LAST</span><span class="p">;</span>
+</code></pre></div>
 
 <h3 id="taches-en-retard">Taches en retard</h3>
-<pre class="codehilite"><code class="language-sql">SELECT id, title, deadline, 
-       NOW()::date - deadline AS jours_retard
-FROM tasks
-WHERE status NOT IN ('done', 'cancelled')
-  AND deadline &lt; CURRENT_DATE
-ORDER BY deadline;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">deadline</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">NOW</span><span class="p">()::</span><span class="nb">date</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">deadline</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">jours_retard</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tasks</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cancelled&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">deadline</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">CURRENT_DATE</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">deadline</span><span class="p">;</span>
+</code></pre></div>
 
 <h3 id="resume-de-la-semaine">Resume de la semaine</h3>
-<pre class="codehilite"><code class="language-sql">SELECT status, COUNT(*) AS total
-FROM tasks
-WHERE updated_at &gt;= NOW() - INTERVAL '7 days'
-GROUP BY status
-ORDER BY total DESC;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tasks</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">updated_at</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;7 days&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">status</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
 
 <h3 id="taches-par-projet">Taches par projet</h3>
-<pre class="codehilite"><code class="language-sql">SELECT project, status, COUNT(*) AS total
-FROM tasks
-GROUP BY project, status
-ORDER BY project, status;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">project</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tasks</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">project</span><span class="p">,</span><span class="w"> </span><span class="n">status</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">project</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+</code></pre></div>
 
 <h2 id="script-cli-taskssh">Script CLI : tasks.sh</h2>
 <p>Un script bash pour gerer les taches sans ouvrir psql a chaque fois.</p>
-<pre class="codehilite"><code class="language-bash">#!/bin/bash
-# tasks.sh — CLI pour la gestion des taches
-# Usage : ./tasks.sh [commande] [arguments]
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># tasks.sh — CLI pour la gestion des taches</span>
+<span class="c1"># Usage : ./tasks.sh [commande] [arguments]</span>
 
-DB_NAME=&quot;${TASKS_DB:-cockpit}&quot;
-DB_USER=&quot;${TASKS_USER:-oa_admin}&quot;
+<span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TASKS_DB</span><span class="k">:-</span><span class="nv">cockpit</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">DB_USER</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TASKS_USER</span><span class="k">:-</span><span class="nv">oa_admin</span><span class="si">}</span><span class="s2">&quot;</span>
 
-cmd_list() {
-    local filter=&quot;${1:-all}&quot;
-    case &quot;$filter&quot; in
-        todo|in_progress|done|blocked)
-            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
-                &quot;SELECT id, title, priority, deadline FROM tasks WHERE status = '$filter' ORDER BY priority, deadline NULLS LAST;&quot;
-            ;;
-        urgent)
-            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
-                &quot;SELECT id, title, deadline FROM tasks WHERE status IN ('todo','in_progress') AND (priority = 'high' OR deadline &lt;= CURRENT_DATE + 3) ORDER BY deadline NULLS LAST;&quot;
-            ;;
-        *)
-            psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
-                &quot;SELECT id, title, status, priority, deadline FROM tasks WHERE status NOT IN ('done','cancelled') ORDER BY priority, deadline NULLS LAST;&quot;
-            ;;
-    esac
-}
+cmd_list<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">all</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$filter</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span>todo<span class="p">|</span>in_progress<span class="p">|</span><span class="k">done</span><span class="p">|</span>blocked<span class="o">)</span>
+<span class="w">            </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span><span class="s2">&quot;SELECT id, title, priority, deadline FROM tasks WHERE status = &#39;</span><span class="nv">$filter</span><span class="s2">&#39; ORDER BY priority, deadline NULLS LAST;&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>urgent<span class="o">)</span>
+<span class="w">            </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span><span class="s2">&quot;SELECT id, title, deadline FROM tasks WHERE status IN (&#39;todo&#39;,&#39;in_progress&#39;) AND (priority = &#39;high&#39; OR deadline &lt;= CURRENT_DATE + 3) ORDER BY deadline NULLS LAST;&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>*<span class="o">)</span>
+<span class="w">            </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span><span class="s2">&quot;SELECT id, title, status, priority, deadline FROM tasks WHERE status NOT IN (&#39;done&#39;,&#39;cancelled&#39;) ORDER BY priority, deadline NULLS LAST;&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="o">}</span>
 
-cmd_add() {
-    local title=&quot;$1&quot;
-    local priority=&quot;${2:-medium}&quot;
-    local project=&quot;${3:-}&quot;
-    local deadline=&quot;${4:-}&quot;
+cmd_add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">title</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">2</span><span class="k">:-</span><span class="nv">medium</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">project</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">3</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">deadline</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">4</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
 
-    # Utiliser des variables psql pour eviter l'injection SQL
-    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; \
-        -v title=&quot;$title&quot; \
-        -v priority=&quot;$priority&quot; \
-        -v project=&quot;$project&quot; \
-        -v deadline=&quot;$deadline&quot; \
-        -c &quot;INSERT INTO tasks (title, priority, project, deadline) VALUES (:'title', :'priority', NULLIF(:'project',''), NULLIF(:'deadline','')::date) RETURNING id, title;&quot;
-}
+<span class="w">    </span><span class="c1"># Utiliser des variables psql pour eviter l&#39;injection SQL</span>
+<span class="w">    </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-v<span class="w"> </span><span class="nv">title</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$title</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-v<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$priority</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-v<span class="w"> </span><span class="nv">project</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$project</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-v<span class="w"> </span><span class="nv">deadline</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$deadline</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-c<span class="w"> </span><span class="s2">&quot;INSERT INTO tasks (title, priority, project, deadline) VALUES (:&#39;title&#39;, :&#39;priority&#39;, NULLIF(:&#39;project&#39;,&#39;&#39;), NULLIF(:&#39;deadline&#39;,&#39;&#39;)::date) RETURNING id, title;&quot;</span>
+<span class="o">}</span>
 
-cmd_done() {
-    local id=&quot;$1&quot;
-    # Valider que id est un entier
-    if ! [[ &quot;$id&quot; =~ ^[0-9]+$ ]]; then
-        echo &quot;Erreur : id doit etre un entier&quot; &gt;&amp;2
-        return 1
-    fi
-    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
-        &quot;UPDATE tasks SET status = 'done' WHERE id = $id RETURNING id, title, status;&quot;
-}
+cmd_done<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">id</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="c1"># Valider que id est un entier</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$id</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+$<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Erreur : id doit etre un entier&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">&quot;UPDATE tasks SET status = &#39;done&#39; WHERE id = </span><span class="nv">$id</span><span class="s2"> RETURNING id, title, status;&quot;</span>
+<span class="o">}</span>
 
-cmd_status() {
-    local id=&quot;$1&quot;
-    local new_status=&quot;$2&quot;
-    if ! [[ &quot;$id&quot; =~ ^[0-9]+$ ]]; then
-        echo &quot;Erreur : id doit etre un entier&quot; &gt;&amp;2
-        return 1
-    fi
-    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; \
-        -v new_status=&quot;$new_status&quot; \
-        -c &quot;UPDATE tasks SET status = :'new_status' WHERE id = $id RETURNING id, title, status;&quot;
-}
+cmd_status<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">id</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">new_status</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$id</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+$<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Erreur : id doit etre un entier&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-v<span class="w"> </span><span class="nv">new_status</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$new_status</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-c<span class="w"> </span><span class="s2">&quot;UPDATE tasks SET status = :&#39;new_status&#39; WHERE id = </span><span class="nv">$id</span><span class="s2"> RETURNING id, title, status;&quot;</span>
+<span class="o">}</span>
 
-cmd_summary() {
-    echo &quot;=== Resume des taches ===&quot;
-    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
-        &quot;SELECT status, COUNT(*) FROM tasks GROUP BY status ORDER BY COUNT(*) DESC;&quot;
-    echo &quot;&quot;
-    echo &quot;=== En retard ===&quot;
-    psql -d &quot;$DB_NAME&quot; -U &quot;$DB_USER&quot; -c \
-        &quot;SELECT id, title, deadline FROM tasks WHERE deadline &lt; CURRENT_DATE AND status NOT IN ('done','cancelled') ORDER BY deadline;&quot;
-}
+cmd_summary<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Resume des taches ===&quot;</span>
+<span class="w">    </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">&quot;SELECT status, COUNT(*) FROM tasks GROUP BY status ORDER BY COUNT(*) DESC;&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== En retard ===&quot;</span>
+<span class="w">    </span>psql<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">&quot;SELECT id, title, deadline FROM tasks WHERE deadline &lt; CURRENT_DATE AND status NOT IN (&#39;done&#39;,&#39;cancelled&#39;) ORDER BY deadline;&quot;</span>
+<span class="o">}</span>
 
-case &quot;${1:-help}&quot; in
-    list)    cmd_list &quot;$2&quot; ;;
-    add)     cmd_add &quot;$2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; ;;
-    done)    cmd_done &quot;$2&quot; ;;
-    status)  cmd_status &quot;$2&quot; &quot;$3&quot; ;;
-    summary) cmd_summary ;;
-    help)
-        echo &quot;Usage : tasks.sh &lt;commande&gt;&quot;
-        echo &quot;  list [filtre]     — Lister (all/todo/in_progress/done/blocked/urgent)&quot;
-        echo &quot;  add &lt;titre&gt; [priorite] [projet] [deadline]&quot;
-        echo &quot;  done &lt;id&gt;         — Marquer comme terminee&quot;
-        echo &quot;  status &lt;id&gt; &lt;statut&gt;&quot;
-        echo &quot;  summary           — Resume global&quot;
-        ;;
-    *)       echo &quot;Commande inconnue : $1. Utilisez 'help'.&quot; ;;
-esac
-</code></pre>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">help</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>list<span class="o">)</span><span class="w">    </span>cmd_list<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>add<span class="o">)</span><span class="w">     </span>cmd_add<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$4</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$5</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">done</span><span class="o">)</span><span class="w">    </span>cmd_done<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>status<span class="o">)</span><span class="w">  </span>cmd_status<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>summary<span class="o">)</span><span class="w"> </span>cmd_summary<span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span><span class="nb">help</span><span class="o">)</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage : tasks.sh &lt;commande&gt;&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  list [filtre]     — Lister (all/todo/in_progress/done/blocked/urgent)&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  add &lt;titre&gt; [priorite] [projet] [deadline]&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  done &lt;id&gt;         — Marquer comme terminee&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  status &lt;id&gt; &lt;statut&gt;&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  summary           — Resume global&quot;</span>
+<span class="w">        </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span><span class="w">       </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Commande inconnue : </span><span class="nv">$1</span><span class="s2">. Utilisez &#39;help&#39;.&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
 
 <p>Rendez le executable : <code>chmod +x tasks.sh</code></p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -362,7 +367,11 @@ esac
 <li>[ ] L'agent sait interroger la table (instruction dans le system prompt).</li>
 <li>[ ] Un backup pg_dump est configure.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Pourquoi DB &gt; fichiers .md, Schema PostgreSQL, Requetes utiles et 4 autres. <a href="04-07-reconnaitre-routine.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/06-db-source-verite.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

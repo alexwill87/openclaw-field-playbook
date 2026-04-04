@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,26 +111,30 @@
   <span>5.6 -- Quand l'agent se trompe</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#types-derreurs" class="">Types d'erreurs</a></li>
-<li><a href="#hallucination-factuelle" class="toc-h3">Hallucination factuelle</a></li>
-<li><a href="#sur-interpretation" class="toc-h3">Sur-interpretation</a></li>
-<li><a href="#mauvais-contexte" class="toc-h3">Mauvais contexte</a></li>
-<li><a href="#execution-incorrecte" class="toc-h3">Execution incorrecte</a></li>
-<li><a href="#protocole-de-correction" class="">Protocole de correction</a></li>
-<li><a href="#1-diagnostic" class="toc-h3">1. Diagnostic</a></li>
-<li><a href="#2-correction" class="toc-h3">2. Correction</a></li>
-<li><a href="#3-prevention" class="toc-h3">3. Prevention</a></li>
-<li><a href="#le-prompt-de-correction-de-steinberg" class="">Le prompt de correction de Steinberg</a></li>
-<li><a href="#quand-lerreur-est-grave" class="">Quand l'erreur est grave</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#types-derreurs">Types d'erreurs</a></li>
+    <li class="toc-h3"><a href="#hallucination-factuelle">Hallucination factuelle</a></li>
+    <li class="toc-h3"><a href="#sur-interpretation">Sur-interpretation</a></li>
+    <li class="toc-h3"><a href="#mauvais-contexte">Mauvais contexte</a></li>
+    <li class="toc-h3"><a href="#execution-incorrecte">Execution incorrecte</a></li>
+    <li><a href="#protocole-de-correction">Protocole de correction</a></li>
+    <li class="toc-h3"><a href="#1-diagnostic">1. Diagnostic</a></li>
+    <li class="toc-h3"><a href="#2-correction">2. Correction</a></li>
+    <li class="toc-h3"><a href="#3-prevention">3. Prevention</a></li>
+    <li><a href="#le-prompt-de-correction-de-steinberg">Le prompt de correction de Steinberg</a></li>
+    <li><a href="#quand-lerreur-est-grave">Quand l'erreur est grave</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="56-quand-lagent-se-trompe">5.6 -- Quand l'agent se trompe</h1>
 <h2 id="contexte">Contexte</h2>
@@ -137,39 +142,39 @@
 <h2 id="types-derreurs">Types d'erreurs</h2>
 <h3 id="hallucination-factuelle">Hallucination factuelle</h3>
 <p>L'agent affirme quelque chose de faux avec assurance.</p>
-<pre class="codehilite"><code>Agent : &quot;Votre certificat SSL expire le 15 mai.&quot;
+<div class="codehilite"><pre><span></span><code>Agent : &quot;Votre certificat SSL expire le 15 mai.&quot;
 Realite : il expire le 15 juin.
-</code></pre>
+</code></pre></div>
 
 <h3 id="sur-interpretation">Sur-interpretation</h3>
 <p>L'agent interprete plus que ce que vous avez dit.</p>
-<pre class="codehilite"><code>Vous : &quot;Le deploy a plante.&quot;
-Agent : &quot;J'ai identifie le probleme : la base de donnees a manque de memoire,
+<div class="codehilite"><pre><span></span><code>Vous : &quot;Le deploy a plante.&quot;
+Agent : &quot;J&#39;ai identifie le probleme : la base de donnees a manque de memoire,
         ce qui a cause un OOM kill du container, probablement lie a une fuite
         memoire dans le dernier commit.&quot;
-Realite : c'etait une typo dans le docker-compose.yml.
-</code></pre>
+Realite : c&#39;etait une typo dans le docker-compose.yml.
+</code></pre></div>
 
 <h3 id="mauvais-contexte">Mauvais contexte</h3>
 <p>L'agent applique une information d'un contexte a un autre.</p>
-<pre class="codehilite"><code>Vous travaillez sur le projet A.
-L'agent applique les regles du projet B.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Vous</span><span class="w"> </span><span class="n">travaillez</span><span class="w"> </span><span class="n">sur</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">projet</span><span class="w"> </span><span class="n">A</span><span class="p">.</span>
+<span class="n">L</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">applique</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">projet</span><span class="w"> </span><span class="n">B</span><span class="p">.</span>
+</code></pre></div>
 
 <h3 id="execution-incorrecte">Execution incorrecte</h3>
 <p>L'agent fait la bonne chose mais mal.</p>
-<pre class="codehilite"><code>Vous : &quot;Backup la base.&quot;
+<div class="codehilite"><pre><span></span><code>Vous : &quot;Backup la base.&quot;
 Agent : pg_dump sans compression, dans le mauvais dossier.
-</code></pre>
+</code></pre></div>
 
 <h2 id="protocole-de-correction">Protocole de correction</h2>
 <h3 id="1-diagnostic">1. Diagnostic</h3>
 <p>Identifiez le type d'erreur. Utilisez ce prompt :</p>
-<pre class="codehilite"><code>Tu viens de te tromper. Avant de corriger, reponds :
-1. Quelle etait l'erreur exacte ?
-2. Quel type : hallucination, sur-interpretation, mauvais contexte, execution incorrecte ?
-3. Pourquoi l'erreur s'est-elle produite (d'apres toi) ?
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nx">Tu</span><span class="w"> </span><span class="nx">viens</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">te</span><span class="w"> </span><span class="nx">tromper</span><span class="p">.</span><span class="w"> </span><span class="nx">Avant</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">corriger</span><span class="p">,</span><span class="w"> </span><span class="nx">reponds</span><span class="w"> </span><span class="p">:</span>
+<span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="nx">Quelle</span><span class="w"> </span><span class="nx">etait</span><span class="w"> </span><span class="nx">l</span><span class="err">&#39;</span><span class="nx">erreur</span><span class="w"> </span><span class="nx">exacte</span><span class="w"> </span><span class="p">?</span>
+<span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="nx">Quel</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nx">hallucination</span><span class="p">,</span><span class="w"> </span><span class="nx">sur</span><span class="o">-</span><span class="nx">interpretation</span><span class="p">,</span><span class="w"> </span><span class="nx">mauvais</span><span class="w"> </span><span class="nx">contexte</span><span class="p">,</span><span class="w"> </span><span class="nx">execution</span><span class="w"> </span><span class="nx">incorrecte</span><span class="w"> </span><span class="p">?</span>
+<span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="nx">Pourquoi</span><span class="w"> </span><span class="nx">l</span><span class="err">&#39;</span><span class="nx">erreur</span><span class="w"> </span><span class="nx">s</span><span class="err">&#39;</span><span class="nx">est</span><span class="o">-</span><span class="nx">elle</span><span class="w"> </span><span class="nx">produite</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="err">&#39;</span><span class="nx">apres</span><span class="w"> </span><span class="nx">toi</span><span class="p">)</span><span class="w"> </span><span class="p">?</span>
+</code></pre></div>
 
 <h3 id="2-correction">2. Correction</h3>
 <p>Corrigez les degats d'abord, analysez apres.</p>
@@ -188,26 +193,26 @@ Agent : pg_dump sans compression, dans le mauvais dossier.
 </ul>
 <h2 id="le-prompt-de-correction-de-steinberg">Le prompt de correction de Steinberg</h2>
 <p>Quand l'agent sur-interprete, utilisez ce recadrage :</p>
-<pre class="codehilite"><code>Tu surinterpretes. Reformule ta reponse avec ce format :
-1. Signal : qu'est-ce que tu as observe factuellement ?
-2. Incertitude : qu'est-ce que tu ne sais PAS ?
-3. Question pour moi : qu'est-ce que tu aurais besoin de savoir pour conclure ?
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nx">Tu</span><span class="w"> </span><span class="nx">surinterpretes</span><span class="p">.</span><span class="w"> </span><span class="nx">Reformule</span><span class="w"> </span><span class="nx">ta</span><span class="w"> </span><span class="nx">reponse</span><span class="w"> </span><span class="nx">avec</span><span class="w"> </span><span class="nx">ce</span><span class="w"> </span><span class="nx">format</span><span class="w"> </span><span class="p">:</span>
+<span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="nx">Signal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nx">qu</span><span class="err">&#39;</span><span class="nx">est</span><span class="o">-</span><span class="nx">ce</span><span class="w"> </span><span class="nx">que</span><span class="w"> </span><span class="nx">tu</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">observe</span><span class="w"> </span><span class="nx">factuellement</span><span class="w"> </span><span class="p">?</span>
+<span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="nx">Incertitude</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nx">qu</span><span class="err">&#39;</span><span class="nx">est</span><span class="o">-</span><span class="nx">ce</span><span class="w"> </span><span class="nx">que</span><span class="w"> </span><span class="nx">tu</span><span class="w"> </span><span class="nx">ne</span><span class="w"> </span><span class="nx">sais</span><span class="w"> </span><span class="nx">PAS</span><span class="w"> </span><span class="p">?</span>
+<span class="mi">3</span><span class="p">.</span><span class="w"> </span><span class="nx">Question</span><span class="w"> </span><span class="nx">pour</span><span class="w"> </span><span class="nx">moi</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nx">qu</span><span class="err">&#39;</span><span class="nx">est</span><span class="o">-</span><span class="nx">ce</span><span class="w"> </span><span class="nx">que</span><span class="w"> </span><span class="nx">tu</span><span class="w"> </span><span class="nx">aurais</span><span class="w"> </span><span class="nx">besoin</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">savoir</span><span class="w"> </span><span class="nx">pour</span><span class="w"> </span><span class="nx">conclure</span><span class="w"> </span><span class="p">?</span>
+</code></pre></div>
 
 <p>Exemple :</p>
 <p><strong>Avant (sur-interpretation) :</strong></p>
-<pre class="codehilite"><code>&quot;Le deploy a plante a cause d'un OOM kill lie a une fuite memoire 
+<div class="codehilite"><pre><span></span><code>&quot;Le deploy a plante a cause d&#39;un OOM kill lie a une fuite memoire 
 dans le dernier commit. Je recommande de profiler le code et 
-d'augmenter la memoire du container.&quot;
-</code></pre>
+d&#39;augmenter la memoire du container.&quot;
+</code></pre></div>
 
 <p><strong>Apres (recadrage) :</strong></p>
-<pre class="codehilite"><code>Signal : le container cockpit est passe de &quot;Up&quot; a &quot;Exited&quot; a 14h32.
-Incertitude : je ne connais pas la cause. Ca peut etre OOM, erreur de config, 
-ou probleme de runtime.
-Question : peux-tu me montrer `docker logs cockpit --tail 50` et 
-`dmesg | tail -20` pour que je diagnostique ?
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Signal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">container</span><span class="w"> </span><span class="n">cockpit</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">passe</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="s2">&quot;Up&quot;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="s2">&quot;Exited&quot;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">14</span><span class="n">h32</span><span class="o">.</span>
+<span class="n">Incertitude</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">je</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">connais</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">cause</span><span class="o">.</span><span class="w"> </span><span class="n">Ca</span><span class="w"> </span><span class="n">peut</span><span class="w"> </span><span class="n">etre</span><span class="w"> </span><span class="n">OOM</span><span class="o">,</span><span class="w"> </span><span class="n">erreur</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">config</span><span class="o">,</span><span class="w"> </span>
+<span class="n">ou</span><span class="w"> </span><span class="n">probleme</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">runtime</span><span class="o">.</span>
+<span class="n">Question</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">peux</span><span class="o">-</span><span class="n">tu</span><span class="w"> </span><span class="n">me</span><span class="w"> </span><span class="n">montrer</span><span class="w"> </span><span class="err">`</span><span class="n">docker</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="n">cockpit</span><span class="w"> </span><span class="o">--</span><span class="n">tail</span><span class="w"> </span><span class="mi">50</span><span class="err">`</span><span class="w"> </span><span class="n">et</span><span class="w"> </span>
+<span class="err">`</span><span class="n">dmesg</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="o">-</span><span class="mi">20</span><span class="err">`</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">je</span><span class="w"> </span><span class="n">diagnostique</span><span class="w"> </span><span class="o">?</span>
+</code></pre></div>
 
 <p>La difference : le recadrage distingue ce que l'agent sait de ce qu'il suppose. Ca evite les fausses pistes.</p>
 <h2 id="quand-lerreur-est-grave">Quand l'erreur est grave</h2>
@@ -240,7 +245,11 @@ Question : peux-tu me montrer `docker logs cockpit --tail 50` et
 <li>[ ] Le boundary prompt est mis a jour apres chaque incident.</li>
 <li>[ ] L'agent a la regle "Si tu n'es pas sur, dis-le" dans son system prompt.</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Types d'erreurs, Protocole de correction, Le prompt de correction de Steinberg et 4 autres. <a href="05-07-maj-integrations.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/06-agent-se-trompe.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

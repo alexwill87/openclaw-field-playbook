@@ -48,6 +48,36 @@
     "body": "1.6 -- Ce que vous allez construire dans ce guide A qui s'adresse cette section : Tout lecteur qui veut voir la destination avant d'entamer le chemin. Temps de lecture : 8 minutes. Difficulte : Debuta"
   },
   {
+    "slug": "01-07-journee-type",
+    "title": "1.7 -- A quoi ressemble une journee avec un agent IA ?",
+    "url": "01-07-journee-type.html",
+    "body": "1.7 -- A quoi ressemble une journee avec un agent IA ? > Vous vous demandez ce que ca change concretement au quotidien. Voici une journee type, heure par heure, pour quelqu'un comme vous. Le matin : v"
+  },
+  {
+    "slug": "01-08-combien-ca-coute",
+    "title": "1.8 -- Combien ca coute vraiment ?",
+    "url": "01-08-combien-ca-coute.html",
+    "body": "1.8 -- Combien ca coute vraiment ? > La question la plus importante. Voici les vrais chiffres, sans surprise. Le cout mensuel Poste Ce que c'est Cout Serveur (VPS) Un petit ordinateur distant qui fait"
+  },
+  {
+    "slug": "01-09-est-ce-complique",
+    "title": "1.9 -- Est-ce que c'est complique pour moi ?",
+    "url": "01-09-est-ce-complique.html",
+    "body": "1.9 -- Est-ce que c'est complique pour moi ? > Vous n'etes pas developpeur. Vous ne connaissez rien a \"Docker\" ou \"SSH\". Est-ce que c'est quand meme pour vous ? Oui, et voici pourquoi. Deux chemins, d"
+  },
+  {
+    "slug": "01-10-si-je-ne-fais-rien",
+    "title": "1.10 -- Qu'est-ce qui se passe si je ne fais rien ?",
+    "url": "01-10-si-je-ne-fais-rien.html",
+    "body": "1.10 -- Qu'est-ce qui se passe si je ne fais rien ? > Personne ne vous oblige a utiliser l'IA. Mais voici ce que ca signifie concretement de ne rien changer. Votre situation aujourd'hui Vous etes entr"
+  },
+  {
+    "slug": "01-11-comment-se-lancer",
+    "title": "1.11 -- Comment je me lance ?",
+    "url": "01-11-comment-se-lancer.html",
+    "body": "1.11 -- Comment je me lance ? > Vous avez lu les sections precedentes. Vous etes convaincu (ou curieux). Voici les etapes concretes, dans l'ordre. Etape 1 : Choisir votre chemin Vous etes... Le bon ch"
+  },
+  {
     "slug": "02-00-sommaire",
     "title": "2. Installation",
     "url": "02-00-sommaire.html",
@@ -286,6 +316,12 @@
     "title": "3.17 -- Architecture multi-agents",
     "url": "03-17-multi-agents.html",
     "body": "3.17 -- Architecture multi-agents Contexte Un seul agent couvre 90% des besoins. Ce chapitre est pour les 10% restants. NE COMMENCEZ PAS PAR LA. Si vous lisez cette section avant d'avoir un agent prin"
+  },
+  {
+    "slug": "03-18-remote-mode",
+    "title": "3.18 -- Connecter deux installations OpenClaw (mode remote)",
+    "url": "03-18-remote-mode.html",
+    "body": "3.18 -- Connecter deux installations OpenClaw (mode remote) > Vous avez deux VPS avec OpenClaw, ou vous gerez l'installation d'un client. Voici comment les connecter pour surveiller, debugger ou colla"
   },
   {
     "slug": "04-00-sommaire",

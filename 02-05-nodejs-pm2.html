@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,66 +118,70 @@
   <span>2.5 -- Node.js et PM2</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#etape-1-installer-nvm" class="">Etape 1 : Installer nvm</a></li>
-<li><a href="#etape-2-installer-nodejs" class="">Etape 2 : Installer Node.js</a></li>
-<li><a href="#etape-3-installer-pm2" class="">Etape 3 : Installer PM2</a></li>
-<li><a href="#etape-4-configurer-pm2-pour-le-demarrage-automatique" class="">Etape 4 : Configurer PM2 pour le demarrage automatique</a></li>
-<li><a href="#pourquoi-pm2-et-pas-systemd-directement" class="">Pourquoi PM2 et pas systemd directement ?</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-<li><a href="#temps-estime" class="">Temps estime</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#etape-1-installer-nvm">Etape 1 : Installer nvm</a></li>
+    <li><a href="#etape-2-installer-nodejs">Etape 2 : Installer Node.js</a></li>
+    <li><a href="#etape-3-installer-pm2">Etape 3 : Installer PM2</a></li>
+    <li><a href="#etape-4-configurer-pm2-pour-le-demarrage-automatique">Etape 4 : Configurer PM2 pour le demarrage automatique</a></li>
+    <li><a href="#pourquoi-pm2-et-pas-systemd-directement">Pourquoi PM2 et pas systemd directement ?</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="25-nodejs-et-pm2">2.5 -- Node.js et PM2</h1>
 <h2 id="contexte">Contexte</h2>
 <p>OpenClaw est ecrit en Node.js. PM2 est un gestionnaire de processus qui maintient OpenClaw en vie, gere les logs et redemarre automatiquement en cas de crash.</p>
 <p>On installe Node.js via <strong>nvm</strong> (Node Version Manager), pas via apt. Pourquoi : apt fournit souvent une version obsolete, et nvm permet de changer de version facilement.</p>
 <h2 id="etape-1-installer-nvm">Etape 1 : Installer nvm</h2>
-<pre class="codehilite"><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-o-<span class="w"> </span>https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
 
 <p>Rechargez le shell :</p>
-<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
 
 <p>Verifiez :</p>
-<pre class="codehilite"><code class="language-bash">$ nvm --version
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>--version
+</code></pre></div>
 
 <h2 id="etape-2-installer-nodejs">Etape 2 : Installer Node.js</h2>
 <p>Installez la version LTS (Long Term Support) :</p>
-<pre class="codehilite"><code class="language-bash">$ nvm install --lts
-$ nvm alias default lts/*
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>install<span class="w"> </span>--lts
+$<span class="w"> </span>nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>lts/*
+</code></pre></div>
 
 <p>Verifiez :</p>
-<pre class="codehilite"><code class="language-bash">$ node --version
-$ npm --version
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version
+$<span class="w"> </span>npm<span class="w"> </span>--version
+</code></pre></div>
 
 <p>Version attendue : Node.js 22.x ou superieur (LTS au moment de l'ecriture).</p>
 <h2 id="etape-3-installer-pm2">Etape 3 : Installer PM2</h2>
-<pre class="codehilite"><code class="language-bash">$ npm install -g pm2
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>pm2
+</code></pre></div>
 
 <p>Verifiez :</p>
-<pre class="codehilite"><code class="language-bash">$ pm2 --version
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pm2<span class="w"> </span>--version
+</code></pre></div>
 
 <h2 id="etape-4-configurer-pm2-pour-le-demarrage-automatique">Etape 4 : Configurer PM2 pour le demarrage automatique</h2>
 <p>PM2 peut se relancer automatiquement au redemarrage du serveur :</p>
-<pre class="codehilite"><code class="language-bash">$ pm2 startup
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pm2<span class="w"> </span>startup
+</code></pre></div>
 
 <p>Cette commande affiche une ligne a copier-coller (elle commence par <code>sudo env PATH=...</code>). Executez-la.</p>
 <p>Puis sauvegardez la liste actuelle des processus (vide pour l'instant) :</p>
-<pre class="codehilite"><code class="language-bash">$ pm2 save
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pm2<span class="w"> </span>save
+</code></pre></div>
 
 <h2 id="pourquoi-pm2-et-pas-systemd-directement">Pourquoi PM2 et pas systemd directement ?</h2>
 <p>PM2 offre des fonctionnalites specifiques a Node.js :</p>
@@ -197,11 +202,11 @@ $ npm --version
 <li><strong>PM2 startup ne fonctionne pas</strong> : Executez bien la commande sudo affichee par <code>pm2 startup</code>, ne tapez pas juste <code>pm2 startup</code> avec sudo.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<pre class="codehilite"><code class="language-bash">$ node --version
-$ npm --version
-$ pm2 --version
-$ pm2 list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version
+$<span class="w"> </span>npm<span class="w"> </span>--version
+$<span class="w"> </span>pm2<span class="w"> </span>--version
+$<span class="w"> </span>pm2<span class="w"> </span>list
+</code></pre></div>
 
 <p>Resultats attendus :
 - Node.js v22.x+
@@ -210,7 +215,11 @@ $ pm2 list
 - Liste PM2 vide (aucun processus encore)</p>
 <h2 id="temps-estime">Temps estime</h2>
 <p>10 minutes.</p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Etape 1 : Installer nvm, Etape 2 : Installer Node.js, Etape 3 : Installer PM2 et 5 autres. <a href="02-06-structure-dossiers.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/05-nodejs-pm2.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

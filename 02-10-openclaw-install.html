@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -117,103 +118,107 @@
   <span>2.10 -- Installation OpenClaw</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#etape-1-verifier-les-prerequis" class="">Etape 1 : Verifier les prerequis</a></li>
-<li><a href="#etape-2-installer-openclaw-via-npm" class="">Etape 2 : Installer OpenClaw via npm</a></li>
-<li><a href="#etape-3-premiere-execution" class="">Etape 3 : Premiere execution</a></li>
-<li><a href="#etape-4-verifier-linstallation" class="">Etape 4 : Verifier l'installation</a></li>
-<li><a href="#erreurs-classiques" class="">Erreurs classiques</a></li>
-<li><a href="#permission-denied-lors-de-linstallation-globale-npm" class="toc-h3">Permission denied lors de l'installation globale npm</a></li>
-<li><a href="#mauvaise-version-de-nodejs" class="toc-h3">Mauvaise version de Node.js</a></li>
-<li><a href="#openclaw-command-not-found-apres-installation" class="toc-h3">"openclaw: command not found" apres installation</a></li>
-<li><a href="#problemes-de-connectivite" class="toc-h3">Problemes de connectivite</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-<li><a href="#temps-estime" class="">Temps estime</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#etape-1-verifier-les-prerequis">Etape 1 : Verifier les prerequis</a></li>
+    <li><a href="#etape-2-installer-openclaw-via-npm">Etape 2 : Installer OpenClaw via npm</a></li>
+    <li><a href="#etape-3-premiere-execution">Etape 3 : Premiere execution</a></li>
+    <li><a href="#etape-4-verifier-linstallation">Etape 4 : Verifier l'installation</a></li>
+    <li><a href="#erreurs-classiques">Erreurs classiques</a></li>
+    <li class="toc-h3"><a href="#permission-denied-lors-de-linstallation-globale-npm">Permission denied lors de l'installation globale npm</a></li>
+    <li class="toc-h3"><a href="#mauvaise-version-de-nodejs">Mauvaise version de Node.js</a></li>
+    <li class="toc-h3"><a href="#openclaw-command-not-found-apres-installation">"openclaw: command not found" apres installation</a></li>
+    <li class="toc-h3"><a href="#problemes-de-connectivite">Problemes de connectivite</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="210-installation-openclaw">2.10 -- Installation OpenClaw</h1>
 <h2 id="contexte">Contexte</h2>
 <p>OpenClaw est l'outil central du systeme. Cette section couvre l'installation de la CLI et du runtime. L'infrastructure (Docker, Vault, PostgreSQL) doit etre en place avant cette etape.</p>
 <h2 id="etape-1-verifier-les-prerequis">Etape 1 : Verifier les prerequis</h2>
-<pre class="codehilite"><code class="language-bash">$ node --version   # v22.x+ requis
-$ npm --version    # v10.x+ requis
-$ docker --version # Docker 28.x+ requis
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version<span class="w">   </span><span class="c1"># v22.x+ requis</span>
+$<span class="w"> </span>npm<span class="w"> </span>--version<span class="w">    </span><span class="c1"># v10.x+ requis</span>
+$<span class="w"> </span>docker<span class="w"> </span>--version<span class="w"> </span><span class="c1"># Docker 28.x+ requis</span>
+</code></pre></div>
 
 <p>Si une version est insuffisante, retournez a la section correspondante.</p>
 <h2 id="etape-2-installer-openclaw-via-npm">Etape 2 : Installer OpenClaw via npm</h2>
 <p>Methode recommandee (installation globale) :</p>
-<pre class="codehilite"><code class="language-bash">$ npm install -g openclaw@latest
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
+</code></pre></div>
 
 <blockquote>
 <p><strong>Attention :</strong> Le package s'appelle <code>openclaw</code>, pas <code>openclaw@latest</code> (qui est Claude Code, un autre outil). Verifiez que la commande <code>openclaw</code> est disponible apres installation.</p>
 </blockquote>
 <p>Verifiez :</p>
-<pre class="codehilite"><code class="language-bash">$ openclaw --version
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>--version
+</code></pre></div>
 
 <h2 id="etape-3-premiere-execution">Etape 3 : Premiere execution</h2>
 <p>Lancez OpenClaw une premiere fois pour generer la structure du workspace :</p>
-<pre class="codehilite"><code class="language-bash">$ openclaw
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw
+</code></pre></div>
 
 <p>Suivez l'assistant de configuration initiale. Il vous demandera :
 - La cle API ou la methode d'authentification
 - Le modele par defaut
 - Le repertoire workspace</p>
 <h2 id="etape-4-verifier-linstallation">Etape 4 : Verifier l'installation</h2>
-<pre class="codehilite"><code class="language-bash">$ openclaw doctor
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>doctor
+</code></pre></div>
 
 <p>Cette commande verifie toutes les dependances et la configuration. Tout doit etre vert.</p>
 <h2 id="erreurs-classiques">Erreurs classiques</h2>
 <h3 id="permission-denied-lors-de-linstallation-globale-npm">Permission denied lors de l'installation globale npm</h3>
-<pre class="codehilite"><code>Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules'
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">EACCES</span><span class="o">:</span><span class="w"> </span><span class="n">permission</span><span class="w"> </span><span class="n">denied</span><span class="o">,</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="s1">&#39;/usr/local/lib/node_modules&#39;</span>
+</code></pre></div>
 
 <p>Solution : Vous utilisez probablement Node.js installe via apt au lieu de nvm. Avec nvm, les installations globales vont dans <code>~/.nvm/</code> et ne necessitent pas sudo.</p>
-<pre class="codehilite"><code class="language-bash">$ nvm use --lts
-$ npm install -g openclaw@latest
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>use<span class="w"> </span>--lts
+$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
+</code></pre></div>
 
 <p>Ne faites PAS <code>sudo npm install -g</code>. Ca cree des problemes de permissions en cascade.</p>
 <h3 id="mauvaise-version-de-nodejs">Mauvaise version de Node.js</h3>
-<pre class="codehilite"><code>Error: openclaw requires Node.js &gt;= 22.0.0
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">openclaw</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">Node</span><span class="o">.</span><span class="na">js</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">22.0</span><span class="o">.</span><span class="mi">0</span>
+</code></pre></div>
 
 <p>Solution :</p>
-<pre class="codehilite"><code class="language-bash">$ nvm install --lts
-$ nvm alias default lts/*
-$ npm install -g openclaw@latest
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>install<span class="w"> </span>--lts
+$<span class="w"> </span>nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>lts/*
+$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
+</code></pre></div>
 
 <h3 id="openclaw-command-not-found-apres-installation">"openclaw: command not found" apres installation</h3>
 <p>Le binaire n'est pas dans le PATH. Avec nvm, ca devrait fonctionner automatiquement. Verifiez :</p>
-<pre class="codehilite"><code class="language-bash">$ which openclaw
-$ echo $PATH | tr ':' '\n' | grep nvm
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>which<span class="w"> </span>openclaw
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nvm
+</code></pre></div>
 
 <p>Si le chemin nvm n'est pas dans le PATH, rechargez le shell :</p>
-<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
 
 <h3 id="problemes-de-connectivite">Problemes de connectivite</h3>
 <p>Si l'installation npm echoue avec des erreurs reseau :</p>
-<pre class="codehilite"><code class="language-bash">$ npm config set registry https://registry.npmjs.org/
-$ npm cache clean --force
-$ npm install -g openclaw@latest
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>registry<span class="w"> </span>https://registry.npmjs.org/
+$<span class="w"> </span>npm<span class="w"> </span>cache<span class="w"> </span>clean<span class="w"> </span>--force
+$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
+</code></pre></div>
 
 <h2 id="verification">Verification</h2>
-<pre class="codehilite"><code class="language-bash">$ openclaw --version
-$ which openclaw
-$ openclaw doctor
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>--version
+$<span class="w"> </span>which<span class="w"> </span>openclaw
+$<span class="w"> </span>openclaw<span class="w"> </span>doctor
+</code></pre></div>
 
 <p>Resultats attendus :
 - Version affichee
@@ -221,7 +226,11 @@ $ openclaw doctor
 - Doctor : tous les checks verts</p>
 <h2 id="temps-estime">Temps estime</h2>
 <p>15 minutes.</p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Etape 1 : Verifier les prerequis, Etape 2 : Installer OpenClaw via npm, Etape 3 : Premiere execution et 4 autres. <a href="02-11-workspace.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/10-openclaw-install.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

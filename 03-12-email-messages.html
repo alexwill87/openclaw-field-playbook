@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,32 +115,36 @@
   <span>3.12 -- Email et messages</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#connexion-email" class="">Connexion email</a></li>
-<li><a href="#configuration" class="toc-h3">Configuration</a></li>
-<li><a href="#portee-recommandee-au-demarrage" class="toc-h3">Portee recommandee au demarrage</a></li>
-<li><a href="#triage-automatique-vs-assiste" class="">Triage : automatique vs assiste</a></li>
-<li><a href="#triage-assiste-recommande-pour-debuter" class="toc-h3">Triage assiste (recommande pour debuter)</a></li>
-<li><a href="#triage-automatique-pour-les-agents-matures" class="toc-h3">Triage automatique (pour les agents matures)</a></li>
-<li><a href="#brouillons-de-reponse" class="">Brouillons de reponse</a></li>
-<li><a href="#le-piege-ne-pas-tout-connecter" class="">Le piege : ne pas tout connecter</a></li>
-<li><a href="#messages-slack-teams-etc" class="">Messages (Slack, Teams, etc.)</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#connexion-email">Connexion email</a></li>
+    <li class="toc-h3"><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#portee-recommandee-au-demarrage">Portee recommandee au demarrage</a></li>
+    <li><a href="#triage-automatique-vs-assiste">Triage : automatique vs assiste</a></li>
+    <li class="toc-h3"><a href="#triage-assiste-recommande-pour-debuter">Triage assiste (recommande pour debuter)</a></li>
+    <li class="toc-h3"><a href="#triage-automatique-pour-les-agents-matures">Triage automatique (pour les agents matures)</a></li>
+    <li><a href="#brouillons-de-reponse">Brouillons de reponse</a></li>
+    <li><a href="#le-piege-ne-pas-tout-connecter">Le piege : ne pas tout connecter</a></li>
+    <li><a href="#messages-slack-teams-etc">Messages (Slack, Teams, etc.)</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="312-email-et-messages">3.12 -- Email et messages</h1>
 <h2 id="contexte">Contexte</h2>
 <p>L'email est la source la plus volumineuse et la plus bruitee. C'est pour ca qu'elle vient en troisieme position, apres le calendrier et les taches. Connecter l'email a un agent mal configure, c'est lui donner un tuyau d'incendie quand il a besoin d'un verre d'eau.</p>
 <h2 id="connexion-email">Connexion email</h2>
 <h3 id="configuration">Configuration</h3>
-<pre class="codehilite"><code>openclaw skill add email
-</code></pre>
+<div class="codehilite"><pre><span></span><code>openclaw skill add email
+</code></pre></div>
 
 <p>L'agent va :
 1. Demander le fournisseur (Gmail, Outlook, IMAP generique)
@@ -184,53 +190,53 @@
 <p>Deux modes possibles :</p>
 <h3 id="triage-assiste-recommande-pour-debuter">Triage assiste (recommande pour debuter)</h3>
 <p>L'agent classe vos emails et vous presente un resume. Vous decidez.</p>
-<pre class="codehilite"><code>TRIAGE EMAIL -- 2 avril 2026, 08:15
+<div class="codehilite"><pre><span></span><code><span class="n">TRIAGE</span><span class="w"> </span><span class="n">EMAIL</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">avril</span><span class="w"> </span><span class="mi">2026</span><span class="p">,</span><span class="w"> </span><span class="mi">08</span><span class="err">:</span><span class="mi">15</span>
 
-URGENT (reponse aujourd'hui) :
-- Marc (ClientAlpha) : Demande de modification du devis
-  &gt; Impact : le devis expire vendredi. Repondre avant jeudi.
-- Lea Martin : Confirmation entretien 14h
-  &gt; Action : confirmer ou reporter
+<span class="n">URGENT</span><span class="w"> </span><span class="p">(</span><span class="n">reponse</span><span class="w"> </span><span class="n">aujourd</span><span class="s1">&#39;hui) :</span>
+<span class="s1">- Marc (ClientAlpha) : Demande de modification du devis</span>
+<span class="s1">  &gt; Impact : le devis expire vendredi. Repondre avant jeudi.</span>
+<span class="s1">- Lea Martin : Confirmation entretien 14h</span>
+<span class="s1">  &gt; Action : confirmer ou reporter</span>
 
-A TRAITER (cette semaine) :
-- Fournisseur X : Nouvelle grille tarifaire
-  &gt; Pas urgent mais impacte le budget Q2
-- Comptable : Documents manquants bilan
-  &gt; Deadline : 10 avril
+<span class="s1">A TRAITER (cette semaine) :</span>
+<span class="s1">- Fournisseur X : Nouvelle grille tarifaire</span>
+<span class="s1">  &gt; Pas urgent mais impacte le budget Q2</span>
+<span class="s1">- Comptable : Documents manquants bilan</span>
+<span class="s1">  &gt; Deadline : 10 avril</span>
 
-INFORMATIF (pas d'action requise) :
-- Newsletter secteur [archiver]
-- Notification GitHub [archiver]
-- Publicite [supprimer]
+<span class="s1">INFORMATIF (pas d&#39;</span><span class="k">action</span><span class="w"> </span><span class="n">requise</span><span class="p">)</span><span class="w"> </span><span class="err">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Newsletter</span><span class="w"> </span><span class="n">secteur</span><span class="w"> </span><span class="o">[</span><span class="n">archiver</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Notification</span><span class="w"> </span><span class="n">GitHub</span><span class="w"> </span><span class="o">[</span><span class="n">archiver</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Publicite</span><span class="w"> </span><span class="o">[</span><span class="n">supprimer</span><span class="o">]</span>
 
-3 emails non classes -- voulez-vous que je les affiche ?
-</code></pre>
+<span class="mi">3</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="n">non</span><span class="w"> </span><span class="n">classes</span><span class="w"> </span><span class="c1">-- voulez-vous que je les affiche ?</span>
+</code></pre></div>
 
 <h3 id="triage-automatique-pour-les-agents-matures">Triage automatique (pour les agents matures)</h3>
 <p>L'agent agit selon des regles predefinies dans CONSTITUTION.md :</p>
-<pre class="codehilite"><code class="language-markdown">## Regles de triage email
-- Newsletter et notifications : archiver automatiquement
-- Publicite et spam : supprimer automatiquement
-- Email d'un interlocuteur cle (voir USER.md) : priorite haute
-- Email avec deadline mentionnee : extraire la deadline, ajouter aux taches
-- Tout le reste : classer en &quot;a traiter&quot; pour le prochain briefing
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gu">## Regles de triage email</span>
+<span class="k">-</span><span class="w"> </span>Newsletter et notifications : archiver automatiquement
+<span class="k">-</span><span class="w"> </span>Publicite et spam : supprimer automatiquement
+<span class="k">-</span><span class="w"> </span>Email d&#39;un interlocuteur cle (voir USER.md) : priorite haute
+<span class="k">-</span><span class="w"> </span>Email avec deadline mentionnee : extraire la deadline, ajouter aux taches
+<span class="k">-</span><span class="w"> </span>Tout le reste : classer en &quot;a traiter&quot; pour le prochain briefing
+</code></pre></div>
 
 <p>N'activez le triage automatique qu'apres 2-3 semaines de triage assiste valide.</p>
 <h2 id="brouillons-de-reponse">Brouillons de reponse</h2>
 <p>L'agent peut preparer des brouillons. C'est souvent la fonctionnalite la plus utile :</p>
-<pre class="codehilite"><code>Prepare un brouillon de reponse pour l'email de Marc
+<div class="codehilite"><pre><span></span><code>Prepare un brouillon de reponse pour l&#39;email de Marc
 sur la modification du devis. Ton professionnel mais ferme :
 on peut ajuster la portee, pas le prix.
-</code></pre>
+</code></pre></div>
 
 <p>L'agent redige. Vous relisez. Vous envoyez (ou vous modifiez et envoyez).</p>
 <p>Regle dans CONSTITUTION.md :</p>
-<pre class="codehilite"><code class="language-markdown">## Emails
-- Tu peux rediger des brouillons de reponse
-- Tu ne peux JAMAIS envoyer un email sans ma validation explicite
-- Chaque brouillon doit indiquer : destinataire, objet, ton utilise
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gu">## Emails</span>
+<span class="k">-</span><span class="w"> </span>Tu peux rediger des brouillons de reponse
+<span class="k">-</span><span class="w"> </span>Tu ne peux JAMAIS envoyer un email sans ma validation explicite
+<span class="k">-</span><span class="w"> </span>Chaque brouillon doit indiquer : destinataire, objet, ton utilise
+</code></pre></div>
 
 <h2 id="le-piege-ne-pas-tout-connecter">Le piege : ne pas tout connecter</h2>
 <p>L'email est la source ou le piege du "tout connecter" est le plus dangereux.</p>
@@ -247,11 +253,11 @@ on peut ajuster la portee, pas le prix.
 <li>Pas de reponse automatique (jamais)</li>
 <li>Utilisez-les pour le contexte, pas pour l'action</li>
 </ul>
-<pre class="codehilite"><code class="language-markdown">## Messaging
-- Channels connectes : #general, #projet-alpha, #urgent
-- Mode : lecture seule
-- Usage : contexte pour le briefing, pas d'action directe
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="gu">## Messaging</span>
+<span class="k">-</span><span class="w"> </span>Channels connectes : <span class="ni">#general</span>, <span class="ni">#projet</span>-alpha, <span class="ni">#urgent</span>
+<span class="k">-</span><span class="w"> </span>Mode : lecture seule
+<span class="k">-</span><span class="w"> </span>Usage : contexte pour le briefing, pas d&#39;action directe
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <ol>
@@ -278,7 +284,11 @@ on peut ajuster la portee, pas le prix.
 <li>[ ] Aucune boite partagee ou personnelle connectee</li>
 <li>[ ] Si messaging connecte : 2-3 channels max, lecture seule</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Connexion email, Triage : automatique vs assiste, Brouillons de reponse et 5 autres. <a href="03-13-skill-custom.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/12-email-messages.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

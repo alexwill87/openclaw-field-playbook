@@ -31,4 +31,20 @@ Ce chapitre pose les fondations. Il definit ce qu'est OpenClaw, ce qui le distin
 
 ---
 
+## Parcours entrepreneur
+
+Vous etes entrepreneur, artisan ou dirigeant de TPE ? Ces sections sont ecrites pour vous, sans jargon technique.
+
+- **[1.7 -- A quoi ressemble une journee avec un agent IA ?](07-journee-type.md)** — Une journee type, heure par heure. Ce que ca change concretement.
+
+- **[1.8 -- Combien ca coute vraiment ?](08-combien-ca-coute.md)** — Les vrais chiffres : 10-25 EUR/mois, pas de surprise, pas d'engagement.
+
+- **[1.9 -- Est-ce que c'est complique pour moi ?](09-est-ce-complique.md)** — Deux chemins : faire installer ou suivre le guide. Les deux sont accessibles.
+
+- **[1.10 -- Qu'est-ce qui se passe si je ne fais rien ?](10-si-je-ne-fais-rien.md)** — Ce que l'inaction coute en temps, en prospects et en energie.
+
+- **[1.11 -- Comment je me lance ?](11-comment-se-lancer.md)** — Les etapes concretes, dans l'ordre, pour demarrer cette semaine.
+
+---
+
 *Pour contribuer a ce chapitre, voir [CONTRIBUTING.md](../../CONTRIBUTING.md).*

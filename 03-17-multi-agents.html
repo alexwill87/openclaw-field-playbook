@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html" class="active">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,30 +115,34 @@
   <span>3.17 -- Architecture multi-agents</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#quand-un-seul-agent-ne-suffit-plus" class="">Quand un seul agent ne suffit plus</a></li>
-<li><a href="#agents-specialises" class="">Agents specialises</a></li>
-<li><a href="#exemples-darchitecture" class="toc-h3">Exemples d'architecture</a></li>
-<li><a href="#quand-ajouter-un-agent-specialise" class="toc-h3">Quand ajouter un agent specialise</a></li>
-<li><a href="#isolation-des-workspaces" class="">Isolation des workspaces</a></li>
-<li><a href="#communication-inter-agents" class="">Communication inter-agents</a></li>
-<li><a href="#via-memorymd-partage" class="toc-h3">Via MEMORY.md partage</a></li>
-<li><a href="#via-fichiers-de-liaison" class="toc-h3">Via fichiers de liaison</a></li>
-<li><a href="#via-agentsmd" class="toc-h3">Via AGENTS.md</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#1-validez-que-cest-necessaire" class="toc-h3">1. Validez que c'est necessaire</a></li>
-<li><a href="#2-identifiez-le-premier-agent-specialise" class="toc-h3">2. Identifiez le premier agent specialise</a></li>
-<li><a href="#3-creez-le-workspace" class="toc-h3">3. Creez le workspace</a></li>
-<li><a href="#4-definissez-la-communication" class="toc-h3">4. Definissez la communication</a></li>
-<li><a href="#5-testez-pendant-2-semaines" class="toc-h3">5. Testez pendant 2 semaines</a></li>
-<li><a href="#6-documentez-dans-agentsmd" class="toc-h3">6. Documentez dans AGENTS.md</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#quand-un-seul-agent-ne-suffit-plus">Quand un seul agent ne suffit plus</a></li>
+    <li><a href="#agents-specialises">Agents specialises</a></li>
+    <li class="toc-h3"><a href="#exemples-darchitecture">Exemples d'architecture</a></li>
+    <li class="toc-h3"><a href="#quand-ajouter-un-agent-specialise">Quand ajouter un agent specialise</a></li>
+    <li><a href="#isolation-des-workspaces">Isolation des workspaces</a></li>
+    <li><a href="#communication-inter-agents">Communication inter-agents</a></li>
+    <li class="toc-h3"><a href="#via-memorymd-partage">Via MEMORY.md partage</a></li>
+    <li class="toc-h3"><a href="#via-fichiers-de-liaison">Via fichiers de liaison</a></li>
+    <li class="toc-h3"><a href="#via-agentsmd">Via AGENTS.md</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li class="toc-h3"><a href="#1-validez-que-cest-necessaire">1. Validez que c'est necessaire</a></li>
+    <li class="toc-h3"><a href="#2-identifiez-le-premier-agent-specialise">2. Identifiez le premier agent specialise</a></li>
+    <li class="toc-h3"><a href="#3-creez-le-workspace">3. Creez le workspace</a></li>
+    <li class="toc-h3"><a href="#4-definissez-la-communication">4. Definissez la communication</a></li>
+    <li class="toc-h3"><a href="#5-testez-pendant-2-semaines">5. Testez pendant 2 semaines</a></li>
+    <li class="toc-h3"><a href="#6-documentez-dans-agentsmd">6. Documentez dans AGENTS.md</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="317-architecture-multi-agents">3.17 -- Architecture multi-agents</h1>
 <h2 id="contexte">Contexte</h2>
@@ -162,21 +168,21 @@
 <p>Le modele recommande : un agent principal (generaliste) et des agents specialises (experts dans un domaine).</p>
 <h3 id="exemples-darchitecture">Exemples d'architecture</h3>
 <p><strong>Freelance technique</strong> :</p>
-<pre class="codehilite"><code>Agent principal : &quot;Axel&quot; -- gestion quotidienne, briefing, triage
+<div class="codehilite"><pre><span></span><code>Agent principal : &quot;Axel&quot; -- gestion quotidienne, briefing, triage
 Agent dev : &quot;K8&quot; -- code, infrastructure, deployments
-</code></pre>
+</code></pre></div>
 
 <p><strong>Dirigeant PME</strong> :</p>
-<pre class="codehilite"><code>Agent principal : &quot;Clara&quot; -- briefing, email, agenda
+<div class="codehilite"><pre><span></span><code>Agent principal : &quot;Clara&quot; -- briefing, email, agenda
 Agent commercial : &quot;Hugo&quot; -- CRM, pipeline, relances
 Agent ops : &quot;Max&quot; -- facturation, fournisseurs, logistique
-</code></pre>
+</code></pre></div>
 
 <p><strong>Equipe produit</strong> :</p>
-<pre class="codehilite"><code>Agent principal : &quot;PM&quot; -- priorisation, roadmap, communication
+<div class="codehilite"><pre><span></span><code>Agent principal : &quot;PM&quot; -- priorisation, roadmap, communication
 Agent technique : &quot;Dev&quot; -- code review, monitoring, alertes
 Agent data : &quot;Ana&quot; -- metriques, rapports, A/B tests
-</code></pre>
+</code></pre></div>
 
 <h3 id="quand-ajouter-un-agent-specialise">Quand ajouter un agent specialise</h3>
 <p>Regle : ajoutez un agent specialise quand une ACTIVITE recurrente necessite :
@@ -186,26 +192,26 @@ Agent data : &quot;Ana&quot; -- metriques, rapports, A/B tests
 <p>Si les trois criteres ne sont pas reunis, un seul agent avec un knowledge/ bien organise suffit.</p>
 <h2 id="isolation-des-workspaces">Isolation des workspaces</h2>
 <p>Chaque agent a son propre workspace avec ses propres fichiers de configuration :</p>
-<pre class="codehilite"><code>workspaces/
-  principal/
-    SOUL.md              -- personnalite de l'agent principal
-    USER.md              -- partage (symlink)
-    CONSTITUTION.md      -- regles de l'agent principal
-    MEMORY.md            -- memoire de l'agent principal
-    knowledge/           -- connaissances generales
-  dev/
-    SOUL.md              -- personnalite de l'agent dev
-    USER.md              -- partage (symlink)
-    CONSTITUTION.md      -- regles de l'agent dev
-    MEMORY.md            -- memoire de l'agent dev
-    knowledge/           -- connaissances techniques
-  commercial/
-    SOUL.md              -- personnalite de l'agent commercial
-    USER.md              -- partage (symlink)
-    CONSTITUTION.md      -- regles de l'agent commercial
-    MEMORY.md            -- memoire de l'agent commercial
-    knowledge/           -- connaissances business
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">workspaces</span><span class="o">/</span>
+<span class="w">  </span><span class="n">principal</span><span class="o">/</span>
+<span class="w">    </span><span class="n">SOUL</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">personnalite</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">principal</span>
+<span class="w">    </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">partage</span><span class="w"> </span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
+<span class="w">    </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">principal</span>
+<span class="w">    </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w">            </span><span class="o">--</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">principal</span>
+<span class="w">    </span><span class="n">knowledge</span><span class="o">/</span><span class="w">           </span><span class="o">--</span><span class="w"> </span><span class="n">connaissances</span><span class="w"> </span><span class="n">generales</span>
+<span class="w">  </span><span class="n">dev</span><span class="o">/</span>
+<span class="w">    </span><span class="n">SOUL</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">personnalite</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">dev</span>
+<span class="w">    </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">partage</span><span class="w"> </span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
+<span class="w">    </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">dev</span>
+<span class="w">    </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w">            </span><span class="o">--</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">dev</span>
+<span class="w">    </span><span class="n">knowledge</span><span class="o">/</span><span class="w">           </span><span class="o">--</span><span class="w"> </span><span class="n">connaissances</span><span class="w"> </span><span class="n">techniques</span>
+<span class="w">  </span><span class="n">commercial</span><span class="o">/</span>
+<span class="w">    </span><span class="n">SOUL</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">personnalite</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">commercial</span>
+<span class="w">    </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">partage</span><span class="w"> </span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
+<span class="w">    </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">commercial</span>
+<span class="w">    </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w">            </span><span class="o">--</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">commercial</span>
+<span class="w">    </span><span class="n">knowledge</span><span class="o">/</span><span class="w">           </span><span class="o">--</span><span class="w"> </span><span class="n">connaissances</span><span class="w"> </span><span class="n">business</span>
+</code></pre></div>
 
 <p>Regles d'isolation :</p>
 <table>
@@ -253,32 +259,32 @@ Agent data : &quot;Ana&quot; -- metriques, rapports, A/B tests
 <p>Les agents ne se parlent pas directement. Ils communiquent via des artefacts partages.</p>
 <h3 id="via-memorymd-partage">Via MEMORY.md partage</h3>
 <p>Le plus simple. Un seul MEMORY.md lu par tous les agents.</p>
-<pre class="codehilite"><code>Agent principal note dans MEMORY.md :
+<div class="codehilite"><pre><span></span><code>Agent principal note dans MEMORY.md :
 &quot;2026-04-01 -- Client Alpha a demande un changement de scope. A evaluer.&quot;
 
 Agent dev lit MEMORY.md au demarrage et voit la note.
-</code></pre>
+</code></pre></div>
 
 <p>Avantage : simple. Inconvenient : MEMORY.md grossit vite avec plusieurs agents qui ecrivent.</p>
 <h3 id="via-fichiers-de-liaison">Via fichiers de liaison</h3>
 <p>Chaque agent ecrit dans un fichier de sortie que les autres peuvent lire.</p>
-<pre class="codehilite"><code>workspaces/shared/
-  principal-output.md    -- ce que l'agent principal veut communiquer
-  dev-output.md          -- ce que l'agent dev veut communiquer
-  commercial-output.md   -- ce que l'agent commercial veut communiquer
-</code></pre>
+<div class="codehilite"><pre><span></span><code>workspaces/shared/
+  principal-output.md    -- ce que l&#39;agent principal veut communiquer
+  dev-output.md          -- ce que l&#39;agent dev veut communiquer
+  commercial-output.md   -- ce que l&#39;agent commercial veut communiquer
+</code></pre></div>
 
 <p>Avantage : chaque agent controle ce qu'il partage. Inconvenient : plus de fichiers a gerer.</p>
 <h3 id="via-agentsmd">Via AGENTS.md</h3>
 <p>Le registre AGENTS.md definit les canaux de communication :</p>
-<pre class="codehilite"><code class="language-markdown">## Communication
+<div class="codehilite"><pre><span></span><code><span class="gu">## Communication</span>
 
 | De | Vers | Canal | Quand |
 |----|------|-------|-------|
 | Principal | Dev | shared/principal-output.md | Quand un sujet technique emerge |
 | Dev | Principal | shared/dev-output.md | Apres chaque deploiement |
 | Commercial | Principal | shared/commercial-output.md | Quand un deal avance/recule |
-</code></pre>
+</code></pre></div>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-validez-que-cest-necessaire">1. Validez que c'est necessaire</h3>
@@ -312,7 +318,11 @@ Agent dev lit MEMORY.md au demarrage et voit la note.
 <li>[ ] AGENTS.md est a jour avec tous les agents</li>
 <li>[ ] 2 semaines de test avant d'ajouter un agent supplementaire</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Quand un seul agent ne suffit plus, Agents specialises, Isolation des workspaces et 4 autres. <a href="03-18-remote-mode.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/17-multi-agents.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
@@ -337,7 +347,7 @@ Agent dev lit MEMORY.md au demarrage et voit la note.
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
 <a href="03-16-briefing-matin.html">&larr; 3.16 -- Le briefing du matin (methode Steinberg)</a>
-<a href="04-00-sommaire.html">4. Personnalisation &rarr;</a>
+<a href="03-18-remote-mode.html">3.18 -- Connecter deux installations OpenClaw (... &rarr;</a>
 </div>
 
     <footer>

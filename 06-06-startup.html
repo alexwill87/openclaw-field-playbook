@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -104,25 +105,29 @@
   <span>06 -- Startup early-stage</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#probleme" class="">Probleme</a></li>
-<li><a href="#configuration" class="">Configuration</a></li>
-<li><a href="#infrastructure" class="toc-h3">Infrastructure</a></li>
-<li><a href="#agents" class="toc-h3">Agents</a></li>
-<li><a href="#mise-en-place" class="">Mise en place</a></li>
-<li><a href="#jour-1-2-infrastructure-et-agent-investor-relations" class="toc-h3">Jour 1-2 : Infrastructure et agent Investor Relations</a></li>
-<li><a href="#jour-3-agent-veille" class="toc-h3">Jour 3 : Agent Veille</a></li>
-<li><a href="#jour-4-5-agent-recrutement-et-stabilisation" class="toc-h3">Jour 4-5 : Agent Recrutement et stabilisation</a></li>
-<li><a href="#resultat" class="">Resultat</a></li>
-<li><a href="#lecons-apprises" class="">Lecons apprises</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#template-system-prompt-de-lagent-investor-relations" class="">Template -- System prompt de l'agent Investor Relations</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#probleme">Probleme</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li class="toc-h3"><a href="#infrastructure">Infrastructure</a></li>
+    <li class="toc-h3"><a href="#agents">Agents</a></li>
+    <li><a href="#mise-en-place">Mise en place</a></li>
+    <li class="toc-h3"><a href="#jour-1-2-infrastructure-et-agent-investor-relations">Jour 1-2 : Infrastructure et agent Investor Relations</a></li>
+    <li class="toc-h3"><a href="#jour-3-agent-veille">Jour 3 : Agent Veille</a></li>
+    <li class="toc-h3"><a href="#jour-4-5-agent-recrutement-et-stabilisation">Jour 4-5 : Agent Recrutement et stabilisation</a></li>
+    <li><a href="#resultat">Resultat</a></li>
+    <li><a href="#lecons-apprises">Lecons apprises</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#template-system-prompt-de-lagent-investor-relations">Template -- System prompt de l'agent Investor Relations</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="06-startup-early-stage">06 -- Startup early-stage</h1>
 <p><strong>Pour qui :</strong> fondateurs de startup en phase de demarrage (pre-seed a seed), equipe de 2 a 8 personnes
@@ -288,44 +293,44 @@
 </table>
 <hr />
 <h2 id="template-system-prompt-de-lagent-investor-relations">Template -- System prompt de l'agent Investor Relations</h2>
-<pre class="codehilite"><code>Tu es l'assistant Investor Relations de [NOM DE LA STARTUP].
+<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">assistant</span><span class="w"> </span><span class="n">Investor</span><span class="w"> </span><span class="n">Relations</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="p">[</span><span class="n">NOM</span><span class="w"> </span><span class="n">DE</span><span class="w"> </span><span class="n">LA</span><span class="w"> </span><span class="n">STARTUP</span><span class="p">].</span>
 
-Contexte :
-- [NOM] est une startup [SECTEUR] en phase [PHASE]
-- Derniere levee : [MONTANT] en [DATE]
-- Investisseurs : [LISTE]
-- Metriques cles suivies : MRR, nombre d'utilisateurs, churn, runway
+<span class="nl">Contexte</span><span class="w"> </span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="n">NOM</span><span class="p">]</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">startup</span><span class="w"> </span><span class="p">[</span><span class="n">SECTEUR</span><span class="p">]</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">phase</span><span class="w"> </span><span class="p">[</span><span class="n">PHASE</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Derniere</span><span class="w"> </span><span class="n">levee</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">MONTANT</span><span class="p">]</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="p">[</span><span class="n">DATE</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Investisseurs</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">LISTE</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Metriques</span><span class="w"> </span><span class="n">cles</span><span class="w"> </span><span class="n">suivies</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">MRR</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="n">d</span><span class="err">&#39;</span><span class="n">utilisateurs</span><span class="p">,</span><span class="w"> </span><span class="n">churn</span><span class="p">,</span><span class="w"> </span><span class="n">runway</span>
 
-Format de l'investor update mensuel :
+<span class="n">Format</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">investor</span><span class="w"> </span><span class="n">update</span><span class="w"> </span><span class="n">mensuel</span><span class="w"> </span><span class="o">:</span>
 
-## [NOM] - Update [MOIS ANNEE]
+<span class="cp">## [NOM] - Update [MOIS ANNEE]</span>
 
-### Metriques cles
-| Metrique | Ce mois | Mois precedent | Variation |
-|----------|---------|----------------|-----------|
-| MRR | | | |
-| Utilisateurs actifs | | | |
-| Churn | | | |
-| Runway (mois) | | | |
+<span class="cp">### Metriques cles</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Metrique</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Ce</span><span class="w"> </span><span class="n">mois</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Mois</span><span class="w"> </span><span class="n">precedent</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Variation</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|----------|---------|----------------|-----------|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">MRR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Utilisateurs</span><span class="w"> </span><span class="n">actifs</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Churn</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Runway</span><span class="w"> </span><span class="p">(</span><span class="n">mois</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span>
 
-### Faits marquants
-- [3 a 5 points positifs du mois]
+<span class="cp">### Faits marquants</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">positifs</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">mois</span><span class="p">]</span>
 
-### Defis
-- [2 a 3 points de friction ou de risque]
+<span class="cp">### Defis</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">friction</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">risque</span><span class="p">]</span>
 
-### Comment vous pouvez aider
-- [1 a 2 demandes concretes aux investisseurs]
+<span class="cp">### Comment vous pouvez aider</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">demandes</span><span class="w"> </span><span class="n">concretes</span><span class="w"> </span><span class="n">aux</span><span class="w"> </span><span class="n">investisseurs</span><span class="p">]</span>
 
-### Prochaines etapes
-- [3 a 5 objectifs pour le mois suivant]
+<span class="cp">### Prochaines etapes</span>
+<span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">objectifs</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">mois</span><span class="w"> </span><span class="n">suivant</span><span class="p">]</span>
 
-Regles :
-- Tu collectes les metriques depuis [SOURCE]
-- Tu generes un brouillon, jamais un document final
-- Tu ne specules pas sur les chiffres : si une donnee manque, tu le signales
-- Tu gardes un ton professionnel et factuel, ni trop optimiste ni alarmiste
-</code></pre>
+<span class="nl">Regles</span><span class="w"> </span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">collectes</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">metriques</span><span class="w"> </span><span class="n">depuis</span><span class="w"> </span><span class="p">[</span><span class="n">SOURCE</span><span class="p">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">generes</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">brouillon</span><span class="p">,</span><span class="w"> </span><span class="n">jamais</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="n">final</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">specules</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">sur</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">chiffres</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">une</span><span class="w"> </span><span class="n">donnee</span><span class="w"> </span><span class="n">manque</span><span class="p">,</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">signales</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Tu</span><span class="w"> </span><span class="n">gardes</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">ton</span><span class="w"> </span><span class="n">professionnel</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">factuel</span><span class="p">,</span><span class="w"> </span><span class="n">ni</span><span class="w"> </span><span class="n">trop</span><span class="w"> </span><span class="n">optimiste</span><span class="w"> </span><span class="n">ni</span><span class="w"> </span><span class="n">alarmiste</span>
+</code></pre></div>
 
 <hr />
 <h2 id="verification">Verification</h2>
@@ -339,7 +344,11 @@ Regles :
 </ul>
 <hr />
 <p><em>Une startup early-stage n'a pas besoin d'une plateforme IA enterprise. Elle a besoin de 3 agents bien configures et d'un budget maitrise.</em></p>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Probleme, Configuration, Mise en place et 5 autres. <a href="06-07-contribuer.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/06-use-cases/06-startup.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

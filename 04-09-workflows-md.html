@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -110,21 +111,25 @@
   <span>4.9 -- WORKFLOWS.md</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#format-standardise" class="">Format standardise</a></li>
-<li><a href="#exemples-concrets" class="">Exemples concrets</a></li>
-<li><a href="#deploiement-cockpit" class="toc-h3">Deploiement cockpit</a></li>
-<li><a href="#creer-une-tache" class="toc-h3">Creer une tache</a></li>
-<li><a href="#rotation-des-secrets" class="toc-h3">Rotation des secrets</a></li>
-<li><a href="#organiser-le-fichier" class="">Organiser le fichier</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#etapes" class="">Etapes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#format-standardise">Format standardise</a></li>
+    <li><a href="#exemples-concrets">Exemples concrets</a></li>
+    <li class="toc-h3"><a href="#deploiement-cockpit">Deploiement cockpit</a></li>
+    <li class="toc-h3"><a href="#creer-une-tache">Creer une tache</a></li>
+    <li class="toc-h3"><a href="#rotation-des-secrets">Rotation des secrets</a></li>
+    <li><a href="#organiser-le-fichier">Organiser le fichier</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#etapes">Etapes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="49-workflowsmd">4.9 -- WORKFLOWS.md</h1>
 <h2 id="contexte">Contexte</h2>
@@ -132,126 +137,126 @@
 <p>WORKFLOWS.md est le fichier qui contient toutes vos procedures standardisees. L'agent le lit, l'execute, et le met a jour quand une etape change.</p>
 <h2 id="format-standardise">Format standardise</h2>
 <p>Chaque workflow suit la meme structure :</p>
-<pre class="codehilite"><code class="language-markdown">## [Nom du workflow]
+<div class="codehilite"><pre><span></span><code><span class="gu">## [Nom du workflow]</span>
 
-**Declencheur :** Quand ce workflow se lance (manuellement, cron, evenement).
-**Niveau de confiance :** 1 (dry run) / 2 (avec validation) / 3 (autonome)
-**Derniere verification :** YYYY-MM-DD
+<span class="gs">**Declencheur :**</span> Quand ce workflow se lance (manuellement, cron, evenement).
+<span class="gs">**Niveau de confiance :**</span> 1 (dry run) / 2 (avec validation) / 3 (autonome)
+<span class="gs">**Derniere verification :**</span> YYYY-MM-DD
 
-### Prerequis
-- [Ce qui doit etre vrai avant de commencer]
-- [Acces necessaires]
+<span class="gu">### Prerequis</span>
+<span class="k">-</span><span class="w"> </span>[Ce qui doit etre vrai avant de commencer]
+<span class="k">-</span><span class="w"> </span>[Acces necessaires]
 
-### Etapes
-1. [Action concrete avec la commande exacte]
-2. [Action suivante]
-3. [Action suivante]
+<span class="gu">### Etapes</span>
+<span class="k">1.</span> [Action concrete avec la commande exacte]
+<span class="k">2.</span> [Action suivante]
+<span class="k">3.</span> [Action suivante]
 
-### Verification
-- [ ] [Comment savoir que ca a marche]
-- [ ] [Test de validation]
+<span class="gu">### Verification</span>
+<span class="k">- [ ]</span> [Comment savoir que ca a marche]
+<span class="k">- [ ]</span> [Test de validation]
 
-### En cas d'erreur
-- Si [erreur A] : [action corrective]
-- Si [erreur B] : [action corrective]
-- Si inconnu : arreter et signaler.
-</code></pre>
+<span class="gu">### En cas d&#39;erreur</span>
+<span class="k">-</span><span class="w"> </span>Si [erreur A] : [action corrective]
+<span class="k">-</span><span class="w"> </span>Si [erreur B] : [action corrective]
+<span class="k">-</span><span class="w"> </span>Si inconnu : arreter et signaler.
+</code></pre></div>
 
 <h2 id="exemples-concrets">Exemples concrets</h2>
 <h3 id="deploiement-cockpit">Deploiement cockpit</h3>
-<pre class="codehilite"><code class="language-markdown">## Deployer cockpit
+<div class="codehilite"><pre><span></span><code><span class="gu">## Deployer cockpit</span>
 
-**Declencheur :** Manuel, apres merge sur main.
-**Niveau de confiance :** 2 (avec validation)
-**Derniere verification :** 2026-03-28
+<span class="gs">**Declencheur :**</span> Manuel, apres merge sur main.
+<span class="gs">**Niveau de confiance :**</span> 2 (avec validation)
+<span class="gs">**Derniere verification :**</span> 2026-03-28
 
-### Prerequis
-- Branch main a jour (git pull)
-- Tests locaux passes
-- Aucun deployment en cours
+<span class="gu">### Prerequis</span>
+<span class="k">-</span><span class="w"> </span>Branch main a jour (git pull)
+<span class="k">-</span><span class="w"> </span>Tests locaux passes
+<span class="k">-</span><span class="w"> </span>Aucun deployment en cours
 
-### Etapes
-1. `cd /opt/cockpit &amp;&amp; git pull origin main`
-2. `docker compose build --no-cache`
-3. `docker compose down &amp;&amp; docker compose up -d`
-4. Attendre 10 secondes.
-5. `curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000`
+<span class="gu">### Etapes</span>
+<span class="k">1.</span> <span class="sb">`cd /opt/cockpit &amp;&amp; git pull origin main`</span>
+<span class="k">2.</span> <span class="sb">`docker compose build --no-cache`</span>
+<span class="k">3.</span> <span class="sb">`docker compose down &amp;&amp; docker compose up -d`</span>
+<span class="k">4.</span> Attendre 10 secondes.
+<span class="k">5.</span> <span class="sb">`curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000`</span>
    Attendu : 200
 
-### Verification
-- [ ] curl retourne 200
-- [ ] `docker ps` montre le container &quot;Up&quot;
-- [ ] Les logs ne contiennent pas d'erreur : `docker logs cockpit --tail 20`
+<span class="gu">### Verification</span>
+<span class="k">- [ ]</span> curl retourne 200
+<span class="k">- [ ]</span> <span class="sb">`docker ps`</span> montre le container &quot;Up&quot;
+<span class="k">- [ ]</span> Les logs ne contiennent pas d&#39;erreur : <span class="sb">`docker logs cockpit --tail 20`</span>
 
-### En cas d'erreur
-- Si build echoue : verifier les dependances dans package.json.
-- Si le container ne demarre pas : `docker logs cockpit` pour diagnostic.
-- Si curl retourne 502 : le service met du temps a demarrer, attendre 30s et retester.
-- Si inconnu : rollback avec `git checkout HEAD~1 &amp;&amp; docker compose up -d`
-</code></pre>
+<span class="gu">### En cas d&#39;erreur</span>
+<span class="k">-</span><span class="w"> </span>Si build echoue : verifier les dependances dans package.json.
+<span class="k">-</span><span class="w"> </span>Si le container ne demarre pas : <span class="sb">`docker logs cockpit`</span> pour diagnostic.
+<span class="k">-</span><span class="w"> </span>Si curl retourne 502 : le service met du temps a demarrer, attendre 30s et retester.
+<span class="k">-</span><span class="w"> </span>Si inconnu : rollback avec <span class="sb">`git checkout HEAD~1 &amp;&amp; docker compose up -d`</span>
+</code></pre></div>
 
 <h3 id="creer-une-tache">Creer une tache</h3>
-<pre class="codehilite"><code class="language-markdown">## Creer une tache
+<div class="codehilite"><pre><span></span><code><span class="gu">## Creer une tache</span>
 
-**Declencheur :** Manuel.
-**Niveau de confiance :** 3 (autonome)
-**Derniere verification :** 2026-03-25
+<span class="gs">**Declencheur :**</span> Manuel.
+<span class="gs">**Niveau de confiance :**</span> 3 (autonome)
+<span class="gs">**Derniere verification :**</span> 2026-03-25
 
-### Prerequis
-- Acces PostgreSQL
+<span class="gu">### Prerequis</span>
+<span class="k">-</span><span class="w"> </span>Acces PostgreSQL
 
-### Etapes
-1. `./tasks.sh add &quot;Titre de la tache&quot; [priority] [project] [deadline]`
-2. Confirmer la creation : `./tasks.sh list todo`
+<span class="gu">### Etapes</span>
+<span class="k">1.</span> <span class="sb">`./tasks.sh add &quot;Titre de la tache&quot; [priority] [project] [deadline]`</span>
+<span class="k">2.</span> Confirmer la creation : <span class="sb">`./tasks.sh list todo`</span>
 
-### Verification
-- [ ] La tache apparait dans la liste avec le bon statut et la bonne priorite.
+<span class="gu">### Verification</span>
+<span class="k">- [ ]</span> La tache apparait dans la liste avec le bon statut et la bonne priorite.
 
-### En cas d'erreur
-- Si connexion PostgreSQL echoue : verifier que le service tourne (`systemctl status postgresql`).
-</code></pre>
+<span class="gu">### En cas d&#39;erreur</span>
+<span class="k">-</span><span class="w"> </span>Si connexion PostgreSQL echoue : verifier que le service tourne (<span class="sb">`systemctl status postgresql`</span>).
+</code></pre></div>
 
 <h3 id="rotation-des-secrets">Rotation des secrets</h3>
-<pre class="codehilite"><code class="language-markdown">## Rotation des secrets
+<div class="codehilite"><pre><span></span><code><span class="gu">## Rotation des secrets</span>
 
-**Declencheur :** Mensuel (1er du mois) ou apres incident de securite.
-**Niveau de confiance :** 2 (avec validation)
-**Derniere verification :** 2026-03-01
+<span class="gs">**Declencheur :**</span> Mensuel (1er du mois) ou apres incident de securite.
+<span class="gs">**Niveau de confiance :**</span> 2 (avec validation)
+<span class="gs">**Derniere verification :**</span> 2026-03-01
 
-### Prerequis
-- Acces Vault
-- Acces root/sudo
-- Fenetre de maintenance (pas de deploiement en cours)
+<span class="gu">### Prerequis</span>
+<span class="k">-</span><span class="w"> </span>Acces Vault
+<span class="k">-</span><span class="w"> </span>Acces root/sudo
+<span class="k">-</span><span class="w"> </span>Fenetre de maintenance (pas de deploiement en cours)
 
-### Etapes
-1. Generer le nouveau secret : `openssl rand -hex 32`
-2. Stocker dans Vault : `vault kv put secret/[service] key=[nouveau_secret]`
-3. Mettre a jour la config du service.
-4. Redemarrer le service : `docker compose restart [service]`
-5. Tester le service : `curl -s http://localhost:[port]/health`
-6. Logger la rotation : `echo &quot;$(date) [service] secret rotated&quot; &gt;&gt; /var/log/secret-rotation.log`
+<span class="gu">### Etapes</span>
+<span class="k">1.</span> Generer le nouveau secret : <span class="sb">`openssl rand -hex 32`</span>
+<span class="k">2.</span> Stocker dans Vault : <span class="sb">`vault kv put secret/[service] key=[nouveau_secret]`</span>
+<span class="k">3.</span> Mettre a jour la config du service.
+<span class="k">4.</span> Redemarrer le service : <span class="sb">`docker compose restart [service]`</span>
+<span class="k">5.</span> Tester le service : <span class="sb">`curl -s http://localhost:[port]/health`</span>
+<span class="k">6.</span> Logger la rotation : <span class="sb">`echo &quot;$(date) [service] secret rotated&quot; &gt;&gt; /var/log/secret-rotation.log`</span>
 
-### Verification
-- [ ] Le service repond correctement avec le nouveau secret.
-- [ ] L'ancien secret ne fonctionne plus.
-- [ ] La rotation est loggee.
+<span class="gu">### Verification</span>
+<span class="k">- [ ]</span> Le service repond correctement avec le nouveau secret.
+<span class="k">- [ ]</span> L&#39;ancien secret ne fonctionne plus.
+<span class="k">- [ ]</span> La rotation est loggee.
 
-### En cas d'erreur
-- Si le service ne demarre pas : restaurer l'ancien secret depuis Vault (version precedente).
-- Si inconnu : ne pas continuer les autres rotations, diagnostiquer d'abord.
-</code></pre>
+<span class="gu">### En cas d&#39;erreur</span>
+<span class="k">-</span><span class="w"> </span>Si le service ne demarre pas : restaurer l&#39;ancien secret depuis Vault (version precedente).
+<span class="k">-</span><span class="w"> </span>Si inconnu : ne pas continuer les autres rotations, diagnostiquer d&#39;abord.
+</code></pre></div>
 
 <h2 id="organiser-le-fichier">Organiser le fichier</h2>
 <p>Un seul fichier WORKFLOWS.md avec une table des matieres :</p>
-<pre class="codehilite"><code class="language-markdown"># WORKFLOWS.md
+<div class="codehilite"><pre><span></span><code><span class="gh"># WORKFLOWS.md</span>
 
-## Table des matieres
-1. [Deployer cockpit](#deployer-cockpit)
-2. [Creer une tache](#creer-une-tache)
-3. [Rotation des secrets](#rotation-des-secrets)
-4. [Health check quotidien](#health-check-quotidien)
-5. [Backup base de donnees](#backup-base-de-donnees)
-</code></pre>
+<span class="gu">## Table des matieres</span>
+<span class="k">1.</span> [<span class="nt">Deployer cockpit</span>](<span class="na">#deployer-cockpit</span>)
+<span class="k">2.</span> [<span class="nt">Creer une tache</span>](<span class="na">#creer-une-tache</span>)
+<span class="k">3.</span> [<span class="nt">Rotation des secrets</span>](<span class="na">#rotation-des-secrets</span>)
+<span class="k">4.</span> [<span class="nt">Health check quotidien</span>](<span class="na">#health-check-quotidien</span>)
+<span class="k">5.</span> [<span class="nt">Backup base de donnees</span>](<span class="na">#backup-base-de-donnees</span>)
+</code></pre></div>
 
 <p>Quand le fichier depasse 500 lignes, decoupez en fichiers separes dans un dossier <code>workflows/</code>.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -274,7 +279,11 @@
 <li>[ ] Chaque workflow a ete teste en dry run par l'agent.</li>
 <li>[ ] La date de derniere verification est renseignee et recente (&lt; 1 mois).</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Format standardise, Exemples concrets, Organiser le fichier et 3 autres. <a href="04-10-rythme-hebdo.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/09-workflows-md.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">

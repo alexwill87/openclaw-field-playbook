@@ -78,6 +78,9 @@ L'installation (chapitre 2) vous donne un agent generique. La configuration en f
 - **3.17 -- [Multi-agents](17-multi-agents.md)**
   Orchestrer plusieurs agents specialises qui collaborent sur des taches complexes
 
+- **3.18 -- [Connecter deux installations (mode remote)](18-remote-mode.md)**
+  Relier deux VPS OpenClaw pour la supervision, le debugging ou la collaboration inter-agents
+
 ---
 
 [Contribuer a ce chapitre](https://github.com/alexwill87/openclawfieldplaybook/issues/new?template=suggestion.yml) -- [CONTRIBUTING.md](../../CONTRIBUTING.md)

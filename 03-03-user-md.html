@@ -27,6 +27,7 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
     <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -81,6 +82,7 @@
     <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
     <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
     <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -113,28 +115,32 @@
   <span>3.3 -- USER.md : votre profil pour l'agent</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
-<details class="page-toc" open>
-<summary>Sur cette page</summary>
-<ul>
-<li><a href="#contexte" class="">Contexte</a></li>
-<li><a href="#lonboarding-interview-methode-steinberg" class="">L'onboarding interview (methode Steinberg)</a></li>
-<li><a href="#identite-et-role" class="toc-h3">Identite et role</a></li>
-<li><a href="#style-de-travail" class="toc-h3">Style de travail</a></li>
-<li><a href="#contexte-metier" class="toc-h3">Contexte metier</a></li>
-<li><a href="#preferences-de-lagent" class="toc-h3">Preferences de l'agent</a></li>
-<li><a href="#relations-cles" class="toc-h3">Relations cles</a></li>
-<li><a href="#limites" class="toc-h3">Limites</a></li>
-<li><a href="#ce-qui-appartient-a-usermd" class="">Ce qui appartient a USER.md</a></li>
-<li><a href="#etape-par-etape" class="">Etape par etape</a></li>
-<li><a href="#1-lancer-lonboarding-interview" class="toc-h3">1. Lancer l'onboarding interview</a></li>
-<li><a href="#2-relire-et-ajuster" class="toc-h3">2. Relire et ajuster</a></li>
-<li><a href="#3-valider-avec-le-test-des-5-phrases" class="toc-h3">3. Valider avec le test des 5 phrases</a></li>
-<li><a href="#4-mettre-a-jour-trimestriellement" class="toc-h3">4. Mettre a jour trimestriellement</a></li>
-<li><a href="#template-usermd-complet" class="">Template USER.md complet</a></li>
-<li><a href="#erreurs-courantes" class="">Erreurs courantes</a></li>
-<li><a href="#verification" class="">Verification</a></li>
-</ul>
-</details>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#lonboarding-interview-methode-steinberg">L'onboarding interview (methode Steinberg)</a></li>
+    <li class="toc-h3"><a href="#identite-et-role">Identite et role</a></li>
+    <li class="toc-h3"><a href="#style-de-travail">Style de travail</a></li>
+    <li class="toc-h3"><a href="#contexte-metier">Contexte metier</a></li>
+    <li class="toc-h3"><a href="#preferences-de-lagent">Preferences de l'agent</a></li>
+    <li class="toc-h3"><a href="#relations-cles">Relations cles</a></li>
+    <li class="toc-h3"><a href="#limites">Limites</a></li>
+    <li><a href="#ce-qui-appartient-a-usermd">Ce qui appartient a USER.md</a></li>
+    <li><a href="#etape-par-etape">Etape par etape</a></li>
+    <li class="toc-h3"><a href="#1-lancer-lonboarding-interview">1. Lancer l'onboarding interview</a></li>
+    <li class="toc-h3"><a href="#2-relire-et-ajuster">2. Relire et ajuster</a></li>
+    <li class="toc-h3"><a href="#3-valider-avec-le-test-des-5-phrases">3. Valider avec le test des 5 phrases</a></li>
+    <li class="toc-h3"><a href="#4-mettre-a-jour-trimestriellement">4. Mettre a jour trimestriellement</a></li>
+    <li><a href="#template-usermd-complet">Template USER.md complet</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+  </ul>
+</div>
 <section class="chapter">
 <h1 id="33-usermd-votre-profil-pour-lagent">3.3 -- USER.md : votre profil pour l'agent</h1>
 <h2 id="contexte">Contexte</h2>
@@ -229,16 +235,16 @@
 - Decisions en attente : session active</p>
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-lancer-lonboarding-interview">1. Lancer l'onboarding interview</h3>
-<pre class="codehilite"><code>Je veux que tu me poses les 20 questions d'onboarding
+<div class="codehilite"><pre><span></span><code>Je veux que tu me poses les 20 questions d&#39;onboarding
 une par une. Attends ma reponse avant de passer a la suivante.
 A la fin, genere mon USER.md.
-</code></pre>
+</code></pre></div>
 
 <h3 id="2-relire-et-ajuster">2. Relire et ajuster</h3>
 <p>L'agent va generer un USER.md. Relisez-le. Supprimez ce qui est trop volatile. Ajoutez ce qui manque.</p>
 <h3 id="3-valider-avec-le-test-des-5-phrases">3. Valider avec le test des 5 phrases</h3>
-<pre class="codehilite"><code>Decris-moi en 5 phrases.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Decris-moi en 5 phrases.
+</code></pre></div>
 
 <p>Verifiez que :
 - Les 5 phrases sont factuelles (pas de flatterie)
@@ -249,50 +255,50 @@ A la fin, genere mon USER.md.
 <h3 id="4-mettre-a-jour-trimestriellement">4. Mettre a jour trimestriellement</h3>
 <p>Bloquez 15 minutes chaque trimestre pour relire USER.md. Vos objectifs changent. Vos interlocuteurs evoluent. Votre role peut avoir bouge.</p>
 <h2 id="template-usermd-complet">Template USER.md complet</h2>
-<pre class="codehilite"><code class="language-markdown"># USER.md
+<div class="codehilite"><pre><span></span><code><span class="gh"># USER.md</span>
 
-## Identite
-- Nom : [votre nom]
-- Role : [votre role actuel]
-- Organisation : [nom, secteur, taille]
-- Responsabilites principales : [3-5 lignes max]
+<span class="gu">## Identite</span>
+<span class="k">-</span><span class="w"> </span>Nom : [votre nom]
+<span class="k">-</span><span class="w"> </span>Role : [votre role actuel]
+<span class="k">-</span><span class="w"> </span>Organisation : [nom, secteur, taille]
+<span class="k">-</span><span class="w"> </span>Responsabilites principales : [3-5 lignes max]
 
-## Objectifs ce trimestre
-1. [Objectif 1]
-2. [Objectif 2]
-3. [Objectif 3]
+<span class="gu">## Objectifs ce trimestre</span>
+<span class="k">1.</span> [Objectif 1]
+<span class="k">2.</span> [Objectif 2]
+<span class="k">3.</span> [Objectif 3]
 
-## Style de travail
-- Format prefere : [listes / paragraphes / tableaux]
-- Longueur des reponses : [concis / detaille / ca depend -- preciser]
-- Rythme : [matin tot / journee standard / soir]
-- Focus : [blocs de 2h / multitache / variable]
-- Langue de travail : [francais / anglais / les deux selon contexte]
+<span class="gu">## Style de travail</span>
+<span class="k">-</span><span class="w"> </span>Format prefere : [listes / paragraphes / tableaux]
+<span class="k">-</span><span class="w"> </span>Longueur des reponses : [concis / detaille / ca depend -- preciser]
+<span class="k">-</span><span class="w"> </span>Rythme : [matin tot / journee standard / soir]
+<span class="k">-</span><span class="w"> </span>Focus : [blocs de 2h / multitache / variable]
+<span class="k">-</span><span class="w"> </span>Langue de travail : [francais / anglais / les deux selon contexte]
 
-## Communication
-- Tutoiement / Vouvoiement : [choix]
-- Ce qui m'irrite : [exemples concrets]
-- Ce que j'apprecie : [exemples concrets]
-- Quand je dis &quot;[expression recurrente]&quot;, je veux dire [traduction]
+<span class="gu">## Communication</span>
+<span class="k">-</span><span class="w"> </span>Tutoiement / Vouvoiement : [choix]
+<span class="k">-</span><span class="w"> </span>Ce qui m&#39;irrite : [exemples concrets]
+<span class="k">-</span><span class="w"> </span>Ce que j&#39;apprecie : [exemples concrets]
+<span class="k">-</span><span class="w"> </span>Quand je dis &quot;[expression recurrente]&quot;, je veux dire [traduction]
 
-## Interlocuteurs cles
+<span class="gu">## Interlocuteurs cles</span>
 | Nom | Role | Contexte | Priorite |
 |-----|------|----------|----------|
 | [Nom 1] | [Role] | [Contexte de la relation] | Haute |
 | [Nom 2] | [Role] | [Contexte de la relation] | Moyenne |
 | [Nom 3] | [Role] | [Contexte de la relation] | Normale |
 
-## Preferences agent
-- Quand tu ne sais pas : [demander / signaler / proposer une hypothese]
-- Rapidite vs precision : [rapide et imparfait / lent et precis]
-- Challenger vs executer : [challenger / executer / les deux]
-- Niveau de detail par defaut : [minimum / standard / maximum]
+<span class="gu">## Preferences agent</span>
+<span class="k">-</span><span class="w"> </span>Quand tu ne sais pas : [demander / signaler / proposer une hypothese]
+<span class="k">-</span><span class="w"> </span>Rapidite vs precision : [rapide et imparfait / lent et precis]
+<span class="k">-</span><span class="w"> </span>Challenger vs executer : [challenger / executer / les deux]
+<span class="k">-</span><span class="w"> </span>Niveau de detail par defaut : [minimum / standard / maximum]
 
-## Interdictions
-- Ne jamais [interdit 1]
-- Ne jamais [interdit 2]
-- Ne jamais [interdit 3]
-</code></pre>
+<span class="gu">## Interdictions</span>
+<span class="k">-</span><span class="w"> </span>Ne jamais [interdit 1]
+<span class="k">-</span><span class="w"> </span>Ne jamais [interdit 2]
+<span class="k">-</span><span class="w"> </span>Ne jamais [interdit 3]
+</code></pre></div>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>USER.md trop court</strong> : "Je suis dev, je code en Python." L'agent ne vous connait pas. Il donnera des reponses generiques a un "dev Python" generique.</p>
@@ -310,7 +316,11 @@ A la fin, genere mon USER.md.
 <li>[ ] Preferences agent explicites</li>
 <li>[ ] Date de prochaine revision notee (dans 3 mois)</li>
 </ul>
-</section>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, L'onboarding interview (methode Steinberg), Ce qui appartient a USER.md, Etape par etape et 3 autres. <a href="03-04-agents-md.html">Continuer &rarr;</a></div>
+</div>
+
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/03-user-md.md">Proposer une modification sur GitHub</a></p>
 <div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
 <div class="giscus-wrapper">
