@@ -458,6 +458,23 @@ def build_section_pages(all_sections):
             if formatted:
                 last_updated_html = f'<div class="last-updated">Dernière mise à jour : {formatted}</div>'
 
+        # Build TOC from h2/h3 tags in the HTML
+        import re as _re
+        toc_items = []
+        heading_pattern = _re.compile(r'<(h[23])\s+id="([^"]+)"[^>]*>(.*?)</\1>', _re.IGNORECASE)
+        for match in heading_pattern.finditer(html_content):
+            tag = match.group(1).lower()
+            anchor = match.group(2)
+            text = _re.sub(r'<[^>]+>', '', match.group(3)).strip()
+            css_class = 'toc-h3' if tag == 'h3' else ''
+            toc_items.append(f'<li><a href="#{anchor}" class="{css_class}">{text}</a></li>')
+
+        toc_html = ''
+        if len(toc_items) > 3:  # Only show TOC if there are enough headings
+            toc_html = '<details class="page-toc" open>\n<summary>Sur cette page</summary>\n<ul>\n'
+            toc_html += '\n'.join(toc_items)
+            toc_html += '\n</ul>\n</details>\n'
+
         # Wrap in section div
         wrapped = f'<section class="chapter">\n{html_content}\n</section>'
 
@@ -489,7 +506,7 @@ def build_section_pages(all_sections):
         issues = build_issues_widget()
 
         # Assemble: breadcrumb + last-updated BEFORE the section content
-        full_content = breadcrumb_html + '\n' + last_updated_html + '\n' + wrapped + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
+        full_content = breadcrumb_html + '\n' + last_updated_html + '\n' + toc_html + wrapped + edit_link + issues + giscus + '\n' + '\n'.join(nav_links)
         sidebar_html = build_sidebar(all_sections, sec.slug, sec.chapter_num)
         page_html = render_page(sec.title, full_content, sidebar_html)
         write_page(sec.html_file, page_html)

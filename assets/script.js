@@ -1,3 +1,65 @@
+// ========== BACK TO TOP ==========
+(function() {
+  var btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.innerHTML = '&#8593;';
+  btn.title = 'Retour en haut';
+  btn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+})();
+
+// ========== BLOCKQUOTE TYPES ==========
+(function() {
+  document.querySelectorAll('.chapter blockquote').forEach(function(bq) {
+    var text = bq.textContent.toLowerCase();
+    if (text.match(/attention|sécurité|securite|important|critique|danger|ne jamais/)) {
+      bq.classList.add('bq-warning');
+    } else if (text.match(/recommandation|conseil|astuce|bonne pratique/)) {
+      bq.classList.add('bq-tip');
+    }
+  });
+})();
+
+// ========== FORM PROGRESS BAR ==========
+(function() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var totalSteps = 7;
+  var progress = document.createElement('div');
+  progress.className = 'form-progress';
+  for (var i = 0; i < totalSteps; i++) {
+    var step = document.createElement('div');
+    step.className = 'form-progress-step';
+    step.setAttribute('data-step', i + 1);
+    progress.appendChild(step);
+  }
+  form.insertBefore(progress, form.firstChild.nextSibling);
+
+  // Override nextStep to update progress
+  var origNextStep = window.nextStep;
+  if (origNextStep) {
+    window.nextStep = function(k, v) {
+      origNextStep(k, v);
+      var visible = form.querySelector('.form-step:not([style*="display: none"])');
+      if (visible) {
+        var num = parseInt(visible.id.replace('form-step-', ''));
+        progress.querySelectorAll('.form-progress-step').forEach(function(s) {
+          var sNum = parseInt(s.getAttribute('data-step'));
+          s.classList.toggle('done', sNum < num);
+        });
+      }
+    };
+  }
+})();
+
 // ========== MOBILE MENU TOGGLE ==========
 function toggleMenu() {
   var sidebar = document.querySelector('.sidebar');
