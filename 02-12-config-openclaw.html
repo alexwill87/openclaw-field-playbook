@@ -135,6 +135,8 @@
     <li class="toc-h3"><a href="#security">security</a></li>
     <li><a href="#connexion-a-vault">Connexion a Vault</a></li>
     <li><a href="#choix-du-modele">Choix du modele</a></li>
+    <li class="toc-h3"><a href="#tableau-de-decision-par-profil">Tableau de decision par profil</a></li>
+    <li class="toc-h3"><a href="#regles-de-choix">Regles de choix</a></li>
     <li><a href="#enregistrement-des-modeles-dans-agentsdefaultsmodels">Enregistrement des modeles dans agents.defaults.models</a></li>
     <li><a href="#syntaxe-de-openclaw-config-set">Syntaxe de openclaw config set</a></li>
     <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
@@ -368,14 +370,64 @@
 <td>~2$/M tokens</td>
 </tr>
 <tr>
-<td>Gemini 2.0 Flash</td>
+<td>Gemini 2.5 Flash</td>
 <td>Tres rapide, grande fenetre</td>
 <td>Variable en qualite</td>
 <td>~0.10$/M tokens</td>
 </tr>
 </tbody>
 </table>
-<p>Recommandation : Claude Sonnet en defaut, Haiku en fallback.</p>
+<h3 id="tableau-de-decision-par-profil">Tableau de decision par profil</h3>
+<table>
+<thead>
+<tr>
+<th>Profil</th>
+<th>Modele recommande</th>
+<th>Provider</th>
+<th>Cout estime/jour</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solo budget serre</td>
+<td><code>google/gemini-2.5-flash</code></td>
+<td>Google direct ou OpenRouter</td>
+<td>~0.50 EUR</td>
+<td>Bon rapport qualite/prix</td>
+</tr>
+<tr>
+<td>Solo qualite</td>
+<td><code>anthropic/claude-sonnet-4</code></td>
+<td>Anthropic direct</td>
+<td>~2-5 EUR</td>
+<td>Meilleur raisonnement</td>
+</tr>
+<tr>
+<td>Multi-modele</td>
+<td>Modele explicite via OpenRouter</td>
+<td>OpenRouter</td>
+<td>Variable</td>
+<td><strong>Jamais <code>auto</code></strong></td>
+</tr>
+<tr>
+<td>Production fiable</td>
+<td>1 primaire + 2 fallbacks</td>
+<td>Mix</td>
+<td>Variable</td>
+<td>Tester chaque modele avant deploy</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regles-de-choix">Regles de choix</h3>
+<ol>
+<li><strong>Ne jamais utiliser <code>openrouter/auto</code> en production.</strong> Le routage automatique choisit un modele different a chaque appel, ce qui cause des incompatibilites (ex : certains modeles exigent <code>reasoning: true</code>). Resultat : erreurs 400 silencieuses, agent percu comme "endormi". Cas reel : 11.6% d'erreurs sur un VPS en avril 2026.</li>
+<li><strong>Toujours tester le modele avant de configurer un canal.</strong> Envoyez un message test via l'API et verifiez la reponse (section 2.13).</li>
+<li><strong>Verifier la compatibilite reasoning.</strong> Certains modeles exigent <code>reasoning: true</code> et retournent une erreur 400 silencieuse si desactive.</li>
+<li><strong>Documenter les fallbacks.</strong> Au moins 2 fallbacks de providers differents pour eviter les pannes totales.</li>
+<li><strong>Monitorer.</strong> Verifier periodiquement les sessions JSONL pour detecter les erreurs silencieuses (<code>grep "stopReason.*error"</code> — voir section 5.11).</li>
+</ol>
+<p>Recommandation : Claude Sonnet en defaut, Haiku en fallback, Gemini Flash en fallback secondaire.</p>
 <h2 id="enregistrement-des-modeles-dans-agentsdefaultsmodels">Enregistrement des modeles dans <code>agents.defaults.models</code></h2>
 <p>En plus de la configuration du modele principal, OpenClaw a besoin que les modeles soient enregistres dans la section <code>agents.defaults.models</code> pour que les agents puissent les utiliser. Ajoutez cette section dans <code>~/.openclaw/config.json</code> :</p>
 <pre class="codehilite"><code class="language-json">&quot;agents&quot;: {

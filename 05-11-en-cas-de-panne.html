@@ -127,6 +127,7 @@
     <li class="toc-h3"><a href="#le-disque-est-plein">Le disque est plein</a></li>
     <li class="toc-h3"><a href="#un-container-redemarrerait-en-boucle">Un container redemarrerait en boucle</a></li>
     <li class="toc-h3"><a href="#lagent-ne-fonctionne-plus">L'agent ne fonctionne plus</a></li>
+    <li class="toc-h3"><a href="#lagent-ne-repond-pas-muet-erreurs-llm-silencieuses">L'agent ne repond pas (muet) — erreurs LLM silencieuses</a></li>
     <li><a href="#apres-la-panne">Apres la panne</a></li>
     <li class="toc-h3"><a href="#template-post-mortem">Template post-mortem</a></li>
     <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
@@ -372,6 +373,50 @@
 </tbody>
 </table>
 <p><strong>Prevention :</strong> fallback sur un autre modele configure (section 5.13). Budget et rate limits surveilles.</p>
+<h3 id="lagent-ne-repond-pas-muet-erreurs-llm-silencieuses">L'agent ne repond pas (muet) — erreurs LLM silencieuses</h3>
+<p>L'agent semble "endormi" : il recoit les messages mais ne repond pas, ou repond apres 5-6 tentatives. Ce n'est pas un bug OpenClaw, c'est un probleme de modele.</p>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>Commande</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Erreur modele silencieuse (400/422)</td>
+<td>Chercher <code>stopReason: "error"</code> dans les sessions JSONL : <code>grep -c '"stopReason":"error"' ~/.openclaw/sessions/*.jsonl</code></td>
+<td>Changer de modele primaire (voir section 2.12)</td>
+</tr>
+<tr>
+<td><code>openrouter/auto</code> route vers un modele incompatible</td>
+<td>Verifier les sessions : <code>grep '"model"' ~/.openclaw/sessions/*.jsonl \| tail -20</code></td>
+<td>Remplacer <code>openrouter/auto</code> par un modele explicite</td>
+</tr>
+<tr>
+<td>Erreur "Reasoning is mandatory"</td>
+<td><code>grep -i "reasoning" ~/.openclaw/sessions/*.jsonl</code></td>
+<td>Le modele exige <code>reasoning: true</code>. Changer de modele ou activer le parametre</td>
+</tr>
+<tr>
+<td>Fallback fonctionne mais lent</td>
+<td>Compter les erreurs primaires vs fallback dans les sessions</td>
+<td>Le modele primaire echoue en silence, le fallback prend le relais apres timeout</td>
+</tr>
+<tr>
+<td>Taux d'erreur eleve (&gt;5%)</td>
+<td><code>grep -c "error" ~/.openclaw/sessions/SESSION.jsonl</code></td>
+<td>Changer de modele. Un bon setup a &lt;1% d'erreurs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cas terrain (Aurel, avril 2026)</strong> : <code>openrouter/auto</code> a cause 11.6% d'erreurs silencieuses (erreur 400 "Reasoning is mandatory"). L'agent paraissait endormi pendant que le fallback Gemini Flash prenait le relais apres timeout. Solution : remplacer <code>openrouter/auto</code> par un modele explicite (<code>anthropic/claude-sonnet-4</code>).</p>
+<p><strong>Prevention :</strong>
+- <strong>Ne jamais utiliser <code>openrouter/auto</code> en production</strong> — le routage automatique cause des incompatibilites (voir section 2.13).
+- Verifier periodiquement les sessions JSONL pour detecter les erreurs silencieuses.
+- Configurer au moins 2 modeles fallback de providers differents.
+- Apres chaque changement de modele, envoyer un message test et verifier la reponse.</p>
 <h2 id="apres-la-panne">Apres la panne</h2>
 <ol>
 <li><strong>Documenter.</strong> Quoi, quand, cause, fix, duree.</li>
@@ -396,7 +441,7 @@
 <p><strong>Corriger sans comprendre.</strong> "J'ai redemarre et ca marche." Jusqu'a la prochaine fois. Identifiez la cause racine.</p>
 <h2 id="verification">Verification</h2>
 <ul>
-<li>[ ] Vous savez diagnostiquer les 6 scenarios ci-dessus.</li>
+<li>[ ] Vous savez diagnostiquer les 7 scenarios ci-dessus.</li>
 <li>[ ] Les commandes de diagnostic sont testees et fonctionnent sur votre setup.</li>
 <li>[ ] Un template post-mortem existe.</li>
 <li>[ ] Les pannes passees sont documentees.</li>

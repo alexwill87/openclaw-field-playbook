@@ -1,109 +1,1063 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.openclawfieldplaybook.com/index.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/decouverte.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/checklist.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/contribuer.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/ecosystem.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/privacy.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/persona-entrepreneur.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/persona-cto.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/persona-dev.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/persona-agent.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/00-guide.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-01-definition.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-02-proactif-reactif.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-03-comparaison.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-04-souverainete.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-05-architecture-mentale.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-06-ce-que-vous-construisez.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-07-journee-type.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-08-combien-ca-coute.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-09-est-ce-complique.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-10-si-je-ne-fais-rien.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/01-11-comment-se-lancer.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-00-preflight.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-01-prerequis.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-02-securiser-vps.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-03-tailscale.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-04-docker.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-05-nodejs-pm2.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-06-structure-dossiers.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-07-vault.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-08-postgresql.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-09-health-check.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-10-openclaw-install.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-11-workspace.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-12-config-openclaw.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-13-openrouter.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-14-telegram.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-15-gateway-systemd.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-16-verification-complete.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-17-git-init.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-18-claude-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-19-script-deploy.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/02-20-adapter-existant.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-01-perimetre-agent.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-02-soul-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-03-user-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-04-agents-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-05-constitution-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-06-trois-zones-memoire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-07-memory-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-08-knowledge.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-09-principe-une-source.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-10-calendrier.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-11-taches.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-12-email-messages.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-13-skill-custom.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-14-souverainete-donnees.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-15-crons.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-16-briefing-matin.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-17-multi-agents.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/03-18-remote-mode.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-01-system-prompt.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-02-personnalite-ton.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-03-iteration.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-04-pourquoi-taches.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-05-comment-taches.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-06-db-source-verite.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-07-reconnaitre-routine.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-08-dry-run.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-09-workflows-md.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-10-rythme-hebdo.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-11-confiance-configuration.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-12-boundary-prompt.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-13-audit-acces.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/04-14-config-bilingue.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-01-health-check.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-02-logs.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-03-backups.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-04-revoir-system-prompt.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-05-derive-memoire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-06-agent-se-trompe.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-07-maj-integrations.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-08-maj-systeme.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-09-rotation-secrets.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-10-monitoring.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-11-en-cas-de-panne.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-12-deuxieme-agent.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-13-migrer-modele.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/05-14-mesurer-roi.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-01-agence-digitale.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-02-consultant-freelance.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-03-ecommerce.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-04-equipe-technique.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-05-cabinet-comptable.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-06-startup.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-07-contribuer.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/06-08-artisan-tpe.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/07-00-sommaire.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/07-00-en-US.html</loc></url>
-  <url><loc>https://www.openclawfieldplaybook.com/07-00-fr-FR.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/index.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/index.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/decouverte.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/decouverte.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/decouverte.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/decouverte.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/decouverte.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/decouverte.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/checklist.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/checklist.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/checklist.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/checklist.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/checklist.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/checklist.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/contribuer.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/contribuer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/contribuer.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/contribuer.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/contribuer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/contribuer.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/ecosystem.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/ecosystem.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/ecosystem.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/ecosystem.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/ecosystem.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/ecosystem.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/persona-entrepreneur.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-entrepreneur.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-entrepreneur.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/persona-entrepreneur.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-entrepreneur.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-entrepreneur.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/persona-cto.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-cto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-cto.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/persona-cto.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-cto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-cto.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/persona-dev.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-dev.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-dev.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/persona-dev.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-dev.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-dev.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/persona-agent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-agent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-agent.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/persona-agent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/persona-agent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/persona-agent.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/00-guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/00-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/00-guide.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/00-guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/00-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/00-guide.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-01-definition.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-01-definition.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-01-definition.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-01-definition.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-01-definition.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-01-definition.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-02-proactif-reactif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-02-proactif-reactif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-02-proactif-reactif.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-02-proactif-reactif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-02-proactif-reactif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-02-proactif-reactif.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-03-comparaison.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-03-comparaison.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-03-comparaison.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-03-comparaison.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-03-comparaison.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-03-comparaison.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-04-souverainete.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-04-souverainete.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-04-souverainete.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-04-souverainete.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-04-souverainete.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-04-souverainete.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-05-architecture-mentale.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-05-architecture-mentale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-05-architecture-mentale.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-05-architecture-mentale.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-05-architecture-mentale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-05-architecture-mentale.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-06-ce-que-vous-construisez.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-06-ce-que-vous-construisez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-06-ce-que-vous-construisez.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-06-ce-que-vous-construisez.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-06-ce-que-vous-construisez.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-06-ce-que-vous-construisez.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-07-journee-type.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-07-journee-type.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-07-journee-type.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-07-journee-type.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-07-journee-type.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-07-journee-type.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-08-combien-ca-coute.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-08-combien-ca-coute.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-08-combien-ca-coute.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-08-combien-ca-coute.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-08-combien-ca-coute.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-08-combien-ca-coute.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-09-est-ce-complique.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-09-est-ce-complique.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-09-est-ce-complique.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-09-est-ce-complique.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-09-est-ce-complique.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-09-est-ce-complique.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-10-si-je-ne-fais-rien.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-10-si-je-ne-fais-rien.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-10-si-je-ne-fais-rien.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-10-si-je-ne-fais-rien.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-10-si-je-ne-fais-rien.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-10-si-je-ne-fais-rien.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/01-11-comment-se-lancer.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-11-comment-se-lancer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-11-comment-se-lancer.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/01-11-comment-se-lancer.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/01-11-comment-se-lancer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/01-11-comment-se-lancer.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-00-preflight.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-00-preflight.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-00-preflight.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-00-preflight.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-00-preflight.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-00-preflight.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-01-prerequis.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-01-prerequis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-01-prerequis.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-01-prerequis.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-01-prerequis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-01-prerequis.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-02-securiser-vps.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-02-securiser-vps.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-02-securiser-vps.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-02-securiser-vps.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-02-securiser-vps.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-02-securiser-vps.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-03-tailscale.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-03-tailscale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-03-tailscale.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-03-tailscale.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-03-tailscale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-03-tailscale.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-04-docker.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-04-docker.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-04-docker.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-04-docker.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-04-docker.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-04-docker.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-05-nodejs-pm2.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-05-nodejs-pm2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-05-nodejs-pm2.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-05-nodejs-pm2.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-05-nodejs-pm2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-05-nodejs-pm2.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-06-structure-dossiers.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-06-structure-dossiers.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-06-structure-dossiers.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-06-structure-dossiers.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-06-structure-dossiers.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-06-structure-dossiers.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-07-vault.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-07-vault.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-07-vault.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-07-vault.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-07-vault.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-07-vault.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-08-postgresql.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-08-postgresql.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-08-postgresql.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-08-postgresql.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-08-postgresql.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-08-postgresql.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-09-health-check.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-09-health-check.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-09-health-check.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-09-health-check.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-09-health-check.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-09-health-check.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-10-openclaw-install.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-10-openclaw-install.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-10-openclaw-install.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-10-openclaw-install.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-10-openclaw-install.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-10-openclaw-install.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-11-workspace.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-11-workspace.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-11-workspace.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-11-workspace.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-11-workspace.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-11-workspace.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-12-config-openclaw.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-12-config-openclaw.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-12-config-openclaw.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-12-config-openclaw.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-12-config-openclaw.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-12-config-openclaw.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-13-openrouter.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-13-openrouter.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-13-openrouter.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-13-openrouter.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-13-openrouter.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-13-openrouter.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-14-telegram.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-14-telegram.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-14-telegram.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-14-telegram.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-14-telegram.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-14-telegram.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-15-gateway-systemd.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-15-gateway-systemd.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-15-gateway-systemd.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-15-gateway-systemd.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-15-gateway-systemd.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-15-gateway-systemd.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-16-verification-complete.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-16-verification-complete.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-16-verification-complete.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-16-verification-complete.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-16-verification-complete.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-16-verification-complete.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-17-git-init.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-17-git-init.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-17-git-init.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-17-git-init.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-17-git-init.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-17-git-init.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-18-claude-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-18-claude-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-18-claude-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-18-claude-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-18-claude-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-18-claude-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-19-script-deploy.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-19-script-deploy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-19-script-deploy.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-19-script-deploy.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-19-script-deploy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-19-script-deploy.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/02-20-adapter-existant.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-20-adapter-existant.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-20-adapter-existant.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-20-adapter-existant.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-20-adapter-existant.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-20-adapter-existant.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-01-perimetre-agent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-01-perimetre-agent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-01-perimetre-agent.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-01-perimetre-agent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-01-perimetre-agent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-01-perimetre-agent.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-02-soul-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-02-soul-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-02-soul-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-02-soul-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-02-soul-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-02-soul-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-03-user-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-03-user-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-03-user-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-03-user-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-03-user-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-03-user-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-04-agents-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-04-agents-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-04-agents-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-04-agents-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-04-agents-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-04-agents-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-05-constitution-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-05-constitution-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-05-constitution-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-05-constitution-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-05-constitution-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-05-constitution-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-06-trois-zones-memoire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-06-trois-zones-memoire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-06-trois-zones-memoire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-06-trois-zones-memoire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-06-trois-zones-memoire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-06-trois-zones-memoire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-07-memory-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-07-memory-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-07-memory-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-07-memory-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-07-memory-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-07-memory-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-08-knowledge.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-08-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-08-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-08-knowledge.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-08-knowledge.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-08-knowledge.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-09-principe-une-source.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-09-principe-une-source.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-09-principe-une-source.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-09-principe-une-source.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-09-principe-une-source.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-09-principe-une-source.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-10-calendrier.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-10-calendrier.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-10-calendrier.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-10-calendrier.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-10-calendrier.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-10-calendrier.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-11-taches.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-11-taches.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-11-taches.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-11-taches.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-11-taches.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-11-taches.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-12-email-messages.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-12-email-messages.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-12-email-messages.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-12-email-messages.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-12-email-messages.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-12-email-messages.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-13-skill-custom.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-13-skill-custom.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-13-skill-custom.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-13-skill-custom.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-13-skill-custom.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-13-skill-custom.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-14-souverainete-donnees.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-14-souverainete-donnees.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-14-souverainete-donnees.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-14-souverainete-donnees.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-14-souverainete-donnees.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-14-souverainete-donnees.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-15-crons.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-15-crons.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-15-crons.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-15-crons.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-15-crons.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-15-crons.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-16-briefing-matin.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-16-briefing-matin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-16-briefing-matin.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-16-briefing-matin.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-16-briefing-matin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-16-briefing-matin.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-17-multi-agents.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-17-multi-agents.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-17-multi-agents.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-17-multi-agents.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-17-multi-agents.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-17-multi-agents.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-18-remote-mode.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-18-remote-mode.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-18-remote-mode.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-18-remote-mode.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-18-remote-mode.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-18-remote-mode.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-01-system-prompt.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-01-system-prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-01-system-prompt.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-01-system-prompt.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-01-system-prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-01-system-prompt.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-02-personnalite-ton.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-02-personnalite-ton.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-02-personnalite-ton.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-02-personnalite-ton.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-02-personnalite-ton.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-02-personnalite-ton.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-03-iteration.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-03-iteration.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-03-iteration.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-03-iteration.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-03-iteration.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-03-iteration.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-04-pourquoi-taches.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-04-pourquoi-taches.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-04-pourquoi-taches.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-04-pourquoi-taches.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-04-pourquoi-taches.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-04-pourquoi-taches.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-05-comment-taches.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-05-comment-taches.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-05-comment-taches.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-05-comment-taches.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-05-comment-taches.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-05-comment-taches.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-06-db-source-verite.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-06-db-source-verite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-06-db-source-verite.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-06-db-source-verite.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-06-db-source-verite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-06-db-source-verite.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-07-reconnaitre-routine.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-07-reconnaitre-routine.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-07-reconnaitre-routine.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-07-reconnaitre-routine.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-07-reconnaitre-routine.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-07-reconnaitre-routine.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-08-dry-run.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-08-dry-run.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-08-dry-run.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-08-dry-run.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-08-dry-run.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-08-dry-run.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-09-workflows-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-09-workflows-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-09-workflows-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-09-workflows-md.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-09-workflows-md.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-09-workflows-md.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-10-rythme-hebdo.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-10-rythme-hebdo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-10-rythme-hebdo.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-10-rythme-hebdo.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-10-rythme-hebdo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-10-rythme-hebdo.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-11-confiance-configuration.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-11-confiance-configuration.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-11-confiance-configuration.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-11-confiance-configuration.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-11-confiance-configuration.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-11-confiance-configuration.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-12-boundary-prompt.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-12-boundary-prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-12-boundary-prompt.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-12-boundary-prompt.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-12-boundary-prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-12-boundary-prompt.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-13-audit-acces.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-13-audit-acces.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-13-audit-acces.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-13-audit-acces.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-13-audit-acces.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-13-audit-acces.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/04-14-config-bilingue.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-14-config-bilingue.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-14-config-bilingue.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/04-14-config-bilingue.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/04-14-config-bilingue.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/04-14-config-bilingue.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-01-health-check.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-01-health-check.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-01-health-check.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-01-health-check.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-01-health-check.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-01-health-check.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-02-logs.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-02-logs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-02-logs.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-02-logs.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-02-logs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-02-logs.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-03-backups.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-03-backups.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-03-backups.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-03-backups.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-03-backups.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-03-backups.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-04-revoir-system-prompt.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-04-revoir-system-prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-04-revoir-system-prompt.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-04-revoir-system-prompt.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-04-revoir-system-prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-04-revoir-system-prompt.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-05-derive-memoire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-05-derive-memoire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-05-derive-memoire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-05-derive-memoire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-05-derive-memoire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-05-derive-memoire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-06-agent-se-trompe.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-06-agent-se-trompe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-06-agent-se-trompe.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-06-agent-se-trompe.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-06-agent-se-trompe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-06-agent-se-trompe.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-07-maj-integrations.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-07-maj-integrations.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-07-maj-integrations.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-07-maj-integrations.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-07-maj-integrations.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-07-maj-integrations.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-08-maj-systeme.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-08-maj-systeme.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-08-maj-systeme.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-08-maj-systeme.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-08-maj-systeme.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-08-maj-systeme.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-09-rotation-secrets.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-09-rotation-secrets.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-09-rotation-secrets.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-09-rotation-secrets.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-09-rotation-secrets.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-09-rotation-secrets.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-10-monitoring.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-10-monitoring.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-10-monitoring.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-10-monitoring.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-10-monitoring.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-10-monitoring.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-11-en-cas-de-panne.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-11-en-cas-de-panne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-11-en-cas-de-panne.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-11-en-cas-de-panne.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-11-en-cas-de-panne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-11-en-cas-de-panne.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-12-deuxieme-agent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-12-deuxieme-agent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-12-deuxieme-agent.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-12-deuxieme-agent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-12-deuxieme-agent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-12-deuxieme-agent.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-13-migrer-modele.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-13-migrer-modele.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-13-migrer-modele.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-13-migrer-modele.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-13-migrer-modele.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-13-migrer-modele.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-14-mesurer-roi.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-14-mesurer-roi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-14-mesurer-roi.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-14-mesurer-roi.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-14-mesurer-roi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-14-mesurer-roi.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-01-agence-digitale.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-01-agence-digitale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-01-agence-digitale.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-01-agence-digitale.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-01-agence-digitale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-01-agence-digitale.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-02-consultant-freelance.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-02-consultant-freelance.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-02-consultant-freelance.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-02-consultant-freelance.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-02-consultant-freelance.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-02-consultant-freelance.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-03-ecommerce.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-03-ecommerce.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-03-ecommerce.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-03-ecommerce.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-03-ecommerce.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-03-ecommerce.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-04-equipe-technique.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-04-equipe-technique.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-04-equipe-technique.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-04-equipe-technique.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-04-equipe-technique.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-04-equipe-technique.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-05-cabinet-comptable.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-05-cabinet-comptable.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-05-cabinet-comptable.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-05-cabinet-comptable.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-05-cabinet-comptable.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-05-cabinet-comptable.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-06-startup.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-06-startup.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-06-startup.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-06-startup.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-06-startup.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-06-startup.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-07-contribuer.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-07-contribuer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-07-contribuer.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-07-contribuer.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-07-contribuer.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-07-contribuer.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/06-08-artisan-tpe.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-08-artisan-tpe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-08-artisan-tpe.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/06-08-artisan-tpe.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/06-08-artisan-tpe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/06-08-artisan-tpe.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/07-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/07-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/07-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/07-00-sommaire.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/07-00-sommaire.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/07-00-sommaire.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/07-00-en-US.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/07-00-en-US.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/07-00-en-US.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/07-00-en-US.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/07-00-en-US.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/07-00-en-US.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/07-00-fr-FR.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/07-00-fr-FR.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/07-00-fr-FR.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/07-00-fr-FR.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/07-00-fr-FR.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/07-00-fr-FR.html"/>
+  </url>
 </urlset>

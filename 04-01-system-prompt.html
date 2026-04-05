@@ -127,6 +127,7 @@
     <li class="toc-h3"><a href="#5-ton-et-format">5. Ton et format</a></li>
     <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
     <li><a href="#template-complet">Template complet</a></li>
+    <li><a href="#cas-terrain-workspace-aurel-vps-pantheos">Cas terrain : workspace Aurel (VPS Pantheos)</a></li>
     <li><a href="#etapes">Etapes</a></li>
     <li><a href="#verification">Verification</a></li>
   </ul>
@@ -206,6 +207,49 @@ Tu n'as PAS acces a : [liste].
 - [Format prefere : bullet points, prose, code]
 </code></pre>
 
+<h2 id="cas-terrain-workspace-aurel-vps-pantheos">Cas terrain : workspace Aurel (VPS Pantheos)</h2>
+<p>L'agent Aurel utilise un systeme de fichiers complementaires au system prompt qui merite d'etre documente comme pattern reutilisable :</p>
+<table>
+<thead>
+<tr>
+<th>Fichier</th>
+<th>Role</th>
+<th>Contenu cle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SOUL.md</code></td>
+<td>Boussole morale</td>
+<td>Mission, valeurs, 4 principes fondateurs, limites inviolables</td>
+</tr>
+<tr>
+<td><code>IDENTITY.md</code></td>
+<td>Identite operationnelle</td>
+<td>3 roles integres (Majordome, Ingenieur, Premier Ministre), signature de communication</td>
+</tr>
+<tr>
+<td><code>USER_PROFILE.md</code></td>
+<td>Contexte utilisateur</td>
+<td>Qui est l'utilisateur, horaires, budget, contraintes</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>Manifeste agent</td>
+<td>Regles comportementales, memoire, proactivite, fleet de 8 agents</td>
+</tr>
+<tr>
+<td><code>mode_DEV.md</code> / <code>mode_ARCHI.md</code></td>
+<td>Modes operationnels</td>
+<td>DEV = execution, ARCHI = gouvernance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pourquoi ca marche</strong> : le system prompt reste court (~200 mots) et pointe vers ces fichiers. Chaque fichier a un perimetre precis. Quand une regle change, on modifie un seul fichier sans toucher au system prompt.</p>
+<p><strong>Pattern "Last Word Rule"</strong> (extrait du SOUL.md d'Aurel) : l'humain a toujours le dernier mot. Si l'agent est en desaccord, il exprime sa position une fois, puis execute la decision humaine sans resistance passive. Ce pattern evite les boucles de negociation agent-humain.</p>
+<blockquote>
+<p><strong>Recommandation</strong> : commencez avec un system prompt simple (template ci-dessus). Quand il depasse 300 mots, eclatez-le en fichiers thematiques. Voir section 4.11 pour les niveaux de confiance dans CONSTITUTION.md.</p>
+</blockquote>
 <h2 id="etapes">Etapes</h2>
 <ol>
 <li>Ecrivez une premiere version en suivant la structure ci-dessus.</li>
@@ -223,7 +267,7 @@ Tu n'as PAS acces a : [liste].
 </ul>
 </section><div class="bravo-box">
   <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
-  <div class="bravo-body">Vous avez couvert : Contexte, Structure recommandee, Erreurs courantes, Template complet et 2 autres. <a href="04-02-personnalite-ton.html">Continuer &rarr;</a></div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Structure recommandee, Erreurs courantes, Template complet et 3 autres. <a href="04-02-personnalite-ton.html">Continuer &rarr;</a></div>
 </div>
 
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/04-personalisation/01-system-prompt.md">Proposer une modification sur GitHub</a></p>

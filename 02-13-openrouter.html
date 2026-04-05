@@ -234,6 +234,9 @@ $ curl -s https://openrouter.ai/api/v1/chat/completions \
 <li><strong>Modele fallback</strong> : Claude Haiku 3.5 pour la vitesse et le cout</li>
 <li><strong>Modele experimentation</strong> : Gemini Flash pour les gros volumes</li>
 </ul>
+<blockquote>
+<p><strong>ATTENTION : ne jamais utiliser <code>openrouter/auto</code> comme modele primaire.</strong> Le routage automatique choisit un modele different a chaque appel. Certains modeles choisis par <code>auto</code> ne supportent pas tous les parametres (ex : <code>reasoning: true</code> obligatoire), ce qui cause des erreurs 400 silencieuses. L'agent parait "endormi" alors que le probleme est purement technique. Toujours specifier un modele explicite (ex : <code>anthropic/claude-sonnet-4</code>). Voir section 5.11 pour le diagnostic.</p>
+</blockquote>
 <h2 id="configuration-dans-openclaw">Configuration dans OpenClaw</h2>
 <p>La connexion est configuree dans <code>~/.openclaw/config.json</code> (section 12). Le champ <code>model.provider</code> doit etre <code>"openrouter"</code> et la cle est lue automatiquement depuis Vault.</p>
 <h2 id="alertes-budget">Alertes budget</h2>
@@ -246,6 +249,8 @@ $ curl -s https://openrouter.ai/api/v1/chat/completions \
 <li><strong>"Invalid API key"</strong> : La cle est mal copiee ou expiree. Regenerez-la sur openrouter.ai.</li>
 <li><strong>"Insufficient credits"</strong> : Rechargez votre compte sur openrouter.ai.</li>
 <li><strong>"Model not found"</strong> : Le nom du modele a change. Verifiez sur openrouter.ai/models le nom exact.</li>
+<li><strong>"Reasoning is mandatory for this endpoint"</strong> : Le modele route par <code>auto</code> exige <code>reasoning: true</code>. Solution : ne pas utiliser <code>auto</code>, specifier un modele explicite.</li>
+<li><strong>Erreurs 400 silencieuses</strong> : L'agent ne repond pas, aucune erreur visible. Verifier les sessions JSONL : <code>grep "stopReason.*error" ~/.openclaw/sessions/*.jsonl</code>. Voir section 5.11.</li>
 <li><strong>Timeout sur les appels</strong> : Certains modeles sont lents en charge. Le fallback (Haiku) prend le relais automatiquement si configure.</li>
 </ul>
 <h2 id="verification">Verification</h2>
