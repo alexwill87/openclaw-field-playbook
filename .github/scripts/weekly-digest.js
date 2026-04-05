@@ -103,9 +103,34 @@ Be direct, concrete, useful. No filler. Max 120 words.`
     process.exit(1);
   }
 
+  const digestText = claudeRes.content[0].text;
   console.log('\n=== OPENCLAW FIELD PLAYBOOK — WEEKLY DIGEST ===\n');
-  console.log(claudeRes.content[0].text);
+  console.log(digestText);
   console.log('\n================================================\n');
+
+  // Create a GitHub issue with the digest
+  const today = new Date().toISOString().slice(0, 10);
+  const issueBody = JSON.stringify({
+    title: `[DIGEST] Semaine du ${today}`,
+    body: `${digestText}\n\n---\n*Digest automatique genere par le workflow Weekly Digest.*`,
+    labels: ['digest']
+  });
+
+  const [owner, repoName] = process.env.REPO.split('/');
+  await request({
+    hostname: 'api.github.com',
+    path: `/repos/${owner}/${repoName}/issues`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
+      'User-Agent': 'openclawfieldplaybook-digest',
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Length': Buffer.byteLength(issueBody)
+    }
+  }, issueBody);
+
+  console.log(`Digest issue created: [DIGEST] Semaine du ${today}`);
 }
 
 main().catch((err) => {

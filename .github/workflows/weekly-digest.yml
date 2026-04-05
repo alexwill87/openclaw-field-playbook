@@ -9,7 +9,7 @@ jobs:
   digest:
     runs-on: ubuntu-latest
     permissions:
-      issues: read
+      issues: write
       pull-requests: read
       contents: read
 

@@ -19,15 +19,23 @@ jobs:
 
       - name: Assemble playbook
         run: |
-          cat sections/00-reading-guide.md \
-              sections/01-definition/README.md \
-              sections/02-installation/README.md \
-              sections/03-configuration/README.md \
-              sections/04-personalisation/README.md \
-              sections/05-maintenance/README.md \
-              sections/06-use-cases/README.md \
-              sections/07-localisation/README.md \
-              > /tmp/playbook-full.md
+          # Start with reading guide
+          cat sections/00-reading-guide.md > /tmp/playbook-full.md
+
+          # Concatenate all chapters in order: README first, then sections sorted
+          for dir in sections/01-definition sections/02-installation sections/03-configuration sections/04-personalisation sections/05-maintenance sections/06-use-cases sections/07-localisation; do
+            if [ -f "$dir/README.md" ]; then
+              echo -e "\n\n---\n\n" >> /tmp/playbook-full.md
+              cat "$dir/README.md" >> /tmp/playbook-full.md
+            fi
+            for f in $(ls "$dir"/*.md 2>/dev/null | grep -v README.md | sort); do
+              echo -e "\n\n---\n\n" >> /tmp/playbook-full.md
+              # Strip YAML frontmatter before appending
+              sed '1{/^---$/!q;};1,/^---$/d' "$f" >> /tmp/playbook-full.md
+            done
+          done
+
+          echo "Assembled $(wc -l < /tmp/playbook-full.md) lines from $(find sections -name '*.md' | wc -l) files"
 
       - name: Generate PDF
         run: |
@@ -39,7 +47,8 @@ jobs:
             --toc \
             --toc-depth=2 \
             -V title="The OpenClaw Field Playbook" \
-            -V author="github.com/alexwill87/openclawfieldplaybook"
+            -V author="github.com/alexwill87/openclaw-field-playbook" \
+            -V lang=fr
 
       - name: Upload PDF to release
         if: github.event_name == 'release'
