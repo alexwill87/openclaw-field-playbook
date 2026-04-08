@@ -1338,6 +1338,148 @@ footer a:hover { color: var(--text); }
   background: var(--accent);
 }
 
+/* ========== ASK WIDGET ========== */
+.ask-widget {
+  max-width: 640px;
+  margin: 1rem 0;
+}
+
+.ask-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ask-input-row input {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.ask-input-row input:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.ask-input-row input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.ask-input-row button {
+  padding: 0.65rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.ask-input-row button:hover {
+  opacity: 0.85;
+}
+
+.ask-input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ask-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+#ask-answer {
+  margin-top: 1rem;
+}
+
+.ask-response {
+  padding: 1rem 1.25rem;
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.ask-response p {
+  margin-bottom: 0.5rem;
+}
+
+.ask-response .ask-pages {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.ask-response .ask-pages a {
+  display: inline-block;
+  margin: 0.2rem 0.3rem 0.2rem 0;
+  padding: 0.25rem 0.6rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.ask-response .ask-pages a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.ask-response .ask-noanswer {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+
+.ask-response .ask-noanswer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ask-response .ask-noanswer a:hover {
+  text-decoration: underline;
+}
+
+.ask-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.ask-loading .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ========== REDUCED MOTION ========== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -603,6 +603,22 @@ def build_index_page(all_sections):
   </div>
 </div>
 
+<div class="landing-section" id="ask-section">
+  <h2>Que voulez-vous savoir ?</h2>
+  <p>Posez votre question sur OpenClaw. L'assistant cherche dans les 110 pages du playbook et vous renvoie vers les bonnes sections.</p>
+  <div class="ask-widget">
+    <form id="ask-form" onsubmit="return false;" role="search" aria-label="Poser une question sur le playbook">
+      <div class="ask-input-row">
+        <label for="ask-input" class="sr-only">Votre question</label>
+        <input type="text" id="ask-input" placeholder="Comment installer le gateway ? / C'est quoi Vault ? / Comment monitorer..." autocomplete="off" aria-describedby="ask-hint">
+        <button type="submit" id="ask-btn" aria-label="Envoyer la question">Demander</button>
+      </div>
+      <p id="ask-hint" class="ask-hint">Exemples : "Comment configurer le terminal ?" — "C'est quoi le remote mode ?" — "Comment choisir mon modele IA ?"</p>
+    </form>
+    <div id="ask-answer" role="region" aria-live="polite" aria-label="Reponse de l'assistant"></div>
+  </div>
+</div>
+
 <div class="landing-section">
   <h2>Vous êtes qui ?</h2>
   <p>Ce guide s'adapte à votre profil. Choisissez le vôtre.</p>
@@ -1730,6 +1746,35 @@ def build_search_index(all_sections):
     print(f'  -> search-index.json ({len(index)} entries)')
 
 
+def build_assistant_index(all_sections):
+    """Generate assistant-index.json with richer content for the AI assistant."""
+    index = []
+    for sec in all_sections:
+        with open(sec.md_path, 'r', encoding='utf-8') as f:
+            raw = f.read()
+        content = strip_frontmatter(raw)
+        plain = re.sub(r'```[\s\S]*?```', ' ', content)
+        plain = re.sub(r'`[^`]*`', ' ', plain)
+        plain = re.sub(r'!\[[^\]]*\]\([^)]*\)', ' ', plain)
+        plain = re.sub(r'\[[^\]]*\]\([^)]*\)', ' ', plain)
+        plain = re.sub(r'#{1,6}\s+', ' ', plain)
+        plain = re.sub(r'[*_~]{1,3}', '', plain)
+        plain = re.sub(r'\|', ' ', plain)
+        plain = re.sub(r'-{3,}', ' ', plain)
+        plain = re.sub(r'\s+', ' ', plain).strip()
+        body = plain[:800]
+        index.append({
+            'slug': sec.slug,
+            'title': sec.title,
+            'url': sec.html_file,
+            'body': body,
+        })
+    output_path = os.path.join(REPO_ROOT, 'assistant-index.json')
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False, indent=2)
+    print(f'  -> assistant-index.json ({len(index)} entries, enriched)')
+
+
 def build_sitemap(all_sections):
     """Generate sitemap.xml with hreflang annotations for FR and EN."""
     base = 'https://www.openclawfieldplaybook.com'
@@ -1821,6 +1866,11 @@ if __name__ == '__main__':
     # Build search index
     print('Building search index...')
     build_search_index(all_sections)
+    print()
+
+    # Build assistant index (richer content for AI chatbot)
+    print('Building assistant index...')
+    build_assistant_index(all_sections)
     print()
 
     # Build sitemap

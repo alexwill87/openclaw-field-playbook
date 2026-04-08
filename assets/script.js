@@ -534,6 +534,153 @@ function switchLang() {
   });
 })();
 
+// ========== ASK WIDGET (AI Assistant) ==========
+(function() {
+  var askForm = document.getElementById('ask-form');
+  var askInput = document.getElementById('ask-input');
+  var askBtn = document.getElementById('ask-btn');
+  var askAnswer = document.getElementById('ask-answer');
+  if (!askForm || !askInput) return;
+
+  var assistantIndex = null;
+  var PROXY_URL = 'https://playbook-api.openclawfieldplaybook.com/ask';
+
+  // Load assistant index (fallback to search-index)
+  fetch('assistant-index.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { assistantIndex = data; })
+    .catch(function() {
+      fetch('search-index.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { assistantIndex = data; });
+    });
+
+  function normalize(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function findRelevant(query, topN) {
+    if (!assistantIndex) return [];
+    var q = normalize(query);
+    var words = q.split(/\s+/).filter(function(w) { return w.length > 2; });
+    var scored = assistantIndex.map(function(entry) {
+      var titleN = normalize(entry.title);
+      var bodyN = normalize(entry.body);
+      var score = 0;
+      words.forEach(function(w) {
+        if (titleN.indexOf(w) !== -1) score += 3;
+        if (bodyN.indexOf(w) !== -1) score += 1;
+      });
+      if (titleN.indexOf(q) !== -1) score += 10;
+      if (bodyN.indexOf(q) !== -1) score += 5;
+      return { entry: entry, score: score };
+    }).filter(function(s) { return s.score > 0; });
+    scored.sort(function(a, b) { return b.score - a.score; });
+    return scored.slice(0, topN || 5).map(function(s) { return s.entry; });
+  }
+
+  function createIssueUrl(question) {
+    var title = encodeURIComponent('Question visiteur : ' + question.substring(0, 80));
+    var body = encodeURIComponent(
+      '## Question posee sur le site\n\n> ' + question +
+      '\n\n## Contexte\n\nCette question a ete posee via le widget sur la homepage.\n' +
+      'L\'assistant n\'a pas trouve de reponse satisfaisante.\n\n' +
+      '## Action attendue\n\n- [ ] Repondre a la question\n' +
+      '- [ ] Si pertinent, ajouter le contenu dans une section existante ou nouvelle\n'
+    );
+    return 'https://github.com/alexwill87/openclaw-field-playbook/issues/new?title=' + title + '&body=' + body + '&labels=question';
+  }
+
+  function renderAnswer(data) {
+    var html = '<div class="ask-response">';
+    if (data.answer) {
+      html += '<p>' + data.answer.replace(/\n/g, '<br>') + '</p>';
+    }
+    if (data.pages && data.pages.length > 0) {
+      html += '<div class="ask-pages"><strong>Pages pertinentes :</strong><br>';
+      data.pages.forEach(function(p) {
+        html += '<a href="' + p.url + '">' + p.title + '</a> ';
+      });
+      html += '</div>';
+    }
+    if (data.create_issue) {
+      html += '<div class="ask-noanswer">';
+      html += 'Pas de reponse precise trouvee. ';
+      html += '<a href="' + createIssueUrl(data.question) + '" target="_blank">Posez votre question sur GitHub</a> — nous y repondrons.';
+      html += '</div>';
+    }
+    html += '</div>';
+    askAnswer.innerHTML = html;
+  }
+
+  function renderLocalAnswer(question, matches) {
+    var html = '<div class="ask-response">';
+    if (matches.length > 0) {
+      html += '<p>Voici les sections qui correspondent le mieux :</p>';
+      html += '<div class="ask-pages">';
+      matches.forEach(function(m) {
+        html += '<a href="' + m.url + '">' + m.title + '</a> ';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="ask-noanswer">';
+      html += 'Aucun resultat trouve dans le playbook. ';
+      html += '<a href="' + createIssueUrl(question) + '" target="_blank">Posez votre question sur GitHub</a> — nous y repondrons.';
+      html += '</div>';
+    }
+    html += '</div>';
+    askAnswer.innerHTML = html;
+  }
+
+  askForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var question = askInput.value.trim();
+    if (!question) return;
+
+    askBtn.disabled = true;
+    askAnswer.innerHTML = '<div class="ask-loading"><div class="spinner"></div>Recherche en cours...</div>';
+
+    var matches = findRelevant(question, 5);
+
+    // Try the AI proxy first (timeout 8s)
+    var controller = new AbortController();
+    var timeout = setTimeout(function() { controller.abort(); }, 8000);
+
+    fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question: question,
+        context: matches.map(function(m) { return { title: m.title, url: m.url, body: m.body }; })
+      }),
+      signal: controller.signal
+    })
+    .then(function(res) {
+      clearTimeout(timeout);
+      if (!res.ok) throw new Error('API error');
+      return res.json();
+    })
+    .then(function(data) {
+      data.question = question;
+      renderAnswer(data);
+      askBtn.disabled = false;
+    })
+    .catch(function() {
+      clearTimeout(timeout);
+      // Fallback: local search only
+      renderLocalAnswer(question, matches);
+      askBtn.disabled = false;
+    });
+  });
+
+  askInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      askForm.dispatchEvent(new Event('submit'));
+    }
+  });
+})();
+
 // ========== OPEN ISSUES WIDGET ==========
 (function() {
   var widget = document.getElementById('issues-widget');

@@ -106,6 +106,22 @@
   </div>
 </div>
 
+<div class="landing-section" id="ask-section">
+  <h2>Que voulez-vous savoir ?</h2>
+  <p>Posez votre question sur OpenClaw. L'assistant cherche dans les 110 pages du playbook et vous renvoie vers les bonnes sections.</p>
+  <div class="ask-widget">
+    <form id="ask-form" onsubmit="return false;" role="search" aria-label="Poser une question sur le playbook">
+      <div class="ask-input-row">
+        <label for="ask-input" class="sr-only">Votre question</label>
+        <input type="text" id="ask-input" placeholder="Comment installer le gateway ? / C'est quoi Vault ? / Comment monitorer..." autocomplete="off" aria-describedby="ask-hint">
+        <button type="submit" id="ask-btn" aria-label="Envoyer la question">Demander</button>
+      </div>
+      <p id="ask-hint" class="ask-hint">Exemples : "Comment configurer le terminal ?" — "C'est quoi le remote mode ?" — "Comment choisir mon modele IA ?"</p>
+    </form>
+    <div id="ask-answer" role="region" aria-live="polite" aria-label="Reponse de l'assistant"></div>
+  </div>
+</div>
+
 <div class="landing-section">
   <h2>Vous êtes qui ?</h2>
   <p>Ce guide s'adapte à votre profil. Choisissez le vôtre.</p>

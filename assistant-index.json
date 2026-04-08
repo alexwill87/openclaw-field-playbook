@@ -1,0 +1,602 @@
+[
+  {
+    "slug": "00-guide",
+    "title": "Chapitre 0 -- Guide de lecture",
+    "url": "00-guide.html",
+    "body": "Chapitre 0 -- Guide de lecture A qui s'adresse ce guide : Toute personne (ou agent) qui ouvre ce document pour la premiere fois. Temps de lecture : 5 minutes. Difficulte : Aucune. 0.1 -- Si vous etes un humain Ce playbook est un manuel de praticien. Pas un dictionnaire, pas une doc API, pas un cours magistral. Il est organise pour que vous puissiez avancer a votre rythme, selon votre profil. Quel lecteur etes-vous ? Profil \"je decouvre\" : Lisez le Chapitre 1 en entier. C'est votre fondation. Sans lui, le reste sera du bruit. Ensuite, passez au Chapitre 2 (Installation) et suivez les etapes dans l'ordre. Ne sautez rien. Profil \"j'ai deja installe, je veux configurer\" : Allez directement au Chapitre 3 (Configuration) ou au Chapitre 4 (Personnalisation). Chaque section est autonome et renvoie"
+  },
+  {
+    "slug": "01-00-sommaire",
+    "title": "Chapitre 1 -- Definition",
+    "url": "01-00-sommaire.html",
+    "body": "Chapitre 1 -- Definition > Qu'est-ce qu'OpenClaw, concretement ? Qu'est-ce que ca fait, qu'est-ce que ca ne fait pas, et pourquoi est-ce que ca merite votre temps ? Ce chapitre pose les fondations. Il definit ce qu'est OpenClaw, ce qui le distingue des autres outils IA, et pourquoi des concepts comme la proactivite et la souverainete des donnees comptent pour un entrepreneur. Il se termine par l'architecture mentale necessaire avant de passer a l'installation. Sommaire - — Le modele mental fondamental : framework d'agents, composabilite, et ce que ca change par rapport a un chatbot. - — La spirale de Steinberg et les quatre paliers qui separent un assistant passif d'un systeme qui avance seul. - — Comparaison honnete avec ChatGPT, Copilot, AutoGPT et CrewAI : qui fait quoi, et ou OpenClaw "
+  },
+  {
+    "slug": "01-01-definition",
+    "title": "Ce qu'OpenClaw est (et n'est pas)",
+    "url": "01-01-definition.html",
+    "body": "1.1 -- Ce qu'OpenClaw est (et n'est pas) A qui s'adresse cette section : Toute personne qui decouvre OpenClaw ou qui l'utilise sans en avoir un modele mental clair. Temps de lecture : 10 minutes. Difficulte : Debutant. Contexte La plupart des gens rencontrent OpenClaw a travers une demo, un tweet, ou une recommandation. Ils voient quelque chose d'impressionnant, essaient de le reproduire, et se retrouvent perdus. La raison est simple : ils n'ont pas le bon modele mental. Cette section vous donne ce modele. Ce qu'OpenClaw est OpenClaw est un framework d'agents. Il permet de construire et faire tourner des assistants IA capables de prendre des actions, pas seulement de repondre a des questions. La difference est fondamentale. Un chatbot classique attend votre question et repond. Un agent Ope"
+  },
+  {
+    "slug": "01-02-proactif-reactif",
+    "title": "La distinction proactif vs reactif",
+    "url": "01-02-proactif-reactif.html",
+    "body": "1.2 -- La distinction proactif vs reactif A qui s'adresse cette section : Tout utilisateur qui veut comprendre ce qui fait la difference entre un assistant qui attend et un assistant qui avance. Temps de lecture : 10 minutes. Difficulte : Debutant. Contexte La plupart des outils IA que vous utilisez aujourd'hui sont reactifs. Vous posez une question, ils repondent. Vous donnez une instruction, ils executent. Puis ils attendent. En silence. C'est utile, mais c'est le premier palier. Et la majorite des utilisateurs restent bloques a ce palier. La spirale de Dennis Steinberg Dennis Steinberg a formalise une progression en quatre etapes pour decrire ce qu'un agent IA devrait pouvoir faire : Comprendre : L'agent sait interpreter votre contexte. Il ne repond pas dans le vide -- il sait qui vous "
+  },
+  {
+    "slug": "01-03-comparaison",
+    "title": "OpenClaw vs les autres assistants IA",
+    "url": "01-03-comparaison.html",
+    "body": "1.3 -- OpenClaw vs les autres assistants IA A qui s'adresse cette section : Quiconque se demande \"pourquoi ne pas simplement utiliser ChatGPT / Claude.ai / Copilot ?\" Temps de lecture : 10 minutes. Difficulte : Debutant. Contexte La question est legitime. Il existe deja des outils IA puissants, faciles d'acces, qui ne demandent aucune configuration. Pourquoi se compliquer la vie ? Cette section repond sans detour. OpenClaw n'est pas meilleur que tout -- il est different. La question n'est pas \"quel est le meilleur outil ?\" mais \"quel outil pour quel usage ?\" Comparaison honnete ChatGPT / Claude.ai (interfaces conversationnelles grand public) Ce qu'ils font bien : repondre a des questions, rediger du texte, analyser des documents, brainstormer. Ils sont excellents en mode reactif, avec zero"
+  },
+  {
+    "slug": "01-04-souverainete",
+    "title": "Pourquoi la souverainete compte pour un entrepreneur",
+    "url": "01-04-souverainete.html",
+    "body": "1.4 -- Pourquoi la souverainete compte pour un entrepreneur A qui s'adresse cette section : Entrepreneurs, dirigeants de TPE/PME, independants qui utilisent des outils IA dans un contexte professionnel. Temps de lecture : 8 minutes. Difficulte : Debutant. Contexte Le mot \"souverainete\" sonne abstrait. Dans le contexte IA, il est tres concret : c'est la question de savoir qui controle vos donnees, qui peut y acceder, et ce qui se passe si le fournisseur change ses regles du jeu. Ce que \"souverainete des donnees\" signifie en pratique Quand vous utilisez ChatGPT ou Claude.ai via leur interface web, vos donnees -- vos questions, vos documents, le contexte de vos conversations -- transitent par les serveurs du fournisseur. En general : - Vous n'avez pas de garantie contractuelle forte sur ce qu"
+  },
+  {
+    "slug": "01-05-architecture-mentale",
+    "title": "L'architecture mentale avant de commencer",
+    "url": "01-05-architecture-mentale.html",
+    "body": "1.5 -- L'architecture mentale avant de commencer A qui s'adresse cette section : Toute personne qui va installer et configurer OpenClaw. Lisez ceci avant de toucher au terminal. Temps de lecture : 12 minutes. Difficulte : Intermediaire. Contexte Avant de lancer le moindre , vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir. Les 3 couches Toute installation OpenClaw s'organise en trois couches superposees : > Le gateway est l'element transversal qui connecte les trois couches. C'est par lui que vos commandes arrivent, que les agents communiquent, et que le systeme rend compte de son etat. Pensez-y comme le standard telephonique de votre installation : sans lui, les couches existent mais ne se parl"
+  },
+  {
+    "slug": "01-06-ce-que-vous-construisez",
+    "title": "Ce que vous allez construire dans ce guide",
+    "url": "01-06-ce-que-vous-construisez.html",
+    "body": "1.6 -- Ce que vous allez construire dans ce guide A qui s'adresse cette section : Tout lecteur qui veut voir la destination avant d'entamer le chemin. Temps de lecture : 8 minutes. Difficulte : Debutant. Contexte Avant de plonger dans les chapitres techniques, voici une vue d'ensemble de ce que vous aurez a la fin du parcours. Pas une promesse -- une cible. Le resultat final A la fin de ce playbook, si vous suivez les etapes, vous aurez : 1. Un serveur operationnel -- un VPS (ou une machine locale) avec une stack technique propre, securisee, maintenable. 2. Un ou plusieurs agents configures -- avec des roles clairs, une memoire structuree, des outils connectes. 3. Une base de connaissances -- vos documents, vos regles, votre contexte, organises pour que les agents puissent les exploiter. 4"
+  },
+  {
+    "slug": "01-07-journee-type",
+    "title": "A quoi ressemble une journee avec un agent IA ?",
+    "url": "01-07-journee-type.html",
+    "body": "1.7 -- A quoi ressemble une journee avec un agent IA ? > Vous vous demandez ce que ca change concretement au quotidien. Voici une journee type, heure par heure, pour quelqu'un comme vous. Le matin : vous arrivez, le briefing est deja pret Vous ouvrez Telegram sur votre telephone. Un message vous attend, envoye a 7h par votre agent : > Bonjour Marc. Hier soir, 2 demandes de devis sont arrivees par email. J'ai prepare les brouillons. Une facture est impayee depuis 12 jours — voulez-vous que j'envoie une relance ? Meteo : beau temps toute la journee. Vous repondez \"ok pour la relance\" depuis votre telephone en 10 secondes. L'agent envoie la relance. Vous partez sur votre chantier. Pendant la journee : l'agent gere ce que vous n'avez pas le temps de faire Un client potentiel envoie un email a "
+  },
+  {
+    "slug": "01-08-combien-ca-coute",
+    "title": "Combien ca coute vraiment ?",
+    "url": "01-08-combien-ca-coute.html",
+    "body": "1.8 -- Combien ca coute vraiment ? > La question la plus importante. Voici les vrais chiffres, sans surprise. Le cout mensuel Poste Ce que c'est Cout Serveur (VPS) Un petit ordinateur distant qui fait tourner votre agent 4-8 EUR/mois Intelligence artificielle Le \"cerveau\" de l'agent (via OpenRouter) 5-15 EUR/mois Canal de communication Telegram, email... Gratuit Total 10-25 EUR/mois C'est moins cher qu'un abonnement Spotify + Netflix. Le cout de demarrage Il y a deux options : Option 1 : Vous faites appel a un installateur Un professionnel installe et configure tout pour vous en 3 heures. Poste Cout Installation et configuration 300-500 EUR (unique) Formation d'1 heure Souvent inclus Vous n'avez besoin d'aucune competence technique. C'est l'equivalent d'appeler un electricien pour installe"
+  },
+  {
+    "slug": "01-09-est-ce-complique",
+    "title": "Est-ce que c'est complique pour moi ?",
+    "url": "01-09-est-ce-complique.html",
+    "body": "1.9 -- Est-ce que c'est complique pour moi ? > Vous n'etes pas developpeur. Vous ne connaissez rien a \"Docker\" ou \"SSH\". Est-ce que c'est quand meme pour vous ? Oui, et voici pourquoi. Deux chemins, deux niveaux de difficulte Chemin 1 : Vous faites installer (recommande) Difficulte : comme faire installer une alarme chez vous. Vous appelez un installateur. Il s'occupe de tout. En 3 heures, votre agent est pret. Vous recevez une formation de 30 minutes pour apprendre a utiliser Telegram avec votre agent. Ce que vous devez savoir faire : - Utiliser Telegram (aussi simple que WhatsApp) - Repondre \"ok\" ou \"non\" a un message - Dicter un devis-type une fois pour que l'agent apprenne votre format C'est tout. Chemin 2 : Vous installez vous-meme Difficulte : comme monter un meuble IKEA avec la noti"
+  },
+  {
+    "slug": "01-10-si-je-ne-fais-rien",
+    "title": "Qu'est-ce qui se passe si je ne fais rien ?",
+    "url": "01-10-si-je-ne-fais-rien.html",
+    "body": "1.10 -- Qu'est-ce qui se passe si je ne fais rien ? > Personne ne vous oblige a utiliser l'IA. Mais voici ce que ca signifie concretement de ne rien changer. Votre situation aujourd'hui Vous etes entrepreneur, artisan, ou vous gerez une petite structure. Votre journee : - 8-10h sur votre coeur de metier (chantiers, clients, production) - 2-3h le soir sur l'administratif (emails, devis, relances, compta) - Des prospects qui attendent 24-48h avant d'avoir une reponse - Des factures impayees que vous relancez \"quand vous y pensez\" - Aucune vision claire de votre semaine sans ouvrir 4 outils differents Ca fonctionne. Mais ca tient sur votre energie personnelle. Ce qui change autour de vous - Vos concurrents qui utilisent l'IA repondent aux prospects en 5 minutes. Vous repondez en 48h. Le clien"
+  },
+  {
+    "slug": "01-11-comment-se-lancer",
+    "title": "Comment je me lance ?",
+    "url": "01-11-comment-se-lancer.html",
+    "body": "1.11 -- Comment je me lance ? > Vous avez lu les sections precedentes. Vous etes convaincu (ou curieux). Voici les etapes concretes, dans l'ordre. Etape 1 : Choisir votre chemin Vous etes... Le bon chemin Temps Non-technique, pas envie de mettre les mains dans la technique Faites installer par un pro 3 heures A l'aise avec un ordinateur, envie d'apprendre Suivez le guide vous-meme 6-10 heures Developpeur ou profil technique Allez directement au 2-4 heures Etape 2 (chemin installe) : Contacter un installateur Envoyez un email a alexwillemetz@gmail.com en decrivant : 1. Votre activite (artisan, consultant, commerce...) 2. Votre plus gros probleme administratif (emails, devis, relances...) 3. Votre budget approximatif Vous recevrez un devis sous 48h. L'installation se fait a distance, en part"
+  },
+  {
+    "slug": "02-00-sommaire",
+    "title": "2. Installation",
+    "url": "02-00-sommaire.html",
+    "body": "2. Installation > Du VPS vierge a une instance OpenClaw fonctionnelle. Etape par etape, sans rien supposer. Ce chapitre couvre le parcours complet d'installation : preparation du serveur, mise en place de l'infrastructure (Docker, Vault, PostgreSQL), installation d'OpenClaw et de ses connexions, puis verification et automatisation du deploiement. C'est le chapitre le plus dense du playbook, avec 19 sections autonomes. A la fin, vous aurez un environnement de production fonctionnel et un script de deploiement idempotent. Temps total estime : 3 a 5 heures pour une premiere installation complete. Les sections sont numerotees dans l'ordre logique d'execution. Certaines dependances importantes : Docker (04) avant Vault (07) et PostgreSQL (08), Vault (07) avant OpenRouter (13) et Telegram (14), "
+  },
+  {
+    "slug": "02-00-preflight",
+    "title": "Checklist pre-vol -- Tout preparer avant de commencer",
+    "url": "02-00-preflight.html",
+    "body": "Checklist pre-vol -- Tout preparer avant de commencer Cette page existe parce qu'on en a marre de decouvrir un prerequis a la section 13 alors qu'on aurait pu le preparer avant de commencer. Tout ce qui suit doit etre pret AVANT de lancer la premiere commande du chapitre 2. Temps total de preparation : environ 30 minutes. 1. Comptes a creer Creez ces comptes maintenant. Pas \"plus tard\". Maintenant. Service URL d'inscription Ce qu'il faut noter Temps estime 1 Hetzner ou OVH (VPS) / Identifiants du compte, IP du serveur une fois commande 10 min 2 Tailscale Compte cree (connexion via Google, GitHub ou Microsoft) 2 min 3 OpenRouter Cle API (format ). Allez dans Settings > API Keys apres inscription 5 min 4 Telegram (bot) Dans l'app Telegram, cherchez et envoyez Token du bot (format ), username"
+  },
+  {
+    "slug": "02-01-prerequis",
+    "title": "Prerequis materiel et logiciel",
+    "url": "02-01-prerequis.html",
+    "body": "2.1 -- Prerequis materiel et logiciel Contexte Avant de toucher au serveur, il faut savoir ce qu'on achete, ce qu'on cree comme comptes et combien ca coute. Cette section liste tout ce qui est necessaire AVANT de commencer l'installation. Prerequis materiel : le VPS Configuration minimale testee et validee : Ressource Minimum Recommande CPU 4 vCPU 6 vCPU RAM 8 Go 16 Go Stockage 80 Go SSD 160 Go NVMe Bande passante 20 To/mois Illimite Localisation Europe (RGPD) Europe (RGPD) Fournisseurs testes : - Hetzner (recommande) : CPX31 a environ 15 EUR/mois. Excellent rapport qualite/prix. Datacenters en Allemagne et Finlande. - OVH : VPS Essential a environ 12 EUR/mois. Datacenters en France. Latence plus faible depuis la France. Systeme d'exploitation Ubuntu 24.04 LTS -- c'est la seule version tes"
+  },
+  {
+    "slug": "02-02-securiser-vps",
+    "title": "Securiser le VPS",
+    "url": "02-02-securiser-vps.html",
+    "body": "2.2 -- Securiser le VPS Contexte Un VPS neuf est expose a Internet avec un acces root par mot de passe. C'est une cible facile. Cette section blinde le serveur AVANT d'installer quoi que ce soit. Chaque commande est a executer dans l'ordre. Etape 1 : Premiere connexion en root Depuis votre poste local : Acceptez l'empreinte SSH si c'est la premiere connexion. Etape 2 : Mettre a jour le systeme Etape 3 : Creer un utilisateur non-root Ne travaillez JAMAIS en root au quotidien. Creez un utilisateur dedie : Repondez aux questions (mot de passe fort, le reste peut etre vide). Donnez-lui les droits sudo : Etape 4 : Configurer l'authentification par cle SSH Sur votre machine LOCALE (pas le VPS), generez une cle si vous n'en avez pas : Copiez la cle publique sur le VPS : Testez la connexion sans m"
+  },
+  {
+    "slug": "02-03-tailscale",
+    "title": "Reseau prive Tailscale",
+    "url": "02-03-tailscale.html",
+    "body": "2.3 -- Reseau prive Tailscale Contexte Tailscale cree un reseau prive (VPN mesh) entre vos machines. Chaque machine recoit une IP privee (en 100.x.x.x). Le principe fondamental : aucun service n'est expose sur l'IP publique du VPS. Vault, PostgreSQL, OpenClaw -- tout passe par Tailscale. Avantages : - Zero configuration reseau complexe - Chiffrement de bout en bout (WireGuard) - Fonctionne meme derriere un NAT - Gratuit jusqu'a 100 machines Etape 1 : Installer Tailscale sur le VPS Etape 2 : Demarrer et authentifier Cette commande affiche un lien d'authentification. Ouvrez ce lien dans votre navigateur et connectez-vous avec votre compte Tailscale. Etape 3 : Obtenir l'IP Tailscale Notez cette IP (format 100.x.x.x). C'est l'adresse que vous utiliserez pour tous les services. Etape 4 : Verifi"
+  },
+  {
+    "slug": "02-04-docker",
+    "title": "Docker et Docker Compose",
+    "url": "02-04-docker.html",
+    "body": "2.4 -- Docker et Docker Compose Contexte Docker fait tourner Vault, PostgreSQL et potentiellement d'autres services dans des conteneurs isoles. Docker Compose orchestre ces conteneurs avec un simple fichier YAML. Etape 1 : Installer les dependances Etape 2 : Ajouter le depot officiel Docker Etape 3 : Installer Docker Engine Etape 4 : Ajouter l'utilisateur au groupe docker Pour eviter de taper devant chaque commande docker : Etape 5 : Verifier l'installation Resultat attendu : \"Hello from Docker!\" dans la sortie. Note sur docker-compose vs docker compose Il existe deux syntaxes : Commande Version Status (avec tiret) v1, binaire Python separe Obsolete (avec espace) v2, plugin Docker natif A utiliser Ce playbook utilise exclusivement (avec espace). Si vous trouvez des tutoriels avec , remplac"
+  },
+  {
+    "slug": "02-05-nodejs-pm2",
+    "title": "Node.js et PM2",
+    "url": "02-05-nodejs-pm2.html",
+    "body": "2.5 -- Node.js et PM2 Contexte OpenClaw est ecrit en Node.js. PM2 est un gestionnaire de processus qui maintient OpenClaw en vie, gere les logs et redemarre automatiquement en cas de crash. On installe Node.js via nvm (Node Version Manager), pas via apt. Pourquoi : apt fournit souvent une version obsolete, et nvm permet de changer de version facilement. Etape 1 : Installer nvm Rechargez le shell : Verifiez : Etape 2 : Installer Node.js Installez la version LTS (Long Term Support) : Verifiez : Version attendue : Node.js 22.x ou superieur (LTS au moment de l'ecriture). Etape 3 : Installer PM2 Verifiez : Etape 4 : Configurer PM2 pour le demarrage automatique PM2 peut se relancer automatiquement au redemarrage du serveur : Cette commande affiche une ligne a copier-coller (elle commence par ). "
+  },
+  {
+    "slug": "02-06-structure-dossiers",
+    "title": "Structure de dossiers",
+    "url": "02-06-structure-dossiers.html",
+    "body": "2.6 -- Structure de dossiers Contexte Avant d'installer les services, on cree une arborescence coherente. Ca evite l'effet \"fichiers partout\" qui rend la maintenance impossible. Cette convention est utilisee dans tout le playbook. Etape 1 : Creer l'arborescence Arborescence resultante Conventions Regle Explication Chaque service Docker a son propre sous-dossier a la racine du sous-dossier On lance depuis ce dossier pour les scripts maison Tout script utilitaire va ici, avec pour les sauvegardes locales Les crons de backup ecrivent ici Pas de fichiers a la racine de Gardez le home propre Etape 2 : Rendre les scripts executables Pour l'instant le dossier est vide, mais prenez l'habitude : Erreurs courantes - Mettre tous les docker-compose.yml au meme endroit : Chaque service a son dossier. S"
+  },
+  {
+    "slug": "02-07-vault",
+    "title": "HashiCorp Vault",
+    "url": "02-07-vault.html",
+    "body": "2.7 -- HashiCorp Vault Contexte C'est la section la plus importante de tout le chapitre. Vault centralise TOUS les secrets : cles API, mots de passe base de donnees, tokens Telegram, etc. Pourquoi Vault et pas des fichiers .env ? Critere Fichiers .env Vault Versionnement Risque de commit accidentel Secrets jamais dans git Rotation Manuelle, oubliee Programmable, automatisee Audit Aucun Log de chaque acces Acces granulaire Tout ou rien Politiques fines par chemin Chiffrement au repos Non Oui (AES-256-GCM) Multi-service Copier le .env partout API centralisee En resume : les fichiers .env sont une dette technique. Vault est un investissement. Etape 1 : Creer le fichier Docker Compose Creez le fichier : IMPORTANT : Le port est lie a , pas a . Vault n'est accessible que localement (et via Tails"
+  },
+  {
+    "slug": "02-08-postgresql",
+    "title": "PostgreSQL",
+    "url": "02-08-postgresql.html",
+    "body": "2.8 -- PostgreSQL Contexte PostgreSQL stocke les donnees persistantes du systeme : sessions, historique des agents, metriques, etats. On le fait tourner dans Docker pour l'isolation et la portabilite. Le mot de passe sera stocke dans Vault (section precedente). Etape 1 : Recuperer le mot de passe depuis Vault Si vous avez suivi la section 07, le mot de passe est deja dans Vault : Notez ce mot de passe pour l'utiliser dans le docker-compose. Etape 2 : Creer le fichier Docker Compose Creez : Creez le fichier avec les identifiants (ne jamais le committer dans git) : > SECURITE : Le fichier contient le mot de passe en clair. Protegez-le ( ) et ajoutez a votre . Idealement, recuperez le mot de passe depuis Vault : Etape 3 : Demarrer PostgreSQL Verifiez : Etape 4 : Tester la connexion Resultat a"
+  },
+  {
+    "slug": "02-09-health-check",
+    "title": "Premier health check",
+    "url": "02-09-health-check.html",
+    "body": "2.9 -- Premier health check Contexte Avant d'aller plus loin, on verifie que toute l'infrastructure de base fonctionne. Ce script sera reutilise dans les sections suivantes, dans les crons de surveillance et dans le script de deploiement. Le script complet Creez le fichier : Verification Lancez le script : Sortie attendue Ajouter au cron (optionnel) Pour une verification toutes les 15 minutes avec log : Ajoutez : > Note : Les checks de ports verifient que les ports sont bien utilises (par les conteneurs attendus). Si un port est libre alors qu'un conteneur devrait tourner, c'est un indicateur de probleme. Avant un , vous pouvez aussi verifier qu'un port n'est PAS deja occupe par un autre processus avec . Diagnostic par symptome Symptome Cause probable Action Docker daemon ECHEC Docker pas "
+  },
+  {
+    "slug": "02-10-openclaw-install",
+    "title": "Installation OpenClaw",
+    "url": "02-10-openclaw-install.html",
+    "body": "2.10 -- Installation OpenClaw Contexte OpenClaw est l'outil central du systeme. Cette section couvre l'installation de la CLI et du runtime. L'infrastructure (Docker, Vault, PostgreSQL) doit etre en place avant cette etape. Etape 1 : Verifier les prerequis Si une version est insuffisante, retournez a la section correspondante. Etape 2 : Installer OpenClaw via npm Methode recommandee (installation globale) : > Attention : Le package s'appelle , pas (qui est Claude Code, un autre outil). Verifiez que la commande est disponible apres installation. Verifiez : Etape 3 : Premiere execution Lancez OpenClaw une premiere fois pour generer la structure du workspace : Suivez l'assistant de configuration initiale. Il vous demandera : - La cle API ou la methode d'authentification - Le modele par defaut"
+  },
+  {
+    "slug": "02-11-workspace",
+    "title": "Structure du workspace",
+    "url": "02-11-workspace.html",
+    "body": "2.11 -- Structure du workspace Contexte OpenClaw organise ses donnees dans un workspace ( ). Ce dossier est cree automatiquement au premier lancement. Comprendre sa structure est essentiel pour le debug, la sauvegarde et l'extension du systeme. Arborescence commentee Role de chaque dossier knowledge/ Contient les documents que l'agent peut consulter pour repondre. Le sous-dossier est le votre : mettez-y vos documents metier, specifications, guides internes. memory/ Memoire persistante. Le fichier est lu automatiquement a chaque session. Les agents y stockent ce qu'ils doivent retenir entre les conversations. sessions/ Historique complet de chaque conversation. Utile pour le debug et l'audit. Les vieilles sessions peuvent etre archivees. skills/ Les skills sont des capacites que l'agent peu"
+  },
+  {
+    "slug": "02-12-config-openclaw",
+    "title": "Configuration initiale OpenClaw",
+    "url": "02-12-config-openclaw.html",
+    "body": "2.12 -- Configuration initiale OpenClaw Contexte Le fichier est le centre de controle d'OpenClaw. Chaque champ affecte le comportement du systeme. Cette section detaille un fichier de configuration complet et commente. Fichier de configuration complet Creez ou editez : > Les noms de modeles OpenRouter changent regulierement. Avant de configurer, verifiez les noms actuels sur . Les noms ci-dessus etaient valides en avril 2026. Note : JSON ne supporte pas les commentaires. Retirez les lignes dans le fichier final, ou utilisez un pre-processeur JSON5. Les commentaires ci-dessus sont pour la documentation uniquement. Explication champ par champ instancename Identifiant unique de cette instance. Utile si vous avez plusieurs VPS. Apparait dans les logs et les notifications. model Champ Descripti"
+  },
+  {
+    "slug": "02-13-openrouter",
+    "title": "Connexion OpenRouter",
+    "url": "02-13-openrouter.html",
+    "body": "2.13 -- Connexion OpenRouter Contexte OpenRouter est une passerelle API qui donne acces a plusieurs modeles IA (Claude, Gemini, Mistral, Llama, etc.) via une seule cle API et un format unifie. Avantage principal : si un modele est indisponible, vous basculez sur un autre sans changer de code. Etape 1 : Obtenir la cle API 1. Connectez-vous sur 2. Allez dans Settings > API Keys 3. Creez une nouvelle cle 4. Copiez la cle (format : ) Etape 2 : Stocker la cle dans Vault Si ce n'est pas deja fait (section 07) : Verifiez : Etape 3 : Tester un appel API Test rapide avec curl pour verifier que la cle fonctionne : Resultat attendu : une reponse JSON contenant \"OK\" (ou equivalent) dans . Etape 4 : Verifier le credit Ce endpoint retourne votre solde et vos limites. Comparaison des modeles disponibles "
+  },
+  {
+    "slug": "02-14-telegram",
+    "title": "Connexion Telegram",
+    "url": "02-14-telegram.html",
+    "body": "2.14 -- Connexion Telegram Contexte Telegram sert de canal de notification et de commande pour OpenClaw. Le systeme envoie des alertes (health check en echec, deploiement termine, erreur critique) et peut recevoir des commandes simples via le bot. Etape 1 : Creer le bot avec @BotFather 1. Ouvrez Telegram et cherchez 2. Envoyez 3. Donnez un nom : (ou ce que vous voulez) 4. Donnez un username : (doit etre unique et finir par ) 5. BotFather vous donne un token (format : ) Copiez ce token. Etape 2 : Stocker le token dans Vault Etape 3 : Obtenir votre chatid Le chatid identifie la conversation ou le bot enverra les messages. Pour le trouver : 1. Envoyez un message quelconque a votre bot dans Telegram 2. Appelez l'API Telegram : 3. Dans la reponse, cherchez . Ce nombre est votre chatid. Etape 4 "
+  },
+  {
+    "slug": "02-15-gateway-systemd",
+    "title": "Gateway systemd",
+    "url": "02-15-gateway-systemd.html",
+    "body": "2.15 -- Gateway systemd Contexte La gateway OpenClaw est le point d'entree HTTP du systeme. Elle doit tourner en permanence, redemarrer automatiquement en cas de crash et demarrer au boot du serveur. systemd est le gestionnaire de services standard de Linux -- c'est lui qui gere ca. Etape 0 : Verifier les anciens services (CRITIQUE) Avant de creer un nouveau service, verifiez qu'il n'existe pas un ancien service OpenClaw qui pourrait entrer en conflit : Si un ancien service existe (par exemple , d'une installation precedente), desactivez-le et supprimez-le : > Pourquoi ? Deux services systemd avec le meme nom ou pointant vers le meme binaire vont se battre pour le meme port. Le symptome : la gateway crashe en boucle avec \"EADDRINUSE\" ou \"port already in use\". Ce probleme est tres difficile"
+  },
+  {
+    "slug": "02-16-verification-complete",
+    "title": "Verification post-installation",
+    "url": "02-16-verification-complete.html",
+    "body": "2.16 -- Verification post-installation Contexte Toutes les briques sont en place. Avant de passer au chapitre suivant, on verifie TOUT d'un coup. Si un point est rouge, le diagnostic par symptome vous dira quoi faire. Checklist des 11 points Executez chaque commande. Tout doit reussir. 1. Docker fonctionne Attendu : au moins 2 conteneurs (vault, postgres) en etat \"Up\". 2. Vault est unseal et accessible Attendu : 3. Les secrets sont lisibles Attendu : chaque commande retourne les champs stockes. 4. PostgreSQL repond Attendu : 5. Tailscale est connecte Attendu : votre machine apparait comme connectee. 6. Node.js est la bonne version Attendu : v22.x ou superieur. 7. OpenClaw est installe Attendu : numero de version affiche. 8. La gateway tourne Attendu : 9. Le health check passe Attendu : 0 e"
+  },
+  {
+    "slug": "02-17-git-init",
+    "title": "Initialiser le repo Git",
+    "url": "02-17-git-init.html",
+    "body": "2.17 -- Initialiser le repo Git Contexte Le code, les scripts et la configuration (hors secrets) doivent etre versionnes dans Git. Cette section cree le depot, configure le remote GitHub et met en place un .gitignore solide pour eviter de committer des secrets ou des fichiers inutiles. Etape 1 : Initialiser le depot Ou si vous travaillez directement dans votre home : Etape 2 : Configurer Git Etape 3 : Creer le .gitignore Creez a la racine du depot : Etape 4 : Copier les fichiers a versionner Les fichiers qui DOIVENT etre dans Git : Les fichiers qui NE DOIVENT PAS etre dans Git : - Tout ce qui est dans - Les dossiers des conteneurs - Les fichiers ou contenant des secrets - Les unseal keys de Vault Etape 5 : Creer le remote GitHub Creez un depot sur GitHub (prive recommande), puis : Si vous "
+  },
+  {
+    "slug": "02-18-claude-md",
+    "title": "CLAUDE.md",
+    "url": "02-18-claude-md.html",
+    "body": "2.18 -- CLAUDE.md Contexte est le fichier que tout agent IA lit en premier quand il travaille sur votre depot. C'est le contrat entre vous et l'agent : conventions, stack, commandes autorisees, regles. Sans ce fichier, l'agent improvise. Avec ce fichier, il suit VOS regles. Ce fichier va a la racine du depot Git. Le fichier CLAUDE.md complet Creez a la racine de votre depot : . ├── docker/ Fichiers Docker Compose (pas de donnees) ├── scripts/ Scripts bash utilitaires ├── CLAUDE.md Ce fichier ├── .gitignore Fichiers exclus du versionnement └── README.md Documentation du projet bash Deploiement ./scripts/deploy.sh Health check ./scripts/health-check.sh Backup base de donnees ./scripts/backup-postgres.sh Notification Telegram ./scripts/notify-telegram.sh \"message\" Logs gateway journalctl -u o"
+  },
+  {
+    "slug": "02-19-script-deploy",
+    "title": "Script de deploiement",
+    "url": "02-19-script-deploy.html",
+    "body": "2.19 -- Script de deploiement Contexte Le script automatise le deploiement complet : pull du code, installation des dependances, build et redemarrage des services. Il doit etre idempotent : executable plusieurs fois de suite sans effet de bord. Que le systeme soit a jour ou non, le resultat final est le meme. Le script complet Creez : Installation Utilisation Le script : 1. Verifie les prerequis (Docker, Vault) 2. Pull le code depuis Git 3. S'arrete si rien n'a change (idempotent) 4. Installe les dependances ( ) 5. Build le projet si un script build existe 6. Met a jour les conteneurs Docker si necessaire 7. Recharge les processus PM2 8. Redemarre la gateway 9. Lance le health check 10. Notifie via Telegram Proprietes du script Propriete Detail Idempotent Si le code est deja a jour, le scr"
+  },
+  {
+    "slug": "02-20-adapter-existant",
+    "title": "Adapter le playbook a un VPS existant",
+    "url": "02-20-adapter-existant.html",
+    "body": "Adapter le playbook a un VPS existant > Vous avez deja un serveur avec des services qui tournent. Cette section vous aide a diagnostiquer ce qui est deja en place et a adapter votre parcours. Diagnostic de l'existant Copiez et executez ces commandes pour obtenir un etat des lieux rapide : Notez les resultats. Ils determinent quelles sections vous pouvez sauter et lesquelles vous devez adapter. Tableau de correspondance Pour chaque composant existant, voici l'action a suivre : Composant Deja installe ? Action Docker + Compose Oui Sautez section 2.4. Verifiez la version (>= 24). Node.js (nvm) Oui Sautez section 2.5. Notez si c'est nvm ou global (impact section 2.15). Node.js (global/apt) Oui Sautez section 2.5. Le wrapper systemd sera different (pas de nvm.sh). Tailscale Oui Sautez section 2"
+  },
+  {
+    "slug": "02-21-gateway-coeur-systeme",
+    "title": "Le Gateway : le coeur de votre installation",
+    "url": "02-21-gateway-coeur-systeme.html",
+    "body": "2.21 -- Le Gateway : le coeur de votre installation > Vous avez installe tous les composants. Avant de passer a la configuration, arretez-vous ici. Cette section explique pourquoi le gateway est la brique la plus importante de tout votre setup — et pourquoi le maitriser change tout. Pour qui : tout le monde — entrepreneur, equipe technique, agent Temps de lecture : 15 minutes Difficulte : Debutant a intermediaire Contexte Dans les sections precedentes, vous avez installe Docker, Vault, PostgreSQL, Tailscale, Node.js et OpenClaw. Vous avez demarre le gateway en service systemd (section 2.15) et verifie que tout tournait (section 2.16). Mais une question reste : qu'est-ce que le gateway fait, concretement ? La plupart des gens le voient comme \"un service a demarrer\". C'est une erreur. Le gat"
+  },
+  {
+    "slug": "03-00-sommaire",
+    "title": "3. Configuration",
+    "url": "03-00-sommaire.html",
+    "body": "3. Configuration > Configurer OpenClaw pour votre contexte specifique : votre metier, vos outils, vos contraintes. L'installation (chapitre 2) vous donne un agent generique. La configuration en fait VOTRE agent. Ce chapitre couvre quatre axes : definir l'identite et les regles de l'agent, organiser sa memoire, le connecter a vos sources de donnees, et automatiser ses declenchements. A la fin, vous aurez un agent qui connait votre metier, respecte vos limites, et se reveille tout seul le matin. Debutant : commencez par 3.1, 3.2, 3.3, 3.5, 3.6, 3.10, 3.16. Le reste viendra apres. Presse : 3.1 (5 min), 3.5 (5 min), 3.16 (5 min) -- un agent fonctionnel en 15 minutes. Praticien : lisez dans l'ordre, chaque section construit sur la precedente. Sommaire Partie A -- L'agent - 3.1 -- Definir explic"
+  },
+  {
+    "slug": "03-01-perimetre-agent",
+    "title": "Definir le perimetre de l'agent",
+    "url": "03-01-perimetre-agent.html",
+    "body": "3.1 -- Definir le perimetre de l'agent Contexte Un agent sans perimetre clair est un agent dangereux. Pas parce qu'il va \"se rebeller\" -- parce qu'il va faire des choses que vous n'aviez pas anticipees. Envoyer un email a un client avec un ton inapproprie. Modifier un fichier de production. Prendre une decision financiere. Le perimetre n'est pas une liste de fonctionnalites. C'est un contrat de confiance entre vous et l'agent. La pyramide des droits Trois niveaux, du plus permissif au plus restrictif : Niveau 1 -- Lecture (toujours autorise) L'agent peut lire sans restriction : - Vos fichiers de configuration - Votre calendrier - Vos emails (en lecture seule) - Vos taches - Les documents dans knowledge/ Pourquoi sans restriction : un agent qui ne comprend pas le contexte produit des repons"
+  },
+  {
+    "slug": "03-02-soul-md",
+    "title": "SOUL.md : l'identite de l'agent",
+    "url": "03-02-soul-md.html",
+    "body": "3.2 -- SOUL.md : l'identite de l'agent Contexte SOUL.md definit QUI est l'agent. Pas ce qu'il fait (c'est CONSTITUTION.md). Pas ce qu'il sait (c'est knowledge/). Qui il EST. C'est sa personnalite, son ton, sa posture. Un meme agent avec le meme perimetre peut etre direct ou diplomatique, technique ou vulgarisateur, formel ou decontracte. SOUL.md fait cette difference. Ce que SOUL.md contient - Le nom de l'agent - Sa posture (comment il se comporte) - Son ton (comment il s'exprime) - Ses valeurs (ce qu'il priorise) - Ce qu'il n'est PAS (aussi important que ce qu'il est) Ce que SOUL.md ne contient PAS - Des instructions operationnelles (ca va dans CONSTITUTION.md) - Des informations sur vous (ca va dans USER.md) - Des connaissances metier (ca va dans knowledge/) - Des regles de perimetre (ca"
+  },
+  {
+    "slug": "03-03-user-md",
+    "title": "USER.md : votre profil pour l'agent",
+    "url": "03-03-user-md.html",
+    "body": "3.3 -- USER.md : votre profil pour l'agent Contexte SOUL.md definit qui est l'agent. USER.md definit qui VOUS etes. Sans USER.md, l'agent repond dans le vide. Il ne sait pas que vous detestez les longs emails. Que vous etes en phase de levee de fonds. Que vous ne travaillez jamais le vendredi apres-midi. Que votre interlocuteur principal s'appelle Marc et qu'il est directeur technique chez votre plus gros client. USER.md est le fichier le plus sous-estime de la configuration. C'est aussi celui qui fait la plus grande difference. L'onboarding interview (methode Steinberg) Steinberg recommande de commencer par une \"interview d'onboarding\" : 20 questions que l'agent vous pose pour construire votre profil. Voici la liste adaptee : Identite et role 1. Quel est votre role actuel ? Depuis combien"
+  },
+  {
+    "slug": "03-04-agents-md",
+    "title": "AGENTS.md : le registre des agents",
+    "url": "03-04-agents-md.html",
+    "body": "3.4 -- AGENTS.md : le registre des agents Contexte Quand vous n'avez qu'un seul agent, AGENTS.md semble superflu. Des que vous en avez deux, il devient indispensable. AGENTS.md est le registre central. Il repond a trois questions : - Quels agents existent ? - Que fait chacun ? - Dans quel ordre demarrent-ils ? Meme avec un seul agent, AGENTS.md clarifie la boot sequence : l'ordre dans lequel l'agent lit ses fichiers de configuration au demarrage. Ce que AGENTS.md contient - La liste des agents avec leur role - Le modele utilise par chacun - Les permissions de chaque agent - La boot sequence (ordre de lecture des fichiers) - Les dependances entre agents (si multi-agents) Boot sequence : l'ordre de lecture Quand l'agent demarre une session, il lit ses fichiers de configuration dans un ordre "
+  },
+  {
+    "slug": "03-05-constitution-md",
+    "title": "CONSTITUTION.md : les regles du jeu",
+    "url": "03-05-constitution-md.html",
+    "body": "3.5 -- CONSTITUTION.md : les regles du jeu Contexte SOUL.md dit qui est l'agent. CONSTITUTION.md dit ce qu'il a le DROIT de faire. C'est le contrat entre vous et l'agent. Pas une suggestion, pas une preference : un contrat. L'agent doit s'y conformer a chaque action. CONSTITUTION.md est le fichier que vous relirez le plus souvent, parce que vos regles evoluent avec la confiance. Un agent fraichement configure a des regles strictes. Un agent qui a fait ses preuves pendant 3 mois obtient plus d'autonomie. Les 3 niveaux d'autonomie Niveau 1 -- Execution autonome L'agent agit sans vous prevenir. Utilisez ce niveau pour les actions a faible risque et haute frequence. Niveau 2 -- Execution avec notification L'agent agit, puis vous previent. Pour les actions a risque modere que vous voulez survei"
+  },
+  {
+    "slug": "03-06-trois-zones-memoire",
+    "title": "Les trois zones de memoire",
+    "url": "03-06-trois-zones-memoire.html",
+    "body": "3.6 -- Les trois zones de memoire Contexte Un agent sans memoire est un agent amnesique. Chaque session repart de zero. Vous repetez les memes choses. Il pose les memes questions. Un agent avec trop de memoire est un agent noye. Il melange le contexte d'il y a 6 mois avec celui d'aujourd'hui. Il cite des decisions obsoletes. Il traite comme actuel ce qui ne l'est plus. La solution de Steinberg : trois zones de memoire, chacune avec sa portee et ses regles. Les trois zones Memoire chaude : la session C'est la conversation en cours. Tout ce que vous dites, tout ce que l'agent repond, reste accessible pendant la session. Ce qui y va : tout. Questions, reponses, reflexions, essais, erreurs. Ce qui en sort : rien automatiquement. A la fin de la session, tout disparait SAUF ce que vous ou l'agen"
+  },
+  {
+    "slug": "03-07-memory-md",
+    "title": "MEMORY.md : la memoire collective",
+    "url": "03-07-memory-md.html",
+    "body": "3.7 -- MEMORY.md : la memoire collective Contexte MEMORY.md est le fichier le plus vivant de votre configuration. Il change chaque jour. Il se compresse chaque semaine. Il est lu a chaque demarrage de session. C'est la memoire tiede : ce qui s'est passe recemment et qui compte encore. Pas le passe lointain (knowledge/). Pas le present immediat (session). L'entre-deux. La regle des 80 lignes Steinberg est catégorique : MEMORY.md ne doit jamais depasser 80 lignes. Pourquoi 80 : - En dessous de 80, l'agent traite chaque ligne comme importante - Au-dessus de 80, l'agent commence a \"survoler\" et manque des informations - 80 lignes = environ 2 minutes de lecture pour l'agent au demarrage Ce n'est pas une suggestion. C'est une contrainte dure. Si MEMORY.md depasse 80 lignes, il faut compresser ou"
+  },
+  {
+    "slug": "03-08-knowledge",
+    "title": "Le dossier knowledge/",
+    "url": "03-08-knowledge.html",
+    "body": "3.8 -- Le dossier knowledge/ Contexte knowledge/ est la memoire froide de l'agent. Le savoir qui ne change pas chaque semaine. Les references, les processus, les informations metier durables. Contrairement a MEMORY.md (80 lignes, volatile), knowledge/ n'a pas de limite de taille globale. Mais chaque fichier doit rester lisible et cible : un fichier par sujet, 200 lignes max par fichier. Organisation par domaine Structure recommandee : Trois a quatre dossiers de premier niveau. Pas plus. Si vous avez besoin de plus, vous essayez probablement de documenter trop de choses. Regles d'organisation Un fichier par sujet Mauvais : Bon : Cross-reference plutot que duplication Si le processus de deploiement mentionne le monitoring, ne recopiez pas la section monitoring. Faites une reference : La dupl"
+  },
+  {
+    "slug": "03-09-principe-une-source",
+    "title": "Une source a la fois (principe de Steinberg)",
+    "url": "03-09-principe-une-source.html",
+    "body": "3.9 -- Une source a la fois (principe de Steinberg) Contexte Vous avez configure l'agent. SOUL.md, USER.md, CONSTITUTION.md, MEMORY.md, knowledge/ -- tout est en place. Maintenant vous voulez connecter vos outils : calendrier, email, CRM, Notion, Slack, base de donnees, API metier... Stop. Une source a la fois. C'est le principe de Steinberg le plus contre-intuitif. L'instinct dit \"tout connecter pour que l'agent ait une vue complete.\" L'experience dit \"chaque source ajoutee augmente le bruit plus vite que le signal.\" Pourquoi une seule source a la fois Chaque nouvelle connexion augmente trois choses : 1. Le cout en tokens. Chaque source injectee dans le contexte consomme de la fenetre. Calendrier + emails + taches + CRM = un contexte qui explose avant meme que vous ayez pose votre questio"
+  },
+  {
+    "slug": "03-10-calendrier",
+    "title": "Calendrier d'abord, toujours (principe de Steinberg)",
+    "url": "03-10-calendrier.html",
+    "body": "3.10 -- Calendrier d'abord, toujours (principe de Steinberg) Contexte Si vous ne connectez qu'une seule source, connectez le calendrier. C'est la premiere connexion, sans exception. Steinberg est formel : le calendrier est le signal le plus honnete de votre vie professionnelle. Pas ce que vous dites que vous faites. Pas ce que vous aimeriez faire. Ce que vous faites REELLEMENT. Les 4 raisons de commencer par le calendrier 1. Le calendrier ne ment pas Vos emails sont bruyants. Vos taches sont incompletes. Votre CRM est desynchronise. Mais votre calendrier reflete vos engagements reels. Si c'est dans le calendrier, ca va se passer (ou ca aurait du). 2. Le calendrier donne le tempo Un agent qui connait votre calendrier sait : - Que vous etes en reunion de 10h a 11h (ne pas deranger) - Que vou"
+  },
+  {
+    "slug": "03-11-taches",
+    "title": "Taches : la pression invisible",
+    "url": "03-11-taches.html",
+    "body": "3.11 -- Taches : la pression invisible Contexte Le calendrier montre ce qui est PLANIFIE. Les taches montrent ce qui est REEL mais pas encore planifie. C'est la pression invisible : les choses que vous devez faire mais qui n'ont pas de creneau. Le rapport a finir. La relance a envoyer. Le bug a corriger. Ces elements ne sont pas dans le calendrier, mais ils pesent sur chaque decision de priorisation. Un agent qui voit votre calendrier mais pas vos taches croit que vos creneaux libres sont vraiment libres. Ils ne le sont pas. Calendrier + taches = vision complete Calendrier Taches Ce qui a une date et une heure Ce qui a une deadline (ou pas) Engagements avec d'autres Engagements avec vous-meme Planifie Non planifie mais reel Visible par les autres Souvent prive L'agent a besoin des deux pou"
+  },
+  {
+    "slug": "03-12-email-messages",
+    "title": "Email et messages",
+    "url": "03-12-email-messages.html",
+    "body": "3.12 -- Email et messages Contexte L'email est la source la plus volumineuse et la plus bruitee. C'est pour ca qu'elle vient en troisieme position, apres le calendrier et les taches. Connecter l'email a un agent mal configure, c'est lui donner un tuyau d'incendie quand il a besoin d'un verre d'eau. Connexion email Configuration L'agent va : 1. Demander le fournisseur (Gmail, Outlook, IMAP generique) 2. Configurer l'authentification (OAuth recommande, pas de mot de passe en clair) 3. Definir la portee initiale Portee recommandee au demarrage Droit Recommandation Lecture des emails recus Oui -- 48h glissantes Lecture des emails envoyes Oui -- pour le contexte des conversations Brouillon de reponse Oui -- l'agent prepare, vous envoyez Envoi direct Non -- ajoutez apres plusieurs semaines de co"
+  },
+  {
+    "slug": "03-13-skill-custom",
+    "title": "Construire un skill custom (methode Steinberg)",
+    "url": "03-13-skill-custom.html",
+    "body": "3.13 -- Construire un skill custom (methode Steinberg) Contexte Les skills integres (calendrier, email, taches) couvrent les besoins generiques. Mais votre metier a des besoins specifiques. Un consultant veut interroger son CRM. Un e-commercant veut suivre ses commandes. Un dev veut monitorer ses deployments. C'est la que les skills custom entrent en jeu. Un skill custom est un module que l'agent utilise pour interagir avec une source de donnees ou un service externe specifique a votre contexte. Les 4 parties d'un skill Chaque skill custom contient exactement 4 parties : 1. Authentification Comment l'agent se connecte au service. 2. Requetes Ce que l'agent peut demander au service. 3. Perimetre Les limites du skill : ce qu'il peut voir, ce qu'il ne peut pas voir. 4. Garde-fous Les regles d"
+  },
+  {
+    "slug": "03-14-souverainete-donnees",
+    "title": "Souverainete des donnees",
+    "url": "03-14-souverainete-donnees.html",
+    "body": "3.14 -- Souverainete des donnees Contexte Votre agent manipule vos emails, votre calendrier, vos taches, vos donnees clients. La question n'est pas SI ces donnees sont sensibles, mais OU elles vivent et QUI y a acces. La souverainete des donnees n'est pas un sujet theorique. C'est une decision d'architecture qui impacte votre conformite legale, la confiance de vos clients, et votre capacite a changer de fournisseur. Ou vivent vos donnees Trois modeles : Local Toutes les donnees restent sur votre machine ou votre serveur. Avantages : - Controle total - Pas de dependance a un service tiers pour le stockage - Conformite RGPD simplifiee Inconvenients : - Maintenance a votre charge (backup, securite, mises a jour) - Acces limite a votre machine / reseau Cloud Les donnees vivent chez un fourniss"
+  },
+  {
+    "slug": "03-15-crons",
+    "title": "Les crons : automatisations planifiees",
+    "url": "03-15-crons.html",
+    "body": "3.15 -- Les crons : automatisations planifiees Contexte Un agent reactif repond quand vous lui parlez. Un agent proactif agit sans que vous le demandiez, a des moments definis. Les crons sont le mecanisme de proactivite. Un cron = une action planifiee qui se declenche a heure fixe. Le briefing du matin a 7h. Le recap du soir a 18h. Le triage email toutes les 2 heures. Le heartbeat qui verifie que tout fonctionne. Les 4 crons essentiels 1. Briefing matin Le plus important. Detail complet dans la section 3.16. Declenchement : lundi au vendredi, 7h00. 2. Recap soir Resume de la journee. Ce qui a ete fait, ce qui reste, ce qui a change. Declenchement : lundi au vendredi, 18h00. Le recap soir fait le lien avec le briefing du lendemain. Ce que le recap capture le soir, le briefing le presente le"
+  },
+  {
+    "slug": "03-16-briefing-matin",
+    "title": "Le briefing du matin (methode Steinberg)",
+    "url": "03-16-briefing-matin.html",
+    "body": "3.16 -- Le briefing du matin (methode Steinberg) Contexte Le briefing du matin est le test ultime de votre configuration. Si le briefing est bon, la configuration est bonne. S'il est generique, plat, ou hors sujet, le probleme est en amont : USER.md incomplet, calendrier non connecte, MEMORY.md vide. Steinberg utilise le briefing comme diagnostic : \"Montre-moi ton briefing, je te dirai ce qui manque dans ta config.\" Le prompt exact Si c'est generique, le probleme est en amont Un briefing generique ressemble a ca : Ce n'est pas un briefing. C'est un compteur. Les causes possibles : Symptome Cause probable Solution Pas de contexte sur les reunions USER.md sans interlocuteurs cles Completer USER.md Taches listees sans priorite Systeme de taches non priorise Prioriser les taches Emails mention"
+  },
+  {
+    "slug": "03-17-multi-agents",
+    "title": "Architecture multi-agents",
+    "url": "03-17-multi-agents.html",
+    "body": "3.17 -- Architecture multi-agents Contexte Un seul agent couvre 90% des besoins. Ce chapitre est pour les 10% restants. NE COMMENCEZ PAS PAR LA. Si vous lisez cette section avant d'avoir un agent principal stable et utile pendant au moins 4 semaines, fermez cette page et revenez plus tard. Le multi-agents resout un probleme precis : un seul agent ne peut pas tout faire bien. Pas parce qu'il manque de capacite, mais parce que des roles differents demandent des postures, des permissions et des connaissances differentes. Quand un seul agent ne suffit plus Signes qu'il est temps de passer au multi-agents : - SOUL.md contient des instructions contradictoires (\"sois direct\" ET \"sois diplomatique selon le contexte\") - CONSTITUTION.md a des regles qui s'appliquent a certaines taches mais pas d'aut"
+  },
+  {
+    "slug": "03-18-remote-mode",
+    "title": "Connecter deux installations OpenClaw (mode remote)",
+    "url": "03-18-remote-mode.html",
+    "body": "3.18 -- Connecter deux installations OpenClaw (mode remote) > Vous avez deux VPS avec OpenClaw, ou vous gerez l'installation d'un client. Voici comment les connecter pour surveiller, debugger ou collaborer a distance. Pour qui : integrateur, equipe multi-sites, ou agent qui supervise un autre agent Prerequis : deux installations OpenClaw fonctionnelles, idealement sur le meme reseau Tailscale Difficulte : Intermediaire Contexte OpenClaw supporte un mode qui permet a un client de se connecter a une gateway distante via WebSocket. C'est une architecture client-serveur, pas une federation : un VPS est le maitre (il heberge la gateway), l'autre est le client (il se connecte a distance). Quand connecter deux installations Cas d'usage Exemple Apprentissage Observer comment un agent plus mature f"
+  },
+  {
+    "slug": "03-19-terminal-interface",
+    "title": "Le terminal : votre interface quotidienne",
+    "url": "03-19-terminal-interface.html",
+    "body": "3.19 -- Le terminal : votre interface quotidienne > Le terminal n'est pas un outil de developpeur. C'est votre poste de pilotage. Cette section explique comment l'utiliser efficacement, comment le configurer, et pourquoi c'est la meilleure facon d'interagir avec OpenClaw. Pour qui : tout le monde Prerequis : installation terminee (chapitre 2), gateway fonctionnel Difficulte : Debutant Temps de lecture : 20 minutes Contexte OpenClaw est un systeme qui vit dans le terminal. Pas dans un navigateur web, pas dans une application desktop — dans un terminal. C'est un choix delibere : le terminal est rapide, direct, et ne necessite aucune infrastructure supplementaire. Si vous venez d'un monde ou tout passe par des interfaces graphiques, ca peut sembler intimidant. Cette section est la pour vous m"
+  },
+  {
+    "slug": "03-20-choisir-sa-stack",
+    "title": "Choisir sa stack : du minimum viable au setup complet",
+    "url": "03-20-choisir-sa-stack.html",
+    "body": "3.20 -- Choisir sa stack : du minimum viable au setup complet > Vous n'avez pas besoin de tout. Cette section vous aide a choisir les bons outils pour votre situation — et a comprendre ce que chacun apporte avant de l'installer. Pour qui : tout le monde Prerequis : installation de base terminee (chapitre 2) Difficulte : Debutant a intermediaire Temps de lecture : 15 minutes Contexte Quand on decouvre OpenClaw et son ecosysteme, il est tentant de tout installer : monitoring, dashboards, multi-agents, remote mode, bot Telegram, base de donnees, pipeline CI/CD... C'est une erreur. Chaque outil ajoute de la complexite. Chaque service supplementaire est un service a maintenir, a surveiller, a debugger. L'objectif n'est pas d'avoir la stack la plus complete — c'est d'avoir la stack la plus adapt"
+  },
+  {
+    "slug": "04-00-sommaire",
+    "title": "4. Personnalisation",
+    "url": "04-00-sommaire.html",
+    "body": "4. Personnalisation > Faire de votre agent LE votre -- votre voix, vos regles, vos workflows, votre identite. La configuration (chapitre 3) rend l'agent fonctionnel. La personnalisation le rend indispensable. Ce chapitre couvre le travail sur la voix et le ton de l'agent, la mise en place d'un systeme de taches, l'automatisation des routines recurrentes, et le cadrage de la confiance et de la securite. A la fin, vous aurez un agent qui parle comme vous, execute vos workflows, et sait exactement ou s'arretent ses droits. Pour les adaptations par pays (reglementation, ecosysteme local), voir le chapitre 7 (Localisation). Sommaire Partie A -- Identite et voix - 4.1 -- Rediger le texte fondateur qui determine comment l'agent pense, repond et se comporte - 4.2 -- Calibrer le registre de langue,"
+  },
+  {
+    "slug": "04-01-system-prompt",
+    "title": "Ecrire votre system prompt",
+    "url": "04-01-system-prompt.html",
+    "body": "4.1 -- Ecrire votre system prompt Contexte Le system prompt est le texte le plus important de votre setup. C'est la premiere chose que l'agent lit a chaque conversation. Il definit qui il est, ce qu'il sait faire, et comment il doit se comporter. Un bon system prompt = un agent utile des la premiere reponse. Un mauvais system prompt = des corrections permanentes. Structure recommandee Un system prompt efficace suit cet ordre : 1. Mission (2-3 phrases) Qui est l'agent, pour qui il travaille, quel est son role principal. 2. Contexte (ce qu'il doit savoir) Les faits permanents. Pas les details qui changent chaque semaine -- ceux-la vont dans la memoire. 3. Outils et acces Ce que l'agent peut utiliser. Pas la doc complete -- juste la liste et les limites. 4. Regles de comportement Les contrain"
+  },
+  {
+    "slug": "04-02-personnalite-ton",
+    "title": "Personnalite et ton",
+    "url": "04-02-personnalite-ton.html",
+    "body": "4.2 -- Personnalite et ton Contexte Le ton de votre agent n'est pas un detail cosmetique. C'est ce qui fait la difference entre un outil que vous utilisez avec plaisir et un outil que vous subissez. Un agent trop verbeux, vous arretez de lire. Trop sec, vous n'avez pas le contexte. Trop formel, ca sonne faux. Le but : que la reponse de l'agent ressemble a ce qu'un collegue competent vous dirait. Les axes de personnalite Direct vs diplomatique Direct : \"Ce script a un bug ligne 12. Le fix : [code].\" Diplomatique : \"J'ai remarque un point d'attention a la ligne 12 qui pourrait potentiellement causer un souci...\" Pour un usage technique quotidien, direct gagne. Toujours. Humoristique vs professionnel L'humour dans un agent technique est un piege. Ca marche la premiere fois, ca fatigue a la ce"
+  },
+  {
+    "slug": "04-03-iteration",
+    "title": "Iteration : la premiere version ne sera pas la bonne",
+    "url": "04-03-iteration.html",
+    "body": "4.3 -- Iteration : la premiere version ne sera pas la bonne Contexte Votre premier system prompt sera mauvais. Pas parce que vous etes mauvais -- parce que personne ne sait ce qu'il veut d'un agent avant de l'avoir utilise. C'est normal. Le prompt se decouvre en l'utilisant, pas en y reflechissant. Prevoyez 2-3 rounds d'iteration avant d'avoir un prompt qui sonne juste. Apres ca, des ajustements ponctuels quand le besoin change. Le processus d'iteration Round 1 : la version brute Ecrivez votre premier prompt (voir section 4.1). Utilisez-le pendant 2-3 jours. Notez chaque friction : - \"Il repond trop long\" - \"Il oublie que je veux du tutoiement\" - \"Il propose des solutions Windows alors que je suis sur Linux\" - \"Il me redemande le contexte a chaque fois\" Round 2 : le prompt de correction Ut"
+  },
+  {
+    "slug": "04-04-pourquoi-taches",
+    "title": "Pourquoi un systeme de taches",
+    "url": "04-04-pourquoi-taches.html",
+    "body": "4.4 -- Pourquoi un systeme de taches Contexte Un agent sans systeme de taches est un conseiller. Vous lui posez des questions, il repond. Vous oubliez de demander, il oublie de faire. Rien ne persiste entre les sessions. Un agent avec un systeme de taches est un partenaire. Il sait ce qui est en cours, ce qui est bloque, ce qui est termine. Il peut proposer la prochaine action sans que vous la formuliez. La difference n'est pas technique. C'est une difference de relation. Agent conseiller vs agent partenaire Conseiller Partenaire Memoire Session uniquement Persistante Initiative Repond aux questions Propose des actions Suivi Aucun Sait ou on en est Valeur Ponctuelle Cumulative Dependance A votre memoire A un systeme partage Le conseiller est utile. Le partenaire est indispensable. Commence"
+  },
+  {
+    "slug": "04-05-comment-taches",
+    "title": "Comment les taches se font",
+    "url": "04-05-comment-taches.html",
+    "body": "4.5 -- Comment les taches se font Contexte Avoir un systeme de taches ne suffit pas. Ce qui compte, c'est le workflow : qui propose quoi, qui decide, qui execute. Si vous ne definissez pas ce workflow, l'agent va soit tout faire sans demander (dangereux), soit ne rien faire sans qu'on lui dise (inutile). Le bon equilibre, selon le modele Steinberg : l'agent propose, vous decidez. Le workflow propose/decide 1. L'agent propose L'agent analyse les taches en cours, les deadlines, le contexte. Il propose : 2. Vous decidez Vous ne validez pas tout en bloc. Vous triez : - \"1 : oui, commence par le script.\" - \"2 : pas aujourd'hui.\" - \"3 : ajoute au planning semaine prochaine.\" C'est du triage. L'agent fait le travail de preparation (analyser, prioriser, formuler). Vous gardez le jugement (decider,"
+  },
+  {
+    "slug": "04-06-db-source-verite",
+    "title": "Base de donnees comme source de verite",
+    "url": "04-06-db-source-verite.html",
+    "body": "4.6 -- Base de donnees comme source de verite Contexte Un fichier TASKS.md marche pour 10-20 taches. Au-dela, ca devient penible : pas de filtre, pas d'historique, pas de requetes, conflits de merge si plusieurs agents ecrivent. La solution : une base de donnees PostgreSQL comme source de verite. Pourquoi PostgreSQL et pas SQLite ? Parce que votre agent tourne sur un VPS ou PostgreSQL est deja installe. Autant utiliser ce qui est la. Pourquoi DB > fichiers .md Fichier .md PostgreSQL Filtre par statut/priorite Manuel (grep) Historique des changements Git log (penible) Colonne Requetes complexes Impossible SQL standard Acces concurrent Conflits de merge Transactions Taches > 50 Illisible Pas de probleme Backup Avec le repo pgdump Le fichier .md reste utile comme vue (genere depuis la DB). Ma"
+  },
+  {
+    "slug": "04-07-reconnaitre-routine",
+    "title": "Reconnaitre une routine",
+    "url": "04-07-reconnaitre-routine.html",
+    "body": "4.7 -- Reconnaitre une routine Contexte Une routine, c'est une action que vous repetez avec le meme schema. Deployer un service, creer un backup, verifier les logs du matin. Quand vous faites la meme chose pour la 3eme fois, c'est un signal : ca pourrait etre automatise ou delegue a l'agent. Mais pas tout. Certaines routines ont besoin de votre jugement humain. L'art, c'est de distinguer les deux. Les criteres d'une routine automatisable Une tache est candidate a l'automatisation si elle remplit ces 3 conditions : 1. Repetition. Elle se produit 3+ fois avec le meme schema. 2. Previsibilite. Les etapes sont les memes a chaque fois, ou les variations sont connues a l'avance. 3. Risque faible. Si l'agent se trompe, les consequences sont reversibles ou mineures. Exemples de bonnes candidates -"
+  },
+  {
+    "slug": "04-08-dry-run",
+    "title": "Dry run avant confiance",
+    "url": "04-08-dry-run.html",
+    "body": "4.8 -- Dry run avant confiance Contexte Vous avez identifie une routine automatisable (section 4.7). Avant de la laisser tourner en autonome, vous la testez. Pas parce que vous ne faites pas confiance a l'agent -- parce que vous ne faites pas confiance a vos propres instructions. Le dry run revele les trous dans vos procedures. Mieux vaut les decouvrir en mode test qu'en production. Les 3 niveaux de confiance Niveau 1 : lecture seule (\"montre-moi\") L'agent execute la routine mais ne fait rien. Il affiche ce qu'il ferait. Resultat attendu : Vous validez : les commandes sont correctes ? Les seuils sont bons ? Il manque quelque chose ? Niveau 2 : action + validation (\"fais et montre\") L'agent execute mais demande validation avant chaque action consequente. C'est le mode entrainement. L'agent "
+  },
+  {
+    "slug": "04-09-workflows-md",
+    "title": "WORKFLOWS.md",
+    "url": "04-09-workflows-md.html",
+    "body": "4.9 -- WORKFLOWS.md Contexte Un workflow documente, c'est une routine que n'importe qui (vous, un autre dev, un autre agent) peut executer sans deviner les etapes. Si la procedure est dans votre tete, elle meurt quand vous changez d'outil ou quand vous oubliez. WORKFLOWS.md est le fichier qui contient toutes vos procedures standardisees. L'agent le lit, l'execute, et le met a jour quand une etape change. Format standardise Chaque workflow suit la meme structure : Exemples concrets Deploiement cockpit Creer une tache Rotation des secrets Organiser le fichier Un seul fichier WORKFLOWS.md avec une table des matieres : Quand le fichier depasse 500 lignes, decoupez en fichiers separes dans un dossier . Erreurs courantes Pas de section \"En cas d'erreur\". Tout va bien jusqu'au jour ou ca casse. S"
+  },
+  {
+    "slug": "04-10-rythme-hebdo",
+    "title": "Le rythme hebdomadaire",
+    "url": "04-10-rythme-hebdo.html",
+    "body": "4.10 -- Le rythme hebdomadaire Contexte Un agent sans rythme est reactif : il repond quand vous demandez. Un agent avec un rythme est proactif : il prepare ce dont vous avez besoin avant que vous le demandiez. Le rythme de base selon Steinberg : preview le lundi, review le vendredi. L'agent prepare les deux. Vous decidez et validez. Preview du lundi Le lundi matin, l'agent vous presente la semaine qui vient. Ce que l'agent prepare Ce que vous faites Vous lisez, vous ajustez. \"Inverse mardi et lundi.\" \"Ajoute la review PR de l'equipe.\" \"Le client n'a pas confirme, reporte la doc.\" 5 minutes. Votre semaine est cadree. Prompt pour configurer Ajoutez dans le system prompt : Review du vendredi Le vendredi, l'agent fait le bilan de la semaine ecoulee. Ce que l'agent prepare Ce que vous faites Vo"
+  },
+  {
+    "slug": "04-11-confiance-configuration",
+    "title": "La confiance est une configuration",
+    "url": "04-11-confiance-configuration.html",
+    "body": "4.11 -- La confiance est une configuration Contexte La confiance envers votre agent n'est pas un sentiment. C'est une configuration. Chaque action a un niveau de risque, et chaque niveau de risque a des regles. Si vous ne les ecrivez pas, vous allez osciller entre trop de confiance (\"fais tout\") et pas assez (\"montre-moi tout\"). Steinberg propose une pyramide : plus l'action est risquee, plus le controle est strict. La pyramide des droits Niveau 0 : lecture seule L'agent peut lire mais ne peut rien modifier. Actions : consulter des fichiers, lire des logs, afficher des statuts, faire des calculs. Controle : aucun necessaire. Risque zero. Niveau 1 : actions reversibles L'agent peut agir, mais l'action est facilement annulable. Actions : creer des fichiers, ecrire dans un fichier temporaire,"
+  },
+  {
+    "slug": "04-12-boundary-prompt",
+    "title": "Le boundary prompt",
+    "url": "04-12-boundary-prompt.html",
+    "body": "4.12 -- Le boundary prompt Contexte Le boundary prompt est la liste des choses que votre agent ne doit JAMAIS faire. Pas \"eviter\", pas \"sauf si necessaire\" -- JAMAIS. C'est le filet de securite. Vous l'ecrivez une fois, vous le mettez dans le system prompt ou dans un fichier dedie, et vous n'y touchez plus sauf pour ajouter une regle apres un incident. Steinberg compare ca a une constitution : on ne la reecrit pas chaque semaine, mais on peut l'amender. Pourquoi c'est necessaire Les agents LLM sont cooperatifs par defaut. Si vous demandez quelque chose de risque, l'agent va essayer de vous aider. C'est sa force et son danger. Sans boundary prompt : - \"Montre-moi le contenu de .env\" -> l'agent affiche les secrets. - \"Push --force sur main\" -> l'agent execute. - \"Supprime les vieux backups p"
+  },
+  {
+    "slug": "04-13-audit-acces",
+    "title": "Audit : que peut acceder votre agent ?",
+    "url": "04-13-audit-acces.html",
+    "body": "4.13 -- Audit : que peut acceder votre agent ? Contexte Vous avez configure votre agent, defini les boundaries, ecrit le system prompt. Mais savez-vous vraiment ce qu'il peut faire ? La realite de ses acces correspond-elle a votre intention ? L'audit repond a cette question. C'est un inventaire : ce que l'agent peut lire, ecrire, executer, et ce que ca coute. Le prompt auto-audit Demandez a votre agent de s'auditer : Verifier realite vs intention L'audit revele souvent des surprises : Intention Realite Action Lecture seule sur /opt Lecture + ecriture Restreindre les permissions Pas d'acces aux backups Peut lire /var/backups Changer les permissions du dossier SELECT uniquement sur DB L'utilisateur a tous les droits Creer un role PostgreSQL read-only Pas d'acces aux secrets Peut lire .env De"
+  },
+  {
+    "slug": "04-14-config-bilingue",
+    "title": "Configuration bilingue",
+    "url": "04-14-config-bilingue.html",
+    "body": "4.14 -- Configuration bilingue Contexte Si vous travaillez en francais et en anglais -- clients francophones, documentation en anglais, code en anglais, communications en francais -- votre agent doit savoir quand utiliser quelle langue. Sans instruction claire, il va basculer de facon impredictible. Les trois modes Mode 1 : francais uniquement Quand l'utiliser : usage personnel, equipe francophone, pas de clients anglophones. Mode 2 : anglais uniquement Quand l'utiliser : equipe internationale, documentation open source, clients anglophones. Mode 3 : bilingue contextuel Quand l'utiliser : contexte mixte, freelance international, projet open source avec equipe locale. Regles de basculement Le basculement doit etre previsible. Definissez les declencheurs : Declencheur Langue Conversation dir"
+  },
+  {
+    "slug": "05-00-sommaire",
+    "title": "5. Maintenance",
+    "url": "05-00-sommaire.html",
+    "body": "5. Maintenance > Garder votre setup OpenClaw performant, fiable et digne de confiance dans la duree. Un agent bien installe et configure ne reste fiable que s'il est entretenu. Ce chapitre couvre les operations quotidiennes (logs, backups, health checks), la maintenance de l'agent lui-meme (prompt, memoire, erreurs), la gestion de l'infrastructure (mises a jour, secrets, monitoring), et les evolutions a moyen terme (multi-agents, changement de modele, mesure du ROI). A la fin, vous saurez diagnostiquer un probleme, prevenir les derives, et faire evoluer votre setup sans le casser. Pour les adaptations reglementaires par pays, voir le chapitre 7 (Localisation). Sommaire Partie A -- Operations quotidiennes - 5.1 -- Automatiser un diagnostic complet de l'infrastructure avec cron et alertes Te"
+  },
+  {
+    "slug": "05-01-health-check",
+    "title": "Health check quotidien",
+    "url": "05-01-health-check.html",
+    "body": "5.1 -- Health check quotidien Contexte Un health check, c'est 30 secondes de diagnostic qui evitent 3 heures de panne. Vous verifiez que tout tourne, chaque jour, automatiquement. Si quelque chose tombe, vous le savez avant vos utilisateurs. Ce qu'il faut verifier Composant Commande Attendu Containers Docker Tous \"Up\" Services web 200 Espace disque < 80% PostgreSQL Accepting connections Memoire Memoire libre > 20% Certificats SSL > 30 jours Vault Sealed: false Script complet : health-check.sh Automatiser avec cron Configurer les alertes Telegram 1. Creer un bot Telegram 1. Ouvrez Telegram, cherchez . 2. Envoyez . 3. Donnez un nom et un username. 4. Copiez le token. 2. Obtenir votre chat ID 1. Envoyez un message a votre bot. 2. Ouvrez . 3. Trouvez dans la reponse. 3. Stocker les credentials"
+  },
+  {
+    "slug": "05-02-logs",
+    "title": "Gestion des logs",
+    "url": "05-02-logs.html",
+    "body": "5.2 -- Gestion des logs Contexte Les logs sont votre boite noire. Quand tout va bien, personne ne les regarde. Quand ca casse, c'est la premiere chose qu'on ouvre. Si vous ne savez pas ou ils sont et comment les lire, vous perdez du temps au pire moment. Ou sont les logs Logs systeme (journalctl) Logs Docker Logs applicatifs Selon votre stack : Application Emplacement typique Node.js stdout (capte par Docker) ou PostgreSQL ou journalctl Nginx , Vault journalctl -u vault Scripts perso (ou vous les avez diriges) Health check Logs des sessions agent Si votre agent a un log de session : Comment lire les logs Le reflexe : fin du fichier d'abord Les logs les plus recents sont les plus utiles. Toujours commencer par la fin : Filtrer le bruit Correler par timestamp Quand un probleme survient, note"
+  },
+  {
+    "slug": "05-03-backups",
+    "title": "Backups",
+    "url": "05-03-backups.html",
+    "body": "5.3 -- Backups Contexte Un backup qui n'a jamais ete teste n'est pas un backup. C'est un espoir. Et l'espoir n'est pas une strategie. Ce qui compte : frequence adaptee, stockage separe, et test de restauration regulier. Quoi sauvegarder Element Methode Frequence Base PostgreSQL pgdump Quotidien Fichiers de config tar/rsync Hebdomadaire Docker volumes docker cp / tar Hebdomadaire Secrets (Vault) vault operator raft snapshot Hebdomadaire Code source Git (deja sauvegarde si pousse) A chaque push VPS complet Snapshot Hetzner Mensuel pgdump : backup de la base Script complet : backup-db.sh Cron Fichiers critiques Script : backup-files.sh Snapshots Hetzner Les snapshots Hetzner sauvegardent le VPS complet. C'est le dernier recours. Frequence : mensuelle ou avant une operation risquee (migration,"
+  },
+  {
+    "slug": "05-04-revoir-system-prompt",
+    "title": "Revoir le system prompt",
+    "url": "05-04-revoir-system-prompt.html",
+    "body": "5.4 -- Revoir le system prompt Contexte Un system prompt n'est pas un texte sacre. Votre contexte change, vos projets evoluent, vos besoins se precisent. Un prompt ecrit il y a 3 mois ne reflete plus votre realite d'aujourd'hui. Si vous ne le revoyez pas, il accumule des instructions obsoletes et l'agent degrade progressivement. Frequence - Review complete : tous les mois. - Ajustements ponctuels : quand un declencheur se manifeste (voir ci-dessous). - Condensation : tous les 3 mois (le prompt grossit naturellement, il faut le comprimer). Declencheurs d'une revision Vous devez revoir le prompt quand : 1. Un projet se termine. Les instructions liees a ce projet polluent le prompt. 2. Un outil change. Vous migrez de X vers Y mais le prompt mentionne encore X. 3. Vous corrigez l'agent regulie"
+  },
+  {
+    "slug": "05-05-derive-memoire",
+    "title": "Derive de la memoire",
+    "url": "05-05-derive-memoire.html",
+    "body": "5.5 -- Derive de la memoire Contexte La memoire de votre agent accumule des informations au fil du temps. Certaines deviennent obsoletes, d'autres se contredisent, d'autres encore sont devenues fausses sans que personne ne le remarque. C'est la derive de la memoire. Steinberg compare ca a un bureau : si vous ne rangez jamais, les documents importants se perdent sous les papiers perimes. Symptomes de la derive Vous avez un probleme de derive quand : - L'agent mentionne un projet que vous avez termine il y a 2 mois. - L'agent utilise un ancien workflow qui a ete remplace. - L'agent donne des informations contradictoires dans deux reponses proches. - L'agent \"se souvient\" d'une decision qui a ete annulee. - L'agent repete une information en la formulant differemment a chaque fois (signe de re"
+  },
+  {
+    "slug": "05-06-agent-se-trompe",
+    "title": "Quand l'agent se trompe",
+    "url": "05-06-agent-se-trompe.html",
+    "body": "5.6 -- Quand l'agent se trompe Contexte Votre agent va se tromper. Pas \"peut-etre\" -- va. Les LLM hallucinent, sur-interpretent, appliquent le mauvais contexte. Ce n'est pas un defaut, c'est une propriete. La question n'est pas \"comment empecher toute erreur\" mais \"comment detecter, corriger et prevenir\". Types d'erreurs Hallucination factuelle L'agent affirme quelque chose de faux avec assurance. Sur-interpretation L'agent interprete plus que ce que vous avez dit. Mauvais contexte L'agent applique une information d'un contexte a un autre. Execution incorrecte L'agent fait la bonne chose mais mal. Protocole de correction 1. Diagnostic Identifiez le type d'erreur. Utilisez ce prompt : 2. Correction Corrigez les degats d'abord, analysez apres. - Si l'agent a modifie un fichier : pour voir ce"
+  },
+  {
+    "slug": "05-07-maj-integrations",
+    "title": "Mettre a jour les integrations",
+    "url": "05-07-maj-integrations.html",
+    "body": "5.7 -- Mettre a jour les integrations Contexte Les API changent. Les outils evoluent. Un endpoint qui marchait hier retourne une erreur 404 demain. Votre agent utilise des integrations (Telegram, Vault, PostgreSQL, Docker, GitHub) et chacune peut casser independamment. L'enjeu : adapter sans tout casser. Quand une API change Signaux d'alerte - L'agent recoit des erreurs 4xx/5xx sur un endpoint qu'il utilisait. - Un email de l'editeur annonce un changement (deprecation notice). - Une commande CLI ne fonctionne plus apres une mise a jour. - Les resultats ont change de format (JSON avec des champs differents). Processus de mise a jour 1. Identifier : quel endpoint/commande a change. 2. Lire la doc : changelog, migration guide, nouvelle API. 3. Tester en isolation : appeler la nouvelle version"
+  },
+  {
+    "slug": "05-08-maj-systeme",
+    "title": "Mises a jour systeme",
+    "url": "05-08-maj-systeme.html",
+    "body": "5.8 -- Mises a jour systeme Contexte Les mises a jour systeme, c'est l'hygiene de base. Ne pas les faire = accumulation de failles de securite. Les faire n'importe comment = casser la production. L'equilibre : regulier, teste, documente. Ubuntu Mises a jour de securite (hebdomadaire) Mise a jour majeure (annuelle) Ubuntu 24.04 LTS -> 26.04 LTS : ne faites PAS ca un vendredi soir. 1. Snapshot Hetzner complet avant. 2. Lire les release notes. 3. Tester sur un VPS de test si possible. 4. en screen/tmux (pour survivre a une deconnexion SSH). 5. Tester tous les services apres. Configurer les mises a jour automatiques Docker Images Docker Docker Engine Attention : une mise a jour de Docker Engine peut redemarrer le daemon et donc arreter tous les containers. Planifiez une fenetre de maintenance."
+  },
+  {
+    "slug": "05-09-rotation-secrets",
+    "title": "Rotation des secrets",
+    "url": "05-09-rotation-secrets.html",
+    "body": "5.9 -- Rotation des secrets Contexte Un secret qui ne change jamais est un secret qui attend d'etre compromis. La rotation des secrets -- changer regulierement les mots de passe, tokens, et cles API -- est une pratique de securite fondamentale. Pas parce que vous avez ete compromis, mais pour limiter les degats si vous l'etes un jour sans le savoir. Pourquoi tourner - Fuite silencieuse. Un token a ete expose dans un log, un commit, un screenshot. Vous ne le savez pas. La rotation limite la fenetre d'exploitation. - Depart d'un collaborateur. Il avait acces aux secrets. Rotation immediate. - Compliance. Certains standards (SOC2, ISO 27001) exigent une rotation periodique. - Hygiene. Un secret de 2 ans est un vecteur d'attaque dormant. Quoi tourner et quand Secret Frequence Priorite Tokens A"
+  },
+  {
+    "slug": "05-10-monitoring",
+    "title": "Monitoring et alertes",
+    "url": "05-10-monitoring.html",
+    "body": "5.10 -- Monitoring et alertes Contexte Le monitoring repond a une question simple : est-ce que tout tourne ? Et si non, depuis quand et pourquoi ? Sans monitoring, vous decouvrez les pannes quand vos utilisateurs vous ecrivent. Avec monitoring, vous les decouvrez avant eux. Trois niveaux. Commencez par le premier. Montez quand le besoin se manifeste. Niveau 1 : simple (cron + Telegram) C'est le health check de la section 5.1 sur un cron, avec alerte Telegram. Zero infrastructure supplementaire. Ce que ca couvre - Services up/down. - Espace disque. - PostgreSQL accessible. - Certificats SSL valides. Ce que ca ne couvre pas - Historique des metriques (pas de graphes). - Temps de reponse. - Metriques applicatives (requetes/seconde, erreurs). - Monitoring depuis l'exterieur (si le serveur tomb"
+  },
+  {
+    "slug": "05-11-en-cas-de-panne",
+    "title": "En cas de panne",
+    "url": "05-11-en-cas-de-panne.html",
+    "body": "5.11 -- En cas de panne Contexte Une panne, ca arrive. Le reflexe : ne pas paniquer, diagnostiquer, corriger, prevenir. Ce guide vous donne un tableau de diagnostic par symptome pour les pannes les plus courantes. Reflexe en cas de panne 1. Ne pas toucher a tout en meme temps. Un diagnostic a la fois. 2. Noter l'heure. Quand ca a commence. Pour correler les logs. 3. Verifier le plus simple d'abord. Le serveur est-il up ? Le service tourne-t-il ? L'espace disque est-il plein ? Tableau diagnostic Le site/service ne repond pas Diagnostic Commande Fix Le container est arrete Le port n'est pas expose Verifier docker-compose.yml ports Nginx ne proxy pas Corriger la config, Le service crash au demarrage Lire l'erreur, corriger, rebuild DNS ne pointe pas Verifier la config DNS Prevention : health "
+  },
+  {
+    "slug": "05-12-deuxieme-agent",
+    "title": "Quand ajouter un deuxieme agent",
+    "url": "05-12-deuxieme-agent.html",
+    "body": "5.12 -- Quand ajouter un deuxieme agent Contexte Un agent, ca marche bien pour un contexte. Quand le contexte grossit trop -- trop de projets, trop de responsabilites, trop de contexte a maintenir -- la qualite des reponses baisse. C'est le signal qu'il est peut-etre temps d'ajouter un deuxieme agent. Signes qu'il est temps 1. Le system prompt depasse 500 mots et vous ne pouvez plus condenser sans perdre du contexte critique. 2. Les domaines sont disjoints. Votre agent gere a la fois l'infra et la communication client. Ce sont deux competences differentes avec des regles differentes. 3. Les erreurs de contexte augmentent. L'agent applique les regles du projet A au projet B. Il confond les clients. Il melange les workflows. 4. Le cout tokens explose. Trop de memoire, trop de contexte charge"
+  },
+  {
+    "slug": "05-13-migrer-modele",
+    "title": "Migrer vers un autre modele",
+    "url": "05-13-migrer-modele.html",
+    "body": "5.13 -- Migrer vers un autre modele Contexte Le monde des LLM bouge vite. Un nouveau modele sort, les prix changent, les performances evoluent. Vous allez peut-etre vouloir migrer de Claude vers GPT (ou l'inverse), ou tester un modele open source. Le risque : casser ce qui marchait. Quand migrer Bonnes raisons : - Cout. Le nouveau modele est significativement moins cher pour des performances equivalentes. - Performance. Meilleure qualite de reponse pour votre cas d'usage specifique. - Feature. Le nouveau modele supporte quelque chose dont vous avez besoin (vision, plus de contexte, outils specifiques). - Disponibilite. Votre modele actuel a des problemes de fiabilite ou de rate limiting. Mauvaises raisons : - \"C'est nouveau, ca doit etre mieux.\" Pas toujours. - \"Tout le monde migre.\" Votre"
+  },
+  {
+    "slug": "05-14-mesurer-roi",
+    "title": "Mesurer le ROI",
+    "url": "05-14-mesurer-roi.html",
+    "body": "5.14 -- Mesurer le ROI Contexte \"L'agent me fait gagner du temps.\" OK, combien ? Si vous ne mesurez pas, vous ne savez pas. Et si vous ne savez pas, vous ne pouvez pas justifier le cout, ni optimiser l'usage, ni decider si ca vaut le coup de continuer. Mesurer le ROI d'un agent AI, c'est concret. Pas de la philosophie. Les trois axes du ROI 1. Temps gagne Le plus tangible. Comparez le temps avec et sans agent. Comment mesurer Pendant 2 semaines, tracez : Calcul financier Exemple concret : Meme avec des estimations conservatrices, le ROI est generalement massif. Le probleme n'est pas le ROI, c'est de le mesurer pour savoir ou optimiser. 2. Decisions ameliorees Plus difficile a quantifier, mais reel. L'agent vous aide a prendre de meilleures decisions parce qu'il : - Analyse des donnees que "
+  },
+  {
+    "slug": "05-15-diagnostiquer-gateway",
+    "title": "Diagnostiquer et monitorer le gateway",
+    "url": "05-15-diagnostiquer-gateway.html",
+    "body": "5.15 -- Diagnostiquer et monitorer le gateway > Le gateway est le premier composant a verifier quand quelque chose ne fonctionne pas. Cette section vous donne les reflexes, les commandes, et les scenarios de diagnostic specifiques au gateway. Pour qui : tout le monde Prerequis : gateway fonctionnel (section 2.15), terminal configure (section 3.19) Difficulte : Debutant a intermediaire Temps de lecture : 15 minutes Contexte La section 5.11 (En cas de panne) couvre les diagnostics generaux. Mais le gateway merite sa propre section de diagnostic, pour une raison simple : quand le gateway ne fonctionne pas, rien ne fonctionne. Le gateway est comme le standard telephonique d'une entreprise. Si le standard tombe, personne ne peut appeler personne — meme si les telephones individuels marchent par"
+  },
+  {
+    "slug": "06-00-sommaire",
+    "title": "6. Cas d'usage",
+    "url": "06-00-sommaire.html",
+    "body": "6. Cas d'usage > Des cas concrets, documentes par des praticiens. Comment ils utilisent OpenClaw, ce qu'ils ont configure, ce qui a change. Ce chapitre rassemble des retours d'experience reels : entrepreneurs, freelances, equipes techniques et professions reglementees partagent leur configuration, leurs resultats et leurs erreurs. Chaque cas suit un format standard (contexte, probleme, configuration, resultat, lecons, template reutilisable). A la fin, vous aurez des modeles concrets pour adapter OpenClaw a votre propre situation. Lisez d'abord le cas le plus proche de votre profil, puis explorez les autres pour decouvrir des patterns reutilisables. Sommaire Partie A -- Entrepreneurs et freelances - 6.1 -- Deux associes qui orchestrent des agents IA pour gerer clients, projets et livraisons"
+  },
+  {
+    "slug": "06-01-agence-digitale",
+    "title": "01 -- Agence digitale (2 associes + agents IA)",
+    "url": "06-01-agence-digitale.html",
+    "body": "01 -- Agence digitale (2 associes + agents IA) Pour qui : duo d'entrepreneurs gerant une agence digitale avec des agents IA comme force de travail principale Temps de mise en place : 2 a 4 semaines Difficulte : Intermediaire a Avance Contexte Deux associes lancent une agence digitale. Leur particularite : l'equipe permanente se limite a eux deux. Le reste de la force de travail repose sur des agents IA configures pour executer des taches operationnelles -- redaction, recherche, communication, gestion de projet. Le defi : creer un systeme nerveux central qui coordonne les humains et les agents, sans dependre d'un SaaS ferme, et en gardant le controle total sur les donnees. Probleme - Pas de visibilite centralisee sur les projets en cours - Les agents IA fonctionnent en silos (un par tache, "
+  },
+  {
+    "slug": "06-02-consultant-freelance",
+    "title": "02 -- Consultant freelance",
+    "url": "06-02-consultant-freelance.html",
+    "body": "02 -- Consultant freelance Pour qui : consultant independant travaillant seul, sans equipe technique Temps de mise en place : 1 a 2 jours Difficulte : Debutant Contexte Un consultant freelance gere une dizaine de clients en parallele. Son quotidien : reunions, propositions commerciales, suivi de projets, facturation, et beaucoup d'emails. Il n'a pas de VPS, pas d'equipe technique, et pas envie de maintenir une infrastructure serveur. Il veut un assistant IA qui l'aide a structurer sa journee, rediger plus vite, et ne rien oublier. Probleme - Les emails clients s'accumulent sans priorisation - Les propositions commerciales prennent trop de temps a rediger - Le suivi client repose sur la memoire et des notes dispersees - Pas de vision consolidee du temps passe par client - Les relances de fa"
+  },
+  {
+    "slug": "06-03-ecommerce",
+    "title": "03 -- E-commerce",
+    "url": "06-03-ecommerce.html",
+    "body": "03 -- E-commerce Pour qui : vendeur en ligne gerant une boutique (Shopify, WooCommerce, PrestaShop ou equivalent) Temps de mise en place : 3 a 5 jours Difficulte : Intermediaire Contexte Un vendeur en ligne gere une boutique avec quelques centaines de references. Il vend sur sa propre boutique et potentiellement sur des marketplaces. Il est seul ou avec un assistant a temps partiel. Son quotidien : commandes a traiter, questions clients a repondre, stock a surveiller, et des decisions d'approvisionnement a prendre. Il cherche un systeme qui automatise les taches repetitives sans dependre d'un SaaS supplementaire a 200 EUR/mois. Probleme - Les questions clients arrivent par email, formulaire de contact, et marketplaces -- reponses lentes ou oubliees - Le suivi de stock est manuel : ruptures"
+  },
+  {
+    "slug": "06-04-equipe-technique",
+    "title": "04 -- Equipe technique (5-15 personnes)",
+    "url": "06-04-equipe-technique.html",
+    "body": "04 -- Equipe technique (5-15 personnes) Pour qui : equipe de developpement ou d'operations de taille moyenne Temps de mise en place : 1 a 2 semaines Difficulte : Intermediaire Contexte Une equipe technique de 5 a 15 personnes travaille sur un ou plusieurs produits logiciels. Le code est sur GitHub ou GitLab. La documentation existe mais est rarement a jour. Les code reviews prennent du temps. Les nouveaux arrivants mettent des semaines a etre autonomes. L'equipe veut utiliser OpenClaw pour accelerer les taches repetitives sans remplacer le jugement humain sur les decisions d'architecture. Probleme - La documentation technique est obsolete ou incomplete - Les code reviews sont un goulot d'etranglement - L'onboarding des nouveaux developpeurs est lent et informel - Les decisions d'architectu"
+  },
+  {
+    "slug": "06-05-cabinet-comptable",
+    "title": "05 -- Cabinet comptable",
+    "url": "06-05-cabinet-comptable.html",
+    "body": "05 -- Cabinet comptable Pour qui : cabinet d'expertise comptable ou de gestion, de 3 a 20 collaborateurs Temps de mise en place : 2 a 3 semaines Difficulte : Avance (contraintes reglementaires) Contexte Un cabinet comptable gere des dizaines de dossiers clients simultanement. Chaque dossier a ses echeances fiscales, ses documents a collecter, ses declarations a produire. Les collaborateurs passent un temps considerable sur le triage de documents, les rappels clients, et la verification de conformite. Le cabinet veut utiliser OpenClaw pour automatiser les taches administratives repetitives tout en respectant strictement le RGPD et le secret professionnel. Probleme - Le triage des documents recus (factures, releves, pieces justificatives) est manuel et chronophage - Les echeances fiscales so"
+  },
+  {
+    "slug": "06-06-startup",
+    "title": "06 -- Startup early-stage",
+    "url": "06-06-startup.html",
+    "body": "06 -- Startup early-stage Pour qui : fondateurs de startup en phase de demarrage (pre-seed a seed), equipe de 2 a 8 personnes Temps de mise en place : 3 a 5 jours Difficulte : Intermediaire Contexte Une startup early-stage a des ressources limitees et des besoins disproportionnes. Les fondateurs portent tous les roles : produit, commercial, technique, finance, RH. Ils doivent communiquer regulierement avec leurs investisseurs, surveiller le marche, recruter les premiers employes, et construire le produit -- le tout avec un budget serre. OpenClaw peut devenir un multiplicateur de force en automatisant les taches a faible valeur ajoutee, liberant du temps pour les decisions strategiques. Probleme - Les investor updates sont rediges a la derniere minute, souvent incomplets - La veille concurr"
+  },
+  {
+    "slug": "06-07-contribuer",
+    "title": "07 -- Comment soumettre votre cas d'usage",
+    "url": "06-07-contribuer.html",
+    "body": "07 -- Comment soumettre votre cas d'usage Pour qui : toute personne ou equipe utilisant OpenClaw en situation reelle Temps requis : 30 minutes a 1 heure Difficulte : Debutant Pourquoi contribuer Les cas d'usage sont la partie la plus utile de ce playbook. Chaque nouveau cas aide d'autres praticiens a : - Evaluer si OpenClaw correspond a leur situation - Gagner du temps en reutilisant une configuration testee - Eviter les erreurs que d'autres ont deja faites Votre experience, meme partielle, a de la valeur. Un cas d'usage n'a pas besoin d'etre parfait pour etre utile. Format standard Chaque cas d'usage suit cette structure. Vous pouvez copier ce template directement. Option 1 : Soumettre via Issue GitHub C'est la methode la plus simple. Aucune connaissance de Git n'est requise. 1. Allez sur"
+  },
+  {
+    "slug": "06-08-artisan-tpe",
+    "title": "Artisan et TPE : un assistant IA pour ceux qui font tout seuls",
+    "url": "06-08-artisan-tpe.html",
+    "body": "6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls > Vous etes plombier, electricien, consultant, photographe, ou coach. Vous etes seul ou presque. Vous faites tout : les clients, les devis, la compta, la com. Voici comment OpenClaw peut vous aider. Pour qui : artisan ou entrepreneur de TPE qui gere tout seul son activite Temps de mise en place : 3 heures (avec un installateur) Difficulte : Debutant Contexte Jean est artisan plombier a Montreuil. Il travaille seul. Ses journees : 7h sur les chantiers, puis le soir il repond aux clients, fait les devis, relance les impayes, met a jour son site. Il dort 5 heures par nuit. Il a entendu parler de \"l'IA\" par son comptable. Probleme - Il perd des clients parce qu'il repond aux demandes 48h apres - Ses devis prennent 30 minutes"
+  },
+  {
+    "slug": "07-00-sommaire",
+    "title": "7. Localisation",
+    "url": "07-00-sommaire.html",
+    "body": "7. Localisation > Le contenu du playbook est universel. Ce chapitre documente ce qui change selon le contexte local -- legislation, ecosysteme, outils, pratiques culturelles. Les chapitres 0 a 6 s'appliquent partout. Ce chapitre est le seul endroit ou le contenu differe par pays : cadre legal (RGPD, CCPA, PIPEDA...), fournisseurs locaux, conventions fiscales et culturelles. Consultez la fiche de votre pays pour adapter votre installation, ou contribuez une nouvelle locale si la votre manque. Voir pour le contrat linguistique complet du playbook. Sommaire - 7.1 -- Specificites RGPD, hebergement souverain, obligations fiscales et ecosysteme francais - 7.2 -- Cadre legal americain, fournisseurs cloud US, conventions et pratiques locales - 7.3 -- Canada (FR) -- pas encore cree - 7.4 -- United "
+  },
+  {
+    "slug": "07-00-en-US",
+    "title": "Locale: en-US — United States (baseline)",
+    "url": "07-00-en-US.html",
+    "body": "Locale: en-US — United States (baseline) > This is the reference locale. All other locales document differences from this baseline. > The playbook is written in EN-US — this file documents the implicit assumptions behind that default. Regulatory context Data privacy - No federal data protection law equivalent to GDPR (as of 2026) - State-level laws apply: CCPA (California), VCDPA (Virginia), others - For most individual entrepreneurs: local OpenClaw deployment = minimal regulatory exposure - Enterprise deployment: consult legal counsel on applicable state laws Business context - At-will employment standard — different implications for HR automations vs EU - No mandatory \"right to disconnect\" — but best practice to respect boundaries Local ecosystem Common infrastructure - AWS, Google Cloud"
+  },
+  {
+    "slug": "07-00-fr-FR",
+    "title": "Locale: fr-FR — France",
+    "url": "07-00-fr-FR.html",
+    "body": "Locale: fr-FR — France > This file documents what is specific to France when using OpenClaw in a business context. > Universal content is in chapters 1–6. Only the differences are here. Regulatory context RGPD (GDPR) OpenClaw processes personal data — emails, calendar, contacts. In France, this falls under RGPD (Règlement Général sur la Protection des Données). Key implications for your configuration: - Data stored locally on your machine or VPS = RGPD-compliant by default - Cloud integrations (Gmail, Google Calendar) = check your data processing agreements - If you deploy OpenClaw for clients or employees: you are the data controller — a privacy policy is required - Recommended: self-host on French infrastructure (OVHcloud, Scaleway) for maximum compliance AI Act (EU) As of 2026, the EU A"
+  }
+]
