@@ -167,21 +167,38 @@ volumes:
 Temps de mise en place : 4-8 heures.
 Cout : 0 EUR (self-hosted) + temps de maintenance.
 
+## Niveau 0 : le gateway lui-meme (avant tout outil)
+
+Avant d'installer le moindre outil de monitoring, exploitez ce que le gateway fait deja nativement. Voir la section 5.15 (Diagnostiquer et monitorer le gateway) pour les details.
+
+**En resume :** `openclaw gateway status` + `openclaw health` + un cron qui alerte via Telegram si le health check echoue. C'est le monitoring le plus fiable avec zero outil supplementaire.
+
+```bash
+# Cron toutes les 5 minutes — zero outil, zero container
+*/5 * * * * curl -sf http://127.0.0.1:3000/health > /dev/null || /chemin/alerte-telegram.sh "Gateway KO"
+```
+
+**Passez au niveau 1 uniquement quand le niveau 0 ne suffit plus** (par exemple, vous voulez surveiller d'autres services que le gateway).
+
 ## Recommandation
 
-**Commencez par le niveau 1.** Toujours. Ca prend 30 minutes et ca couvre 80% des besoins.
+**Commencez par le niveau 0 (gateway natif).** Si ca suffit, arretez-vous la. Beaucoup de setups solo n'ont jamais besoin d'aller plus loin.
+
+Passez au niveau 1 quand :
+- Vous avez d'autres services a surveiller (hors gateway).
+- Vous voulez un script centralise.
 
 Passez au niveau 2 quand :
-- Vous voulez un historique d'uptime.
+- Vous voulez un historique d'uptime avec des graphes.
 - Vous avez 5+ services a surveiller.
-- Vous voulez une page de statut.
+- Vous voulez une page de statut publique.
 
 Passez au niveau 3 quand :
-- Vous avez des SLA a respecter.
-- Vous avez besoin de metriques fines (latence p99, throughput).
-- Vous gerez plusieurs serveurs.
+- Vous avez des SLA contractuels a respecter.
+- Vous avez une equipe ops dediee qui consulte des dashboards.
+- Vous gerez 10+ services sur plusieurs serveurs.
 
-La plupart des setups solo n'auront jamais besoin du niveau 3.
+> **Realite :** La plupart des setups solo et petites equipes n'auront **jamais** besoin du niveau 3. Prometheus + Grafana sont des outils puissants, mais leur cout de maintenance est significatif. N'installez pas un outil de monitoring qui demande plus de maintenance que les services qu'il surveille. Voir la section 3.20 (Choisir sa stack) pour savoir quel niveau vous correspond.
 
 ## Erreurs courantes
 

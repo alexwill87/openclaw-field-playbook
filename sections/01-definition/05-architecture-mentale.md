@@ -13,11 +13,11 @@ lang: fr
 **Temps de lecture :** 12 minutes.
 **Difficulte :** Intermediaire.
 
-### Contexte
+## Contexte
 
 Avant de lancer le moindre `docker compose up`, vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir.
 
-### Les 3 couches
+## Les 3 couches
 
 Toute installation OpenClaw s'organise en trois couches superposees :
 
@@ -35,7 +35,16 @@ Toute installation OpenClaw s'organise en trois couches superposees :
 |  Qui sont vos agents                     |
 |  (roles, regles, limites, personnalite)  |
 +------------------------------------------+
+         |          |          |
+    ┌────▼──────────▼──────────▼────┐
+    │         GATEWAY               │
+    │  Le hub central qui relie     │
+    │  toutes les couches entre     │
+    │  elles et avec le monde       │
+    └───────────────────────────────┘
 ```
+
+> **Le gateway** est l'element transversal qui connecte les trois couches. C'est par lui que vos commandes arrivent, que les agents communiquent, et que le systeme rend compte de son etat. Pensez-y comme le standard telephonique de votre installation : sans lui, les couches existent mais ne se parlent pas. La section 2.21 approfondit ce role central.
 
 **Couche 1 -- Identite.** C'est le socle. Avant de donner des outils a un agent, definissez qui il est. Quel est son role ? Quelles sont ses limites ? Qu'a-t-il le droit de faire et de ne pas faire ? Un agent sans identite claire est un agent dangereux -- pas parce qu'il est malveillant, mais parce qu'il est imprevisible.
 
@@ -45,7 +54,7 @@ Toute installation OpenClaw s'organise en trois couches superposees :
 
 > **Principe :** Toujours construire de bas en haut. Identite d'abord, visibilite ensuite, action en dernier. Inverser cet ordre est la source la plus frequente de problemes.
 
-### Le concept de "piliers"
+## Le concept de "piliers"
 
 Un pilier est un **bloc fonctionnel** qui structure une installation OpenClaw. Pensez-y comme un domaine de responsabilite.
 
