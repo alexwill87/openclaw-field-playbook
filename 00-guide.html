@@ -53,32 +53,32 @@
 <a href="persona-agent.html">Focus Agents IA</a>
 <div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
-  <a href="00-guide.html" class="nav-chapter-title" class="active">0. Guide de lecture</a>
+  <a href="00-guide.html" class="nav-chapter-title" class="active" aria-current="page">Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">Définition</a>
 </div>
 <div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
-  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <a href="02-00-sommaire.html" class="nav-chapter-title">Installation</a>
 </div>
 <div class="nav-chapter">
-  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <a href="03-00-sommaire.html" class="nav-chapter-title">Configuration</a>
 </div>
 <div class="nav-chapter">
-  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <a href="04-00-sommaire.html" class="nav-chapter-title">Personnalisation</a>
 </div>
 <div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
-  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <a href="05-00-sommaire.html" class="nav-chapter-title">Maintenance</a>
 </div>
 <div class="nav-chapter">
-  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <a href="06-00-sommaire.html" class="nav-chapter-title">Cas d'usage</a>
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
-  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+  <a href="07-00-sommaire.html" class="nav-chapter-title">Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -94,12 +94,12 @@
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
 <div class="learning-objectives">
-  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
-    <span class="lo-icon">&#127891;</span>
+  <button type="button" class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')" aria-expanded="true" aria-controls="lo-list">
+    <span class="lo-icon" aria-hidden="true">&#127891;</span>
     Ce que vous allez apprendre
-    <span class="lo-arrow">&#9660;</span>
-  </div>
-  <ul class="lo-list">
+    <span class="lo-arrow" aria-hidden="true">&#9660;</span>
+  </button>
+  <ul class="lo-list" id="lo-list">
     <li><a href="#01-si-vous-etes-un-humain">0.1 -- Si vous etes un humain</a></li>
     <li class="toc-h3"><a href="#quel-lecteur-etes-vous">Quel lecteur etes-vous ?</a></li>
     <li class="toc-h3"><a href="#comment-lire-une-section">Comment lire une section</a></li>

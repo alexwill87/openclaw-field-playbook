@@ -13,67 +13,67 @@
   },
   {
     "slug": "01-01-definition",
-    "title": "1.1 -- Ce qu'OpenClaw est (et n'est pas)",
+    "title": "Ce qu'OpenClaw est (et n'est pas)",
     "url": "01-01-definition.html",
     "body": "1.1 -- Ce qu'OpenClaw est (et n'est pas) A qui s'adresse cette section : Toute personne qui decouvre OpenClaw ou qui l'utilise sans en avoir un modele mental clair. Temps de lecture : 10 minutes. Diff"
   },
   {
     "slug": "01-02-proactif-reactif",
-    "title": "1.2 -- La distinction proactif vs reactif",
+    "title": "La distinction proactif vs reactif",
     "url": "01-02-proactif-reactif.html",
     "body": "1.2 -- La distinction proactif vs reactif A qui s'adresse cette section : Tout utilisateur qui veut comprendre ce qui fait la difference entre un assistant qui attend et un assistant qui avance. Temps"
   },
   {
     "slug": "01-03-comparaison",
-    "title": "1.3 -- OpenClaw vs les autres assistants IA",
+    "title": "OpenClaw vs les autres assistants IA",
     "url": "01-03-comparaison.html",
     "body": "1.3 -- OpenClaw vs les autres assistants IA A qui s'adresse cette section : Quiconque se demande \"pourquoi ne pas simplement utiliser ChatGPT / Claude.ai / Copilot ?\" Temps de lecture : 10 minutes. Di"
   },
   {
     "slug": "01-04-souverainete",
-    "title": "1.4 -- Pourquoi la souverainete compte pour un entrepreneur",
+    "title": "Pourquoi la souverainete compte pour un entrepreneur",
     "url": "01-04-souverainete.html",
     "body": "1.4 -- Pourquoi la souverainete compte pour un entrepreneur A qui s'adresse cette section : Entrepreneurs, dirigeants de TPE/PME, independants qui utilisent des outils IA dans un contexte professionne"
   },
   {
     "slug": "01-05-architecture-mentale",
-    "title": "1.5 -- L'architecture mentale avant de commencer",
+    "title": "L'architecture mentale avant de commencer",
     "url": "01-05-architecture-mentale.html",
     "body": "1.5 -- L'architecture mentale avant de commencer A qui s'adresse cette section : Toute personne qui va installer et configurer OpenClaw. Lisez ceci avant de toucher au terminal. Temps de lecture : 12 "
   },
   {
     "slug": "01-06-ce-que-vous-construisez",
-    "title": "1.6 -- Ce que vous allez construire dans ce guide",
+    "title": "Ce que vous allez construire dans ce guide",
     "url": "01-06-ce-que-vous-construisez.html",
     "body": "1.6 -- Ce que vous allez construire dans ce guide A qui s'adresse cette section : Tout lecteur qui veut voir la destination avant d'entamer le chemin. Temps de lecture : 8 minutes. Difficulte : Debuta"
   },
   {
     "slug": "01-07-journee-type",
-    "title": "1.7 -- A quoi ressemble une journee avec un agent IA ?",
+    "title": "A quoi ressemble une journee avec un agent IA ?",
     "url": "01-07-journee-type.html",
     "body": "1.7 -- A quoi ressemble une journee avec un agent IA ? > Vous vous demandez ce que ca change concretement au quotidien. Voici une journee type, heure par heure, pour quelqu'un comme vous. Le matin : v"
   },
   {
     "slug": "01-08-combien-ca-coute",
-    "title": "1.8 -- Combien ca coute vraiment ?",
+    "title": "Combien ca coute vraiment ?",
     "url": "01-08-combien-ca-coute.html",
     "body": "1.8 -- Combien ca coute vraiment ? > La question la plus importante. Voici les vrais chiffres, sans surprise. Le cout mensuel Poste Ce que c'est Cout Serveur (VPS) Un petit ordinateur distant qui fait"
   },
   {
     "slug": "01-09-est-ce-complique",
-    "title": "1.9 -- Est-ce que c'est complique pour moi ?",
+    "title": "Est-ce que c'est complique pour moi ?",
     "url": "01-09-est-ce-complique.html",
     "body": "1.9 -- Est-ce que c'est complique pour moi ? > Vous n'etes pas developpeur. Vous ne connaissez rien a \"Docker\" ou \"SSH\". Est-ce que c'est quand meme pour vous ? Oui, et voici pourquoi. Deux chemins, d"
   },
   {
     "slug": "01-10-si-je-ne-fais-rien",
-    "title": "1.10 -- Qu'est-ce qui se passe si je ne fais rien ?",
+    "title": "Qu'est-ce qui se passe si je ne fais rien ?",
     "url": "01-10-si-je-ne-fais-rien.html",
     "body": "1.10 -- Qu'est-ce qui se passe si je ne fais rien ? > Personne ne vous oblige a utiliser l'IA. Mais voici ce que ca signifie concretement de ne rien changer. Votre situation aujourd'hui Vous etes entr"
   },
   {
     "slug": "01-11-comment-se-lancer",
-    "title": "1.11 -- Comment je me lance ?",
+    "title": "Comment je me lance ?",
     "url": "01-11-comment-se-lancer.html",
     "body": "1.11 -- Comment je me lance ? > Vous avez lu les sections precedentes. Vous etes convaincu (ou curieux). Voici les etapes concretes, dans l'ordre. Etape 1 : Choisir votre chemin Vous etes... Le bon ch"
   },
@@ -91,115 +91,115 @@
   },
   {
     "slug": "02-01-prerequis",
-    "title": "2.1 -- Prerequis materiel et logiciel",
+    "title": "Prerequis materiel et logiciel",
     "url": "02-01-prerequis.html",
     "body": "2.1 -- Prerequis materiel et logiciel Contexte Avant de toucher au serveur, il faut savoir ce qu'on achete, ce qu'on cree comme comptes et combien ca coute. Cette section liste tout ce qui est necessa"
   },
   {
     "slug": "02-02-securiser-vps",
-    "title": "2.2 -- Securiser le VPS",
+    "title": "Securiser le VPS",
     "url": "02-02-securiser-vps.html",
     "body": "2.2 -- Securiser le VPS Contexte Un VPS neuf est expose a Internet avec un acces root par mot de passe. C'est une cible facile. Cette section blinde le serveur AVANT d'installer quoi que ce soit. Chaq"
   },
   {
     "slug": "02-03-tailscale",
-    "title": "2.3 -- Reseau prive Tailscale",
+    "title": "Reseau prive Tailscale",
     "url": "02-03-tailscale.html",
     "body": "2.3 -- Reseau prive Tailscale Contexte Tailscale cree un reseau prive (VPN mesh) entre vos machines. Chaque machine recoit une IP privee (en 100.x.x.x). Le principe fondamental : aucun service n'est e"
   },
   {
     "slug": "02-04-docker",
-    "title": "2.4 -- Docker et Docker Compose",
+    "title": "Docker et Docker Compose",
     "url": "02-04-docker.html",
     "body": "2.4 -- Docker et Docker Compose Contexte Docker fait tourner Vault, PostgreSQL et potentiellement d'autres services dans des conteneurs isoles. Docker Compose orchestre ces conteneurs avec un simple f"
   },
   {
     "slug": "02-05-nodejs-pm2",
-    "title": "2.5 -- Node.js et PM2",
+    "title": "Node.js et PM2",
     "url": "02-05-nodejs-pm2.html",
     "body": "2.5 -- Node.js et PM2 Contexte OpenClaw est ecrit en Node.js. PM2 est un gestionnaire de processus qui maintient OpenClaw en vie, gere les logs et redemarre automatiquement en cas de crash. On install"
   },
   {
     "slug": "02-06-structure-dossiers",
-    "title": "2.6 -- Structure de dossiers",
+    "title": "Structure de dossiers",
     "url": "02-06-structure-dossiers.html",
     "body": "2.6 -- Structure de dossiers Contexte Avant d'installer les services, on cree une arborescence coherente. Ca evite l'effet \"fichiers partout\" qui rend la maintenance impossible. Cette convention est u"
   },
   {
     "slug": "02-07-vault",
-    "title": "2.7 -- HashiCorp Vault",
+    "title": "HashiCorp Vault",
     "url": "02-07-vault.html",
     "body": "2.7 -- HashiCorp Vault Contexte C'est la section la plus importante de tout le chapitre. Vault centralise TOUS les secrets : cles API, mots de passe base de donnees, tokens Telegram, etc. Pourquoi Vau"
   },
   {
     "slug": "02-08-postgresql",
-    "title": "2.8 -- PostgreSQL",
+    "title": "PostgreSQL",
     "url": "02-08-postgresql.html",
     "body": "2.8 -- PostgreSQL Contexte PostgreSQL stocke les donnees persistantes du systeme : sessions, historique des agents, metriques, etats. On le fait tourner dans Docker pour l'isolation et la portabilite."
   },
   {
     "slug": "02-09-health-check",
-    "title": "2.9 -- Premier health check",
+    "title": "Premier health check",
     "url": "02-09-health-check.html",
     "body": "2.9 -- Premier health check Contexte Avant d'aller plus loin, on verifie que toute l'infrastructure de base fonctionne. Ce script sera reutilise dans les sections suivantes, dans les crons de surveill"
   },
   {
     "slug": "02-10-openclaw-install",
-    "title": "2.10 -- Installation OpenClaw",
+    "title": "Installation OpenClaw",
     "url": "02-10-openclaw-install.html",
     "body": "2.10 -- Installation OpenClaw Contexte OpenClaw est l'outil central du systeme. Cette section couvre l'installation de la CLI et du runtime. L'infrastructure (Docker, Vault, PostgreSQL) doit etre en p"
   },
   {
     "slug": "02-11-workspace",
-    "title": "2.11 -- Structure du workspace",
+    "title": "Structure du workspace",
     "url": "02-11-workspace.html",
     "body": "2.11 -- Structure du workspace Contexte OpenClaw organise ses donnees dans un workspace ( ). Ce dossier est cree automatiquement au premier lancement. Comprendre sa structure est essentiel pour le deb"
   },
   {
     "slug": "02-12-config-openclaw",
-    "title": "2.12 -- Configuration initiale OpenClaw",
+    "title": "Configuration initiale OpenClaw",
     "url": "02-12-config-openclaw.html",
     "body": "2.12 -- Configuration initiale OpenClaw Contexte Le fichier est le centre de controle d'OpenClaw. Chaque champ affecte le comportement du systeme. Cette section detaille un fichier de configuration co"
   },
   {
     "slug": "02-13-openrouter",
-    "title": "2.13 -- Connexion OpenRouter",
+    "title": "Connexion OpenRouter",
     "url": "02-13-openrouter.html",
     "body": "2.13 -- Connexion OpenRouter Contexte OpenRouter est une passerelle API qui donne acces a plusieurs modeles IA (Claude, Gemini, Mistral, Llama, etc.) via une seule cle API et un format unifie. Avantag"
   },
   {
     "slug": "02-14-telegram",
-    "title": "2.14 -- Connexion Telegram",
+    "title": "Connexion Telegram",
     "url": "02-14-telegram.html",
     "body": "2.14 -- Connexion Telegram Contexte Telegram sert de canal de notification et de commande pour OpenClaw. Le systeme envoie des alertes (health check en echec, deploiement termine, erreur critique) et "
   },
   {
     "slug": "02-15-gateway-systemd",
-    "title": "2.15 -- Gateway systemd",
+    "title": "Gateway systemd",
     "url": "02-15-gateway-systemd.html",
     "body": "2.15 -- Gateway systemd Contexte La gateway OpenClaw est le point d'entree HTTP du systeme. Elle doit tourner en permanence, redemarrer automatiquement en cas de crash et demarrer au boot du serveur. "
   },
   {
     "slug": "02-16-verification-complete",
-    "title": "2.16 -- Verification post-installation",
+    "title": "Verification post-installation",
     "url": "02-16-verification-complete.html",
     "body": "2.16 -- Verification post-installation Contexte Toutes les briques sont en place. Avant de passer au chapitre suivant, on verifie TOUT d'un coup. Si un point est rouge, le diagnostic par symptome vous"
   },
   {
     "slug": "02-17-git-init",
-    "title": "2.17 -- Initialiser le repo Git",
+    "title": "Initialiser le repo Git",
     "url": "02-17-git-init.html",
     "body": "2.17 -- Initialiser le repo Git Contexte Le code, les scripts et la configuration (hors secrets) doivent etre versionnes dans Git. Cette section cree le depot, configure le remote GitHub et met en pla"
   },
   {
     "slug": "02-18-claude-md",
-    "title": "2.18 -- CLAUDE.md",
+    "title": "CLAUDE.md",
     "url": "02-18-claude-md.html",
     "body": "2.18 -- CLAUDE.md Contexte est le fichier que tout agent IA lit en premier quand il travaille sur votre depot. C'est le contrat entre vous et l'agent : conventions, stack, commandes autorisees, regles"
   },
   {
     "slug": "02-19-script-deploy",
-    "title": "2.19 -- Script de deploiement",
+    "title": "Script de deploiement",
     "url": "02-19-script-deploy.html",
     "body": "2.19 -- Script de deploiement Contexte Le script automatise le deploiement complet : pull du code, installation des dependances, build et redemarrage des services. Il doit etre idempotent : executable"
   },
@@ -211,7 +211,7 @@
   },
   {
     "slug": "02-21-gateway-coeur-systeme",
-    "title": "2.21 -- Le Gateway : le coeur de votre installation",
+    "title": "Le Gateway : le coeur de votre installation",
     "url": "02-21-gateway-coeur-systeme.html",
     "body": "2.21 -- Le Gateway : le coeur de votre installation > Vous avez installe tous les composants. Avant de passer a la configuration, arretez-vous ici. Cette section explique pourquoi le gateway est la br"
   },
@@ -223,121 +223,121 @@
   },
   {
     "slug": "03-01-perimetre-agent",
-    "title": "3.1 -- Definir le perimetre de l'agent",
+    "title": "Definir le perimetre de l'agent",
     "url": "03-01-perimetre-agent.html",
     "body": "3.1 -- Definir le perimetre de l'agent Contexte Un agent sans perimetre clair est un agent dangereux. Pas parce qu'il va \"se rebeller\" -- parce qu'il va faire des choses que vous n'aviez pas anticipee"
   },
   {
     "slug": "03-02-soul-md",
-    "title": "3.2 -- SOUL.md : l'identite de l'agent",
+    "title": "SOUL.md : l'identite de l'agent",
     "url": "03-02-soul-md.html",
     "body": "3.2 -- SOUL.md : l'identite de l'agent Contexte SOUL.md definit QUI est l'agent. Pas ce qu'il fait (c'est CONSTITUTION.md). Pas ce qu'il sait (c'est knowledge/). Qui il EST. C'est sa personnalite, son"
   },
   {
     "slug": "03-03-user-md",
-    "title": "3.3 -- USER.md : votre profil pour l'agent",
+    "title": "USER.md : votre profil pour l'agent",
     "url": "03-03-user-md.html",
     "body": "3.3 -- USER.md : votre profil pour l'agent Contexte SOUL.md definit qui est l'agent. USER.md definit qui VOUS etes. Sans USER.md, l'agent repond dans le vide. Il ne sait pas que vous detestez les long"
   },
   {
     "slug": "03-04-agents-md",
-    "title": "3.4 -- AGENTS.md : le registre des agents",
+    "title": "AGENTS.md : le registre des agents",
     "url": "03-04-agents-md.html",
     "body": "3.4 -- AGENTS.md : le registre des agents Contexte Quand vous n'avez qu'un seul agent, AGENTS.md semble superflu. Des que vous en avez deux, il devient indispensable. AGENTS.md est le registre central"
   },
   {
     "slug": "03-05-constitution-md",
-    "title": "3.5 -- CONSTITUTION.md : les regles du jeu",
+    "title": "CONSTITUTION.md : les regles du jeu",
     "url": "03-05-constitution-md.html",
     "body": "3.5 -- CONSTITUTION.md : les regles du jeu Contexte SOUL.md dit qui est l'agent. CONSTITUTION.md dit ce qu'il a le DROIT de faire. C'est le contrat entre vous et l'agent. Pas une suggestion, pas une p"
   },
   {
     "slug": "03-06-trois-zones-memoire",
-    "title": "3.6 -- Les trois zones de memoire",
+    "title": "Les trois zones de memoire",
     "url": "03-06-trois-zones-memoire.html",
     "body": "3.6 -- Les trois zones de memoire Contexte Un agent sans memoire est un agent amnesique. Chaque session repart de zero. Vous repetez les memes choses. Il pose les memes questions. Un agent avec trop d"
   },
   {
     "slug": "03-07-memory-md",
-    "title": "3.7 -- MEMORY.md : la memoire collective",
+    "title": "MEMORY.md : la memoire collective",
     "url": "03-07-memory-md.html",
     "body": "3.7 -- MEMORY.md : la memoire collective Contexte MEMORY.md est le fichier le plus vivant de votre configuration. Il change chaque jour. Il se compresse chaque semaine. Il est lu a chaque demarrage de"
   },
   {
     "slug": "03-08-knowledge",
-    "title": "3.8 -- Le dossier knowledge/",
+    "title": "Le dossier knowledge/",
     "url": "03-08-knowledge.html",
     "body": "3.8 -- Le dossier knowledge/ Contexte knowledge/ est la memoire froide de l'agent. Le savoir qui ne change pas chaque semaine. Les references, les processus, les informations metier durables. Contrair"
   },
   {
     "slug": "03-09-principe-une-source",
-    "title": "3.9 -- Une source a la fois (principe de Steinberg)",
+    "title": "Une source a la fois (principe de Steinberg)",
     "url": "03-09-principe-une-source.html",
     "body": "3.9 -- Une source a la fois (principe de Steinberg) Contexte Vous avez configure l'agent. SOUL.md, USER.md, CONSTITUTION.md, MEMORY.md, knowledge/ -- tout est en place. Maintenant vous voulez connecte"
   },
   {
     "slug": "03-10-calendrier",
-    "title": "3.10 -- Calendrier d'abord, toujours (principe de Steinberg)",
+    "title": "Calendrier d'abord, toujours (principe de Steinberg)",
     "url": "03-10-calendrier.html",
     "body": "3.10 -- Calendrier d'abord, toujours (principe de Steinberg) Contexte Si vous ne connectez qu'une seule source, connectez le calendrier. C'est la premiere connexion, sans exception. Steinberg est form"
   },
   {
     "slug": "03-11-taches",
-    "title": "3.11 -- Taches : la pression invisible",
+    "title": "Taches : la pression invisible",
     "url": "03-11-taches.html",
     "body": "3.11 -- Taches : la pression invisible Contexte Le calendrier montre ce qui est PLANIFIE. Les taches montrent ce qui est REEL mais pas encore planifie. C'est la pression invisible : les choses que vou"
   },
   {
     "slug": "03-12-email-messages",
-    "title": "3.12 -- Email et messages",
+    "title": "Email et messages",
     "url": "03-12-email-messages.html",
     "body": "3.12 -- Email et messages Contexte L'email est la source la plus volumineuse et la plus bruitee. C'est pour ca qu'elle vient en troisieme position, apres le calendrier et les taches. Connecter l'email"
   },
   {
     "slug": "03-13-skill-custom",
-    "title": "3.13 -- Construire un skill custom (methode Steinberg)",
+    "title": "Construire un skill custom (methode Steinberg)",
     "url": "03-13-skill-custom.html",
     "body": "3.13 -- Construire un skill custom (methode Steinberg) Contexte Les skills integres (calendrier, email, taches) couvrent les besoins generiques. Mais votre metier a des besoins specifiques. Un consult"
   },
   {
     "slug": "03-14-souverainete-donnees",
-    "title": "3.14 -- Souverainete des donnees",
+    "title": "Souverainete des donnees",
     "url": "03-14-souverainete-donnees.html",
     "body": "3.14 -- Souverainete des donnees Contexte Votre agent manipule vos emails, votre calendrier, vos taches, vos donnees clients. La question n'est pas SI ces donnees sont sensibles, mais OU elles vivent "
   },
   {
     "slug": "03-15-crons",
-    "title": "3.15 -- Les crons : automatisations planifiees",
+    "title": "Les crons : automatisations planifiees",
     "url": "03-15-crons.html",
     "body": "3.15 -- Les crons : automatisations planifiees Contexte Un agent reactif repond quand vous lui parlez. Un agent proactif agit sans que vous le demandiez, a des moments definis. Les crons sont le mecan"
   },
   {
     "slug": "03-16-briefing-matin",
-    "title": "3.16 -- Le briefing du matin (methode Steinberg)",
+    "title": "Le briefing du matin (methode Steinberg)",
     "url": "03-16-briefing-matin.html",
     "body": "3.16 -- Le briefing du matin (methode Steinberg) Contexte Le briefing du matin est le test ultime de votre configuration. Si le briefing est bon, la configuration est bonne. S'il est generique, plat, "
   },
   {
     "slug": "03-17-multi-agents",
-    "title": "3.17 -- Architecture multi-agents",
+    "title": "Architecture multi-agents",
     "url": "03-17-multi-agents.html",
     "body": "3.17 -- Architecture multi-agents Contexte Un seul agent couvre 90% des besoins. Ce chapitre est pour les 10% restants. NE COMMENCEZ PAS PAR LA. Si vous lisez cette section avant d'avoir un agent prin"
   },
   {
     "slug": "03-18-remote-mode",
-    "title": "3.18 -- Connecter deux installations OpenClaw (mode remote)",
+    "title": "Connecter deux installations OpenClaw (mode remote)",
     "url": "03-18-remote-mode.html",
     "body": "3.18 -- Connecter deux installations OpenClaw (mode remote) > Vous avez deux VPS avec OpenClaw, ou vous gerez l'installation d'un client. Voici comment les connecter pour surveiller, debugger ou colla"
   },
   {
     "slug": "03-19-terminal-interface",
-    "title": "3.19 -- Le terminal : votre interface quotidienne",
+    "title": "Le terminal : votre interface quotidienne",
     "url": "03-19-terminal-interface.html",
     "body": "3.19 -- Le terminal : votre interface quotidienne > Le terminal n'est pas un outil de developpeur. C'est votre poste de pilotage. Cette section explique comment l'utiliser efficacement, comment le con"
   },
   {
     "slug": "03-20-choisir-sa-stack",
-    "title": "3.20 -- Choisir sa stack : du minimum viable au setup complet",
+    "title": "Choisir sa stack : du minimum viable au setup complet",
     "url": "03-20-choisir-sa-stack.html",
     "body": "3.20 -- Choisir sa stack : du minimum viable au setup complet > Vous n'avez pas besoin de tout. Cette section vous aide a choisir les bons outils pour votre situation — et a comprendre ce que chacun a"
   },
@@ -349,85 +349,85 @@
   },
   {
     "slug": "04-01-system-prompt",
-    "title": "4.1 -- Ecrire votre system prompt",
+    "title": "Ecrire votre system prompt",
     "url": "04-01-system-prompt.html",
     "body": "4.1 -- Ecrire votre system prompt Contexte Le system prompt est le texte le plus important de votre setup. C'est la premiere chose que l'agent lit a chaque conversation. Il definit qui il est, ce qu'i"
   },
   {
     "slug": "04-02-personnalite-ton",
-    "title": "4.2 -- Personnalite et ton",
+    "title": "Personnalite et ton",
     "url": "04-02-personnalite-ton.html",
     "body": "4.2 -- Personnalite et ton Contexte Le ton de votre agent n'est pas un detail cosmetique. C'est ce qui fait la difference entre un outil que vous utilisez avec plaisir et un outil que vous subissez. U"
   },
   {
     "slug": "04-03-iteration",
-    "title": "4.3 -- Iteration : la premiere version ne sera pas la bonne",
+    "title": "Iteration : la premiere version ne sera pas la bonne",
     "url": "04-03-iteration.html",
     "body": "4.3 -- Iteration : la premiere version ne sera pas la bonne Contexte Votre premier system prompt sera mauvais. Pas parce que vous etes mauvais -- parce que personne ne sait ce qu'il veut d'un agent av"
   },
   {
     "slug": "04-04-pourquoi-taches",
-    "title": "4.4 -- Pourquoi un systeme de taches",
+    "title": "Pourquoi un systeme de taches",
     "url": "04-04-pourquoi-taches.html",
     "body": "4.4 -- Pourquoi un systeme de taches Contexte Un agent sans systeme de taches est un conseiller. Vous lui posez des questions, il repond. Vous oubliez de demander, il oublie de faire. Rien ne persiste"
   },
   {
     "slug": "04-05-comment-taches",
-    "title": "4.5 -- Comment les taches se font",
+    "title": "Comment les taches se font",
     "url": "04-05-comment-taches.html",
     "body": "4.5 -- Comment les taches se font Contexte Avoir un systeme de taches ne suffit pas. Ce qui compte, c'est le workflow : qui propose quoi, qui decide, qui execute. Si vous ne definissez pas ce workflow"
   },
   {
     "slug": "04-06-db-source-verite",
-    "title": "4.6 -- Base de donnees comme source de verite",
+    "title": "Base de donnees comme source de verite",
     "url": "04-06-db-source-verite.html",
     "body": "4.6 -- Base de donnees comme source de verite Contexte Un fichier TASKS.md marche pour 10-20 taches. Au-dela, ca devient penible : pas de filtre, pas d'historique, pas de requetes, conflits de merge s"
   },
   {
     "slug": "04-07-reconnaitre-routine",
-    "title": "4.7 -- Reconnaitre une routine",
+    "title": "Reconnaitre une routine",
     "url": "04-07-reconnaitre-routine.html",
     "body": "4.7 -- Reconnaitre une routine Contexte Une routine, c'est une action que vous repetez avec le meme schema. Deployer un service, creer un backup, verifier les logs du matin. Quand vous faites la meme "
   },
   {
     "slug": "04-08-dry-run",
-    "title": "4.8 -- Dry run avant confiance",
+    "title": "Dry run avant confiance",
     "url": "04-08-dry-run.html",
     "body": "4.8 -- Dry run avant confiance Contexte Vous avez identifie une routine automatisable (section 4.7). Avant de la laisser tourner en autonome, vous la testez. Pas parce que vous ne faites pas confiance"
   },
   {
     "slug": "04-09-workflows-md",
-    "title": "4.9 -- WORKFLOWS.md",
+    "title": "WORKFLOWS.md",
     "url": "04-09-workflows-md.html",
     "body": "4.9 -- WORKFLOWS.md Contexte Un workflow documente, c'est une routine que n'importe qui (vous, un autre dev, un autre agent) peut executer sans deviner les etapes. Si la procedure est dans votre tete,"
   },
   {
     "slug": "04-10-rythme-hebdo",
-    "title": "4.10 -- Le rythme hebdomadaire",
+    "title": "Le rythme hebdomadaire",
     "url": "04-10-rythme-hebdo.html",
     "body": "4.10 -- Le rythme hebdomadaire Contexte Un agent sans rythme est reactif : il repond quand vous demandez. Un agent avec un rythme est proactif : il prepare ce dont vous avez besoin avant que vous le d"
   },
   {
     "slug": "04-11-confiance-configuration",
-    "title": "4.11 -- La confiance est une configuration",
+    "title": "La confiance est une configuration",
     "url": "04-11-confiance-configuration.html",
     "body": "4.11 -- La confiance est une configuration Contexte La confiance envers votre agent n'est pas un sentiment. C'est une configuration. Chaque action a un niveau de risque, et chaque niveau de risque a d"
   },
   {
     "slug": "04-12-boundary-prompt",
-    "title": "4.12 -- Le boundary prompt",
+    "title": "Le boundary prompt",
     "url": "04-12-boundary-prompt.html",
     "body": "4.12 -- Le boundary prompt Contexte Le boundary prompt est la liste des choses que votre agent ne doit JAMAIS faire. Pas \"eviter\", pas \"sauf si necessaire\" -- JAMAIS. C'est le filet de securite. Vous "
   },
   {
     "slug": "04-13-audit-acces",
-    "title": "4.13 -- Audit : que peut acceder votre agent ?",
+    "title": "Audit : que peut acceder votre agent ?",
     "url": "04-13-audit-acces.html",
     "body": "4.13 -- Audit : que peut acceder votre agent ? Contexte Vous avez configure votre agent, defini les boundaries, ecrit le system prompt. Mais savez-vous vraiment ce qu'il peut faire ? La realite de ses"
   },
   {
     "slug": "04-14-config-bilingue",
-    "title": "4.14 -- Configuration bilingue",
+    "title": "Configuration bilingue",
     "url": "04-14-config-bilingue.html",
     "body": "4.14 -- Configuration bilingue Contexte Si vous travaillez en francais et en anglais -- clients francophones, documentation en anglais, code en anglais, communications en francais -- votre agent doit "
   },
@@ -439,91 +439,91 @@
   },
   {
     "slug": "05-01-health-check",
-    "title": "5.1 -- Health check quotidien",
+    "title": "Health check quotidien",
     "url": "05-01-health-check.html",
     "body": "5.1 -- Health check quotidien Contexte Un health check, c'est 30 secondes de diagnostic qui evitent 3 heures de panne. Vous verifiez que tout tourne, chaque jour, automatiquement. Si quelque chose tom"
   },
   {
     "slug": "05-02-logs",
-    "title": "5.2 -- Gestion des logs",
+    "title": "Gestion des logs",
     "url": "05-02-logs.html",
     "body": "5.2 -- Gestion des logs Contexte Les logs sont votre boite noire. Quand tout va bien, personne ne les regarde. Quand ca casse, c'est la premiere chose qu'on ouvre. Si vous ne savez pas ou ils sont et "
   },
   {
     "slug": "05-03-backups",
-    "title": "5.3 -- Backups",
+    "title": "Backups",
     "url": "05-03-backups.html",
     "body": "5.3 -- Backups Contexte Un backup qui n'a jamais ete teste n'est pas un backup. C'est un espoir. Et l'espoir n'est pas une strategie. Ce qui compte : frequence adaptee, stockage separe, et test de res"
   },
   {
     "slug": "05-04-revoir-system-prompt",
-    "title": "5.4 -- Revoir le system prompt",
+    "title": "Revoir le system prompt",
     "url": "05-04-revoir-system-prompt.html",
     "body": "5.4 -- Revoir le system prompt Contexte Un system prompt n'est pas un texte sacre. Votre contexte change, vos projets evoluent, vos besoins se precisent. Un prompt ecrit il y a 3 mois ne reflete plus "
   },
   {
     "slug": "05-05-derive-memoire",
-    "title": "5.5 -- Derive de la memoire",
+    "title": "Derive de la memoire",
     "url": "05-05-derive-memoire.html",
     "body": "5.5 -- Derive de la memoire Contexte La memoire de votre agent accumule des informations au fil du temps. Certaines deviennent obsoletes, d'autres se contredisent, d'autres encore sont devenues fausse"
   },
   {
     "slug": "05-06-agent-se-trompe",
-    "title": "5.6 -- Quand l'agent se trompe",
+    "title": "Quand l'agent se trompe",
     "url": "05-06-agent-se-trompe.html",
     "body": "5.6 -- Quand l'agent se trompe Contexte Votre agent va se tromper. Pas \"peut-etre\" -- va. Les LLM hallucinent, sur-interpretent, appliquent le mauvais contexte. Ce n'est pas un defaut, c'est une propr"
   },
   {
     "slug": "05-07-maj-integrations",
-    "title": "5.7 -- Mettre a jour les integrations",
+    "title": "Mettre a jour les integrations",
     "url": "05-07-maj-integrations.html",
     "body": "5.7 -- Mettre a jour les integrations Contexte Les API changent. Les outils evoluent. Un endpoint qui marchait hier retourne une erreur 404 demain. Votre agent utilise des integrations (Telegram, Vaul"
   },
   {
     "slug": "05-08-maj-systeme",
-    "title": "5.8 -- Mises a jour systeme",
+    "title": "Mises a jour systeme",
     "url": "05-08-maj-systeme.html",
     "body": "5.8 -- Mises a jour systeme Contexte Les mises a jour systeme, c'est l'hygiene de base. Ne pas les faire = accumulation de failles de securite. Les faire n'importe comment = casser la production. L'eq"
   },
   {
     "slug": "05-09-rotation-secrets",
-    "title": "5.9 -- Rotation des secrets",
+    "title": "Rotation des secrets",
     "url": "05-09-rotation-secrets.html",
     "body": "5.9 -- Rotation des secrets Contexte Un secret qui ne change jamais est un secret qui attend d'etre compromis. La rotation des secrets -- changer regulierement les mots de passe, tokens, et cles API -"
   },
   {
     "slug": "05-10-monitoring",
-    "title": "5.10 -- Monitoring et alertes",
+    "title": "Monitoring et alertes",
     "url": "05-10-monitoring.html",
     "body": "5.10 -- Monitoring et alertes Contexte Le monitoring repond a une question simple : est-ce que tout tourne ? Et si non, depuis quand et pourquoi ? Sans monitoring, vous decouvrez les pannes quand vos "
   },
   {
     "slug": "05-11-en-cas-de-panne",
-    "title": "5.11 -- En cas de panne",
+    "title": "En cas de panne",
     "url": "05-11-en-cas-de-panne.html",
     "body": "5.11 -- En cas de panne Contexte Une panne, ca arrive. Le reflexe : ne pas paniquer, diagnostiquer, corriger, prevenir. Ce guide vous donne un tableau de diagnostic par symptome pour les pannes les pl"
   },
   {
     "slug": "05-12-deuxieme-agent",
-    "title": "5.12 -- Quand ajouter un deuxieme agent",
+    "title": "Quand ajouter un deuxieme agent",
     "url": "05-12-deuxieme-agent.html",
     "body": "5.12 -- Quand ajouter un deuxieme agent Contexte Un agent, ca marche bien pour un contexte. Quand le contexte grossit trop -- trop de projets, trop de responsabilites, trop de contexte a maintenir -- "
   },
   {
     "slug": "05-13-migrer-modele",
-    "title": "5.13 -- Migrer vers un autre modele",
+    "title": "Migrer vers un autre modele",
     "url": "05-13-migrer-modele.html",
     "body": "5.13 -- Migrer vers un autre modele Contexte Le monde des LLM bouge vite. Un nouveau modele sort, les prix changent, les performances evoluent. Vous allez peut-etre vouloir migrer de Claude vers GPT ("
   },
   {
     "slug": "05-14-mesurer-roi",
-    "title": "5.14 -- Mesurer le ROI",
+    "title": "Mesurer le ROI",
     "url": "05-14-mesurer-roi.html",
     "body": "5.14 -- Mesurer le ROI Contexte \"L'agent me fait gagner du temps.\" OK, combien ? Si vous ne mesurez pas, vous ne savez pas. Et si vous ne savez pas, vous ne pouvez pas justifier le cout, ni optimiser "
   },
   {
     "slug": "05-15-diagnostiquer-gateway",
-    "title": "5.15 -- Diagnostiquer et monitorer le gateway",
+    "title": "Diagnostiquer et monitorer le gateway",
     "url": "05-15-diagnostiquer-gateway.html",
     "body": "5.15 -- Diagnostiquer et monitorer le gateway > Le gateway est le premier composant a verifier quand quelque chose ne fonctionne pas. Cette section vous donne les reflexes, les commandes, et les scena"
   },
@@ -577,7 +577,7 @@
   },
   {
     "slug": "06-08-artisan-tpe",
-    "title": "6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls",
+    "title": "Artisan et TPE : un assistant IA pour ceux qui font tout seuls",
     "url": "06-08-artisan-tpe.html",
     "body": "6.8 -- Artisan et TPE : un assistant IA pour ceux qui font tout seuls > Vous etes plombier, electricien, consultant, photographe, ou coach. Vous etes seul ou presque. Vous faites tout : les clients, l"
   },

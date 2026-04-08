@@ -53,48 +53,48 @@
 <a href="persona-agent.html">Focus Agents IA</a>
 <div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
-  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+  <a href="00-guide.html" class="nav-chapter-title">Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">Définition</a>
 </div>
 <div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
-  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <a href="02-00-sommaire.html" class="nav-chapter-title">Installation</a>
 </div>
 <div class="nav-chapter">
-  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <a href="03-00-sommaire.html" class="nav-chapter-title">Configuration</a>
 </div>
 <div class="nav-chapter  open">
-  <a href="04-00-sommaire.html" class="nav-chapter-title" class="active">4. Personnalisation</a>
+  <a href="04-00-sommaire.html" class="nav-chapter-title" class="active" aria-current="page">Personnalisation</a>
   <div class="nav-sections">
-    <a href="04-01-system-prompt.html">4.1 -- Ecrire votre system prompt</a>
-    <a href="04-02-personnalite-ton.html">4.2 -- Personnalite et ton</a>
-    <a href="04-03-iteration.html">4.3 -- Iteration : la premiere v...</a>
-    <a href="04-04-pourquoi-taches.html">4.4 -- Pourquoi un systeme de ta...</a>
-    <a href="04-05-comment-taches.html">4.5 -- Comment les taches se font</a>
-    <a href="04-06-db-source-verite.html">4.6 -- Base de donnees comme sou...</a>
-    <a href="04-07-reconnaitre-routine.html">4.7 -- Reconnaitre une routine</a>
-    <a href="04-08-dry-run.html">4.8 -- Dry run avant confiance</a>
-    <a href="04-09-workflows-md.html">4.9 -- WORKFLOWS.md</a>
-    <a href="04-10-rythme-hebdo.html">4.10 -- Le rythme hebdomadaire</a>
-    <a href="04-11-confiance-configuration.html">4.11 -- La confiance est une con...</a>
-    <a href="04-12-boundary-prompt.html">4.12 -- Le boundary prompt</a>
-    <a href="04-13-audit-acces.html">4.13 -- Audit : que peut acceder...</a>
-    <a href="04-14-config-bilingue.html">4.14 -- Configuration bilingue</a>
+    <a href="04-01-system-prompt.html">Ecrire votre system prompt</a>
+    <a href="04-02-personnalite-ton.html">Personnalite et ton</a>
+    <a href="04-03-iteration.html">Iteration : la premiere version...</a>
+    <a href="04-04-pourquoi-taches.html">Pourquoi un systeme de taches</a>
+    <a href="04-05-comment-taches.html">Comment les taches se font</a>
+    <a href="04-06-db-source-verite.html">Base de donnees comme source de...</a>
+    <a href="04-07-reconnaitre-routine.html">Reconnaitre une routine</a>
+    <a href="04-08-dry-run.html">Dry run avant confiance</a>
+    <a href="04-09-workflows-md.html">WORKFLOWS.md</a>
+    <a href="04-10-rythme-hebdo.html">Le rythme hebdomadaire</a>
+    <a href="04-11-confiance-configuration.html">La confiance est une configuration</a>
+    <a href="04-12-boundary-prompt.html">Le boundary prompt</a>
+    <a href="04-13-audit-acces.html">Audit : que peut acceder votre a...</a>
+    <a href="04-14-config-bilingue.html">Configuration bilingue</a>
   </div>
 </div>
 <div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
-  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <a href="05-00-sommaire.html" class="nav-chapter-title">Maintenance</a>
 </div>
 <div class="nav-chapter">
-  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <a href="06-00-sommaire.html" class="nav-chapter-title">Cas d'usage</a>
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
-  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+  <a href="07-00-sommaire.html" class="nav-chapter-title">Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -110,12 +110,12 @@
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
 <div class="learning-objectives">
-  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
-    <span class="lo-icon">&#127891;</span>
+  <button type="button" class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')" aria-expanded="true" aria-controls="lo-list">
+    <span class="lo-icon" aria-hidden="true">&#127891;</span>
     Ce que vous allez apprendre
-    <span class="lo-arrow">&#9660;</span>
-  </div>
-  <ul class="lo-list">
+    <span class="lo-arrow" aria-hidden="true">&#9660;</span>
+  </button>
+  <ul class="lo-list" id="lo-list">
     <li><a href="#sommaire">Sommaire</a></li>
     <li class="toc-h3"><a href="#partie-a-identite-et-voix">Partie A -- Identite et voix</a></li>
     <li class="toc-h3"><a href="#partie-b-systeme-de-taches">Partie B -- Systeme de taches</a></li>
@@ -230,8 +230,8 @@
 </div>
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
-<a href="03-20-choisir-sa-stack.html">&larr; 3.20 -- Choisir sa stack : du minimum viable au...</a>
-<a href="04-01-system-prompt.html">4.1 -- Ecrire votre system prompt &rarr;</a>
+<a href="03-20-choisir-sa-stack.html">&larr; Choisir sa stack : du minimum viable au setup c...</a>
+<a href="04-01-system-prompt.html">Ecrire votre system prompt &rarr;</a>
 </div>
 
     <footer>

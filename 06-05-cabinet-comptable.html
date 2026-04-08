@@ -53,42 +53,42 @@
 <a href="persona-agent.html">Focus Agents IA</a>
 <div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
-  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+  <a href="00-guide.html" class="nav-chapter-title">Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">Définition</a>
 </div>
 <div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
-  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <a href="02-00-sommaire.html" class="nav-chapter-title">Installation</a>
 </div>
 <div class="nav-chapter">
-  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <a href="03-00-sommaire.html" class="nav-chapter-title">Configuration</a>
 </div>
 <div class="nav-chapter">
-  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <a href="04-00-sommaire.html" class="nav-chapter-title">Personnalisation</a>
 </div>
 <div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
-  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <a href="05-00-sommaire.html" class="nav-chapter-title">Maintenance</a>
 </div>
 <div class="nav-chapter  open">
-  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <a href="06-00-sommaire.html" class="nav-chapter-title">Cas d'usage</a>
   <div class="nav-sections">
     <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
     <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
     <a href="06-03-ecommerce.html">03 -- E-commerce</a>
     <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
-    <a href="06-05-cabinet-comptable.html" class="active">05 -- Cabinet comptable</a>
+    <a href="06-05-cabinet-comptable.html" class="active" aria-current="page">05 -- Cabinet comptable</a>
     <a href="06-06-startup.html">06 -- Startup early-stage</a>
     <a href="06-07-contribuer.html">07 -- Comment soumettre votre ca...</a>
-    <a href="06-08-artisan-tpe.html">6.8 -- Artisan et TPE : un assis...</a>
+    <a href="06-08-artisan-tpe.html">Artisan et TPE : un assistant IA...</a>
   </div>
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
-  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+  <a href="07-00-sommaire.html" class="nav-chapter-title">Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -100,18 +100,18 @@
     <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <a href="06-00-sommaire.html">Cas d'usage</a>
   <span class="sep">/</span>
   <span>05 -- Cabinet comptable</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
 <div class="learning-objectives">
-  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
-    <span class="lo-icon">&#127891;</span>
+  <button type="button" class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')" aria-expanded="true" aria-controls="lo-list">
+    <span class="lo-icon" aria-hidden="true">&#127891;</span>
     Ce que vous allez apprendre
-    <span class="lo-arrow">&#9660;</span>
-  </div>
-  <ul class="lo-list">
+    <span class="lo-arrow" aria-hidden="true">&#9660;</span>
+  </button>
+  <ul class="lo-list" id="lo-list">
     <li><a href="#contexte">Contexte</a></li>
     <li><a href="#probleme">Probleme</a></li>
     <li><a href="#configuration">Configuration</a></li>
@@ -331,36 +331,36 @@
 </table>
 <hr />
 <h2 id="template-system-prompt-de-lagent-triage">Template -- System prompt de l'agent Triage</h2>
-<pre class="codehilite"><code>Tu es l'assistant de triage documentaire du cabinet [NOM].
+<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">assistant</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">triage</span><span class="w"> </span><span class="n">documentaire</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">cabinet</span><span class="w"> </span><span class="p">[</span><span class="n">NOM</span><span class="p">].</span>
 
-Ton role est de classer les documents recus et de les associer aux dossiers clients.
+<span class="n">Ton</span><span class="w"> </span><span class="n">role</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">classer</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="n">recus</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">associer</span><span class="w"> </span><span class="n">aux</span><span class="w"> </span><span class="n">dossiers</span><span class="w"> </span><span class="n">clients</span><span class="p">.</span>
 
-REGLE ABSOLUE : tu ne traites que des donnees anonymisees. Si tu detectes des
-donnees nominatives non anonymisees dans un document, tu le signales immediatement
-et tu ne le traites pas.
+<span class="n">REGLE</span><span class="w"> </span><span class="n">ABSOLUE</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">traites</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">donnees</span><span class="w"> </span><span class="n">anonymisees</span><span class="p">.</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">detectes</span><span class="w"> </span><span class="n">des</span>
+<span class="n">donnees</span><span class="w"> </span><span class="n">nominatives</span><span class="w"> </span><span class="n">non</span><span class="w"> </span><span class="n">anonymisees</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">document</span><span class="p">,</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">signales</span><span class="w"> </span><span class="n">immediatement</span>
+<span class="n">et</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">ne</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">traites</span><span class="w"> </span><span class="n">pas</span><span class="p">.</span>
 
-Categories de documents :
-1. Facture d'achat
-2. Facture de vente
-3. Releve bancaire
-4. Bulletin de salaire
-5. Avis d'imposition
-6. Piece justificative diverse
-7. Courrier de l'administration fiscale
-8. Document non classifiable -&gt; signaler pour traitement manuel
+<span class="n">Categories</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="o">:</span>
+<span class="mf">1.</span><span class="w"> </span><span class="n">Facture</span><span class="w"> </span><span class="n">d</span><span class="err">&#39;</span><span class="n">achat</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Facture</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">vente</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Releve</span><span class="w"> </span><span class="n">bancaire</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">Bulletin</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">salaire</span>
+<span class="mf">5.</span><span class="w"> </span><span class="n">Avis</span><span class="w"> </span><span class="n">d</span><span class="err">&#39;</span><span class="n">imposition</span>
+<span class="mf">6.</span><span class="w"> </span><span class="n">Piece</span><span class="w"> </span><span class="n">justificative</span><span class="w"> </span><span class="n">diverse</span>
+<span class="mf">7.</span><span class="w"> </span><span class="n">Courrier</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">administration</span><span class="w"> </span><span class="n">fiscale</span>
+<span class="mf">8.</span><span class="w"> </span><span class="n">Document</span><span class="w"> </span><span class="n">non</span><span class="w"> </span><span class="n">classifiable</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">signaler</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">traitement</span><span class="w"> </span><span class="n">manuel</span>
 
-Pour chaque document :
-- Identifie la categorie
-- Identifie le dossier client (via le placeholder client)
-- Verifie la lisibilite et la completude
-- Signale les anomalies (montant manquant, date illisible, document tronque)
+<span class="n">Pour</span><span class="w"> </span><span class="n">chaque</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="o">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Identifie</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">categorie</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Identifie</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">dossier</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="p">(</span><span class="n">via</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">placeholder</span><span class="w"> </span><span class="n">client</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Verifie</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">lisibilite</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">completude</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Signale</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">anomalies</span><span class="w"> </span><span class="p">(</span><span class="n">montant</span><span class="w"> </span><span class="n">manquant</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="w"> </span><span class="n">illisible</span><span class="p">,</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="n">tronque</span><span class="p">)</span>
 
-Format de sortie :
-Categorie : [categorie]
-Dossier : [placeholder client]
-Statut : complet / incomplet / illisible
-Anomalies : [liste ou &quot;aucune&quot;]
-</code></pre>
+<span class="n">Format</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">sortie</span><span class="w"> </span><span class="o">:</span>
+<span class="nl">Categorie</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">categorie</span><span class="p">]</span>
+<span class="nl">Dossier</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">placeholder</span><span class="w"> </span><span class="n">client</span><span class="p">]</span>
+<span class="nl">Statut</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">complet</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">incomplet</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">illisible</span>
+<span class="nl">Anomalies</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">liste</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="s">&quot;aucune&quot;</span><span class="p">]</span>
+</code></pre></div>
 
 <hr />
 <h2 id="verification">Verification</h2>

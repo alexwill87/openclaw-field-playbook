@@ -53,27 +53,27 @@
 <a href="persona-agent.html">Focus Agents IA</a>
 <div class="nav-group-label">Découvrir</div>
 <div class="nav-chapter">
-  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+  <a href="00-guide.html" class="nav-chapter-title">Guide de lecture</a>
 </div>
 <div class="nav-chapter">
-  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+  <a href="01-00-sommaire.html" class="nav-chapter-title">Définition</a>
 </div>
 <div class="nav-group-label">Déployer</div>
 <div class="nav-chapter">
-  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <a href="02-00-sommaire.html" class="nav-chapter-title">Installation</a>
 </div>
 <div class="nav-chapter">
-  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <a href="03-00-sommaire.html" class="nav-chapter-title">Configuration</a>
 </div>
 <div class="nav-chapter">
-  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+  <a href="04-00-sommaire.html" class="nav-chapter-title">Personnalisation</a>
 </div>
 <div class="nav-group-label">Opérer</div>
 <div class="nav-chapter">
-  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+  <a href="05-00-sommaire.html" class="nav-chapter-title">Maintenance</a>
 </div>
 <div class="nav-chapter  open">
-  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+  <a href="06-00-sommaire.html" class="nav-chapter-title">Cas d'usage</a>
   <div class="nav-sections">
     <a href="06-01-agence-digitale.html">01 -- Agence digitale (2 associe...</a>
     <a href="06-02-consultant-freelance.html">02 -- Consultant freelance</a>
@@ -81,14 +81,14 @@
     <a href="06-04-equipe-technique.html">04 -- Equipe technique (5-15 per...</a>
     <a href="06-05-cabinet-comptable.html">05 -- Cabinet comptable</a>
     <a href="06-06-startup.html">06 -- Startup early-stage</a>
-    <a href="06-07-contribuer.html" class="active">07 -- Comment soumettre votre ca...</a>
-    <a href="06-08-artisan-tpe.html">6.8 -- Artisan et TPE : un assis...</a>
+    <a href="06-07-contribuer.html" class="active" aria-current="page">07 -- Comment soumettre votre ca...</a>
+    <a href="06-08-artisan-tpe.html">Artisan et TPE : un assistant IA...</a>
   </div>
 </div>
 <div class="nav-group-label">Ressources</div>
 <a href="ecosystem.html">Écosystème</a>
 <div class="nav-chapter">
-  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+  <a href="07-00-sommaire.html" class="nav-chapter-title">Localisation</a>
 </div>
 <a href="checklist.html">Checklist</a>
 <a href="contribuer.html">Contribuer</a>
@@ -100,18 +100,18 @@
     <nav class="breadcrumb">
   <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <a href="06-00-sommaire.html">6. Cas d'usage</a>
+  <a href="06-00-sommaire.html">Cas d'usage</a>
   <span class="sep">/</span>
   <span>07 -- Comment soumettre votre cas d'usage</span>
 </nav>
 <div class="last-updated">Dernière mise à jour : avril 2026</div>
 <div class="learning-objectives">
-  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
-    <span class="lo-icon">&#127891;</span>
+  <button type="button" class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')" aria-expanded="true" aria-controls="lo-list">
+    <span class="lo-icon" aria-hidden="true">&#127891;</span>
     Ce que vous allez apprendre
-    <span class="lo-arrow">&#9660;</span>
-  </div>
-  <ul class="lo-list">
+    <span class="lo-arrow" aria-hidden="true">&#9660;</span>
+  </button>
+  <ul class="lo-list" id="lo-list">
     <li><a href="#pourquoi-contribuer">Pourquoi contribuer</a></li>
     <li><a href="#format-standard">Format standard</a></li>
     <li><a href="#option-1-soumettre-via-issue-github">Option 1 : Soumettre via Issue GitHub</a></li>
@@ -138,61 +138,61 @@
 <hr />
 <h2 id="format-standard">Format standard</h2>
 <p>Chaque cas d'usage suit cette structure. Vous pouvez copier ce template directement.</p>
-<pre class="codehilite"><code class="language-markdown">---
+<div class="codehilite"><pre><span></span><code>---
 status: draft
 audience: both
 chapter: 06
 last_updated: YYYY-MM
 contributors: [votre-github-handle]
-lang: fr
+<span class="gu">lang: fr</span>
+<span class="gu">---</span>
+
+<span class="gh"># XX -- [Titre du cas d&#39;usage]</span>
+
+<span class="gs">**Pour qui :**</span> [profil en une ligne]
+<span class="gs">**Temps de mise en place :**</span> [estimation]
+<span class="gs">**Difficulte :**</span> Debutant / Intermediaire / Avance
+
 ---
 
-# XX -- [Titre du cas d'usage]
+<span class="gu">## Contexte</span>
 
-**Pour qui :** [profil en une ligne]
-**Temps de mise en place :** [estimation]
-**Difficulte :** Debutant / Intermediaire / Avance
+Qui vous etes, ce que fait votre organisation, la taille de l&#39;equipe.
 
----
-
-## Contexte
-
-Qui vous etes, ce que fait votre organisation, la taille de l'equipe.
-
-## Probleme
+<span class="gu">## Probleme</span>
 
 Ce que vous deviez resoudre ou automatiser. Soyez specifique.
 
-## Configuration
+<span class="gu">## Configuration</span>
 
 Votre infrastructure (serveur, OS, outils).
 Vos agents (combien, quels roles).
 Votre budget approximatif.
 
-## Mise en place
+<span class="gu">## Mise en place</span>
 
-Les etapes que vous avez suivies, dans l'ordre chronologique.
+Les etapes que vous avez suivies, dans l&#39;ordre chronologique.
 
-## Resultat
+<span class="gu">## Resultat</span>
 
 Ce qui a change concretement. Chiffres si possible (temps gagne, taux de reussite, couts).
 
-## Lecons apprises
+<span class="gu">## Lecons apprises</span>
 
 Ce que vous referiez differemment. Ce qui a mieux marche que prevu.
 
-## Erreurs courantes
+<span class="gu">## Erreurs courantes</span>
 
 Les pieges que vous avez rencontres et comment les eviter.
 
-## Template
+<span class="gu">## Template</span>
 
-Un prompt, une configuration, ou un snippet reutilisable par d'autres.
+Un prompt, une configuration, ou un snippet reutilisable par d&#39;autres.
 
-## Verification
+<span class="gu">## Verification</span>
 
 Une checklist pour valider que la configuration fonctionne.
-</code></pre>
+</code></pre></div>
 
 <hr />
 <h2 id="option-1-soumettre-via-issue-github">Option 1 : Soumettre via Issue GitHub</h2>
@@ -323,7 +323,7 @@ Les contributions en anglais sont bienvenues. Un contributeur ou un agent se cha
 <hr>
 <div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
 <a href="06-06-startup.html">&larr; 06 -- Startup early-stage</a>
-<a href="06-08-artisan-tpe.html">6.8 -- Artisan et TPE : un assistant IA pour ce... &rarr;</a>
+<a href="06-08-artisan-tpe.html">Artisan et TPE : un assistant IA pour ceux qui... &rarr;</a>
 </div>
 
     <footer>
