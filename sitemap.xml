@@ -451,6 +451,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-20-adapter-existant.html"/>
   </url>
   <url>
+    <loc>https://www.openclawfieldplaybook.com/02-21-gateway-coeur-systeme.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-21-gateway-coeur-systeme.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-21-gateway-coeur-systeme.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/02-21-gateway-coeur-systeme.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/02-21-gateway-coeur-systeme.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/02-21-gateway-coeur-systeme.html"/>
+  </url>
+  <url>
     <loc>https://www.openclawfieldplaybook.com/03-00-sommaire.html</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-00-sommaire.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-00-sommaire.html"/>
@@ -639,6 +649,26 @@
     <loc>https://www.openclawfieldplaybook.com/en/03-18-remote-mode.html</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-18-remote-mode.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-18-remote-mode.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-19-terminal-interface.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-19-terminal-interface.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-19-terminal-interface.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-19-terminal-interface.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-19-terminal-interface.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-19-terminal-interface.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/03-20-choisir-sa-stack.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-20-choisir-sa-stack.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-20-choisir-sa-stack.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/03-20-choisir-sa-stack.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/03-20-choisir-sa-stack.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/03-20-choisir-sa-stack.html"/>
   </url>
   <url>
     <loc>https://www.openclawfieldplaybook.com/04-00-sommaire.html</loc>
@@ -939,6 +969,16 @@
     <loc>https://www.openclawfieldplaybook.com/en/05-14-mesurer-roi.html</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-14-mesurer-roi.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-14-mesurer-roi.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/05-15-diagnostiquer-gateway.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-15-diagnostiquer-gateway.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-15-diagnostiquer-gateway.html"/>
+  </url>
+  <url>
+    <loc>https://www.openclawfieldplaybook.com/en/05-15-diagnostiquer-gateway.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.openclawfieldplaybook.com/05-15-diagnostiquer-gateway.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.openclawfieldplaybook.com/en/05-15-diagnostiquer-gateway.html"/>
   </url>
   <url>
     <loc>https://www.openclawfieldplaybook.com/06-00-sommaire.html</loc>

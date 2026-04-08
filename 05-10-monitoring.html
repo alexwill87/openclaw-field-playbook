@@ -18,8 +18,10 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a href="#content" class="skip-link">Aller au contenu principal</a>
 
-<nav id="topnav">
+<header role="banner">
+<nav id="topnav" aria-label="Navigation principale">
   <div class="nav-brand">
     <a href="index.html">OpenClaw Field Playbook</a>
   </div>
@@ -27,23 +29,25 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
-    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
+    <button type="button" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</button>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
-    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       GitHub
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">&#9776;</button>
   </div>
 </nav>
+</header>
 
 <div class="layout-wrapper">
   <aside class="sidebar">
-    <div class="nav-search">
-      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
+    <div class="nav-search" role="search">
+      <label for="search-input" class="sr-only">Rechercher dans le playbook</label>
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" aria-label="Rechercher dans le playbook">
       <div id="search-results"></div>
     </div>
-    <nav id="side-nav">
+    <nav id="side-nav" aria-label="Sommaire du playbook">
       <a href="index.html" class="nav-home">Accueil</a>
 <div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
@@ -86,6 +90,7 @@
     <a href="05-12-deuxieme-agent.html">5.12 -- Quand ajouter un deuxiem...</a>
     <a href="05-13-migrer-modele.html">5.13 -- Migrer vers un autre modele</a>
     <a href="05-14-mesurer-roi.html">5.14 -- Mesurer le ROI</a>
+    <a href="05-15-diagnostiquer-gateway.html">5.15 -- Diagnostiquer et monitor...</a>
   </div>
 </div>
 <div class="nav-chapter">
@@ -132,6 +137,7 @@
     <li class="toc-h3"><a href="#installation-docker-compose">Installation (Docker Compose)</a></li>
     <li class="toc-h3"><a href="#quand-cest-justifie">Quand c'est justifie</a></li>
     <li class="toc-h3"><a href="#quand-cest-du-over-engineering">Quand c'est du over-engineering</a></li>
+    <li><a href="#niveau-0-le-gateway-lui-meme-avant-tout-outil">Niveau 0 : le gateway lui-meme (avant tout outil)</a></li>
     <li><a href="#recommandation">Recommandation</a></li>
     <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
     <li><a href="#etapes">Etapes</a></li>
@@ -161,39 +167,39 @@
 </ul>
 <h3 id="mise-en-place">Mise en place</h3>
 <p>Voir section 5.1. Resume :</p>
-<pre class="codehilite"><code class="language-bash"># Cron toutes les 4 heures
-0 */4 * * * /opt/scripts/health-check.sh --quiet
+<div class="codehilite"><pre><span></span><code><span class="c1"># Cron toutes les 4 heures</span>
+<span class="m">0</span><span class="w"> </span>*/4<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/scripts/health-check.sh<span class="w"> </span>--quiet
 
-# Alerte Telegram si KO
-</code></pre>
+<span class="c1"># Alerte Telegram si KO</span>
+</code></pre></div>
 
 <p>Temps de mise en place : 30 minutes.
 Cout : 0 EUR.</p>
 <h2 id="niveau-2-intermediaire-uptime-kuma">Niveau 2 : intermediaire (Uptime Kuma)</h2>
 <p>Uptime Kuma est un outil de monitoring self-hosted. Interface web, historique, notifications multiples.</p>
 <h3 id="installation">Installation</h3>
-<pre class="codehilite"><code class="language-bash"># Via Docker (la methode recommandee)
-docker run -d \
-  --name uptime-kuma \
-  --restart unless-stopped \
-  -p 3001:3001 \
-  -v uptime-kuma-data:/app/data \
-  louislam/uptime-kuma:1
+<div class="codehilite"><pre><span></span><code><span class="c1"># Via Docker (la methode recommandee)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>uptime-kuma<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">3001</span>:3001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>uptime-kuma-data:/app/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>louislam/uptime-kuma:1
 
-# Ou dans docker-compose.yml
+<span class="c1"># Ou dans docker-compose.yml</span>
 services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:1
-    container_name: uptime-kuma
-    restart: unless-stopped
-    ports:
-      - &quot;3001:3001&quot;
-    volumes:
-      - uptime-kuma-data:/app/data
+<span class="w">  </span>uptime-kuma:
+<span class="w">    </span>image:<span class="w"> </span>louislam/uptime-kuma:1
+<span class="w">    </span>container_name:<span class="w"> </span>uptime-kuma
+<span class="w">    </span>restart:<span class="w"> </span>unless-stopped
+<span class="w">    </span>ports:
+<span class="w">      </span>-<span class="w"> </span><span class="s2">&quot;3001:3001&quot;</span>
+<span class="w">    </span>volumes:
+<span class="w">      </span>-<span class="w"> </span>uptime-kuma-data:/app/data
 
 volumes:
-  uptime-kuma-data:
-</code></pre>
+<span class="w">  </span>uptime-kuma-data:
+</code></pre></div>
 
 <h3 id="configuration">Configuration</h3>
 <ol>
@@ -248,44 +254,44 @@ Cout : 0 EUR (self-hosted).</p>
 <h2 id="niveau-3-avance-grafana-prometheus">Niveau 3 : avance (Grafana + Prometheus)</h2>
 <p>Pour ceux qui ont besoin de metriques detaillees, de dashboards personnalises, et de monitoring distribue.</p>
 <h3 id="stack">Stack</h3>
-<pre class="codehilite"><code>Prometheus : collecte les metriques (CPU, RAM, disque, requetes).
-Node Exporter : expose les metriques systeme pour Prometheus.
-Grafana : affiche les dashboards.
-AlertManager : gere les alertes.
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">Prometheus</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">collecte</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">metriques</span><span class="w"> </span><span class="o">(</span><span class="n">CPU</span><span class="o">,</span><span class="w"> </span><span class="n">RAM</span><span class="o">,</span><span class="w"> </span><span class="n">disque</span><span class="o">,</span><span class="w"> </span><span class="n">requetes</span><span class="o">).</span>
+<span class="n">Node</span><span class="w"> </span><span class="n">Exporter</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">expose</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">metriques</span><span class="w"> </span><span class="n">systeme</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">Prometheus</span><span class="o">.</span>
+<span class="n">Grafana</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">affiche</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">dashboards</span><span class="o">.</span>
+<span class="n">AlertManager</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">gere</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">alertes</span><span class="o">.</span>
+</code></pre></div>
 
 <h3 id="installation-docker-compose">Installation (Docker Compose)</h3>
-<pre class="codehilite"><code class="language-yaml">services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus-data:/prometheus
-    ports:
-      - &quot;9090:9090&quot;
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">prometheus</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prom/prometheus</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prometheus-data:/prometheus</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9090:9090&quot;</span>
 
-  node-exporter:
-    image: prom/node-exporter
-    ports:
-      - &quot;9100:9100&quot;
-    pid: host
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
+<span class="w">  </span><span class="nt">node-exporter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prom/node-exporter</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9100:9100&quot;</span>
+<span class="w">    </span><span class="nt">pid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/proc:/host/proc:ro</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/sys:/host/sys:ro</span>
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - &quot;3002:3000&quot;
-    volumes:
-      - grafana-data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=changeme
+<span class="w">  </span><span class="nt">grafana</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana/grafana</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3002:3000&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana-data:/var/lib/grafana</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GF_SECURITY_ADMIN_PASSWORD=changeme</span>
 
-volumes:
-  prometheus-data:
-  grafana-data:
-</code></pre>
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">prometheus-data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">grafana-data</span><span class="p">:</span>
+</code></pre></div>
 
 <h3 id="quand-cest-justifie">Quand c'est justifie</h3>
 <ul>
@@ -302,17 +308,30 @@ volumes:
 </ul>
 <p>Temps de mise en place : 4-8 heures.
 Cout : 0 EUR (self-hosted) + temps de maintenance.</p>
+<h2 id="niveau-0-le-gateway-lui-meme-avant-tout-outil">Niveau 0 : le gateway lui-meme (avant tout outil)</h2>
+<p>Avant d'installer le moindre outil de monitoring, exploitez ce que le gateway fait deja nativement. Voir la section 5.15 (Diagnostiquer et monitorer le gateway) pour les details.</p>
+<p><strong>En resume :</strong> <code>openclaw gateway status</code> + <code>openclaw health</code> + un cron qui alerte via Telegram si le health check echoue. C'est le monitoring le plus fiable avec zero outil supplementaire.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Cron toutes les 5 minutes — zero outil, zero container</span>
+*/5<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>curl<span class="w"> </span>-sf<span class="w"> </span>http://127.0.0.1:3000/health<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>/chemin/alerte-telegram.sh<span class="w"> </span><span class="s2">&quot;Gateway KO&quot;</span>
+</code></pre></div>
+
+<p><strong>Passez au niveau 1 uniquement quand le niveau 0 ne suffit plus</strong> (par exemple, vous voulez surveiller d'autres services que le gateway).</p>
 <h2 id="recommandation">Recommandation</h2>
-<p><strong>Commencez par le niveau 1.</strong> Toujours. Ca prend 30 minutes et ca couvre 80% des besoins.</p>
+<p><strong>Commencez par le niveau 0 (gateway natif).</strong> Si ca suffit, arretez-vous la. Beaucoup de setups solo n'ont jamais besoin d'aller plus loin.</p>
+<p>Passez au niveau 1 quand :
+- Vous avez d'autres services a surveiller (hors gateway).
+- Vous voulez un script centralise.</p>
 <p>Passez au niveau 2 quand :
-- Vous voulez un historique d'uptime.
+- Vous voulez un historique d'uptime avec des graphes.
 - Vous avez 5+ services a surveiller.
-- Vous voulez une page de statut.</p>
+- Vous voulez une page de statut publique.</p>
 <p>Passez au niveau 3 quand :
-- Vous avez des SLA a respecter.
-- Vous avez besoin de metriques fines (latence p99, throughput).
-- Vous gerez plusieurs serveurs.</p>
-<p>La plupart des setups solo n'auront jamais besoin du niveau 3.</p>
+- Vous avez des SLA contractuels a respecter.
+- Vous avez une equipe ops dediee qui consulte des dashboards.
+- Vous gerez 10+ services sur plusieurs serveurs.</p>
+<blockquote>
+<p><strong>Realite :</strong> La plupart des setups solo et petites equipes n'auront <strong>jamais</strong> besoin du niveau 3. Prometheus + Grafana sont des outils puissants, mais leur cout de maintenance est significatif. N'installez pas un outil de monitoring qui demande plus de maintenance que les services qu'il surveille. Voir la section 3.20 (Choisir sa stack) pour savoir quel niveau vous correspond.</p>
+</blockquote>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Installer Grafana + Prometheus pour 2 containers.</strong> Over-engineering. Vous passez plus de temps a maintenir le monitoring qu'a maintenir l'application.</p>
 <p><strong>Pas de monitoring externe.</strong> Tout votre monitoring tourne sur le meme serveur. Si le serveur tombe, le monitoring aussi. Solution niveau 1 : un service externe gratuit (UptimeRobot, Hetrixtools) pour le ping basique.</p>
@@ -336,7 +355,7 @@ Cout : 0 EUR (self-hosted) + temps de maintenance.</p>
 </ul>
 </section><div class="bravo-box">
   <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
-  <div class="bravo-body">Vous avez couvert : Contexte, Niveau 1 : simple (cron + Telegram), Niveau 2 : intermediaire (Uptime Kuma), Niveau 3 : avance (Grafana + Prometheus) et 4 autres. <a href="05-11-en-cas-de-panne.html">Continuer &rarr;</a></div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Niveau 1 : simple (cron + Telegram), Niveau 2 : intermediaire (Uptime Kuma), Niveau 3 : avance (Grafana + Prometheus) et 5 autres. <a href="05-11-en-cas-de-panne.html">Continuer &rarr;</a></div>
 </div>
 
 <p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/05-maintenance/10-monitoring.md">Proposer une modification sur GitHub</a></p>
@@ -366,19 +385,21 @@ Cout : 0 EUR (self-hosted) + temps de maintenance.</p>
 <a href="05-11-en-cas-de-panne.html">5.11 -- En cas de panne &rarr;</a>
 </div>
 
-    <footer>
-      <p>
-        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
-        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
-      </p>
-      <p style="margin-top:0.3rem;">
-        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
-        &middot; <a href="contribuer.html">Contribuer</a>
-        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
-        &middot; <a href="privacy.html">Confidentialite</a>
-      </p>
-    </footer>
   </main>
+
+  <footer role="contentinfo">
+    <p>
+      Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+      par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+    </p>
+    <p style="margin-top:0.3rem;">
+      <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+      &middot; <a href="contribuer.html">Contribuer</a>
+      &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      &middot; <a href="accessibility.html">Accessibilite</a>
+      &middot; <a href="privacy.html">Confidentialite</a>
+    </p>
+  </footer>
 </div>
 
 <script src="assets/script.js"></script>

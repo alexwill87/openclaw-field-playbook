@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>3.20 -- Choisir sa stack : du minimum viable au setup complet | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="3.20 -- Choisir sa stack : du minimum viable au setup complet | OpenClaw Field Playbook">
+  <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3.20 -- Choisir sa stack : du minimum viable au setup complet | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#content" class="skip-link">Aller au contenu principal</a>
+
+<header role="banner">
+<nav id="topnav" aria-label="Navigation principale">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</button>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search" role="search">
+      <label for="search-input" class="sr-only">Rechercher dans le playbook</label>
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" aria-label="Rechercher dans le playbook">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav" aria-label="Sommaire du playbook">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-group-label">Avant-propos</div>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+</div>
+<div class="nav-group-label">Déployer</div>
+<div class="nav-chapter">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+</div>
+<div class="nav-chapter  open">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+  <div class="nav-sections">
+    <a href="03-01-perimetre-agent.html">3.1 -- Definir le perimetre de l...</a>
+    <a href="03-02-soul-md.html">3.2 -- SOUL.md : l'identite de l...</a>
+    <a href="03-03-user-md.html">3.3 -- USER.md : votre profil po...</a>
+    <a href="03-04-agents-md.html">3.4 -- AGENTS.md : le registre d...</a>
+    <a href="03-05-constitution-md.html">3.5 -- CONSTITUTION.md : les reg...</a>
+    <a href="03-06-trois-zones-memoire.html">3.6 -- Les trois zones de memoire</a>
+    <a href="03-07-memory-md.html">3.7 -- MEMORY.md : la memoire co...</a>
+    <a href="03-08-knowledge.html">3.8 -- Le dossier knowledge/</a>
+    <a href="03-09-principe-une-source.html">3.9 -- Une source a la fois (pri...</a>
+    <a href="03-10-calendrier.html">3.10 -- Calendrier d'abord, touj...</a>
+    <a href="03-11-taches.html">3.11 -- Taches : la pression inv...</a>
+    <a href="03-12-email-messages.html">3.12 -- Email et messages</a>
+    <a href="03-13-skill-custom.html">3.13 -- Construire un skill cust...</a>
+    <a href="03-14-souverainete-donnees.html">3.14 -- Souverainete des donnees</a>
+    <a href="03-15-crons.html">3.15 -- Les crons : automatisati...</a>
+    <a href="03-16-briefing-matin.html">3.16 -- Le briefing du matin (me...</a>
+    <a href="03-17-multi-agents.html">3.17 -- Architecture multi-agents</a>
+    <a href="03-18-remote-mode.html">3.18 -- Connecter deux installat...</a>
+    <a href="03-19-terminal-interface.html">3.19 -- Le terminal : votre inte...</a>
+    <a href="03-20-choisir-sa-stack.html" class="active">3.20 -- Choisir sa stack : du mi...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-group-label">Opérer</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-group-label">Ressources</div>
+<a href="ecosystem.html">Écosystème</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribuer</a>
+<a href="privacy.html">Confidentialité</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <a href="03-00-sommaire.html">3. Configuration</a>
+  <span class="sep">/</span>
+  <span>3.20 -- Choisir sa stack : du minimum viable au setup complet</span>
+</nav>
+<div class="last-updated">Dernière mise à jour : avril 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#les-3-niveaux-de-stack">Les 3 niveaux de stack</a></li>
+    <li class="toc-h3"><a href="#niveau-1-essentiel-1-jour-dinstallation">Niveau 1 : Essentiel (1 jour d'installation)</a></li>
+    <li class="toc-h3"><a href="#niveau-2-operationnel-1-semaine">Niveau 2 : Operationnel (1 semaine)</a></li>
+    <li class="toc-h3"><a href="#niveau-3-avance-quand-le-besoin-se-manifeste">Niveau 3 : Avance (quand le besoin se manifeste)</a></li>
+    <li><a href="#tableau-de-decision-par-profil">Tableau de decision par profil</a></li>
+    <li><a href="#clawhub-lecosysteme-openclaw">ClawHub : l'ecosysteme OpenClaw</a></li>
+    <li class="toc-h3"><a href="#ce-que-vous-y-trouvez">Ce que vous y trouvez</a></li>
+    <li class="toc-h3"><a href="#quand-utiliser-clawhub">Quand utiliser ClawHub</a></li>
+    <li class="toc-h3"><a href="#comment-y-acceder">Comment y acceder</a></li>
+    <li><a href="#les-outils-un-par-un-ce-que-chacun-apporte">Les outils un par un : ce que chacun apporte</a></li>
+    <li class="toc-h3"><a href="#telegram-bot">Telegram Bot</a></li>
+    <li class="toc-h3"><a href="#mattermost">Mattermost</a></li>
+    <li class="toc-h3"><a href="#uptime-kuma">Uptime Kuma</a></li>
+    <li class="toc-h3"><a href="#prometheus-grafana">Prometheus + Grafana</a></li>
+    <li><a href="#la-regle-dor">La regle d'or</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="320-choisir-sa-stack-du-minimum-viable-au-setup-complet">3.20 -- Choisir sa stack : du minimum viable au setup complet</h1>
+<blockquote>
+<p>Vous n'avez pas besoin de tout. Cette section vous aide a choisir les bons outils pour votre situation — et a comprendre ce que chacun apporte avant de l'installer.</p>
+</blockquote>
+<p><strong>Pour qui :</strong> tout le monde
+<strong>Prerequis :</strong> installation de base terminee (chapitre 2)
+<strong>Difficulte :</strong> Debutant a intermediaire
+<strong>Temps de lecture :</strong> 15 minutes</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Quand on decouvre OpenClaw et son ecosysteme, il est tentant de tout installer : monitoring, dashboards, multi-agents, remote mode, bot Telegram, base de donnees, pipeline CI/CD...</p>
+<p><strong>C'est une erreur.</strong></p>
+<p>Chaque outil ajoute de la complexite. Chaque service supplementaire est un service a maintenir, a surveiller, a debugger. L'objectif n'est pas d'avoir la stack la plus complete — c'est d'avoir la stack <strong>la plus adaptee a votre besoin actuel</strong>.</p>
+<hr />
+<h2 id="les-3-niveaux-de-stack">Les 3 niveaux de stack</h2>
+<h3 id="niveau-1-essentiel-1-jour-dinstallation">Niveau 1 : Essentiel (1 jour d'installation)</h3>
+<p>C'est le minimum pour avoir un OpenClaw fonctionnel. C'est la ou <strong>tout le monde doit commencer</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Role</th>
+<th style="text-align: center;">Obligatoire ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VPS + Ubuntu</strong></td>
+<td>Le serveur</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+<tr>
+<td><strong>Docker</strong></td>
+<td>Isolation des services</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+<tr>
+<td><strong>Node.js</strong></td>
+<td>Runtime OpenClaw</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+<tr>
+<td><strong>OpenClaw + Gateway</strong></td>
+<td>Le coeur du systeme</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+<tr>
+<td><strong>Vault</strong></td>
+<td>Gestion des secrets</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+<tr>
+<td><strong>Tailscale</strong></td>
+<td>Acces securise au VPS</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Base de donnees</td>
+<td style="text-align: center;">Oui</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ce que vous pouvez faire avec le niveau 1 :</strong>
+- Parler a un agent IA via le terminal
+- Stocker vos secrets de maniere securisee
+- Avoir une base de donnees pour la memoire et les taches
+- Acceder a votre VPS de n'importe ou via Tailscale
+- Verifier la sante du systeme (<code>openclaw health</code>)</p>
+<p><strong>Ce que vous ne pouvez PAS faire :</strong>
+- Recevoir des notifications (il faut Telegram)
+- Avoir un agent autonome (il faut les crons)
+- Connecter un deuxieme VPS (il faut le remote mode)
+- Avoir un dashboard visuel</p>
+<blockquote>
+<p><strong>Recommandation :</strong> Restez au niveau 1 pendant au moins 2 semaines. Apprenez a maitriser le gateway, le terminal, et les commandes de base. N'ajoutez rien tant que vous n'avez pas un besoin reel.</p>
+</blockquote>
+<h3 id="niveau-2-operationnel-1-semaine">Niveau 2 : Operationnel (1 semaine)</h3>
+<p>Ajoutez ces composants quand vous sentez des limites concretes avec le niveau 1.</p>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Ce qu'il apporte</th>
+<th>Quand l'ajouter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Telegram Bot</strong></td>
+<td>Notifications, alertes, commandes rapides</td>
+<td>Quand vous voulez etre prevenu sans etre devant le terminal</td>
+</tr>
+<tr>
+<td><strong>Crons</strong></td>
+<td>Taches planifiees (briefing matin, health check)</td>
+<td>Quand vous voulez de l'automatisation</td>
+</tr>
+<tr>
+<td><strong>Git + script deploy</strong></td>
+<td>Versionning de vos configs, deploiement reproductible</td>
+<td>Quand vous modifiez souvent les configs</td>
+</tr>
+<tr>
+<td><strong>Health check cron</strong></td>
+<td>Alerte Telegram si un service tombe</td>
+<td>Des que vous avez Telegram</td>
+</tr>
+<tr>
+<td><strong>Mattermost</strong></td>
+<td>Communication entre agents et humains</td>
+<td>Quand vous avez 2+ agents ou une equipe</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ce que le niveau 2 ajoute :</strong>
+- Votre agent peut vous prevenir quand quelque chose se passe
+- Des taches tournent automatiquement (briefing matin, checks)
+- Vos configurations sont versionnees et recuperables
+- Vous pouvez communiquer avec vos agents depuis votre telephone</p>
+<h3 id="niveau-3-avance-quand-le-besoin-se-manifeste">Niveau 3 : Avance (quand le besoin se manifeste)</h3>
+<p><strong>N'installez ces composants QUE si vous avez un besoin explicite.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Ce qu'il apporte</th>
+<th>Quand c'est justifie</th>
+<th>Quand c'est du over-engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Remote mode</strong></td>
+<td>Connexion multi-VPS</td>
+<td>Vous gerez 2+ VPS ou un VPS client</td>
+<td>Vous avez un seul VPS</td>
+</tr>
+<tr>
+<td><strong>Multi-agents</strong></td>
+<td>Plusieurs agents specialises</td>
+<td>Vous avez des domaines separes (finance, clients, technique)</td>
+<td>Vous etes seul avec un besoin simple</td>
+</tr>
+<tr>
+<td><strong>Uptime Kuma</strong></td>
+<td>Monitoring avec historique et graphes</td>
+<td>Vous avez 5+ services a surveiller</td>
+<td>Vous avez 2 containers</td>
+</tr>
+<tr>
+<td><strong>ClawHub</strong></td>
+<td>Marketplace de skills et configurations</td>
+<td>Vous cherchez des integrations pretes a l'emploi</td>
+<td>Vous avez des besoins tres specifiques</td>
+</tr>
+<tr>
+<td><strong>Dashboard custom</strong></td>
+<td>Interface visuelle pour non-techniques</td>
+<td>Vous avez une equipe qui ne touche pas au terminal</td>
+<td>Vous etes seul et a l'aise avec le terminal</td>
+</tr>
+<tr>
+<td><strong>Prometheus + Grafana</strong></td>
+<td>Metriques fines, dashboards detailles</td>
+<td>Vous avez des SLA, 10+ services, une equipe ops</td>
+<td>Tout le reste</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tableau-de-decision-par-profil">Tableau de decision par profil</h2>
+<table>
+<thead>
+<tr>
+<th>Vous etes...</th>
+<th>Stack recommandee</th>
+<th>Ce que vous pouvez ignorer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Solo, debutant</strong></td>
+<td>Niveau 1</td>
+<td>Tout le reste pendant 2 semaines</td>
+</tr>
+<tr>
+<td><strong>Solo, a l'aise</strong></td>
+<td>Niveau 1 + Telegram + Crons</td>
+<td>Dashboard, multi-agents, monitoring avance</td>
+</tr>
+<tr>
+<td><strong>Equipe de 2-3</strong></td>
+<td>Niveau 2 + Mattermost</td>
+<td>Prometheus, Grafana, dashboard custom</td>
+</tr>
+<tr>
+<td><strong>Integrateur / consultant</strong></td>
+<td>Niveau 2 + Remote mode</td>
+<td>Dashboard custom</td>
+</tr>
+<tr>
+<td><strong>Equipe technique (5+)</strong></td>
+<td>Niveau 2 + Uptime Kuma + multi-agents</td>
+<td>Prometheus (sauf si SLA)</td>
+</tr>
+<tr>
+<td><strong>Entreprise avec SLA</strong></td>
+<td>Niveau 3 complet</td>
+<td>Rien — tout est justifie</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="clawhub-lecosysteme-openclaw">ClawHub : l'ecosysteme OpenClaw</h2>
+<p>ClawHub est le marketplace d'OpenClaw. C'est l'endroit ou vous trouvez des skills, des configurations, et des integrations creees par la communaute.</p>
+<h3 id="ce-que-vous-y-trouvez">Ce que vous y trouvez</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Exemples</th>
+<th>Pour qui</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Skills</strong></td>
+<td>CRM connector, invoice generator, email parser</td>
+<td>Ceux qui veulent des integrations pretes</td>
+</tr>
+<tr>
+<td><strong>Templates de config</strong></td>
+<td>Config type agence, config type e-commerce</td>
+<td>Ceux qui demarrent et veulent un point de depart</td>
+</tr>
+<tr>
+<td><strong>Agents pre-configures</strong></td>
+<td>Agent support client, agent comptable</td>
+<td>Ceux qui veulent un agent operationnel rapidement</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quand-utiliser-clawhub">Quand utiliser ClawHub</h3>
+<ul>
+<li><strong>Oui :</strong> Vous cherchez une integration avec un outil specifique (Pennylane, Sellsy, etc.) et quelqu'un l'a deja faite.</li>
+<li><strong>Oui :</strong> Vous demarrez et voulez un template de configuration pour votre metier.</li>
+<li><strong>Non :</strong> Vous avez des besoins tres specifiques qui ne correspondent a aucun template.</li>
+<li><strong>Non :</strong> Vous preferez tout construire vous-meme pour comprendre.</li>
+</ul>
+<blockquote>
+<p><strong>Note :</strong> ClawHub est encore jeune. Le catalogue grandit avec la communaute. Si vous ne trouvez pas ce que vous cherchez, c'est normal — et c'est une opportunite de contribuer.</p>
+</blockquote>
+<h3 id="comment-y-acceder">Comment y acceder</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Rechercher un skill</span>
+$<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </span>search<span class="w"> </span><span class="s2">&quot;crm&quot;</span>
+
+<span class="c1"># Installer un skill depuis ClawHub</span>
+$<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </span>install<span class="w"> </span>skill-crm-pulse
+
+<span class="c1"># Voir ce qui est installe</span>
+$<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </span>list
+</code></pre></div>
+
+<hr />
+<h2 id="les-outils-un-par-un-ce-que-chacun-apporte">Les outils un par un : ce que chacun apporte</h2>
+<p>Plutot que de lister des outils dans un tableau abstrait, voici ce que chacun resout concretement.</p>
+<h3 id="telegram-bot">Telegram Bot</h3>
+<p><strong>Le probleme qu'il resout :</strong> "Je ne suis pas devant mon terminal mais je veux savoir si quelque chose a casse."</p>
+<p><strong>Ce qu'il fait :</strong>
+- Envoie des alertes quand un health check echoue
+- Permet d'envoyer des commandes rapides a l'agent depuis votre telephone
+- Notifie quand une tache planifiee est terminee</p>
+<p><strong>Installation :</strong> Section 2.14
+<strong>Prerequis :</strong> Rien de special
+<strong>Complexite ajoutee :</strong> Faible (un token, un chat ID)</p>
+<h3 id="mattermost">Mattermost</h3>
+<p><strong>Le probleme qu'il resout :</strong> "J'ai plusieurs agents et/ou une equipe. Je veux un canal de communication structure."</p>
+<p><strong>Ce qu'il fait :</strong>
+- Canaux par sujet (technique, clients, finance...)
+- Les agents postent leurs bilans et decisions
+- Les humains peuvent commenter et valider
+- Historique recherchable</p>
+<p><strong>Installation :</strong> Section 2.8 (PostgreSQL requis)
+<strong>Prerequis :</strong> Niveau 1 complet
+<strong>Complexite ajoutee :</strong> Moyenne (Docker container, configuration des canaux)</p>
+<h3 id="uptime-kuma">Uptime Kuma</h3>
+<p><strong>Le probleme qu'il resout :</strong> "Je veux savoir depuis combien de temps chaque service tourne et voir l'historique."</p>
+<p><strong>Ce qu'il fait :</strong>
+- Monitore chaque service (HTTP, TCP, ping)
+- Graphe d'uptime dans le temps
+- Notifications multi-canal (Telegram, email, Slack)
+- Page de statut publique (optionnel)</p>
+<p><strong>Installation :</strong> Section 5.10
+<strong>Prerequis :</strong> Docker
+<strong>Complexite ajoutee :</strong> Faible (un container, interface web)</p>
+<h3 id="prometheus-grafana">Prometheus + Grafana</h3>
+<p><strong>Le probleme qu'il resout :</strong> "J'ai besoin de metriques fines (CPU, memoire, latence p99) et de dashboards pour une equipe ops."</p>
+<p><strong>Ce qu'il fait :</strong>
+- Collecte des metriques systeme et applicatives
+- Dashboards personnalisables
+- Alertes sur seuils
+- Correlation entre metriques</p>
+<p><strong>Quand c'est justifie :</strong>
+- Vous gerez 10+ services
+- Vous avez des SLA a respecter
+- Vous avez une equipe qui consulte les dashboards</p>
+<p><strong>Quand c'est du over-engineering :</strong>
+- Vous etes seul avec 3 containers
+- Personne ne regarde les dashboards
+- Un <code>openclaw health</code> + Telegram suffit</p>
+<p><strong>Installation :</strong> Section 5.10 (niveau 3)
+<strong>Prerequis :</strong> Niveau 2 complet, Docker
+<strong>Complexite ajoutee :</strong> Elevee (3 containers, configuration YAML, dashboards a creer)</p>
+<blockquote>
+<p><strong>Conseil :</strong> Si vous hesitez entre Uptime Kuma et Prometheus+Grafana, prenez Uptime Kuma. Il couvre 90% des besoins de monitoring avec 10% de la complexite.</p>
+</blockquote>
+<hr />
+<h2 id="la-regle-dor">La regle d'or</h2>
+<p><strong>N'installez un outil que quand vous ressentez un manque.</strong> Si vous ne ressentez pas le manque, l'outil ne vous apportera rien — il ajoutera seulement de la maintenance.</p>
+<p>La progression naturelle :</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">Semaine</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="w"> </span>:<span class="w"> </span><span class="nv">Niveau</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">(</span><span class="nv">gateway</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">terminal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">commandes</span><span class="w"> </span><span class="nv">de</span><span class="w"> </span><span class="nv">base</span><span class="ss">)</span>
+<span class="w">         </span>│
+<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;J&#39;aimerais etre prevenu quand ca casse&quot;</span>
+<span class="nv">Semaine</span><span class="w"> </span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="w"> </span>:<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Telegram</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Health</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">cron</span>
+<span class="w">         </span>│
+<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;Je veux automatiser le briefing du matin&quot;</span>
+<span class="nv">Mois</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span>:<span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="nv">Crons</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Git</span><span class="w"> </span><span class="nv">deploy</span>
+<span class="w">         </span>│
+<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;On est deux, on a besoin de se coordonner&quot;</span>
+<span class="nv">Mois</span><span class="w"> </span><span class="mi">3</span><span class="o">+</span><span class="w"> </span>:<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nv">Mattermost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Multi</span><span class="o">-</span><span class="nv">agents</span>
+<span class="w">         </span>│
+<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;Je veux voir l&#39;historique d&#39;uptime&quot;</span>
+<span class="nv">Quand</span><span class="w"> </span><span class="nv">ca</span><span class="w"> </span><span class="nv">vient</span><span class="w"> </span>:<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">Uptime</span><span class="w"> </span><span class="nv">Kuma</span>
+</code></pre></div>
+
+<p>Chaque ajout repond a un besoin que vous avez <strong>reellement vecu</strong>, pas a un besoin que vous imaginez.</p>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Tout installer le premier jour.</strong> Vous passez 3 jours a configurer Grafana, Prometheus, Mattermost, un dashboard custom... et vous n'avez toujours pas parle a votre agent. Commencez par le niveau 1. Le reste viendra.</p>
+<p><strong>Installer un outil "au cas ou".</strong> Si vous n'avez pas un probleme concret que l'outil resout, ne l'installez pas. Vous pourrez toujours l'ajouter plus tard.</p>
+<p><strong>Copier la stack d'un autre.</strong> Ce qui fonctionne pour une equipe de 10 personnes avec des SLA ne fonctionne pas pour un solo entrepreneur. Construisez votre stack a votre rythme.</p>
+<p><strong>Confondre outils et fonctionnalites.</strong> Grafana n'est pas une fonctionnalite. C'est un outil qui affiche des metriques. Si <code>openclaw health</code> et Telegram vous suffisent, Grafana ne vous apportera rien de plus — juste de la maintenance.</p>
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous savez a quel niveau de stack vous etes actuellement.</li>
+<li>[ ] Vous pouvez expliquer pourquoi chaque composant installe est la.</li>
+<li>[ ] Vous n'avez pas d'outil installe "au cas ou".</li>
+<li>[ ] Vous avez un plan pour le prochain outil a ajouter (ou pas).</li>
+<li>[ ] Vous connaissez ClawHub et savez comment y chercher un skill.</li>
+</ul>
+<hr />
+<h2 id="temps-estime">Temps estime</h2>
+<p>15 minutes de lecture. L'installation depend des composants choisis (voir les sections dediees pour chacun).</p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Les 3 niveaux de stack, Tableau de decision par profil, ClawHub : l'ecosysteme OpenClaw et 5 autres. <a href="04-00-sommaire.html">Continuer &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/03-configuration/20-choisir-sa-stack.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="03-19-terminal-interface.html">&larr; 3.19 -- Le terminal : votre interface quotidienne</a>
+<a href="04-00-sommaire.html">4. Personnalisation &rarr;</a>
+</div>
+
+  </main>
+
+  <footer role="contentinfo">
+    <p>
+      Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+      par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+    </p>
+    <p style="margin-top:0.3rem;">
+      <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+      &middot; <a href="contribuer.html">Contribuer</a>
+      &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      &middot; <a href="accessibility.html">Accessibilite</a>
+      &middot; <a href="privacy.html">Confidentialite</a>
+    </p>
+  </footer>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

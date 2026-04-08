@@ -210,6 +210,12 @@
     "body": "Adapter le playbook a un VPS existant > Vous avez deja un serveur avec des services qui tournent. Cette section vous aide a diagnostiquer ce qui est deja en place et a adapter votre parcours. Diagnost"
   },
   {
+    "slug": "02-21-gateway-coeur-systeme",
+    "title": "2.21 -- Le Gateway : le coeur de votre installation",
+    "url": "02-21-gateway-coeur-systeme.html",
+    "body": "2.21 -- Le Gateway : le coeur de votre installation > Vous avez installe tous les composants. Avant de passer a la configuration, arretez-vous ici. Cette section explique pourquoi le gateway est la br"
+  },
+  {
     "slug": "03-00-sommaire",
     "title": "3. Configuration",
     "url": "03-00-sommaire.html",
@@ -322,6 +328,18 @@
     "title": "3.18 -- Connecter deux installations OpenClaw (mode remote)",
     "url": "03-18-remote-mode.html",
     "body": "3.18 -- Connecter deux installations OpenClaw (mode remote) > Vous avez deux VPS avec OpenClaw, ou vous gerez l'installation d'un client. Voici comment les connecter pour surveiller, debugger ou colla"
+  },
+  {
+    "slug": "03-19-terminal-interface",
+    "title": "3.19 -- Le terminal : votre interface quotidienne",
+    "url": "03-19-terminal-interface.html",
+    "body": "3.19 -- Le terminal : votre interface quotidienne > Le terminal n'est pas un outil de developpeur. C'est votre poste de pilotage. Cette section explique comment l'utiliser efficacement, comment le con"
+  },
+  {
+    "slug": "03-20-choisir-sa-stack",
+    "title": "3.20 -- Choisir sa stack : du minimum viable au setup complet",
+    "url": "03-20-choisir-sa-stack.html",
+    "body": "3.20 -- Choisir sa stack : du minimum viable au setup complet > Vous n'avez pas besoin de tout. Cette section vous aide a choisir les bons outils pour votre situation — et a comprendre ce que chacun a"
   },
   {
     "slug": "04-00-sommaire",
@@ -502,6 +520,12 @@
     "title": "5.14 -- Mesurer le ROI",
     "url": "05-14-mesurer-roi.html",
     "body": "5.14 -- Mesurer le ROI Contexte \"L'agent me fait gagner du temps.\" OK, combien ? Si vous ne mesurez pas, vous ne savez pas. Et si vous ne savez pas, vous ne pouvez pas justifier le cout, ni optimiser "
+  },
+  {
+    "slug": "05-15-diagnostiquer-gateway",
+    "title": "5.15 -- Diagnostiquer et monitorer le gateway",
+    "url": "05-15-diagnostiquer-gateway.html",
+    "body": "5.15 -- Diagnostiquer et monitorer le gateway > Le gateway est le premier composant a verifier quand quelque chose ne fonctionne pas. Cette section vous donne les reflexes, les commandes, et les scena"
   },
   {
     "slug": "06-00-sommaire",

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦞</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>2.21 -- Le Gateway : le coeur de votre installation | OpenClaw Field Playbook</title>
+  <meta name="description" content="Guide open-source de terrain pour installer, configurer et operer OpenClaw en entreprise. 92 sections, 7 chapitres : installation VPS, configuration agent IA, personnalisation, maintenance. Par des praticiens, pour des praticiens.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenClaw Field Playbook">
+  <meta property="og:title" content="2.21 -- Le Gateway : le coeur de votre installation | OpenClaw Field Playbook">
+  <meta property="og:description" content="Guide open-source de terrain pour installer et operer OpenClaw en entreprise. 92 sections, 7 chapitres.">
+  <meta property="og:url" content="https://www.openclawfieldplaybook.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.21 -- Le Gateway : le coeur de votre installation | OpenClaw Field Playbook">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#content" class="skip-link">Aller au contenu principal</a>
+
+<header role="banner">
+<nav id="topnav" aria-label="Navigation principale">
+  <div class="nav-brand">
+    <a href="index.html">OpenClaw Field Playbook</a>
+  </div>
+  <div class="nav-center">
+    <span class="github-badges"></span>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</button>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+</header>
+
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="nav-search" role="search">
+      <label for="search-input" class="sr-only">Rechercher dans le playbook</label>
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" aria-label="Rechercher dans le playbook">
+      <div id="search-results"></div>
+    </div>
+    <nav id="side-nav" aria-label="Sommaire du playbook">
+      <a href="index.html" class="nav-home">Accueil</a>
+<div class="nav-group-label">Avant-propos</div>
+<a href="decouverte.html">C'est quoi OpenClaw ?</a>
+<a href="persona-entrepreneur.html">Focus Entrepreneurs</a>
+<a href="persona-cto.html">Focus Équipes tech</a>
+<a href="persona-dev.html">Focus Développeurs</a>
+<a href="persona-agent.html">Focus Agents IA</a>
+<div class="nav-group-label">Découvrir</div>
+<div class="nav-chapter">
+  <a href="00-guide.html" class="nav-chapter-title">0. Guide de lecture</a>
+</div>
+<div class="nav-chapter">
+  <a href="01-00-sommaire.html" class="nav-chapter-title">1. Définition</a>
+</div>
+<div class="nav-group-label">Déployer</div>
+<div class="nav-chapter  open">
+  <a href="02-00-sommaire.html" class="nav-chapter-title">2. Installation</a>
+  <div class="nav-sections">
+    <a href="02-00-preflight.html">Checklist pre-vol -- Tout prepar...</a>
+    <a href="02-01-prerequis.html">2.1 -- Prerequis materiel et log...</a>
+    <a href="02-02-securiser-vps.html">2.2 -- Securiser le VPS</a>
+    <a href="02-03-tailscale.html">2.3 -- Reseau prive Tailscale</a>
+    <a href="02-04-docker.html">2.4 -- Docker et Docker Compose</a>
+    <a href="02-05-nodejs-pm2.html">2.5 -- Node.js et PM2</a>
+    <a href="02-06-structure-dossiers.html">2.6 -- Structure de dossiers</a>
+    <a href="02-07-vault.html">2.7 -- HashiCorp Vault</a>
+    <a href="02-08-postgresql.html">2.8 -- PostgreSQL</a>
+    <a href="02-09-health-check.html">2.9 -- Premier health check</a>
+    <a href="02-10-openclaw-install.html">2.10 -- Installation OpenClaw</a>
+    <a href="02-11-workspace.html">2.11 -- Structure du workspace</a>
+    <a href="02-12-config-openclaw.html">2.12 -- Configuration initiale O...</a>
+    <a href="02-13-openrouter.html">2.13 -- Connexion OpenRouter</a>
+    <a href="02-14-telegram.html">2.14 -- Connexion Telegram</a>
+    <a href="02-15-gateway-systemd.html">2.15 -- Gateway systemd</a>
+    <a href="02-16-verification-complete.html">2.16 -- Verification post-instal...</a>
+    <a href="02-17-git-init.html">2.17 -- Initialiser le repo Git</a>
+    <a href="02-18-claude-md.html">2.18 -- CLAUDE.md</a>
+    <a href="02-19-script-deploy.html">2.19 -- Script de deploiement</a>
+    <a href="02-20-adapter-existant.html">Adapter le playbook a un VPS exi...</a>
+    <a href="02-21-gateway-coeur-systeme.html" class="active">2.21 -- Le Gateway : le coeur de...</a>
+  </div>
+</div>
+<div class="nav-chapter">
+  <a href="03-00-sommaire.html" class="nav-chapter-title">3. Configuration</a>
+</div>
+<div class="nav-chapter">
+  <a href="04-00-sommaire.html" class="nav-chapter-title">4. Personnalisation</a>
+</div>
+<div class="nav-group-label">Opérer</div>
+<div class="nav-chapter">
+  <a href="05-00-sommaire.html" class="nav-chapter-title">5. Maintenance</a>
+</div>
+<div class="nav-chapter">
+  <a href="06-00-sommaire.html" class="nav-chapter-title">6. Cas d'usage</a>
+</div>
+<div class="nav-group-label">Ressources</div>
+<a href="ecosystem.html">Écosystème</a>
+<div class="nav-chapter">
+  <a href="07-00-sommaire.html" class="nav-chapter-title">7. Localisation</a>
+</div>
+<a href="checklist.html">Checklist</a>
+<a href="contribuer.html">Contribuer</a>
+<a href="privacy.html">Confidentialité</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <nav class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <span class="sep">/</span>
+  <a href="02-00-sommaire.html">2. Installation</a>
+  <span class="sep">/</span>
+  <span>2.21 -- Le Gateway : le coeur de votre installation</span>
+</nav>
+<div class="last-updated">Dernière mise à jour : avril 2026</div>
+<div class="learning-objectives">
+  <div class="lo-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="lo-icon">&#127891;</span>
+    Ce que vous allez apprendre
+    <span class="lo-arrow">&#9660;</span>
+  </div>
+  <ul class="lo-list">
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#ce-que-le-gateway-fait-reellement">Ce que le gateway fait reellement</a></li>
+    <li class="toc-h3"><a href="#il-route-les-commandes">Il route les commandes</a></li>
+    <li class="toc-h3"><a href="#il-gere-les-sessions">Il gere les sessions</a></li>
+    <li class="toc-h3"><a href="#il-expose-letat-du-systeme">Il expose l'etat du systeme</a></li>
+    <li class="toc-h3"><a href="#il-connecte-les-agents-entre-eux">Il connecte les agents entre eux</a></li>
+    <li class="toc-h3"><a href="#il-protege-les-secrets">Il protege les secrets</a></li>
+    <li><a href="#pourquoi-cest-la-premiere-chose-a-maitriser">Pourquoi c'est la premiere chose a maitriser</a></li>
+    <li class="toc-h3"><a href="#avant-de-construire-un-dashboard">Avant de construire un dashboard</a></li>
+    <li class="toc-h3"><a href="#avant-dajouter-des-outils">Avant d'ajouter des outils</a></li>
+    <li class="toc-h3"><a href="#avant-de-passer-en-multi-agents">Avant de passer en multi-agents</a></li>
+    <li><a href="#les-5-commandes-gateway-que-vous-devez-connaitre">Les 5 commandes gateway que vous devez connaitre</a></li>
+    <li><a href="#le-gateway-vs-un-dashboard-quand-construire-quoi">Le gateway vs un dashboard : quand construire quoi</a></li>
+    <li><a href="#architecture-le-gateway-au-centre">Architecture : le gateway au centre</a></li>
+    <li><a href="#erreurs-courantes">Erreurs courantes</a></li>
+    <li><a href="#verification">Verification</a></li>
+    <li><a href="#temps-estime">Temps estime</a></li>
+  </ul>
+</div>
+<section class="chapter">
+<h1 id="221-le-gateway-le-coeur-de-votre-installation">2.21 -- Le Gateway : le coeur de votre installation</h1>
+<blockquote>
+<p>Vous avez installe tous les composants. Avant de passer a la configuration, arretez-vous ici. Cette section explique pourquoi le gateway est la brique la plus importante de tout votre setup — et pourquoi le maitriser change tout.</p>
+</blockquote>
+<p><strong>Pour qui :</strong> tout le monde — entrepreneur, equipe technique, agent
+<strong>Temps de lecture :</strong> 15 minutes
+<strong>Difficulte :</strong> Debutant a intermediaire</p>
+<hr />
+<h2 id="contexte">Contexte</h2>
+<p>Dans les sections precedentes, vous avez installe Docker, Vault, PostgreSQL, Tailscale, Node.js et OpenClaw. Vous avez demarre le gateway en service systemd (section 2.15) et verifie que tout tournait (section 2.16).</p>
+<p>Mais une question reste : <strong>qu'est-ce que le gateway fait, concretement ?</strong></p>
+<p>La plupart des gens le voient comme "un service a demarrer". C'est une erreur. Le gateway est <strong>le point central par lequel tout passe</strong>. Il n'est pas un composant parmi d'autres — il est le composant qui relie tous les autres.</p>
+<hr />
+<h2 id="ce-que-le-gateway-fait-reellement">Ce que le gateway fait reellement</h2>
+<p>Le gateway OpenClaw n'est pas un simple serveur HTTP. C'est un <strong>hub de communication</strong> :</p>
+<div class="codehilite"><pre><span></span><code>                    ┌─────────────────┐
+                    │     Vous        │
+                    │  (terminal)     │
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+     ┌──────────────┤    GATEWAY      ├──────────────┐
+     │              │  (port 3000)    │              │
+     │              └──┬──────┬───┬──┘              │
+     │                 │      │   │                  │
+┌────▼─────┐  ┌───────▼──┐ ┌─▼───▼──┐  ┌───────────▼──┐
+│ Agents   │  │   Base    │ │ Vault  │  │ Services     │
+│ (Claude, │  │ donnees   │ │(secrets│  │ externes     │
+│  Haiku)  │  │(Postgres) │ │  API)  │  │ (Telegram,   │
+│          │  │           │ │        │  │  OpenRouter)  │
+└──────────┘  └───────────┘ └────────┘  └──────────────┘
+</code></pre></div>
+
+<h3 id="il-route-les-commandes">Il route les commandes</h3>
+<p>Quand vous tapez <code>openclaw status</code> dans votre terminal, c'est le gateway qui recoit la requete, interroge les composants (base de donnees, Vault, services), et vous renvoie la reponse. Sans gateway, vos commandes CLI ne font rien.</p>
+<h3 id="il-gere-les-sessions">Il gere les sessions</h3>
+<p>Chaque conversation avec un agent passe par le gateway. Il maintient le contexte, gere la memoire de session, et s'assure que les messages arrivent au bon modele IA via le bon provider.</p>
+<h3 id="il-expose-letat-du-systeme">Il expose l'etat du systeme</h3>
+<p>Le gateway sait si PostgreSQL repond, si Vault est unseal, si le provider IA est accessible. C'est votre <strong>source de verite en temps reel</strong> sur la sante de l'installation.</p>
+<h3 id="il-connecte-les-agents-entre-eux">Il connecte les agents entre eux</h3>
+<p>Si vous avez plusieurs agents (section 3.17), c'est le gateway qui gere leurs interactions. En mode remote (section 3.18), c'est lui qui accepte les connexions WebSocket des clients distants.</p>
+<h3 id="il-protege-les-secrets">Il protege les secrets</h3>
+<p>Les cles API, tokens, et credentials ne transitent jamais en dehors du gateway. Il fait le pont entre Vault (ou sont stockes les secrets) et les services qui en ont besoin.</p>
+<hr />
+<h2 id="pourquoi-cest-la-premiere-chose-a-maitriser">Pourquoi c'est la premiere chose a maitriser</h2>
+<h3 id="avant-de-construire-un-dashboard">Avant de construire un dashboard</h3>
+<p>C'est tentant de vouloir un joli tableau de bord pour tout visualiser. Mais un dashboard est une <strong>couche supplementaire au-dessus du gateway</strong>. Si vous ne maitrisez pas le gateway, votre dashboard affichera des donnees que vous ne comprenez pas — ou pire, des donnees fausses.</p>
+<blockquote>
+<p><strong>Lecon terrain :</strong> Nous avons passe des semaines a construire un cockpit (dashboard Next.js avec Supabase) pour visualiser notre installation. Ca a marche... partiellement. Le vrai probleme : nous ne maitrisions pas suffisamment le gateway en-dessous. Chaque bug du cockpit etait en realite un probleme de gateway mal compris. Quand nous avons investi du temps dans la maitrise du gateway, 80% des besoins du dashboard etaient deja couverts par les commandes CLI.</p>
+</blockquote>
+<h3 id="avant-dajouter-des-outils">Avant d'ajouter des outils</h3>
+<p>Uptime Kuma, Grafana, Prometheus... ces outils ont leur place (section 3.20). Mais le gateway expose deja des informations de sante nativement. Commencez par les exploiter avant d'empiler des outils supplementaires.</p>
+<h3 id="avant-de-passer-en-multi-agents">Avant de passer en multi-agents</h3>
+<p>Le mode remote (section 3.18) repose entierement sur le gateway. Un gateway mal compris = un mode remote fragile.</p>
+<hr />
+<h2 id="les-5-commandes-gateway-que-vous-devez-connaitre">Les 5 commandes gateway que vous devez connaitre</h2>
+<p>Avant d'aller plus loin dans le playbook, assurez-vous de maitriser ces commandes :</p>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Ce qu'elle fait</th>
+<th>Quand l'utiliser</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openclaw gateway status</code></td>
+<td>Etat complet du gateway (connexions, uptime, sessions actives)</td>
+<td>Tous les jours, en premier</td>
+</tr>
+<tr>
+<td><code>openclaw health</code></td>
+<td>Sante de tous les composants connectes</td>
+<td>Apres un redemarrage ou un doute</td>
+</tr>
+<tr>
+<td><code>openclaw status --deep</code></td>
+<td>Statut detaille (memoire, tokens, config active)</td>
+<td>Pour diagnostiquer un probleme</td>
+</tr>
+<tr>
+<td><code>openclaw gateway token list</code></td>
+<td>Liste les tokens d'acces actifs</td>
+<td>Pour auditer qui a acces</td>
+</tr>
+<tr>
+<td><code>openclaw sessions</code></td>
+<td>Sessions en cours et recentes</td>
+<td>Pour comprendre l'activite</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Votre reflexe quotidien :</span>
+$<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w"> </span>status
+$<span class="w"> </span>openclaw<span class="w"> </span>health
+</code></pre></div>
+
+<p>Si ces deux commandes retournent un resultat vert, votre installation fonctionne. Si l'une est rouge, vous savez exactement ou chercher.</p>
+<hr />
+<h2 id="le-gateway-vs-un-dashboard-quand-construire-quoi">Le gateway vs un dashboard : quand construire quoi</h2>
+<table>
+<thead>
+<tr>
+<th>Besoin</th>
+<th>Le gateway suffit</th>
+<th>Un dashboard aide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Savoir si tout tourne</td>
+<td>Oui (<code>openclaw health</code>)</td>
+<td>Non necessaire</td>
+</tr>
+<tr>
+<td>Voir les sessions en cours</td>
+<td>Oui (<code>openclaw sessions</code>)</td>
+<td>Utile pour l'historique visuel</td>
+</tr>
+<tr>
+<td>Verifier les secrets</td>
+<td>Oui (<code>openclaw gateway token list</code>)</td>
+<td>Non necessaire</td>
+</tr>
+<tr>
+<td>Visualiser des tendances sur 30 jours</td>
+<td>Non</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>Partager un statut avec un non-technique</td>
+<td>Non</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>Debugger un probleme en direct</td>
+<td>Oui (<code>journalctl -u openclaw-gateway -f</code>)</td>
+<td>Non necessaire</td>
+</tr>
+<tr>
+<td>Avoir un ecran sur un mur qui montre que tout va bien</td>
+<td>Non</td>
+<td>Oui</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regle :</strong> Si votre besoin est couvert par une commande gateway, utilisez la commande. Construisez un dashboard uniquement quand le gateway ne suffit plus — c'est-a-dire quand vous avez besoin de <strong>visualisation dans le temps</strong> ou de <strong>partage avec des non-techniques</strong>.</p>
+<hr />
+<h2 id="architecture-le-gateway-au-centre">Architecture : le gateway au centre</h2>
+<p>Voici comment penser votre installation :</p>
+<div class="codehilite"><pre><span></span><code>         Le gateway est le CENTRE. Tout passe par lui.
+
+    ┌──────────────────────────────────────────────────────┐
+    │                     GATEWAY                          │
+    │                                                      │
+    │  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
+    │  │ Sessions │  │  Health   │  │  Authentication  │   │
+    │  │  &amp; Agents│  │  Checks  │  │  &amp; Tokens        │   │
+    │  └──────────┘  └──────────┘  └──────────────────┘   │
+    │                                                      │
+    │  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
+    │  │ Routing  │  │ WebSocket│  │  Logs &amp; Metrics  │   │
+    │  │ (models) │  │ (remote) │  │                  │   │
+    │  └──────────┘  └──────────┘  └──────────────────┘   │
+    └────────┬──────────┬──────────┬───────────────────────┘
+             │          │          │
+      ┌──────▼──┐ ┌─────▼───┐ ┌───▼─────────┐
+      │Vault    │ │Postgres │ │OpenRouter   │
+      │(secrets)│ │(donnees)│ │(modeles IA) │
+      └─────────┘ └─────────┘ └─────────────┘
+</code></pre></div>
+
+<p>Quand quelque chose ne fonctionne pas, la premiere question est toujours : <strong>que dit le gateway ?</strong></p>
+<hr />
+<h2 id="erreurs-courantes">Erreurs courantes</h2>
+<p><strong>Traiter le gateway comme un detail technique.</strong> C'est la brique la plus importante. Si vous ne maitrisez qu'une chose, maitrisez le gateway.</p>
+<p><strong>Construire un dashboard avant de maitriser le gateway.</strong> Vous allez passer du temps a debugger le dashboard alors que le probleme est en-dessous. Maitriser le gateway d'abord, construire par-dessus ensuite.</p>
+<p><strong>Ne pas verifier le gateway quotidiennement.</strong> <code>openclaw gateway status</code> et <code>openclaw health</code> doivent devenir un reflexe. Comme verifier ses emails le matin.</p>
+<p><strong>Ignorer les logs du gateway.</strong> <code>journalctl -u openclaw-gateway -f</code> est votre meilleur ami en cas de probleme. Les logs du gateway vous disent exactement ce qui se passe.</p>
+<hr />
+<h2 id="verification">Verification</h2>
+<ul>
+<li>[ ] Vous pouvez expliquer ce que fait le gateway en une phrase ("c'est le hub central qui relie tous les composants").</li>
+<li>[ ] <code>openclaw gateway status</code> fonctionne et retourne un resultat comprehensible.</li>
+<li>[ ] <code>openclaw health</code> retourne un resultat vert.</li>
+<li>[ ] Vous savez ou lire les logs du gateway (<code>journalctl -u openclaw-gateway -f</code>).</li>
+<li>[ ] Vous comprenez pourquoi maitriser le gateway vient avant construire un dashboard.</li>
+</ul>
+<hr />
+<h2 id="temps-estime">Temps estime</h2>
+<p>15 minutes de lecture. 0 minute d'installation — tout est deja en place depuis les sections precedentes.</p>
+<hr />
+<p><em>La suite logique : comprendre comment interagir avec le gateway au quotidien via votre terminal (section 3.19).</em></p>
+</section><div class="bravo-box">
+  <div class="bravo-header">Bravo, vous avez terminé cette section !</div>
+  <div class="bravo-body">Vous avez couvert : Contexte, Ce que le gateway fait reellement, Pourquoi c'est la premiere chose a maitriser, Les 5 commandes gateway que vous devez connaitre et 5 autres. <a href="03-00-sommaire.html">Continuer &rarr;</a></div>
+</div>
+
+<p class="edit-link"><a href="https://github.com/alexwill87/openclaw-field-playbook/edit/main/sections/02-installation/21-gateway-coeur-systeme.md">Proposer une modification sur GitHub</a></p>
+<div id="issues-widget" style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);"></div>
+<div class="giscus-wrapper">
+  <h3 style="font-size:1rem;margin-bottom:1rem;">Commentaires et discussions</h3>
+  <script src="https://giscus.app/client.js"
+    data-repo="alexwill87/openclaw-field-playbook"
+    data-repo-id="R_kgDORvZ2yQ"
+    data-category="General"
+    data-category-id="DIC_kwDORvZ2yc4C54bl"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="fr"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<hr>
+<div style="display:flex;justify-content:space-between;padding:1rem 0;font-size:0.9rem;">
+<a href="02-20-adapter-existant.html">&larr; Adapter le playbook a un VPS existant</a>
+<a href="03-00-sommaire.html">3. Configuration &rarr;</a>
+</div>
+
+  </main>
+
+  <footer role="contentinfo">
+    <p>
+      Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+      par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+    </p>
+    <p style="margin-top:0.3rem;">
+      <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+      &middot; <a href="contribuer.html">Contribuer</a>
+      &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+      &middot; <a href="accessibility.html">Accessibilite</a>
+      &middot; <a href="privacy.html">Confidentialite</a>
+    </p>
+  </footer>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
