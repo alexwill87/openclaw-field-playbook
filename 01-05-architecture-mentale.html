@@ -18,10 +18,8 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<a href="#content" class="skip-link">Aller au contenu principal</a>
 
-<header role="banner">
-<nav id="topnav" aria-label="Navigation principale">
+<nav id="topnav">
   <div class="nav-brand">
     <a href="index.html">OpenClaw Field Playbook</a>
   </div>
@@ -29,25 +27,23 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
-    <button type="button" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</button>
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
-    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank" rel="noopener noreferrer">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       GitHub
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">&#9776;</button>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
   </div>
 </nav>
-</header>
 
 <div class="layout-wrapper">
   <aside class="sidebar">
-    <div class="nav-search" role="search">
-      <label for="search-input" class="sr-only">Rechercher dans le playbook</label>
-      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" aria-label="Rechercher dans le playbook">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
       <div id="search-results"></div>
     </div>
-    <nav id="side-nav" aria-label="Sommaire du playbook">
+    <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
 <div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
@@ -121,27 +117,27 @@
 <p>Avant de lancer le moindre <code>docker compose up</code>, vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir.</p>
 <h2 id="les-3-couches">Les 3 couches</h2>
 <p>Toute installation OpenClaw s'organise en trois couches superposees :</p>
-<div class="codehilite"><pre><span></span><code><span class="o">+------------------------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mf">3.</span><span class="w"> </span><span class="n">ACTION</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="n">Ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">font</span><span class="w"> </span><span class="n">concretement</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">envoyer</span><span class="p">,</span><span class="w"> </span><span class="n">creer</span><span class="p">,</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span><span class="w"> </span><span class="n">alerter</span><span class="p">)</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+------------------------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mf">2.</span><span class="w"> </span><span class="n">VISIBILITE</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="n">Ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">savent</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">memoire</span><span class="p">,</span><span class="w"> </span><span class="n">contexte</span><span class="p">,</span><span class="w"> </span><span class="n">outils</span><span class="p">,</span><span class="w"> </span><span class="n">donnees</span><span class="p">)</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+------------------------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mf">1.</span><span class="w"> </span><span class="n">IDENTITE</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="n">Qui</span><span class="w"> </span><span class="n">sont</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">agents</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">roles</span><span class="p">,</span><span class="w"> </span><span class="n">regles</span><span class="p">,</span><span class="w"> </span><span class="n">limites</span><span class="p">,</span><span class="w"> </span><span class="n">personnalite</span><span class="p">)</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+------------------------------------------+</span>
-<span class="w">         </span><span class="o">|</span><span class="w">          </span><span class="o">|</span><span class="w">          </span><span class="o">|</span>
-<span class="w">    </span><span class="err">┌────▼──────────▼──────────▼────┐</span>
-<span class="w">    </span><span class="err">│</span><span class="w">         </span><span class="n">GATEWAY</span><span class="w">               </span><span class="err">│</span>
-<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">Le</span><span class="w"> </span><span class="n">hub</span><span class="w"> </span><span class="n">central</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">relie</span><span class="w">     </span><span class="err">│</span>
-<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">toutes</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">couches</span><span class="w"> </span><span class="n">entre</span><span class="w">     </span><span class="err">│</span>
-<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">elles</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">monde</span><span class="w">       </span><span class="err">│</span>
-<span class="w">    </span><span class="err">└───────────────────────────────┘</span>
-</code></pre></div>
+<pre class="codehilite"><code>+------------------------------------------+
+|            3. ACTION                      |
+|  Ce que vos agents font concretement     |
+|  (envoyer, creer, modifier, alerter)     |
++------------------------------------------+
+|            2. VISIBILITE                  |
+|  Ce que vos agents savent                |
+|  (memoire, contexte, outils, donnees)    |
++------------------------------------------+
+|            1. IDENTITE                    |
+|  Qui sont vos agents                     |
+|  (roles, regles, limites, personnalite)  |
++------------------------------------------+
+         |          |          |
+    ┌────▼──────────▼──────────▼────┐
+    │         GATEWAY               │
+    │  Le hub central qui relie     │
+    │  toutes les couches entre     │
+    │  elles et avec le monde       │
+    └───────────────────────────────┘
+</code></pre>
 
 <blockquote>
 <p><strong>Le gateway</strong> est l'element transversal qui connecte les trois couches. C'est par lui que vos commandes arrivent, que les agents communiquent, et que le systeme rend compte de son etat. Pensez-y comme le standard telephonique de votre installation : sans lui, les couches existent mais ne se parlent pas. La section 2.21 approfondit ce role central.</p>
@@ -239,21 +235,19 @@
 <a href="01-06-ce-que-vous-construisez.html">1.6 -- Ce que vous allez construire dans ce guide &rarr;</a>
 </div>
 
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+        &middot; <a href="privacy.html">Confidentialite</a>
+      </p>
+    </footer>
   </main>
-
-  <footer role="contentinfo">
-    <p>
-      Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
-      par <a href="https://github.com/alexwill87">Alex Willemetz</a>
-    </p>
-    <p style="margin-top:0.3rem;">
-      <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
-      &middot; <a href="contribuer.html">Contribuer</a>
-      &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
-      &middot; <a href="accessibility.html">Accessibilite</a>
-      &middot; <a href="privacy.html">Confidentialite</a>
-    </p>
-  </footer>
 </div>
 
 <script src="assets/script.js"></script>

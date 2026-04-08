@@ -18,10 +18,8 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<a href="#content" class="skip-link">Aller au contenu principal</a>
 
-<header role="banner">
-<nav id="topnav" aria-label="Navigation principale">
+<nav id="topnav">
   <div class="nav-brand">
     <a href="index.html">OpenClaw Field Playbook</a>
   </div>
@@ -29,25 +27,23 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
-    <button type="button" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</button>
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
-    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank" rel="noopener noreferrer">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       GitHub
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">&#9776;</button>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
   </div>
 </nav>
-</header>
 
 <div class="layout-wrapper">
   <aside class="sidebar">
-    <div class="nav-search" role="search">
-      <label for="search-input" class="sr-only">Rechercher dans le playbook</label>
-      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" aria-label="Rechercher dans le playbook">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
       <div id="search-results"></div>
     </div>
-    <nav id="side-nav" aria-label="Sommaire du playbook">
+    <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
 <div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
@@ -161,27 +157,27 @@
 <hr />
 <h2 id="le-reflexe-gateway-dabord">Le reflexe : gateway d'abord</h2>
 <p>Quand quelque chose ne fonctionne pas, votre premier reflexe doit etre :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w"> </span>status
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ openclaw gateway status
+</code></pre>
 
 <p>Si le gateway repond :
 - Le probleme est ailleurs (base de donnees, modele IA, configuration). Passez aux diagnostics specifiques.</p>
 <p>Si le gateway ne repond pas :
 - Tout le reste est en suspens. Concentrez-vous sur le gateway.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Etape 1 : le service tourne-t-il ?</span>
-$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>openclaw-gateway
+<pre class="codehilite"><code class="language-bash"># Etape 1 : le service tourne-t-il ?
+$ sudo systemctl status openclaw-gateway
 
-<span class="c1"># Etape 2 : les logs disent quoi ?</span>
-$<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>openclaw-gateway<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>--no-pager
+# Etape 2 : les logs disent quoi ?
+$ journalctl -u openclaw-gateway -n 50 --no-pager
 
-<span class="c1"># Etape 3 : le port est-il occupe par autre chose ?</span>
-$<span class="w"> </span>ss<span class="w"> </span>-tlnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:3000
+# Etape 3 : le port est-il occupe par autre chose ?
+$ ss -tlnp | grep :3000
 
-<span class="c1"># Etape 4 : redemarrer proprement</span>
-$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>openclaw-gateway
-$<span class="w"> </span>sleep<span class="w"> </span><span class="m">5</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w"> </span>status
-</code></pre></div>
+# Etape 4 : redemarrer proprement
+$ sudo systemctl restart openclaw-gateway
+$ sleep 5
+$ openclaw gateway status
+</code></pre>
 
 <hr />
 <h2 id="les-7-scenarios-de-panne-gateway">Les 7 scenarios de panne gateway</h2>
@@ -225,14 +221,14 @@ $<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w">
 </table>
 <h3 id="2-le-gateway-demarre-mais-crash-en-boucle">2. Le gateway demarre mais crash en boucle</h3>
 <p><strong>Symptome :</strong> Le service alterne entre "active" et "activating", les logs montrent des erreurs repetees.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Voir la boucle dans les logs</span>
-$<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>openclaw-gateway<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;10 min ago&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Started\|Stopped&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Voir la boucle dans les logs
+$ journalctl -u openclaw-gateway --since &quot;10 min ago&quot; | grep -c &quot;Started\|Stopped&quot;
+</code></pre>
 
 <p>Si le compteur depasse 5, systemd va arreter les tentatives. Corrigez la cause racine, puis :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reset-failed<span class="w"> </span>openclaw-gateway
-$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>openclaw-gateway
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl reset-failed openclaw-gateway
+$ sudo systemctl start openclaw-gateway
+</code></pre>
 
 <h3 id="3-le-gateway-tourne-mais-ne-repond-pas">3. Le gateway tourne mais ne repond pas</h3>
 <p><strong>Symptome :</strong> <code>systemctl status</code> montre "active (running)" mais <code>openclaw gateway status</code> timeout.</p>
@@ -270,79 +266,79 @@ $<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> <
 <h3 id="4-le-health-check-echoue">4. Le health check echoue</h3>
 <p><strong>Symptome :</strong> <code>openclaw health</code> montre des composants en rouge.</p>
 <p>Le gateway fait le health check de tous les composants. Quand un composant est rouge, ce n'est pas le gateway qui est en panne — c'est le composant qu'il surveille.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Health check detaille</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>health
+<pre class="codehilite"><code class="language-bash"># Health check detaille
+$ openclaw health
 
-<span class="c1"># Verifier chaque composant individuellement</span>
-$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>supabase_db<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>oa_admin<span class="w"> </span>-d<span class="w"> </span>oa_system<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT 1;&quot;</span><span class="w">     </span><span class="c1"># PostgreSQL</span>
-$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>status<span class="w">                                            </span><span class="c1"># Vault</span>
-$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="w">                    </span><span class="c1"># OpenRouter</span>
-</code></pre></div>
+# Verifier chaque composant individuellement
+$ docker exec supabase_db psql -U oa_admin -d oa_system -c &quot;SELECT 1;&quot;     # PostgreSQL
+$ docker exec vault vault status                                            # Vault
+$ curl -s https://openrouter.ai/api/v1/models | head -1                    # OpenRouter
+</code></pre>
 
 <h3 id="5-les-sessions-ne-fonctionnent-plus">5. Les sessions ne fonctionnent plus</h3>
 <p><strong>Symptome :</strong> <code>openclaw chat</code> ne repond pas, ou les sessions sont vides.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Verifier les sessions</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>sessions
+<pre class="codehilite"><code class="language-bash"># Verifier les sessions
+$ openclaw sessions
 
-<span class="c1"># Verifier la connexion au modele IA</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>model<span class="w"> </span><span class="nb">test</span>
+# Verifier la connexion au modele IA
+$ openclaw model test
 
-<span class="c1"># Verifier les logs pour des erreurs modele</span>
-$<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>openclaw-gateway<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;error\|failed\|timeout&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
-</code></pre></div>
+# Verifier les logs pour des erreurs modele
+$ journalctl -u openclaw-gateway | grep -i &quot;error\|failed\|timeout&quot; | tail -20
+</code></pre>
 
 <p>Cause frequente : un changement de modele IA ou une cle API expiree (voir section 5.11, "L'agent ne repond pas").</p>
 <h3 id="6-le-mode-remote-ne-se-connecte-plus">6. Le mode remote ne se connecte plus</h3>
 <p><strong>Symptome :</strong> Le client remote affiche "Connection refused" ou "Authentication failed".</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Cote maitre : verifier que le gateway ecoute sur le bon port</span>
-$<span class="w"> </span>ss<span class="w"> </span>-tlnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:18789
+<pre class="codehilite"><code class="language-bash"># Cote maitre : verifier que le gateway ecoute sur le bon port
+$ ss -tlnp | grep :18789
 
-<span class="c1"># Cote maitre : verifier les tokens</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w"> </span>token<span class="w"> </span>list
+# Cote maitre : verifier les tokens
+$ openclaw gateway token list
 
-<span class="c1"># Cote client : verifier la configuration remote</span>
-$<span class="w"> </span>cat<span class="w"> </span>~/.openclaw/gateway.json
+# Cote client : verifier la configuration remote
+$ cat ~/.openclaw/gateway.json
 
-<span class="c1"># Tester la connectivite reseau</span>
-$<span class="w"> </span>tailscale<span class="w"> </span>ping<span class="w"> </span>ip-du-maitre<span class="w">      </span><span class="c1"># Si Tailscale</span>
-$<span class="w"> </span>nc<span class="w"> </span>-zv<span class="w"> </span>ip-du-maitre<span class="w"> </span><span class="m">18789</span><span class="w">        </span><span class="c1"># Test TCP direct</span>
-</code></pre></div>
+# Tester la connectivite reseau
+$ tailscale ping ip-du-maitre      # Si Tailscale
+$ nc -zv ip-du-maitre 18789        # Test TCP direct
+</code></pre>
 
 <p>Voir section 3.18 pour les erreurs courantes du mode remote.</p>
 <h3 id="7-les-performances-se-degradent">7. Les performances se degradent</h3>
 <p><strong>Symptome :</strong> Le gateway repond lentement, les commandes prennent plus de temps que d'habitude.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Verifier l&#39;utilisation des ressources</span>
-$<span class="w"> </span>top<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>pgrep<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;openclaw gateway&quot;</span><span class="k">)</span>
+<pre class="codehilite"><code class="language-bash"># Verifier l'utilisation des ressources
+$ top -p $(pgrep -f &quot;openclaw gateway&quot;)
 
-<span class="c1"># Verifier l&#39;espace disque (les logs peuvent saturer)</span>
-$<span class="w"> </span>df<span class="w"> </span>-h<span class="w"> </span>/
-$<span class="w"> </span>journalctl<span class="w"> </span>--disk-usage
+# Verifier l'espace disque (les logs peuvent saturer)
+$ df -h /
+$ journalctl --disk-usage
 
-<span class="c1"># Verifier le nombre de sessions actives</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>sessions<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+# Verifier le nombre de sessions actives
+$ openclaw sessions | wc -l
 
-<span class="c1"># Si trop de logs</span>
-$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>--vacuum-size<span class="o">=</span>200M
-</code></pre></div>
+# Si trop de logs
+$ sudo journalctl --vacuum-size=200M
+</code></pre>
 
 <hr />
 <h2 id="monitoring-natif-du-gateway">Monitoring natif du gateway</h2>
 <p>Avant d'installer des outils de monitoring supplementaires, exploitez ce que le gateway offre nativement.</p>
 <h3 id="endpoint-health">Endpoint health</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Health check simple</span>
-$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:3000/health
+<pre class="codehilite"><code class="language-bash"># Health check simple
+$ curl -s http://127.0.0.1:3000/health
 
-<span class="c1"># Health check depuis un script (retour 0 = OK, 1 = KO)</span>
-$<span class="w"> </span>curl<span class="w"> </span>-sf<span class="w"> </span>http://127.0.0.1:3000/health<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;KO&quot;</span>
-</code></pre></div>
+# Health check depuis un script (retour 0 = OK, 1 = KO)
+$ curl -sf http://127.0.0.1:3000/health &gt; /dev/null &amp;&amp; echo &quot;OK&quot; || echo &quot;KO&quot;
+</code></pre>
 
 <h3 id="cron-de-surveillance-niveau-1-zero-outil-supplementaire">Cron de surveillance (niveau 1 — zero outil supplementaire)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Ajouter au crontab : surveillance toutes les 5 minutes</span>
-$<span class="w"> </span>crontab<span class="w"> </span>-e
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Ajouter au crontab : surveillance toutes les 5 minutes
+$ crontab -e
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>*/5 <span class="gs">* *</span> * * curl -sf http://127.0.0.1:3000/health &gt; /dev/null || /chemin/vers/alerte-telegram.sh &quot;Gateway KO&quot;
-</code></pre></div>
+<pre class="codehilite"><code class="language-cron">*/5 * * * * curl -sf http://127.0.0.1:3000/health &gt; /dev/null || /chemin/vers/alerte-telegram.sh &quot;Gateway KO&quot;
+</code></pre>
 
 <p>C'est le monitoring le plus simple et le plus fiable. Pas de container supplementaire, pas d'interface web, pas de configuration. Si le gateway ne repond pas au health check, vous recevez un message Telegram.</p>
 <h3 id="commandes-de-monitoring-quotidien">Commandes de monitoring quotidien</h3>
@@ -393,12 +389,12 @@ $<span class="w"> </span>crontab<span class="w"> </span>-e
 <hr />
 <h2 id="cascade-quand-le-gateway-tombe-que-se-passe-t-il">Cascade : quand le gateway tombe, que se passe-t-il</h2>
 <p>Comprendre la cascade aide a diagnostiquer :</p>
-<div class="codehilite"><pre><span></span><code>Le gateway tombe
+<pre class="codehilite"><code>Le gateway tombe
      │
      ├── Les commandes CLI ne repondent plus
      │   (openclaw status, openclaw chat, openclaw health)
      │
-     ├── Les agents s&#39;arretent
+     ├── Les agents s'arretent
      │   (pas de routing vers le modele IA)
      │
      ├── Les crons echouent
@@ -409,35 +405,35 @@ $<span class="w"> </span>crontab<span class="w"> </span>-e
      │
      └── Les notifications continuent
          (Telegram est independant du gateway)
-</code></pre></div>
+</code></pre>
 
 <p><strong>Point important :</strong> Telegram est le seul canal qui fonctionne quand le gateway est down. C'est pourquoi le cron de surveillance doit envoyer ses alertes via Telegram, pas via le gateway.</p>
 <hr />
 <h2 id="template-de-diagnostic-rapide">Template de diagnostic rapide</h2>
 <p>Copiez et executez ce bloc quand quelque chose ne fonctionne pas :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== DIAGNOSTIC GATEWAY ===&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1. Service systemd :&quot;</span>
-sudo<span class="w"> </span>systemctl<span class="w"> </span>is-active<span class="w"> </span>openclaw-gateway
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2. Port 3000 :&quot;</span>
-ss<span class="w"> </span>-tlnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:3000
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;3. Health check :&quot;</span>
-curl<span class="w"> </span>-sf<span class="w"> </span>http://127.0.0.1:3000/health<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;KO&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;4. Derniers logs :&quot;</span>
-journalctl<span class="w"> </span>-u<span class="w"> </span>openclaw-gateway<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>--no-pager
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;5. Ressources :&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Disque : </span><span class="k">$(</span>df<span class="w"> </span>-h<span class="w"> </span>/<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $5}&#39;</span><span class="k">)</span><span class="s2"> utilise&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;RAM : </span><span class="k">$(</span>free<span class="w"> </span>-h<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Mem<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3}&#39;</span><span class="k">)</span><span class="s2"> / </span><span class="k">$(</span>free<span class="w"> </span>-h<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Mem<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== FIN ===&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">echo &quot;=== DIAGNOSTIC GATEWAY ===&quot;
+echo &quot;1. Service systemd :&quot;
+sudo systemctl is-active openclaw-gateway
+echo &quot;&quot;
+echo &quot;2. Port 3000 :&quot;
+ss -tlnp | grep :3000
+echo &quot;&quot;
+echo &quot;3. Health check :&quot;
+curl -sf http://127.0.0.1:3000/health &amp;&amp; echo &quot;OK&quot; || echo &quot;KO&quot;
+echo &quot;&quot;
+echo &quot;4. Derniers logs :&quot;
+journalctl -u openclaw-gateway -n 10 --no-pager
+echo &quot;&quot;
+echo &quot;5. Ressources :&quot;
+echo &quot;Disque : $(df -h / | tail -1 | awk '{print $5}') utilise&quot;
+echo &quot;RAM : $(free -h | grep Mem | awk '{print $3}') / $(free -h | grep Mem | awk '{print $2}')&quot;
+echo &quot;=== FIN ===&quot;
+</code></pre>
 
 <p>Enregistrez-le dans <code>~/scripts/diag-gateway.sh</code> pour l'avoir sous la main :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>~/scripts/diag-gateway.sh
-$<span class="w"> </span>~/scripts/diag-gateway.sh
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ chmod +x ~/scripts/diag-gateway.sh
+$ ~/scripts/diag-gateway.sh
+</code></pre>
 
 <hr />
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
@@ -489,21 +485,19 @@ $<span class="w"> </span>~/scripts/diag-gateway.sh
 <a href="06-00-sommaire.html">6. Cas d'usage &rarr;</a>
 </div>
 
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+        &middot; <a href="privacy.html">Confidentialite</a>
+      </p>
+    </footer>
   </main>
-
-  <footer role="contentinfo">
-    <p>
-      Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
-      par <a href="https://github.com/alexwill87">Alex Willemetz</a>
-    </p>
-    <p style="margin-top:0.3rem;">
-      <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
-      &middot; <a href="contribuer.html">Contribuer</a>
-      &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
-      &middot; <a href="accessibility.html">Accessibilite</a>
-      &middot; <a href="privacy.html">Confidentialite</a>
-    </p>
-  </footer>
 </div>
 
 <script src="assets/script.js"></script>

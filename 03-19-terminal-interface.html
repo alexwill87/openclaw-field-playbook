@@ -18,10 +18,8 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<a href="#content" class="skip-link">Aller au contenu principal</a>
 
-<header role="banner">
-<nav id="topnav" aria-label="Navigation principale">
+<nav id="topnav">
   <div class="nav-brand">
     <a href="index.html">OpenClaw Field Playbook</a>
   </div>
@@ -29,25 +27,23 @@
     <span class="github-badges"></span>
   </div>
   <div class="nav-actions">
-    <button type="button" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</button>
+    <a href="javascript:void(0)" class="lang-toggle" onclick="switchLang()" aria-label="Switch to English" data-lang="fr">EN</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer le theme">&#9790;</button>
-    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank" rel="noopener noreferrer">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    <a href="https://github.com/alexwill87/openclaw-field-playbook" class="btn-github" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       GitHub
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false">&#9776;</button>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
   </div>
 </nav>
-</header>
 
 <div class="layout-wrapper">
   <aside class="sidebar">
-    <div class="nav-search" role="search">
-      <label for="search-input" class="sr-only">Rechercher dans le playbook</label>
-      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off" aria-label="Rechercher dans le playbook">
+    <div class="nav-search">
+      <input type="text" id="search-input" placeholder="Rechercher..." autocomplete="off">
       <div id="search-results"></div>
     </div>
-    <nav id="side-nav" aria-label="Sommaire du playbook">
+    <nav id="side-nav">
       <a href="index.html" class="nav-home">Accueil</a>
 <div class="nav-group-label">Avant-propos</div>
 <a href="decouverte.html">C'est quoi OpenClaw ?</a>
@@ -202,8 +198,8 @@
 <h2 id="comment-acceder-a-votre-terminal">Comment acceder a votre terminal</h2>
 <h3 id="option-1-ssh-direct-le-plus-simple">Option 1 : SSH direct (le plus simple)</h3>
 <p>Depuis n'importe quelle machine :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh<span class="w"> </span>votre-user@votre-ip-tailscale
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh votre-user@votre-ip-tailscale
+</code></pre>
 
 <p>Avantages :
 - Fonctionne depuis n'importe ou (Mac, Linux, Windows, telephone)
@@ -220,11 +216,11 @@
 </ol>
 <p><strong>Configuration SSH pour eviter de retaper l'adresse :</strong></p>
 <p>Sur votre machine locale, editez <code>~/.ssh/config</code> :</p>
-<div class="codehilite"><pre><span></span><code>Host mon-vps
+<pre class="codehilite"><code>Host mon-vps
     HostName 100.x.x.x
     User votre-user
     IdentityFile ~/.ssh/id_ed25519
-</code></pre></div>
+</code></pre>
 
 <p>Ensuite dans VS Code : <code>F1</code> &gt; "Remote-SSH: Connect to Host..." &gt; selectionnez <code>mon-vps</code>.</p>
 <p><strong>Pourquoi VS Code Remote est recommande :</strong></p>
@@ -290,33 +286,33 @@
 <h2 id="configurer-votre-terminal-pour-openclaw">Configurer votre terminal pour OpenClaw</h2>
 <h3 id="aliases-utiles">Aliases utiles</h3>
 <p>Ajoutez ces raccourcis a votre <code>~/.bashrc</code> ou <code>~/.zshrc</code> sur le VPS :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># OpenClaw - raccourcis quotidiens</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ocs</span><span class="o">=</span><span class="s1">&#39;openclaw gateway status&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">och</span><span class="o">=</span><span class="s1">&#39;openclaw health&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ocd</span><span class="o">=</span><span class="s1">&#39;openclaw status --deep&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ocl</span><span class="o">=</span><span class="s1">&#39;journalctl -u openclaw-gateway -f&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">oclogs</span><span class="o">=</span><span class="s1">&#39;journalctl -u openclaw-gateway -n 100 --no-pager&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ocr</span><span class="o">=</span><span class="s1">&#39;sudo systemctl restart openclaw-gateway&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ocsess</span><span class="o">=</span><span class="s1">&#39;openclaw sessions&#39;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># OpenClaw - raccourcis quotidiens
+alias ocs='openclaw gateway status'
+alias och='openclaw health'
+alias ocd='openclaw status --deep'
+alias ocl='journalctl -u openclaw-gateway -f'
+alias oclogs='journalctl -u openclaw-gateway -n 100 --no-pager'
+alias ocr='sudo systemctl restart openclaw-gateway'
+alias ocsess='openclaw sessions'
+</code></pre>
 
 <p>Rechargez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
+</code></pre>
 
 <p>Maintenant au lieu de taper <code>openclaw gateway status</code>, tapez <code>ocs</code>. Au lieu de <code>journalctl -u openclaw-gateway -f</code>, tapez <code>ocl</code>.</p>
 <h3 id="prompt-personnalise-optionnel">Prompt personnalise (optionnel)</h3>
 <p>Pour voir d'un coup d'oeil si le gateway tourne, ajoutez un indicateur dans votre prompt bash :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Dans ~/.bashrc</span>
-openclaw_status<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span>systemctl<span class="w"> </span>is-active<span class="w"> </span>--quiet<span class="w"> </span>openclaw-gateway<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;●&quot;</span>
-<span class="w">  </span><span class="k">else</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;○&quot;</span>
-<span class="w">  </span><span class="k">fi</span>
-<span class="o">}</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;$(openclaw_status) \u@\h:\w\$ &#39;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Dans ~/.bashrc
+openclaw_status() {
+  if systemctl is-active --quiet openclaw-gateway 2&gt;/dev/null; then
+    echo &quot;●&quot;
+  else
+    echo &quot;○&quot;
+  fi
+}
+export PS1='$(openclaw_status) \u@\h:\w\$ '
+</code></pre>
 
 <p>Resultat : <code>● omar@vps:~$</code> quand le gateway tourne, <code>○ omar@vps:~$</code> quand il est arrete.</p>
 <h3 id="configuration-vs-code-pour-openclaw">Configuration VS Code pour OpenClaw</h3>
@@ -386,49 +382,49 @@ openclaw_status<span class="o">()</span><span class="w"> </span><span class="o">
 <hr />
 <h2 id="les-commandes-du-quotidien">Les commandes du quotidien</h2>
 <h3 id="le-matin-2-minutes">Le matin (2 minutes)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Etat general</span>
-$<span class="w"> </span>ocs<span class="w">        </span><span class="c1"># alias pour openclaw gateway status</span>
+<pre class="codehilite"><code class="language-bash"># Etat general
+$ ocs        # alias pour openclaw gateway status
 
-<span class="c1"># Si quelque chose est rouge :</span>
-$<span class="w"> </span>och<span class="w">        </span><span class="c1"># alias pour openclaw health</span>
-$<span class="w"> </span>oclogs<span class="w">     </span><span class="c1"># alias pour les 100 dernieres lignes de log</span>
-</code></pre></div>
+# Si quelque chose est rouge :
+$ och        # alias pour openclaw health
+$ oclogs     # alias pour les 100 dernieres lignes de log
+</code></pre>
 
 <h3 id="pendant-la-journee">Pendant la journee</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Voir les sessions actives</span>
-$<span class="w"> </span>ocsess<span class="w">     </span><span class="c1"># alias pour openclaw sessions</span>
+<pre class="codehilite"><code class="language-bash"># Voir les sessions actives
+$ ocsess     # alias pour openclaw sessions
 
-<span class="c1"># Parler a un agent</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>chat
+# Parler a un agent
+$ openclaw chat
 
-<span class="c1"># Voir ce qu&#39;un agent a fait</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>sessions<span class="w"> </span>--last
+# Voir ce qu'un agent a fait
+$ openclaw sessions --last
 
-<span class="c1"># Executer une commande via l&#39;agent</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>run<span class="w"> </span><span class="s2">&quot;verifie les backups&quot;</span>
-</code></pre></div>
+# Executer une commande via l'agent
+$ openclaw run &quot;verifie les backups&quot;
+</code></pre>
 
 <h3 id="en-cas-de-probleme">En cas de probleme</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Logs en temps reel</span>
-$<span class="w"> </span>ocl<span class="w">        </span><span class="c1"># alias pour journalctl -f</span>
+<pre class="codehilite"><code class="language-bash"># Logs en temps reel
+$ ocl        # alias pour journalctl -f
 
-<span class="c1"># Diagnostic complet</span>
-$<span class="w"> </span>ocd<span class="w">        </span><span class="c1"># alias pour openclaw status --deep</span>
+# Diagnostic complet
+$ ocd        # alias pour openclaw status --deep
 
-<span class="c1"># Redemarrer le gateway</span>
-$<span class="w"> </span>ocr<span class="w">        </span><span class="c1"># alias pour systemctl restart</span>
+# Redemarrer le gateway
+$ ocr        # alias pour systemctl restart
 
-<span class="c1"># Verifier les secrets</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w"> </span>token<span class="w"> </span>list
-</code></pre></div>
+# Verifier les secrets
+$ openclaw gateway token list
+</code></pre>
 
 <h3 id="en-fin-de-journee-1-minute">En fin de journee (1 minute)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Resume de la journee</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>sessions<span class="w"> </span>--today
+<pre class="codehilite"><code class="language-bash"># Resume de la journee
+$ openclaw sessions --today
 
-<span class="c1"># Etat avant de partir</span>
-$<span class="w"> </span>ocs
-</code></pre></div>
+# Etat avant de partir
+$ ocs
+</code></pre>
 
 <hr />
 <h2 id="travailler-avec-plusieurs-terminaux">Travailler avec plusieurs terminaux</h2>
@@ -441,24 +437,24 @@ $<span class="w"> </span>ocs
 <h3 id="avec-vs-code">Avec VS Code</h3>
 <p>Cliquez sur le <code>+</code> dans le panneau terminal pour ouvrir un nouvel onglet. Nommez-les pour vous y retrouver (clic droit &gt; "Rename").</p>
 <h3 id="avec-tmux-ssh-seul">Avec tmux (SSH seul)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Demarrer tmux</span>
-$<span class="w"> </span>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>openclaw
+<pre class="codehilite"><code class="language-bash"># Demarrer tmux
+$ tmux new -s openclaw
 
-<span class="c1"># Diviser l&#39;ecran horizontalement</span>
-Ctrl+b<span class="w"> </span>puis<span class="w"> </span><span class="s2">&quot;</span>
+# Diviser l'ecran horizontalement
+Ctrl+b puis &quot;
 
-<span class="s2"># Diviser verticalement</span>
-<span class="s2">Ctrl+b puis %</span>
+# Diviser verticalement
+Ctrl+b puis %
 
-<span class="s2"># Naviguer entre les panneaux</span>
-<span class="s2">Ctrl+b puis fleches</span>
+# Naviguer entre les panneaux
+Ctrl+b puis fleches
 
-<span class="s2"># Detacher (la session continue en arriere-plan)</span>
-<span class="s2">Ctrl+b puis d</span>
+# Detacher (la session continue en arriere-plan)
+Ctrl+b puis d
 
-<span class="s2"># Revenir plus tard</span>
-$<span class="s2"> tmux attach -t openclaw</span>
-</code></pre></div>
+# Revenir plus tard
+$ tmux attach -t openclaw
+</code></pre>
 
 <p>tmux est particulierement utile en SSH : si votre connexion coupe, les processus continuent et vous les retrouvez en vous reconnectant.</p>
 <hr />
@@ -511,21 +507,19 @@ $<span class="s2"> tmux attach -t openclaw</span>
 <a href="03-20-choisir-sa-stack.html">3.20 -- Choisir sa stack : du minimum viable au... &rarr;</a>
 </div>
 
+    <footer>
+      <p>
+        Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+        par <a href="https://github.com/alexwill87">Alex Willemetz</a>
+      </p>
+      <p style="margin-top:0.3rem;">
+        <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
+        &middot; <a href="contribuer.html">Contribuer</a>
+        &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
+        &middot; <a href="privacy.html">Confidentialite</a>
+      </p>
+    </footer>
   </main>
-
-  <footer role="contentinfo">
-    <p>
-      Publie sous <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
-      par <a href="https://github.com/alexwill87">Alex Willemetz</a>
-    </p>
-    <p style="margin-top:0.3rem;">
-      <a href="https://github.com/alexwill87/openclaw-field-playbook">Code source</a>
-      &middot; <a href="contribuer.html">Contribuer</a>
-      &middot; <a href="https://github.com/alexwill87/openclaw-field-playbook/issues">Signaler un probleme</a>
-      &middot; <a href="accessibility.html">Accessibilite</a>
-      &middot; <a href="privacy.html">Confidentialite</a>
-    </p>
-  </footer>
 </div>
 
 <script src="assets/script.js"></script>
