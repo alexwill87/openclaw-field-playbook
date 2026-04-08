@@ -143,16 +143,16 @@
 <p>Les mises a jour systeme, c'est l'hygiene de base. Ne pas les faire = accumulation de failles de securite. Les faire n'importe comment = casser la production. L'equilibre : regulier, teste, documente.</p>
 <h2 id="ubuntu">Ubuntu</h2>
 <h3 id="mises-a-jour-de-securite-hebdomadaire">Mises a jour de securite (hebdomadaire)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Voir les mises a jour disponibles</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>list<span class="w"> </span>--upgradable
+<pre class="codehilite"><code class="language-bash"># Voir les mises a jour disponibles
+sudo apt update &amp;&amp; apt list --upgradable
 
-<span class="c1"># Appliquer uniquement les mises a jour de securite</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y<span class="w"> </span>--only-upgrade
+# Appliquer uniquement les mises a jour de securite
+sudo apt upgrade -y --only-upgrade
 
-<span class="c1"># Ou pour les securite uniquement</span>
-sudo<span class="w"> </span>unattended-upgrade<span class="w"> </span>--dry-run<span class="w">  </span><span class="c1"># voir ce qui serait fait</span>
-sudo<span class="w"> </span>unattended-upgrade<span class="w">             </span><span class="c1"># appliquer</span>
-</code></pre></div>
+# Ou pour les securite uniquement
+sudo unattended-upgrade --dry-run  # voir ce qui serait fait
+sudo unattended-upgrade             # appliquer
+</code></pre>
 
 <h3 id="mise-a-jour-majeure-annuelle">Mise a jour majeure (annuelle)</h3>
 <p>Ubuntu 24.04 LTS -&gt; 26.04 LTS : ne faites PAS ca un vendredi soir.</p>
@@ -164,95 +164,95 @@ sudo<span class="w"> </span>unattended-upgrade<span class="w">             </spa
 <li>Tester tous les services apres.</li>
 </ol>
 <h3 id="configurer-les-mises-a-jour-automatiques">Configurer les mises a jour automatiques</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Installer</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>unattended-upgrades
+<pre class="codehilite"><code class="language-bash"># Installer
+sudo apt install unattended-upgrades
 
-<span class="c1"># Configurer : /etc/apt/apt.conf.d/50unattended-upgrades</span>
-<span class="c1"># Garder uniquement les mises a jour de securite</span>
-Unattended-Upgrade::Allowed-Origins<span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">distro_id</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">distro_codename</span><span class="si">}</span><span class="s2">-security&quot;</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+# Configurer : /etc/apt/apt.conf.d/50unattended-upgrades
+# Garder uniquement les mises a jour de securite
+Unattended-Upgrade::Allowed-Origins {
+    &quot;${distro_id}:${distro_codename}-security&quot;;
+};
 
-<span class="c1"># Activer les notifications par email (optionnel)</span>
-Unattended-Upgrade::Mail<span class="w"> </span><span class="s2">&quot;votre@email.com&quot;</span><span class="p">;</span>
+# Activer les notifications par email (optionnel)
+Unattended-Upgrade::Mail &quot;votre@email.com&quot;;
 
-<span class="c1"># Reboot automatique si necessaire (a 3h du matin)</span>
-Unattended-Upgrade::Automatic-Reboot<span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">;</span>
-Unattended-Upgrade::Automatic-Reboot-Time<span class="w"> </span><span class="s2">&quot;03:00&quot;</span><span class="p">;</span>
-</code></pre></div>
+# Reboot automatique si necessaire (a 3h du matin)
+Unattended-Upgrade::Automatic-Reboot &quot;true&quot;;
+Unattended-Upgrade::Automatic-Reboot-Time &quot;03:00&quot;;
+</code></pre>
 
 <h2 id="docker">Docker</h2>
 <h3 id="images-docker">Images Docker</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Voir les images et leurs dates</span>
-docker<span class="w"> </span>images<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.Repository}}:{{.Tag}} {{.CreatedSince}}&quot;</span>
+<pre class="codehilite"><code class="language-bash"># Voir les images et leurs dates
+docker images --format &quot;{{.Repository}}:{{.Tag}} {{.CreatedSince}}&quot;
 
-<span class="c1"># Pull les dernieres versions</span>
-docker<span class="w"> </span>compose<span class="w"> </span>pull
+# Pull les dernieres versions
+docker compose pull
 
-<span class="c1"># Rebuild et redemarrer</span>
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+# Rebuild et redemarrer
+docker compose up -d --build
 
-<span class="c1"># Nettoyer les anciennes images</span>
-docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w"> </span>-a<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;until=720h&quot;</span><span class="w">  </span><span class="c1"># &gt; 30 jours</span>
-</code></pre></div>
+# Nettoyer les anciennes images
+docker image prune -a --filter &quot;until=720h&quot;  # &gt; 30 jours
+</code></pre>
 
 <h3 id="docker-engine">Docker Engine</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Version actuelle</span>
-docker<span class="w"> </span>version
+<pre class="codehilite"><code class="language-bash"># Version actuelle
+docker version
 
-<span class="c1"># Mise a jour</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io
+# Mise a jour
+sudo apt update &amp;&amp; sudo apt install docker-ce docker-ce-cli containerd.io
 
-<span class="c1"># Verifier apres mise a jour</span>
-docker<span class="w"> </span>version
-docker<span class="w"> </span>ps<span class="w">  </span><span class="c1"># les containers tournent-ils encore ?</span>
-</code></pre></div>
+# Verifier apres mise a jour
+docker version
+docker ps  # les containers tournent-ils encore ?
+</code></pre>
 
 <p>Attention : une mise a jour de Docker Engine peut redemarrer le daemon et donc arreter tous les containers. Planifiez une fenetre de maintenance.</p>
 <h2 id="nodejs">Node.js</h2>
 <h3 id="avec-nvm-recommande">Avec nvm (recommande)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Version actuelle</span>
-node<span class="w"> </span>-v
+<pre class="codehilite"><code class="language-bash"># Version actuelle
+node -v
 
-<span class="c1"># Lister les versions disponibles</span>
-nvm<span class="w"> </span>ls-remote<span class="w"> </span>--lts
+# Lister les versions disponibles
+nvm ls-remote --lts
 
-<span class="c1"># Installer une nouvelle version</span>
-nvm<span class="w"> </span>install<span class="w"> </span><span class="m">22</span><span class="w">  </span><span class="c1"># par exemple</span>
+# Installer une nouvelle version
+nvm install 22  # par exemple
 
-<span class="c1"># Utiliser la nouvelle version</span>
-nvm<span class="w"> </span>use<span class="w"> </span><span class="m">22</span>
+# Utiliser la nouvelle version
+nvm use 22
 
-<span class="c1"># Tester vos applications</span>
-<span class="nb">cd</span><span class="w"> </span>/opt/cockpit<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span><span class="nb">test</span>
+# Tester vos applications
+cd /opt/cockpit &amp;&amp; npm test
 
-<span class="c1"># Si tout est OK, definir comme defaut</span>
-nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span><span class="m">22</span>
-</code></pre></div>
+# Si tout est OK, definir comme defaut
+nvm alias default 22
+</code></pre>
 
 <h3 id="avec-apt-si-pas-de-nvm">Avec apt (si pas de nvm)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Mettre a jour via NodeSource</span>
-curl<span class="w"> </span>-fsSL<span class="w"> </span>https://deb.nodesource.com/setup_22.x<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash<span class="w"> </span>-
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nodejs
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Mettre a jour via NodeSource
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install nodejs
+</code></pre>
 
 <h2 id="vault">Vault</h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Version actuelle</span>
-vault<span class="w"> </span>version
+<pre class="codehilite"><code class="language-bash"># Version actuelle
+vault version
 
-<span class="c1"># Mise a jour</span>
-<span class="c1"># Telecharger la nouvelle version depuis releases.hashicorp.com</span>
-wget<span class="w"> </span>https://releases.hashicorp.com/vault/X.Y.Z/vault_X.Y.Z_linux_amd64.zip
-unzip<span class="w"> </span>vault_X.Y.Z_linux_amd64.zip
-sudo<span class="w"> </span>mv<span class="w"> </span>vault<span class="w"> </span>/usr/local/bin/vault
+# Mise a jour
+# Telecharger la nouvelle version depuis releases.hashicorp.com
+wget https://releases.hashicorp.com/vault/X.Y.Z/vault_X.Y.Z_linux_amd64.zip
+unzip vault_X.Y.Z_linux_amd64.zip
+sudo mv vault /usr/local/bin/vault
 
-<span class="c1"># Redemarrer</span>
-sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>vault
+# Redemarrer
+sudo systemctl restart vault
 
-<span class="c1"># Verifier</span>
-vault<span class="w"> </span>status
-vault<span class="w"> </span>kv<span class="w"> </span>list<span class="w"> </span>secret/<span class="w">  </span><span class="c1"># les secrets sont-ils accessibles ?</span>
-</code></pre></div>
+# Verifier
+vault status
+vault kv list secret/  # les secrets sont-ils accessibles ?
+</code></pre>
 
 <p>Attention : lisez TOUJOURS les upgrade notes de Vault avant de mettre a jour. Certaines versions ont des breaking changes sur le storage backend.</p>
 <h2 id="quand-ne-pas-mettre-a-jour">Quand NE PAS mettre a jour</h2>

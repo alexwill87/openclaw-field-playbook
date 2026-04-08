@@ -199,24 +199,24 @@
 <h2 id="2-informations-a-collecter">2. Informations a collecter</h2>
 <p>Avant de toucher au serveur, rassemblez ces elements :</p>
 <h3 id="votre-ip-publique-actuelle">Votre IP publique actuelle</h3>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-4<span class="w"> </span>ifconfig.me
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ curl -4 ifconfig.me
+</code></pre>
 
 <p>Notez-la. Vous en aurez besoin pour configurer le pare-feu du VPS.</p>
 <h3 id="votre-cle-ssh-publique">Votre cle SSH publique</h3>
 <p>Verifiez si vous en avez deja une :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cat ~/.ssh/id_ed25519.pub
+</code></pre>
 
 <p>Si le fichier n'existe pas, creez une cle :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;votre-email@example.com&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh-keygen -t ed25519 -C &quot;votre-email@example.com&quot;
+</code></pre>
 
 <p>Acceptez le chemin par defaut, mettez une passphrase. Copiez le contenu de <code>~/.ssh/id_ed25519.pub</code>.</p>
 <h3 id="un-mot-de-passe-fort-pour-postgresql">Un mot de passe fort pour PostgreSQL</h3>
 <p>Generez-en un avec :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">24</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ openssl rand -base64 24
+</code></pre>
 
 <p>Notez-le dans un gestionnaire de mots de passe (1Password, Bitwarden, KeePass). Vous le stockerez dans Vault a la section 07.</p>
 <h3 id="un-nom-pour-votre-agent">Un nom pour votre agent</h3>

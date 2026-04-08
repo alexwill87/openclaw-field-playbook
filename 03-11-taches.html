@@ -176,27 +176,27 @@
 <p>L'agent a besoin des deux pour produire un briefing utile. "Vous avez 2h libres cet apres-midi" est incomplet si vous avez 5 taches urgentes en retard.</p>
 <h2 id="connexion">Connexion</h2>
 <h3 id="via-base-de-donnees">Via base de donnees</h3>
-<div class="codehilite"><pre><span></span><code>openclaw skill add tasks --source db
-</code></pre></div>
+<pre class="codehilite"><code>openclaw skill add tasks --source db
+</code></pre>
 
 <p>L'agent se connecte a votre base de donnees de taches (Supabase, PostgreSQL, SQLite). Avantage : controle total, pas de dependance a un service tiers.</p>
 <h3 id="via-outil-externe">Via outil externe</h3>
-<div class="codehilite"><pre><span></span><code>openclaw skill add tasks --source todoist
+<pre class="codehilite"><code>openclaw skill add tasks --source todoist
 openclaw skill add tasks --source notion
 openclaw skill add tasks --source linear
-</code></pre></div>
+</code></pre>
 
 <p>L'agent se connecte a votre outil de taches existant. Avantage : pas besoin de migrer.</p>
 <h3 id="portee-cette-semaine-pas-la-wishlist">Portee : cette semaine, pas la wishlist</h3>
 <p>Regle critique : l'agent ne doit voir que les taches de CETTE SEMAINE. Pas le backlog de 200 items. Pas la wishlist. Pas les "un jour peut-etre".</p>
 <p>Pourquoi : un agent qui voit 200 taches les traite toutes comme potentiellement pertinentes. Il mentionne des taches de basse priorite dans le briefing. Il suggere de traiter des items vieux de 3 mois. Le bruit noie le signal.</p>
 <p>Configuration recommandee :</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Portee des taches</span>
-<span class="k">-</span><span class="w"> </span>Taches avec deadline cette semaine
-<span class="k">-</span><span class="w"> </span>Taches marquees &quot;urgent&quot; ou &quot;haute priorite&quot;
-<span class="k">-</span><span class="w"> </span>Taches assignees a moi (pas celles que j&#39;ai deleguees)
-<span class="k">-</span><span class="w"> </span>Maximum : 15 taches visibles a la fois
-</code></pre></div>
+<pre class="codehilite"><code class="language-markdown">## Portee des taches
+- Taches avec deadline cette semaine
+- Taches marquees &quot;urgent&quot; ou &quot;haute priorite&quot;
+- Taches assignees a moi (pas celles que j'ai deleguees)
+- Maximum : 15 taches visibles a la fois
+</code></pre>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-identifier-votre-source-de-taches">1. Identifier votre source de taches</h3>
@@ -207,8 +207,8 @@ openclaw skill add tasks --source linear
 <h3 id="3-definir-la-portee">3. Definir la portee</h3>
 <p>Configurez le filtre : cette semaine + urgentes uniquement.</p>
 <h3 id="4-valider-lintegration-calendrier-taches">4. Valider l'integration calendrier + taches</h3>
-<div class="codehilite"><pre><span></span><code>Montre-moi ma journee avec mes taches en attente.
-</code></pre></div>
+<pre class="codehilite"><code>Montre-moi ma journee avec mes taches en attente.
+</code></pre>
 
 <p>L'agent doit :
 - Afficher le calendrier (reunions, blocs)

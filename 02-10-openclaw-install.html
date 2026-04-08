@@ -145,81 +145,81 @@
 <h2 id="contexte">Contexte</h2>
 <p>OpenClaw est l'outil central du systeme. Cette section couvre l'installation de la CLI et du runtime. L'infrastructure (Docker, Vault, PostgreSQL) doit etre en place avant cette etape.</p>
 <h2 id="etape-1-verifier-les-prerequis">Etape 1 : Verifier les prerequis</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version<span class="w">   </span><span class="c1"># v22.x+ requis</span>
-$<span class="w"> </span>npm<span class="w"> </span>--version<span class="w">    </span><span class="c1"># v10.x+ requis</span>
-$<span class="w"> </span>docker<span class="w"> </span>--version<span class="w"> </span><span class="c1"># Docker 28.x+ requis</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ node --version   # v22.x+ requis
+$ npm --version    # v10.x+ requis
+$ docker --version # Docker 28.x+ requis
+</code></pre>
 
 <p>Si une version est insuffisante, retournez a la section correspondante.</p>
 <h2 id="etape-2-installer-openclaw-via-npm">Etape 2 : Installer OpenClaw via npm</h2>
 <p>Methode recommandee (installation globale) :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ npm install -g openclaw@latest
+</code></pre>
 
 <blockquote>
 <p><strong>Attention :</strong> Le package s'appelle <code>openclaw</code>, pas <code>openclaw@latest</code> (qui est Claude Code, un autre outil). Verifiez que la commande <code>openclaw</code> est disponible apres installation.</p>
 </blockquote>
 <p>Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>--version
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ openclaw --version
+</code></pre>
 
 <h2 id="etape-3-premiere-execution">Etape 3 : Premiere execution</h2>
 <p>Lancez OpenClaw une premiere fois pour generer la structure du workspace :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ openclaw
+</code></pre>
 
 <p>Suivez l'assistant de configuration initiale. Il vous demandera :
 - La cle API ou la methode d'authentification
 - Le modele par defaut
 - Le repertoire workspace</p>
 <h2 id="etape-4-verifier-linstallation">Etape 4 : Verifier l'installation</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>doctor
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ openclaw doctor
+</code></pre>
 
 <p>Cette commande verifie toutes les dependances et la configuration. Tout doit etre vert.</p>
 <h2 id="erreurs-classiques">Erreurs classiques</h2>
 <h3 id="permission-denied-lors-de-linstallation-globale-npm">Permission denied lors de l'installation globale npm</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">EACCES</span><span class="o">:</span><span class="w"> </span><span class="n">permission</span><span class="w"> </span><span class="n">denied</span><span class="o">,</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="s1">&#39;/usr/local/lib/node_modules&#39;</span>
-</code></pre></div>
+<pre class="codehilite"><code>Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules'
+</code></pre>
 
 <p>Solution : Vous utilisez probablement Node.js installe via apt au lieu de nvm. Avec nvm, les installations globales vont dans <code>~/.nvm/</code> et ne necessitent pas sudo.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>use<span class="w"> </span>--lts
-$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ nvm use --lts
+$ npm install -g openclaw@latest
+</code></pre>
 
 <p>Ne faites PAS <code>sudo npm install -g</code>. Ca cree des problemes de permissions en cascade.</p>
 <h3 id="mauvaise-version-de-nodejs">Mauvaise version de Node.js</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="n">openclaw</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">Node</span><span class="o">.</span><span class="na">js</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">22.0</span><span class="o">.</span><span class="mi">0</span>
-</code></pre></div>
+<pre class="codehilite"><code>Error: openclaw requires Node.js &gt;= 22.0.0
+</code></pre>
 
 <p>Solution :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>install<span class="w"> </span>--lts
-$<span class="w"> </span>nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>lts/*
-$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ nvm install --lts
+$ nvm alias default lts/*
+$ npm install -g openclaw@latest
+</code></pre>
 
 <h3 id="openclaw-command-not-found-apres-installation">"openclaw: command not found" apres installation</h3>
 <p>Le binaire n'est pas dans le PATH. Avec nvm, ca devrait fonctionner automatiquement. Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>which<span class="w"> </span>openclaw
-$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nvm
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ which openclaw
+$ echo $PATH | tr ':' '\n' | grep nvm
+</code></pre>
 
 <p>Si le chemin nvm n'est pas dans le PATH, rechargez le shell :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
+</code></pre>
 
 <h3 id="problemes-de-connectivite">Problemes de connectivite</h3>
 <p>Si l'installation npm echoue avec des erreurs reseau :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>registry<span class="w"> </span>https://registry.npmjs.org/
-$<span class="w"> </span>npm<span class="w"> </span>cache<span class="w"> </span>clean<span class="w"> </span>--force
-$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>openclaw@latest
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ npm config set registry https://registry.npmjs.org/
+$ npm cache clean --force
+$ npm install -g openclaw@latest
+</code></pre>
 
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openclaw<span class="w"> </span>--version
-$<span class="w"> </span>which<span class="w"> </span>openclaw
-$<span class="w"> </span>openclaw<span class="w"> </span>doctor
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ openclaw --version
+$ which openclaw
+$ openclaw doctor
+</code></pre>
 
 <p>Resultats attendus :
 - Version affichee

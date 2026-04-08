@@ -139,19 +139,19 @@
 <h2 id="le-workflow-proposedecide">Le workflow propose/decide</h2>
 <h3 id="1-lagent-propose">1. L'agent propose</h3>
 <p>L'agent analyse les taches en cours, les deadlines, le contexte. Il propose :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Bonjour</span><span class="p">.</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="n">prioritaires</span><span class="w"> </span><span class="n">aujourd</span><span class="s1">&#39;hui :</span>
+<pre class="codehilite"><code>Bonjour. 3 taches prioritaires aujourd'hui :
 
-<span class="s1">1. [URGENT] Migration S3 — en retard de 2 jours. </span>
-<span class="s1">   Proposition : finir le script de transfert, tester, deployer.</span>
+1. [URGENT] Migration S3 — en retard de 2 jours. 
+   Proposition : finir le script de transfert, tester, deployer.
 
-<span class="s1">2. [NORMAL] Doc API /users — pas de deadline, mais bloque l&#39;</span><span class="n">onboarding</span><span class="w"> </span><span class="n">dev</span><span class="p">.</span>
-<span class="w">   </span><span class="n">Proposition</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">generer</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">squelette</span><span class="w"> </span><span class="n">depuis</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">vous</span><span class="w"> </span><span class="n">completez</span><span class="p">.</span>
+2. [NORMAL] Doc API /users — pas de deadline, mais bloque l'onboarding dev.
+   Proposition : generer le squelette depuis le code, vous completez.
 
-<span class="mf">3.</span><span class="w"> </span><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="w"> </span><span class="n">Certificat</span><span class="w"> </span><span class="n">SSL</span><span class="w"> </span><span class="n">expire</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="mi">43</span><span class="w"> </span><span class="n">jours</span><span class="p">.</span>
-<span class="w">   </span><span class="n">Proposition</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">planifier</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">renouvellement</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">semaine</span><span class="w"> </span><span class="n">prochaine</span><span class="p">.</span>
+3. [INFO] Certificat SSL expire dans 43 jours.
+   Proposition : planifier le renouvellement pour semaine prochaine.
 
-<span class="n">Quoi</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">premier</span><span class="w"> </span><span class="vm">?</span>
-</code></pre></div>
+Quoi en premier ?
+</code></pre>
 
 <h3 id="2-vous-decidez">2. Vous decidez</h3>
 <p>Vous ne validez pas tout en bloc. Vous triez :</p>
@@ -163,12 +163,12 @@
 <p>C'est du triage. L'agent fait le travail de preparation (analyser, prioriser, formuler). Vous gardez le jugement (decider, prioriser selon vos contraintes reelles).</p>
 <h3 id="3-lagent-execute-et-rend-compte">3. L'agent execute et rend compte</h3>
 <p>Apres validation, l'agent execute et met a jour le statut :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Migration</span><span class="w"> </span><span class="n">S3</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">transfert</span><span class="w"> </span><span class="n">termine</span><span class="p">.</span><span class="w"> </span>
-<span class="n">Test</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">restauration</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">OK</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="n">fichiers</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="n">s</span><span class="p">).</span>
-<span class="n">Statut</span><span class="w"> </span><span class="n">mis</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">jour</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">in_progress</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">done</span><span class="p">.</span>
+<pre class="codehilite"><code>Migration S3 : script de transfert termine. 
+Test de restauration : OK (3 fichiers, 12s).
+Statut mis a jour : in_progress -&gt; done.
 
-<span class="n">Prochaine</span><span class="w"> </span><span class="n">tache</span><span class="w"> </span><span class="o">?</span>
-</code></pre></div>
+Prochaine tache ?
+</code></pre>
 
 <h2 id="triage-sans-deleguer-le-jugement">Triage sans deleguer le jugement</h2>
 <p>Le piege : laisser l'agent decider de la priorite. Il n'a pas votre contexte complet. Il ne sait pas que le client X appelle demain, que vous etes fatigue, que le budget est serre.</p>
@@ -183,21 +183,21 @@
 - Juger de l'urgence reelle (pas la deadline theorique).</p>
 <h2 id="les-taches-nourrissent-le-briefing">Les taches nourrissent le briefing</h2>
 <p>Chaque tache terminee enrichit le contexte. Apres une semaine, votre agent peut dire :</p>
-<div class="codehilite"><pre><span></span><code>Cette semaine : 8 taches terminees, 2 reportees, 1 bloquee.
+<pre class="codehilite"><code>Cette semaine : 8 taches terminees, 2 reportees, 1 bloquee.
 Le pattern : les taches infra se terminent vite, les taches doc trainent.
 Suggestion : bloquer 2h doc le jeudi.
-</code></pre></div>
+</code></pre>
 
 <p>Ce feedback n'est possible que si les taches sont tracees avec leur statut et leurs dates. Un fichier texte sans dates ne permet pas ca.</p>
 <h2 id="format-minimal-dune-tache">Format minimal d'une tache</h2>
 <p>Pour que le workflow fonctionne, chaque tache a besoin de :</p>
-<div class="codehilite"><pre><span></span><code><span class="k">-</span> Titre (quoi)
-<span class="k">-</span> Statut (todo / in_progress / done / blocked)
-<span class="k">-</span> Priorite (high / medium / low)
-<span class="k">-</span> Date de creation
-<span class="k">-</span> Date de deadline (optionnel)
-<span class="k">-</span> Notes (optionnel — contexte, blocages, decisions)
-</code></pre></div>
+<pre class="codehilite"><code>- Titre (quoi)
+- Statut (todo / in_progress / done / blocked)
+- Priorite (high / medium / low)
+- Date de creation
+- Date de deadline (optionnel)
+- Notes (optionnel — contexte, blocages, decisions)
+</code></pre>
 
 <p>Pas besoin de plus au debut. Ajoutez des champs quand le besoin se manifeste, pas avant.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>

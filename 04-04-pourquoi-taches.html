@@ -178,33 +178,33 @@
 <h2 id="commencer-simple">Commencer simple</h2>
 <p>N'installez pas PostgreSQL, un ORM, et un dashboard le premier jour. Commencez par une checklist.</p>
 <h3 id="niveau-1-un-fichier-texte">Niveau 1 : un fichier texte</h3>
-<div class="codehilite"><pre><span></span><code><span class="gh"># TASKS.md</span>
+<pre class="codehilite"><code class="language-markdown"># TASKS.md
 
-<span class="gu">## En cours</span>
-<span class="k">- [ ]</span> Migrer le backup vers S3 — deadline: 2026-04-05
-<span class="k">- [ ]</span> Ecrire la doc API endpoint /users
+## En cours
+- [ ] Migrer le backup vers S3 — deadline: 2026-04-05
+- [ ] Ecrire la doc API endpoint /users
 
-<span class="gu">## En attente</span>
-<span class="k">- [ ]</span> Renouveler le certificat SSL (expire 2026-05-15)
+## En attente
+- [ ] Renouveler le certificat SSL (expire 2026-05-15)
 
-<span class="gu">## Fait</span>
-<span class="k">- [x]</span> Configurer le monitoring Telegram — 2026-03-28
-</code></pre></div>
+## Fait
+- [x] Configurer le monitoring Telegram — 2026-03-28
+</code></pre>
 
 <p>Votre agent peut lire ce fichier, proposer des mises a jour, et vous rappeler les deadlines. Zero infrastructure.</p>
 <h3 id="niveau-2-un-fichier-jsonyaml-structure">Niveau 2 : un fichier JSON/YAML structure</h3>
-<div class="codehilite"><pre><span></span><code><span class="nt">tasks</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Migrer</span><span class="nv"> </span><span class="s">backup</span><span class="nv"> </span><span class="s">S3&quot;</span>
-<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_progress</span>
-<span class="w">    </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="w">    </span><span class="nt">deadline</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2026-04-05&quot;</span>
-<span class="w">    </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tester</span><span class="nv"> </span><span class="s">restauration</span><span class="nv"> </span><span class="s">apres</span><span class="nv"> </span><span class="s">migration&quot;</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Doc</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">/users&quot;</span>
-<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">todo</span>
-<span class="w">    </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-yaml">tasks:
+  - id: 1
+    title: &quot;Migrer backup S3&quot;
+    status: in_progress
+    priority: high
+    deadline: &quot;2026-04-05&quot;
+    notes: &quot;Tester restauration apres migration&quot;
+  - id: 2
+    title: &quot;Doc API /users&quot;
+    status: todo
+    priority: medium
+</code></pre>
 
 <p>Plus facile a parser pour l'agent. Permet des requetes ("quelles taches high priority ?").</p>
 <h3 id="niveau-3-base-de-donnees">Niveau 3 : base de donnees</h3>

@@ -153,31 +153,31 @@
 </ol>
 <h2 id="etape-2-stocker-la-cle-dans-vault">Etape 2 : Stocker la cle dans Vault</h2>
 <p>Si ce n'est pas deja fait (section 07) :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/openrouter<span class="w"> </span><span class="nv">api_key</span><span class="o">=</span><span class="s2">&quot;sk-or-v1-VOTRE_CLE_ICI&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv put secret/openrouter api_key=&quot;sk-or-v1-VOTRE_CLE_ICI&quot;
+</code></pre>
 
 <p>Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
+</code></pre>
 
 <h2 id="etape-3-tester-un-appel-api">Etape 3 : Tester un appel API</h2>
 <p>Test rapide avec curl pour verifier que la cle fonctionne :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nv">API_KEY</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter<span class="k">)</span>
+<pre class="codehilite"><code class="language-bash">$ API_KEY=$(docker exec vault vault kv get -field=api_key secret/openrouter)
 
-$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/chat/completions<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,</span>
-<span class="s1">    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Reponds juste OK&quot;}]</span>
-<span class="s1">  }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
-</code></pre></div>
+$ curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H &quot;Authorization: Bearer $API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;model&quot;: &quot;anthropic/claude-haiku-3.5&quot;,
+    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Reponds juste OK&quot;}]
+  }' | python3 -m json.tool
+</code></pre>
 
 <p>Resultat attendu : une reponse JSON contenant "OK" (ou equivalent) dans <code>choices[0].message.content</code>.</p>
 <h2 id="etape-4-verifier-le-credit">Etape 4 : Verifier le credit</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/auth/key<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ curl -s https://openrouter.ai/api/v1/auth/key \
+  -H &quot;Authorization: Bearer $API_KEY&quot; | python3 -m json.tool
+</code></pre>
 
 <p>Ce endpoint retourne votre solde et vos limites.</p>
 <h2 id="comparaison-des-modeles-disponibles">Comparaison des modeles disponibles</h2>
@@ -255,11 +255,11 @@ $<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>h
 <li><strong>Timeout sur les appels</strong> : Certains modeles sont lents en charge. Le fallback (Haiku) prend le relais automatiquement si configure.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter
-$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>https://openrouter.ai/api/v1/auth/key<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="k">$(</span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>get<span class="w"> </span>-field<span class="o">=</span>api_key<span class="w"> </span>secret/openrouter<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ docker exec vault vault kv get -field=api_key secret/openrouter
+$ curl -s https://openrouter.ai/api/v1/auth/key \
+  -H &quot;Authorization: Bearer $(docker exec vault vault kv get -field=api_key secret/openrouter)&quot; \
+  | python3 -m json.tool
+</code></pre>
 
 <p>Resultats attendus :
 - La cle est lisible depuis Vault

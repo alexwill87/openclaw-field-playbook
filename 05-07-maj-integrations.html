@@ -160,58 +160,58 @@
 <li><strong>Deployer</strong> : mettre a jour en production.</li>
 </ol>
 <h3 id="template-de-mise-a-jour">Template de mise a jour</h3>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Mise a jour integration : [nom]</span>
+<pre class="codehilite"><code class="language-markdown">## Mise a jour integration : [nom]
 
 Date : YYYY-MM-DD
 Raison : [deprecation / bug / nouvelle feature]
 
-<span class="gu">### Avant</span>
-<span class="k">-</span><span class="w"> </span>Endpoint : [ancien]
-<span class="k">-</span><span class="w"> </span>Commande : [ancienne]
-<span class="k">-</span><span class="w"> </span>Format : [ancien]
+### Avant
+- Endpoint : [ancien]
+- Commande : [ancienne]
+- Format : [ancien]
 
-<span class="gu">### Apres</span>
-<span class="k">-</span><span class="w"> </span>Endpoint : [nouveau]
-<span class="k">-</span><span class="w"> </span>Commande : [nouvelle]
-<span class="k">-</span><span class="w"> </span>Format : [nouveau]
+### Apres
+- Endpoint : [nouveau]
+- Commande : [nouvelle]
+- Format : [nouveau]
 
-<span class="gu">### Impact</span>
-<span class="k">-</span><span class="w"> </span>Workflows affectes : [liste]
-<span class="k">-</span><span class="w"> </span>Scripts a modifier : [liste]
+### Impact
+- Workflows affectes : [liste]
+- Scripts a modifier : [liste]
 
-<span class="gu">### Test</span>
-<span class="k">- [ ]</span> Appel manuel OK
-<span class="k">- [ ]</span> Dry run agent OK
-<span class="k">- [ ]</span> Production OK
-</code></pre></div>
+### Test
+- [ ] Appel manuel OK
+- [ ] Dry run agent OK
+- [ ] Production OK
+</code></pre>
 
 <h2 id="adapter-sans-casser">Adapter sans casser</h2>
 <h3 id="regle-1-jamais-en-production-dabord">Regle 1 : jamais en production d'abord</h3>
 <p>Testez toujours en isolation. Un <code>curl</code> manuel, un script de test, un environnement de staging. Jamais directement dans le workflow de production.</p>
 <h3 id="regle-2-garder-lancien-en-fallback">Regle 2 : garder l'ancien en fallback</h3>
 <p>Ne supprimez pas l'ancienne integration tant que la nouvelle n'est pas validee en production pendant au moins une semaine.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Exemple : nouveau endpoint Telegram</span>
-<span class="nv">NEW_URL</span><span class="o">=</span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span>
-<span class="nv">OLD_URL</span><span class="o">=</span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span><span class="w">  </span><span class="c1"># meme dans ce cas</span>
+<pre class="codehilite"><code class="language-bash"># Exemple : nouveau endpoint Telegram
+NEW_URL=&quot;https://api.telegram.org/bot${TOKEN}/sendMessage&quot;
+OLD_URL=&quot;https://api.telegram.org/bot${TOKEN}/sendMessage&quot;  # meme dans ce cas
 
-<span class="c1"># Tester le nouveau</span>
-<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NEW_URL</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;chat_id=</span><span class="nv">$CHAT_ID</span><span class="s2">&amp;text=test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Nouveau endpoint KO, fallback sur l&#39;ancien&quot;</span>
-<span class="w">    </span>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OLD_URL</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;chat_id=</span><span class="nv">$CHAT_ID</span><span class="s2">&amp;text=test&quot;</span>
-<span class="k">fi</span>
-</code></pre></div>
+# Tester le nouveau
+if ! curl -s -f &quot;$NEW_URL&quot; -d &quot;chat_id=$CHAT_ID&amp;text=test&quot; &gt; /dev/null; then
+    echo &quot;Nouveau endpoint KO, fallback sur l'ancien&quot;
+    curl -s &quot;$OLD_URL&quot; -d &quot;chat_id=$CHAT_ID&amp;text=test&quot;
+fi
+</code></pre>
 
 <h3 id="regle-3-un-changement-a-la-fois">Regle 3 : un changement a la fois</h3>
 <p>Ne mettez pas a jour Telegram, Docker, et l'API GitHub le meme jour. Si quelque chose casse, vous ne saurez pas quoi. Un changement, un test, une validation.</p>
 <h2 id="skills-a-jour">Skills a jour</h2>
 <p>Si votre agent utilise des skills (MCP, plugins, extensions) :</p>
 <h3 id="verifier-les-skills-disponibles">Verifier les skills disponibles</h3>
-<div class="codehilite"><pre><span></span><code>Liste toutes tes skills/outils disponibles.
+<pre class="codehilite"><code>Liste toutes tes skills/outils disponibles.
 Pour chacun, dis-moi :
 - Nom
 - Derniere utilisation
-- Est-ce qu&#39;il fonctionne encore ? (teste)
-</code></pre></div>
+- Est-ce qu'il fonctionne encore ? (teste)
+</code></pre>
 
 <h3 id="mettre-a-jour-une-skill">Mettre a jour une skill</h3>
 <ol>

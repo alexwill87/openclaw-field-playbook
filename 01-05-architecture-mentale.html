@@ -117,27 +117,27 @@
 <p>Avant de lancer le moindre <code>docker compose up</code>, vous avez besoin d'un modele mental clair de ce que vous construisez. Sans ce modele, chaque decision de configuration sera un coup dans le noir.</p>
 <h2 id="les-3-couches">Les 3 couches</h2>
 <p>Toute installation OpenClaw s'organise en trois couches superposees :</p>
-<div class="codehilite"><pre><span></span><code><span class="o">+------------------------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mf">3.</span><span class="w"> </span><span class="n">ACTION</span><span class="w">                      </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="n">Ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">font</span><span class="w"> </span><span class="n">concretement</span><span class="w">     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">envoyer</span><span class="p">,</span><span class="w"> </span><span class="n">creer</span><span class="p">,</span><span class="w"> </span><span class="n">modifier</span><span class="p">,</span><span class="w"> </span><span class="n">alerter</span><span class="p">)</span><span class="w">     </span><span class="o">|</span>
-<span class="o">+------------------------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mf">2.</span><span class="w"> </span><span class="n">VISIBILITE</span><span class="w">                  </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="n">Ce</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">savent</span><span class="w">                </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">memoire</span><span class="p">,</span><span class="w"> </span><span class="n">contexte</span><span class="p">,</span><span class="w"> </span><span class="n">outils</span><span class="p">,</span><span class="w"> </span><span class="n">donnees</span><span class="p">)</span><span class="w">    </span><span class="o">|</span>
-<span class="o">+------------------------------------------+</span>
-<span class="o">|</span><span class="w">            </span><span class="mf">1.</span><span class="w"> </span><span class="n">IDENTITE</span><span class="w">                    </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="n">Qui</span><span class="w"> </span><span class="n">sont</span><span class="w"> </span><span class="n">vos</span><span class="w"> </span><span class="n">agents</span><span class="w">                     </span><span class="o">|</span>
-<span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">roles</span><span class="p">,</span><span class="w"> </span><span class="n">regles</span><span class="p">,</span><span class="w"> </span><span class="n">limites</span><span class="p">,</span><span class="w"> </span><span class="n">personnalite</span><span class="p">)</span><span class="w">  </span><span class="o">|</span>
-<span class="o">+------------------------------------------+</span>
-<span class="w">         </span><span class="o">|</span><span class="w">          </span><span class="o">|</span><span class="w">          </span><span class="o">|</span>
-<span class="w">    </span><span class="err">┌────▼──────────▼──────────▼────┐</span>
-<span class="w">    </span><span class="err">│</span><span class="w">         </span><span class="n">GATEWAY</span><span class="w">               </span><span class="err">│</span>
-<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">Le</span><span class="w"> </span><span class="n">hub</span><span class="w"> </span><span class="n">central</span><span class="w"> </span><span class="n">qui</span><span class="w"> </span><span class="n">relie</span><span class="w">     </span><span class="err">│</span>
-<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">toutes</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">couches</span><span class="w"> </span><span class="n">entre</span><span class="w">     </span><span class="err">│</span>
-<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">elles</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">monde</span><span class="w">       </span><span class="err">│</span>
-<span class="w">    </span><span class="err">└───────────────────────────────┘</span>
-</code></pre></div>
+<pre class="codehilite"><code>+------------------------------------------+
+|            3. ACTION                      |
+|  Ce que vos agents font concretement     |
+|  (envoyer, creer, modifier, alerter)     |
++------------------------------------------+
+|            2. VISIBILITE                  |
+|  Ce que vos agents savent                |
+|  (memoire, contexte, outils, donnees)    |
++------------------------------------------+
+|            1. IDENTITE                    |
+|  Qui sont vos agents                     |
+|  (roles, regles, limites, personnalite)  |
++------------------------------------------+
+         |          |          |
+    ┌────▼──────────▼──────────▼────┐
+    │         GATEWAY               │
+    │  Le hub central qui relie     │
+    │  toutes les couches entre     │
+    │  elles et avec le monde       │
+    └───────────────────────────────┘
+</code></pre>
 
 <blockquote>
 <p><strong>Le gateway</strong> est l'element transversal qui connecte les trois couches. C'est par lui que vos commandes arrivent, que les agents communiquent, et que le systeme rend compte de son etat. Pensez-y comme le standard telephonique de votre installation : sans lui, les couches existent mais ne se parlent pas. La section 2.21 approfondit ce role central.</p>

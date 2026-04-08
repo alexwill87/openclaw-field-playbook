@@ -139,45 +139,45 @@
 <li><strong>Un systeme de maintenance</strong> -- sauvegardes, mises a jour, monitoring, pour que le tout continue a fonctionner dans la duree.</li>
 </ol>
 <h3 id="schema-de-larchitecture-cible">Schema de l'architecture cible</h3>
-<div class="codehilite"><pre><span></span><code><span class="nb">+</span><span class="c">================================================================</span><span class="nb">+</span>
-<span class="c">|                        VOTRE VPS / MACHINE                     |</span>
-<span class="c">|================================================================|</span>
-<span class="c">|                                                                |</span>
-<span class="c">|  </span><span class="nb">+------------------+</span><span class="c">    </span><span class="nb">+------------------+</span><span class="c">                  |</span>
-<span class="c">|  |   REVERSE PROXY  |    |    MONITORING    |                  |</span>
-<span class="c">|  |   (Caddy/Nginx)  |    |  (logs</span><span class="nt">,</span><span class="c"> alertes) |                  |</span>
-<span class="c">|  </span><span class="nb">+--------+---------+</span><span class="c">    </span><span class="nb">+------------------+</span><span class="c">                  |</span>
-<span class="c">|           |                                                    |</span>
-<span class="c">|  </span><span class="nb">+--------</span><span class="c">v</span><span class="nb">-------------------------------------------------+</span><span class="c">  |</span>
-<span class="c">|  |                    DOCKER NETWORK                         |  |</span>
-<span class="c">|  |                                                           |  |</span>
-<span class="c">|  |  </span><span class="nb">+-------------+</span><span class="c">  </span><span class="nb">+-------------+</span><span class="c">  </span><span class="nb">+----------------+</span><span class="c">    |  |</span>
-<span class="c">|  |  |  AGENT 1    |  |  AGENT 2    |  |  AGENT N       |    |  |</span>
-<span class="c">|  |  |  (role A)   |  |  (role B)   |  |  (role </span><span class="nt">...</span><span class="c">)    |    |  |</span>
-<span class="c">|  |  </span><span class="nb">+------+------+</span><span class="c">  </span><span class="nb">+------+------+</span><span class="c">  </span><span class="nb">+-------+--------+</span><span class="c">    |  |</span>
-<span class="c">|  |         |                |                  |             |  |</span>
-<span class="c">|  |  </span><span class="nb">+------</span><span class="c">v</span><span class="nb">----------------</span><span class="c">v</span><span class="nb">------------------</span><span class="c">v</span><span class="nb">---------+</span><span class="c">   |  |</span>
-<span class="c">|  |  |              COUCHE KNOWLEDGE                       |   |  |</span>
-<span class="c">|  |  |  </span><span class="nb">+----------+</span><span class="c">  </span><span class="nb">+-----------+</span><span class="c">  </span><span class="nb">+----------------+</span><span class="c">   |   |  |</span>
-<span class="c">|  |  |  | Memoire  |  | Documents |  | Regles metier  |   |   |  |</span>
-<span class="c">|  |  |  </span><span class="nb">+----------+</span><span class="c">  </span><span class="nb">+-----------+</span><span class="c">  </span><span class="nb">+----------------+</span><span class="c">   |   |  |</span>
-<span class="c">|  |  </span><span class="nb">+----------------------------------------------------+</span><span class="c">   |  |</span>
-<span class="c">|  |                                                           |  |</span>
-<span class="c">|  |  </span><span class="nb">+----------------------------------------------------+</span><span class="c">   |  |</span>
-<span class="c">|  |  |              COUCHE OUTILS                          |   |  |</span>
-<span class="c">|  |  |  </span><span class="nb">+-------+</span><span class="c">  </span><span class="nb">+-------+</span><span class="c">  </span><span class="nb">+--------+</span><span class="c">  </span><span class="nb">+-----------+</span><span class="c">   |   |  |</span>
-<span class="c">|  |  |  | Email |  |  API  |  | Fichiers|  | Calendrier|   |   |  |</span>
-<span class="c">|  |  |  </span><span class="nb">+-------+</span><span class="c">  </span><span class="nb">+-------+</span><span class="c">  </span><span class="nb">+--------+</span><span class="c">  </span><span class="nb">+-----------+</span><span class="c">   |   |  |</span>
-<span class="c">|  |  </span><span class="nb">+----------------------------------------------------+</span><span class="c">   |  |</span>
-<span class="c">|  |                                                           |  |</span>
-<span class="c">|  </span><span class="nb">+-----------------------------------------------------------+</span><span class="c">  |</span>
-<span class="c">|                                                                |</span>
-<span class="c">|  </span><span class="nb">+-----------------------------------------------------------+</span><span class="c">  |</span>
-<span class="c">|  |  SECURITE : Vault / secrets</span><span class="nt">,</span><span class="c"> certificats SSL</span><span class="nt">,</span><span class="c"> firewall    |  |</span>
-<span class="c">|  </span><span class="nb">+-----------------------------------------------------------+</span><span class="c">  |</span>
-<span class="c">|                                                                |</span>
-<span class="nb">+</span><span class="c">================================================================</span><span class="nb">+</span>
-</code></pre></div>
+<pre class="codehilite"><code>+================================================================+
+|                        VOTRE VPS / MACHINE                     |
+|================================================================|
+|                                                                |
+|  +------------------+    +------------------+                  |
+|  |   REVERSE PROXY  |    |    MONITORING    |                  |
+|  |   (Caddy/Nginx)  |    |  (logs, alertes) |                  |
+|  +--------+---------+    +------------------+                  |
+|           |                                                    |
+|  +--------v-------------------------------------------------+  |
+|  |                    DOCKER NETWORK                         |  |
+|  |                                                           |  |
+|  |  +-------------+  +-------------+  +----------------+    |  |
+|  |  |  AGENT 1    |  |  AGENT 2    |  |  AGENT N       |    |  |
+|  |  |  (role A)   |  |  (role B)   |  |  (role ...)    |    |  |
+|  |  +------+------+  +------+------+  +-------+--------+    |  |
+|  |         |                |                  |             |  |
+|  |  +------v----------------v------------------v---------+   |  |
+|  |  |              COUCHE KNOWLEDGE                       |   |  |
+|  |  |  +----------+  +-----------+  +----------------+   |   |  |
+|  |  |  | Memoire  |  | Documents |  | Regles metier  |   |   |  |
+|  |  |  +----------+  +-----------+  +----------------+   |   |  |
+|  |  +----------------------------------------------------+   |  |
+|  |                                                           |  |
+|  |  +----------------------------------------------------+   |  |
+|  |  |              COUCHE OUTILS                          |   |  |
+|  |  |  +-------+  +-------+  +--------+  +-----------+   |   |  |
+|  |  |  | Email |  |  API  |  | Fichiers|  | Calendrier|   |   |  |
+|  |  |  +-------+  +-------+  +--------+  +-----------+   |   |  |
+|  |  +----------------------------------------------------+   |  |
+|  |                                                           |  |
+|  +-----------------------------------------------------------+  |
+|                                                                |
+|  +-----------------------------------------------------------+  |
+|  |  SECURITE : Vault / secrets, certificats SSL, firewall    |  |
+|  +-----------------------------------------------------------+  |
+|                                                                |
++================================================================+
+</code></pre>
 
 <h3 id="ce-que-ce-schema-vous-dit">Ce que ce schema vous dit</h3>
 <p><strong>Tout tourne dans Docker.</strong> Chaque composant est isole, reproductible, et peut etre mis a jour independamment.</p>

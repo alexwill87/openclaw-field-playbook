@@ -400,15 +400,15 @@
 <p><strong>Note :</strong> ClawHub est encore jeune. Le catalogue grandit avec la communaute. Si vous ne trouvez pas ce que vous cherchez, c'est normal — et c'est une opportunite de contribuer.</p>
 </blockquote>
 <h3 id="comment-y-acceder">Comment y acceder</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Rechercher un skill</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </span>search<span class="w"> </span><span class="s2">&quot;crm&quot;</span>
+<pre class="codehilite"><code class="language-bash"># Rechercher un skill
+$ openclaw hub search &quot;crm&quot;
 
-<span class="c1"># Installer un skill depuis ClawHub</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </span>install<span class="w"> </span>skill-crm-pulse
+# Installer un skill depuis ClawHub
+$ openclaw hub install skill-crm-pulse
 
-<span class="c1"># Voir ce qui est installe</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </span>list
-</code></pre></div>
+# Voir ce qui est installe
+$ openclaw hub list
+</code></pre>
 
 <hr />
 <h2 id="les-outils-un-par-un-ce-que-chacun-apporte">Les outils un par un : ce que chacun apporte</h2>
@@ -467,20 +467,20 @@ $<span class="w"> </span>openclaw<span class="w"> </span>hub<span class="w"> </s
 <h2 id="la-regle-dor">La regle d'or</h2>
 <p><strong>N'installez un outil que quand vous ressentez un manque.</strong> Si vous ne ressentez pas le manque, l'outil ne vous apportera rien — il ajoutera seulement de la maintenance.</p>
 <p>La progression naturelle :</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Semaine</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="w"> </span>:<span class="w"> </span><span class="nv">Niveau</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ss">(</span><span class="nv">gateway</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">terminal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">commandes</span><span class="w"> </span><span class="nv">de</span><span class="w"> </span><span class="nv">base</span><span class="ss">)</span>
-<span class="w">         </span>│
-<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;J&#39;aimerais etre prevenu quand ca casse&quot;</span>
-<span class="nv">Semaine</span><span class="w"> </span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="w"> </span>:<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Telegram</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Health</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">cron</span>
-<span class="w">         </span>│
-<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;Je veux automatiser le briefing du matin&quot;</span>
-<span class="nv">Mois</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span>:<span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="nv">Crons</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Git</span><span class="w"> </span><span class="nv">deploy</span>
-<span class="w">         </span>│
-<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;On est deux, on a besoin de se coordonner&quot;</span>
-<span class="nv">Mois</span><span class="w"> </span><span class="mi">3</span><span class="o">+</span><span class="w"> </span>:<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nv">Mattermost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Multi</span><span class="o">-</span><span class="nv">agents</span>
-<span class="w">         </span>│
-<span class="w">         </span>▼<span class="w">  </span><span class="s2">&quot;Je veux voir l&#39;historique d&#39;uptime&quot;</span>
-<span class="nv">Quand</span><span class="w"> </span><span class="nv">ca</span><span class="w"> </span><span class="nv">vient</span><span class="w"> </span>:<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">Uptime</span><span class="w"> </span><span class="nv">Kuma</span>
-</code></pre></div>
+<pre class="codehilite"><code>Semaine 1-2 : Niveau 1 (gateway + terminal + commandes de base)
+         │
+         ▼  &quot;J'aimerais etre prevenu quand ca casse&quot;
+Semaine 3-4 : + Telegram + Health check cron
+         │
+         ▼  &quot;Je veux automatiser le briefing du matin&quot;
+Mois 2 :     + Crons + Git deploy
+         │
+         ▼  &quot;On est deux, on a besoin de se coordonner&quot;
+Mois 3+ :    + Mattermost + Multi-agents
+         │
+         ▼  &quot;Je veux voir l'historique d'uptime&quot;
+Quand ca vient : + Uptime Kuma
+</code></pre>
 
 <p>Chaque ajout repond a un besoin que vous avez <strong>reellement vecu</strong>, pas a un besoin que vous imaginez.</p>
 <hr />

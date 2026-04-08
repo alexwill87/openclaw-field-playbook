@@ -143,46 +143,46 @@
 <p>OpenClaw est ecrit en Node.js. PM2 est un gestionnaire de processus qui maintient OpenClaw en vie, gere les logs et redemarre automatiquement en cas de crash.</p>
 <p>On installe Node.js via <strong>nvm</strong> (Node Version Manager), pas via apt. Pourquoi : apt fournit souvent une version obsolete, et nvm permet de changer de version facilement.</p>
 <h2 id="etape-1-installer-nvm">Etape 1 : Installer nvm</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-o-<span class="w"> </span>https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+</code></pre>
 
 <p>Rechargez le shell :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ source ~/.bashrc
+</code></pre>
 
 <p>Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>--version
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ nvm --version
+</code></pre>
 
 <h2 id="etape-2-installer-nodejs">Etape 2 : Installer Node.js</h2>
 <p>Installez la version LTS (Long Term Support) :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nvm<span class="w"> </span>install<span class="w"> </span>--lts
-$<span class="w"> </span>nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>lts/*
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ nvm install --lts
+$ nvm alias default lts/*
+</code></pre>
 
 <p>Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version
-$<span class="w"> </span>npm<span class="w"> </span>--version
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ node --version
+$ npm --version
+</code></pre>
 
 <p>Version attendue : Node.js 22.x ou superieur (LTS au moment de l'ecriture).</p>
 <h2 id="etape-3-installer-pm2">Etape 3 : Installer PM2</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>pm2
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ npm install -g pm2
+</code></pre>
 
 <p>Verifiez :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pm2<span class="w"> </span>--version
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ pm2 --version
+</code></pre>
 
 <h2 id="etape-4-configurer-pm2-pour-le-demarrage-automatique">Etape 4 : Configurer PM2 pour le demarrage automatique</h2>
 <p>PM2 peut se relancer automatiquement au redemarrage du serveur :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pm2<span class="w"> </span>startup
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ pm2 startup
+</code></pre>
 
 <p>Cette commande affiche une ligne a copier-coller (elle commence par <code>sudo env PATH=...</code>). Executez-la.</p>
 <p>Puis sauvegardez la liste actuelle des processus (vide pour l'instant) :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pm2<span class="w"> </span>save
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ pm2 save
+</code></pre>
 
 <h2 id="pourquoi-pm2-et-pas-systemd-directement">Pourquoi PM2 et pas systemd directement ?</h2>
 <p>PM2 offre des fonctionnalites specifiques a Node.js :</p>
@@ -203,11 +203,11 @@ $<span class="w"> </span>npm<span class="w"> </span>--version
 <li><strong>PM2 startup ne fonctionne pas</strong> : Executez bien la commande sudo affichee par <code>pm2 startup</code>, ne tapez pas juste <code>pm2 startup</code> avec sudo.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version
-$<span class="w"> </span>npm<span class="w"> </span>--version
-$<span class="w"> </span>pm2<span class="w"> </span>--version
-$<span class="w"> </span>pm2<span class="w"> </span>list
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ node --version
+$ npm --version
+$ pm2 --version
+$ pm2 list
+</code></pre>
 
 <p>Resultats attendus :
 - Node.js v22.x+

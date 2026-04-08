@@ -170,21 +170,21 @@
 <p>Le modele recommande : un agent principal (generaliste) et des agents specialises (experts dans un domaine).</p>
 <h3 id="exemples-darchitecture">Exemples d'architecture</h3>
 <p><strong>Freelance technique</strong> :</p>
-<div class="codehilite"><pre><span></span><code>Agent principal : &quot;Axel&quot; -- gestion quotidienne, briefing, triage
+<pre class="codehilite"><code>Agent principal : &quot;Axel&quot; -- gestion quotidienne, briefing, triage
 Agent dev : &quot;K8&quot; -- code, infrastructure, deployments
-</code></pre></div>
+</code></pre>
 
 <p><strong>Dirigeant PME</strong> :</p>
-<div class="codehilite"><pre><span></span><code>Agent principal : &quot;Clara&quot; -- briefing, email, agenda
+<pre class="codehilite"><code>Agent principal : &quot;Clara&quot; -- briefing, email, agenda
 Agent commercial : &quot;Hugo&quot; -- CRM, pipeline, relances
 Agent ops : &quot;Max&quot; -- facturation, fournisseurs, logistique
-</code></pre></div>
+</code></pre>
 
 <p><strong>Equipe produit</strong> :</p>
-<div class="codehilite"><pre><span></span><code>Agent principal : &quot;PM&quot; -- priorisation, roadmap, communication
+<pre class="codehilite"><code>Agent principal : &quot;PM&quot; -- priorisation, roadmap, communication
 Agent technique : &quot;Dev&quot; -- code review, monitoring, alertes
 Agent data : &quot;Ana&quot; -- metriques, rapports, A/B tests
-</code></pre></div>
+</code></pre>
 
 <h3 id="quand-ajouter-un-agent-specialise">Quand ajouter un agent specialise</h3>
 <p>Regle : ajoutez un agent specialise quand une ACTIVITE recurrente necessite :
@@ -194,26 +194,26 @@ Agent data : &quot;Ana&quot; -- metriques, rapports, A/B tests
 <p>Si les trois criteres ne sont pas reunis, un seul agent avec un knowledge/ bien organise suffit.</p>
 <h2 id="isolation-des-workspaces">Isolation des workspaces</h2>
 <p>Chaque agent a son propre workspace avec ses propres fichiers de configuration :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">workspaces</span><span class="o">/</span>
-<span class="w">  </span><span class="n">principal</span><span class="o">/</span>
-<span class="w">    </span><span class="n">SOUL</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">personnalite</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">principal</span>
-<span class="w">    </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">partage</span><span class="w"> </span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
-<span class="w">    </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">principal</span>
-<span class="w">    </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w">            </span><span class="o">--</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">principal</span>
-<span class="w">    </span><span class="n">knowledge</span><span class="o">/</span><span class="w">           </span><span class="o">--</span><span class="w"> </span><span class="n">connaissances</span><span class="w"> </span><span class="n">generales</span>
-<span class="w">  </span><span class="n">dev</span><span class="o">/</span>
-<span class="w">    </span><span class="n">SOUL</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">personnalite</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">dev</span>
-<span class="w">    </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">partage</span><span class="w"> </span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
-<span class="w">    </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">dev</span>
-<span class="w">    </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w">            </span><span class="o">--</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">dev</span>
-<span class="w">    </span><span class="n">knowledge</span><span class="o">/</span><span class="w">           </span><span class="o">--</span><span class="w"> </span><span class="n">connaissances</span><span class="w"> </span><span class="n">techniques</span>
-<span class="w">  </span><span class="n">commercial</span><span class="o">/</span>
-<span class="w">    </span><span class="n">SOUL</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">personnalite</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">commercial</span>
-<span class="w">    </span><span class="n">USER</span><span class="p">.</span><span class="n">md</span><span class="w">              </span><span class="o">--</span><span class="w"> </span><span class="n">partage</span><span class="w"> </span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
-<span class="w">    </span><span class="n">CONSTITUTION</span><span class="p">.</span><span class="n">md</span><span class="w">      </span><span class="o">--</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">commercial</span>
-<span class="w">    </span><span class="n">MEMORY</span><span class="p">.</span><span class="n">md</span><span class="w">            </span><span class="o">--</span><span class="w"> </span><span class="n">memoire</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">l</span><span class="p">&#39;</span><span class="n">agent</span><span class="w"> </span><span class="n">commercial</span>
-<span class="w">    </span><span class="n">knowledge</span><span class="o">/</span><span class="w">           </span><span class="o">--</span><span class="w"> </span><span class="n">connaissances</span><span class="w"> </span><span class="n">business</span>
-</code></pre></div>
+<pre class="codehilite"><code>workspaces/
+  principal/
+    SOUL.md              -- personnalite de l'agent principal
+    USER.md              -- partage (symlink)
+    CONSTITUTION.md      -- regles de l'agent principal
+    MEMORY.md            -- memoire de l'agent principal
+    knowledge/           -- connaissances generales
+  dev/
+    SOUL.md              -- personnalite de l'agent dev
+    USER.md              -- partage (symlink)
+    CONSTITUTION.md      -- regles de l'agent dev
+    MEMORY.md            -- memoire de l'agent dev
+    knowledge/           -- connaissances techniques
+  commercial/
+    SOUL.md              -- personnalite de l'agent commercial
+    USER.md              -- partage (symlink)
+    CONSTITUTION.md      -- regles de l'agent commercial
+    MEMORY.md            -- memoire de l'agent commercial
+    knowledge/           -- connaissances business
+</code></pre>
 
 <p>Regles d'isolation :</p>
 <table>
@@ -261,32 +261,32 @@ Agent data : &quot;Ana&quot; -- metriques, rapports, A/B tests
 <p>Les agents ne se parlent pas directement. Ils communiquent via des artefacts partages.</p>
 <h3 id="via-memorymd-partage">Via MEMORY.md partage</h3>
 <p>Le plus simple. Un seul MEMORY.md lu par tous les agents.</p>
-<div class="codehilite"><pre><span></span><code>Agent principal note dans MEMORY.md :
+<pre class="codehilite"><code>Agent principal note dans MEMORY.md :
 &quot;2026-04-01 -- Client Alpha a demande un changement de scope. A evaluer.&quot;
 
 Agent dev lit MEMORY.md au demarrage et voit la note.
-</code></pre></div>
+</code></pre>
 
 <p>Avantage : simple. Inconvenient : MEMORY.md grossit vite avec plusieurs agents qui ecrivent.</p>
 <h3 id="via-fichiers-de-liaison">Via fichiers de liaison</h3>
 <p>Chaque agent ecrit dans un fichier de sortie que les autres peuvent lire.</p>
-<div class="codehilite"><pre><span></span><code>workspaces/shared/
-  principal-output.md    -- ce que l&#39;agent principal veut communiquer
-  dev-output.md          -- ce que l&#39;agent dev veut communiquer
-  commercial-output.md   -- ce que l&#39;agent commercial veut communiquer
-</code></pre></div>
+<pre class="codehilite"><code>workspaces/shared/
+  principal-output.md    -- ce que l'agent principal veut communiquer
+  dev-output.md          -- ce que l'agent dev veut communiquer
+  commercial-output.md   -- ce que l'agent commercial veut communiquer
+</code></pre>
 
 <p>Avantage : chaque agent controle ce qu'il partage. Inconvenient : plus de fichiers a gerer.</p>
 <h3 id="via-agentsmd">Via AGENTS.md</h3>
 <p>Le registre AGENTS.md definit les canaux de communication :</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Communication</span>
+<pre class="codehilite"><code class="language-markdown">## Communication
 
 | De | Vers | Canal | Quand |
 |----|------|-------|-------|
 | Principal | Dev | shared/principal-output.md | Quand un sujet technique emerge |
 | Dev | Principal | shared/dev-output.md | Apres chaque deploiement |
 | Commercial | Principal | shared/commercial-output.md | Quand un deal avance/recule |
-</code></pre></div>
+</code></pre>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-validez-que-cest-necessaire">1. Validez que c'est necessaire</h3>

@@ -151,7 +151,7 @@
 <p>Contrairement a MEMORY.md (80 lignes, volatile), knowledge/ n'a pas de limite de taille globale. Mais chaque fichier doit rester lisible et cible : un fichier par sujet, 200 lignes max par fichier.</p>
 <h2 id="organisation-par-domaine">Organisation par domaine</h2>
 <p>Structure recommandee :</p>
-<div class="codehilite"><pre><span></span><code>knowledge/
+<pre class="codehilite"><code>knowledge/
   infra/
     stack-technique.md
     deploiement.md
@@ -167,27 +167,27 @@
   contacts/
     equipe.md
     partenaires.md
-</code></pre></div>
+</code></pre>
 
 <p>Trois a quatre dossiers de premier niveau. Pas plus. Si vous avez besoin de plus, vous essayez probablement de documenter trop de choses.</p>
 <h2 id="regles-dorganisation">Regles d'organisation</h2>
 <h3 id="un-fichier-par-sujet">Un fichier par sujet</h3>
 <p>Mauvais :</p>
-<div class="codehilite"><pre><span></span><code>knowledge/tout-sur-le-business.md  (300 lignes, 15 sujets)
-</code></pre></div>
+<pre class="codehilite"><code>knowledge/tout-sur-le-business.md  (300 lignes, 15 sujets)
+</code></pre>
 
 <p>Bon :</p>
-<div class="codehilite"><pre><span></span><code>knowledge/business/tarification.md     (60 lignes)
+<pre class="codehilite"><code>knowledge/business/tarification.md     (60 lignes)
 knowledge/business/clients-principaux.md  (80 lignes)
 knowledge/business/processus-vente.md     (70 lignes)
-</code></pre></div>
+</code></pre>
 
 <h3 id="cross-reference-plutot-que-duplication">Cross-reference plutot que duplication</h3>
 <p>Si le processus de deploiement mentionne le monitoring, ne recopiez pas la section monitoring. Faites une reference :</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Deploiement</span>
+<pre class="codehilite"><code class="language-markdown">## Deploiement
 [...]
-Pour le monitoring post-deploiement, voir [<span class="nt">monitoring.md</span>](<span class="na">../infra/monitoring.md</span>).
-</code></pre></div>
+Pour le monitoring post-deploiement, voir [monitoring.md](../infra/monitoring.md).
+</code></pre>
 
 <p>La duplication cree des informations contradictoires des la premiere mise a jour oubliee.</p>
 <h3 id="200-lignes-max-par-fichier">200 lignes max par fichier</h3>
@@ -196,7 +196,7 @@ Pour le monitoring post-deploiement, voir [<span class="nt">monitoring.md</span>
 <p>Le nom du fichier doit suffire a comprendre son contenu. Pas de <code>notes.md</code>, <code>divers.md</code>, <code>temp.md</code>.</p>
 <h2 id="exemples-de-bonne-organisation">Exemples de bonne organisation</h2>
 <h3 id="freelance-consultant">Freelance / consultant</h3>
-<div class="codehilite"><pre><span></span><code>knowledge/
+<pre class="codehilite"><code>knowledge/
   clients/
     client-alpha.md        -- contexte, contacts, historique
     client-beta.md
@@ -206,47 +206,47 @@ Pour le monitoring post-deploiement, voir [<span class="nt">monitoring.md</span>
   guides/
     onboarding-client.md    -- checklist premier contact a livraison
     facturation.md          -- processus de facturation
-</code></pre></div>
+</code></pre>
 
 <h3 id="startup-technique">Startup technique</h3>
-<div class="codehilite"><pre><span></span><code>knowledge/
+<pre class="codehilite"><code>knowledge/
   infra/
-    architecture.md         -- schema de l&#39;infra
-    runbooks.md             -- procedures d&#39;urgence
+    architecture.md         -- schema de l'infra
+    runbooks.md             -- procedures d'urgence
     secrets-management.md   -- ou sont les secrets, comment y acceder
   produit/
     roadmap-q2-2026.md      -- priorites produit du trimestre
-    metriques.md            -- KPIs suivis, seuils d&#39;alerte
+    metriques.md            -- KPIs suivis, seuils d'alerte
   equipe/
     roles.md                -- qui fait quoi
     rituels.md              -- reunions, standups, retros
-</code></pre></div>
+</code></pre>
 
 <h3 id="dirigeant-pme">Dirigeant PME</h3>
-<div class="codehilite"><pre><span></span><code><span class="nx">knowledge</span><span class="o">/</span>
-<span class="w">  </span><span class="nx">business</span><span class="o">/</span>
-<span class="w">    </span><span class="nx">offre</span><span class="o">-</span><span class="nx">services</span><span class="p">.</span><span class="nx">md</span><span class="w">       </span><span class="o">--</span><span class="w"> </span><span class="nx">description</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">l</span><span class="err">&#39;</span><span class="nx">offre</span>
-<span class="w">    </span><span class="nx">clients</span><span class="o">-</span><span class="nx">top</span><span class="o">-</span><span class="mi">10</span><span class="p">.</span><span class="nx">md</span><span class="w">       </span><span class="o">--</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="nx">plus</span><span class="w"> </span><span class="nx">gros</span><span class="w"> </span><span class="nx">clients</span><span class="p">,</span><span class="w"> </span><span class="nx">contexte</span>
-<span class="w">    </span><span class="nx">pipeline</span><span class="o">-</span><span class="nx">commercial</span><span class="p">.</span><span class="nx">md</span><span class="w">  </span><span class="o">--</span><span class="w"> </span><span class="nx">opportunites</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">cours</span>
-<span class="w">  </span><span class="nx">operations</span><span class="o">/</span>
-<span class="w">    </span><span class="nx">processus</span><span class="o">-</span><span class="nx">recrutement</span><span class="p">.</span><span class="nx">md</span>
-<span class="w">    </span><span class="nx">processus</span><span class="o">-</span><span class="nx">achat</span><span class="p">.</span><span class="nx">md</span>
-<span class="w">  </span><span class="nx">legal</span><span class="o">/</span>
-<span class="w">    </span><span class="nx">contrats</span><span class="o">-</span><span class="nx">types</span><span class="p">.</span><span class="nx">md</span><span class="w">       </span><span class="o">--</span><span class="w"> </span><span class="nx">clauses</span><span class="w"> </span><span class="nx">standard</span><span class="p">,</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="nx">d</span><span class="err">&#39;</span><span class="nx">attention</span>
-<span class="w">    </span><span class="nx">rgpd</span><span class="p">.</span><span class="nx">md</span><span class="w">                 </span><span class="o">--</span><span class="w"> </span><span class="nx">obligations</span><span class="p">,</span><span class="w"> </span><span class="nx">registre</span><span class="w"> </span><span class="nx">des</span><span class="w"> </span><span class="nx">traitements</span>
-</code></pre></div>
+<pre class="codehilite"><code>knowledge/
+  business/
+    offre-services.md       -- description de l'offre
+    clients-top-10.md       -- 10 plus gros clients, contexte
+    pipeline-commercial.md  -- opportunites en cours
+  operations/
+    processus-recrutement.md
+    processus-achat.md
+  legal/
+    contrats-types.md       -- clauses standard, points d'attention
+    rgpd.md                 -- obligations, registre des traitements
+</code></pre>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-creer-la-structure-de-dossiers">1. Creer la structure de dossiers</h3>
 <p>Commencez avec 3 dossiers maximum. Vous pourrez toujours en ajouter.</p>
 <h3 id="2-migrer-depuis-memorymd">2. Migrer depuis MEMORY.md</h3>
 <p>Relisez MEMORY.md. Tout ce qui est stable depuis plus de 2 semaines devrait migrer dans knowledge/. Remplacez l'entree dans MEMORY.md par une reference :</p>
-<div class="codehilite"><pre><span></span><code>Avant (MEMORY.md) :
+<pre class="codehilite"><code>Avant (MEMORY.md) :
 - Processus de deploiement : build &gt; test &gt; staging &gt; validation &gt; prod
 
 Apres (MEMORY.md) :
 - Processus de deploiement documente dans knowledge/infra/deploiement.md
-</code></pre></div>
+</code></pre>
 
 <h3 id="3-documenter-vos-5-sujets-les-plus-frequents">3. Documenter vos 5 sujets les plus frequents</h3>
 <p>Quels sont les 5 sujets sur lesquels vous expliquez les memes choses a chaque session ? Documentez-les dans knowledge/.</p>

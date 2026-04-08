@@ -184,139 +184,139 @@
 </tbody>
 </table>
 <h2 id="script-complet-health-checksh">Script complet : health-check.sh</h2>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1"># health-check.sh — Diagnostic quotidien</span>
-<span class="c1"># Usage : ./health-check.sh [--quiet]</span>
-<span class="c1"># --quiet : n&#39;affiche que les erreurs (pour cron)</span>
+<pre class="codehilite"><code class="language-bash">#!/bin/bash
+# health-check.sh — Diagnostic quotidien
+# Usage : ./health-check.sh [--quiet]
+# --quiet : n'affiche que les erreurs (pour cron)
 
-<span class="nv">TELEGRAM_BOT_TOKEN</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TELEGRAM_BOT_TOKEN</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nv">TELEGRAM_CHAT_ID</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TELEGRAM_CHAT_ID</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nv">QUIET</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nv">ERRORS</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+TELEGRAM_BOT_TOKEN=&quot;${TELEGRAM_BOT_TOKEN:-}&quot;
+TELEGRAM_CHAT_ID=&quot;${TELEGRAM_CHAT_ID:-}&quot;
+QUIET=&quot;${1:-}&quot;
+ERRORS=&quot;&quot;
 
-log<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$QUIET</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;--quiet&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="k">fi</span>
-<span class="o">}</span>
+log() {
+    if [ &quot;$QUIET&quot; != &quot;--quiet&quot; ]; then
+        echo &quot;$1&quot;
+    fi
+}
 
-error<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="nv">ERRORS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ERRORS</span><span class="si">}</span><span class="s2">\n[KO] </span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[KO] </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-<span class="o">}</span>
+error() {
+    ERRORS=&quot;${ERRORS}\n[KO] $1&quot;
+    echo &quot;[KO] $1&quot; &gt;&amp;2
+}
 
-ok<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;[OK] </span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="o">}</span>
+ok() {
+    log &quot;[OK] $1&quot;
+}
 
-send_telegram<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TELEGRAM_BOT_TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TELEGRAM_CHAT_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">local</span><span class="w"> </span><span class="nv">message</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="w">        </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://api.telegram.org/bot</span><span class="si">${</span><span class="nv">TELEGRAM_BOT_TOKEN</span><span class="si">}</span><span class="s2">/sendMessage&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">            </span>-d<span class="w"> </span><span class="nv">chat_id</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TELEGRAM_CHAT_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">            </span>-d<span class="w"> </span><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$message</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">            </span>-d<span class="w"> </span><span class="nv">parse_mode</span><span class="o">=</span><span class="s2">&quot;Markdown&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null
-<span class="w">    </span><span class="k">fi</span>
-<span class="o">}</span>
+send_telegram() {
+    if [ -n &quot;$TELEGRAM_BOT_TOKEN&quot; ] &amp;&amp; [ -n &quot;$TELEGRAM_CHAT_ID&quot; ]; then
+        local message=&quot;$1&quot;
+        curl -s -X POST &quot;https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage&quot; \
+            -d chat_id=&quot;$TELEGRAM_CHAT_ID&quot; \
+            -d text=&quot;$message&quot; \
+            -d parse_mode=&quot;Markdown&quot; &gt; /dev/null
+    fi
+}
 
-<span class="c1"># === Containers Docker ===</span>
-log<span class="w"> </span><span class="s2">&quot;--- Docker ---&quot;</span>
-<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>docker<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nv">DOWN_CONTAINERS</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;status=exited&quot;</span><span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.Names}}&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DOWN_CONTAINERS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span>error<span class="w"> </span><span class="s2">&quot;Containers down : </span><span class="nv">$DOWN_CONTAINERS</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span>ok<span class="w"> </span><span class="s2">&quot;Tous les containers sont up&quot;</span>
-<span class="w">    </span><span class="k">fi</span>
-<span class="k">else</span>
-<span class="w">    </span>error<span class="w"> </span><span class="s2">&quot;Docker non installe&quot;</span>
-<span class="k">fi</span>
+# === Containers Docker ===
+log &quot;--- Docker ---&quot;
+if command -v docker &amp;&gt; /dev/null; then
+    DOWN_CONTAINERS=$(docker ps -a --filter &quot;status=exited&quot; --format &quot;{{.Names}}&quot; 2&gt;/dev/null)
+    if [ -n &quot;$DOWN_CONTAINERS&quot; ]; then
+        error &quot;Containers down : $DOWN_CONTAINERS&quot;
+    else
+        ok &quot;Tous les containers sont up&quot;
+    fi
+else
+    error &quot;Docker non installe&quot;
+fi
 
-<span class="c1"># === Services web ===</span>
-log<span class="w"> </span><span class="s2">&quot;--- Services web ---&quot;</span>
-<span class="nv">SERVICES</span><span class="o">=(</span><span class="s2">&quot;http://localhost:3000&quot;</span><span class="w"> </span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="o">)</span>
-<span class="nv">SERVICE_NAMES</span><span class="o">=(</span><span class="s2">&quot;cockpit&quot;</span><span class="w"> </span><span class="s2">&quot;api&quot;</span><span class="o">)</span>
+# === Services web ===
+log &quot;--- Services web ---&quot;
+SERVICES=(&quot;http://localhost:3000&quot; &quot;http://localhost:8080&quot;)
+SERVICE_NAMES=(&quot;cockpit&quot; &quot;api&quot;)
 
-<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="p">!SERVICES[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="nv">HTTP_CODE</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;%{http_code}&quot;</span><span class="w"> </span>--max-time<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVICES</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HTTP_CODE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;200&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span>ok<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVICE_NAMES</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2"> repond (HTTP </span><span class="nv">$HTTP_CODE</span><span class="s2">)&quot;</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span>error<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVICE_NAMES</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2"> ne repond pas (HTTP </span><span class="nv">$HTTP_CODE</span><span class="s2">)&quot;</span>
-<span class="w">    </span><span class="k">fi</span>
-<span class="k">done</span>
+for i in &quot;${!SERVICES[@]}&quot;; do
+    HTTP_CODE=$(curl -s -o /dev/null -w &quot;%{http_code}&quot; --max-time 5 &quot;${SERVICES[$i]}&quot; 2&gt;/dev/null)
+    if [ &quot;$HTTP_CODE&quot; = &quot;200&quot; ]; then
+        ok &quot;${SERVICE_NAMES[$i]} repond (HTTP $HTTP_CODE)&quot;
+    else
+        error &quot;${SERVICE_NAMES[$i]} ne repond pas (HTTP $HTTP_CODE)&quot;
+    fi
+done
 
-<span class="c1"># === Espace disque ===</span>
-log<span class="w"> </span><span class="s2">&quot;--- Disque ---&quot;</span>
-<span class="nv">DISK_USAGE</span><span class="o">=</span><span class="k">$(</span>df<span class="w"> </span>/<span class="w"> </span>--output<span class="o">=</span>pcent<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; %&#39;</span><span class="k">)</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DISK_USAGE</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span>ok<span class="w"> </span><span class="s2">&quot;Disque : </span><span class="si">${</span><span class="nv">DISK_USAGE</span><span class="si">}</span><span class="s2">% utilise&quot;</span>
-<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DISK_USAGE</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span>error<span class="w"> </span><span class="s2">&quot;Disque : </span><span class="si">${</span><span class="nv">DISK_USAGE</span><span class="si">}</span><span class="s2">% utilise (seuil 80%)&quot;</span>
-<span class="k">else</span>
-<span class="w">    </span>error<span class="w"> </span><span class="s2">&quot;CRITIQUE — Disque : </span><span class="si">${</span><span class="nv">DISK_USAGE</span><span class="si">}</span><span class="s2">% utilise&quot;</span>
-<span class="k">fi</span>
+# === Espace disque ===
+log &quot;--- Disque ---&quot;
+DISK_USAGE=$(df / --output=pcent | tail -1 | tr -d ' %')
+if [ &quot;$DISK_USAGE&quot; -lt 80 ]; then
+    ok &quot;Disque : ${DISK_USAGE}% utilise&quot;
+elif [ &quot;$DISK_USAGE&quot; -lt 90 ]; then
+    error &quot;Disque : ${DISK_USAGE}% utilise (seuil 80%)&quot;
+else
+    error &quot;CRITIQUE — Disque : ${DISK_USAGE}% utilise&quot;
+fi
 
-<span class="c1"># === PostgreSQL ===</span>
-log<span class="w"> </span><span class="s2">&quot;--- PostgreSQL ---&quot;</span>
-<span class="k">if</span><span class="w"> </span>pg_isready<span class="w"> </span>-q<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span>ok<span class="w"> </span><span class="s2">&quot;PostgreSQL OK&quot;</span>
-<span class="k">else</span>
-<span class="w">    </span>error<span class="w"> </span><span class="s2">&quot;PostgreSQL ne repond pas&quot;</span>
-<span class="k">fi</span>
+# === PostgreSQL ===
+log &quot;--- PostgreSQL ---&quot;
+if pg_isready -q 2&gt;/dev/null; then
+    ok &quot;PostgreSQL OK&quot;
+else
+    error &quot;PostgreSQL ne repond pas&quot;
+fi
 
-<span class="c1"># === Memoire ===</span>
-log<span class="w"> </span><span class="s2">&quot;--- Memoire ---&quot;</span>
-<span class="nv">MEM_TOTAL</span><span class="o">=</span><span class="k">$(</span>free<span class="w"> </span>-m<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/Mem:/ {print $2}&#39;</span><span class="k">)</span>
-<span class="nv">MEM_AVAIL</span><span class="o">=</span><span class="k">$(</span>free<span class="w"> </span>-m<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/Mem:/ {print $7}&#39;</span><span class="k">)</span>
-<span class="nv">MEM_PERCENT</span><span class="o">=</span><span class="k">$((</span><span class="nv">MEM_AVAIL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">MEM_TOTAL</span><span class="k">))</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MEM_PERCENT</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span>ok<span class="w"> </span><span class="s2">&quot;Memoire : </span><span class="si">${</span><span class="nv">MEM_PERCENT</span><span class="si">}</span><span class="s2">% disponible (</span><span class="si">${</span><span class="nv">MEM_AVAIL</span><span class="si">}</span><span class="s2">M/</span><span class="si">${</span><span class="nv">MEM_TOTAL</span><span class="si">}</span><span class="s2">M)&quot;</span>
-<span class="k">else</span>
-<span class="w">    </span>error<span class="w"> </span><span class="s2">&quot;Memoire faible : </span><span class="si">${</span><span class="nv">MEM_PERCENT</span><span class="si">}</span><span class="s2">% disponible (</span><span class="si">${</span><span class="nv">MEM_AVAIL</span><span class="si">}</span><span class="s2">M/</span><span class="si">${</span><span class="nv">MEM_TOTAL</span><span class="si">}</span><span class="s2">M)&quot;</span>
-<span class="k">fi</span>
+# === Memoire ===
+log &quot;--- Memoire ---&quot;
+MEM_TOTAL=$(free -m | awk '/Mem:/ {print $2}')
+MEM_AVAIL=$(free -m | awk '/Mem:/ {print $7}')
+MEM_PERCENT=$((MEM_AVAIL * 100 / MEM_TOTAL))
+if [ &quot;$MEM_PERCENT&quot; -gt 20 ]; then
+    ok &quot;Memoire : ${MEM_PERCENT}% disponible (${MEM_AVAIL}M/${MEM_TOTAL}M)&quot;
+else
+    error &quot;Memoire faible : ${MEM_PERCENT}% disponible (${MEM_AVAIL}M/${MEM_TOTAL}M)&quot;
+fi
 
-<span class="c1"># === Vault ===</span>
-log<span class="w"> </span><span class="s2">&quot;--- Vault ---&quot;</span>
-<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>vault<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nv">VAULT_STATUS</span><span class="o">=</span><span class="k">$(</span>vault<span class="w"> </span>status<span class="w"> </span>-format<span class="o">=</span>json<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.sealed&#39;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VAULT_STATUS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span>ok<span class="w"> </span><span class="s2">&quot;Vault unsealed&quot;</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span>error<span class="w"> </span><span class="s2">&quot;Vault sealed ou inaccessible&quot;</span>
-<span class="w">    </span><span class="k">fi</span>
-<span class="k">else</span>
-<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;[SKIP] Vault non installe&quot;</span>
-<span class="k">fi</span>
+# === Vault ===
+log &quot;--- Vault ---&quot;
+if command -v vault &amp;&gt; /dev/null; then
+    VAULT_STATUS=$(vault status -format=json 2&gt;/dev/null | jq -r '.sealed' 2&gt;/dev/null)
+    if [ &quot;$VAULT_STATUS&quot; = &quot;false&quot; ]; then
+        ok &quot;Vault unsealed&quot;
+    else
+        error &quot;Vault sealed ou inaccessible&quot;
+    fi
+else
+    log &quot;[SKIP] Vault non installe&quot;
+fi
 
-<span class="c1"># === Resume et alerte ===</span>
-log<span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ERRORS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;=== PROBLEMES DETECTES ===&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ERRORS</span><span class="s2">&quot;</span>
+# === Resume et alerte ===
+log &quot;&quot;
+if [ -n &quot;$ERRORS&quot; ]; then
+    log &quot;=== PROBLEMES DETECTES ===&quot;
+    echo -e &quot;$ERRORS&quot;
 
-<span class="w">    </span><span class="c1"># Alerte Telegram</span>
-<span class="w">    </span><span class="nv">ALERT_MSG</span><span class="o">=</span><span class="s2">&quot;*Health Check KO* — </span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2"> — </span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="nv">ALERT_MSG</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ALERT_MSG</span><span class="si">}</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ERRORS</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="w">    </span>send_telegram<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ALERT_MSG</span><span class="s2">&quot;</span>
+    # Alerte Telegram
+    ALERT_MSG=&quot;*Health Check KO* — $(hostname) — $(date '+%Y-%m-%d %H:%M')&quot;
+    ALERT_MSG=&quot;${ALERT_MSG}$(echo -e &quot;$ERRORS&quot;)&quot;
+    send_telegram &quot;$ALERT_MSG&quot;
 
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">else</span>
-<span class="w">    </span>log<span class="w"> </span><span class="s2">&quot;=== TOUT EST OK ===&quot;</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
-<span class="k">fi</span>
-</code></pre></div>
+    exit 1
+else
+    log &quot;=== TOUT EST OK ===&quot;
+    exit 0
+fi
+</code></pre>
 
 <h2 id="automatiser-avec-cron">Automatiser avec cron</h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Editer le crontab</span>
-crontab<span class="w"> </span>-e
+<pre class="codehilite"><code class="language-bash"># Editer le crontab
+crontab -e
 
-<span class="c1"># Health check tous les jours a 7h00</span>
-<span class="m">0</span><span class="w"> </span><span class="m">7</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/scripts/health-check.sh<span class="w"> </span>--quiet<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/health-check.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+# Health check tous les jours a 7h00
+0 7 * * * /opt/scripts/health-check.sh --quiet &gt;&gt; /var/log/health-check.log 2&gt;&amp;1
 
-<span class="c1"># Health check toutes les 4 heures (pour les services critiques)</span>
-<span class="m">0</span><span class="w"> </span>*/4<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/scripts/health-check.sh<span class="w"> </span>--quiet<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/health-check.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-</code></pre></div>
+# Health check toutes les 4 heures (pour les services critiques)
+0 */4 * * * /opt/scripts/health-check.sh --quiet &gt;&gt; /var/log/health-check.log 2&gt;&amp;1
+</code></pre>
 
 <h2 id="configurer-les-alertes-telegram">Configurer les alertes Telegram</h2>
 <h3 id="1-creer-un-bot-telegram">1. Creer un bot Telegram</h3>
@@ -333,13 +333,13 @@ crontab<span class="w"> </span>-e
 <li>Trouvez <code>chat.id</code> dans la reponse.</li>
 </ol>
 <h3 id="3-stocker-les-credentials">3. Stocker les credentials</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Dans Vault (recommande)</span>
-vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/telegram<span class="w"> </span><span class="nv">bot_token</span><span class="o">=</span><span class="s2">&quot;123456:ABC...&quot;</span><span class="w"> </span><span class="nv">chat_id</span><span class="o">=</span><span class="s2">&quot;987654321&quot;</span>
+<pre class="codehilite"><code class="language-bash"># Dans Vault (recommande)
+vault kv put secret/telegram bot_token=&quot;123456:ABC...&quot; chat_id=&quot;987654321&quot;
 
-<span class="c1"># Ou en variables d&#39;environnement dans /etc/environment</span>
-<span class="nv">TELEGRAM_BOT_TOKEN</span><span class="o">=</span><span class="s2">&quot;123456:ABC...&quot;</span>
-<span class="nv">TELEGRAM_CHAT_ID</span><span class="o">=</span><span class="s2">&quot;987654321&quot;</span>
-</code></pre></div>
+# Ou en variables d'environnement dans /etc/environment
+TELEGRAM_BOT_TOKEN=&quot;123456:ABC...&quot;
+TELEGRAM_CHAT_ID=&quot;987654321&quot;
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Pas de health check.</strong> Vous decouvrez la panne quand un utilisateur vous ecrit. Toujours trop tard.</p>

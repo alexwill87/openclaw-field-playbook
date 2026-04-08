@@ -142,38 +142,38 @@ Un mauvais system prompt = des corrections permanentes.</p>
 <p>Un system prompt efficace suit cet ordre :</p>
 <h3 id="1-mission-2-3-phrases">1. Mission (2-3 phrases)</h3>
 <p>Qui est l'agent, pour qui il travaille, quel est son role principal.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Tu</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">assistant</span><span class="w"> </span><span class="n">technique</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="p">[</span><span class="n">votre</span><span class="w"> </span><span class="n">nom</span><span class="p">],</span><span class="w"> </span><span class="n">freelance</span><span class="w"> </span><span class="n">devops</span><span class="p">.</span>
-<span class="n">Tu</span><span class="w"> </span><span class="n">geres</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">infrastructure</span><span class="w"> </span><span class="n">VPS</span><span class="p">,</span><span class="w"> </span><span class="n">les</span><span class="w"> </span><span class="n">deployments</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">suivi</span><span class="w"> </span><span class="n">des</span><span class="w"> </span><span class="n">taches</span><span class="p">.</span>
-<span class="n">Tu</span><span class="w"> </span><span class="n">communiques</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">francais</span><span class="p">,</span><span class="w"> </span><span class="n">termes</span><span class="w"> </span><span class="n">techniques</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">anglais</span><span class="p">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Tu es l'assistant technique de [votre nom], freelance devops.
+Tu geres l'infrastructure VPS, les deployments, et le suivi des taches.
+Tu communiques en francais, termes techniques en anglais.
+</code></pre>
 
 <h3 id="2-contexte-ce-quil-doit-savoir">2. Contexte (ce qu'il doit savoir)</h3>
 <p>Les faits permanents. Pas les details qui changent chaque semaine -- ceux-la vont dans la memoire.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Stack</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Ubuntu</span><span class="w"> </span><span class="mf">24.04</span><span class="o">,</span><span class="w"> </span><span class="n">Docker</span><span class="o">,</span><span class="w"> </span><span class="n">PostgreSQL</span><span class="o">,</span><span class="w"> </span><span class="n">Node</span><span class="o">.</span><span class="na">js</span><span class="o">,</span><span class="w"> </span><span class="n">Vault</span><span class="o">.</span>
-<span class="n">VPS</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Hetzner</span><span class="w"> </span><span class="n">Paris</span><span class="o">,</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">fixe</span><span class="o">.</span>
-<span class="n">Projets</span><span class="w"> </span><span class="n">actifs</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">cockpit</span><span class="o">,</span><span class="w"> </span><span class="n">openclaw</span><span class="o">-</span><span class="n">playbook</span><span class="o">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>Stack : Ubuntu 24.04, Docker, PostgreSQL, Node.js, Vault.
+VPS : Hetzner Paris, IP fixe.
+Projets actifs : cockpit, openclaw-playbook.
+</code></pre>
 
 <h3 id="3-outils-et-acces">3. Outils et acces</h3>
 <p>Ce que l'agent peut utiliser. Pas la doc complete -- juste la liste et les limites.</p>
-<div class="codehilite"><pre><span></span><code>Tu as acces a : bash, fichiers locaux, git, Docker, PostgreSQL, Vault.
-Tu n&#39;as PAS acces a : email, Stripe, DNS.
-</code></pre></div>
+<pre class="codehilite"><code>Tu as acces a : bash, fichiers locaux, git, Docker, PostgreSQL, Vault.
+Tu n'as PAS acces a : email, Stripe, DNS.
+</code></pre>
 
 <h3 id="4-regles-de-comportement">4. Regles de comportement</h3>
 <p>Les contraintes non negociables.</p>
-<div class="codehilite"><pre><span></span><code>- Ne jamais push --force sur main.
+<pre class="codehilite"><code>- Ne jamais push --force sur main.
 - Ne jamais modifier .env sans validation explicite.
 - Toujours creer un commit separe, jamais amend sauf demande explicite.
 - Pas de fichiers markdown sauf demande explicite.
-</code></pre></div>
+</code></pre>
 
 <h3 id="5-ton-et-format">5. Ton et format</h3>
 <p>Comment il parle. Court et precis. Voir section 4.2 pour les details.</p>
-<div class="codehilite"><pre><span></span><code>- Francais. Termes techniques en anglais.
+<pre class="codehilite"><code>- Francais. Termes techniques en anglais.
 - Reponses courtes sauf si je demande un detail.
-- Pas d&#39;emojis.
-</code></pre></div>
+- Pas d'emojis.
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <p><strong>Trop long.</strong> Chaque token du system prompt est envoye a chaque requete. 500 mots = ~700 tokens. A 1000 requetes/mois, ca chiffre. Visez 150-300 mots.</p>
@@ -181,31 +181,31 @@ Tu n&#39;as PAS acces a : email, Stripe, DNS.
 <p><strong>Trop de contexte volatil.</strong> Le system prompt est pour les regles permanentes. Les projets en cours, les deadlines, les etats -- ca va dans la memoire ou les fichiers de contexte.</p>
 <p><strong>Pas de regles negatives.</strong> Dire ce que l'agent NE doit PAS faire est aussi important que dire ce qu'il doit faire. Sinon il improvise, et l'improvisation coute cher.</p>
 <h2 id="template-complet">Template complet</h2>
-<div class="codehilite"><pre><span></span><code><span class="gh"># System Prompt — [Votre nom / projet]</span>
+<pre class="codehilite"><code class="language-markdown"># System Prompt — [Votre nom / projet]
 
-<span class="gu">## Mission</span>
+## Mission
 Tu es [role] de [qui]. Tu [responsabilite principale].
 
-<span class="gu">## Contexte</span>
-<span class="k">-</span><span class="w"> </span>Stack : [technologies]
-<span class="k">-</span><span class="w"> </span>Infra : [provider, localisation]
-<span class="k">-</span><span class="w"> </span>Projets : [liste]
+## Contexte
+- Stack : [technologies]
+- Infra : [provider, localisation]
+- Projets : [liste]
 
-<span class="gu">## Outils</span>
+## Outils
 Tu as acces a : [liste].
-Tu n&#39;as PAS acces a : [liste].
+Tu n'as PAS acces a : [liste].
 
-<span class="gu">## Regles</span>
-<span class="k">-</span><span class="w"> </span>[Regle 1 — la plus critique]
-<span class="k">-</span><span class="w"> </span>[Regle 2]
-<span class="k">-</span><span class="w"> </span>[Regle 3]
-<span class="k">-</span><span class="w"> </span>Ne JAMAIS [interdit critique].
+## Regles
+- [Regle 1 — la plus critique]
+- [Regle 2]
+- [Regle 3]
+- Ne JAMAIS [interdit critique].
 
-<span class="gu">## Ton</span>
-<span class="k">-</span><span class="w"> </span>[Langue]. Termes techniques en anglais.
-<span class="k">-</span><span class="w"> </span>[Style : court/long, formel/direct]
-<span class="k">-</span><span class="w"> </span>[Format prefere : bullet points, prose, code]
-</code></pre></div>
+## Ton
+- [Langue]. Termes techniques en anglais.
+- [Style : court/long, formel/direct]
+- [Format prefere : bullet points, prose, code]
+</code></pre>
 
 <h2 id="cas-terrain-workspace-aurel-vps-pantheos">Cas terrain : workspace Aurel (VPS Pantheos)</h2>
 <p>L'agent Aurel utilise un systeme de fichiers complementaires au system prompt qui merite d'etre documente comme pattern reutilisable :</p>

@@ -150,22 +150,22 @@
 - Fonctionne meme derriere un NAT
 - Gratuit jusqu'a 100 machines</p>
 <h2 id="etape-1-installer-tailscale-sur-le-vps">Etape 1 : Installer Tailscale sur le VPS</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://tailscale.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ curl -fsSL https://tailscale.com/install.sh | sh
+</code></pre>
 
 <h2 id="etape-2-demarrer-et-authentifier">Etape 2 : Demarrer et authentifier</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>tailscale<span class="w"> </span>up
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo tailscale up
+</code></pre>
 
 <p>Cette commande affiche un lien d'authentification. Ouvrez ce lien dans votre navigateur et connectez-vous avec votre compte Tailscale.</p>
 <h2 id="etape-3-obtenir-lip-tailscale">Etape 3 : Obtenir l'IP Tailscale</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tailscale<span class="w"> </span>ip<span class="w"> </span>-4
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ tailscale ip -4
+</code></pre>
 
 <p>Notez cette IP (format 100.x.x.x). C'est l'adresse que vous utiliserez pour tous les services.</p>
 <h2 id="etape-4-verifier-la-connexion">Etape 4 : Verifier la connexion</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tailscale<span class="w"> </span>status
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+</code></pre>
 
 <p>Vous devez voir votre VPS dans la liste des machines connectees.</p>
 <h2 id="etape-5-installer-tailscale-sur-votre-machine-locale">Etape 5 : Installer Tailscale sur votre machine locale</h2>
@@ -176,23 +176,23 @@
 <p>Puis <code>tailscale up</code> et authentifiez.</p>
 <h2 id="etape-6-tester-la-connectivite">Etape 6 : Tester la connectivite</h2>
 <p>Depuis votre machine locale :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ping<span class="w"> </span>VOTRE_IP_TAILSCALE_VPS
-$<span class="w"> </span>ssh<span class="w"> </span>deploy@VOTRE_IP_TAILSCALE_VPS
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ping VOTRE_IP_TAILSCALE_VPS
+$ ssh deploy@VOTRE_IP_TAILSCALE_VPS
+</code></pre>
 
 <p>A partir de maintenant, utilisez toujours l'IP Tailscale pour vous connecter au VPS, pas l'IP publique.</p>
 <h2 id="etape-7-optionnel-desactiver-ssh-sur-lip-publique">Etape 7 (optionnel) : Desactiver SSH sur l'IP publique</h2>
 <p>Si vous etes confiant que Tailscale fonctionne, vous pouvez restreindre SSH a Tailscale uniquement :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>delete<span class="w"> </span>allow<span class="w"> </span>ssh
-$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="k">in</span><span class="w"> </span>on<span class="w"> </span>tailscale0<span class="w"> </span>to<span class="w"> </span>any<span class="w"> </span>port<span class="w"> </span><span class="m">22</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw delete allow ssh
+$ sudo ufw allow in on tailscale0 to any port 22
+</code></pre>
 
 <p><strong>IMPORTANT</strong> : Ne faites ceci QUE si vous avez confirme que SSH via Tailscale fonctionne. Gardez la console VNC du fournisseur comme plan de secours.</p>
 <h2 id="principe-darchitecture">Principe d'architecture</h2>
 <p>A partir de cette etape, la regle est :</p>
-<div class="codehilite"><pre><span></span><code>IP publique : RIEN d&#39;expose (sauf SSH si necessaire)
+<pre class="codehilite"><code>IP publique : RIEN d'expose (sauf SSH si necessaire)
 IP Tailscale : TOUT passe par la
-</code></pre></div>
+</code></pre>
 
 <p>PostgreSQL ecoute sur 100.x.x.x:5432, pas sur 0.0.0.0.
 Vault ecoute sur 100.x.x.x:8200, pas sur 0.0.0.0.
@@ -204,10 +204,10 @@ La gateway OpenClaw ecoute sur 100.x.x.x:3000, pas sur 0.0.0.0.</p>
 <li><strong>Tailscale qui se deconnecte</strong> : Ajoutez <code>--ssh</code> a <code>tailscale up</code> pour maintenir la connexion, et activez le demarrage automatique : <code>sudo systemctl enable tailscaled</code>.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tailscale<span class="w"> </span>status
-$<span class="w"> </span>tailscale<span class="w"> </span>ip<span class="w"> </span>-4
-$<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="k">$(</span>tailscale<span class="w"> </span>ip<span class="w"> </span>-4<span class="k">)</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ tailscale status
+$ tailscale ip -4
+$ ping -c 3 $(tailscale ip -4)
+</code></pre>
 
 <p>Resultats attendus :
 - Status montre la machine comme "active"

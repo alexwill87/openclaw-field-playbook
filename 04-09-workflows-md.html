@@ -137,126 +137,126 @@
 <p>WORKFLOWS.md est le fichier qui contient toutes vos procedures standardisees. L'agent le lit, l'execute, et le met a jour quand une etape change.</p>
 <h2 id="format-standardise">Format standardise</h2>
 <p>Chaque workflow suit la meme structure :</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">## [Nom du workflow]</span>
+<pre class="codehilite"><code class="language-markdown">## [Nom du workflow]
 
-<span class="gs">**Declencheur :**</span> Quand ce workflow se lance (manuellement, cron, evenement).
-<span class="gs">**Niveau de confiance :**</span> 1 (dry run) / 2 (avec validation) / 3 (autonome)
-<span class="gs">**Derniere verification :**</span> YYYY-MM-DD
+**Declencheur :** Quand ce workflow se lance (manuellement, cron, evenement).
+**Niveau de confiance :** 1 (dry run) / 2 (avec validation) / 3 (autonome)
+**Derniere verification :** YYYY-MM-DD
 
-<span class="gu">### Prerequis</span>
-<span class="k">-</span><span class="w"> </span>[Ce qui doit etre vrai avant de commencer]
-<span class="k">-</span><span class="w"> </span>[Acces necessaires]
+### Prerequis
+- [Ce qui doit etre vrai avant de commencer]
+- [Acces necessaires]
 
-<span class="gu">### Etapes</span>
-<span class="k">1.</span> [Action concrete avec la commande exacte]
-<span class="k">2.</span> [Action suivante]
-<span class="k">3.</span> [Action suivante]
+### Etapes
+1. [Action concrete avec la commande exacte]
+2. [Action suivante]
+3. [Action suivante]
 
-<span class="gu">### Verification</span>
-<span class="k">- [ ]</span> [Comment savoir que ca a marche]
-<span class="k">- [ ]</span> [Test de validation]
+### Verification
+- [ ] [Comment savoir que ca a marche]
+- [ ] [Test de validation]
 
-<span class="gu">### En cas d&#39;erreur</span>
-<span class="k">-</span><span class="w"> </span>Si [erreur A] : [action corrective]
-<span class="k">-</span><span class="w"> </span>Si [erreur B] : [action corrective]
-<span class="k">-</span><span class="w"> </span>Si inconnu : arreter et signaler.
-</code></pre></div>
+### En cas d'erreur
+- Si [erreur A] : [action corrective]
+- Si [erreur B] : [action corrective]
+- Si inconnu : arreter et signaler.
+</code></pre>
 
 <h2 id="exemples-concrets">Exemples concrets</h2>
 <h3 id="deploiement-cockpit">Deploiement cockpit</h3>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Deployer cockpit</span>
+<pre class="codehilite"><code class="language-markdown">## Deployer cockpit
 
-<span class="gs">**Declencheur :**</span> Manuel, apres merge sur main.
-<span class="gs">**Niveau de confiance :**</span> 2 (avec validation)
-<span class="gs">**Derniere verification :**</span> 2026-03-28
+**Declencheur :** Manuel, apres merge sur main.
+**Niveau de confiance :** 2 (avec validation)
+**Derniere verification :** 2026-03-28
 
-<span class="gu">### Prerequis</span>
-<span class="k">-</span><span class="w"> </span>Branch main a jour (git pull)
-<span class="k">-</span><span class="w"> </span>Tests locaux passes
-<span class="k">-</span><span class="w"> </span>Aucun deployment en cours
+### Prerequis
+- Branch main a jour (git pull)
+- Tests locaux passes
+- Aucun deployment en cours
 
-<span class="gu">### Etapes</span>
-<span class="k">1.</span> <span class="sb">`cd /opt/cockpit &amp;&amp; git pull origin main`</span>
-<span class="k">2.</span> <span class="sb">`docker compose build --no-cache`</span>
-<span class="k">3.</span> <span class="sb">`docker compose down &amp;&amp; docker compose up -d`</span>
-<span class="k">4.</span> Attendre 10 secondes.
-<span class="k">5.</span> <span class="sb">`curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000`</span>
+### Etapes
+1. `cd /opt/cockpit &amp;&amp; git pull origin main`
+2. `docker compose build --no-cache`
+3. `docker compose down &amp;&amp; docker compose up -d`
+4. Attendre 10 secondes.
+5. `curl -s -o /dev/null -w &quot;%{http_code}&quot; http://localhost:3000`
    Attendu : 200
 
-<span class="gu">### Verification</span>
-<span class="k">- [ ]</span> curl retourne 200
-<span class="k">- [ ]</span> <span class="sb">`docker ps`</span> montre le container &quot;Up&quot;
-<span class="k">- [ ]</span> Les logs ne contiennent pas d&#39;erreur : <span class="sb">`docker logs cockpit --tail 20`</span>
+### Verification
+- [ ] curl retourne 200
+- [ ] `docker ps` montre le container &quot;Up&quot;
+- [ ] Les logs ne contiennent pas d'erreur : `docker logs cockpit --tail 20`
 
-<span class="gu">### En cas d&#39;erreur</span>
-<span class="k">-</span><span class="w"> </span>Si build echoue : verifier les dependances dans package.json.
-<span class="k">-</span><span class="w"> </span>Si le container ne demarre pas : <span class="sb">`docker logs cockpit`</span> pour diagnostic.
-<span class="k">-</span><span class="w"> </span>Si curl retourne 502 : le service met du temps a demarrer, attendre 30s et retester.
-<span class="k">-</span><span class="w"> </span>Si inconnu : rollback avec <span class="sb">`git checkout HEAD~1 &amp;&amp; docker compose up -d`</span>
-</code></pre></div>
+### En cas d'erreur
+- Si build echoue : verifier les dependances dans package.json.
+- Si le container ne demarre pas : `docker logs cockpit` pour diagnostic.
+- Si curl retourne 502 : le service met du temps a demarrer, attendre 30s et retester.
+- Si inconnu : rollback avec `git checkout HEAD~1 &amp;&amp; docker compose up -d`
+</code></pre>
 
 <h3 id="creer-une-tache">Creer une tache</h3>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Creer une tache</span>
+<pre class="codehilite"><code class="language-markdown">## Creer une tache
 
-<span class="gs">**Declencheur :**</span> Manuel.
-<span class="gs">**Niveau de confiance :**</span> 3 (autonome)
-<span class="gs">**Derniere verification :**</span> 2026-03-25
+**Declencheur :** Manuel.
+**Niveau de confiance :** 3 (autonome)
+**Derniere verification :** 2026-03-25
 
-<span class="gu">### Prerequis</span>
-<span class="k">-</span><span class="w"> </span>Acces PostgreSQL
+### Prerequis
+- Acces PostgreSQL
 
-<span class="gu">### Etapes</span>
-<span class="k">1.</span> <span class="sb">`./tasks.sh add &quot;Titre de la tache&quot; [priority] [project] [deadline]`</span>
-<span class="k">2.</span> Confirmer la creation : <span class="sb">`./tasks.sh list todo`</span>
+### Etapes
+1. `./tasks.sh add &quot;Titre de la tache&quot; [priority] [project] [deadline]`
+2. Confirmer la creation : `./tasks.sh list todo`
 
-<span class="gu">### Verification</span>
-<span class="k">- [ ]</span> La tache apparait dans la liste avec le bon statut et la bonne priorite.
+### Verification
+- [ ] La tache apparait dans la liste avec le bon statut et la bonne priorite.
 
-<span class="gu">### En cas d&#39;erreur</span>
-<span class="k">-</span><span class="w"> </span>Si connexion PostgreSQL echoue : verifier que le service tourne (<span class="sb">`systemctl status postgresql`</span>).
-</code></pre></div>
+### En cas d'erreur
+- Si connexion PostgreSQL echoue : verifier que le service tourne (`systemctl status postgresql`).
+</code></pre>
 
 <h3 id="rotation-des-secrets">Rotation des secrets</h3>
-<div class="codehilite"><pre><span></span><code><span class="gu">## Rotation des secrets</span>
+<pre class="codehilite"><code class="language-markdown">## Rotation des secrets
 
-<span class="gs">**Declencheur :**</span> Mensuel (1er du mois) ou apres incident de securite.
-<span class="gs">**Niveau de confiance :**</span> 2 (avec validation)
-<span class="gs">**Derniere verification :**</span> 2026-03-01
+**Declencheur :** Mensuel (1er du mois) ou apres incident de securite.
+**Niveau de confiance :** 2 (avec validation)
+**Derniere verification :** 2026-03-01
 
-<span class="gu">### Prerequis</span>
-<span class="k">-</span><span class="w"> </span>Acces Vault
-<span class="k">-</span><span class="w"> </span>Acces root/sudo
-<span class="k">-</span><span class="w"> </span>Fenetre de maintenance (pas de deploiement en cours)
+### Prerequis
+- Acces Vault
+- Acces root/sudo
+- Fenetre de maintenance (pas de deploiement en cours)
 
-<span class="gu">### Etapes</span>
-<span class="k">1.</span> Generer le nouveau secret : <span class="sb">`openssl rand -hex 32`</span>
-<span class="k">2.</span> Stocker dans Vault : <span class="sb">`vault kv put secret/[service] key=[nouveau_secret]`</span>
-<span class="k">3.</span> Mettre a jour la config du service.
-<span class="k">4.</span> Redemarrer le service : <span class="sb">`docker compose restart [service]`</span>
-<span class="k">5.</span> Tester le service : <span class="sb">`curl -s http://localhost:[port]/health`</span>
-<span class="k">6.</span> Logger la rotation : <span class="sb">`echo &quot;$(date) [service] secret rotated&quot; &gt;&gt; /var/log/secret-rotation.log`</span>
+### Etapes
+1. Generer le nouveau secret : `openssl rand -hex 32`
+2. Stocker dans Vault : `vault kv put secret/[service] key=[nouveau_secret]`
+3. Mettre a jour la config du service.
+4. Redemarrer le service : `docker compose restart [service]`
+5. Tester le service : `curl -s http://localhost:[port]/health`
+6. Logger la rotation : `echo &quot;$(date) [service] secret rotated&quot; &gt;&gt; /var/log/secret-rotation.log`
 
-<span class="gu">### Verification</span>
-<span class="k">- [ ]</span> Le service repond correctement avec le nouveau secret.
-<span class="k">- [ ]</span> L&#39;ancien secret ne fonctionne plus.
-<span class="k">- [ ]</span> La rotation est loggee.
+### Verification
+- [ ] Le service repond correctement avec le nouveau secret.
+- [ ] L'ancien secret ne fonctionne plus.
+- [ ] La rotation est loggee.
 
-<span class="gu">### En cas d&#39;erreur</span>
-<span class="k">-</span><span class="w"> </span>Si le service ne demarre pas : restaurer l&#39;ancien secret depuis Vault (version precedente).
-<span class="k">-</span><span class="w"> </span>Si inconnu : ne pas continuer les autres rotations, diagnostiquer d&#39;abord.
-</code></pre></div>
+### En cas d'erreur
+- Si le service ne demarre pas : restaurer l'ancien secret depuis Vault (version precedente).
+- Si inconnu : ne pas continuer les autres rotations, diagnostiquer d'abord.
+</code></pre>
 
 <h2 id="organiser-le-fichier">Organiser le fichier</h2>
 <p>Un seul fichier WORKFLOWS.md avec une table des matieres :</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># WORKFLOWS.md</span>
+<pre class="codehilite"><code class="language-markdown"># WORKFLOWS.md
 
-<span class="gu">## Table des matieres</span>
-<span class="k">1.</span> [<span class="nt">Deployer cockpit</span>](<span class="na">#deployer-cockpit</span>)
-<span class="k">2.</span> [<span class="nt">Creer une tache</span>](<span class="na">#creer-une-tache</span>)
-<span class="k">3.</span> [<span class="nt">Rotation des secrets</span>](<span class="na">#rotation-des-secrets</span>)
-<span class="k">4.</span> [<span class="nt">Health check quotidien</span>](<span class="na">#health-check-quotidien</span>)
-<span class="k">5.</span> [<span class="nt">Backup base de donnees</span>](<span class="na">#backup-base-de-donnees</span>)
-</code></pre></div>
+## Table des matieres
+1. [Deployer cockpit](#deployer-cockpit)
+2. [Creer une tache](#creer-une-tache)
+3. [Rotation des secrets](#rotation-des-secrets)
+4. [Health check quotidien](#health-check-quotidien)
+5. [Backup base de donnees](#backup-base-de-donnees)
+</code></pre>
 
 <p>Quand le fichier depasse 500 lignes, decoupez en fichiers separes dans un dossier <code>workflows/</code>.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>

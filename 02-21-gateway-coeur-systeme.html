@@ -161,7 +161,7 @@
 <hr />
 <h2 id="ce-que-le-gateway-fait-reellement">Ce que le gateway fait reellement</h2>
 <p>Le gateway OpenClaw n'est pas un simple serveur HTTP. C'est un <strong>hub de communication</strong> :</p>
-<div class="codehilite"><pre><span></span><code>                    ┌─────────────────┐
+<pre class="codehilite"><code>                    ┌─────────────────┐
                     │     Vous        │
                     │  (terminal)     │
                     └────────┬────────┘
@@ -177,7 +177,7 @@
 │  Haiku)  │  │(Postgres) │ │  API)  │  │ (Telegram,   │
 │          │  │           │ │        │  │  OpenRouter)  │
 └──────────┘  └───────────┘ └────────┘  └──────────────┘
-</code></pre></div>
+</code></pre>
 
 <h3 id="il-route-les-commandes">Il route les commandes</h3>
 <p>Quand vous tapez <code>openclaw status</code> dans votre terminal, c'est le gateway qui recoit la requete, interroge les composants (base de donnees, Vault, services), et vous renvoie la reponse. Sans gateway, vos commandes CLI ne font rien.</p>
@@ -239,10 +239,10 @@
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Votre reflexe quotidien :</span>
-$<span class="w"> </span>openclaw<span class="w"> </span>gateway<span class="w"> </span>status
-$<span class="w"> </span>openclaw<span class="w"> </span>health
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># Votre reflexe quotidien :
+$ openclaw gateway status
+$ openclaw health
+</code></pre>
 
 <p>Si ces deux commandes retournent un resultat vert, votre installation fonctionne. Si l'une est rouge, vous savez exactement ou chercher.</p>
 <hr />
@@ -297,7 +297,7 @@ $<span class="w"> </span>openclaw<span class="w"> </span>health
 <hr />
 <h2 id="architecture-le-gateway-au-centre">Architecture : le gateway au centre</h2>
 <p>Voici comment penser votre installation :</p>
-<div class="codehilite"><pre><span></span><code>         Le gateway est le CENTRE. Tout passe par lui.
+<pre class="codehilite"><code>         Le gateway est le CENTRE. Tout passe par lui.
 
     ┌──────────────────────────────────────────────────────┐
     │                     GATEWAY                          │
@@ -317,7 +317,7 @@ $<span class="w"> </span>openclaw<span class="w"> </span>health
       │Vault    │ │Postgres │ │OpenRouter   │
       │(secrets)│ │(donnees)│ │(modeles IA) │
       └─────────┘ └─────────┘ └─────────────┘
-</code></pre></div>
+</code></pre>
 
 <p>Quand quelque chose ne fonctionne pas, la premiere question est toujours : <strong>que dit le gateway ?</strong></p>
 <hr />

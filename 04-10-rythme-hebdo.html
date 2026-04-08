@@ -141,7 +141,7 @@
 <h2 id="preview-du-lundi">Preview du lundi</h2>
 <p>Le lundi matin, l'agent vous presente la semaine qui vient.</p>
 <h3 id="ce-que-lagent-prepare">Ce que l'agent prepare</h3>
-<div class="codehilite"><pre><span></span><code>=== Preview semaine du 31 mars 2026 ===
+<pre class="codehilite"><code>=== Preview semaine du 31 mars 2026 ===
 
 Taches en cours : 4
 Taches en retard : 1 (migration S3, retard 3 jours)
@@ -157,47 +157,47 @@ Suggestion de plan :
 
 Blocages detectes : aucun.
 Questions pour vous : le client X a-t-il confirme la spec ?
-</code></pre></div>
+</code></pre>
 
 <h3 id="ce-que-vous-faites">Ce que vous faites</h3>
 <p>Vous lisez, vous ajustez. "Inverse mardi et lundi." "Ajoute la review PR de l'equipe." "Le client n'a pas confirme, reporte la doc."</p>
 <p>5 minutes. Votre semaine est cadree.</p>
 <h3 id="prompt-pour-configurer">Prompt pour configurer</h3>
 <p>Ajoutez dans le system prompt :</p>
-<div class="codehilite"><pre><span></span><code>Chaque lundi matin, quand je te dis &quot;preview&quot;, genere :
+<pre class="codehilite"><code>Chaque lundi matin, quand je te dis &quot;preview&quot;, genere :
 - Taches en cours et en retard
 - Deadlines de la semaine
 - Plan suggere jour par jour
 - Blocages detectes
 - Questions pour moi
 Format : bullet points, court.
-</code></pre></div>
+</code></pre>
 
 <h2 id="review-du-vendredi">Review du vendredi</h2>
 <p>Le vendredi, l'agent fait le bilan de la semaine ecoulee.</p>
 <h3 id="ce-que-lagent-prepare_1">Ce que l'agent prepare</h3>
-<div class="codehilite"><pre><span></span><code><span class="o">===</span><span class="w"> </span><span class="n">Review</span><span class="w"> </span><span class="n">semaine</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="mi">31</span><span class="w"> </span><span class="n">mars</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="o">===</span>
+<pre class="codehilite"><code>=== Review semaine du 31 mars 2026 ===
 
-<span class="n">Terminees</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">5</span><span class="o">/</span><span class="mi">7</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="n">planifiees</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Migration</span><span class="w"> </span><span class="n">S3</span><span class="w"> </span><span class="o">[</span><span class="n">DONE</span><span class="o">]</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Doc</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="o">/</span><span class="n">users</span><span class="w"> </span><span class="o">[</span><span class="n">DONE</span><span class="o">]</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Rotation</span><span class="w"> </span><span class="n">secrets</span><span class="w"> </span><span class="o">[</span><span class="n">DONE</span><span class="o">]</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="o">[</span><span class="n">DONE</span><span class="o">]</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">PR</span><span class="w"> </span><span class="n">review</span><span class="w"> </span><span class="n">equipe</span><span class="w"> </span><span class="o">[</span><span class="n">DONE</span><span class="o">]</span>
+Terminees : 5/7 taches planifiees
+  - Migration S3 [DONE]
+  - Doc API /users [DONE]
+  - Rotation secrets [DONE]
+  - Health check auto [DONE]
+  - PR review equipe [DONE]
 
-<span class="n">Non</span><span class="w"> </span><span class="n">terminees</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">2</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Certificat</span><span class="w"> </span><span class="n">SSL</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">reporte</span><span class="w"> </span><span class="p">(</span><span class="n">expire</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="n">jours</span><span class="p">,</span><span class="w"> </span><span class="n">pas</span><span class="w"> </span><span class="n">urgent</span><span class="p">)</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Refactoring</span><span class="w"> </span><span class="n">auth</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">bloque</span><span class="w"> </span><span class="p">(</span><span class="n">attente</span><span class="w"> </span><span class="n">spec</span><span class="w"> </span><span class="n">client</span><span class="p">)</span>
+Non terminees : 2
+  - Certificat SSL : reporte (expire dans 42 jours, pas urgent)
+  - Refactoring auth : bloque (attente spec client)
 
-<span class="n">Temps</span><span class="w"> </span><span class="n">estime</span><span class="w"> </span><span class="n">economise</span><span class="w"> </span><span class="n">par</span><span class="w"> </span><span class="n">l</span><span class="s1">&#39;agent : ~3h</span>
-<span class="s1">  - Health checks auto : 5x10min = 50min</span>
-<span class="s1">  - Generation doc API : ~1h30</span>
-<span class="s1">  - Rotation secrets automatisee : ~40min</span>
+Temps estime economise par l'agent : ~3h
+  - Health checks auto : 5x10min = 50min
+  - Generation doc API : ~1h30
+  - Rotation secrets automatisee : ~40min
 
-<span class="s1">Points d&#39;</span><span class="n">attention</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">semaine</span><span class="w"> </span><span class="n">prochaine</span><span class="w"> </span><span class="err">:</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Le</span><span class="w"> </span><span class="n">certificat</span><span class="w"> </span><span class="n">SSL</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">etre</span><span class="w"> </span><span class="n">fait</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">semaine</span><span class="w"> </span><span class="n">prochaine</span><span class="p">.</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">taches</span><span class="w"> </span><span class="n">dependant</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">spec</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">relancer</span><span class="w"> </span><span class="vm">?</span>
-</code></pre></div>
+Points d'attention pour la semaine prochaine :
+  - Le certificat SSL doit etre fait la semaine prochaine.
+  - 2 taches dependant de la spec client : relancer ?
+</code></pre>
 
 <h3 id="ce-que-vous-faites_1">Ce que vous faites</h3>
 <p>Vous validez le bilan. Vous notez ce qui a bien marche et ce qui a coince. C'est aussi le bon moment pour ajuster les workflows ou le system prompt si quelque chose a grince dans la semaine.</p>

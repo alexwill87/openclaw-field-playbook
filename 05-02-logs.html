@@ -145,46 +145,46 @@
 <p>Les logs sont votre boite noire. Quand tout va bien, personne ne les regarde. Quand ca casse, c'est la premiere chose qu'on ouvre. Si vous ne savez pas ou ils sont et comment les lire, vous perdez du temps au pire moment.</p>
 <h2 id="ou-sont-les-logs">Ou sont les logs</h2>
 <h3 id="logs-systeme-journalctl">Logs systeme (journalctl)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Tous les logs depuis le dernier boot</span>
-journalctl<span class="w"> </span>-b
+<pre class="codehilite"><code class="language-bash"># Tous les logs depuis le dernier boot
+journalctl -b
 
-<span class="c1"># Logs d&#39;un service specifique</span>
-journalctl<span class="w"> </span>-u<span class="w"> </span>postgresql
-journalctl<span class="w"> </span>-u<span class="w"> </span>docker
+# Logs d'un service specifique
+journalctl -u postgresql
+journalctl -u docker
 
-<span class="c1"># Logs des 30 dernieres minutes</span>
-journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;30 min ago&quot;</span>
+# Logs des 30 dernieres minutes
+journalctl --since &quot;30 min ago&quot;
 
-<span class="c1"># Logs d&#39;aujourd&#39;hui</span>
-journalctl<span class="w"> </span>--since<span class="w"> </span>today
+# Logs d'aujourd'hui
+journalctl --since today
 
-<span class="c1"># Suivre en temps reel</span>
-journalctl<span class="w"> </span>-f
+# Suivre en temps reel
+journalctl -f
 
-<span class="c1"># Filtrer par priorite (erreurs et plus grave)</span>
-journalctl<span class="w"> </span>-p<span class="w"> </span>err
-</code></pre></div>
+# Filtrer par priorite (erreurs et plus grave)
+journalctl -p err
+</code></pre>
 
 <h3 id="logs-docker">Logs Docker</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Logs d&#39;un container</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit
+<pre class="codehilite"><code class="language-bash"># Logs d'un container
+docker logs cockpit
 
-<span class="c1"># Les 50 dernieres lignes</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span>
+# Les 50 dernieres lignes
+docker logs cockpit --tail 50
 
-<span class="c1"># Suivre en temps reel</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"> </span>-f
+# Suivre en temps reel
+docker logs cockpit -f
 
-<span class="c1"># Depuis une date</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2026-04-01T10:00:00&quot;</span>
+# Depuis une date
+docker logs cockpit --since &quot;2026-04-01T10:00:00&quot;
 
-<span class="c1"># Tous les containers avec leurs logs recents</span>
-<span class="k">for</span><span class="w"> </span>c<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.Names}}&quot;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== </span><span class="nv">$c</span><span class="s2"> ===&quot;</span>
-<span class="w">    </span>docker<span class="w"> </span>logs<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$c</span><span class="s2">&quot;</span><span class="w"> </span>--tail<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="k">done</span>
-</code></pre></div>
+# Tous les containers avec leurs logs recents
+for c in $(docker ps --format &quot;{{.Names}}&quot;); do
+    echo &quot;=== $c ===&quot;
+    docker logs &quot;$c&quot; --tail 5 2&gt;&amp;1
+    echo &quot;&quot;
+done
+</code></pre>
 
 <h3 id="logs-applicatifs">Logs applicatifs</h3>
 <p>Selon votre stack :</p>
@@ -224,87 +224,87 @@ docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"
 </table>
 <h3 id="logs-des-sessions-agent">Logs des sessions agent</h3>
 <p>Si votre agent a un log de session :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Claude Code sessions</span>
-ls<span class="w"> </span>~/.claude/sessions/
+<pre class="codehilite"><code class="language-bash"># Claude Code sessions
+ls ~/.claude/sessions/
 
-<span class="c1"># Historique des commandes executees</span>
-cat<span class="w"> </span>~/.bash_history<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-50
-</code></pre></div>
+# Historique des commandes executees
+cat ~/.bash_history | tail -50
+</code></pre>
 
 <h2 id="comment-lire-les-logs">Comment lire les logs</h2>
 <h3 id="le-reflexe-fin-du-fichier-dabord">Le reflexe : fin du fichier d'abord</h3>
 <p>Les logs les plus recents sont les plus utiles. Toujours commencer par la fin :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Les 100 dernieres lignes</span>
-tail<span class="w"> </span>-100<span class="w"> </span>/var/log/nginx/error.log
+<pre class="codehilite"><code class="language-bash"># Les 100 dernieres lignes
+tail -100 /var/log/nginx/error.log
 
-<span class="c1"># Ou avec journalctl</span>
-journalctl<span class="w"> </span>-u<span class="w"> </span>postgresql<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span>
-</code></pre></div>
+# Ou avec journalctl
+journalctl -u postgresql -n 100
+</code></pre>
 
 <h3 id="filtrer-le-bruit">Filtrer le bruit</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Chercher les erreurs</span>
-journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w"> </span>--since<span class="w"> </span>today
+<pre class="codehilite"><code class="language-bash"># Chercher les erreurs
+journalctl -p err --since today
 
-<span class="c1"># Grep sur un pattern</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;error\|fail\|exception&quot;</span>
+# Grep sur un pattern
+docker logs cockpit 2&gt;&amp;1 | grep -i &quot;error\|fail\|exception&quot;
 
-<span class="c1"># Exclure le bruit connu</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s2">&quot;healthcheck\|GET /favicon&quot;</span>
-</code></pre></div>
+# Exclure le bruit connu
+docker logs cockpit 2&gt;&amp;1 | grep -iv &quot;healthcheck\|GET /favicon&quot;
+</code></pre>
 
 <h3 id="correler-par-timestamp">Correler par timestamp</h3>
 <p>Quand un probleme survient, notez l'heure. Puis cherchez dans tous les logs autour de cette heure :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Tous les logs systeme autour de 14h30</span>
-journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;14:25&quot;</span><span class="w"> </span>--until<span class="w"> </span><span class="s2">&quot;14:35&quot;</span>
+<pre class="codehilite"><code class="language-bash"># Tous les logs systeme autour de 14h30
+journalctl --since &quot;14:25&quot; --until &quot;14:35&quot;
 
-<span class="c1"># Docker logs autour du meme moment</span>
-docker<span class="w"> </span>logs<span class="w"> </span>cockpit<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;2026-04-01T14:25:00&quot;</span><span class="w"> </span>--until<span class="w"> </span><span class="s2">&quot;2026-04-01T14:35:00&quot;</span>
-</code></pre></div>
+# Docker logs autour du meme moment
+docker logs cockpit --since &quot;2026-04-01T14:25:00&quot; --until &quot;2026-04-01T14:35:00&quot;
+</code></pre>
 
 <h2 id="rotation-des-logs">Rotation des logs</h2>
 <p>Les logs grandissent indefiniment si vous ne les gerez pas. Un disque plein a cause des logs est une panne evitable.</p>
 <h3 id="journalctl-systemd">journalctl (systemd)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Taille actuelle des logs systeme</span>
-journalctl<span class="w"> </span>--disk-usage
+<pre class="codehilite"><code class="language-bash"># Taille actuelle des logs systeme
+journalctl --disk-usage
 
-<span class="c1"># Garder seulement les 7 derniers jours</span>
-sudo<span class="w"> </span>journalctl<span class="w"> </span>--vacuum-time<span class="o">=</span>7d
+# Garder seulement les 7 derniers jours
+sudo journalctl --vacuum-time=7d
 
-<span class="c1"># Limiter a 500M</span>
-sudo<span class="w"> </span>journalctl<span class="w"> </span>--vacuum-size<span class="o">=</span>500M
+# Limiter a 500M
+sudo journalctl --vacuum-size=500M
 
-<span class="c1"># Configuration permanente dans /etc/systemd/journald.conf</span>
-<span class="c1"># SystemMaxUse=500M</span>
-<span class="c1"># MaxRetentionSec=7d</span>
-</code></pre></div>
+# Configuration permanente dans /etc/systemd/journald.conf
+# SystemMaxUse=500M
+# MaxRetentionSec=7d
+</code></pre>
 
 <h3 id="docker">Docker</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Configurer la rotation dans /etc/docker/daemon.json</span>
-<span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;log-driver&quot;</span>:<span class="w"> </span><span class="s2">&quot;json-file&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;log-opts&quot;</span>:<span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="s2">&quot;max-size&quot;</span>:<span class="w"> </span><span class="s2">&quot;10m&quot;</span>,
-<span class="w">        </span><span class="s2">&quot;max-file&quot;</span>:<span class="w"> </span><span class="s2">&quot;3&quot;</span>
-<span class="w">    </span><span class="o">}</span>
-<span class="o">}</span>
+<pre class="codehilite"><code class="language-bash"># Configurer la rotation dans /etc/docker/daemon.json
+{
+    &quot;log-driver&quot;: &quot;json-file&quot;,
+    &quot;log-opts&quot;: {
+        &quot;max-size&quot;: &quot;10m&quot;,
+        &quot;max-file&quot;: &quot;3&quot;
+    }
+}
 
-<span class="c1"># Puis redemarrer Docker</span>
-sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
-</code></pre></div>
+# Puis redemarrer Docker
+sudo systemctl restart docker
+</code></pre>
 
 <h3 id="logrotate-fichiers-classiques">Logrotate (fichiers classiques)</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Creer /etc/logrotate.d/openclaw</span>
+<pre class="codehilite"><code class="language-bash"># Creer /etc/logrotate.d/openclaw
 /var/log/health-check.log
 /var/log/backup.log
-<span class="o">{</span>
-<span class="w">    </span>daily
-<span class="w">    </span>rotate<span class="w"> </span><span class="m">14</span>
-<span class="w">    </span>compress
-<span class="w">    </span>delaycompress
-<span class="w">    </span>missingok
-<span class="w">    </span>notifempty
-<span class="o">}</span>
-</code></pre></div>
+{
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+}
+</code></pre>
 
 <h2 id="quoi-surveiller">Quoi surveiller</h2>
 <p>Ne surveillez pas tout. Surveillez ce qui annonce un probleme :</p>

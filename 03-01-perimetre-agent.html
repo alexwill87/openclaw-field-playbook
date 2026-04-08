@@ -145,18 +145,18 @@
 <p>Le perimetre n'est pas une liste de fonctionnalites. C'est un contrat de confiance entre vous et l'agent.</p>
 <h2 id="la-pyramide-des-droits">La pyramide des droits</h2>
 <p>Trois niveaux, du plus permissif au plus restrictif :</p>
-<div class="codehilite"><pre><span></span><code>        /\
+<pre class="codehilite"><code>        /\
        /  \
       / 3  \    ACTION EXTERNE
      / val. \   Validation requise a chaque fois
     /--------\
    /    2     \  ECRITURE
-  /  autonome  \ L&#39;agent agit seul dans un cadre defini
+  /  autonome  \ L'agent agit seul dans un cadre defini
  /--------------\
 /       1        \ LECTURE
-/ toujours autorise\ L&#39;agent lit tout ce qu&#39;il a besoin
+/ toujours autorise\ L'agent lit tout ce qu'il a besoin
 ---------------------|
-</code></pre></div>
+</code></pre>
 
 <h3 id="niveau-1-lecture-toujours-autorise">Niveau 1 -- Lecture (toujours autorise)</h3>
 <p>L'agent peut lire sans restriction :
@@ -213,35 +213,35 @@
 - Contacter un tiers
 - Supprimer des donnees</p>
 <p>Formulation de la demande de validation :</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[VALIDATION REQUISE]</span>
-<span class="na">Action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">Envoyer un email a dupont@client.fr</span>
-<span class="na">Contenu</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">[resume du contenu]</span>
-<span class="na">Raison</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">Reponse a sa demande de devis du 28/03</span>
-<span class="na">Impact</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">Le client recevra votre proposition tarifaire</span>
+<pre class="codehilite"><code>[VALIDATION REQUISE]
+Action : Envoyer un email a dupont@client.fr
+Contenu : [resume du contenu]
+Raison : Reponse a sa demande de devis du 28/03
+Impact : Le client recevra votre proposition tarifaire
 
-<span class="na">Valider ? (oui / non / modifier)</span>
-</code></pre></div>
+Valider ? (oui / non / modifier)
+</code></pre>
 
 <h2 id="etape-par-etape">Etape par etape</h2>
 <h3 id="1-lister-les-actions-de-votre-semaine-type">1. Lister les actions de votre semaine type</h3>
 <p>Passez en revue votre derniere semaine. Notez chaque action que vous aimeriez deleguer. Classez-la dans la pyramide.</p>
 <h3 id="2-definir-les-interdictions-explicites">2. Definir les interdictions explicites</h3>
 <p>Ce qui n'est PAS dans le perimetre est aussi important que ce qui y est. Exemples :</p>
-<div class="codehilite"><pre><span></span><code>INTERDIT :
+<pre class="codehilite"><code>INTERDIT :
 - Prendre des engagements financiers
 - Repondre aux RH en mon nom
 - Modifier les contrats clients
 - Acceder aux donnees medicales
 - Partager des informations confidentielles hors contexte
-</code></pre></div>
+</code></pre>
 
 <h3 id="3-ecrire-le-perimetre-dans-constitutionmd">3. Ecrire le perimetre dans CONSTITUTION.md</h3>
 <p>Le perimetre se traduit directement dans votre fichier CONSTITUTION.md (voir section 3.5).</p>
 <h3 id="4-tester-le-perimetre">4. Tester le perimetre</h3>
 <p>Demandez a l'agent :</p>
-<div class="codehilite"><pre><span></span><code>Montre-moi 3 situations ou tu me demanderais une validation
+<pre class="codehilite"><code>Montre-moi 3 situations ou tu me demanderais une validation
 et 3 situations ou tu agirais seul.
-</code></pre></div>
+</code></pre>
 
 <p>Si ses exemples ne correspondent pas a votre intention, ajustez le perimetre.</p>
 <h2 id="erreurs-courantes">Erreurs courantes</h2>

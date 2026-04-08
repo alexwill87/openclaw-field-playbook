@@ -161,35 +161,35 @@
 </ol>
 <h2 id="comment-structurer">Comment structurer</h2>
 <h3 id="option-1-par-domaine">Option 1 : par domaine</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">Agent</span><span class="w"> </span><span class="mh">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Infrastructure</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DevOps</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Gere</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">VPS</span><span class="p">,</span><span class="w"> </span><span class="n">Docker</span><span class="p">,</span><span class="w"> </span><span class="n">PostgreSQL</span><span class="p">,</span><span class="w"> </span><span class="n">Vault</span><span class="p">,</span><span class="w"> </span><span class="n">backups</span><span class="p">,</span><span class="w"> </span><span class="n">monitoring</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">technique</span><span class="p">,</span><span class="w"> </span><span class="n">commandes</span><span class="p">,</span><span class="w"> </span><span class="n">procedures</span>
+<pre class="codehilite"><code>Agent 1 : Infrastructure / DevOps
+  - Gere : VPS, Docker, PostgreSQL, Vault, backups, monitoring
+  - System prompt : technique, commandes, procedures
 
-<span class="n">Agent</span><span class="w"> </span><span class="mh">2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Business</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Communication</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Gere</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="n">clients</span><span class="p">,</span><span class="w"> </span><span class="n">documentation</span><span class="p">,</span><span class="w"> </span><span class="n">planning</span><span class="p">,</span><span class="w"> </span><span class="n">facturation</span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ton</span><span class="w"> </span><span class="n">professionnel</span><span class="p">,</span><span class="w"> </span><span class="n">templates</span><span class="p">,</span><span class="w"> </span><span class="n">regles</span><span class="w"> </span><span class="n">business</span>
-</code></pre></div>
+Agent 2 : Business / Communication
+  - Gere : emails clients, documentation, planning, facturation
+  - System prompt : ton professionnel, templates, regles business
+</code></pre>
 
 <h3 id="option-2-par-projet">Option 2 : par projet</h3>
-<div class="codehilite"><pre><span></span><code>Agent 1 : Projet Cockpit
+<pre class="codehilite"><code>Agent 1 : Projet Cockpit
   - Gere : tout ce qui concerne cockpit (code, deploy, taches)
   - Contexte : stack cockpit, workflows cockpit
 
 Agent 2 : Projet OpenClaw
   - Gere : redaction, structure, review
   - Contexte : plan du playbook, style guide
-</code></pre></div>
+</code></pre>
 
 <h3 id="option-3-par-niveau-de-confiance">Option 3 : par niveau de confiance</h3>
-<div class="codehilite"><pre><span></span><code>Agent 1 : Operations (niveau 1-2)
+<pre class="codehilite"><code>Agent 1 : Operations (niveau 1-2)
   - Peut agir (dans les limites)
   - Acces bash, Docker, PostgreSQL
 
 Agent 2 : Conseil (niveau 0)
   - Lecture seule
   - Analyse, recommandations, redaction
-  - Pas d&#39;acces infrastructure
-</code></pre></div>
+  - Pas d'acces infrastructure
+</code></pre>
 
 <h2 id="isolation">Isolation</h2>
 <p>Chaque agent a son propre perimetre. Ne partagez pas tout.</p>
@@ -207,7 +207,7 @@ Agent 2 : Conseil (niveau 0)
 <li><strong>Fichiers de reference</strong> : CONSTITUTION.md, BOUNDARIES.md (avec des sections par agent).</li>
 </ul>
 <h3 id="structure-de-fichiers">Structure de fichiers</h3>
-<div class="codehilite"><pre><span></span><code>~/.claude/
+<pre class="codehilite"><code>~/.claude/
   agent-infra/
     system-prompt.md
     memory/
@@ -219,16 +219,16 @@ Agent 2 : Conseil (niveau 0)
   shared/
     CONSTITUTION.md
     TASKS (table PostgreSQL commune)
-</code></pre></div>
+</code></pre>
 
 <h2 id="communication-entre-agents">Communication entre agents</h2>
 <p>Les agents ne se parlent pas directement. Vous etes le lien.</p>
 <h3 id="pattern-recommande">Pattern recommande</h3>
-<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Infra</span><span class="w"> </span><span class="n">detecte</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">probleme</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Le container cockpit redemarre en boucle.&quot;</span>
-<span class="mf">2.</span><span class="w"> </span><span class="n">Vous</span><span class="w"> </span><span class="n">diagnostiquez</span><span class="w"> </span><span class="n">avec</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Infra</span><span class="mf">.</span>
-<span class="mf">3.</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">fix</span><span class="w"> </span><span class="n">implique</span><span class="w"> </span><span class="n">du</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">vous</span><span class="w"> </span><span class="n">passez</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Business</span><span class="o">/</span><span class="n">Code</span><span class="mf">.</span>
-<span class="mf">4.</span><span class="w"> </span><span class="n">Vous</span><span class="w"> </span><span class="n">revenez</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="n">Infra</span><span class="w"> </span><span class="n">pour</span><span class="w"> </span><span class="n">deployer</span><span class="w"> </span><span class="n">le</span><span class="w"> </span><span class="n">fix</span><span class="mf">.</span>
-</code></pre></div>
+<pre class="codehilite"><code>1. Agent Infra detecte un probleme : &quot;Le container cockpit redemarre en boucle.&quot;
+2. Vous diagnostiquez avec Agent Infra.
+3. Si le fix implique du code, vous passez a Agent Business/Code.
+4. Vous revenez a Agent Infra pour deployer le fix.
+</code></pre>
 
 <h3 id="ce-quil-ne-faut-pas-faire">Ce qu'il ne faut PAS faire</h3>
 <ul>

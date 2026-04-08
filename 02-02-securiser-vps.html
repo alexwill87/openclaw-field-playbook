@@ -147,126 +147,126 @@
 <p>Un VPS neuf est expose a Internet avec un acces root par mot de passe. C'est une cible facile. Cette section blinde le serveur AVANT d'installer quoi que ce soit. Chaque commande est a executer dans l'ordre.</p>
 <h2 id="etape-1-premiere-connexion-en-root">Etape 1 : Premiere connexion en root</h2>
 <p>Depuis votre poste local :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh<span class="w"> </span>root@VOTRE_IP_VPS
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh root@VOTRE_IP_VPS
+</code></pre>
 
 <p>Acceptez l'empreinte SSH si c'est la premiere connexion.</p>
 <h2 id="etape-2-mettre-a-jour-le-systeme">Etape 2 : Mettre a jour le systeme</h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># apt update &amp;&amp; apt upgrade -y</span>
-<span class="c1"># apt install -y curl wget git ufw fail2ban unattended-upgrades</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># apt update &amp;&amp; apt upgrade -y
+# apt install -y curl wget git ufw fail2ban unattended-upgrades
+</code></pre>
 
 <h2 id="etape-3-creer-un-utilisateur-non-root">Etape 3 : Creer un utilisateur non-root</h2>
 <p>Ne travaillez JAMAIS en root au quotidien. Creez un utilisateur dedie :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># adduser deploy</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># adduser deploy
+</code></pre>
 
 <p>Repondez aux questions (mot de passe fort, le reste peut etre vide).</p>
 <p>Donnez-lui les droits sudo :</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># usermod -aG sudo deploy</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash"># usermod -aG sudo deploy
+</code></pre>
 
 <h2 id="etape-4-configurer-lauthentification-par-cle-ssh">Etape 4 : Configurer l'authentification par cle SSH</h2>
 <p>Sur votre machine LOCALE (pas le VPS), generez une cle si vous n'en avez pas :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;votre-email@example.com&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh-keygen -t ed25519 -C &quot;votre-email@example.com&quot;
+</code></pre>
 
 <p>Copiez la cle publique sur le VPS :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh-copy-id<span class="w"> </span>deploy@VOTRE_IP_VPS
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh-copy-id deploy@VOTRE_IP_VPS
+</code></pre>
 
 <p>Testez la connexion sans mot de passe :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh<span class="w"> </span>deploy@VOTRE_IP_VPS
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh deploy@VOTRE_IP_VPS
+</code></pre>
 
 <p>Si ca marche, passez a l'etape suivante. Si non, ne desactivez PAS le mot de passe.</p>
 <h2 id="etape-5-desactiver-lauthentification-par-mot-de-passe">Etape 5 : Desactiver l'authentification par mot de passe</h2>
 <p><strong>IMPORTANT</strong> : Ne faites cette etape QUE si la connexion par cle SSH fonctionne. Sinon vous serez bloque hors du serveur.</p>
 <p>Editez la configuration SSH :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo nano /etc/ssh/sshd_config
+</code></pre>
 
 <p>Modifiez (ou ajoutez) ces lignes :</p>
-<div class="codehilite"><pre><span></span><code>PermitRootLogin no
+<pre class="codehilite"><code>PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
-</code></pre></div>
+</code></pre>
 
 <p>Redemarrez SSH :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl restart sshd
+</code></pre>
 
 <p><strong>Gardez votre session actuelle ouverte</strong> et testez dans un NOUVEAU terminal :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ssh<span class="w"> </span>deploy@VOTRE_IP_VPS
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ ssh deploy@VOTRE_IP_VPS
+</code></pre>
 
 <h2 id="etape-6-configurer-le-pare-feu-ufw">Etape 6 : Configurer le pare-feu UFW</h2>
 <p>Politique par defaut : tout bloquer en entree, tout autoriser en sortie.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>default<span class="w"> </span>deny<span class="w"> </span>incoming
-$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>default<span class="w"> </span>allow<span class="w"> </span>outgoing
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw default deny incoming
+$ sudo ufw default allow outgoing
+</code></pre>
 
 <p>Autoriser SSH (sinon vous perdez l'acces) :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>ssh
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw allow ssh
+</code></pre>
 
 <p>Activer le pare-feu :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw enable
+</code></pre>
 
 <p>Verifier l'etat :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>verbose
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw status verbose
+</code></pre>
 
 <p>Resultat attendu :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Status</span><span class="o">:</span><span class="w"> </span><span class="n">active</span>
+<pre class="codehilite"><code>Status: active
 
-<span class="n">To</span><span class="w">                         </span><span class="n">Action</span><span class="w">      </span><span class="n">From</span>
-<span class="o">--</span><span class="w">                         </span><span class="o">------</span><span class="w">      </span><span class="o">----</span>
-<span class="mi">22</span><span class="o">/</span><span class="n">tcp</span><span class="w">                     </span><span class="n">ALLOW</span><span class="w"> </span><span class="n">IN</span><span class="w">    </span><span class="n">Anywhere</span>
-</code></pre></div>
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere
+</code></pre>
 
 <p><strong>IMPORTANT</strong> : N'ouvrez PAS d'autres ports. Tous les services (Vault, PostgreSQL, OpenClaw) seront accessibles uniquement via Tailscale, pas via l'IP publique.</p>
 <h2 id="etape-7-configurer-fail2ban">Etape 7 : Configurer fail2ban</h2>
 <p>fail2ban bloque les IP qui tentent trop de connexions SSH :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/fail2ban/jail.conf<span class="w"> </span>/etc/fail2ban/jail.local
-$<span class="w"> </span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/fail2ban/jail.local
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+$ sudo nano /etc/fail2ban/jail.local
+</code></pre>
 
 <p>Trouvez la section <code>[sshd]</code> et assurez-vous qu'elle contient :</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[sshd]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ssh</span>
-<span class="na">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sshd</span>
-<span class="na">logpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/log/auth.log</span>
-<span class="na">maxretry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3</span>
-<span class="na">bantime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3600</span>
-<span class="na">findtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">600</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-ini">[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 3600
+findtime = 600
+</code></pre>
 
 <p>Redemarrez fail2ban :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>fail2ban
-$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>fail2ban
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo systemctl restart fail2ban
+$ sudo systemctl enable fail2ban
+</code></pre>
 
 <h2 id="etape-8-mises-a-jour-automatiques-de-securite">Etape 8 : Mises a jour automatiques de securite</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dpkg-reconfigure<span class="w"> </span>-plow<span class="w"> </span>unattended-upgrades
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo dpkg-reconfigure -plow unattended-upgrades
+</code></pre>
 
 <p>Selectionnez "Yes" pour activer les mises a jour automatiques.</p>
 <p>Verifiez la configuration :</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/etc/apt/apt.conf.d/20auto-upgrades
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ cat /etc/apt/apt.conf.d/20auto-upgrades
+</code></pre>
 
 <p>Resultat attendu :</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">APT</span><span class="p">::</span><span class="nd">Periodic</span><span class="p">::</span><span class="nd">Update-Package-Lists</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="o">;</span>
-<span class="nt">APT</span><span class="p">::</span><span class="nd">Periodic</span><span class="p">::</span><span class="nd">Unattended-Upgrade</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="o">;</span>
-</code></pre></div>
+<pre class="codehilite"><code>APT::Periodic::Update-Package-Lists &quot;1&quot;;
+APT::Periodic::Unattended-Upgrade &quot;1&quot;;
+</code></pre>
 
 <h2 id="etape-9-configurer-le-fuseau-horaire">Etape 9 : Configurer le fuseau horaire</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>Europe/Paris
-$<span class="w"> </span>timedatectl
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo timedatectl set-timezone Europe/Paris
+$ timedatectl
+</code></pre>
 
 <h2 id="erreurs-courantes">Erreurs courantes</h2>
 <ul>
@@ -275,11 +275,11 @@ $<span class="w"> </span>timedatectl
 <li><strong>Ne pas installer fail2ban</strong> : Les bots scannent en permanence. Sans fail2ban, vous verrez des milliers de tentatives de connexion par jour.</li>
 </ul>
 <h2 id="verification">Verification</h2>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ufw<span class="w"> </span>status
-$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>fail2ban
-$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>sshd
-$<span class="w"> </span>cat<span class="w"> </span>/etc/ssh/sshd_config<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;PermitRoot|PasswordAuth&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ sudo ufw status
+$ sudo systemctl status fail2ban
+$ sudo systemctl status sshd
+$ cat /etc/ssh/sshd_config | grep -E &quot;PermitRoot|PasswordAuth&quot;
+</code></pre>
 
 <p>Resultats attendus :
 - UFW actif, seul le port 22 ouvert
