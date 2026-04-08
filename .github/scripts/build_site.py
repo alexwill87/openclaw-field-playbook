@@ -137,13 +137,19 @@ def read_template():
         return f.read()
 
 
+def strip_section_number(title):
+    """Remove section numbering like '2.15 -- ' or '3.18 -- ' from a title."""
+    return re.sub(r'^\d+\.\d+\s*--\s*', '', title)
+
+
 def extract_h1(md_text):
-    """Extract the first H1 title from markdown content (after frontmatter)."""
+    """Extract the first H1 title from markdown content (after frontmatter).
+    Section numbers (e.g. '2.15 -- ') are stripped from the returned title."""
     clean = strip_frontmatter(md_text)
     for line in clean.split('\n'):
         line = line.strip()
         if line.startswith('# '):
-            return line[2:].strip()
+            return strip_section_number(line[2:].strip())
     return 'Sans titre'
 
 
@@ -189,7 +195,7 @@ def build_section_registry():
                 slug=slug,
                 html_file=f'{slug}.html',
                 title=h1,
-                sidebar_title=f'0. {short_title}',
+                sidebar_title=short_title,
                 chapter_num=chapter_num,
                 is_sommaire=True,
                 md_path=path,
@@ -210,7 +216,7 @@ def build_section_registry():
                     slug=slug,
                     html_file=f'{slug}.html',
                     title=h1,
-                    sidebar_title=f'{int(chapter_num)}. {short_title}',
+                    sidebar_title=short_title,
                     chapter_num=chapter_num,
                     is_sommaire=True,
                     md_path=readme,
@@ -284,22 +290,28 @@ def build_sidebar(all_sections, active_slug, active_chapter):
         sub_sections = ch_sections[1:]
 
         if ch_num == '00':
-            active_cls = ' class="active"' if active_slug == sommaire.slug else ''
+            is_active = active_slug == sommaire.slug
+            active_cls = ' class="active"' if is_active else ''
+            aria_current = ' aria-current="page"' if is_active else ''
             items.append(f'<div class="nav-chapter">')
-            items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}>{sommaire.sidebar_title}</a>')
+            items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}{aria_current}>{sommaire.sidebar_title}</a>')
             items.append(f'</div>')
             return
 
         is_open = (active_chapter == ch_num)
         items.append(f'<div class="nav-chapter{"  open" if is_open else ""}">')
-        active_cls = ' class="active"' if active_slug == sommaire.slug else ''
-        items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}>{sommaire.sidebar_title}</a>')
+        is_active = active_slug == sommaire.slug
+        active_cls = ' class="active"' if is_active else ''
+        aria_current = ' aria-current="page"' if is_active else ''
+        items.append(f'  <a href="{sommaire.html_file}" class="nav-chapter-title"{active_cls}{aria_current}>{sommaire.sidebar_title}</a>')
 
         if is_open and sub_sections:
             items.append(f'  <div class="nav-sections">')
             for sub in sub_sections:
-                active_cls = ' class="active"' if active_slug == sub.slug else ''
-                items.append(f'    <a href="{sub.html_file}"{active_cls}>{sub.sidebar_title}</a>')
+                is_active = active_slug == sub.slug
+                active_cls = ' class="active"' if is_active else ''
+                aria_current = ' aria-current="page"' if is_active else ''
+                items.append(f'    <a href="{sub.html_file}"{active_cls}{aria_current}>{sub.sidebar_title}</a>')
             items.append(f'  </div>')
 
         items.append(f'</div>')
@@ -427,6 +439,13 @@ def build_section_pages(all_sections):
         meta, md_content = parse_frontmatter(raw)
         html_content = markdown.markdown(md_content, extensions=MD_EXTENSIONS)
 
+        # Strip section numbers from H1 in rendered HTML (e.g. "2.15 -- Gateway" -> "Gateway")
+        html_content = re.sub(
+            r'(<h1[^>]*>)\s*\d+\.\d+\s*--\s*',
+            r'\1',
+            html_content
+        )
+
         # Rewrite .md links to .html links
         html_content = rewrite_md_links(html_content, section_map)
 
@@ -477,12 +496,12 @@ def build_section_pages(all_sections):
         if len(toc_items) > 3:  # Only show if there are enough headings
             toc_html = (
                 '<div class="learning-objectives">\n'
-                '  <div class="lo-header" onclick="this.parentElement.classList.toggle(\'collapsed\')">\n'
-                '    <span class="lo-icon">&#127891;</span>\n'
+                '  <button type="button" class="lo-header" onclick="this.parentElement.classList.toggle(\'collapsed\')" aria-expanded="true" aria-controls="lo-list">\n'
+                '    <span class="lo-icon" aria-hidden="true">&#127891;</span>\n'
                 '    Ce que vous allez apprendre\n'
-                '    <span class="lo-arrow">&#9660;</span>\n'
-                '  </div>\n'
-                '  <ul class="lo-list">\n'
+                '    <span class="lo-arrow" aria-hidden="true">&#9660;</span>\n'
+                '  </button>\n'
+                '  <ul class="lo-list" id="lo-list">\n'
             )
             toc_html += '\n'.join(f'    {item}' for item in toc_items)
             toc_html += '\n  </ul>\n</div>\n'
@@ -560,10 +579,9 @@ def build_index_page(all_sections):
             href = f'{chapter_num}-00-sommaire.html'
         cards.append(
             '<a class="chapter-card" href="{href}">'
-            '<div class="num">{num}</div>'
             '<div class="card-title">{short}</div>'
             '<div class="card-desc">{desc}</div>'
-            '</a>'.format(href=href, num=int(chapter_num), short=short_title, desc=desc)
+            '</a>'.format(href=href, short=short_title, desc=desc)
         )
 
     content = """

@@ -4,6 +4,7 @@
   btn.id = 'back-to-top';
   btn.innerHTML = '&#8593;';
   btn.title = 'Retour en haut';
+  btn.setAttribute('aria-label', 'Retour en haut de la page');
   btn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
   document.body.appendChild(btn);
 
@@ -22,8 +23,10 @@
     var text = bq.textContent.toLowerCase();
     if (text.match(/attention|sécurité|securite|important|critique|danger|ne jamais/)) {
       bq.classList.add('bq-warning');
+      bq.setAttribute('role', 'alert');
     } else if (text.match(/recommandation|conseil|astuce|bonne pratique/)) {
       bq.classList.add('bq-tip');
+      bq.setAttribute('role', 'note');
     }
   });
 })();
@@ -63,39 +66,104 @@
 // ========== MOBILE MENU TOGGLE ==========
 function toggleMenu() {
   var sidebar = document.querySelector('.sidebar');
-  if (sidebar) sidebar.classList.toggle('open');
+  var menuBtn = document.querySelector('.menu-toggle');
+  if (!sidebar) return;
+
+  sidebar.classList.toggle('open');
+  var isOpen = sidebar.classList.contains('open');
+  if (menuBtn) menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+  if (isOpen) {
+    // Focus first link in sidebar
+    var firstLink = sidebar.querySelector('a');
+    if (firstLink) firstLink.focus();
+
+    // Focus trap: keep Tab inside sidebar when open on mobile
+    sidebar._focusTrapHandler = function(e) {
+      if (e.key === 'Escape') {
+        toggleMenu();
+        if (menuBtn) menuBtn.focus();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      var focusable = sidebar.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', sidebar._focusTrapHandler);
+  } else {
+    // Remove focus trap
+    if (sidebar._focusTrapHandler) {
+      document.removeEventListener('keydown', sidebar._focusTrapHandler);
+      sidebar._focusTrapHandler = null;
+    }
+  }
 }
 
 // Close sidebar when clicking a link (mobile)
 document.querySelectorAll('#side-nav a').forEach(function(a) {
   a.addEventListener('click', function() {
     var sidebar = document.querySelector('.sidebar');
-    if (sidebar && window.innerWidth < 900) sidebar.classList.remove('open');
+    if (sidebar && window.innerWidth < 900) {
+      sidebar.classList.remove('open');
+      var menuBtn = document.querySelector('.menu-toggle');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      if (sidebar._focusTrapHandler) {
+        document.removeEventListener('keydown', sidebar._focusTrapHandler);
+        sidebar._focusTrapHandler = null;
+      }
+    }
   });
 });
 
 // ========== COPY CODE BUTTON ==========
 (function() {
+  // Create a live region for copy feedback (screen readers)
+  var copyStatus = document.createElement('div');
+  copyStatus.setAttribute('role', 'status');
+  copyStatus.setAttribute('aria-live', 'polite');
+  copyStatus.className = 'sr-only';
+  document.body.appendChild(copyStatus);
+
   document.querySelectorAll('.chapter pre').forEach(function(pre) {
     var wrapper = document.createElement('div');
     wrapper.className = 'code-wrapper';
     pre.parentNode.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
 
+    // Detect language from code class (e.g. language-bash, language-yaml)
+    var code = pre.querySelector('code');
+    var lang = '';
+    if (code && code.className) {
+      var match = code.className.match(/language-(\w+)/);
+      if (match) lang = match[1];
+    }
+    var label = lang ? 'Copier le bloc de code ' + lang : 'Copier le bloc de code';
+
     var btn = document.createElement('button');
     btn.className = 'copy-btn';
     btn.textContent = 'Copier';
+    btn.setAttribute('aria-label', label);
     btn.addEventListener('click', function() {
-      var code = pre.querySelector('code');
       var text = (code || pre).textContent;
       // Remove leading $ prompts
       text = text.replace(/^\$ /gm, '');
       navigator.clipboard.writeText(text).then(function() {
         btn.textContent = 'Copie !';
         btn.classList.add('copied');
+        copyStatus.textContent = 'Code copie dans le presse-papier';
         setTimeout(function() {
           btn.textContent = 'Copier';
           btn.classList.remove('copied');
+          copyStatus.textContent = '';
         }, 2000);
       });
     });
@@ -109,7 +177,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     var target = document.querySelector(this.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
     }
   });
 });
@@ -147,13 +216,20 @@ if (chapters.length > 0) {
   var root = document.documentElement;
   var toggleBtn = document.querySelector('.theme-toggle');
 
+  // Live region for theme change announcement
+  var themeStatus = document.createElement('div');
+  themeStatus.setAttribute('role', 'status');
+  themeStatus.setAttribute('aria-live', 'polite');
+  themeStatus.className = 'sr-only';
+  document.body.appendChild(themeStatus);
+
   function getPreferredTheme() {
     var stored = localStorage.getItem('theme');
     if (stored) return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
-  function applyTheme(theme) {
+  function applyTheme(theme, announce) {
     if (theme === 'dark') {
       root.classList.add('dark');
       root.classList.remove('light');
@@ -162,28 +238,36 @@ if (chapters.length > 0) {
       root.classList.remove('dark');
     }
     updateIcon(theme);
+    if (announce) {
+      themeStatus.textContent = theme === 'dark' ? 'Mode sombre active' : 'Mode clair active';
+      setTimeout(function() { themeStatus.textContent = ''; }, 2000);
+    }
   }
 
   function updateIcon(theme) {
     if (!toggleBtn) return;
-    // Sun icon for dark mode (click to go light), moon icon for light mode (click to go dark)
     toggleBtn.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
     toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre');
   }
 
-  // Apply on load
+  // Apply on load (no announcement)
   var currentTheme = getPreferredTheme();
-  applyTheme(currentTheme);
+  applyTheme(currentTheme, false);
 
-  // Toggle on click
+  // Toggle on click (with announcement)
   if (toggleBtn) {
     toggleBtn.addEventListener('click', function() {
       var isDark = root.classList.contains('dark');
       var newTheme = isDark ? 'light' : 'dark';
       localStorage.setItem('theme', newTheme);
-      applyTheme(newTheme);
+      applyTheme(newTheme, true);
     });
   }
+
+  // Expose globally for onclick fallback
+  window.toggleTheme = function() {
+    if (toggleBtn) toggleBtn.click();
+  };
 })();
 
 // ========== GITHUB BADGES ==========
@@ -261,8 +345,25 @@ function switchLang() {
 
   var searchResults = document.getElementById('search-results');
   var searchIndex = null;
+  var activeIndex = -1;
 
-  // Fetch search index (use local search-index.json, works for both FR and EN)
+  // Add ARIA attributes for screen readers
+  searchResults.setAttribute('role', 'listbox');
+  searchResults.setAttribute('aria-label', 'Resultats de recherche');
+  searchInput.setAttribute('role', 'combobox');
+  searchInput.setAttribute('aria-autocomplete', 'list');
+  searchInput.setAttribute('aria-expanded', 'false');
+  searchInput.setAttribute('aria-controls', 'search-results');
+  searchInput.setAttribute('aria-haspopup', 'listbox');
+
+  // Live region for announcing result count
+  var searchStatus = document.createElement('div');
+  searchStatus.setAttribute('role', 'status');
+  searchStatus.setAttribute('aria-live', 'polite');
+  searchStatus.className = 'sr-only';
+  searchInput.parentNode.appendChild(searchStatus);
+
+  // Fetch search index
   var searchIndexUrl = 'search-index.json';
   fetch(searchIndexUrl)
     .then(function(res) {
@@ -272,19 +373,37 @@ function switchLang() {
     .then(function(data) {
       searchIndex = data;
     })
-    .catch(function() {
-      // Silently fail -- search just won't work
-    });
+    .catch(function() {});
 
   function normalize(str) {
     return str.toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
+  function setActiveResult(index) {
+    var items = searchResults.querySelectorAll('.search-result-item');
+    items.forEach(function(item) {
+      item.classList.remove('search-active');
+      item.setAttribute('aria-selected', 'false');
+    });
+    activeIndex = index;
+    if (index >= 0 && index < items.length) {
+      items[index].classList.add('search-active');
+      items[index].setAttribute('aria-selected', 'true');
+      searchInput.setAttribute('aria-activedescendant', items[index].id);
+      items[index].scrollIntoView({ block: 'nearest' });
+    } else {
+      searchInput.removeAttribute('aria-activedescendant');
+    }
+  }
+
   function performSearch(query) {
+    activeIndex = -1;
     if (!searchIndex || query.length < 2) {
       searchResults.innerHTML = '';
       searchResults.style.display = 'none';
+      searchInput.setAttribute('aria-expanded', 'false');
+      searchStatus.textContent = '';
       return;
     }
 
@@ -297,28 +416,54 @@ function switchLang() {
     if (results.length === 0) {
       searchResults.innerHTML = '<div class="search-no-result">Aucun resultat</div>';
       searchResults.style.display = 'block';
+      searchInput.setAttribute('aria-expanded', 'true');
+      searchStatus.textContent = 'Aucun resultat pour "' + query + '"';
       return;
     }
 
     var html = '';
-    results.forEach(function(r) {
-      html += '<a class="search-result-item" href="' + r.url + '">' +
+    results.forEach(function(r, i) {
+      html += '<a class="search-result-item" role="option" id="search-result-' + i + '" aria-selected="false" href="' + r.url + '">' +
               '<div class="search-result-title">' + r.title + '</div>' +
               '<div class="search-result-body">' + r.body.substring(0, 80) + '...</div>' +
               '</a>';
     });
     searchResults.innerHTML = html;
     searchResults.style.display = 'block';
+    searchInput.setAttribute('aria-expanded', 'true');
+    searchStatus.textContent = results.length + ' resultat' + (results.length > 1 ? 's' : '') + ' pour "' + query + '"';
   }
 
   searchInput.addEventListener('input', function() {
     performSearch(this.value.trim());
   });
 
+  // Keyboard navigation in search results
+  searchInput.addEventListener('keydown', function(e) {
+    var items = searchResults.querySelectorAll('.search-result-item');
+    if (items.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveResult(activeIndex < items.length - 1 ? activeIndex + 1 : 0);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveResult(activeIndex > 0 ? activeIndex - 1 : items.length - 1);
+    } else if (e.key === 'Enter' && activeIndex >= 0) {
+      e.preventDefault();
+      items[activeIndex].click();
+    } else if (e.key === 'Escape') {
+      searchResults.style.display = 'none';
+      searchInput.setAttribute('aria-expanded', 'false');
+      activeIndex = -1;
+    }
+  });
+
   // Close results when clicking outside
   document.addEventListener('click', function(e) {
     if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
       searchResults.style.display = 'none';
+      searchInput.setAttribute('aria-expanded', 'false');
     }
   });
 
@@ -327,6 +472,65 @@ function switchLang() {
     if (this.value.trim().length >= 2) {
       performSearch(this.value.trim());
     }
+  });
+})();
+
+// ========== TABLE CAPTIONS ==========
+(function() {
+  document.querySelectorAll('.chapter table').forEach(function(table) {
+    if (table.querySelector('caption')) return; // already has one
+
+    // Find the nearest preceding heading to use as caption
+    var prev = table.previousElementSibling;
+    var captionText = '';
+    while (prev) {
+      if (prev.tagName && /^H[1-6]$/.test(prev.tagName)) {
+        captionText = prev.textContent.trim();
+        break;
+      }
+      // Skip over <p> and other elements to find the heading
+      if (prev.tagName === 'P' || prev.tagName === 'UL' || prev.tagName === 'OL' || prev.tagName === 'BLOCKQUOTE' || prev.tagName === 'DIV' || prev.tagName === 'HR') {
+        prev = prev.previousElementSibling;
+      } else {
+        break;
+      }
+    }
+
+    if (captionText) {
+      var caption = document.createElement('caption');
+      caption.className = 'sr-only';
+      caption.textContent = 'Tableau : ' + captionText;
+      table.insertBefore(caption, table.firstChild);
+    }
+  });
+})();
+
+// ========== GISCUS IFRAME ACCESSIBILITY ==========
+(function() {
+  var wrapper = document.querySelector('.giscus-wrapper');
+  if (!wrapper) return;
+
+  // Giscus injects an iframe asynchronously -- watch for it and add a title
+  var observer = new MutationObserver(function(mutations) {
+    var iframe = wrapper.querySelector('iframe.giscus-frame');
+    if (iframe && !iframe.title) {
+      iframe.title = 'Commentaires et discussions (via GitHub Discussions)';
+      iframe.setAttribute('aria-label', 'Commentaires et discussions');
+      observer.disconnect();
+    }
+  });
+  observer.observe(wrapper, { childList: true, subtree: true });
+})();
+
+// ========== EXTERNAL LINK ACCESSIBILITY ==========
+(function() {
+  document.querySelectorAll('a[target="_blank"]').forEach(function(a) {
+    // Skip if already has an indicator
+    if (a.querySelector('.sr-only')) return;
+    var hint = document.createElement('span');
+    hint.className = 'sr-only';
+    hint.textContent = ' (ouvre un nouvel onglet)';
+    a.appendChild(hint);
   });
 })();
 
