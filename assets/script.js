@@ -543,7 +543,7 @@ function switchLang() {
   if (!askForm || !askInput) return;
 
   var assistantIndex = null;
-  var PROXY_URL = 'https://playbook-api.openclawfieldplaybook.com/ask';
+  var PROXY_URL = 'http://195.201.20.17:3008/ask';
 
   // Load assistant index (fallback to search-index)
   fetch('assistant-index.json')

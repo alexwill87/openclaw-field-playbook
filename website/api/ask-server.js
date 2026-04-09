@@ -94,6 +94,8 @@ function callOpenRouter(question, context) {
           var data = JSON.parse(body);
           if (data.choices && data.choices[0] && data.choices[0].message) {
             var content = data.choices[0].message.content;
+            // Strip markdown code fences if present (```json ... ```)
+            content = content.replace(/^```json\s*/i, '').replace(/\s*```$/i, '').trim();
             resolve(JSON.parse(content));
           } else {
             reject(new Error('Unexpected response format'));
@@ -140,7 +142,10 @@ setInterval(function() {
 
 var server = http.createServer(function(req, res) {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+  var origin = req.headers.origin || '';
+  var allowedOrigins = [ALLOWED_ORIGIN, 'http://localhost:3000', 'http://127.0.0.1:3000'];
+  var corsOrigin = allowedOrigins.indexOf(origin) !== -1 ? origin : ALLOWED_ORIGIN;
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -205,7 +210,7 @@ var server = http.createServer(function(req, res) {
   });
 });
 
-server.listen(PORT, '127.0.0.1', function() {
+server.listen(PORT, '0.0.0.0', function() {
   console.log('Playbook Assistant API listening on 127.0.0.1:' + PORT);
   console.log('Model: ' + MODEL);
   console.log('CORS origin: ' + ALLOWED_ORIGIN);
